@@ -126,9 +126,21 @@ CREATE TABLE settings (
 
 drift manages `schema_version` internally via its `MigrationStrategy` — bump `schemaVersion`, write an `onUpgrade` step, done.
 
-## Not in the database: 祝日 (public holidays)
+## Mostly not in the database: 祝日 (public holidays)
 
-Japanese public holidays ship as a **bundled asset** (`assets/holidays_jp.json`, generated from the Cabinet Office CSV), not a DB table: the data is static per app release, identical for every user, and must never require network. Recurrence expansion and the calendar painter read it through one `HolidayService`. Refreshed once a year with an app update.
+Holidays are **computed by a rules engine** (祝日法 rules: fixed dates, Nth-Monday holidays, equinox formulas, 振替休日/国民の休日 logic) plus a tiny bundled overrides asset for rare law changes — see ARCHITECTURE.md. No annual data shipping; the app stays correct without maintenance.
+
+One small DB table exists only for **user-imported holiday overrides** (the self-rescue hatch):
+
+```sql
+CREATE TABLE holiday_overrides (
+  date    TEXT PRIMARY KEY,     -- "YYYY-MM-DD"
+  name    TEXT NOT NULL,
+  source  TEXT NOT NULL DEFAULT 'user'   -- imported .ics / manual entry
+);
+```
+
+User-imported rows take precedence over computed values; included in export/backup like everything else.
 
 ---
 
