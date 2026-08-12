@@ -63,11 +63,12 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the layers fit together
 2. **[docs/SETUP.md](docs/SETUP.md)** — toolchain install, create the project, first run.
 3. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — layers, data flow, and the project's design rules.
 4. **[docs/DATABASE.md](docs/DATABASE.md)** — the SQLite schema and the reasoning behind it.
-5. **[docs/ROADMAP.md](docs/ROADMAP.md)** — build order v0.0 → v1.0 (Google Play), with effort estimates.
-6. **[docs/QUALITY.md](docs/QUALITY.md)** — the production bar: definition of done, testing, CI, performance budgets.
-7. **[docs/DESIGN.md](docs/DESIGN.md)** — design system: the 臙脂 (enji) crimson brand, layout and motion rules.
-8. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
-9. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist (JP-first listing).
+5. **[docs/HOLIDAYS.md](docs/HOLIDAYS.md)** — holiday calendars: built-in Japan, import any region, formats and sources.
+6. **[docs/ROADMAP.md](docs/ROADMAP.md)** — build order v0.0 → v1.0 (Google Play), with effort estimates.
+7. **[docs/QUALITY.md](docs/QUALITY.md)** — the production bar: definition of done, testing, CI, performance budgets.
+8. **[docs/DESIGN.md](docs/DESIGN.md)** — design system: the 臙脂 (enji) crimson brand, layout and motion rules.
+9. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
+10. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist (JP-first listing).
 
 The project website (landing page + privacy policy, required for Play Store) lives in [`website/`](website/).
 

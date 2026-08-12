@@ -112,7 +112,7 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 - [ ] Import JSON: validate-then-transact, merge/replace modes (replace requires typed confirmation).
 - [ ] **Template export/import** (`*.cadence.json` partial export — a timetable, a roster).
 - [ ] `.ics` export of selected events + `.ics` import (Google/Apple Calendar migration).
-- [ ] **Holiday calendar manager**: import a holiday `.ics`/JSON (内閣府 CSV, Google's 日本の祝日 feed downloaded in a browser) as a **named holiday calendar** (`holiday_calendars` + `holiday_dates`); Settings lists Built-in / imported / None — switch the active one, re-import to update, delete. **This is the holiday update channel — no app release needed, ever.**
+- [ ] **Holiday calendar manager**: import a holiday `.ics`/JSON/内閣府-CSV as a **named holiday calendar** (`holiday_calendars` + `holiday_dates`) — **any region** (formats, sources, validation rules: [HOLIDAYS.md](HOLIDAYS.md)); Settings lists Built-in / imported / None — switch the active one, re-import to update, delete. **This is the holiday update channel — no app release needed, ever.**
 - [ ] **Image card**: render day/week schedule or roster to PNG for chat sharing.
 - [ ] Android: share sheet + intent filters to open `.ics`/`.cadence.json` from chats; Windows: save/open dialogs.
 - [ ] Rolling local auto-backup (keep N days) + manual "backup now"; backup integrity check on restore.
