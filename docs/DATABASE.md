@@ -28,7 +28,7 @@ CREATE TABLE events (
   -- class-only fields
   room          TEXT,                             -- 教室 (shown in the 時間割 grid)
   teacher       TEXT,
-  skip_holidays INTEGER NOT NULL DEFAULT 1,       -- 休講 on 祝日: recurrence skips bundled holidays
+  skip_holidays INTEGER NOT NULL DEFAULT 1,       -- 休講 on 祝日: recurrence skips the active holiday calendar
   -- shift-only fields
   workplace_id  TEXT REFERENCES workplaces(id) ON DELETE SET NULL,
   break_min     INTEGER NOT NULL DEFAULT 0,       -- unpaid break minutes
@@ -121,26 +121,35 @@ CREATE TABLE settings (
 --       term_start / term_end ('2026-10-01' …),                      -- 前期/後期 presets
 --       wareki ('0'|'1'),        -- show 令和 years
 --       rokuyo ('0'|'1'),        -- show 六曜 (default 0)
---       quiet_start / quiet_end ('23:00' / '07:00')                  -- notification quiet hours
+--       quiet_start / quiet_end ('23:00' / '07:00'),                 -- notification quiet hours
+--       holiday_source ('builtin_jp' | 'none' | 'calendar:<id>')     -- active holiday calendar (default 'builtin_jp')
 ```
 
 drift manages `schema_version` internally via its `MigrationStrategy` — bump `schemaVersion`, write an `onUpgrade` step, done.
 
 ## Mostly not in the database: 祝日 (public holidays)
 
-Holidays are **computed by a rules engine** (祝日法 rules: fixed dates, Nth-Monday holidays, equinox formulas, 振替休日/国民の休日 logic) plus a tiny bundled overrides asset for rare law changes — see ARCHITECTURE.md. No annual data shipping; the app stays correct without maintenance.
+The **built-in Japan pack** is computed by a rules engine (祝日法 rules: fixed dates, Nth-Monday holidays, equinox formulas, 振替休日/国民の休日 logic) plus a tiny bundled overrides asset for rare law changes — see ARCHITECTURE.md. No annual data shipping.
 
-One small DB table exists only for **user-imported holiday overrides** (the self-rescue hatch):
+The DB stores only **user-imported holiday calendars** — named sets the user manages in Settings: import, re-import to update, switch the active one, delete. The active source lives in `settings.holiday_source`: `'builtin_jp'` (default), `'none'` (plain holiday-free calendar), or `'calendar:<id>'` (an imported set):
 
 ```sql
-CREATE TABLE holiday_overrides (
-  date    TEXT PRIMARY KEY,     -- "YYYY-MM-DD"
-  name    TEXT NOT NULL,
-  source  TEXT NOT NULL DEFAULT 'user'   -- imported .ics / manual entry
+CREATE TABLE holiday_calendars (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  name         TEXT NOT NULL,      -- shown in Settings ("日本の祝日 2027", "HK holidays")
+  source_file  TEXT NOT NULL,      -- original filename — "where did this come from"
+  imported_at  TEXT NOT NULL       -- ISO timestamp; re-import replaces the rows and bumps this
+);
+
+CREATE TABLE holiday_dates (
+  calendar_id  INTEGER NOT NULL REFERENCES holiday_calendars(id) ON DELETE CASCADE,
+  date         TEXT NOT NULL,      -- "YYYY-MM-DD"
+  name         TEXT NOT NULL,
+  PRIMARY KEY (calendar_id, date)
 );
 ```
 
-User-imported rows take precedence over computed values; included in export/backup like everything else.
+When an imported calendar is active, years it doesn't cover fall back to the built-in rules (a one-year file can't blank out the future). Included in export/backup like everything else.
 
 ---
 
@@ -158,6 +167,7 @@ User-imported rows take precedence over computed values; included in export/back
 | Money = **integer yen** (`hourly_yen`) | Floating-point money is how you show someone a wrong salary. Yen has no cents — integers are exact. |
 | `wage_periods` instead of a wage column | A raise changes future months only; past estimates must not silently rewrite themselves. |
 | `skip_holidays` on the event, not global | 大学の授業 skips 祝日, but a バイト shift on a holiday is normal — per-item control matches reality. |
+| `holiday_source` is a settings key, not a schema change | Switching holiday calendars (built-in / imported / none) is one row update; imported files are the update channel, so holiday correctness never waits on an app release. |
 | `reminders` as a JSON list, not one column | Busy people layer reminders (前日 + 30分前 + 10分前). A single `reminder_min` would be a migration two months in — model it right from day one. |
 
 ---

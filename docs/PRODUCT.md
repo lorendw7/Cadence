@@ -12,7 +12,7 @@ Japanese scheduling apps are dominated by ad-funded, account-required, Japanese-
 
 | Market reality in Japan | Cadence's answer |
 |---|---|
-| Every calendar must show **祝日** (public holidays) — non-negotiable | Holidays bundled offline, red like users expect |
+| Every calendar must show **祝日** (public holidays) — non-negotiable | Holidays built in offline, red like users expect — and user-updatable without app updates |
 | Students think in **時限** ("3限"), not clock time | A real **時間割** (period-grid timetable) view |
 | **シフト管理** (part-time shift + wage tracking) is a huge app category | Shift type + hourly wage → monthly earnings estimate |
 | **LINE** is the communication default | Share sheet sends templates/images/`.ics` straight into LINE |
@@ -84,7 +84,7 @@ Cadence generates an artifact          the OS hands it to any app
 
 ## Japan pack (the localized substance)
 
-- **祝日 offline, zero-maintenance**: holidays are *computed* from the 祝日法 rules (fixed dates, Happy-Monday, equinox formulas, 振替休日) with a tiny bundled override for rare law changes — plus **manual import** of any holiday `.ics`/JSON as the escape hatch. The calendar stays correct even if the app never receives another update. Holidays render red; class recurrence can auto-skip them (休講 default: on).
+- **祝日 offline, user-controlled**: the default built-in Japan pack is *computed* from the 祝日法 rules (fixed dates, Happy-Monday, equinox formulas, 振替休日) with a tiny bundled override for rare law changes. **Updating and switching holiday data is a user feature, not an app release**: import any holiday `.ics`/JSON as a named calendar, re-import to update it, switch between calendars in Settings — or pick **None** for a plain, holiday-free calendar. Holidays render red; class recurrence can auto-skip them (休講 default: on).
 - **時間割 view**: weekday × period grid (default 1限 09:00–10:30 …, fully configurable), the mental model Japanese students actually use.
 - **Shifts & earnings**: workplaces with hourly wage; shifts on the calendar; monthly estimated pay. An *estimate*, clearly labeled — not payroll (no tax/insurance math).
 - **和暦 option**: show 令和 years alongside Gregorian.
@@ -115,7 +115,7 @@ The people we serve don't fail to *record* meetings — they fail to *notice* th
 
 | Not doing | Why |
 |-----------|-----|
-| **Fetching holiday/calendar data over the network** | 祝日 aren't real-time data — the Cabinet Office announces them 1–2 years ahead, ~16/year; 六曜/和暦 are pure computation. Bundled data + a yearly app update covers it fully. Adding network permission would demote "your data can't leave — it's technically impossible" to "trust us", killing the product's strongest claim. Decided 2026-08-12; do not reopen. |
+| **Fetching holiday/calendar data over the network** | 祝日 aren't real-time data — the Cabinet Office announces them 1–2 years ahead, ~16/year; 六曜/和暦 are pure computation. Computed rules + user-imported holiday calendars cover it fully — no update channel needed at all. Adding network permission would demote "your data can't leave — it's technically impossible" to "trust us", killing the product's strongest claim. Decided 2026-08-12; do not reopen. |
 | Accounts / cloud sync | Kills the trust story; file-based sharing covers the real scenarios |
 | LINE/WeChat **API** integration (bots, OAuth) | Requires network + partner terms; the share sheet achieves the goal |
 | Payroll accuracy (tax, insurance, 交通費 rules) | Earnings are an estimate; full payroll is a liability, not a feature |
