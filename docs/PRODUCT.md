@@ -84,7 +84,7 @@ Cadence generates an artifact          the OS hands it to any app
 
 ## Japan pack (the localized substance)
 
-- **祝日 offline**: Cabinet Office holiday data bundled as an asset, refreshed with each app release. Holidays render red; class recurrence can auto-skip them (休講 default: on).
+- **祝日 offline, zero-maintenance**: holidays are *computed* from the 祝日法 rules (fixed dates, Happy-Monday, equinox formulas, 振替休日) with a tiny bundled override for rare law changes — plus **manual import** of any holiday `.ics`/JSON as the escape hatch. The calendar stays correct even if the app never receives another update. Holidays render red; class recurrence can auto-skip them (休講 default: on).
 - **時間割 view**: weekday × period grid (default 1限 09:00–10:30 …, fully configurable), the mental model Japanese students actually use.
 - **Shifts & earnings**: workplaces with hourly wage; shifts on the calendar; monthly estimated pay. An *estimate*, clearly labeled — not payroll (no tax/insurance math).
 - **和暦 option**: show 令和 years alongside Gregorian.

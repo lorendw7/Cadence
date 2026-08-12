@@ -45,14 +45,14 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 - [ ] drift database: `events` + `recurrence_rules`, migrations, repository layer.
 - [ ] Riverpod: `eventListProvider` streaming events for the visible range.
 - [ ] Month + week views (table_calendar) with event dots and a day agenda list.
-- [ ] **Japanese public holidays**: bundled asset (Cabinet Office data), rendered red, shown in month/week/agenda.
+- [ ] **Japanese public holidays, computed**: rules engine (fixed dates, Nth-Monday, equinox formulas, 振替休日/国民の休日) + tiny overrides asset — correct for any year with **zero annual maintenance**; rendered red in month/week/agenda.
 - [ ] Create/edit event bottom sheet: class / meeting / todo fields per category.
 - [ ] Recurrence: weekly-by-weekday via `rrule`, term start/end, single-occurrence exceptions.
 - [ ] To-do: check off, priority colors, strike-through.
 - [ ] i18n from day one: ARB files **ja / en / zh**, language picker (+ "system"). Japanese is the reference locale — write it first, translate to en/zh.
 - [ ] Event reminders (`flutter_local_notifications`), Android 13+ permission flow — **layered: multiple lead times per event** (前日 + 30分前 + …).
 - [ ] **Conflict detection**: overlapping-event warning at save time.
-- [ ] Unit tests: recurrence expansion (incl. exceptions), holiday lookup, overlap detection, repository CRUD.
+- [ ] Unit tests: recurrence expansion (incl. exceptions), overlap detection, repository CRUD, and the **holiday engine verified against the official 内閣府 list for 2020–2027** (incl. the Olympic-move years — the regression suite that proves zero-maintenance is safe).
 
 📘 Async Dart (`Future`/`Stream`), drift code-gen, Riverpod `watch`/`read`, bottom sheets, form validation, ARB workflow, bundled assets.
 🎯 A calendar a person in Japan can actually live in — red 祝日 included.
@@ -111,6 +111,7 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 - [ ] Import JSON: validate-then-transact, merge/replace modes (replace requires typed confirmation).
 - [ ] **Template export/import** (`*.cadence.json` partial export — a timetable, a roster).
 - [ ] `.ics` export of selected events + `.ics` import (Google/Apple Calendar migration).
+- [ ] **Holiday override import**: accept a holiday `.ics`/JSON (内閣府 CSV, Google's 日本の祝日 feed downloaded in a browser) into `holiday_overrides` — users can keep holidays correct even if the app is never updated.
 - [ ] **Image card**: render day/week schedule or roster to PNG for chat sharing.
 - [ ] Android: share sheet + intent filters to open `.ics`/`.cadence.json` from chats; Windows: save/open dialogs.
 - [ ] Rolling local auto-backup (keep N days) + manual "backup now"; backup integrity check on restore.
