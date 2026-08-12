@@ -30,8 +30,9 @@ flutter build appbundle --release     # .aab is what Play accepts
 
 ## 4. Store listing
 
-- [ ] Title, short description (80 chars), full description — in **en, zh-CN, ja** (Play supports per-locale listings; we have the translations anyway).
-- [ ] Screenshots: phone (min 2; do calendar, today, habits, dark mode) + 7-inch/10-inch tablet if layouts hold up.
+- [ ] **Default listing language: 日本語** (primary market); add **en-US** and **zh-CN** listings.
+- [ ] Title/descriptions written natively in Japanese first (not translated-sounding); mention 時間割・シフト管理・完全オフライン up front — these are the search terms.
+- [ ] Screenshots: phone (min 2): 時間割 grid, calendar with red 祝日, shift earnings, focus stats, dark mode; per-locale screenshot text.
 - [ ] Feature graphic 1024×500.
 - [ ] Category: Productivity. Content rating questionnaire (trivial — no UGC, no ads).
 
