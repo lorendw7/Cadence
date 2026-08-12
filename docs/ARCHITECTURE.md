@@ -54,6 +54,16 @@ This loop — **widget → provider → repository → drift → stream → widg
 
 ---
 
+## Japan-specific services (where they live)
+
+- **`HolidayService`** (data layer): loads the bundled `assets/holidays_jp.json` once; answers `isHoliday(date)` / `holidayName(date)`. Consumers: calendar painters (red days), recurrence expansion (休講 skip), agenda headers.
+- **Kana-folding search** (data layer utility): normalizes hiragana⇄katakana and full-width⇄half-width before matching, so 「バイト」 finds 「ばいと」 and "ｶﾌｪ" finds "カフェ". Pure function → unit-tested exhaustively.
+- **Timetable periods** (settings-driven): the 時間割 grid reads the `periods` JSON from settings; class events snap to periods at creation but are stored as plain wall times — the grid is a *view*, the data stays portable.
+- **Quiet hours** (platform layer): the notification scheduler checks the quiet window before scheduling; held notifications fire at window end.
+- **和暦/六曜** (UI layer only): display formatting, never stored — the database speaks Gregorian ISO 8601 exclusively.
+
+---
+
 ## Recurrence model
 
 A recurring class is stored **once**: a master event row plus an `rrule` string (`FREQ=WEEKLY;BYDAY=MO,WE,FR;UNTIL=…`).

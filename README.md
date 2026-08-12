@@ -1,10 +1,10 @@
 # Cadence
 
-> A local-first personal rhythm manager — classes, meetings, to-dos, and habits in one calendar.
+> A local-first time manager **built for life in Japan** — 時間割, shifts, to-dos, habits and focus time in one offline calendar.
 > Built with **Flutter**. Free, open source (MIT), fully offline. Your data never leaves your device.
 
 **Platforms:** Android (Google Play — planned) · Windows desktop · _iOS: not planned for now_
-**Languages:** English · 简体中文 · 日本語
+**Languages:** 日本語 · English · 简体中文 — Japanese-first, and one of the few Japan-shaped schedulers international residents can use in their own language.
 
 ---
 
@@ -14,16 +14,17 @@ Most calendar apps treat every entry the same. Cadence models the four things a 
 
 | Type | Icon | For | Key behavior |
 |------|------|-----|--------------|
-| **Class** | 📚 | Weekly fixed slots — lectures, training | Repeats on chosen weekdays within a term |
+| **Class** 授業 | 📚 | The semester 時間割 | Period grid (1限–6限), weekly repeats within a term, auto-skips 祝日 (休講) |
+| **Shift** バイト | 💰 | Part-time work | Per-workplace hourly wage → monthly earnings estimate (見込み給料) |
 | **Meeting** | 🤝 | Appointments, work syncs, doctor visits | Location + "remind me N minutes before" |
 | **To-do** | ✅ | One-off tasks with a deadline | Check off, priority colors, rolls over if unfinished |
-| **Habit** | 💊 | Medication, exercise, water, reading | Daily check-in, streaks, heat-map, fixed reminders |
+| **Habit** | 💊 | Medication, exercise, study streaks | Daily check-in, streaks, heat-map, fixed reminders |
 
-Plus **Focus mode**: a Pomodoro timer that attaches to classes and to-dos, turning study effort into per-subject stats — "6.5 hours of math this week."
+Plus **Focus mode** (a Pomodoro that attaches to classes → per-subject study stats) and a **discipline dashboard** tying it all together.
 
-### Built for campus life
+### Made for Japan
 
-Students track their own rhythm; teachers export a timetable **template file** the whole class imports in one tap; dorm managers share duty rosters as **image cards** or `.ics` into any group chat (LINE, WeChat, …) via the system share sheet — the app itself never touches the network. See [docs/PRODUCT.md](docs/PRODUCT.md).
+**祝日** bundled offline and painted red · a real **時間割** period-grid view · **アルバイト** wage tracking · optional **和暦**(令和) and **六曜** · kana-aware search (ひらがな⇄カタカナ, 全角⇄半角) · quiet hours. Schedules travel into **LINE** (or any app) as template files, `.ics`, or image cards via the system share sheet — the app itself never touches the network. See [docs/PRODUCT.md](docs/PRODUCT.md).
 
 ### Principles
 
@@ -59,8 +60,9 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the layers fit together
 3. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — layers, data flow, and the project's design rules.
 4. **[docs/DATABASE.md](docs/DATABASE.md)** — the SQLite schema and the reasoning behind it.
 5. **[docs/ROADMAP.md](docs/ROADMAP.md)** — build order v0.0 → v1.0 (Google Play), with effort estimates.
-6. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
-7. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist.
+6. **[docs/QUALITY.md](docs/QUALITY.md)** — the production bar: definition of done, testing, CI, performance budgets.
+7. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
+8. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist (JP-first listing).
 
 The project website (landing page + privacy policy, required for Play Store) lives in [`website/`](website/).
 
