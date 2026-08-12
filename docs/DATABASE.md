@@ -23,7 +23,8 @@ CREATE TABLE events (
   priority      TEXT CHECK (priority IN ('high','medium','low')),  -- todo only
   completed     INTEGER NOT NULL DEFAULT 0,       -- todo only
   completed_at  TEXT,
-  reminder_min  INTEGER,                          -- notify N minutes before start
+  reminders     TEXT NOT NULL DEFAULT '[]',       -- JSON array of minutes-before, e.g. [1440,30,10]
+  insistent     INTEGER NOT NULL DEFAULT 0,       -- re-notify until acknowledged (per event)
   -- class-only fields
   room          TEXT,                             -- 教室 (shown in the 時間割 grid)
   teacher       TEXT,
@@ -112,7 +113,10 @@ CREATE TABLE settings (
 );
 -- keys: language ('ja'|'en'|'zh'|'system'), theme ('light'|'dark'|'system'),
 --       week_start ('mon'|'sun'), todo_rollover ('0'|'1'),
---       daily_summary_time ('07:30'), backup_keep_days ('14'),
+--       daily_summary_time ('07:30'),      -- morning digest notification
+--       evening_preview_time ('21:00'),    -- tomorrow-preview notification
+--       insistent_interval_min ('3'),      -- re-ring cadence for insistent events
+--       backup_keep_days ('14'),
 --       periods (JSON: [{"n":1,"start":"09:00","end":"10:30"}, …]),  -- 時間割 grid
 --       term_start / term_end ('2026-10-01' …),                      -- 前期/後期 presets
 --       wareki ('0'|'1'),        -- show 令和 years
@@ -142,6 +146,7 @@ Japanese public holidays ship as a **bundled asset** (`assets/holidays_jp.json`,
 | Money = **integer yen** (`hourly_yen`) | Floating-point money is how you show someone a wrong salary. Yen has no cents — integers are exact. |
 | `wage_periods` instead of a wage column | A raise changes future months only; past estimates must not silently rewrite themselves. |
 | `skip_holidays` on the event, not global | 大学の授業 skips 祝日, but a バイト shift on a holiday is normal — per-item control matches reality. |
+| `reminders` as a JSON list, not one column | Busy people layer reminders (前日 + 30分前 + 10分前). A single `reminder_min` would be a migration two months in — model it right from day one. |
 
 ---
 

@@ -13,15 +13,15 @@ Estimates **include learning time** (you're new to Dart/Flutter, coming from Typ
 | Milestone | Focused hours | Notes |
 |-----------|---------------|-------|
 | v0.0 Hello Flutter | 2–4 h | Toolchain, skeleton, run on Windows + Android |
-| v0.1 Calendar MVP + 祝日 | 32–48 h | The big one: DB, state, forms, recurrence, i18n, holidays |
+| v0.1 Calendar MVP + 祝日 | 34–50 h | The big one: DB, state, forms, recurrence, i18n, holidays, layered reminders, conflict warning |
 | v0.2 時間割 timetable | 12–18 h | Period grid, term dates, holiday-skip |
-| v0.3 Habits | 15–25 h | Streaks, reminders, back-fill |
+| v0.3 Habits & reminders | 19–30 h | Streaks, digests, insistent mode |
 | v0.4 Shifts & earnings | 12–18 h | Workplaces, wages, monthly estimate |
 | v0.5 Data freedom & sharing | 18–28 h | Export/import, templates, `.ics`, image cards, share sheet |
 | v0.6 Focus mode | 12–18 h | Pomodoro, per-subject stats |
 | v0.7 Insights & JP polish | 15–25 h | Dashboard, search (kana-folding), 和暦/六曜, quiet hours |
 | v1.0 Google Play release | 12–18 h | JP-first listing, signing, closed test cycle |
-| **Total** | **~130–200 h** | |
+| **Total** | **~135–210 h** | |
 
 Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Play Store in ~3.5–5 months.** Front-loaded curve: v0.1 is slow because you learn the framework and the app at once; velocity roughly doubles after it.
 
@@ -50,8 +50,9 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 - [ ] Recurrence: weekly-by-weekday via `rrule`, term start/end, single-occurrence exceptions.
 - [ ] To-do: check off, priority colors, strike-through.
 - [ ] i18n from day one: ARB files **ja / en / zh**, language picker (+ "system"). Japanese is the reference locale — write it first, translate to en/zh.
-- [ ] Event reminders (`flutter_local_notifications`), Android 13+ permission flow.
-- [ ] Unit tests: recurrence expansion (incl. exceptions), holiday lookup, repository CRUD.
+- [ ] Event reminders (`flutter_local_notifications`), Android 13+ permission flow — **layered: multiple lead times per event** (前日 + 30分前 + …).
+- [ ] **Conflict detection**: overlapping-event warning at save time.
+- [ ] Unit tests: recurrence expansion (incl. exceptions), holiday lookup, overlap detection, repository CRUD.
 
 📘 Async Dart (`Future`/`Stream`), drift code-gen, Riverpod `watch`/`read`, bottom sheets, form validation, ARB workflow, bundled assets.
 🎯 A calendar a person in Japan can actually live in — red 祝日 included.
@@ -72,17 +73,20 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 
 ---
 
-## v0.3 — Habits
+## v0.3 — Habits & reminders that don't let go
 
 - [ ] `habits` + `habit_logs` tables, repository, idempotent check-in upsert.
 - [ ] Today screen: due-today habits, one-tap check-in, back-fill yesterday.
 - [ ] Streak counter (computed from the log stream); monthly completion view.
 - [ ] Fixed-time daily reminders (e.g. 08:00 薬); frequency: daily / weekdays / custom days / N per week.
+- [ ] **Morning digest** (default 07:30): today's events + habits in one notification.
+- [ ] **Evening preview** (default 21:00): tomorrow's first commitment, the night before.
+- [ ] **Insistent mode**: per-event "re-ring until acknowledged" (interval configurable), overriding quiet hours only when explicitly set.
 - [ ] Archive without losing history.
-- [ ] Unit tests: streak math across month boundaries, due-today logic per frequency.
+- [ ] Unit tests: streak math across month boundaries, due-today logic per frequency, digest content builder.
 
-📘 More streams, date math, notification scheduling, sealed types.
-🎯 Streak-driven habit tracking — the reason to open the app every morning.
+📘 More streams, date math, notification scheduling & actions, sealed types.
+🎯 Streaks pull you in every morning — and no meeting slips past you again.
 
 ---
 
@@ -133,6 +137,7 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 ## v0.7 — Insights & Japan polish
 
 - [ ] Discipline dashboard: events, to-do completion, habit streaks + heat-map, focus hours, earnings — one screen.
+- [ ] **Meeting-hours insight** ("会議 12h this week") and **年度-aware stats** (Japanese fiscal year Apr–Mar as a range option).
 - [ ] Global search with **kana folding** (ひらがな/カタカナ) and full-width/half-width normalization.
 - [ ] **和暦** display option (令和 alongside Gregorian); **六曜** toggle (off by default).
 - [ ] Quiet hours: notifications hold during configured sleep window.
