@@ -13,12 +13,13 @@ Estimates **include learning time** (you're new to Dart/Flutter, coming from Typ
 | v0.0 Hello Flutter | 2–4 h | Toolchain, project, first widget, run on Windows + Android emulator |
 | v0.1 Calendar MVP | 30–45 h | The big one: DB, state, forms, recurrence, i18n scaffolding |
 | v0.2 Habits | 15–25 h | Reuses v0.1 patterns; streaks + reminders are the new bits |
-| v0.3 Data freedom | 12–20 h | Export/import JSON & CSV, auto-backup, `.ics` import |
-| v0.4 Insights & polish | 15–25 h | Heat-map, stats, search, Android UX pass |
+| v0.3 Data freedom & sharing | 18–28 h | Export/import, backups, **templates + `.ics` + image cards via the share sheet** |
+| v0.4 Focus mode | 12–18 h | Pomodoro, per-subject study stats — see [PRODUCT.md](PRODUCT.md) |
+| v0.5 Insights & polish | 15–25 h | Heat-map, stats dashboard, search, Android UX pass |
 | v1.0 Google Play release | 10–15 h | Signing, store listing, privacy policy, screenshots, review cycle |
-| **Total** | **~85–135 h** | |
+| **Total** | **~100–160 h** | |
 
-Wall-clock at ~10 h/week: **usable app in ~4–5 weeks (end of v0.1), Play Store in ~2.5–3.5 months.** The curve is front-loaded — v0.1 is slow because you learn the framework and the app at once; velocity roughly doubles after it.
+Wall-clock at ~10 h/week: **usable app in ~4–5 weeks (end of v0.1), Play Store in ~3–4 months.** The curve is front-loaded — v0.1 is slow because you learn the framework and the app at once; velocity roughly doubles after it.
 
 ---
 
@@ -63,23 +64,40 @@ Wall-clock at ~10 h/week: **usable app in ~4–5 weeks (end of v0.1), Play Store
 
 ---
 
-## v0.3 — Data freedom
+## v0.3 — Data freedom & sharing
+
+The sharing model is file-based via the OS share sheet — no network, works with LINE/WeChat/anything. Rationale in [PRODUCT.md](PRODUCT.md).
 
 - [ ] Export all data to versioned **JSON**; per-table **CSV**.
 - [ ] Import JSON with validate-then-transact, merge/replace modes.
-- [ ] `.ics` import (Google/Apple Calendar migration), best-effort mapping.
+- [ ] **Template export/import** (`*.cadence.json` partial export — e.g. a timetable a teacher shares with a class).
+- [ ] `.ics` export of selected events + `.ics` import (Google/Apple Calendar migration).
+- [ ] **Image card**: render a day/week schedule or roster to PNG for chat sharing.
+- [ ] Android: share-sheet integration + intent filter to **open** `.ics`/`.cadence.json` from chats; Windows: save/open dialogs.
 - [ ] Rolling local auto-backup (keep N days), manual "backup now".
-- [ ] Android share-sheet export; Windows save-file dialog.
 
-📘 File I/O per platform, JSON (de)serialization, transactions, error surfaces users can understand.
-🎯 The promise on the README — "your data is portable" — becomes real.
+📘 File I/O per platform, JSON (de)serialization, transactions, Android intents, rendering a widget to an image.
+🎯 A teacher posts one file to the class group; every student's calendar is set up in one tap.
 
 ---
 
-## v0.4 — Insights & polish
+## v0.4 — Focus mode (the study aid)
+
+- [ ] Pomodoro timer (25/5 default, configurable, long-break cycle), runs reliably in background.
+- [ ] Attach a session to a class or to-do → focus time inherits the subject.
+- [ ] `focus_sessions` table + per-subject weekly/monthly stats.
+- [ ] Session-end / break-end local notifications; suggest DND during sessions.
+- [ ] Focus history feeds the same stats engine as habits.
+
+📘 Timers & app lifecycle (what happens when the app is backgrounded), foreground services on Android, state machines.
+🎯 "6.5 hours of math this week" — study effort becomes visible.
+
+---
+
+## v0.5 — Insights & polish
 
 - [ ] Habit heat-map (monthly grid) + completion percentages.
-- [ ] Stats: events per week, to-do completion rate, busiest day.
+- [ ] Discipline dashboard: events, to-do completion rate, habit streaks, focus hours — one screen.
 - [ ] Global search across events/habits.
 - [ ] Unfinished-to-do rollover (setting-driven).
 - [ ] Android polish: predictive back, widget-worthy today glance, adaptive icon.
@@ -105,7 +123,7 @@ See [RELEASE.md](RELEASE.md) for the full checklist.
 
 ## Later (ideas, not commitments)
 
-Home-screen widgets, quick-add natural language, `.ics` export, Pomodoro, encrypted backup, F-Droid listing, iOS (if ever — the codebase is ready, only Apple tooling/fees stand between).
+Home-screen widgets, quick-add natural language, encrypted backup, F-Droid listing, focus "strict mode" (app blocking), iOS (if ever — the codebase is ready, only Apple tooling/fees stand between).
 
 ## Working rhythm
 
