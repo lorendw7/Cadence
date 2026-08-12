@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — local-first calendar, to-dos & habits</title>
+<meta name="description" content="Cadence is a free, open-source, offline calendar app for classes, meetings, to-dos and habit streaks. Your data never leaves your device. Android & Windows.">
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --text:#e8eaf0; --muted:#9aa3b2;
+    --accent:#5b8cff; --accent2:#37c4a8; --border:#262b36; --radius:14px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f7f8fa; --panel:#ffffff; --text:#1c2230; --muted:#5b6472; --border:#e4e7ee; }
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--text);font:16px/1.65 system-ui,"Segoe UI",Roboto,"Noto Sans SC","Noto Sans JP",sans-serif}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+  header{padding:72px 0 40px;text-align:center}
+  .logo{font-size:44px;font-weight:800;letter-spacing:-1px}
+  .logo span{color:var(--accent)}
+  .tag{color:var(--muted);font-size:19px;margin-top:10px}
+  .badges{margin-top:18px;color:var(--muted);font-size:14px}
+  .badges b{color:var(--accent2);font-weight:600}
+  .cta{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 22px;border-radius:var(--radius);text-decoration:none;font-weight:600}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.ghost{border:1px solid var(--border);color:var(--text)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:48px 0}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+  .card h3{font-size:17px;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:14.5px}
+  .emoji{font-size:26px;display:block;margin-bottom:10px}
+  section h2{font-size:24px;margin:56px 0 16px;text-align:center}
+  .promise{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center;margin:24px 0}
+  .promise p{color:var(--muted)}
+  .promise strong{color:var(--accent2)}
+  footer{margin:64px 0 40px;text-align:center;color:var(--muted);font-size:14px}
+  footer a{color:var(--accent);text-decoration:none}
+  ul.plain{list-style:none;color:var(--muted);font-size:14.5px}
+  ul.plain li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="logo">Ca<span>dence</span></div>
+  <p class="tag">Classes, meetings, to-dos & habit streaks — one local-first calendar.</p>
+  <div class="badges"><b>Free</b> · <b>Open source (MIT)</b> · <b>100% offline</b> · English / 简体中文 / 日本語</div>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/lorendw7/Cadence/releases">Download (Windows)</a>
+    <a class="btn ghost" href="https://github.com/lorendw7/Cadence">GitHub</a>
+    <a class="btn ghost" href="#android">Android — coming to Google Play</a>
+  </div>
+</header>
+
+<section>
+  <div class="grid">
+    <div class="card"><span class="emoji">📚</span><h3>Classes</h3><p>Weekly repeating slots with term start/end. Your timetable, set up once.</p></div>
+    <div class="card"><span class="emoji">🤝</span><h3>Meetings</h3><p>Location, notes, and a reminder N minutes before — never walk in late.</p></div>
+    <div class="card"><span class="emoji">✅</span><h3>To-dos</h3><p>Priorities, deadlines, satisfying strike-through. Unfinished items roll to tomorrow.</p></div>
+    <div class="card"><span class="emoji">💊</span><h3>Habits</h3><p>One-tap daily check-ins, streaks, and a monthly heat-map that keeps you honest.</p></div>
+  </div>
+</section>
+
+<section id="privacy-promise">
+  <h2>Your data stays yours</h2>
+  <div class="promise">
+    <p><strong>Cadence has no server, no account, and requests no network access.</strong><br>
+    Everything is stored in a single SQLite file on your device. Export all of it to JSON or CSV
+    anytime — and import it back on any device. Free forever, no ads, no tracking.</p>
+  </div>
+</section>
+
+<section id="android">
+  <h2>Platforms</h2>
+  <div class="grid">
+    <div class="card"><span class="emoji">🤖</span><h3>Android</h3><p>Coming to Google Play — free. Follow the GitHub repo for the release announcement.</p></div>
+    <div class="card"><span class="emoji">🪟</span><h3>Windows</h3><p>Portable build on GitHub Releases.</p></div>
+    <div class="card"><span class="emoji">🍎</span><h3>iOS</h3><p>Not planned for now. The codebase is ready if that changes.</p></div>
+  </div>
+</section>
+
+<footer>
+  <ul class="plain">
+    <li><a href="privacy.html">Privacy Policy</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT License</a></li>
+    <li>© 2026 lorendw7 · Built with Flutter</li>
+  </ul>
+</footer>
+
+</div>
+</body>
+</html>
