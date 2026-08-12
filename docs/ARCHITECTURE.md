@@ -56,11 +56,11 @@ This loop — **widget → provider → repository → drift → stream → widg
 
 ## Japan-specific services (where they live)
 
-- **`HolidayService`** (data layer) — designed to stay correct **without app updates**, three layers:
-  1. **Rules engine** (pure computation): most 祝日 are law-defined rules — fixed dates, Happy-Monday "Nth Monday" holidays, equinoxes via astronomical formula (valid to ~2099), plus the 振替休日 (substitute) and 国民の休日 (sandwiched) rules. Works for any year, forever, no data.
-  2. **Bundled exceptions** (`assets/holidays_jp_overrides.json`): one-off law changes (enthronement 2019, Olympic moves 2020–21). Shipped with a release only when the law actually changes — every few years, not annually.
-  3. **User-imported overrides**: any `.ics`/JSON holiday file imported via the normal import flow (v0.5) takes precedence — e.g. the 内閣府 CSV or Google's "日本の祝日" `.ics` downloaded in a browser. **If the app were never updated again, users could keep it correct themselves.**
-  Answers `isHoliday(date)` / `holidayName(date)`; consumers: calendar painters (red days), recurrence expansion (休講 skip), agenda headers. 六曜/和暦 are pure computation and need no maintenance at all.
+- **`HolidayService`** (data layer) — holidays are a **user-switchable source** (Settings key `holiday_source`), designed so correctness **never depends on an app release**:
+  - **Built-in Japan pack** (default): a rules engine — fixed dates, Happy-Monday "Nth Monday" holidays, equinoxes via astronomical formula (valid to ~2099), plus the 振替休日 (substitute) and 国民の休日 (sandwiched) rules — plus a tiny bundled exceptions asset (`assets/holidays_jp_overrides.json`) for one-off law changes (enthronement 2019, Olympic moves 2020–21). Correct for any year with no data shipping.
+  - **Imported holiday calendars**: any `.ics`/JSON holiday file (内閣府 CSV, Google's 日本の祝日 feed downloaded in a browser) imported as a **named calendar** (v0.5). **Re-importing a newer file is the update channel** — if the law changes, users fix holidays themselves in one import instead of waiting for an app update. Years an imported calendar doesn't cover fall back to the built-in rules, so a one-year file can't blank out the future.
+  - **None**: a plain, holiday-free calendar — for users who don't want holidays, or don't live on the Japanese calendar.
+  Answers `isHoliday(date)` / `holidayName(date)` for the active source; consumers — calendar painters (red days), recurrence expansion (休講 skip), agenda headers — never know which source is active. 六曜/和暦 are pure computation and need no maintenance at all.
 - **Kana-folding search** (data layer utility): normalizes hiragana⇄katakana and full-width⇄half-width before matching, so 「バイト」 finds 「ばいと」 and "ｶﾌｪ" finds "カフェ". Pure function → unit-tested exhaustively.
 - **Timetable periods** (settings-driven): the 時間割 grid reads the `periods` JSON from settings; class events snap to periods at creation but are stored as plain wall times — the grid is a *view*, the data stays portable.
 - **Quiet hours** (platform layer): the notification scheduler checks the quiet window before scheduling; held notifications fire at window end.

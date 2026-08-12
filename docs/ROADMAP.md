@@ -46,6 +46,7 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 - [ ] Riverpod: `eventListProvider` streaming events for the visible range.
 - [ ] Month + week views (table_calendar) with event dots and a day agenda list.
 - [ ] **Japanese public holidays, computed**: rules engine (fixed dates, Nth-Monday, equinox formulas, 振替休日/国民の休日) + tiny overrides asset — correct for any year with **zero annual maintenance**; rendered red in month/week/agenda.
+- [ ] **Holiday source switch** in Settings: **Built-in Japan (default) / None** — "None" is the plain, holiday-free calendar (imported calendars join this list in v0.5).
 - [ ] Create/edit event bottom sheet: class / meeting / todo fields per category.
 - [ ] Recurrence: weekly-by-weekday via `rrule`, term start/end, single-occurrence exceptions.
 - [ ] To-do: check off, priority colors, strike-through.
@@ -64,7 +65,7 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 - [ ] Period model in settings: configurable list (default 1限 09:00–10:30 … 6限), JSON-stored.
 - [ ] Weekday × period grid view; classes snap to periods; tap a cell to add.
 - [ ] Term presets (前期/後期 dates) applied to class recurrence.
-- [ ] **休講 on 祝日**: class recurrence auto-skips bundled holidays (per-class toggle, default on).
+- [ ] **休講 on 祝日**: class recurrence auto-skips the active holiday calendar (per-class toggle, default on).
 - [ ] Class detail: room, teacher, color; grid cell shows room number.
 - [ ] Unit tests: period snapping, holiday-skip expansion.
 
@@ -111,7 +112,7 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 - [ ] Import JSON: validate-then-transact, merge/replace modes (replace requires typed confirmation).
 - [ ] **Template export/import** (`*.cadence.json` partial export — a timetable, a roster).
 - [ ] `.ics` export of selected events + `.ics` import (Google/Apple Calendar migration).
-- [ ] **Holiday override import**: accept a holiday `.ics`/JSON (内閣府 CSV, Google's 日本の祝日 feed downloaded in a browser) into `holiday_overrides` — users can keep holidays correct even if the app is never updated.
+- [ ] **Holiday calendar manager**: import a holiday `.ics`/JSON (内閣府 CSV, Google's 日本の祝日 feed downloaded in a browser) as a **named holiday calendar** (`holiday_calendars` + `holiday_dates`); Settings lists Built-in / imported / None — switch the active one, re-import to update, delete. **This is the holiday update channel — no app release needed, ever.**
 - [ ] **Image card**: render day/week schedule or roster to PNG for chat sharing.
 - [ ] Android: share sheet + intent filters to open `.ics`/`.cadence.json` from chats; Windows: save/open dialogs.
 - [ ] Rolling local auto-backup (keep N days) + manual "backup now"; backup integrity check on restore.
