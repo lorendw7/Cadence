@@ -158,9 +158,30 @@ See [RELEASE.md](RELEASE.md). JP-first listing (ja primary; en, zh-CN listings t
 
 ---
 
+## Post-1.0 — fast follows (planned, in order)
+
+Ship 1.0 lean, then grow retention with practical additions. Each still passes the three scope questions in [QUALITY.md](QUALITY.md).
+
+### v1.1 — 出欠 & 課題 (the student-retention update)
+- [ ] **Attendance tracking**: per class occurrence mark 出席/欠席/遅刻; class card shows "欠席 2/15 ⚠️" with a configurable danger threshold (default 1/3 — the 単位 rule).
+- [ ] **Assignments (課題)**: to-dos linkable to a class; the 時間割 cell badges pending 課題; deadline reminders.
+
+### v1.2 — glanceability
+- [ ] Android **home-screen widget**: today's agenda + next class/shift.
+- [ ] **Notification quick actions**: check in a habit / mark attendance from the notification itself.
+- [ ] Stats **image card** export ("today / this week" as PNG — share your study week to LINE).
+
+### v1.3 — desktop comfort
+- [ ] Windows **system tray** + optional launch-at-startup; tray click = today popup.
+- [ ] Global quick-add hotkey on desktop.
+
+### v1.4 — safety & trust
+- [ ] **Trash / undo**: deleted items recoverable for 30 days.
+- [ ] Optional **encrypted backup** (passphrase-protected export).
+
 ## Later (ideas, not commitments)
 
-Home-screen widget (today + next class), quick-add natural language (Japanese-aware), night-premium wage rules (深夜手当), encrypted backup, F-Droid, focus strict mode (app blocking), iOS (the codebase is ready; only Apple tooling/fees stand between).
+Quick-add natural language (Japanese-aware), night-premium wage rules (深夜手当), F-Droid listing, focus strict mode (app blocking), Google Play tablet/Chromebook targets, iOS (the codebase is ready; only Apple tooling/fees stand between).
 
 ## Working rhythm
 

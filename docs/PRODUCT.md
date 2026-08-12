@@ -92,6 +92,7 @@ Cadence generates an artifact          the OS hands it to any app
 
 | Not doing | Why |
 |-----------|-----|
+| **Fetching holiday/calendar data over the network** | 祝日 aren't real-time data — the Cabinet Office announces them 1–2 years ahead, ~16/year; 六曜/和暦 are pure computation. Bundled data + a yearly app update covers it fully. Adding network permission would demote "your data can't leave — it's technically impossible" to "trust us", killing the product's strongest claim. Decided 2026-08-12; do not reopen. |
 | Accounts / cloud sync | Kills the trust story; file-based sharing covers the real scenarios |
 | LINE/WeChat **API** integration (bots, OAuth) | Requires network + partner terms; the share sheet achieves the goal |
 | Payroll accuracy (tax, insurance, 交通費 rules) | Earnings are an estimate; full payroll is a liability, not a feature |
