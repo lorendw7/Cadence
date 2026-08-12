@@ -64,6 +64,19 @@ CREATE TABLE habit_logs (
 );
 CREATE INDEX idx_habit_logs_habit ON habit_logs(habit_id);
 
+-- ── Focus sessions (v0.4) ───────────────────────────────────────
+CREATE TABLE focus_sessions (
+  id          TEXT PRIMARY KEY,
+  event_id    TEXT REFERENCES events(id) ON DELETE SET NULL,  -- attached class/todo (optional)
+  started_at  TEXT NOT NULL,                    -- local wall time
+  duration_s  INTEGER NOT NULL,                 -- actual focused seconds (breaks excluded)
+  completed   INTEGER NOT NULL DEFAULT 1,       -- 0 = abandoned early
+  note        TEXT
+);
+CREATE INDEX idx_focus_started ON focus_sessions(started_at);
+-- Per-subject stats join focus_sessions → events(title/category).
+-- ON DELETE SET NULL: deleting a course keeps the focus history (unattributed).
+
 -- ── Settings ────────────────────────────────────────────────────
 CREATE TABLE settings (
   key   TEXT PRIMARY KEY,

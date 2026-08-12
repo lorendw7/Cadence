@@ -19,10 +19,17 @@ Most calendar apps treat every entry the same. Cadence models the four things a 
 | **To-do** | ✅ | One-off tasks with a deadline | Check off, priority colors, rolls over if unfinished |
 | **Habit** | 💊 | Medication, exercise, water, reading | Daily check-in, streaks, heat-map, fixed reminders |
 
+Plus **Focus mode**: a Pomodoro timer that attaches to classes and to-dos, turning study effort into per-subject stats — "6.5 hours of math this week."
+
+### Built for campus life
+
+Students track their own rhythm; teachers export a timetable **template file** the whole class imports in one tap; dorm managers share duty rosters as **image cards** or `.ics` into any group chat (LINE, WeChat, …) via the system share sheet — the app itself never touches the network. See [docs/PRODUCT.md](docs/PRODUCT.md).
+
 ### Principles
 
 - **Local-first, offline-only.** No account, no server, no analytics, no network permission at all.
 - **Your data is portable.** Export everything to JSON/CSV at any time; import it back on any device.
+- **Sharing without servers.** Schedules travel as files and pictures through apps you already use.
 - **Free forever.** MIT-licensed, no ads, no in-app purchases.
 - **Small and fast.** Native performance on Android and Windows from one codebase.
 
@@ -47,12 +54,13 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the layers fit together
 
 ## Documentation
 
-1. **[docs/SETUP.md](docs/SETUP.md)** — toolchain install, create the project, first run.
-2. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — layers, data flow, and the project's design rules.
-3. **[docs/DATABASE.md](docs/DATABASE.md)** — the SQLite schema and the reasoning behind it.
-4. **[docs/ROADMAP.md](docs/ROADMAP.md)** — build order v0.0 → v1.0 (Google Play), with effort estimates.
-5. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
-6. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist.
+1. **[docs/PRODUCT.md](docs/PRODUCT.md)** — vision, personas (student / teacher / dorm manager), the sharing model, non-goals.
+2. **[docs/SETUP.md](docs/SETUP.md)** — toolchain install, create the project, first run.
+3. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — layers, data flow, and the project's design rules.
+4. **[docs/DATABASE.md](docs/DATABASE.md)** — the SQLite schema and the reasoning behind it.
+5. **[docs/ROADMAP.md](docs/ROADMAP.md)** — build order v0.0 → v1.0 (Google Play), with effort estimates.
+6. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
+7. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist.
 
 The project website (landing page + privacy policy, required for Play Store) lives in [`website/`](website/).
 
