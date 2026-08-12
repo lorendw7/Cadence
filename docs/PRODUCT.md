@@ -2,7 +2,7 @@
 
 Cadence is a **local-first time manager built for life in Japan** — classes, shifts, habits, and focus time in one offline app, shareable through LINE (or any chat app) as files and pictures, never through a server.
 
-Primary market: **people living in Japan** — Japanese students and workers, and the international residents (留学生・外国人労働者) that Japanese-only apps ignore.
+Primary market: **people living in Japan** — students, professors, administrative staff, and office workers, plus the international residents (留学生・外国人労働者) that Japanese-only apps ignore. The shared thread: busy days full of fixed commitments, and no patience for apps that let one slip.
 
 ---
 
@@ -38,9 +38,21 @@ Positioning line:
 - Imports the timetable template a classmate shared in LINE — no Japanese account signup walls.
 - Habit streaks for language study (毎日30分日本語); focus stats per subject.
 
-### 💼 Working adult
-- Meetings with reminder lead times; habits (薬、運動、読書); quiet hours so notifications respect sleep.
-- Monthly rhythm dashboard: busiest days, focus hours, streaks.
+### 👨‍🏫 Professor / teacher (教員)
+- Runs their **teaching timetable** in the same 時間割 grid students use — plus ゼミ, office hours, 教授会.
+- **Conflict warning** the moment a meeting is double-booked over a lecture.
+- Deadline to-dos for grading (採点), reviews, and 科研費 paperwork, each with layered reminders.
+- Exports the seminar schedule template into the lab's LINE group.
+
+### 🏢 Administrative staff (事務職員)
+- Lives in recurring meetings and the **年度 (April–March) cycle** — stats and views understand the Japanese fiscal year.
+- Rosters and event schedules shared as image cards / `.ics` to any group.
+- Morning digest at the desk: today's meetings, rooms, and gaps in one notification.
+
+### 💼 Working adult (会社員)
+- **Forget-proof meetings**: multiple reminders per event (前日夜 + 30分前 + 10分前), and an insistent mode that re-rings until acknowledged.
+- Evening preview ("明日は 8:30 から会議") so early meetings never ambush the morning.
+- Habits (薬、運動、読書); quiet hours so notifications respect sleep; weekly "hours in meetings" insight.
 
 ### 🏠 Dorm manager / organizer (寮管理人・サークル幹事)
 - Duty rosters and inspection schedules as recurring events.
@@ -79,6 +91,17 @@ Cadence generates an artifact          the OS hands it to any app
 - **六曜 option** (大安・仏滅…): off by default, one toggle for those who plan around it.
 - **Search that respects Japanese**: hiragana/katakana folding, full-width/half-width normalization.
 - **Quiet hours**: notifications hold during configured sleep hours.
+
+## Forget-proof reminders (the busy-person pillar)
+
+The people we serve don't fail to *record* meetings — they fail to *notice* them. Reminders are therefore a first-class system, not a checkbox:
+
+- **Layered reminders per event**: any combination of lead times (1 day / 1 hour / 10 min …), each firing separately.
+- **Insistent mode** (opt-in per event): re-notifies every few minutes until tapped "了解" — for the meetings that must not be missed.
+- **Morning digest** (default 07:30): today's events, first start time, and free gaps in one notification.
+- **Evening preview** (default 21:00): tomorrow's first commitment, so early starts are known the night before.
+- **Conflict detection**: overlapping events warn at save time — double-booking is caught when it's created, not when two rooms are waiting.
+- All of it local notifications; quiet hours still win except for insistent-mode events you explicitly marked.
 
 ## Focus mode (the study aid)
 

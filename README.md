@@ -22,6 +22,10 @@ Most calendar apps treat every entry the same. Cadence models the four things a 
 
 Plus **Focus mode** (a Pomodoro that attaches to classes → per-subject study stats) and a **discipline dashboard** tying it all together.
 
+### Forget-proof by design
+
+Built as much for **professors, admin staff and office workers** as for students: layered reminders per event (前日 + 30分前 + 10分前), an insistent mode that re-rings until acknowledged, a morning digest and an evening preview of tomorrow, and conflict warnings when something gets double-booked. Recording a meeting is easy — Cadence's job is making sure you *notice* it.
+
 ### Made for Japan
 
 **祝日** bundled offline and painted red · a real **時間割** period-grid view · **アルバイト** wage tracking · optional **和暦**(令和) and **六曜** · kana-aware search (ひらがな⇄カタカナ, 全角⇄半角) · quiet hours. Schedules travel into **LINE** (or any app) as template files, `.ics`, or image cards via the system share sheet — the app itself never touches the network. See [docs/PRODUCT.md](docs/PRODUCT.md).
