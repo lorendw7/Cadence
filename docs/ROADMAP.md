@@ -184,6 +184,12 @@ Ship 1.0 lean, then grow retention with practical additions. Each still passes t
 - [ ] **Trash / undo**: deleted items recoverable for 30 days.
 - [ ] Optional **encrypted backup** (passphrase-protected export).
 
+### v1.5 — macOS (experimental)
+- [ ] Add the macOS target (`flutter create --platforms macos .`); build on **GitHub Actions' free macOS runners** — no Mac hardware needed.
+- [ ] Ship as an **unsigned "experimental" build** on GitHub Releases, with Gatekeeper instructions (right-click → Open) documented on the website.
+- [ ] Upgrade path if demand shows up: Apple Developer Program ($99/yr) + CI notarization → double-click install; also the prerequisite for any future iOS.
+- ⚠️ Untestable without real hardware — labeled experimental, fixed via user feedback. Kept out of v1.0 for exactly that reason.
+
 ## Later (ideas, not commitments)
 
 Quick-add natural language (Japanese-aware), night-premium wage rules (深夜手当), F-Droid listing, focus strict mode (app blocking), Google Play tablet/Chromebook targets, iOS (the codebase is ready; only Apple tooling/fees stand between).

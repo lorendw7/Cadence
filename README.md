@@ -3,7 +3,7 @@
 > A local-first time manager **built for life in Japan** — 時間割, shifts, to-dos, habits and focus time in one offline calendar.
 > Built with **Flutter**. Free, open source (MIT), fully offline. Your data never leaves your device.
 
-**Platforms:** Android (Google Play — planned) · Windows desktop · _iOS: not planned for now_
+**Platforms:** Android (Google Play — planned) · Windows desktop · macOS (experimental CI build, post-1.0) · _iOS: not planned for now_
 **Languages:** 日本語 · English · 简体中文 — Japanese-first, and one of the few Japan-shaped schedulers international residents can use in their own language.
 
 ---
