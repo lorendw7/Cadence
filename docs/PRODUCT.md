@@ -35,6 +35,7 @@ Positioning line:
 
 ### 🌏 International student / worker in Japan
 - Runs the app in English or Chinese while living on a Japanese calendar (祝日, 年号 optional).
+- Imports home-country holidays as a second calendar and switches to it when planning trips home ([HOLIDAYS.md](HOLIDAYS.md)).
 - Imports the timetable template a classmate shared in LINE — no Japanese account signup walls.
 - Habit streaks for language study (毎日30分日本語); focus stats per subject.
 
@@ -84,7 +85,7 @@ Cadence generates an artifact          the OS hands it to any app
 
 ## Japan pack (the localized substance)
 
-- **祝日 offline, user-controlled**: the default built-in Japan pack is *computed* from the 祝日法 rules (fixed dates, Happy-Monday, equinox formulas, 振替休日) with a tiny bundled override for rare law changes. **Updating and switching holiday data is a user feature, not an app release**: import any holiday `.ics`/JSON as a named calendar, re-import to update it, switch between calendars in Settings — or pick **None** for a plain, holiday-free calendar. Holidays render red; class recurrence can auto-skip them (休講 default: on).
+- **祝日 offline, user-controlled**: the default built-in Japan pack is *computed* from the 祝日法 rules (fixed dates, Happy-Monday, equinox formulas, 振替休日) with a tiny bundled override for rare law changes. **Updating and switching holiday data is a user feature, not an app release**: import any holiday `.ics`/JSON as a named calendar, re-import to update it, switch between calendars in Settings — or pick **None** for a plain, holiday-free calendar. **Any region works**: Hong Kong, UK, mainland China, wherever — the built-in rules stay Japan-only by design, everything else is an import ([HOLIDAYS.md](HOLIDAYS.md)). Holidays render red; class recurrence can auto-skip them (休講 default: on).
 - **時間割 view**: weekday × period grid (default 1限 09:00–10:30 …, fully configurable), the mental model Japanese students actually use.
 - **Shifts & earnings**: workplaces with hourly wage; shifts on the calendar; monthly estimated pay. An *estimate*, clearly labeled — not payroll (no tax/insurance math).
 - **和暦 option**: show 令和 years alongside Gregorian.
