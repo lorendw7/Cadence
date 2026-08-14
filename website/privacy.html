@@ -1,25 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — Cadence</title>
+<title>プライバシーポリシー / Privacy Policy — Cadence</title>
 <style>
-  :root{ --bg:#141012; --text:#efe8ea; --muted:#a89aa0; --accent:#d16277; }
-  @media (prefers-color-scheme: light){ :root{ --bg:#fbf8f7; --text:#291f22; --muted:#6b5c62; --accent:#8a2432; } }
+  :root{ --bg:#141012; --panel:#1e181a; --text:#efe8ea; --muted:#a89aa0;
+         --accent:#d16277; --border:#332a2e; }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#fbf8f7; --panel:#ffffff; --text:#291f22; --muted:#6b5c62;
+           --accent:#8a2432; --border:#eadfe2; }
+  }
   *{box-sizing:border-box;margin:0}
-  body{background:var(--bg);color:var(--text);font:16px/1.7 system-ui,"Segoe UI",Roboto,sans-serif}
-  .wrap{max-width:720px;margin:0 auto;padding:56px 24px}
+  body{background:var(--bg);color:var(--text);
+       font:16px/1.7 system-ui,"Segoe UI",Roboto,"Noto Sans JP","Noto Sans SC",sans-serif}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px 56px}
+  nav{display:flex;align-items:center;justify-content:space-between;
+      padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:40px}
+  nav .home{color:var(--accent);text-decoration:none;font-weight:600}
+  .langs{display:flex;gap:6px}
+  .langs button{background:none;border:1px solid var(--border);color:var(--muted);
+      border-radius:8px;padding:5px 11px;font:13px system-ui;cursor:pointer}
+  .langs button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);font-weight:600}
   h1{font-size:30px;margin-bottom:6px}
   .date{color:var(--muted);font-size:14px;margin-bottom:32px}
   h2{font-size:20px;margin:28px 0 8px}
   p,li{color:var(--muted)} strong{color:var(--text)}
   a{color:var(--accent);text-decoration:none}
   ul{padding-left:22px;margin:8px 0}
+  [data-lang]{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
+
+<nav>
+  <a class="home" href="index.html">&larr; Cadence</a>
+  <div class="langs" role="group" aria-label="Language">
+    <button data-set="ja" aria-pressed="false">日本語</button>
+    <button data-set="en" aria-pressed="false">English</button>
+    <button data-set="zh" aria-pressed="false">中文</button>
+  </div>
+</nav>
+
+<!-- ===================== 日本語 ===================== -->
+<div data-lang="ja">
+  <h1>プライバシーポリシー</h1>
+  <p class="date">Cadence · 最終更新日: 2026-08-12</p>
+
+  <h2>要点</h2>
+  <p><strong>Cadence はデータを一切収集しません。</strong>アプリは完全にオフラインで動作し、ネットワークへのアクセスを要求しません。</p>
+
+  <h2>データの保存</h2>
+  <p>入力された内容（予定・タスク・習慣・チェックイン・設定）は、すべてお使いの端末内のローカルデータベースに保存されます。アプリには通信機能もサーバーも存在しないため、データが外部に送信されることはありません。</p>
+
+  <h2>データの収集・共有</h2>
+  <ul>
+    <li>個人情報を収集<strong>しません</strong>。</li>
+    <li>解析・広告・トラッキング SDK を使用<strong>しません</strong>。</li>
+    <li>第三者とデータを共有<strong>しません</strong>（共有するものがそもそもありません）。</li>
+  </ul>
+
+  <h2>エクスポート / インポート</h2>
+  <p>データはいつでも JSON / CSV ファイルに書き出せます。ファイルは端末上で作成され、あなたが選んだ場所にのみ保存されます。アプリを削除するとローカルデータも削除されます（残したい場合は先にエクスポートしてください）。</p>
+
+  <h2>権限</h2>
+  <p>Android 版は<strong>通知</strong>権限を要求することがあります。これはあなたが設定したリマインダーを表示するためだけに使われます。その他の機微な権限は要求しません。</p>
+
+  <h2>お子様について</h2>
+  <p>Cadence はお子様を含め、誰からもデータを収集しません。</p>
+
+  <h2>変更・お問い合わせ</h2>
+  <p>本ポリシーに変更がある場合は、このページを新しい日付とともに更新します。お問い合わせは <a href="https://github.com/lorendw7/Cadence">github.com/lorendw7/Cadence</a> の Issue にてお願いします。</p>
+</div>
+
+<!-- ===================== English ===================== -->
+<div data-lang="en">
   <h1>Privacy Policy</h1>
   <p class="date">Cadence · Last updated: 2026-08-12</p>
 
@@ -48,5 +104,64 @@
   <h2>Changes &amp; contact</h2>
   <p>If this policy ever changes, the update will appear on this page with a new date. Questions: open an issue at <a href="https://github.com/lorendw7/Cadence">github.com/lorendw7/Cadence</a>.</p>
 </div>
+
+<!-- ===================== 简体中文 ===================== -->
+<div data-lang="zh">
+  <h1>隐私政策</h1>
+  <p class="date">Cadence · 最后更新: 2026-08-12</p>
+
+  <h2>一句话版本</h2>
+  <p><strong>Cadence 不收集任何数据。</strong>应用完全离线运行，不申请网络访问权限。</p>
+
+  <h2>数据存储</h2>
+  <p>你输入的所有内容（日程、待办、习惯、打卡记录、设置）都保存在你自己设备上的本地数据库文件中。应用没有任何联网代码，也没有服务器，因此数据不会被传输到任何地方。</p>
+
+  <h2>数据收集与共享</h2>
+  <ul>
+    <li>我们<strong>不</strong>收集个人信息。</li>
+    <li>我们<strong>不</strong>使用统计分析、广告或跟踪 SDK。</li>
+    <li>我们<strong>不</strong>与第三方共享数据——本来就没有可共享的东西。</li>
+  </ul>
+
+  <h2>导出 / 导入</h2>
+  <p>你可以随时将数据导出为 JSON 或 CSV 文件。文件在你的设备上生成，只会保存到你选择的位置。卸载应用会删除本地数据（如需保留请先导出）。</p>
+
+  <h2>权限</h2>
+  <p>Android 版可能会申请<strong>通知</strong>权限，仅用于显示你设置的提醒。不申请其他敏感权限。</p>
+
+  <h2>儿童</h2>
+  <p>Cadence 不向任何人收集数据，包括儿童。</p>
+
+  <h2>变更与联系方式</h2>
+  <p>如本政策发生变更，会在本页更新并标注新日期。如有疑问，请在 <a href="https://github.com/lorendw7/Cadence">github.com/lorendw7/Cadence</a> 提交 Issue。</p>
+</div>
+
+</div>
+<script>
+(function(){
+  var langs = ["ja","en","zh"];
+  function pick(){
+    var q = new URLSearchParams(location.search).get("lang");
+    if (langs.indexOf(q) >= 0) return q;
+    var nav = (navigator.language || "en").toLowerCase();
+    if (nav.indexOf("ja") === 0) return "ja";
+    if (nav.indexOf("zh") === 0) return "zh";
+    return "en";
+  }
+  function apply(l){
+    document.documentElement.lang = l === "zh" ? "zh-Hans" : l;
+    document.querySelectorAll("[data-lang]").forEach(function(el){
+      el.style.display = el.getAttribute("data-lang") === l ? "block" : "none";
+    });
+    document.querySelectorAll(".langs button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-set") === l));
+    });
+  }
+  document.querySelectorAll(".langs button").forEach(function(b){
+    b.addEventListener("click", function(){ apply(b.getAttribute("data-set")); });
+  });
+  apply(pick());
+})();
+</script>
 </body>
 </html>
