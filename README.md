@@ -1,7 +1,13 @@
+<img src="assets/brand/cadence-icon.svg" alt="" width="88" align="left" hspace="16">
+
 # Cadence
 
 > A local-first time manager **built for life in Japan** — 時間割, shifts, to-dos, habits and focus time in one offline calendar.
 > Built with **Flutter**. Free, open source (MIT), fully offline. Your data never leaves your device.
+
+<br clear="left">
+
+**Website:** [lorendw7.github.io/Cadence](https://lorendw7.github.io/Cadence/) — 日本語 / English / 中文
 
 **Platforms:** Android (Google Play — planned) · Windows desktop · macOS (experimental CI build, post-1.0) · _iOS: not planned for now_
 **Languages:** 日本語 · English · 简体中文 — Japanese-first, and one of the few Japan-shaped schedulers international residents can use in their own language.

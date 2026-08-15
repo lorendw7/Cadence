@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Cadence">
+  <title>Cadence</title>
+  <!-- Mark only, no field: inherits the surrounding text colour via currentColor.
+       Use on paper (enji ink) or on an enji surface (paper ink). -->
+  <g fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round">
+    <circle cx="256" cy="256" r="136"
+            pathLength="100" stroke-dasharray="75 25"
+            transform="rotate(45 256 256)"/>
+  </g>
+  <circle cx="392" cy="256" r="30" fill="currentColor"/>
+</svg>

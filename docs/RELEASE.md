@@ -34,6 +34,7 @@ flutter build appbundle --release     # .aab is what Play accepts
 - [ ] Title/descriptions written natively in Japanese first (not translated-sounding); mention 時間割・シフト管理・完全オフライン up front — these are the search terms.
 - [ ] Screenshots: phone (min 2): 時間割 grid, calendar with red 祝日, shift earnings, focus stats, dark mode; per-locale screenshot text.
 - [ ] Feature graphic 1024×500.
+- [ ] **App icon 512×512 PNG**: export from `assets/brand/cadence-icon.svg` (the vector is the source of truth — see [DESIGN.md](DESIGN.md); raster files are generated, never hand-edited). Same file feeds `flutter_launcher_icons` for the launcher icon and the Windows `.ico`.
 - [ ] Category: Productivity. Content rating questionnaire (trivial — no UGC, no ads).
 
 ## 5. Privacy & data safety
