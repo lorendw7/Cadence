@@ -104,7 +104,7 @@ website/
 **Trilingual, Japanese-first.** Each page carries all three languages as sibling `[data-lang]` blocks; `lang.js` shows exactly one. The rules that matter:
 
 - **Japanese is the default in the markup, not only in the script**: `site.css` shows `[data-lang="ja"]` and hides the rest, so a visitor with JavaScript off — or reading it before the script runs — still gets a complete Japanese page. The script only ever switches *away* from Japanese.
-- Resolution order: `?lang=` → the visitor's saved choice (`localStorage`) → browser language (`ja`/`zh`/`en` prefix, `zh-TW`/`zh-HK` included since the UI is zh-Hans) → **`ja`**. A visitor whose browser speaks neither lands on Japanese, matching the app's reference locale.
+- Resolution order: `?lang=` → the visitor's own earlier choice (`localStorage`) → **`ja`**. **Browser language is deliberately not consulted.** Cadence is a Japan-first product and Japanese is the reference locale, so *every* first-time visitor lands on the Japanese page — a Chinese or English browser does not silently redecide that. The switcher in the top bar is always one click away, and once clicked the choice is remembered.
 - Switching also updates `<title>`, the meta description (per-page `window.CADENCE_META`), `<html lang>`, and the `?lang=` in the URL — so a link someone shares opens in the language they were reading.
 - **Translations are peers, not a fallback chain**: no language may carry a feature the others lack. Add a section to all three, or to none.
 - The product name stays "Cadence" in every language; only the surrounding copy is translated.

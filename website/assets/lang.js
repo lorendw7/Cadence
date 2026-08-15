@@ -1,10 +1,14 @@
 /* Cadence website — language switcher shared by index.html and privacy.html.
  *
- * Japanese is the default: the CSS already shows [data-lang="ja"], so a visitor
- * with JavaScript disabled still gets a readable Japanese page. This script only
- * switches away from it.
+ * Japanese is the default, unconditionally: the CSS already shows
+ * [data-lang="ja"], so a visitor with JavaScript disabled still gets a readable
+ * Japanese page. This script only switches away from it.
  *
- * Resolution order: ?lang= → saved choice → browser language → ja.
+ * Resolution order: ?lang= → the visitor's own earlier choice → ja.
+ * Browser language is deliberately NOT consulted — Cadence is a Japan-first
+ * product, so everyone lands on the Japanese page and picks another language
+ * only by asking for one. See docs/DESIGN.md.
+ *
  * Each page may define window.CADENCE_META = { ja:{title,desc}, en:…, zh:… }
  * so the <title> and meta description follow the chosen language too.
  */
@@ -19,23 +23,12 @@
     try { localStorage.setItem(STORE_KEY, lang); } catch (e) { /* private mode */ }
   }
 
-  function fromBrowser() {
-    var tags = navigator.languages || [navigator.language || ""];
-    for (var i = 0; i < tags.length; i++) {
-      var t = String(tags[i]).toLowerCase();
-      if (t.indexOf("ja") === 0) return "ja";
-      if (t.indexOf("zh") === 0) return "zh";   // zh-TW/zh-HK included: UI is zh-Hans
-      if (t.indexOf("en") === 0) return "en";
-    }
-    return null;
-  }
-
   function pick() {
     var q = new URLSearchParams(location.search).get("lang");
     if (LANGS.indexOf(q) >= 0) return q;
     var s = saved();
     if (LANGS.indexOf(s) >= 0) return s;
-    return fromBrowser() || "ja";
+    return "ja";
   }
 
   function apply(lang) {
