@@ -72,7 +72,7 @@ CREATE TABLE habit_logs (
 );
 CREATE INDEX idx_habit_logs_habit ON habit_logs(habit_id);
 
--- ── Workplaces (アルバイト先, v0.4) ─────────────────────────────
+-- ── Workplaces (アルバイト先, v0.5) ─────────────────────────────
 CREATE TABLE workplaces (
   id          TEXT PRIMARY KEY,
   name        TEXT NOT NULL,                     -- "コンビニ", "塾講師"
@@ -93,7 +93,7 @@ CREATE TABLE wage_periods (
 -- Monthly estimate = Σ over shifts: (end−start−break) × wage valid at shift date.
 -- Estimate only (見込み) — tax/insurance/night-premium are out of scope (see PRODUCT.md).
 
--- ── Focus sessions (v0.6) ───────────────────────────────────────
+-- ── Focus sessions (v0.7) ───────────────────────────────────────
 CREATE TABLE focus_sessions (
   id          TEXT PRIMARY KEY,
   event_id    TEXT REFERENCES events(id) ON DELETE SET NULL,  -- attached class/todo (optional)
