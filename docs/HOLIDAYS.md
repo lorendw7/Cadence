@@ -2,7 +2,7 @@
 
 Cadence ships with **Japanese public holidays built in** (computed from the 祝日法 rules — see [ARCHITECTURE.md](ARCHITECTURE.md)). Every other region works through the same door: **import a holiday file yourself**. No app update, no network permission, no waiting on the developer.
 
-This document is both the user guide for that feature and the spec the import code is built against. The import/switch UI ships in v0.5 ([ROADMAP.md](ROADMAP.md)); the "None" switch ships in v0.1.
+This document is both the user guide for that feature and the spec the import code is built against. The import/switch UI ships in v0.6 ([ROADMAP.md](ROADMAP.md)); the "None" switch ships in v0.1.
 
 ---
 

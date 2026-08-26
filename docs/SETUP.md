@@ -53,7 +53,7 @@ Added with `flutter pub add <name>` when the roadmap reaches them:
 | Milestone | Packages |
 |-----------|----------|
 | v0.1 | `flutter_riverpod` · `drift` `drift_flutter` (+ dev: `drift_dev` `build_runner`) · `table_calendar` · `rrule` · `uuid` · `intl` + `flutter_localizations` (SDK) · `flutter_local_notifications` |
-| v0.3 | `path_provider` · `file_picker` · `share_plus` |
+| v0.6 | `path_provider` · `file_picker` · `share_plus` |
 
 drift uses code generation — after editing table definitions run:
 

@@ -1,5 +1,11 @@
 # Roadmap
 
+**Core first.** The destination hasn't changed — the four-type model, the Japan pack, file-based sharing ([PRODUCT.md](PRODUCT.md)) — but the build order is ruthless about one question: **how early can this app actually manage your day?**
+
+- **Phase 1 (v0.1–v0.2) is the core**: calendar, events, weekly repeats, reminders, to-dos, 祝日 — and nothing else. It ends with a scheduler you live in daily.
+- **Phase 2 (v0.3+) grows one pillar per milestone** — 時間割, habits, shifts, sharing, focus — each added onto an app that is already in daily use.
+- Nothing is cancelled. Everything not needed to schedule a day is *sequenced later*, not dropped.
+
 Built strictly top to bottom; each milestone is shippable and pairs features with the Dart/Flutter concepts they teach. 🎯 = user-facing win · 📘 = the new concept this step forces you to learn.
 
 Production quality is not a milestone — it's enforced continuously via [QUALITY.md](QUALITY.md) (definition of done, tests, CI).
@@ -12,20 +18,25 @@ Estimates **include learning time** (you're new to Dart/Flutter, coming from Typ
 
 | Milestone | Focused hours | Notes |
 |-----------|---------------|-------|
+| **Phase 1 — the core** | | |
 | v0.0 Hello Flutter | 2–4 h | Toolchain, skeleton, run on Windows + Android |
-| v0.1 Calendar MVP + 祝日 | 34–50 h | The big one: DB, state, forms, recurrence, i18n, holidays, layered reminders, conflict warning |
-| v0.2 時間割 timetable | 12–18 h | Period grid, term dates, holiday-skip |
-| v0.3 Habits & reminders | 19–30 h | Streaks, digests, insistent mode |
-| v0.4 Shifts & earnings | 12–18 h | Workplaces, wages, monthly estimate |
-| v0.5 Data freedom & sharing | 18–28 h | Export/import, templates, `.ics`, image cards, share sheet |
-| v0.6 Focus mode | 12–18 h | Pomodoro, per-subject stats |
-| v0.7 Insights & JP polish | 15–25 h | Dashboard, search (kana-folding), 和暦/六曜, quiet hours |
+| v0.1 Scheduler core | 22–32 h | DB, state, month view, event/to-do form, weekly repeats, one reminder per event, 祝日 |
+| v0.2 Daily-driver polish | 10–16 h | Week view, layered reminders, conflict warning, full en/zh, backup |
+| **Phase 2 — the pillars** | | |
+| v0.3 時間割 timetable | 12–18 h | Period grid, term dates, holiday-skip |
+| v0.4 Habits & reminders | 19–30 h | Streaks, digests, insistent mode |
+| v0.5 Shifts & earnings | 12–18 h | Workplaces, wages, monthly estimate |
+| v0.6 Data freedom & sharing | 18–28 h | Export/import, templates, `.ics`, image cards, holiday manager |
+| v0.7 Focus mode | 12–18 h | Pomodoro, per-subject stats |
+| v0.8 Insights & JP polish | 15–25 h | Dashboard, search (kana-folding), 和暦/六曜, quiet hours |
 | v1.0 Google Play release | 12–18 h | JP-first listing, signing, closed test cycle |
 | **Total** | **~135–210 h** | |
 
-Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Play Store in ~3.5–5 months.** Front-loaded curve: v0.1 is slow because you learn the framework and the app at once; velocity roughly doubles after it.
+Wall-clock at ~10 h/week: **a calendar you can live in after ~3 weeks (end of v0.1), a daily driver by ~5 weeks (end of v0.2), Play Store in ~3.5–5 months.** The core lands first precisely so the app earns a place on your phone while the rest is built — every Phase 2 feature is then tested against real daily use, not imagination.
 
 ---
+
+# Phase 1 — the core
 
 ## v0.0 — Hello Flutter
 
@@ -40,33 +51,56 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 
 ---
 
-## v0.1 — Calendar MVP + 祝日
+## v0.1 — Scheduler core
 
-- [ ] drift database: `events` + `recurrence_rules`, migrations, repository layer.
+The smallest app that manages a real day: see the month, add anything in ten seconds, get reminded, tick it off — with 祝日 red, because a calendar for Japan without them isn't one.
+
+- [ ] drift database: `events` table (+ weekly-recurrence columns, stored rrule-compatible), migrations, repository layer.
 - [ ] Riverpod: `eventListProvider` streaming events for the visible range.
-- [ ] Month + week views (table_calendar) with event dots and a day agenda list.
-- [ ] **Japanese public holidays, computed**: rules engine (fixed dates, Nth-Monday, equinox formulas, 振替休日/国民の休日) + tiny overrides asset — correct for any year with **zero annual maintenance**; rendered red in month/week/agenda.
-- [ ] **Holiday source switch** in Settings: **Built-in Japan (default) / None** — "None" is the plain, holiday-free calendar (imported calendars join this list in v0.5).
-- [ ] Create/edit event bottom sheet: class / meeting / todo fields per category.
-- [ ] Recurrence: weekly-by-weekday via `rrule`, term start/end, single-occurrence exceptions.
+- [ ] Month view (table_calendar) with event dots and a day agenda list.
+- [ ] Create/edit bottom sheet — **two flavors only**: **event** (start–end or all-day, optional location) and **to-do** (deadline). Title, note, color. Class/shift-specific fields wait for their own milestones.
+- [ ] Recurrence, deliberately minimal: **weekly by weekday + until date** via `rrule`, plus "delete this occurrence". Monthly/custom patterns and term presets come with 時間割 (v0.3).
+- [ ] Reminders: **one lead time per event** (default 10 min) via `flutter_local_notifications`, Android 13+ permission flow. Layered reminders → v0.2.
 - [ ] To-do: check off, priority colors, strike-through.
-- [ ] i18n from day one: ARB files **ja / en / zh**, language picker (+ "system"). Japanese is the reference locale — write it first, translate to en/zh.
-- [ ] Event reminders (`flutter_local_notifications`), Android 13+ permission flow — **layered: multiple lead times per event** (前日 + 30分前 + …).
-- [ ] **Conflict detection**: overlapping-event warning at save time.
-- [ ] Unit tests: recurrence expansion (incl. exceptions), overlap detection, repository CRUD, and the **holiday engine verified against the official 内閣府 list for 2020–2027** (incl. the Olympic-move years — the regression suite that proves zero-maintenance is safe).
+- [ ] **Japanese public holidays, computed**: rules engine (fixed dates, Nth-Monday, equinox formulas, 振替休日/国民の休日) + tiny overrides asset — correct for any year with **zero annual maintenance**; rendered red in month/agenda.
+- [ ] **Holiday source switch** in Settings: **Built-in Japan (default) / None** — "None" is the plain, holiday-free calendar (imported calendars join this list in v0.6).
+- [ ] i18n scaffold from day one: ARB files **ja / en / zh**, Japanese as the reference locale. en/zh strings may lag until v0.2 — the day-one requirement is the keys and the workflow, not finished prose.
+- [ ] Unit tests: recurrence expansion (incl. deleted occurrences), repository CRUD, and the **holiday engine verified against the official 内閣府 list for 2020–2027** (incl. the Olympic-move years — the regression suite that proves zero-maintenance is safe).
 
 📘 Async Dart (`Future`/`Stream`), drift code-gen, Riverpod `watch`/`read`, bottom sheets, form validation, ARB workflow, bundled assets.
-🎯 A calendar a person in Japan can actually live in — red 祝日 included.
+🎯 Cadence replaces your calendar app — three weeks in.
 
 ---
 
-## v0.2 — 時間割 (timetable view)
+## v0.2 — Daily-driver polish
+
+What makes you *stay* on it after the novelty wears off.
+
+- [ ] Week view.
+- [ ] **Layered reminders**: any combination of lead times per event (前日 + 30分前 + …), each firing separately.
+- [ ] **Conflict detection**: overlapping-event warning at save time.
+- [ ] Unfinished-to-do rollover (setting-driven).
+- [ ] en/zh translations complete; language picker (+ "system").
+- [ ] Settings: first day of week, 12/24-hour clock, theme override.
+- [ ] Manual **JSON backup** ("backup now" + restore) — data safety before months of entries accumulate. Full export/import, templates and sharing stay in v0.6.
+- [ ] Unit tests: overlap detection, rollover logic, backup round-trip.
+
+📘 Notification scheduling in depth, settings-driven behavior, file I/O basics.
+🎯 **The core is complete**: an offline scheduler you trust with your week — everything after this is growth, not table stakes.
+
+---
+
+# Phase 2 — the pillars
+
+One pillar per milestone, in the order they earn retention. Each still passes the three scope questions in [QUALITY.md](QUALITY.md).
+
+## v0.3 — 時間割 (timetable view)
 
 - [ ] Period model in settings: configurable list (default 1限 09:00–10:30 … 6限), JSON-stored.
 - [ ] Weekday × period grid view; classes snap to periods; tap a cell to add.
+- [ ] **Class** event flavor: room, teacher, color; grid cell shows room number.
 - [ ] Term presets (前期/後期 dates) applied to class recurrence.
 - [ ] **休講 on 祝日**: class recurrence auto-skips the active holiday calendar (per-class toggle, default on).
-- [ ] Class detail: room, teacher, color; grid cell shows room number.
 - [ ] Unit tests: period snapping, holiday-skip expansion.
 
 📘 Custom grid layout, `CustomScrollView`/slivers or GridView, settings-driven rendering.
@@ -74,7 +108,7 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 
 ---
 
-## v0.3 — Habits & reminders that don't let go
+## v0.4 — Habits & reminders that don't let go
 
 - [ ] `habits` + `habit_logs` tables, repository, idempotent check-in upsert.
 - [ ] Today screen: due-today habits, one-tap check-in, back-fill yesterday.
@@ -91,7 +125,7 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 
 ---
 
-## v0.4 — Shifts & earnings (アルバイト)
+## v0.5 — Shifts & earnings (アルバイト)
 
 - [ ] `workplaces` table (name, hourly wage, color); shift events linked to a workplace.
 - [ ] Fast shift entry: workplace + start/end (+ break minutes); repeat patterns for fixed shifts.
@@ -104,7 +138,7 @@ Wall-clock at ~10 h/week: **personally usable in ~5–6 weeks (end of v0.2), Pla
 
 ---
 
-## v0.5 — Data freedom & sharing
+## v0.6 — Data freedom & sharing
 
 File-based sharing via the OS share sheet — no network, lands in LINE like anything else. Rationale in [PRODUCT.md](PRODUCT.md).
 
@@ -115,7 +149,7 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 - [ ] **Holiday calendar manager**: import a holiday `.ics`/JSON/内閣府-CSV as a **named holiday calendar** (`holiday_calendars` + `holiday_dates`) — **any region** (formats, sources, validation rules: [HOLIDAYS.md](HOLIDAYS.md)); Settings lists Built-in / imported / None — switch the active one, re-import to update, delete. **This is the holiday update channel — no app release needed, ever.**
 - [ ] **Image card**: render day/week schedule or roster to PNG for chat sharing.
 - [ ] Android: share sheet + intent filters to open `.ics`/`.cadence.json` from chats; Windows: save/open dialogs.
-- [ ] Rolling local auto-backup (keep N days) + manual "backup now"; backup integrity check on restore.
+- [ ] Rolling local auto-backup (keep N days), upgrading the manual v0.2 backup; backup integrity check on restore.
 - [ ] Unit tests: export→import round-trip is lossless; malformed-file rejection.
 
 📘 File I/O per platform, transactions, Android intents, rendering widgets to images.
@@ -123,7 +157,7 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 
 ---
 
-## v0.6 — Focus mode
+## v0.7 — Focus mode
 
 - [ ] Pomodoro timer (25/5 default, configurable, long-break cycle), survives backgrounding.
 - [ ] Attach a session to a class or to-do → focus time inherits the subject.
@@ -136,14 +170,13 @@ File-based sharing via the OS share sheet — no network, lands in LINE like any
 
 ---
 
-## v0.7 — Insights & Japan polish
+## v0.8 — Insights & Japan polish
 
 - [ ] Discipline dashboard: events, to-do completion, habit streaks + heat-map, focus hours, earnings — one screen.
 - [ ] **Meeting-hours insight** ("会議 12h this week") and **年度-aware stats** (Japanese fiscal year Apr–Mar as a range option).
 - [ ] Global search with **kana folding** (ひらがな/カタカナ) and full-width/half-width normalization.
 - [ ] **和暦** display option (令和 alongside Gregorian); **六曜** toggle (off by default).
 - [ ] Quiet hours: notifications hold during configured sleep window.
-- [ ] Unfinished-to-do rollover (setting-driven).
 - [ ] Android polish: predictive back, adaptive icon, font-scaling audit (200%), TalkBack labels.
 
 📘 Custom painting/charts, text normalization, accessibility APIs.
