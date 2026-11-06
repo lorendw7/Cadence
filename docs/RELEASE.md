@@ -1,53 +1,41 @@
-# Release — Google Play checklist (v1.0)
+# Desktop releases for classmates
 
-Cadence ships **free, no ads, no IAP, offline-only** — which makes the Play process unusually simple. This is the ordered checklist.
+Distribution target: GitHub Releases, not app stores. The repository is currently a skeleton; no feature-complete release is declared.
 
-## 0. One-time accounts & costs
+## Before the first trial
 
-- [ ] Google Play developer account — **one-time $25**, at <https://play.google.com/console>. Identity verification can take a few days; start early.
-- [ ] Note: new personal accounts must run a **closed test with ≥12 testers for 14 days** before production access (Google's 2024+ rule). Plan this into the timeline — recruit friends/classmates as testers.
+- Finish and verify the promised milestone in [ROADMAP.md](ROADMAP.md).
+- Decide which native platforms actually passed runtime acceptance and list untested ones explicitly.
+- Use a pre-1.0 product version for the first feature release; the existing generated package version is not evidence of readiness.
+- Explain known limitations, supported import/backup versions and data-folder location.
+- Provide an example timetable with fictional data and a short setup guide.
 
-## 1. App identity
+## Build and package
 
-- [ ] `applicationId`: `dev.cadence.app` (set at `flutter create`, verify in `android/app/build.gradle`).
-- [ ] App name, adaptive icon (foreground + background layers), splash screen.
-- [ ] `versionCode`/`versionName` discipline: bump `versionCode` on every upload.
+Build each target on its own host using the pinned Flutter SDK. Keep debug CI checks separate from release packaging.
 
-## 2. Signing
+| Platform | Initial package direction | Required validation |
+|----------|---------------------------|---------------------|
+| Windows | Complete release bundle in ZIP; installer can follow | Include DLL/data files, run on a clean machine, check data persistence |
+| Linux | Complete release bundle for the tested distribution/architecture | Document runtime libraries; verify file dialogs and desktop session behavior |
+| macOS | App bundle in an appropriate archive/DMG | Test on the declared architecture; plan Developer ID signing and notarization for convenient distribution |
 
-- [ ] Generate an upload keystore (`keytool -genkey …`), keep it **out of git** and backed up — losing it is losing the app.
-- [ ] `android/key.properties` (git-ignored) + signing config in Gradle.
-- [ ] Enroll in **Play App Signing** (Google holds the release key; you hold the upload key).
+These are delivery plans, not currently automated release artifacts. Do not tell users to disable OS security globally. No store listing is planned. Signing/toolchain prerequisites must be checked when packaging is implemented.
 
-## 3. Build
+## Publish a version
 
-```powershell
-flutter build appbundle --release     # .aab is what Play accepts
-```
+1. Run local checks and inspect hosted build results for the exact commit.
+2. Exercise timetable sharing and backup/restore with the release binary.
+3. Produce packages and SHA-256 checksums; verify each archive contains the full runtime.
+4. Tag the release and describe implemented features, supported systems, limitations and upgrade steps.
+5. Link the downloads from the website only when those assets exist.
 
-- [ ] R8/minify on, test the release build on a real device (release mode surfaces bugs debug hides).
-- [ ] Verify: no INTERNET permission in the merged manifest (`flutter_local_notifications` etc. don't need it — check the merged manifest report). Offline is our promise; prove it at the manifest level.
+Publishing binaries/tags is a separate action from ordinary source commits. The existing Pages workflow may publish website changes on main.
 
-## 4. Store listing
+## Upgrade and support
 
-- [ ] **Default listing language: 日本語** (primary market); add **en-US** and **zh-CN** listings.
-- [ ] Title/descriptions written natively in Japanese first (not translated-sounding); mention 時間割・シフト管理・完全オフライン up front — these are the search terms.
-- [ ] Screenshots: phone (min 2): 時間割 grid, calendar with red 祝日, shift earnings, focus stats, dark mode; per-locale screenshot text.
-- [ ] Feature graphic 1024×500.
-- [ ] **App icon 512×512 PNG**: export from `assets/brand/cadence-icon.svg` (the vector is the source of truth — see [DESIGN.md](DESIGN.md); raster files are generated, never hand-edited). Same file feeds `flutter_launcher_icons` for the launcher icon and the Windows `.ico`.
-- [ ] Category: Productivity. Content rating questionnaire (trivial — no UGC, no ads).
+Use manual downloads initially. Preserve the user data directory across upgrades; take a database backup before a migration. Do not downgrade an unsupported schema in place.
 
-## 5. Privacy & data safety
+Provide explicit data export and deletion instructions; uninstalling a desktop application may leave its data behind. Issue reports should include version, OS and steps, with private course/plan content removed. No remote telemetry is needed.
 
-- [ ] **Privacy policy URL** — required even for zero-collection apps. Served from the project website (`website/privacy.html` → GitHub Pages URL).
-- [ ] Data-safety form: **no data collected, no data shared, data stored on device only; export is user-initiated**. This honest form is a marketing asset — it renders as the "No data shared" badge users see.
-
-## 6. Rollout
-
-- [ ] Internal testing → fix crashes → **closed testing (the 12-tester/14-day gate)** → production.
-- [ ] Staged rollout (start 20%), watch Play Console vitals (ANR/crash rate).
-- [ ] Tag the release in git (`v1.0.0`), GitHub Release with the changelog + the `.apk` for sideloaders (the `.aab` goes to Play).
-
-## Windows distribution (parallel, zero-gatekeeper)
-
-- [ ] `flutter build windows` → zip or MSIX; attach to the GitHub Release. (Microsoft Store is optional later; MSIX + winget manifest is a nice free channel.)
+Android remains in the repository for future development; Google Play and other app-store submissions are outside this plan.

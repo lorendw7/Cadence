@@ -20,7 +20,7 @@ a{color:var(--accent);text-decoration:none}
 
 /* ---- top bar: brand + language switcher (shared by both pages) ---- */
 nav{display:flex;align-items:center;justify-content:space-between;gap:16px;
-    padding:18px 0;border-bottom:1px solid var(--border)}
+    flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--border)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;
        color:var(--text);font-size:17px;letter-spacing:-.2px}
 .brand img{width:28px;height:28px;border-radius:7px;display:block}
@@ -35,6 +35,9 @@ header.hero{padding:64px 0 40px;text-align:center}
 .hero .appicon{width:88px;height:88px;border-radius:22px;display:block;margin:0 auto 22px}
 .logo{font-size:44px;font-weight:800;letter-spacing:-1px}
 .logo span{color:var(--accent)}
+.hero h1{font-size:clamp(24px,4vw,34px);line-height:1.4;margin-top:16px;text-wrap:balance}
+.hero > .promise{font-size:15px;color:var(--muted)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent2);outline-offset:4px}
 .tag{color:var(--muted);font-size:19px;margin-top:10px}
 .badges{margin-top:18px;color:var(--muted);font-size:14px}
 .badges b{color:var(--accent2);font-weight:600}

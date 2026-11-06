@@ -1,72 +1,38 @@
-# Quality — the production bar
+# Quality and acceptance
 
-"Production-grade" is a set of habits, not a milestone. This file defines the bar every feature must clear **before its roadmap checkbox is ticked**.
+Current automated coverage is the Today startup widget test. The requirements below are acceptance gates for planned features, not claims that the features exist.
 
----
+## Local and hosted checks
 
-## Definition of done (every feature, no exceptions)
+Run `dart format lib test`, `flutter analyze --fatal-infos --fatal-warnings` and `flutter test`. The [Flutter workflow](../.github/workflows/flutter.yml) checks format, analysis and tests, then compiles Windows, Linux and macOS debug apps. The [Pages workflow](../.github/workflows/pages.yml) deploys the static site.
 
-- [ ] **Strings in all three ARBs** (ja / en / zh) — Japanese written first as the reference locale; no hard-coded UI text, ever.
-- [ ] **Dark mode checked** — both themes, no unreadable contrast.
-- [ ] **Font scaling checked** — usable at 200% system font size (Japan skews older; also a Play quality item).
-- [ ] **Tests for the logic** — anything with date math, money math, recurrence, or import/export gets unit tests the same day it's written.
-- [ ] **Error states designed** — the user sees a translated, actionable message; never a raw exception or a silent failure.
-- [ ] **Works on both targets** — run on Android emulator + Windows before committing.
-- [ ] `flutter analyze` clean, `dart format` applied, CI green.
+A native build is not a UI test or a signed release. Platform functionality is accepted only after testing on the corresponding host.
 
----
+## Tests worth maintaining
 
-## Testing strategy (the pyramid, sized for one developer)
+| Area | Critical cases |
+|------|----------------|
+| Teaching weeks | First-week Monday, midweek first class, partial last week, odd/even weeks, vacation does not silently renumber |
+| Occurrences | Multiple rules, cancellations, moved-in/out instances, restoring one instance, rule edits with existing overrides |
+| Personal arrangements | Independent of semester selection, overnight/all-day intervals, bounded weekly repeat, timezone and DST cases |
+| Conflicts | End equals start, course versus personal plan, cancelled class, deadlines excluded, visible range honestly disclosed |
+| Coursework | Date-only versus timed deadlines, overdue transition using injected clock, completed tasks excluded |
+| Sharing | No private fields, preview equals payload, reference remapping, repeat import, incompatible periods |
+| Backup | Round trip, active database consistency, invalid/future versions, failed restore leaves original usable |
+| Migration | Previous supported schema to new schema preserves schedule identities and private data |
 
-| Layer | What | Tooling |
-|-------|------|---------|
-| **Unit (most)** | Recurrence expansion + 祝日 skip, streak math, earnings math (breaks, overnight, wage-change dates), export⇄import round-trip, kana-folding search | `flutter test` |
-| **Widget (some)** | Event form validation, check-in tap → UI update, timetable grid rendering | `flutter test` (widget tests) |
-| **Integration (few)** | One smoke test: create event → see it on calendar → export → wipe → import → still there | `integration_test` on emulator |
+Avoid tests that only mirror UI implementation details. Add widget tests for meaningful flows such as scope selection, conflict confirmation and import preview.
 
-**The rule that matters:** logic that can corrupt user data or lie to the user (dates, money, import) is *born with tests*. UI polish can be eyeballed; a wrong monthly wage estimate cannot.
+## Manual desktop matrix
 
-Time handling discipline: all date logic goes through one `AppClock`/date-utils module that tests can freeze. No `DateTime.now()` scattered in widgets — untestable time bugs are how calendars die.
+For Windows, Linux and macOS check startup, persistence after restart, file pick/save dialogs, Unicode paths, keyboard navigation, focus, 200% text scaling, narrow windows and light/dark contrast. Check update behavior with an existing user database.
 
----
+Desktop reminder delivery after exit is not a first-release feature. Do not imply it works because an in-app message appeared.
 
-## CI (GitHub Actions, added in v0.0)
+## Privacy and release bar
 
-Every push / PR: `flutter pub get` → `flutter analyze` (warnings = errors) → `flutter test`. Release tags additionally build the Android `.aab` and Windows zip as artifacts. Keep CI under ~5 minutes so it never gets skipped.
+Timetable exports must be allowlisted; private backup is visibly separate. No automatic uploads, analytics, external calendar connections or account login. Never ask a classmate to post a full backup in a public issue.
 
----
+Check all three website languages for accurate feature status, platform claims and working links. Retain the Japanese-default language behavior.
 
-## Performance budgets
-
-- Cold start to interactive calendar: **< 2 s** on a mid-range phone.
-- Frame budget: no jank scrolling a month with 200 events (use `ListView.builder`/slivers, never build the whole year).
-- DB: every calendar query hits an index (`start_time`); watch query plans when adding features.
-- App size: keep the release `.aab` lean; no asset bloat (holiday data is a few KB of JSON).
-
-## Reliability & data safety
-
-- **Crash-free by design, not by telemetry**: there is no crash reporter (no network!). Instead: a local, user-visible error log (Settings → "recent errors → share"), so bug reports can travel by LINE/GitHub issue like everything else.
-- Every DB write path is transactional; import is validate-then-apply; **auto-backup before any import/replace and any schema migration**.
-- Migrations are tested against a copy of a real database file before release.
-
-## Accessibility & inclusivity
-
-- TalkBack labels on interactive elements; 48dp touch targets.
-- Color is never the only signal (priority also shows an icon/text).
-- Honors system font scale (see DoD) and reduced-motion.
-
-## Release discipline (see RELEASE.md for the Play specifics)
-
-- Semantic versions, bumped `versionCode` every upload; `CHANGELOG.md` maintained per release (user-facing wording, ja/en).
-- Release builds tested on a real device before upload — release mode surfaces what debug hides.
-- Staged rollout; watch Play vitals (ANR/crash) before 100%.
-- Git tag per release; GitHub Release carries the Windows build + sideload `.apk`.
-
-## Scope discipline (product quality)
-
-Every new idea passes three questions before entering the roadmap:
-1. Does it work **fully offline**?
-2. Does it serve a persona in [PRODUCT.md](PRODUCT.md)?
-3. Can one person maintain it forever?
-
-Two noes = it goes to "Later" or gets cut. The most production-grade feature is the one you didn't ship half-baked.
+A milestone is complete only when its user acceptance example in [ROADMAP.md](ROADMAP.md) passes. A release additionally follows [RELEASE.md](RELEASE.md).

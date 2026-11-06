@@ -1,120 +1,78 @@
 # Architecture
 
-Cadence is a single Flutter codebase targeting **Android** and **Windows desktop**. One language (Dart), one UI toolkit, one database file format on both platforms.
-
-The design rule that shapes everything:
-
-> **Offline-only is a feature, not a limitation.** The app requests no network permission. Trust is the product.
-
----
+Status: target architecture for the local course and personal planner. The current executable is the small Today placeholder in `lib/main.dart`. [REDESIGN.md](REDESIGN.md) defines product behavior.
 
 ## Layers
 
-```
-┌────────────────────────────────────────────────────┐
-│  UI  (Flutter widgets, Material 3)                  │
-│  screens/ calendar · today · habits · settings      │
-│      │ watches state, fires user intents            │
-├──────▼─────────────────────────────────────────────┤
-│  STATE  (Riverpod providers)                        │
-│  eventListProvider · habitProvider · settingsProvider│
-│      │ calls repositories, exposes streams          │
-├──────▼─────────────────────────────────────────────┤
-│  DATA  (repositories + drift/SQLite)                │
-│  EventRepository · HabitRepository · Backup/Export  │
-│      │ the only layer allowed to touch the DB       │
-├──────▼─────────────────────────────────────────────┤
-│  PLATFORM  (plugins)                                │
-│  flutter_local_notifications · file_picker ·        │
-│  path_provider · share_plus                         │
-└────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    UI[Today / Week / Courses / Tasks / Settings] --> State[State and application use cases]
+    State --> Domain[Week calculation / occurrence expansion / conflicts]
+    State --> Repo[Repositories]
+    Repo --> DB[(SQLite via drift)]
+    State --> Files[Validated timetable and backup files]
+    Files --> Repo
+    State --> Platform[File dialogs / locale / window integration]
 ```
 
-**Dependency rule:** arrows point down only. UI never imports drift; repositories never import widgets. This keeps every layer testable alone and makes the codebase navigable as it grows.
+Widgets do not read SQL or parse import files. Domain functions do not depend on Flutter widgets, the database or system time. Inject a clock for Today and overdue calculations. Repositories expose streams; application use cases group related mutations into transactions.
 
-### Why these libraries
+Use Riverpod and drift when implementation reaches persistent state. Current installed dependencies remain in `pubspec.yaml`. Add platform packages only after checking Windows, Linux and macOS support.
 
-- **Riverpod** — compile-safe state management; a screen `watch`es a provider and rebuilds automatically when data changes. The Flutter equivalent of the "UI = f(state)" model.
-- **drift** — typed SQLite for Dart. Tables are declared in Dart, queries return `Stream`s (the UI updates live when a row changes), and the same code runs on Android (sqlite3) and Windows (sqlite3 FFI).
-- **table_calendar** — month/week calendar widget, fully customizable cells for event dots and habit marks.
-- **rrule** — RFC 5545 recurrence expansion ("every Mon/Wed/Fri until term end") in pure Dart.
-- **flutter_localizations + ARB** — Flutter's first-party i18n. One `app_en.arb`, `app_zh.arb`, `app_ja.arb`; the `intl` code-gen produces typed accessors.
+## Source organization
 
----
+Create modules when code is introduced, not as empty scaffolding.
 
-## Data flow example — checking off a habit
-
-1. User taps ✓ on "Take medication" in the Today screen.
-2. The widget calls `ref.read(habitProvider.notifier).checkIn(habitId, today)`.
-3. The notifier calls `HabitRepository.checkIn()`, which runs a drift upsert (`INSERT … ON CONFLICT DO UPDATE`).
-4. The repository's `watchLogs()` stream emits the new row set.
-5. Every widget watching that stream — today card, streak counter, heat-map — rebuilds automatically. No manual refresh anywhere.
-
-This loop — **widget → provider → repository → drift → stream → widgets rebuild** — is the spine of the app. Learn it once in v0.1; every later feature is the same shape.
-
----
-
-## Japan-specific services (where they live)
-
-- **`HolidayService`** (data layer) — holidays are a **user-switchable source** (Settings key `holiday_source`), designed so correctness **never depends on an app release**:
-  - **Built-in Japan pack** (default): a rules engine — fixed dates, Happy-Monday "Nth Monday" holidays, equinoxes via astronomical formula (valid to ~2099), plus the 振替休日 (substitute) and 国民の休日 (sandwiched) rules — plus a tiny bundled exceptions asset (`assets/holidays_jp_overrides.json`) for one-off law changes (enthronement 2019, Olympic moves 2020–21). Correct for any year with no data shipping.
-  - **Imported holiday calendars**: any `.ics`/JSON holiday file imported as a **named calendar** (v0.6) — **any region**, not just Japan; the engine doesn't care whose holidays they are. Sources, formats, and the import spec: [HOLIDAYS.md](HOLIDAYS.md). **Re-importing a newer file is the update channel** — if the law changes, users fix holidays themselves in one import instead of waiting for an app update. Years an imported calendar doesn't cover fall back to the built-in rules, so a one-year file can't blank out the future.
-  - **None**: a plain, holiday-free calendar — for users who don't want holidays, or don't live on the Japanese calendar.
-  Answers `isHoliday(date)` / `holidayName(date)` for the active source; consumers — calendar painters (red days), recurrence expansion (休講 skip), agenda headers — never know which source is active. 六曜/和暦 are pure computation and need no maintenance at all.
-- **Kana-folding search** (data layer utility): normalizes hiragana⇄katakana and full-width⇄half-width before matching, so 「バイト」 finds 「ばいと」 and "ｶﾌｪ" finds "カフェ". Pure function → unit-tested exhaustively.
-- **Timetable periods** (settings-driven): the 時間割 grid reads the `periods` JSON from settings; class events snap to periods at creation but are stored as plain wall times — the grid is a *view*, the data stays portable.
-- **Quiet hours** (platform layer): the notification scheduler checks the quiet window before scheduling; held notifications fire at window end.
-- **和暦/六曜** (UI layer only): display formatting, never stored — the database speaks Gregorian ISO 8601 exclusively.
-
----
-
-## Recurrence model
-
-A recurring class is stored **once**: a master event row plus an `rrule` string (`FREQ=WEEKLY;BYDAY=MO,WE,FR;UNTIL=…`).
-
-- **Rendering:** the calendar asks the `rrule` package to expand occurrences for the visible range only.
-- **Editing one occurrence:** the date is added to the master's `exceptions` list; the modified copy is stored as its own standalone event.
-- **Deleting the series:** deletes the master (cascade removes the rule).
-
-Occurrences are never materialized into the DB — the master + rule is the single source of truth.
-
----
-
-## Time model
-
-- **Events** store timezone-naive **local wall time** plus the recurrence in local terms. A 9:00 class is a 9:00 class even if you travel. (Single-user, single-device data; wall time is what a schedule means to a human.)
-- **Habit logs** store a **local date string** (`2026-08-12`) — "did I take my medication *today*" is a calendar-day question. A late-night check-in must never land on the wrong day.
-
-Write this down once and never "fix" it: it is what makes the app trustworthy in daily use.
-
----
-
-## Import / export (data freedom)
-
-- **Export:** one JSON file containing every table (versioned envelope: `{"format": 1, "events": […], …}`); CSV per-table for spreadsheet users. Share via the system share sheet (Android) or save-file dialog (Windows).
-- **Import:** the same JSON round-trips losslessly. `.ics` import (from Google/Apple Calendar) maps `VEVENT` → events, best-effort.
-- **Auto-backup:** a rolling local backup written on app close, kept N days.
-
-Export is a first-class feature because "your data is portable" is a core promise — see README principles.
-
----
-
-## Project layout (target)
-
-```
+```text
 lib/
-├── main.dart                  # entry, ProviderScope, MaterialApp
-├── app/                       # theme, routing, locale setup
-├── data/
-│   ├── db/                    # drift tables, database class, migrations
-│   ├── repositories/          # EventRepository, HabitRepository, …
-│   └── export/                # JSON/CSV/ics import-export
-├── state/                     # Riverpod providers/notifiers
-├── ui/
-│   ├── calendar/              # month/week views
-│   ├── today/                 # today panel + habit check-ins
-│   ├── habits/                # habit management, heat-map
-│   ├── event_form/            # create/edit sheets
-│   └── settings/              # language, theme, backup
-└── l10n/                      # app_en.arb, app_zh.arb, app_ja.arb
+  main.dart
+  app/                   # startup, routing, responsive shell, themes
+  domain/
+    semesters/           # week calculation and period rules
+    scheduling/          # occurrences, exceptions, timezone policy, conflicts
+    coursework/          # deadlines and completion
+  data/
+    database/            # tables, migrations, transactions
+    repositories/
+    transfer/            # versioned timetable and full-backup formats
+  features/
+    today/
+    week/
+    courses/
+    tasks/
+    settings/
+  platform/              # file dialogs and desktop integration
+  l10n/
+test/                    # mirror domain/data/features modules
+integration_test/        # add with persisted user flows
 ```
+
+No authentication layer, API adapters or synchronization engine are planned.
+
+## Schedule projection
+
+Keep course rules and repeating personal plans as canonical records. Derive occurrence lists for bounded queries. An occurrence identity uses its rule ID and original scheduled date; a move changes its displayed time, not its identity.
+
+Query both base occurrences in the requested window and overrides moved into the window from elsewhere. Exclude base occurrences that have a cancel/move override. Use the same projection for Today, week rendering, conflict detection and timetable export previews.
+
+Course periods resolve against their semester's period table. Personal plans have explicit start/end values and do not depend on the selected semester. Display all time-based occurrences in the selected display timezone; preserve original timezone metadata.
+
+Editing an entire rule or semester configuration first produces a change preview, including orphaned exceptions and affected plans. Apply the user's chosen resolution atomically.
+
+## Time boundaries
+
+Use calendar dates for semester anchors, selected teaching weeks, exception identity and all-day ranges. Use timezone-aware wall times for timed rules, deriving instants for overlap and cross-zone display. Do not advance teaching weeks by adding a fixed number of seconds across daylight-saving transitions.
+
+All-day end dates and timed interval ends are exclusive. Same-day deadlines without a time become overdue on the next local date. Ambiguous/nonexistent local times require explicit handling before storage. Keep timezone conversion and recurrence expansion behind one tested module.
+
+## Files and data safety
+
+Timetable export is an allowlisted projection, not a database dump. Full backup is a separate versioned format. Validate size, schema version, references and business constraints before opening a write transaction. Future unsupported versions must fail with an actionable message.
+
+Imports remap IDs and store provenance for duplicate detection. Duplicate names are allowed; duplicate imported identities are handled explicitly. Restore takes a backup and validates in staging before replacing data. Never overwrite a live SQLite file from an arbitrary copied file or a cloud-sync folder.
+
+## Platform boundary
+
+Keep standard Flutter platform folders. Test file dialogs, paths, keyboard input, scaling and persistence on each desktop host. CI debug builds prove compilation, not runtime behavior or signing. System notifications and background operation are later work; no first-release promise of reminders after exit.
+
+For data structures see [DATABASE.md](DATABASE.md), for validation [QUALITY.md](QUALITY.md), and for delivery [RELEASE.md](RELEASE.md).

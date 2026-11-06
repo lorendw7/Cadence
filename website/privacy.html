@@ -3,127 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>プライバシーポリシー — Cadence</title>
-<meta name="description" content="Cadence はデータを一切収集しません。完全にオフラインで動作し、ネットワークへのアクセスを要求しません。">
+<title>データとプライバシー — Cadence</title>
+<meta name="description" content="現在の開発状況、端末内データと共有ファイルの設計、ウェブサイトについて。">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon.svg">
 <link rel="stylesheet" href="assets/site.css">
-<script>
-  window.CADENCE_META = {
-    ja: { title: "プライバシーポリシー — Cadence",
-          desc: "Cadence はデータを一切収集しません。完全にオフラインで動作し、ネットワークへのアクセスを要求しません。" },
-    en: { title: "Privacy Policy — Cadence",
-          desc: "Cadence collects no data. The app works entirely offline and does not request network access." },
-    zh: { title: "隐私政策 — Cadence",
-          desc: "Cadence 不收集任何数据。应用完全离线运行，不申请网络访问权限。" }
-  };
-</script>
+<script>window.CADENCE_META = {"ja":{"title":"データとプライバシー — Cadence","desc":"現在の開発状況、端末内データと共有ファイルの設計、ウェブサイトについて。"},"en":{"title":"Data and privacy — Cadence","desc":"Current development status, planned local data and file sharing, and website behavior."},"zh":{"title":"数据与隐私 — Cadence","desc":"当前开发状态、本地数据与文件分享设计，以及官网的数据处理说明。"}};</script>
 </head>
 <body>
 <div class="wrap narrow">
+<nav><a class="brand" href="index.html"><img src="assets/icon.svg" alt=""> Cadence</a><div class="langs" role="group" aria-label="Language / 言語 / 语言"><button data-set="ja" aria-pressed="true">日本語</button><button data-set="en" aria-pressed="false">English</button><button data-set="zh" aria-pressed="false">中文</button></div></nav>
+<div data-lang="ja" class="doc"><h1>データとプライバシー</h1><p class="date">最終更新日：2026-11-06</p><h2>現在のアプリ</h2><p>現在は「今日」の仮画面のみで、授業や個人の予定を入力・保存する機能はありません。アカウント、外部カレンダー接続、広告・解析 SDK は実装していません。</p>
+<h2>予定している端末内保存</h2><p>授業、個人の予定、課題と設定は端末内に保存する設計です。Cadence のサーバーへの送信やクラウド同期は予定していません。</p>
+<h2>共有ファイルとバックアップ</h2><p>時間割の共有と完全バックアップは別機能として実装します。時間割ファイルには個人の予定、課題、私的なメモを含めません。完全バックアップには私的情報が含まれるため、他の人へ渡す前に確認してください。ファイルの保存・送信は利用者が選びます。これらはまだ未実装です。</p>
+<h2>削除と更新</h2><p>データの削除・復元機能は実装予定です。デスクトップアプリをアンインストールしてもデータが残る場合があるため、アンインストールだけで削除されるとは案内しません。</p>
+<h2>このウェブサイト</h2><p>言語の選択はブラウザーの localStorage に保存します。このサイトに解析スクリプトはありませんが、閲覧時は GitHub Pages の配信サーバーへ通信します。リンク先にはそれぞれのサービスの取り扱いが適用されます。</p>
+<h2>お問い合わせ</h2><p>GitHub のリポジトリから報告できます。公開 Issue に個人の時間割、共有したくない予定、完全バックアップを添付しないでください。機能を実装・変更した際は、このページも更新します。</p><p><a href="https://github.com/lorendw7/Cadence">GitHub</a> · <a href="index.html">トップページへ</a></p></div>
 
-<nav>
-  <a class="brand" href="index.html"><img src="assets/icon.svg" alt=""> Cadence</a>
-  <div class="langs" role="group" aria-label="Language / 言語 / 语言">
-    <button data-set="ja" aria-pressed="true">日本語</button>
-    <button data-set="en" aria-pressed="false">English</button>
-    <button data-set="zh" aria-pressed="false">中文</button>
-  </div>
-</nav>
+<div data-lang="en" class="doc"><h1>Data and privacy</h1><p class="date">Last updated: 2026-11-06</p><h2>Current application</h2><p>The app currently contains a Today placeholder, with no course or personal-plan entry or storage. It has no implemented account system, external calendar connection, advertising or analytics SDK.</p>
+<h2>Planned local storage</h2><p>Courses, personal plans, tasks and settings are designed to stay on the device. We do not plan a Cadence data server or cloud synchronization.</p>
+<h2>Shared files and backups</h2><p>Timetable sharing and full backup will be separate features. Timetable files will exclude personal plans, coursework and private notes. A full backup will contain private information; review it before giving it to anyone. You choose where files are saved and how they are sent. These features are not implemented yet.</p>
+<h2>Deletion and updates</h2><p>Explicit data deletion and restore are planned. Uninstalling a desktop application may leave its data behind, so uninstalling alone is not described as erasing it.</p>
+<h2>This website</h2><p>The language choice is stored in your browser's localStorage. The site includes no analytics scripts, but visiting it sends requests to GitHub Pages hosting. Linked services have their own data handling.</p>
+<h2>Contact and changes</h2><p>You can report issues through the GitHub repository. Do not attach private timetables, personal arrangements or full backups to public issues. This page will be updated as behavior is implemented or changes.</p><p><a href="https://github.com/lorendw7/Cadence">GitHub</a> · <a href="index.html">Back to the project</a></p></div>
 
-<!-- ===================== 日本語 ===================== -->
-<div data-lang="ja" class="doc">
-  <h1>プライバシーポリシー</h1>
-  <p class="date">Cadence · 最終更新日: 2026-08-12</p>
-
-  <h2>要点</h2>
-  <p><strong>Cadence はデータを一切収集しません。</strong>アプリは完全にオフラインで動作し、ネットワークへのアクセスを要求しません。</p>
-
-  <h2>データの保存</h2>
-  <p>入力された内容（予定・タスク・習慣・チェックイン・設定）は、すべてお使いの端末内のローカルデータベースに保存されます。アプリには通信機能もサーバーも存在しないため、データが外部に送信されることはありません。</p>
-
-  <h2>データの収集・共有</h2>
-  <ul>
-    <li>個人情報を収集<strong>しません</strong>。</li>
-    <li>解析・広告・トラッキング SDK を使用<strong>しません</strong>。</li>
-    <li>第三者とデータを共有<strong>しません</strong>（共有するものがそもそもありません）。</li>
-  </ul>
-
-  <h2>エクスポート / インポート</h2>
-  <p>データはいつでも JSON / CSV ファイルに書き出せます。ファイルは端末上で作成され、あなたが選んだ場所にのみ保存されます。アプリを削除するとローカルデータも削除されます（残したい場合は先にエクスポートしてください）。</p>
-
-  <h2>権限</h2>
-  <p>Android 版は<strong>通知</strong>権限を要求することがあります。これはあなたが設定したリマインダーを表示するためだけに使われます。その他の機微な権限は要求しません。</p>
-
-  <h2>お子様について</h2>
-  <p>Cadence はお子様を含め、誰からもデータを収集しません。</p>
-
-  <h2>変更・お問い合わせ</h2>
-  <p>本ポリシーに変更がある場合は、このページを新しい日付とともに更新します。お問い合わせは <a href="https://github.com/lorendw7/Cadence">github.com/lorendw7/Cadence</a> の Issue にてお願いします。</p>
-</div>
-
-<!-- ===================== English ===================== -->
-<div data-lang="en" class="doc">
-  <h1>Privacy Policy</h1>
-  <p class="date">Cadence · Last updated: 2026-08-12</p>
-
-  <h2>The short version</h2>
-  <p><strong>Cadence collects no data. None.</strong> The app works entirely offline and does not request network access.</p>
-
-  <h2>Data storage</h2>
-  <p>Everything you enter (events, tasks, habits, check-ins, settings) is stored in a local database file on your own device. It is never transmitted anywhere, because the app has no networking code and no server.</p>
-
-  <h2>Data collection &amp; sharing</h2>
-  <ul>
-    <li>We do <strong>not</strong> collect personal information.</li>
-    <li>We do <strong>not</strong> use analytics, advertising, or tracking SDKs.</li>
-    <li>We do <strong>not</strong> share data with third parties — there is nothing to share.</li>
-  </ul>
-
-  <h2>Export / import</h2>
-  <p>You can export your data to JSON or CSV files at any time. Those files are created on your device and go only where you choose to put them. Deleting the app deletes its local data (export first if you want to keep it).</p>
-
-  <h2>Permissions</h2>
-  <p>The Android app may request the <strong>notifications</strong> permission, used solely to show the reminders you schedule. No other sensitive permission is requested.</p>
-
-  <h2>Children</h2>
-  <p>Cadence does not collect data from anyone, including children.</p>
-
-  <h2>Changes &amp; contact</h2>
-  <p>If this policy ever changes, the update will appear on this page with a new date. Questions: open an issue at <a href="https://github.com/lorendw7/Cadence">github.com/lorendw7/Cadence</a>.</p>
-</div>
-
-<!-- ===================== 简体中文 ===================== -->
-<div data-lang="zh" class="doc">
-  <h1>隐私政策</h1>
-  <p class="date">Cadence · 最后更新: 2026-08-12</p>
-
-  <h2>一句话版本</h2>
-  <p><strong>Cadence 不收集任何数据。</strong>应用完全离线运行，不申请网络访问权限。</p>
-
-  <h2>数据存储</h2>
-  <p>你输入的所有内容（日程、待办、习惯、打卡记录、设置）都保存在你自己设备上的本地数据库文件中。应用没有任何联网代码，也没有服务器，因此数据不会被传输到任何地方。</p>
-
-  <h2>数据收集与共享</h2>
-  <ul>
-    <li>我们<strong>不</strong>收集个人信息。</li>
-    <li>我们<strong>不</strong>使用统计分析、广告或跟踪 SDK。</li>
-    <li>我们<strong>不</strong>与第三方共享数据——本来就没有可共享的东西。</li>
-  </ul>
-
-  <h2>导出 / 导入</h2>
-  <p>你可以随时将数据导出为 JSON 或 CSV 文件。文件在你的设备上生成，只会保存到你选择的位置。卸载应用会删除本地数据（如需保留请先导出）。</p>
-
-  <h2>权限</h2>
-  <p>Android 版可能会申请<strong>通知</strong>权限，仅用于显示你设置的提醒。不申请其他敏感权限。</p>
-
-  <h2>儿童</h2>
-  <p>Cadence 不向任何人收集数据，包括儿童。</p>
-
-  <h2>变更与联系方式</h2>
-  <p>如本政策发生变更，会在本页更新并标注新日期。如有疑问，请在 <a href="https://github.com/lorendw7/Cadence">github.com/lorendw7/Cadence</a> 提交 Issue。</p>
-</div>
-
+<div data-lang="zh" class="doc"><h1>数据与隐私</h1><p class="date">最后更新：2026-11-06</p><h2>当前应用</h2><p>当前只有“今天”占位页，尚无课程或个人安排的录入与保存功能。未实现账号系统、外部日历连接，也未引入广告或统计分析 SDK。</p>
+<h2>计划中的本地保存</h2><p>课程、个人安排、任务和设置计划保存在设备内。不规划 Cadence 数据服务器或云端同步。</p>
+<h2>分享文件与完整备份</h2><p>课表分享与完整备份将是两个独立功能。课表文件不包含个人安排、作业和私密备注；完整备份会含有个人信息，交给他人前请确认内容。保存位置和发送方式由用户自行选择。这些功能当前尚未实现。</p>
+<h2>删除与更新</h2><p>计划提供明确的数据清除与恢复功能。桌面应用卸载后可能仍保留用户数据，因此不会将卸载描述为已彻底清除数据。</p>
+<h2>这个网站</h2><p>语言选择保存在浏览器的 localStorage 中。本站未加入统计脚本，但访问网站会向 GitHub Pages 托管服务发送请求，链接到的服务有各自的数据处理方式。</p>
+<h2>反馈与变更</h2><p>可以通过 GitHub 仓库反馈问题。请不要在公开 Issue 中附上私人课表、个人安排或完整备份。功能实现或行为改变时，本页会同步更新。</p><p><a href="https://github.com/lorendw7/Cadence">GitHub</a> · <a href="index.html">返回项目首页</a></p></div>
 </div>
 <script src="assets/lang.js"></script>
 </body>

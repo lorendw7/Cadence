@@ -1,5 +1,7 @@
 # Dart Guide (for this project, coming from TypeScript)
 
+This is learning material. Historical milestone labels and example features below are illustrative, not the current implementation plan; follow [ROADMAP.md](ROADMAP.md) and [REDESIGN.md](REDESIGN.md) for scope.
+
 You know TypeScript. Dart will feel ~70% familiar — this guide covers the 30% that differs, in the order Cadence needs it. Read each part when its milestone starts, not all up front.
 
 ---
