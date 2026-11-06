@@ -40,6 +40,7 @@ h1 em{font-style:normal;color:var(--wine)}
 .development-note{font-size:12px;color:var(--muted);line-height:1.75;margin-top:25px;max-width:430px}
 .development-note b{color:var(--wine);font-weight:650;margin-right:6px}
 .product-preview{min-width:0;scroll-margin-top:110px}
+.detail-layout>*{min-width:0}
 .preview-caption{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
 .status-dot{width:5px;height:5px;border-radius:50%;background:var(--wine)}
 .caption-line{height:1px;background:var(--line);flex:1;margin-left:8px}
