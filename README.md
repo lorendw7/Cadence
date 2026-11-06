@@ -2,87 +2,65 @@
 
 # Cadence
 
-> A local-first time manager **built for life in Japan** — 時間割, shifts, to-dos, habits and focus time in one offline calendar.
-> Built with **Flutter**. Free, open source (MIT), fully offline. Your data never leaves your device.
+**Courses and personal plans, together.** A local desktop planner for students and classmates.
 
 <br clear="left">
 
-**Website:** [lorendw7.github.io/Cadence](https://lorendw7.github.io/Cadence/) — 日本語 / English / 中文
+**Development status:** the app currently displays a Today placeholder. Windows, Linux, macOS and Android runners exist; course management, storage and sharing are not implemented yet. There is no downloadable feature-complete release.
 
-**Platforms:** Android (Google Play — planned) · Windows desktop · macOS (experimental CI build, post-1.0) · _iOS: not planned for now_
-**Languages:** 日本語 · English · 简体中文 — Japanese-first, and one of the few Japan-shaped schedulers international residents can use in their own language.
+**Desktop targets:** Windows, Linux and macOS. Android is retained for later work. Distribution is planned through GitHub Releases, not app stores.
 
----
+[Product design / 产品设计](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md) · [Website](https://lorendw7.github.io/Cadence/)
 
-## Why Cadence
+## What we are building
 
-Most calendar apps treat every entry the same. Cadence models the four things a day is actually made of, each with its own behavior:
+- **Courses:** semester dates, teaching weeks, configurable periods, odd/even or selected weeks, rooms and teachers.
+- **Changes:** cancel or move one class without rewriting the whole semester.
+- **Personal plans:** appointments, study sessions and other timed or all-day arrangements, with optional simple weekly repeats.
+- **One schedule:** Today and week views show courses and personal plans together and explain time conflicts.
+- **Coursework:** assignments and exams linked to a course; deadlines and completion are distinct from booked time.
+- **Classmate sharing:** preview and import a timetable file; personal plans and coursework are excluded from timetable exports.
+- **Local data:** no registration, cloud service, external calendar connection or telemetry. Versioned backup and restore are planned.
 
-| Type | Icon | For | Key behavior |
-|------|------|-----|--------------|
-| **Class** 授業 | 📚 | The semester 時間割 | Period grid (1限–6限), weekly repeats within a term, auto-skips 祝日 (休講) |
-| **Shift** バイト | 💰 | Part-time work | Per-workplace hourly wage → monthly earnings estimate (見込み給料) |
-| **Meeting** | 🤝 | Appointments, work syncs, doctor visits | Location + "remind me N minutes before" |
-| **To-do** | ✅ | One-off tasks with a deadline | Check off, priority colors, rolls over if unfinished |
-| **Habit** | 💊 | Medication, exercise, study streaks | Daily check-in, streaks, heat-map, fixed reminders |
+The first release deliberately excludes Google/Outlook integration, online ICS subscriptions, school-system scraping, AI extraction, collaborative editing, wage tracking and focus/habit dashboards.
 
-Plus **Focus mode** (a Pomodoro that attaches to classes → per-subject study stats) and a **discipline dashboard** tying it all together.
+## Run the current skeleton
 
-### Forget-proof by design
+Use Flutter **3.44.4** with Dart **3.12.2**, matching the project metadata and CI configuration.
 
-Built as much for **professors, admin staff and office workers** as for students: layered reminders per event (前日 + 30分前 + 10分前), an insistent mode that re-rings until acknowledged, a morning digest and an evening preview of tomorrow, and conflict warnings when something gets double-booked. Recording a meeting is easy — Cadence's job is making sure you *notice* it.
+```sh
+flutter pub get
+flutter run -d windows
+```
 
-### Made for Japan
+On a configured Linux or macOS host, use `flutter run -d linux` or `flutter run -d macos`. See [SETUP.md](docs/SETUP.md) for native tools and checks.
 
-**祝日** bundled offline and painted red · a real **時間割** period-grid view · **アルバイト** wage tracking · optional **和暦**(令和) and **六曜** · kana-aware search (ひらがな⇄カタカナ, 全角⇄半角) · quiet hours. Schedules travel into **LINE** (or any app) as template files, `.ics`, or image cards via the system share sheet — the app itself never touches the network. See [docs/PRODUCT.md](docs/PRODUCT.md).
+## Repository layout
 
-### Principles
+| Path | Purpose |
+|------|---------|
+| `lib/` | App entry point and current Today placeholder |
+| `test/` | Flutter widget tests |
+| `windows/`, `linux/`, `macos/` | Native desktop runners |
+| `android/` | Retained Android runner |
+| `assets/brand/` | Source brand artwork |
+| `docs/` | Product, behavior, architecture, setup and release plans |
+| `website/` | Static website in Japanese, English and Chinese |
+| `.github/workflows/` | App checks, desktop builds and website deployment |
 
-- **Local-first, offline-only.** No account, no server, no analytics, no network permission at all.
-- **Your data is portable.** Export everything to JSON/CSV at any time; import it back on any device.
-- **Sharing without servers.** Schedules travel as files and pictures through apps you already use.
-- **Free forever.** MIT-licensed, no ads, no in-app purchases.
-- **Small and fast.** Native performance on Android and Windows from one codebase.
+Create the source modules in [ARCHITECTURE.md](docs/ARCHITECTURE.md) as their features are implemented. Build output and personal settings stay out of Git.
 
----
+## Development
 
-## Tech stack
+```sh
+dart format lib test
+flutter analyze --fatal-infos --fatal-warnings
+flutter test
+```
 
-| Layer | Choice |
-|-------|--------|
-| UI | Flutter 3 (Material 3) |
-| Language | Dart 3 |
-| State | Riverpod |
-| Database | drift (SQLite) — same file format on Android & Windows |
-| Calendar UI | table_calendar |
-| Recurrence | rrule (RFC 5545) |
-| i18n | flutter_localizations + ARB files (en / zh / ja) |
-| Notifications | flutter_local_notifications |
+Flutter and its starter packages are installed today. Riverpod and drift are planned; [pubspec.yaml](pubspec.yaml) is the current dependency source of truth. The package's starter version `1.0.0+1` does not indicate a production release.
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the layers fit together.
-
----
-
-## Documentation
-
-1. **[docs/PRODUCT.md](docs/PRODUCT.md)** — vision, personas (student / teacher / dorm manager), the sharing model, non-goals.
-2. **[docs/SETUP.md](docs/SETUP.md)** — toolchain install, create the project, first run.
-3. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — layers, data flow, and the project's design rules.
-4. **[docs/DATABASE.md](docs/DATABASE.md)** — the SQLite schema and the reasoning behind it.
-5. **[docs/HOLIDAYS.md](docs/HOLIDAYS.md)** — holiday calendars: built-in Japan, import any region, formats and sources.
-6. **[docs/ROADMAP.md](docs/ROADMAP.md)** — build order v0.0 → v1.0 (Google Play), with effort estimates.
-7. **[docs/QUALITY.md](docs/QUALITY.md)** — the production bar: definition of done, testing, CI, performance budgets.
-8. **[docs/DESIGN.md](docs/DESIGN.md)** — design system: the 臙脂 (enji) crimson brand, layout and motion rules.
-9. **[docs/DART_GUIDE.md](docs/DART_GUIDE.md)** — Dart for developers coming from TypeScript.
-10. **[docs/RELEASE.md](docs/RELEASE.md)** — Google Play release checklist (JP-first listing).
-
-The project website (landing page + privacy policy, required for Play Store) lives in [`website/`](website/).
-
----
-
-## Status
-
-🌱 In development, following [docs/ROADMAP.md](docs/ROADMAP.md). Every line of code is hand-written by the author as a learning project — docs in English, built in public.
+The website distinguishes planned capabilities from the current skeleton. Native build checks establish compilation only; each desktop release also needs real interaction and data-recovery tests.
 
 ## License
 

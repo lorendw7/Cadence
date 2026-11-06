@@ -1,75 +1,82 @@
 # Setup
 
-Development machine: **Windows 11**. Targets: **Android** + **Windows desktop**.
+The repository contains Windows, Linux, macOS and Android platform runners. Their existence does not establish runtime support; test each target on its native host.
 
-## 1. Toolchain
+## Toolchain
 
-| Tool | Status / install |
-|------|------------------|
-| Flutter SDK (stable) | `winget install --id=Google.Flutter` or unzip from flutter.dev; ensure `flutter` is on PATH |
-| Android Studio | Needed for the Android SDK + emulator: <https://developer.android.com/studio> |
-| Visual Studio C++ workload | Needed for the **Windows** target (already present if VS 2026 with C++ tools is installed) |
+Use **Flutter 3.44.4 stable** with **Dart 3.12.2**, matching the project metadata and CI. The package requires Dart `^3.12.2`.
 
-Then verify — the single most important command in Flutter development:
+| Target | Host and required tools |
+|--------|-------------------------|
+| Windows | Windows; Visual Studio with Desktop development with C++ |
+| Linux | Linux; clang, CMake, Ninja, pkg-config, GTK development libraries and C++ toolchain |
+| macOS | macOS; Xcode and its command-line tools; plugin-specific dependencies when introduced |
+| Android | Android SDK and emulator/device; Android Studio is the recommended SDK manager |
 
-```powershell
+See the official [Flutter desktop guide](https://docs.flutter.dev/platform-integration/desktop) and platform setup documentation linked there.
+
+```sh
+flutter --version
 flutter doctor -v
+flutter pub get
+flutter devices
 ```
 
-Fix everything it flags. Typical first-run tasks:
+Resolve doctor findings for your chosen target. For Android, review required SDK licenses with `flutter doctor --android-licenses`.
 
-```powershell
-flutter doctor --android-licenses   # accept SDK licenses once
+## Run this checkout
+
+Run one command appropriate to your host:
+
+```sh
+flutter run -d windows
+flutter run -d linux
+flutter run -d macos
+flutter run -d <android-device-id>
 ```
 
-In Android Studio: **SDK Manager** → install latest SDK + build-tools; **Device Manager** → create one Pixel emulator.
+The current app shows a `Cadence` title and a `今天` (Today) placeholder. Press **r** for hot reload, **R** for hot restart and **q** to quit.
 
-## 2. Create the project
+Do not run `flutter create` for normal setup: the platform runners are already checked in. The existing Android application ID is `dev.cadence.cadence`; keep platform identities stable once releases have user data.
 
-From the repo root (project name `cadence`, org `dev.cadence` → applicationId `dev.cadence.app`):
+## Validate
 
-```powershell
-flutter create --org dev.cadence --project-name cadence --platforms android,windows .
+```sh
+dart format lib test
+flutter analyze --fatal-infos --fatal-warnings
+flutter test
 ```
 
-`--platforms android,windows` deliberately skips iOS/macOS/Linux/web folders — less noise; they can be added later with another `flutter create`.
+CI checks formatting without changing files:
 
-Read every generated file top-level once — nothing should be a black box: `pubspec.yaml` (dependencies — Flutter's `package.json`), `lib/main.dart` (entry point), `android/` (Gradle project), `windows/` (CMake runner).
-
-## 3. Run it
-
-```powershell
-flutter devices                # list: Windows desktop + your emulator
-flutter run -d windows         # desktop
-flutter run -d emulator-5554   # Android (or the id shown)
+```sh
+dart format --output=none --set-exit-if-changed lib test
 ```
 
-While running: press **r** = hot reload (sub-second UI update), **R** = hot restart, **q** = quit. Hot reload is the core dev loop — you will live in it.
+Native build checks, on the corresponding hosts:
 
-## 4. Dependencies (add per milestone, not up front)
-
-Added with `flutter pub add <name>` when the roadmap reaches them:
-
-| Milestone | Packages |
-|-----------|----------|
-| v0.1 | `flutter_riverpod` · `drift` `drift_flutter` (+ dev: `drift_dev` `build_runner`) · `table_calendar` · `rrule` · `uuid` · `intl` + `flutter_localizations` (SDK) · `flutter_local_notifications` |
-| v0.6 | `path_provider` · `file_picker` · `share_plus` |
-
-drift uses code generation — after editing table definitions run:
-
-```powershell
-dart run build_runner build --delete-conflicting-outputs
+```sh
+flutter build windows --debug
+flutter build linux --debug
+flutter build macos --debug
 ```
 
-## 5. Editor
+These debug builds are compilation checks, not signed release artifacts or desktop interaction tests.
 
-VS Code + **Flutter** extension (includes Dart). Format on save. The extension gives you: F5 debugging, widget inspector, hot reload on save, ARB/i18n support.
+## Dependencies and data
+
+Current dependencies are in [pubspec.yaml](../pubspec.yaml). Add Riverpod and drift only as their implementation begins; commit `pubspec.lock` changes. The current skeleton does not yet store courses or personal plans.
+
+No account, cloud credentials or API registration is part of the planned app. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet.
 
 ## Troubleshooting
 
-| Symptom | Fix |
-|---------|-----|
-| `flutter doctor` complains about Android toolchain | Open Android Studio once, install SDK, re-run `flutter doctor --android-licenses` |
-| Windows build fails, missing C++ | VS Installer → add "Desktop development with C++" |
-| Emulator slow to boot | Cold-boot once, then keep it snapshotted; or test on a real phone via USB debugging |
-| build_runner conflicts | Always run with `--delete-conflicting-outputs` |
+| Symptom | Check |
+|---------|-------|
+| Flutter is not recognized | Put the SDK's bin directory on PATH and reopen the terminal |
+| Dart version mismatch | Compare `flutter --version` with the pinned version above |
+| Desktop compilation fails | Run `flutter doctor -v` and install that host's native build tools |
+| No Android device | Start an emulator or connect a phone with debugging enabled |
+| A desktop file dialog fails in a future feature build | Record the OS, desktop session and plugin version; verify on the native host |
+
+The [website](../website/README.md) has a separate static preview workflow.

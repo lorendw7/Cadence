@@ -3,200 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cadence — 日本での毎日のための、オフライン手帳</title>
-<meta name="description" content="時間割・会議・バイト・習慣・集中を 1 つに。完全オフライン、アカウント不要、広告なし。Android と Windows のための無料・オープンソースアプリ。">
+<title>Cadence — 授業と自分の予定を、ひとつに</title>
+<meta name="description" content="学生とクラスメートのためのローカル手帳。時間割、個人の予定、課題をまとめるデスクトップアプリを開発中です。">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon.svg">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="alternate" hreflang="ja" href="https://lorendw7.github.io/Cadence/?lang=ja">
-<link rel="alternate" hreflang="en" href="https://lorendw7.github.io/Cadence/?lang=en">
-<link rel="alternate" hreflang="zh-Hans" href="https://lorendw7.github.io/Cadence/?lang=zh">
-<script>
-  window.CADENCE_META = {
-    ja: { title: "Cadence — 日本での毎日のための、オフライン手帳",
-          desc: "時間割・会議・バイト・習慣・集中を 1 つに。完全オフライン、アカウント不要、広告なし。Android と Windows のための無料・オープンソースアプリ。" },
-    en: { title: "Cadence — a local-first calendar for life in Japan",
-          desc: "Timetable, meetings, shifts, habits and focus hours in one offline app. No account, no ads, no network permission. Free and open source, for Android and Windows." },
-    zh: { title: "Cadence — 为在日本生活而做的离线日程本",
-          desc: "课表、会议、兼职、习惯、专注时间，全部离线管理。无需账号、无广告、不联网。免费开源，支持 Android 与 Windows。" }
-  };
-</script>
+<script>window.CADENCE_META = {"ja":{"title":"Cadence — 授業と自分の予定を、ひとつに","desc":"学生とクラスメートのためのローカル手帳。時間割、個人の予定、課題をまとめるデスクトップアプリを開発中です。"},"en":{"title":"Cadence — courses and personal plans, together","desc":"A local desktop planner for students and classmates. Courses, personal arrangements and coursework, currently in development."},"zh":{"title":"Cadence — 课程与个人安排，放在一起","desc":"给自己和同学使用的本地桌面日程工具。统一管理课程、个人安排和作业，目前正在开发。"}};</script>
 </head>
 <body>
 <div class="wrap">
-
-<nav>
-  <span class="brand"><img src="assets/icon.svg" alt=""> Cadence</span>
-  <div class="langs" role="group" aria-label="Language / 言語 / 语言">
-    <button data-set="ja" aria-pressed="true">日本語</button>
-    <button data-set="en" aria-pressed="false">English</button>
-    <button data-set="zh" aria-pressed="false">中文</button>
-  </div>
-</nav>
-
-<!-- ===================== 日本語 ===================== -->
+<nav><a class="brand" href="index.html"><img src="assets/icon.svg" alt=""> Cadence</a><div class="langs" role="group" aria-label="Language / 言語 / 语言"><button data-set="ja" aria-pressed="true">日本語</button><button data-set="en" aria-pressed="false">English</button><button data-set="zh" aria-pressed="false">中文</button></div></nav>
 <div data-lang="ja">
-
-<header class="hero">
-  <img class="appicon" src="assets/icon.svg" alt="Cadence">
-  <div class="logo">Ca<span>dence</span></div>
-  <p class="tag">時間割・会議・バイト・習慣・集中 — 日本での毎日のための、オフライン手帳。<br>学生・教員・忙しい社会人のために。祝日つき、アカウント不要。</p>
-  <div class="badges"><b>無料</b> · <b>オープンソース (MIT)</b> · <b>完全オフライン</b> · 日本語 / English / 简体中文</div>
-  <div class="cta">
-    <a class="btn primary" href="https://github.com/lorendw7/Cadence/releases">Windows 版をダウンロード</a>
-    <a class="btn ghost" href="https://github.com/lorendw7/Cadence">GitHub</a>
-    <a class="btn ghost" href="#platforms">Android — Google Play 準備中</a>
-  </div>
-</header>
-
-<section>
-  <div class="grid">
-    <div class="card"><span class="emoji">📚</span><h3>時間割</h3><p>1限〜6限の時限グリッドと学期の期間設定。授業は祝日を自動でスキップします（休講）。</p></div>
-    <div class="card"><span class="emoji">💰</span><h3>シフトと給料</h3><p>バイト先ごとにシフトを記録し、今月の見込み給料を表示。時給の変更にも対応します。</p></div>
-    <div class="card"><span class="emoji">🎌</span><h3>祝日は自動、更新も自由</h3><p>日本の祝日は祝日法のルールから計算するので、毎年の更新は不要。他の国・地域の祝日はファイルを読み込むだけ。祝日なしの表示も選べます。</p></div>
-    <div class="card"><span class="emoji">💊</span><h3>習慣</h3><p>ワンタップのチェックイン、連続記録（ストリーク）、月間ヒートマップ。</p></div>
-    <div class="card"><span class="emoji">⏱️</span><h3>集中</h3><p>授業や課題に紐づくポモドーロ。科目ごとの勉強時間が数字で見えます。</p></div>
-    <div class="card"><span class="emoji">🔔</span><h3>予定を逃さない</h3><p>多段リマインダー（前日・30分前・10分前）、了解するまで鳴り続けるモード、朝のダイジェストと夜の予告、ダブルブッキング警告。</p></div>
-    <div class="card"><span class="emoji">📤</span><h3>LINE で共有</h3><p>時間割をファイルや画像カードとして、OS の共有シートからそのまま送信。サーバーは一切介在しません。</p></div>
-  </div>
-</section>
-
-<section>
-  <h2>あなたのデータは、あなたのものです</h2>
-  <div class="promise">
-    <p><strong>Cadence にはサーバーもアカウントもなく、ネットワーク権限を要求しません。</strong><br>
-    すべては端末内の 1 つの SQLite ファイルに保存されます。いつでも JSON / CSV に書き出し、別の端末に読み込めます。永久に無料、広告なし、トラッキングなし。</p>
-  </div>
-</section>
-
-<section id="platforms">
-  <h2>対応プラットフォーム</h2>
-  <div class="grid">
-    <div class="card"><span class="emoji">🤖</span><h3>Android</h3><p>Google Play で無料公開の予定。リリース告知は GitHub リポジトリで。</p></div>
-    <div class="card"><span class="emoji">🪟</span><h3>Windows</h3><p>GitHub Releases でポータブル版を配布。</p></div>
-    <div class="card"><span class="emoji">🍎</span><h3>macOS</h3><p>1.0 以降に実験的対応を予定（署名なしビルド）。</p></div>
-    <div class="card"><span class="emoji">📱</span><h3>iOS</h3><p>現時点では予定なし。コードベースは対応可能な状態です。</p></div>
-  </div>
-</section>
-
-<footer>
-  <ul class="plain">
-    <li><a href="privacy.html">プライバシーポリシー</a> · <a href="https://github.com/lorendw7/Cadence/tree/main/docs">ドキュメント（英語）</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT ライセンス</a></li>
-    <li>© 2026 lorendw7 · Flutter 製</li>
-  </ul>
-</footer>
-
+<header class="hero"><img class="appicon" src="assets/icon.svg" alt="Cadence"><div class="logo">Ca<span>dence</span></div><h1>授業と自分の予定を、ひとつに。</h1><p class="tag">今日の授業、次の予定、近づく締切。学生とクラスメートのための、ローカルな手帳。</p><div class="badges">無料・オープンソース · アカウント不要の設計 · Windows / Linux / macOS</div><p class="promise">開発中：現在のアプリは「今日」の仮画面です。以下は実装予定の機能で、利用可能な完成版はまだありません。</p><div class="cta"><a class="btn primary" href="https://github.com/lorendw7/Cadence/blob/main/docs/REDESIGN.md">設計と開発計画</a><a class="btn ghost" href="https://github.com/lorendw7/Cadence">ソースを見る</a></div></header>
+<section><h2>最初のバージョンで目指すこと</h2><div class="grid"><div class="card"><span class="emoji" aria-hidden="true">📚</span><h3>授業を整理</h3><p>学期、時限、第何週かを管理。奇数・偶数週や指定週の授業、教室と担当教員を記録します。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">🗓️</span><h3>自分の予定も一緒に</h3><p>約束、自習、サークル活動などを授業と同じ週表示に。単発、終日、シンプルな毎週の繰り返しを予定しています。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">↪️</span><h3>休講・振替に対応</h3><p>その回だけの休講、日時や教室の変更を記録。元の予定へ戻せる仕組みを設計しています。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">✅</span><h3>課題と試験</h3><p>科目に紐づく課題、締切、完了状態を管理。試験は時間のある予定として表示します。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">🕘</span><h3>今日と今週がわかる</h3><p>授業と予定をまとめ、時間の重なりを知らせます。課題の締切は、時間を占有する予定と区別します。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">📤</span><h3>クラスメートと時間割を共有</h3><p>内容を確認して時間割ファイルを渡す方式。個人の予定、課題、私的なメモは時間割共有に含めません。</p></div></div></section>
+<section><h2>小さく、ローカルに</h2><div class="promise"><p>アカウント、クラウド同期、外部カレンダー接続は予定していません。端末内の保存と、利用者が選んで行うファイル共有・バックアップを実装します。現在は保存機能も未実装です。</p></div></section>
+<section><h2>デスクトップを中心に</h2><p>Windows・Linux・macOS が開発対象です。各 OS で動作確認してから対応版を案内します。Android のプロジェクトは将来用に保持しています。</p><p>配布は GitHub Releases を予定しており、ストアへの公開は予定していません。ダウンロードは検証済みパッケージの公開後に案内します。</p></section>
+<footer><ul class="plain"><li><a href="privacy.html">データとプライバシー</a> · <a href="https://github.com/lorendw7/Cadence/tree/main/docs">ドキュメント</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT ライセンス</a></li><li>© 2026 lorendw7 · Flutter</li></ul></footer>
 </div>
 
-<!-- ===================== English ===================== -->
 <div data-lang="en">
-
-<header class="hero">
-  <img class="appicon" src="assets/icon.svg" alt="Cadence">
-  <div class="logo">Ca<span>dence</span></div>
-  <p class="tag">Timetable, meetings, shifts, habits and focus — one offline planner for life in Japan.<br>For students, teachers and busy professionals. 祝日 included, no account needed.</p>
-  <div class="badges"><b>Free</b> · <b>Open source (MIT)</b> · <b>100% offline</b> · 日本語 / English / 简体中文</div>
-  <div class="cta">
-    <a class="btn primary" href="https://github.com/lorendw7/Cadence/releases">Download for Windows</a>
-    <a class="btn ghost" href="https://github.com/lorendw7/Cadence">GitHub</a>
-    <a class="btn ghost" href="#platforms-en">Android — coming to Google Play</a>
-  </div>
-</header>
-
-<section>
-  <div class="grid">
-    <div class="card"><span class="emoji">📚</span><h3>時間割 Timetable</h3><p>A real period grid (1限–6限) with term dates. Classes skip public holidays automatically.</p></div>
-    <div class="card"><span class="emoji">💰</span><h3>Shifts &amp; pay</h3><p>Track part-time shifts per workplace and see your estimated monthly pay — wage changes included.</p></div>
-    <div class="card"><span class="emoji">🎌</span><h3>Holidays, self-updating</h3><p>Japanese holidays are computed from the law, so they never need a yearly update. Import a file for any other region — or turn holidays off entirely.</p></div>
-    <div class="card"><span class="emoji">💊</span><h3>Habits</h3><p>One-tap daily check-ins, streaks, and a monthly heat-map that keeps you honest.</p></div>
-    <div class="card"><span class="emoji">⏱️</span><h3>Focus</h3><p>A Pomodoro that attaches to your classes and to-dos — study hours per subject, made visible.</p></div>
-    <div class="card"><span class="emoji">🔔</span><h3>Never miss a meeting</h3><p>Layered reminders (a day before, 30 min, 10 min), an insistent mode that re-rings until acknowledged, morning digest and evening preview, and double-booking warnings.</p></div>
-    <div class="card"><span class="emoji">📤</span><h3>Share to LINE</h3><p>Send timetables as files or image cards through the system share sheet — no server involved.</p></div>
-  </div>
-</section>
-
-<section>
-  <h2>Your data stays yours</h2>
-  <div class="promise">
-    <p><strong>Cadence has no server, no account, and requests no network access.</strong><br>
-    Everything is stored in a single SQLite file on your device. Export all of it to JSON or CSV
-    anytime — and import it back on any device. Free forever, no ads, no tracking.</p>
-  </div>
-</section>
-
-<section id="platforms-en">
-  <h2>Platforms</h2>
-  <div class="grid">
-    <div class="card"><span class="emoji">🤖</span><h3>Android</h3><p>Coming to Google Play — free. Follow the GitHub repo for the release announcement.</p></div>
-    <div class="card"><span class="emoji">🪟</span><h3>Windows</h3><p>Portable build on GitHub Releases.</p></div>
-    <div class="card"><span class="emoji">🍎</span><h3>macOS</h3><p>Experimental, planned after 1.0 (unsigned builds).</p></div>
-    <div class="card"><span class="emoji">📱</span><h3>iOS</h3><p>Not planned for now. The codebase is ready if that changes.</p></div>
-  </div>
-</section>
-
-<footer>
-  <ul class="plain">
-    <li><a href="privacy.html">Privacy Policy</a> · <a href="https://github.com/lorendw7/Cadence/tree/main/docs">Documentation</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT License</a></li>
-    <li>© 2026 lorendw7 · Built with Flutter</li>
-  </ul>
-</footer>
-
+<header class="hero"><img class="appicon" src="assets/icon.svg" alt="Cadence"><div class="logo">Ca<span>dence</span></div><h1>Courses and personal plans, together.</h1><p class="tag">Today's classes, your next appointment and approaching deadlines. A local planner for students and classmates.</p><div class="badges">Free and open source · Designed without accounts · Windows / Linux / macOS</div><p class="promise">In development: the app currently shows a Today placeholder. The features below are planned; a feature-complete release is not yet available.</p><div class="cta"><a class="btn primary" href="https://github.com/lorendw7/Cadence/blob/main/docs/REDESIGN.md">Design and roadmap</a><a class="btn ghost" href="https://github.com/lorendw7/Cadence">View source</a></div></header>
+<section><h2>The first version we are building</h2><div class="grid"><div class="card"><span class="emoji" aria-hidden="true">📚</span><h3>Organize your courses</h3><p>Set up semesters, periods and teaching weeks. Plan odd/even or selected weeks, with rooms and teachers.</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">🗓️</span><h3>Make room for your own plans</h3><p>Appointments, study sessions and clubs alongside courses. One-off, all-day and simple weekly arrangements are planned.</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">↪️</span><h3>Handle class changes</h3><p>Cancel or move one occurrence, change its room and restore the original without rewriting the semester.</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">✅</span><h3>Track coursework and exams</h3><p>Course-linked tasks, deadlines and completion. Exams appear as timed arrangements.</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">🕘</span><h3>See today and this week</h3><p>One schedule for classes and personal plans, with overlap warnings. Deadlines are distinct from reserved time.</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">📤</span><h3>Share a timetable with classmates</h3><p>Preview and exchange a timetable file. Personal plans, coursework and private notes stay out of timetable sharing.</p></div></div></section>
+<section><h2>Small and local</h2><div class="promise"><p>No accounts, cloud sync or external calendar connections are planned. We will build local storage, user-directed file sharing and backup. Persistence is not implemented in the current skeleton.</p></div></section>
+<section><h2>Desktop first</h2><p>Windows, Linux and macOS are development targets. Each will be described as supported only after native runtime validation. The Android project is retained for future work.</p><p>Distribution is planned through GitHub Releases, not app stores. Download links will be added when verified packages are available.</p></section>
+<footer><ul class="plain"><li><a href="privacy.html">Data and privacy</a> · <a href="https://github.com/lorendw7/Cadence/tree/main/docs">Documentation</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT License</a></li><li>© 2026 lorendw7 · Flutter</li></ul></footer>
 </div>
 
-<!-- ===================== 简体中文 ===================== -->
 <div data-lang="zh">
-
-<header class="hero">
-  <img class="appicon" src="assets/icon.svg" alt="Cadence">
-  <div class="logo">Ca<span>dence</span></div>
-  <p class="tag">课表・会议・兼职・习惯・专注 — 为在日本生活而做的离线日程本。<br>面向学生、教师与忙碌的上班族。内置日本节假日，无需注册账号。</p>
-  <div class="badges"><b>免费</b> · <b>开源 (MIT)</b> · <b>完全离线</b> · 日本語 / English / 简体中文</div>
-  <div class="cta">
-    <a class="btn primary" href="https://github.com/lorendw7/Cadence/releases">下载 Windows 版</a>
-    <a class="btn ghost" href="https://github.com/lorendw7/Cadence">GitHub</a>
-    <a class="btn ghost" href="#platforms-zh">Android — 即将上架 Google Play</a>
-  </div>
-</header>
-
-<section>
-  <div class="grid">
-    <div class="card"><span class="emoji">📚</span><h3>课表（時間割）</h3><p>真正的节次网格（1限–6限）与学期起止日期。上课自动跳过节假日（休講）。</p></div>
-    <div class="card"><span class="emoji">💰</span><h3>兼职与工资</h3><p>按打工地点记录班次，随时查看本月预计收入，支持时薪调整。</p></div>
-    <div class="card"><span class="emoji">🎌</span><h3>节假日自动计算，也可自行更新</h3><p>日本节假日按法律规则计算，无需每年更新；其他国家和地区导入文件即可使用，也可以选择完全不显示节假日。</p></div>
-    <div class="card"><span class="emoji">💊</span><h3>习惯</h3><p>一键打卡、连续天数、每月热力图，让坚持看得见。</p></div>
-    <div class="card"><span class="emoji">⏱️</span><h3>专注</h3><p>与课程、待办绑定的番茄钟，每个科目的学习时长一目了然。</p></div>
-    <div class="card"><span class="emoji">🔔</span><h3>不再错过安排</h3><p>多重提醒（前一天・30分钟前・10分钟前）、确认前反复响铃模式、早间摘要与晚间预告，以及时间冲突警告。</p></div>
-    <div class="card"><span class="emoji">📤</span><h3>分享到 LINE</h3><p>通过系统分享面板，把课表以文件或图片卡片发出去——全程不经过任何服务器。</p></div>
-  </div>
-</section>
-
-<section>
-  <h2>你的数据，始终属于你</h2>
-  <div class="promise">
-    <p><strong>Cadence 没有服务器、没有账号，也不申请网络权限。</strong><br>
-    所有内容都保存在你设备上的一个 SQLite 文件里。随时导出为 JSON 或 CSV，也能在任何设备上导入回来。永久免费，无广告，无追踪。</p>
-  </div>
-</section>
-
-<section id="platforms-zh">
-  <h2>支持的平台</h2>
-  <div class="grid">
-    <div class="card"><span class="emoji">🤖</span><h3>Android</h3><p>即将在 Google Play 免费上架。发布消息请关注 GitHub 仓库。</p></div>
-    <div class="card"><span class="emoji">🪟</span><h3>Windows</h3><p>在 GitHub Releases 提供免安装版本。</p></div>
-    <div class="card"><span class="emoji">🍎</span><h3>macOS</h3><p>计划在 1.0 之后作为实验性支持（未签名构建）。</p></div>
-    <div class="card"><span class="emoji">📱</span><h3>iOS</h3><p>目前没有计划。若有变化，代码层面已经具备条件。</p></div>
-  </div>
-</section>
-
-<footer>
-  <ul class="plain">
-    <li><a href="privacy.html">隐私政策</a> · <a href="https://github.com/lorendw7/Cadence/tree/main/docs">文档（英文）</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT 许可证</a></li>
-    <li>© 2026 lorendw7 · 使用 Flutter 构建</li>
-  </ul>
-</footer>
-
+<header class="hero"><img class="appicon" src="assets/icon.svg" alt="Cadence"><div class="logo">Ca<span>dence</span></div><h1>课程与个人安排，放在一起。</h1><p class="tag">今天上什么课、接下来有什么安排、哪些事情快到期。给自己和同学使用的本地日程工具。</p><div class="badges">免费开源 · 无需账号的设计 · Windows / Linux / macOS</div><p class="promise">开发中：当前应用只有“今天”占位页。以下功能均为实施计划，尚未提供功能完整的可用版本。</p><div class="cta"><a class="btn primary" href="https://github.com/lorendw7/Cadence/blob/main/docs/REDESIGN.md">查看设计与路线图</a><a class="btn ghost" href="https://github.com/lorendw7/Cadence">查看源码</a></div></header>
+<section><h2>第一版要做好的事情</h2><div class="grid"><div class="card"><span class="emoji" aria-hidden="true">📚</span><h3>把课程排清楚</h3><p>设置学期、节次和教学周，支持单双周与指定周上课，记录教室和教师。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">🗓️</span><h3>也安排自己的生活</h3><p>约会、自习、社团活动与课程放在同一个周视图。计划支持单次、全天和简单的每周重复安排。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">↪️</span><h3>处理临时调停课</h3><p>仅取消或移动某一次课、修改教室，并可恢复原安排，不必重做整个学期课表。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">✅</span><h3>管理作业和考试</h3><p>关联课程的作业、截止时间与完成状态；考试作为有明确时间的安排展示。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">🕘</span><h3>看清今天和本周</h3><p>课程与个人安排统一展示，时间重叠时提示。任务截止时间与占用时段的日程分开处理。</p></div>
+<div class="card"><span class="emoji" aria-hidden="true">📤</span><h3>给同学分享课表</h3><p>预览后导出课表文件。个人安排、作业和私密备注不会进入课表分享文件。</p></div></div></section>
+<section><h2>保持简单，数据留在本机</h2><div class="promise"><p>不规划账号、云同步或外部日历接入。后续实现本地保存、由用户主动操作的文件分享和备份。当前应用骨架尚未实现数据持久化。</p></div></section>
+<section><h2>桌面端优先</h2><p>开发目标是 Windows、Linux 和 macOS，各端完成实际运行验证后再标注可用。Android 工程保留用于后续开发。</p><p>计划通过 GitHub Releases 分发，不上架应用商店。验证过的安装包发布后，官网再提供下载入口。</p></section>
+<footer><ul class="plain"><li><a href="privacy.html">数据与隐私</a> · <a href="https://github.com/lorendw7/Cadence/tree/main/docs">项目文档</a> · <a href="https://github.com/lorendw7/Cadence/blob/main/LICENSE">MIT 许可证</a></li><li>© 2026 lorendw7 · Flutter</li></ul></footer>
 </div>
-
 </div>
 <script src="assets/lang.js"></script>
 </body>

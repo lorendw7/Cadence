@@ -1,5 +1,7 @@
 # Design System
 
+Status: design target for courses and personal plans; the current placeholder does not implement these screens. Behavior and scope are defined in [REDESIGN.md](REDESIGN.md).
+
 One word: **落ち着いた** (calm). Cadence looks like a well-organized desk — dense with information, never cluttered. This file is the single source of truth for color, type, and layout; the website follows it too.
 
 ---
@@ -33,7 +35,7 @@ If a screen makes you hesitate about which red you're seeing, the screen is wron
 ### Category colors (events)
 
 Defaults chosen to sit calmly next to enji (user can override per item):
-class `#5B7A9D` slate blue · meeting `#7D9B76` sage · todo `#C9A227` mustard · shift `#9C7BB8` wisteria (藤色) · habit `#3E8E8E` teal. Priority: high = enji, medium = mustard, low = gray.
+course `#5B7A9D` slate blue · personal plan `#7D9B76` sage · task `#C9A227` mustard · exam `#9C7BB8` wisteria. Category labels/icons accompany color. Overlaps are side-by-side and independently selectable.
 
 ---
 
@@ -55,15 +57,15 @@ class `#5B7A9D` slate blue · meeting `#7D9B76` sage · todo `#C9A227` mustard �
 - The name is always written **"Cadence" in Latin letters**, in every locale (ja/en/zh). No katakana rendering, no translated name — the wordmark is the constant across languages.
 - Clear space around the icon ≥ 1/8 of its width; below 24px use the icon (with field), not the bare mark.
 
-**Raster exports are not committed.** The repo keeps vector only; PNG/ICO are generated when a platform needs them (Play Store listing icon 512×512 PNG, `flutter_launcher_icons`, Windows `.ico`). Any SVG rasterizer works — Inkscape, `rsvg-convert`, or a browser screenshot at 512px. Regenerate from the SVG; never hand-edit a PNG.
+The SVG is the brand source. Platform runners currently include generated starter PNG/ICO assets; replace those with validated brand exports before release. Keep required native assets in version control; regenerate them from the SVG rather than editing pixels manually.
 
 ---
 
 ## Typography
 
-- System fonts only: **Yu Gothic UI / Noto Sans JP** handles ja + zh + en cleanly on both platforms; no bundled font (keeps the app small, CJK fonts are huge).
+- Use system font fallbacks and verify Japanese, Chinese and English on Windows, Linux and macOS; no bundled font is currently planned.
 - Scale (M3 defaults, don't invent): `titleLarge` screen titles · `titleMedium` cards/dialog headers · `bodyMedium` default · `labelSmall` timestamps/captions.
-- Numbers that matter (streaks, ¥ estimates, focus hours) get `titleLarge` + tabular figures — stats should be glanceable.
+- Teaching-week numbers, start times and deadline dates must be easy to scan; use tabular figures where supported.
 - Never below 12sp; everything must survive 200% font scale ([QUALITY.md](QUALITY.md)).
 
 ## Layout principles
@@ -73,12 +75,14 @@ class `#5B7A9D` slate blue · meeting `#7D9B76` sage · todo `#C9A227` mustard �
 3. **Whitespace over dividers; dividers over boxes.** Prefer spacing to lines; avoid nesting cards in cards.
 4. **Calendar is ink-on-paper**: neutral surfaces, thin grid lines; color appears only as small event dots/chips and red holiday numerals. The month view should look like a printed 手帳 (planner), not a candy box.
 5. **Empty states teach**: each empty screen shows one sentence + one button (e.g. 時間割 empty → "学期を設定して授業を追加 → [設定する]").
-6. **Bottom nav, 4 tabs**: カレンダー / 今日 / 統計 / 設定 — no drawer, nothing hidden.
+6. **Desktop navigation**: Today / Week / Courses / Tasks / Settings in a side rail. Collapse navigation at narrow widths and open details in a sheet; avoid squeezing three columns into a small window.
+7. **One week, real time**: courses and personal plans share a time axis, with period labels as guides and all-day items in a separate region. Deadline-only tasks are not drawn as occupied time.
+8. **Explicit edit scope**: show “this occurrence” versus “entire rule” before editing repeats. Preview effects before changing semester periods or importing files.
 
 ## Motion & feedback
 
 - Standard M3 transitions only; every animation ≤ 300ms; honor reduced-motion.
-- Check-in gives instant feedback (checkmark morph + subtle haptic on Android); a streak milestone (7/30/100 days) gets one tasteful moment — no confetti storms.
+- Task completion gives immediate, reversible feedback. Save/import status must be visible without decorative animations.
 
 ## Dark mode
 

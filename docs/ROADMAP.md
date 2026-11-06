@@ -1,234 +1,70 @@
 # Roadmap
 
-**Core first.** The destination hasn't changed — the four-type model, the Japan pack, file-based sharing ([PRODUCT.md](PRODUCT.md)) — but the build order is ruthless about one question: **how early can this app actually manage your day?**
+Current scope: **courses and personal plans, local-only, desktop-first**. [REDESIGN.md](REDESIGN.md) is the behavior specification. External calendar integrations and store releases are not on this roadmap.
 
-- **Phase 1 (v0.1–v0.2) is the core**: calendar, events, weekly repeats, reminders, to-dos, 祝日 — and nothing else. It ends with a scheduler you live in daily.
-- **Phase 2 (v0.3+) grows one pillar per milestone** — 時間割, habits, shifts, sharing, focus — each added onto an app that is already in daily use.
-- Nothing is cancelled. Everything not needed to schedule a day is *sequenced later*, not dropped.
+## Repository baseline
 
-Built strictly top to bottom; each milestone is shippable and pairs features with the Dart/Flutter concepts they teach. 🎯 = user-facing win · 📘 = the new concept this step forces you to learn.
+The current application is a Today placeholder. Platform runners and check workflows exist; feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release.
 
-Production quality is not a milestone — it's enforced continuously via [QUALITY.md](QUALITY.md) (definition of done, tests, CI).
+## A — Course timetable
 
----
+- [ ] Responsive shell with Today / Week / Courses / Tasks / Settings.
+- [ ] Local database, migrations, injected clock and basic locale support.
+- [ ] Semester anchor, end date, timezone and configurable periods.
+- [ ] Multiple course rules, odd/even/selected teaching weeks.
+- [ ] Time-based weekly view with visible teaching-week number.
+- [ ] Cancel/move/change room for one occurrence; restore the original.
+- [ ] Validate week boundaries, moved-in occurrences and semester edits.
 
-## Effort & timeline
+Acceptance: create a semester and course; move one class to another week; verify original removal, one target instance and successful restoration.
 
-Estimates **include learning time** (you're new to Dart/Flutter, coming from TypeScript) and assume you write every line yourself.
+## B — Personal arrangements
 
-| Milestone | Focused hours | Notes |
-|-----------|---------------|-------|
-| **Phase 1 — the core** | | |
-| v0.0 Hello Flutter | 2–4 h | Toolchain, skeleton, run on Windows + Android |
-| v0.1 Scheduler core | 22–32 h | DB, state, month view, event/to-do form, weekly repeats, one reminder per event, 祝日 |
-| v0.2 Daily-driver polish | 10–16 h | Week view, layered reminders, conflict warning, full en/zh, backup |
-| **Phase 2 — the pillars** | | |
-| v0.3 時間割 timetable | 12–18 h | Period grid, term dates, holiday-skip |
-| v0.4 Habits & reminders | 19–30 h | Streaks, digests, insistent mode |
-| v0.5 Shifts & earnings | 12–18 h | Workplaces, wages, monthly estimate |
-| v0.6 Data freedom & sharing | 18–28 h | Export/import, templates, `.ics`, image cards, holiday manager |
-| v0.7 Focus mode | 12–18 h | Pomodoro, per-subject stats |
-| v0.8 Insights & JP polish | 15–25 h | Dashboard, search (kana-folding), 和暦/六曜, quiet hours |
-| v1.0 Google Play release | 12–18 h | JP-first listing, signing, closed test cycle |
-| **Total** | **~135–210 h** | |
+- [ ] Timed and all-day arrangements independent of a semester.
+- [ ] Bounded weekly repeats with selected weekdays and week interval.
+- [ ] Single-occurrence changes and cancellation.
+- [ ] Unified Today and week projection; filter courses/personal plans.
+- [ ] Explain overlap warnings and permit intentional conflicts.
+- [ ] Test overnight plans, timezone display and half-open boundaries.
 
-Wall-clock at ~10 h/week: **a calendar you can live in after ~3 weeks (end of v0.1), a daily driver by ~5 weeks (end of v0.2), Play Store in ~3.5–5 months.** The core lands first precisely so the app earns a place on your phone while the rest is built — every Phase 2 feature is then tested against real daily use, not imagination.
+Acceptance: a personal appointment conflicts with a moved class; both remain visible, and restoring the class leaves the appointment unchanged.
 
----
+## C — Coursework and files
 
-# Phase 1 — the core
+- [ ] Course-linked and independent tasks; date/time deadlines and completion.
+- [ ] Exams as course-linked personal arrangements.
+- [ ] Versioned timetable file with exact export preview and field allowlist.
+- [ ] Validated import, new/existing semester mapping and duplicate detection.
+- [ ] Full private backup and transactional restore with pre-restore backup.
+- [ ] Test malformed/future-version files and rollback.
 
-## v0.0 — Hello Flutter
+Acceptance: a classmate imports a timetable twice without duplicate courses; no personal arrangements, private notes or tasks appear in the shared file; full backup round-trips all local data.
 
-- [ ] `flutter doctor` all green (Windows + Android toolchains).
-- [ ] `flutter create` (org `dev.cadence`), run on **Windows** and an **Android emulator**.
-- [ ] Strip the demo to a `MaterialApp` + bottom-nav skeleton (Calendar / Today / Stats / Settings).
-- [ ] Material 3 theme, light + dark following the system.
-- [ ] CI: GitHub Actions running `flutter analyze` + `flutter test` on every push ([QUALITY.md](QUALITY.md)).
+## D — Classmate trial and desktop delivery
 
-📘 Widget tree, `StatelessWidget` vs `StatefulWidget`, hot reload, `MaterialApp`/`Scaffold`.
-🎯 The app opens on both targets with your navigation shell, and CI is green.
+- [ ] Windows daily-use trial, then Linux and macOS native runtime checks.
+- [ ] Japanese / English / Chinese strings and usable keyboard navigation.
+- [ ] Light/dark modes, small windows and large text.
+- [ ] Data retained across app updates; clear data-folder instructions.
+- [ ] Downloadable packages, checksums, known issues and manual upgrade notes.
+- [ ] Website matches available features and actual tested platforms.
 
----
+Distribute through GitHub Releases. No app-store submission, hosted backend, telemetry or automatic updater.
 
-## v0.1 — Scheduler core
+## Estimates
 
-The smallest app that manages a real day: see the month, add anything in ten seconds, get reminded, tick it off — with 祝日 red, because a calendar for Japan without them isn't one.
+Single-developer focused engineering estimates, including meaningful tests and routine fixes:
 
-- [ ] drift database: `events` table (+ weekly-recurrence columns, stored rrule-compatible), migrations, repository layer.
-- [ ] Riverpod: `eventListProvider` streaming events for the visible range.
-- [ ] Month view (table_calendar) with event dots and a day agenda list.
-- [ ] Create/edit bottom sheet — **two flavors only**: **event** (start–end or all-day, optional location) and **to-do** (deadline). Title, note, color. Class/shift-specific fields wait for their own milestones.
-- [ ] Recurrence, deliberately minimal: **weekly by weekday + until date** via `rrule`, plus "delete this occurrence". Monthly/custom patterns and term presets come with 時間割 (v0.3).
-- [ ] Reminders: **one lead time per event** (default 10 min) via `flutter_local_notifications`, Android 13+ permission flow. Layered reminders → v0.2.
-- [ ] To-do: check off, priority colors, strike-through.
-- [ ] **Japanese public holidays, computed**: rules engine (fixed dates, Nth-Monday, equinox formulas, 振替休日/国民の休日) + tiny overrides asset — correct for any year with **zero annual maintenance**; rendered red in month/agenda.
-- [ ] **Holiday source switch** in Settings: **Built-in Japan (default) / None** — "None" is the plain, holiday-free calendar (imported calendars join this list in v0.6).
-- [ ] i18n scaffold from day one: ARB files **ja / en / zh**, Japanese as the reference locale. en/zh strings may lag until v0.2 — the day-one requirement is the keys and the workflow, not finished prose.
-- [ ] Unit tests: recurrence expansion (incl. deleted occurrences), repository CRUD, and the **holiday engine verified against the official 内閣府 list for 2020–2027** (incl. the Olympic-move years — the regression suite that proves zero-maintenance is safe).
+| Stage | Estimate |
+|-------|----------|
+| A: course timetable | 20–35 h |
+| B: personal arrangements | 14–24 h |
+| C: coursework, sharing and recovery | 16–26 h |
+| D: three-desktop trial and packaging | 10–20 h |
+| **Total** | **60–105 h** |
 
-📘 Async Dart (`Future`/`Stream`), drift code-gen, Riverpod `watch`/`read`, bottom sheets, form validation, ARB workflow, bundled assets.
-🎯 Cadence replaces your calendar app — three weeks in.
+This scoped estimate replaces the previous external-calendar estimate and expands the earlier course-only estimate to include independent personal arrangements. It excludes waiting for testers/devices, signing setup, advanced reminders and mobile releases. At 10 focused hours/week, plan roughly 6–11 weeks, then revise from actual stage A progress.
 
----
+## Later, only after trial feedback
 
-## v0.2 — Daily-driver polish
-
-What makes you *stay* on it after the novelty wears off.
-
-- [ ] Week view.
-- [ ] **Layered reminders**: any combination of lead times per event (前日 + 30分前 + …), each firing separately.
-- [ ] **Conflict detection**: overlapping-event warning at save time.
-- [ ] Unfinished-to-do rollover (setting-driven).
-- [ ] en/zh translations complete; language picker (+ "system").
-- [ ] Settings: first day of week, 12/24-hour clock, theme override.
-- [ ] Manual **JSON backup** ("backup now" + restore) — data safety before months of entries accumulate. Full export/import, templates and sharing stay in v0.6.
-- [ ] Unit tests: overlap detection, rollover logic, backup round-trip.
-
-📘 Notification scheduling in depth, settings-driven behavior, file I/O basics.
-🎯 **The core is complete**: an offline scheduler you trust with your week — everything after this is growth, not table stakes.
-
----
-
-# Phase 2 — the pillars
-
-One pillar per milestone, in the order they earn retention. Each still passes the three scope questions in [QUALITY.md](QUALITY.md).
-
-## v0.3 — 時間割 (timetable view)
-
-- [ ] Period model in settings: configurable list (default 1限 09:00–10:30 … 6限), JSON-stored.
-- [ ] Weekday × period grid view; classes snap to periods; tap a cell to add.
-- [ ] **Class** event flavor: room, teacher, color; grid cell shows room number.
-- [ ] Term presets (前期/後期 dates) applied to class recurrence.
-- [ ] **休講 on 祝日**: class recurrence auto-skips the active holiday calendar (per-class toggle, default on).
-- [ ] Unit tests: period snapping, holiday-skip expansion.
-
-📘 Custom grid layout, `CustomScrollView`/slivers or GridView, settings-driven rendering.
-🎯 The view Japanese students expect — set up the semester in five minutes.
-
----
-
-## v0.4 — Habits & reminders that don't let go
-
-- [ ] `habits` + `habit_logs` tables, repository, idempotent check-in upsert.
-- [ ] Today screen: due-today habits, one-tap check-in, back-fill yesterday.
-- [ ] Streak counter (computed from the log stream); monthly completion view.
-- [ ] Fixed-time daily reminders (e.g. 08:00 薬); frequency: daily / weekdays / custom days / N per week.
-- [ ] **Morning digest** (default 07:30): today's events + habits in one notification.
-- [ ] **Evening preview** (default 21:00): tomorrow's first commitment, the night before.
-- [ ] **Insistent mode**: per-event "re-ring until acknowledged" (interval configurable), overriding quiet hours only when explicitly set.
-- [ ] Archive without losing history.
-- [ ] Unit tests: streak math across month boundaries, due-today logic per frequency, digest content builder.
-
-📘 More streams, date math, notification scheduling & actions, sealed types.
-🎯 Streaks pull you in every morning — and no meeting slips past you again.
-
----
-
-## v0.5 — Shifts & earnings (アルバイト)
-
-- [ ] `workplaces` table (name, hourly wage, color); shift events linked to a workplace.
-- [ ] Fast shift entry: workplace + start/end (+ break minutes); repeat patterns for fixed shifts.
-- [ ] Monthly earnings estimate: Σ (worked hours − breaks) × wage, per workplace and total, on the Stats screen. Clearly labeled *estimate* (見込み).
-- [ ] Wage history: changing a wage applies from a given date (past months stay correct).
-- [ ] Unit tests: earnings math incl. breaks, overnight shifts, wage-change boundaries.
-
-📘 Joins in drift, money math done safely (integer yen), date-boundary edge cases.
-🎯 "今月の見込み: ¥68,250" — the feature that makes students keep the app.
-
----
-
-## v0.6 — Data freedom & sharing
-
-File-based sharing via the OS share sheet — no network, lands in LINE like anything else. Rationale in [PRODUCT.md](PRODUCT.md).
-
-- [ ] Export all data to versioned **JSON**; per-table **CSV**.
-- [ ] Import JSON: validate-then-transact, merge/replace modes (replace requires typed confirmation).
-- [ ] **Template export/import** (`*.cadence.json` partial export — a timetable, a roster).
-- [ ] `.ics` export of selected events + `.ics` import (Google/Apple Calendar migration).
-- [ ] **Holiday calendar manager**: import a holiday `.ics`/JSON/内閣府-CSV as a **named holiday calendar** (`holiday_calendars` + `holiday_dates`) — **any region** (formats, sources, validation rules: [HOLIDAYS.md](HOLIDAYS.md)); Settings lists Built-in / imported / None — switch the active one, re-import to update, delete. **This is the holiday update channel — no app release needed, ever.**
-- [ ] **Image card**: render day/week schedule or roster to PNG for chat sharing.
-- [ ] Android: share sheet + intent filters to open `.ics`/`.cadence.json` from chats; Windows: save/open dialogs.
-- [ ] Rolling local auto-backup (keep N days), upgrading the manual v0.2 backup; backup integrity check on restore.
-- [ ] Unit tests: export→import round-trip is lossless; malformed-file rejection.
-
-📘 File I/O per platform, transactions, Android intents, rendering widgets to images.
-🎯 One file posted to the class LINE group sets up everyone's semester.
-
----
-
-## v0.7 — Focus mode
-
-- [ ] Pomodoro timer (25/5 default, configurable, long-break cycle), survives backgrounding.
-- [ ] Attach a session to a class or to-do → focus time inherits the subject.
-- [ ] `focus_sessions` table + per-subject weekly/monthly stats.
-- [ ] Session-end / break-end notifications; DND suggestion during sessions.
-- [ ] Unit tests: timer state machine, attribution to subjects.
-
-📘 Timers & app lifecycle, Android foreground service, state machines.
-🎯 "経済学: 今週6.5時間" — study effort becomes visible.
-
----
-
-## v0.8 — Insights & Japan polish
-
-- [ ] Discipline dashboard: events, to-do completion, habit streaks + heat-map, focus hours, earnings — one screen.
-- [ ] **Meeting-hours insight** ("会議 12h this week") and **年度-aware stats** (Japanese fiscal year Apr–Mar as a range option).
-- [ ] Global search with **kana folding** (ひらがな/カタカナ) and full-width/half-width normalization.
-- [ ] **和暦** display option (令和 alongside Gregorian); **六曜** toggle (off by default).
-- [ ] Quiet hours: notifications hold during configured sleep window.
-- [ ] Android polish: predictive back, adaptive icon, font-scaling audit (200%), TalkBack labels.
-
-📘 Custom painting/charts, text normalization, accessibility APIs.
-🎯 Feels native to Japan, not translated into it.
-
----
-
-## v1.0 — Google Play
-
-See [RELEASE.md](RELEASE.md). JP-first listing (ja primary; en, zh-CN listings too).
-
-- [ ] Signing, `--release` `.aab`, R8; verify **no INTERNET permission** in the merged manifest.
-- [ ] Store listing ja/en/zh: descriptions, screenshots (時間割, calendar with 祝日, shifts, focus), feature graphic.
-- [ ] Privacy policy URL (website) + data-safety form: no data collected.
-- [ ] Closed test (Google's 12-tester/14-day rule for new personal accounts) → production, staged rollout.
-- [ ] Tag `v1.0.0`, GitHub Release with changelog + Windows build + sideload `.apk`.
-
-🎯 Cadence, free on Google Play Japan.
-
----
-
-## Post-1.0 — fast follows (planned, in order)
-
-Ship 1.0 lean, then grow retention with practical additions. Each still passes the three scope questions in [QUALITY.md](QUALITY.md).
-
-### v1.1 — 出欠 & 課題 (the student-retention update)
-- [ ] **Attendance tracking**: per class occurrence mark 出席/欠席/遅刻; class card shows "欠席 2/15 ⚠️" with a configurable danger threshold (default 1/3 — the 単位 rule).
-- [ ] **Assignments (課題)**: to-dos linkable to a class; the 時間割 cell badges pending 課題; deadline reminders.
-
-### v1.2 — glanceability
-- [ ] Android **home-screen widget**: today's agenda + next class/shift.
-- [ ] **Notification quick actions**: check in a habit / mark attendance from the notification itself.
-- [ ] Stats **image card** export ("today / this week" as PNG — share your study week to LINE).
-
-### v1.3 — desktop comfort
-- [ ] Windows **system tray** + optional launch-at-startup; tray click = today popup.
-- [ ] Global quick-add hotkey on desktop.
-
-### v1.4 — safety & trust
-- [ ] **Trash / undo**: deleted items recoverable for 30 days.
-- [ ] Optional **encrypted backup** (passphrase-protected export).
-
-### v1.5 — macOS (experimental)
-- [ ] Add the macOS target (`flutter create --platforms macos .`); build on **GitHub Actions' free macOS runners** — no Mac hardware needed.
-- [ ] Ship as an **unsigned "experimental" build** on GitHub Releases, with Gatekeeper instructions (right-click → Open) documented on the website.
-- [ ] Upgrade path if demand shows up: Apple Developer Program ($99/yr) + CI notarization → double-click install; also the prerequisite for any future iOS.
-- ⚠️ Untestable without real hardware — labeled experimental, fixed via user feedback. Kept out of v1.0 for exactly that reason.
-
-## Later (ideas, not commitments)
-
-Quick-add natural language (Japanese-aware), night-premium wage rules (深夜手当), F-Droid listing, focus strict mode (app blocking), Google Play tablet/Chromebook targets, iOS (the codebase is ready; only Apple tooling/fees stand between).
-
-## Working rhythm
-
-One checkbox at a time; commit when green; English commit messages. Every feature meets the definition of done in [QUALITY.md](QUALITY.md) before moving on.
+System notifications with explicitly tested closed-app behavior; Android UX; month view; advanced school-calendar tools. Each needs its own scope and acceptance criteria. External calendar sync, AI and account systems are not presumed follow-up work.
