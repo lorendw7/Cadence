@@ -102,10 +102,14 @@ website/
   privacy.html    privacy policy (ja / en / zh in one file)
   assets/site.css shared styles
   assets/lang.js  shared language switcher
+  assets/preview.js Week/Today concept tabs (no persistence)
   assets/icon.svg favicon + header mark
 ```
 
 **Trilingual, Japanese-first.** Each page carries all three languages as sibling `[data-lang]` blocks; `lang.js` shows exactly one. The rules that matter:
+
+- Lead with the product promise and an original timetable illustration, followed by course exceptions, private sharing, platform targets, progress and FAQ. Label all fictional interface previews as concepts; they must not imply the current placeholder implements those features.
+- Preview tabs support arrow keys, Home and End; FAQ uses native disclosures. Keep visible focus, reduced-motion support and horizontal timetable scrolling inside its own panel on narrow screens.
 
 - **Japanese is the default in the markup, not only in the script**: `site.css` shows `[data-lang="ja"]` and hides the rest, so a visitor with JavaScript off — or reading it before the script runs — still gets a complete Japanese page. The script only ever switches *away* from Japanese.
 - Resolution order: `?lang=` → the visitor's own earlier choice (`localStorage`) → **`ja`**. **Browser language is deliberately not consulted.** Cadence is a Japan-first product and Japanese is the reference locale, so *every* first-time visitor lands on the Japanese page — a Chinese or English browser does not silently redecide that. The switcher in the top bar is always one click away, and once clicked the choice is remembered.
