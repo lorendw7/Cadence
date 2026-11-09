@@ -1,0 +1,54 @@
+// Active lesson 02 contract: immutable task updates through copyWith.
+import 'package:cadence/domain/coursework/planner_task.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('PlannerTask.copyWith', () {
+    test(
+      'completes a new task without changing the original or its details',
+      () {
+        final original = PlannerTask(id: 'task-1', title: '提交作业');
+
+        final updated = original.copyWith(isCompleted: true);
+
+        expect(updated.isCompleted, isTrue);
+        expect(updated.id, original.id);
+        expect(updated.title, original.title);
+        expect(original.isCompleted, isFalse);
+        expect(identical(updated, original), isFalse);
+      },
+    );
+
+    test('accepts false to undo completion', () {
+      final original = PlannerTask(
+        id: 'task-2',
+        title: 'Read chapter one',
+        isCompleted: true,
+      );
+
+      final updated = original.copyWith(isCompleted: false);
+
+      expect(updated.isCompleted, isFalse);
+      expect(original.isCompleted, isTrue);
+      expect(updated.id, original.id);
+      expect(updated.title, original.title);
+    });
+
+    test('keeps the current state when no replacement is supplied', () {
+      for (final completed in [false, true]) {
+        final original = PlannerTask(
+          id: 'task-3',
+          title: '数学 / レポート',
+          isCompleted: completed,
+        );
+
+        final updated = original.copyWith();
+
+        expect(updated.isCompleted, completed);
+        expect(updated.id, original.id);
+        expect(updated.title, original.title);
+        expect(identical(updated, original), isFalse);
+      }
+    });
+  });
+}
