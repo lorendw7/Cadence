@@ -8,7 +8,9 @@ The current application is a Today placeholder. Platform runners and check workf
 
 ## A — Course timetable
 
-- [ ] Responsive shell with Today / Week / Courses / Tasks / Settings.
+- [ ] Three main destinations: Today / Week / Tasks; courses and review under Week, settings in a menu.
+- [ ] Today counts and overdue/undated groups, with midnight/resume refresh; see [TODAY.md](TODAY.md).
+- [ ] Course editor with recoverable drafts and honest save status; see [EDITING.md](EDITING.md).
 - [ ] Local database, migrations, injected clock and basic locale support.
 - [ ] Semester anchor, end date, timezone and configurable periods.
 - [ ] Multiple course rules, odd/even/selected teaching weeks.
@@ -40,6 +42,16 @@ Acceptance: a personal appointment conflicts with a moved class; both remain vis
 
 Acceptance: a classmate imports a timetable twice without duplicate courses; no personal arrangements, private notes or tasks appear in the shared file; full backup round-trips all local data.
 
+## Local review and notifications
+
+- [ ] Planned time and daily union of occupied intervals; no actual-time claim.
+- [ ] Completed tasks, current overdue count and clearly scoped week comparison.
+- [ ] Offline aggregation and boundary tests; see [STATISTICS.md](STATISTICS.md).
+- [ ] Opt-in local system notifications while the application process runs.
+- [ ] Cancel/reconcile reminders after changes; permissions and resume tests; see [NOTIFICATIONS.md](NOTIFICATIONS.md).
+
+Closed-process delivery requires separate platform acceptance. All these features remain planned.
+
 ## D — Classmate trial and desktop delivery
 
 - [ ] Windows daily-use trial, then Linux and macOS native runtime checks.
@@ -61,10 +73,13 @@ Single-developer focused engineering estimates, including meaningful tests and r
 | B: personal arrangements | 14–24 h |
 | C: coursework, sharing and recovery | 16–26 h |
 | D: three-desktop trial and packaging | 10–20 h |
-| **Total** | **60–105 h** |
+| Local weekly review | 6–10 h |
+| Recoverable drafts and save failures beyond basic persistence | 6–10 h |
+| Running-process local notifications | 8–14 h |
+| **Total** | **80–139 h (approximately 80–140 h)** |
 
-This scoped estimate replaces the previous external-calendar estimate and expands the earlier course-only estimate to include independent personal arrangements. It excludes waiting for testers/devices, signing setup, advanced reminders and mobile releases. At 10 focused hours/week, plan roughly 6–11 weeks, then revise from actual stage A progress.
+This estimate includes local review, recoverable editing, daily counts and running-process notifications. Learning time, waiting for testers/devices, signing setup and mobile releases are excluded. Closed-process/background delivery is a separate provisional 12–24 h, subject to platform feasibility. Fixed-template CSV/paste import is a candidate 6–10 h after the core importer, see [QUICK_IMPORT.md](QUICK_IMPORT.md). At 10 engineering hours/week, the base is roughly 8–14 weeks; beginner learning takes longer. Start with [LEARNING.md](LEARNING.md) and revise after the first three lessons.
 
 ## Later, only after trial feedback
 
-System notifications with explicitly tested closed-app behavior; Android UX; month view; advanced school-calendar tools. Each needs its own scope and acceptance criteria. External calendar sync, AI and account systems are not presumed follow-up work.
+Closed-process notifications with platform tests; actual-time tracking; CSV/paste import; Android UX; month view; advanced school-calendar tools. Each needs its own scope and acceptance criteria. External calendar sync, AI and account systems are not presumed follow-up work.

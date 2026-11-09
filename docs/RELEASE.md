@@ -8,6 +8,7 @@ Distribution target: GitHub Releases, not app stores. The repository is currentl
 - Decide which native platforms actually passed runtime acceptance and list untested ones explicitly.
 - Use a pre-1.0 product version for the first feature release; the existing generated package version is not evidence of readiness.
 - Explain known limitations, supported import/backup versions and data-folder location.
+- Verify notification capabilities with the actual package identity/format, including denied permission, cancellation and click-through; do not promise closed-process delivery without native tests.
 - Provide an example timetable with fictional data and a short setup guide.
 
 ## Build and package

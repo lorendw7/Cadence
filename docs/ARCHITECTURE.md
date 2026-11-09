@@ -6,8 +6,9 @@ Status: target architecture for the local course and personal planner. The curre
 
 ```mermaid
 flowchart TD
-    UI[Today / Week / Courses / Tasks / Settings] --> State[State and application use cases]
+    UI[Today / Week / Tasks] --> State[State and application use cases]
     State --> Domain[Week calculation / occurrence expansion / conflicts]
+    Domain --> Review[Local weekly aggregates; no network]
     State --> Repo[Repositories]
     Repo --> DB[(SQLite via drift)]
     State --> Files[Validated timetable and backup files]
@@ -17,7 +18,7 @@ flowchart TD
 
 Widgets do not read SQL or parse import files. Domain functions do not depend on Flutter widgets, the database or system time. Inject a clock for Today and overdue calculations. Repositories expose streams; application use cases group related mutations into transactions.
 
-Use Riverpod and drift when implementation reaches persistent state. Current installed dependencies remain in `pubspec.yaml`. Add platform packages only after checking Windows, Linux and macOS support.
+Begin with plain Dart models and Flutter's built-in local widget state. Introduce Riverpod when multiple screens share state and drift/SQLite when implementing persistence. Current installed dependencies remain in `pubspec.yaml`. Add platform packages only after checking Windows, Linux and macOS support. Weekly review uses pure Dart calculations and basic Flutter bars/text initially; no chart service or chart package is required. See [LEARNING.md](LEARNING.md) and [STATISTICS.md](STATISTICS.md).
 
 ## Source organization
 
@@ -31,6 +32,7 @@ lib/
     semesters/           # week calculation and period rules
     scheduling/          # occurrences, exceptions, timezone policy, conflicts
     coursework/          # deadlines and completion
+    statistics/          # bounded interval aggregates, no UI or network
   data/
     database/            # tables, migrations, transactions
     repositories/
@@ -40,6 +42,7 @@ lib/
     week/
     courses/
     tasks/
+    review/              # secondary screen entered from Week
     settings/
   platform/              # file dialogs and desktop integration
   l10n/
@@ -73,6 +76,6 @@ Imports remap IDs and store provenance for duplicate detection. Duplicate names 
 
 ## Platform boundary
 
-Keep standard Flutter platform folders. Test file dialogs, paths, keyboard input, scaling and persistence on each desktop host. CI debug builds prove compilation, not runtime behavior or signing. System notifications and background operation are later work; no first-release promise of reminders after exit.
+Keep standard Flutter platform folders. Test file dialogs, paths, keyboard input, scaling and persistence on each desktop host. CI debug builds prove compilation, not runtime behavior or signing. Running-process system notifications are planned behind a mockable platform adapter; see [NOTIFICATIONS.md](NOTIFICATIONS.md). Background/closed-process behavior is a separate acceptance stage. Draft persistence and revision ordering follow [EDITING.md](EDITING.md).
 
 For data structures see [DATABASE.md](DATABASE.md), for validation [QUALITY.md](QUALITY.md), and for delivery [RELEASE.md](RELEASE.md).
