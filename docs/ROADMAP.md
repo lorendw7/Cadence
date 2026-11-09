@@ -6,12 +6,20 @@ Current scope: **courses and personal plans, local-only, desktop-first**. [REDES
 
 The current application is a Today placeholder. Platform runners and check workflows exist; feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release.
 
+## Implementation order
+
+The A–D sections group product acceptance, not the order of beginner lessons. Follow [LEARNING.md](LEARNING.md): task model → in-memory task list → local persistence and recoverable drafts → Today/personal plans → course rules → review/files/reminders. The current focus is task foundations; the executable still has no task editor or saved schedule.
+
+The [architecture decision](adr/001-local-application-boundaries.md) and [application contracts](APPLICATION.md) define the next boundaries. Add them per working slice, without prebuilding empty layers. Persistence introduces revision-checked commands, one database writer and honest save failures. Multiple schedule consumers introduce consistent snapshots and one bounded occurrence projector. These are design decisions, not completed features.
+
 ## A — Course timetable
 
 - [ ] Three main destinations: Today / Week / Tasks; courses and review under Week, settings in a menu.
 - [ ] Today counts and overdue/undated groups, with midnight/resume refresh; see [TODAY.md](TODAY.md).
 - [ ] Course editor with recoverable drafts and honest save status; see [EDITING.md](EDITING.md).
 - [ ] Local database, migrations, injected clock and basic locale support.
+- [ ] Application storage ports, revision checks, consistent read snapshots and stale-result rejection.
+- [ ] One writer per data directory; startup/migration failures preserve recovery options.
 - [ ] Semester anchor, end date, timezone and configurable periods.
 - [ ] Multiple course rules, odd/even/selected teaching weeks.
 - [ ] Time-based weekly view with visible teaching-week number.
@@ -39,6 +47,7 @@ Acceptance: a personal appointment conflicts with a moved class; both remain vis
 - [ ] Validated import, new/existing semester mapping and duplicate detection.
 - [ ] Full private backup and transactional restore with pre-restore backup.
 - [ ] Test malformed/future-version files and rollback.
+- [ ] Exclusive restore drains pending writes and invalidates all pre-restore commands/previews.
 
 Acceptance: a classmate imports a timetable twice without duplicate courses; no personal arrangements, private notes or tasks appear in the shared file; full backup round-trips all local data.
 

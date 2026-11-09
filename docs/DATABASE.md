@@ -24,6 +24,11 @@ All entities use stable local IDs. Store dates as ISO calendar dates, times as v
 | reminder_preferences | target_type/id, enabled, lead_minutes, optional date-only reminder clock, privacy mode |
 | reminder_deliveries | stable occurrence/reminder identity, record_revision, trigger_at, dispatch_state; reconcile on startup |
 | settings | key, versioned value; locale, theme, display timezone, selected semester |
+| local_state | singleton row with monotonic data_generation; local operational metadata, not imported from backups |
+
+Mutable roots (`semesters`, `courses`, `personal_plans`, `tasks`) also carry a positive integer `revision`. Child writes increment their owning root in the same transaction: periods belong to a semester; rules/weeks/exceptions belong to a course; personal exceptions/repeat days belong to a plan. Course edit previews include the semester revision as a dependency. Revisions are local edit guards, not sync metadata.
+
+`edit_drafts` additionally carries an increasing `edit_sequence` and expected dependency revisions. `draft_version` versions its payload schema, not edit order. Commands serialize writes per editor session; closing or promoting a draft drains queued saves before removing it. See [APPLICATION.md](APPLICATION.md).
 
 Drafts and notification metadata are local only. Drafts may be incomplete; validate before promotion to formal records in one transaction. Full backups include recoverable drafts and reminder preferences, but OS handles/delivery state are rebuilt on restore, not blindly replayed. Timetable exports exclude drafts, notification settings and task statistics.
 
@@ -48,6 +53,8 @@ Index rules by course, courses/periods by semester, exception original identity 
 
 Create/edit a course and its rules/weeks in one transaction. Importing a timetable, changing period mappings and resolving orphaned exceptions must each be atomic. Use a tested database backup/snapshot mechanism rather than copying only a SQLite main file while its WAL is active.
 
+Compare expected revisions and preview generation inside the write transaction, then increment affected roots and `local_state.data_generation` once per formal-data commit. Never increment it for draft-only saves or notification dispatch bookkeeping. Schedule query adapters read all related tables from one consistent snapshot, then publish invalidation after commit. File dialogs and OS effects cannot participate in SQLite transactions.
+
 ## Timetable format
 
 `*.cadence-timetable.json` has an envelope with `format: "cadence-timetable"`, integer `version`, `export_id`, `exported_at`, semester metadata, periods, selected courses/rules/weeks and explicitly selected exceptions.
@@ -63,6 +70,8 @@ When importing into a new semester with a different anchor, remap occurrence dat
 `*.cadence-backup.json` uses a different `format` value, its own integer schema version and a complete logical data snapshot including provenance. Keep stable IDs for a full restore. This file contains private data and is never offered by the timetable-sharing shortcut.
 
 Check version, references, duplicate IDs, sizes, date constraints and recurrence limits before a restore. Reject unknown future versions rather than guessing. Back up the current database first, then restore atomically. On failure the original state remains usable.
+
+Restoration requires exclusive application maintenance after pending writes and drafts are drained. Preserve logical IDs and entity revisions from the backup, but advance the current local generation and replace the runtime generation so pre-restore requests cannot apply. Rebuild OS delivery state from saved preferences. One writer process owns the data directory; a second instance cannot migrate, restore or dispatch reminders concurrently. Startup and failure ordering are specified in [APPLICATION.md](APPLICATION.md).
 
 ## Migration policy
 

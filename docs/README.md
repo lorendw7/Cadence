@@ -21,6 +21,8 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 | [Quality](QUALITY.md) | Domain, file, UI and platform acceptance |
 | [Today](TODAY.md) | Daily task counts, grouping and date refresh |
 | [Editing](EDITING.md) | Course editor, local drafts and save failures |
+| [Application contracts](APPLICATION.md) | Snapshot queries, revision-checked commands, drafts, reminders and restore ordering |
+| [ADR-001](adr/001-local-application-boundaries.md) | Local application boundaries, alternatives and incremental implementation |
 | [Notifications](NOTIFICATIONS.md) | Local reminders and platform acceptance |
 | [Quick import](QUICK_IMPORT.md) | Candidate fixed-template CSV/paste workflow |
 | [Local statistics](STATISTICS.md) | Planned-time calculation, overlaps, task counts and offline acceptance |

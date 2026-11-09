@@ -1,0 +1,43 @@
+# ADR-001: A local application layer and one schedule projection
+
+**Status:** Accepted as the target design; implementation is incremental.
+**Date:** 2026-11-09
+**Deciders:** Cadence maintainer; the learner remains the author of application code.
+
+## Context
+
+Cadence is a single-user desktop planner without a server. Today, Week, review and reminders need the same interpretation of saved records. Draft writes can finish out of order, and OS notifications cannot join SQLite transactions. The first learning exercises still cover a small task model, so boundaries must grow with working features.
+
+## Decision
+
+Use a pure Dart domain, application-owned commands/queries/ports, database/platform adapters and wiring in `app/`. Persist canonical rules and exceptions; derive bounded occurrences from one consistent read snapshot. Reuse that projector across consumers, while keeping file payload construction separate for privacy and preservation of repeating rules.
+
+Use local root revisions for writes and a data generation for query/preview invalidation. Commit database mutations atomically, reconcile reminders afterward and on restart, and serialize draft saves. Introduce these mechanisms with persistence and shared views. Contracts are in [APPLICATION.md](../APPLICATION.md).
+
+## Options considered
+
+| Option | Complexity | Trade-off | Decision |
+|--------|------------|-----------|----------|
+| Widgets call storage/plugins directly | Low initially | Rules and error handling spread across screens | Only for the initial in-memory exercise |
+| Small application layer with explicit ports | Moderate when introduced | More value mapping, isolated tests and reusable rules | Selected, per working slice |
+| Generic repository framework, event bus and stored occurrence cache | High | Extra cache invalidation, framework and versioning work | Not justified by current scope |
+
+## Consequences
+
+- Additional command/adapter files make revision conflicts and storage failure testable without rendering widgets.
+- On-demand bounded projection avoids a second persisted schedule. Profile real queries before adding caching or isolates.
+- Coarse generation invalidation may refresh unrelated previews; narrow it only when measurements justify the complexity.
+- One writer per data directory simplifies drafts and reminders; multi-window/process editing requires another decision.
+- OS submission and local bookkeeping cannot guarantee exactly-once delivery. Saved-data and reminder status remain separate.
+- Review is recalculated from current records; this design does not add an immutable audit history.
+
+## Action items
+
+- [x] Document dependencies, command/query contracts and failure handling.
+- [x] Align schema proposal, roadmap and acceptance examples.
+- [ ] Complete the learner's model and in-memory task list.
+- [ ] Add storage ports, revisions and ordered drafts with persistence.
+- [ ] Test the shared projector before connecting multiple schedule consumers.
+- [ ] Validate instance ownership and reminder reconciliation on each desktop OS.
+
+Revisit for confirmed multi-process editing, cloud sync, durable history or measured query bottlenecks.
