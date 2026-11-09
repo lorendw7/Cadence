@@ -1,6 +1,6 @@
 # Quality and acceptance
 
-Current automated coverage is the Today startup widget test. The requirements below are acceptance gates for planned features, not claims that the features exist.
+The committed baseline includes the Today startup widget test; activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist.
 
 ## Local and hosted checks
 
@@ -22,6 +22,8 @@ A native build is not a UI test or a signed release. Platform functionality is a
 | Backup | Round trip, active database consistency, invalid/future versions, failed restore leaves original usable |
 | Today | Counts match lists, no duplicate overdue items, undated tasks retained, midnight and resume refresh |
 | Autosave | Saved drafts survive restart; failure retains input; latest revision wins; formal records update atomically |
+| Application contracts | Consistent snapshots; stale query/preview rejection; conflicting revisions; discarded drafts cannot reappear; see [APPLICATION.md](APPLICATION.md) |
+| Process and restore lifecycle | One writer; migration failure preserves data; restore drains writes and rejects pre-restore callbacks |
 | Notifications | Timing, cancellation, completion, deduplication, permission denial, dispatch failure and native click-through |
 | Migration | Previous supported schema to new schema preserves schedule identities and private data |
 
