@@ -1,0 +1,29 @@
+import 'package:cadence/domain/coursework/planner_task.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('PlannerTask', () {
+    test('preserves the supplied identity and multilingual title', () {
+      final task = PlannerTask(id: 'task-1', title: '数学 / レポート / Report');
+
+      expect(task.id, 'task-1');
+      expect(task.title, '数学 / レポート / Report');
+    });
+
+    test('starts incomplete when no completion value is supplied', () {
+      final task = PlannerTask(id: 'task-2', title: '提交作业');
+
+      expect(task.isCompleted, isFalse);
+    });
+
+    test('can represent an already completed task', () {
+      final task = PlannerTask(
+        id: 'task-3',
+        title: 'Read chapter one',
+        isCompleted: true,
+      );
+
+      expect(task.isCompleted, isTrue);
+    });
+  });
+}
