@@ -6,7 +6,7 @@ Cadence is a local desktop planner for **courses and personal arrangements**, bu
 
 Students need to know their teaching week, next class, room, personal commitments and approaching deadlines. They should be able to record a one-off room change or cancelled class without breaking the semester timetable.
 
-The planned app works without registration or a server. Course files can be shared through an application the user chooses. Personal arrangements and coursework are not included in timetable sharing.
+The planned app works offline without registration or a server. No paid API, hosted database or mandatory cloud subscription is needed. Course files can be shared through an application the user chooses. Personal arrangements and coursework are not included in timetable sharing. Installation, downloads and optional manual file delivery may use the internet; daily use and statistics do not require it.
 
 ## First-release scope
 
@@ -18,6 +18,10 @@ The planned app works without registration or a server. Course files can be shar
 | Personal arrangements | Independent timed/all-day plans and bounded weekly repetition |
 | Unified schedule | Today and time-based week views, with non-blocking conflict warnings |
 | Coursework | Course-linked tasks and deadlines; exams as linked timed arrangements |
+| Today | Daily unfinished task count, separate overdue and undated groups; refresh after midnight/resume |
+| Editing | Direct course editing, recoverable local drafts, automatic persistence with truthful failure status |
+| Notifications | Opt-in local OS reminders while the process runs; closed-process delivery separately validated |
+| Weekly review | On-device planned time, daily load, completed tasks and current overdue count; see [statistics rules](STATISTICS.md) |
 | Files | Previewed timetable sharing, duplicate-aware import, full backup/restore |
 | Desktop | Windows, Linux and macOS, each validated on its native host |
 
@@ -25,7 +29,7 @@ A task deadline is not a reserved time slot. A public holiday is not proof a cla
 
 ## Deliberate exclusions
 
-External calendar APIs and subscriptions, account systems, hosted data, collaborative editing, school scraping, screenshot/AI extraction, wages, habit tracking, Pomodoro statistics, automatic updates and app-store publishing are outside the first release. Android remains a future target, not a parallel first-release commitment.
+External calendar APIs and subscriptions, account systems, hosted data, collaborative editing, school scraping, screenshot/AI extraction, wages, habit tracking, actual-time tracking/Pomodoro statistics, automatic updates and app-store publishing are outside the first release. Lightweight local weekly review is included. Android remains a future target, not a parallel first-release commitment.
 
 ## Distribution and success
 

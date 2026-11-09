@@ -20,7 +20,12 @@ All entities use stable local IDs. Store dates as ISO calendar dates, times as v
 | tasks | id, title, optional course_id, notes, due_kind, optional due_date/time/timezone, completed_at |
 | import_batches | export_id, format_version, source_semester_id, destination_semester_id, imported_at |
 | import_items | export_id, source_entity_type, source_entity_id, local_entity_id; unique source identity within the export |
+| edit_drafts | id, target_type/id, base_revision, draft_payload, draft_version, saved_at; excluded from formal schedule projections |
+| reminder_preferences | target_type/id, enabled, lead_minutes, optional date-only reminder clock, privacy mode |
+| reminder_deliveries | stable occurrence/reminder identity, record_revision, trigger_at, dispatch_state; reconcile on startup |
 | settings | key, versioned value; locale, theme, display timezone, selected semester |
+
+Drafts and notification metadata are local only. Drafts may be incomplete; validate before promotion to formal records in one transaction. Full backups include recoverable drafts and reminder preferences, but OS handles/delivery state are rebuilt on restore, not blindly replayed. Timetable exports exclude drafts, notification settings and task statistics.
 
 Do not store OAuth accounts, access tokens, external event bindings, sync cursors or an outbox.
 

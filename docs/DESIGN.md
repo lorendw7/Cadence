@@ -75,7 +75,7 @@ The SVG is the brand source. Platform runners currently include generated starte
 3. **Whitespace over dividers; dividers over boxes.** Prefer spacing to lines; avoid nesting cards in cards.
 4. **Calendar is ink-on-paper**: neutral surfaces, thin grid lines; color appears only as small event dots/chips and red holiday numerals. The month view should look like a printed 手帳 (planner), not a candy box.
 5. **Empty states teach**: each empty screen shows one sentence + one button (e.g. 時間割 empty → "学期を設定して授業を追加 → [設定する]").
-6. **Desktop navigation**: Today / Week / Courses / Tasks / Settings in a side rail. Collapse navigation at narrow widths and open details in a sheet; avoid squeezing three columns into a small window.
+6. **Desktop navigation**: Today / Week / Tasks only. Courses and weekly review open from Week; settings live in a menu. Collapse navigation at narrow widths and open details in a sheet; avoid squeezing three columns into a small window. Weekly review uses readable figures and simple labeled bars, with no productivity score, streak pressure or dashboard on startup.
 7. **One week, real time**: courses and personal plans share a time axis, with period labels as guides and all-day items in a separate region. Deadline-only tasks are not drawn as occupied time.
 8. **Explicit edit scope**: show “this occurrence” versus “entire rule” before editing repeats. Preview effects before changing semester periods or importing files.
 

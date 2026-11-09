@@ -21,8 +21,13 @@
 - **Coursework:** assignments and exams linked to a course; deadlines and completion are distinct from booked time.
 - **Classmate sharing:** preview and import a timetable file; personal plans and coursework are excluded from timetable exports.
 - **Local data:** no registration, cloud service, external calendar connection or telemetry. Versioned backup and restore are planned.
+- **Local weekly review:** planned time, daily load and task completion, calculated on the device. This is planned functionality, not an implemented timer or usage tracking.
 
 The first release deliberately excludes Google/Outlook integration, online ICS subscriptions, school-system scraping, AI extraction, collaborative editing, wage tracking and focus/habit dashboards.
+
+## Learn by building
+
+Follow the [beginner learning path](docs/LEARNING.md), one small lesson at a time. The learner writes application code; the assistant writes tests and reviews the result. Start with [lesson 01: a task model](docs/lessons/01-task.md). Pending lesson tests are templates, not passing coverage.
 
 ## Run the current skeleton
 
