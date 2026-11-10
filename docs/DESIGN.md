@@ -2,6 +2,8 @@
 
 Status: design target for courses and personal plans; the current placeholder does not implement these screens. Behavior and scope are defined in [REDESIGN.md](REDESIGN.md).
 
+Audience: all Kyushu University students. Product targets are Windows/Linux/macOS, with no mobile app plan. A Web scheduling system is a separate candidate; responsive behavior of the current static website is not evidence of a Web or mobile app. The brand belongs to this independent project and must not imply university endorsement or use an official university mark without permission.
+
 One word: **落ち着いた** (calm). Cadence looks like a well-organized desk — dense with information, never cluttered. This file is the single source of truth for color, type, and layout; the website follows it too.
 
 ---
@@ -78,6 +80,8 @@ The SVG is the brand source. Platform runners currently include generated starte
 6. **Desktop navigation**: Today / Week / Tasks only. Courses and weekly review open from Week; settings live in a menu. Collapse navigation at narrow widths and open details in a sheet; avoid squeezing three columns into a small window. Weekly review uses readable figures and simple labeled bars, with no productivity score, streak pressure or dashboard on startup.
 7. **One week, real time**: courses and personal plans share a time axis, with period labels as guides and all-day items in a separate region. Deadline-only tasks are not drawn as occupied time.
 8. **Explicit edit scope**: show “this occurrence” versus “entire rule” before editing repeats. Preview effects before changing semester periods or importing files.
+9. **Truthful data status**: distinguish manual entries, file snapshots and any approved school connection. Show source/freshness and pending changes without calling imports live sync. Keep private backup and timetable sharing visibly separate.
+10. **Candidate Web boundaries**: if commissioned, explain browser-local storage, backup and clearing in the user's language; never imply shared-device storage is private merely because there is a login screen. Security behavior follows [SECURITY.md](SECURITY.md).
 
 ## Motion & feedback
 

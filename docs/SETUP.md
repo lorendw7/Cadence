@@ -1,6 +1,6 @@
 # Setup
 
-The repository contains Windows, Linux, macOS and Android platform runners. Their existence does not establish runtime support; test each target on its native host.
+The product targets Windows, Linux and macOS. Their runners do not establish runtime support; test each target on its native host. Android remains legacy scaffolding and has no product/release commitment; Android/iOS development is excluded. A Web system is a candidate only, and there is no functional Web planner in this checkout; see [ROADMAP.md](ROADMAP.md).
 
 ## Toolchain
 
@@ -11,7 +11,6 @@ Use **Flutter 3.44.4 stable** with **Dart 3.12.2**, matching the project metadat
 | Windows | Windows; Visual Studio with Desktop development with C++ |
 | Linux | Linux; clang, CMake, Ninja, pkg-config, GTK development libraries and C++ toolchain |
 | macOS | macOS; Xcode and its command-line tools; plugin-specific dependencies when introduced |
-| Android | Android SDK and emulator/device; Android Studio is the recommended SDK manager |
 
 See the official [Flutter desktop guide](https://docs.flutter.dev/platform-integration/desktop) and platform setup documentation linked there.
 
@@ -22,7 +21,7 @@ flutter pub get
 flutter devices
 ```
 
-Resolve doctor findings for your chosen target. For Android, review required SDK licenses with `flutter doctor --android-licenses`.
+Resolve doctor findings for your chosen desktop target. Android tools are not required for this product's development path.
 
 ## Run this checkout
 
@@ -32,12 +31,11 @@ Run one command appropriate to your host:
 flutter run -d windows
 flutter run -d linux
 flutter run -d macos
-flutter run -d <android-device-id>
 ```
 
 The current app shows a `Cadence` title and a `今天` (Today) placeholder. Press **r** for hot reload, **R** for hot restart and **q** to quit.
 
-Do not run `flutter create` for normal setup: the platform runners are already checked in. The existing Android application ID is `dev.cadence.cadence`; keep platform identities stable once releases have user data.
+Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. Adding a Web target would be a separate implementation step after the candidate's architecture and security review.
 
 ## Validate
 
@@ -67,7 +65,7 @@ These debug builds are compilation checks, not signed release artifacts or deskt
 
 Current dependencies are in [pubspec.yaml](../pubspec.yaml). Add Riverpod and drift only as their implementation begins; commit `pubspec.lock` changes. The current skeleton does not yet store courses or personal plans.
 
-No account, cloud credentials or API registration is part of the planned app. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet.
+No account, cloud credentials or API registration is required for this checkout or the planned offline core. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. Optional official school integration has a separate permission and interface track in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Do not add school credentials to source files, fixtures or setup instructions.
 
 ## Troubleshooting
 
@@ -76,7 +74,6 @@ No account, cloud credentials or API registration is part of the planned app. Fi
 | Flutter is not recognized | Put the SDK's bin directory on PATH and reopen the terminal |
 | Dart version mismatch | Compare `flutter --version` with the pinned version above |
 | Desktop compilation fails | Run `flutter doctor -v` and install that host's native build tools |
-| No Android device | Start an emulator or connect a phone with debugging enabled |
 | A desktop file dialog fails in a future feature build | Record the OS, desktop session and plugin version; verify on the native host |
 
-The [website](../website/README.md) has a separate static preview workflow.
+The [website](../website/README.md) has a separate static preview workflow. It is a public project site, not the candidate Web planner; do not put private course data, backups or credentials in its assets.

@@ -2,15 +2,17 @@
 
 # Cadence
 
-**Courses and personal plans, together.** A local desktop planner for students and classmates.
+**Courses and personal plans, together.** A local-first planner being built for all Kyushu University students.
 
 <br clear="left">
 
 **Development status:** the app currently displays a Today placeholder. Windows, Linux, macOS and Android runners exist; course management, storage and sharing are not implemented yet. There is no downloadable feature-complete release.
 
-**Desktop targets:** Windows, Linux and macOS. Android is retained for later work. Distribution is planned through GitHub Releases, not app stores.
+**Product direction:** Windows, Linux and macOS, distributed initially through GitHub Releases. No mobile app development is planned; Android is retained only as legacy scaffolding. A Web scheduling system is a candidate pending feasibility and security review; the current website is a static project introduction.
 
-[Product design / 产品设计](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md) · [Website](https://lorendw7.github.io/Cadence/)
+Cadence is an independent student project. University endorsement and system access have not been obtained. Optional school-approved authentication and read-only timetable import are planned goals; basic local use will not require an account.
+
+[Product design / 产品设计](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Security / 数据保护](docs/SECURITY.md) · [University integration](docs/UNIVERSITY_INTEGRATION.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md) · [Website](https://lorendw7.github.io/Cadence/)
 
 ## What we are building
 
@@ -19,11 +21,13 @@
 - **Personal plans:** appointments, study sessions and other timed or all-day arrangements, with optional simple weekly repeats.
 - **One schedule:** Today and week views show courses and personal plans together and explain time conflicts.
 - **Coursework:** assignments and exams linked to a course; deadlines and completion are distinct from booked time.
-- **Classmate sharing:** preview and import a timetable file; personal plans and coursework are excluded from timetable exports.
-- **Local data:** no registration, cloud service, external calendar connection or telemetry. Versioned backup and restore are planned.
+- **Sharing and import:** preview timetable files and fixed-template CSV/paste; personal plans and coursework are excluded from timetable exports.
+- **Local data:** core planning works offline without registration. Versioned backup/restore, explicit deletion and private export boundaries are planned; encryption is not implemented or claimed.
+- **University reach:** representative trials across academic backgrounds, campuses, languages and accessibility needs, followed by supported desktop releases. Web access remains a separate candidate.
+- **Authorized integration:** investigate school-approved identity and read-only timetable access separately; preserve manual import, source freshness and user edits if integration becomes available.
 - **Local weekly review:** planned time, daily load and task completion, calculated on the device. This is planned functionality, not an implemented timer or usage tracking.
 
-The first release deliberately excludes Google/Outlook integration, online ICS subscriptions, school-system scraping, AI extraction, collaborative editing, wage tracking and focus/habit dashboards.
+Mobile apps, unapproved school-system scraping and credential collection are outside the plan. The local release also excludes Google/Outlook integration, online ICS subscriptions, AI extraction, collaborative editing, wage tracking and focus/habit dashboards. No backend, cloud sync or public API availability is assumed.
 
 ## Learn by building
 
@@ -47,7 +51,7 @@ On a configured Linux or macOS host, use `flutter run -d linux` or `flutter run 
 | `lib/` | App entry point and current Today placeholder |
 | `test/` | Flutter widget tests |
 | `windows/`, `linux/`, `macos/` | Native desktop runners |
-| `android/` | Retained Android runner |
+| `android/` | Legacy runner; no mobile product commitment |
 | `assets/brand/` | Source brand artwork |
 | `docs/` | Product, behavior, architecture, setup and release plans |
 | `website/` | Static website in Japanese, English and Chinese |

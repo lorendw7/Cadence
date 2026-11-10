@@ -2,6 +2,8 @@
 
 Status: planned behavior for the first local course planner. Public-holiday computation and external holiday subscriptions are not part of the first release.
 
+For the university-wide goal, validate academic periods and irregular teaching with students from different departments and campuses. No unverified university-wide calendar or period preset is authoritative. Any future school-derived configuration records its scope, source and checked date and remains previewable; access and freshness rules are in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+
 ## Teaching weeks are the source of truth
 
 Each semester has an explicit week-one Monday and end date. Teaching week numbers advance every Monday, including vacations, unless the user changes the semester/course configuration through a previewed operation. Odd/even weeks refer to these teaching weeks.
