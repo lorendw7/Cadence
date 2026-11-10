@@ -11,7 +11,7 @@ The text below preserves the decision at that time; use ADR-004 and PRODUCT.md f
 
 The original design targeted the author and classmates on desktop. The new goal is to serve students across Kyushu University, including different campuses, undergraduate/graduate study, language needs and accessibility requirements. The user explicitly excludes mobile applications and asks to include a web system as a candidate. A small desktop trial remains useful evidence, but cannot establish that this broader audience can use the product.
 
-The application is still a Today placeholder with a separate task-model exercise. Desktop runners and legacy Android scaffolding exist; no iOS or web runner exists. School approval, a supported timetable-data interface, browser feasibility and any backend hosting are not established. The static project website is separate from a web planner. The broader audience must not turn these unknowns into implementation claims or force beginners to build unused infrastructure.
+At the time of this decision, the application was a Today placeholder with a separate task-model exercise. Desktop runners and legacy Android scaffolding exist; no iOS or web runner exists. School approval, a supported timetable-data interface, browser feasibility and any backend hosting are not established. The static project website is separate from a web planner. The broader audience must not turn these unknowns into implementation claims or force beginners to build unused infrastructure.
 
 ## Decision
 

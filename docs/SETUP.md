@@ -33,7 +33,7 @@ flutter run -d linux
 flutter run -d macos
 ```
 
-The current app shows a `Cadence` title and a `今天` (Today) placeholder. Press **r** for hot reload, **R** for hot restart and **q** to quit.
+The current learning app shows a `Cadence` title, `今天` (Today), and two read-only sample tasks with their completion status. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter.
 
 Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner will add the Web target and selected shadcn_ui dependency during their implementation stages. No alternate core implementation is provided by the assistant.
 

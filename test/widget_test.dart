@@ -2,7 +2,7 @@ import 'package:cadence/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('App opens the Today placeholder', (WidgetTester tester) async {
+  testWidgets('App opens the Today page', (WidgetTester tester) async {
     await tester.pumpWidget(const CadenceApp());
 
     expect(find.text('Cadence'), findsOneWidget);

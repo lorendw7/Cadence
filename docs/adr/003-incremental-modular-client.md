@@ -9,7 +9,7 @@
 
 At the time of this decision, Cadence targeted Kyushu students through desktops with Web as a candidate. ADR-004 now selects a student/teacher planner and confirmed but not implemented Web target. Mobile applications remain excluded; school integration remains separately permission-dependent. The local core must be useful without a server or school account.
 
-The existing executable is a Today placeholder. A plain task model exists as a learner exercise; there is no persisted task editor, shared schedule or application layer. ADR-001's ports, transactions and projector are valuable for the eventual product, but creating every layer before the first list would add complexity without working behavior. The design must support data safety and future growth while keeping each lesson understandable.
+At the time of this decision, the executable was a Today placeholder. Current lesson progress is tracked in [LEARNING.md](../LEARNING.md). A plain task model exists as a learner exercise; there is no persisted task editor, shared schedule or application layer. ADR-001's ports, transactions and projector are valuable for the eventual product, but creating every layer before the first list would add complexity without working behavior. The design must support data safety and future growth while keeping each lesson understandable.
 
 ## Decision
 

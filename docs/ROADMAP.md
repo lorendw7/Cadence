@@ -4,7 +4,7 @@ Updated: 2026-11-10. Goal: **a time planner primarily for students, also suitabl
 
 ## Repository baseline
 
-The current application is a Today placeholder with separate task-model learning work. Windows, Linux, macOS and Android runners and desktop check workflows exist. Android is retained legacy scaffolding, not a release commitment; there is no iOS runner or functional Web app. The public website is a static project site. Feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release. No school partnership, integration permission or adoption is established. All application features remain learner-led work; this update changes docs and the concept website, not core implementation.
+The current learning application displays Today and two read-only sample tasks. Lesson 3 format, static analysis and all nine automated tests pass, including two window sizes; local Windows visual confirmation remains pending. Windows, Linux, macOS and Android runners and desktop check workflows exist. Android is retained legacy scaffolding, not a release commitment; there is no iOS runner or functional Web app. The public website is a static project site. Feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release. No school partnership, integration permission or adoption is established. All application features remain learner-led work; the read-only list is the learner's implementation, with assistant-prepared tests and progress documentation.
 
 ## Implementation order
 

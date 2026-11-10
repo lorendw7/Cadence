@@ -1,6 +1,6 @@
 # Releases for students, teachers and other users
 
-Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app remains a learning placeholder and the website a concept presentation. There is no functional MVP, completed release or university endorsement.
+Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app is a read-only sample task list for learning and the website a concept presentation. There is no functional MVP, completed release or university endorsement.
 
 ## Before the first trial
 

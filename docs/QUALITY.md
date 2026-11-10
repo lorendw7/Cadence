@@ -1,6 +1,6 @@
 # Quality and acceptance
 
-The committed baseline includes the Today startup widget test; activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
+The baseline includes task-model tests, the Today startup test and two task-list window-size tests (nine tests total); activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
 
 ## Local and hosted checks
 
