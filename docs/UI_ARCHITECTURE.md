@@ -1,63 +1,117 @@
-# UI 组件与页面设计
+# UI components and page design
 
-更新：2026-11-11。**Flutter `shadcn_ui` 已选为产品 UI 方向，尚未引入或实现。** 桌面和 Web 是确定目标，不做手机应用。已验收的教学基线支持内存中的任务输入、添加、完成/撤销及标题校验；具体课次进度见 [项目 README](../README.md) 与 [学习记录](LEARNING.md)。官网仍是概念视觉示例，不是可操作 MVP。
+Updated: 2026-11-11. Status: planned, not implemented. Flutter `shadcn_ui` is the selected product UI library but has not been added. Desktop is primary; a future Web planner requires school permission before deployment. No mobile app is planned. The current teaching app supports in-memory task entry, validation, completion, deletion and single-level undo. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance and pending manual checks. The website presents concepts.
 
-## 组件选型与教学边界
+## Library and teaching boundaries
 
-选择 [pub.dev 的 shadcn_ui](https://pub.dev/packages/shadcn_ui)，不是 `shadcn_flutter` 或 React shadcn/ui。此前 Material 3 主选建议已被用户选择取代，见 [ADR-004](adr/004-shadcn-web-direction.md)。教学起步可继续用已有 Material 基础控件；进入主题与组件课程时，由学习者评估兼容性、引入选定版本并逐步实现，不要求现在重写入口。
+Use the [shadcn_ui package on pub.dev](https://pub.dev/packages/shadcn_ui), not `shadcn_flutter` or React shadcn/ui. [ADR-004](adr/004-shadcn-web-direction.md) replaces the earlier Material-only product direction. Existing Material controls can remain during the early lessons. The learner checks compatibility, selects a version and introduces the new library during the UI lessons; do not rewrite the entry point in advance.
 
-实际已安装依赖以 `pubspec.yaml` 和锁文件为准。Riverpod、drift 分别是状态和存储工具，不是 UI 库；按真实工作阶段引入。助手只维护受委托文档官网、讲解、评审和测试/模板，不代写核心应用。
+Installed dependencies are defined by `pubspec.yaml` and its lockfile. Riverpod and drift serve state and storage needs; they are not UI libraries. Add them only when needed. The assistant maintains delegated documentation and website work, teaches, reviews and prepares tests/templates. The learner writes core application features.
 
-## 组件映射（设计，尚未实现）
+## Planned component mapping
 
-| 产品职责 | 计划使用的组件 | 使用约束 |
-|----------|----------------|----------|
-| 统一主题 | `ShadThemeData`、`ShadColorScheme` | 统一品牌、背景、文字与语义 token，不在各页散写颜色 |
-| 创建、保存与次要操作 | `ShadButton` 的主、次、ghost 等变体 | 每个操作区域主次清楚，禁用与处理中状态可理解 |
-| 标题、地点等输入 | `ShadInput`、`ShadForm` | 字段校验就地提示；失败保留输入，不只弹出一句错误 |
-| 日期选择 | `ShadDatePicker` | 选择日期并检查范围，时间和重复规则由产品逻辑校验 |
-| 任务完成 | `ShadCheckbox` | 完成与撤销作用于明确任务，键盘和读屏状态一致 |
-| 编辑与高影响确认 | `ShadDialog` | 用于必要的编辑面板、整份替换或清除确认，普通操作不滥用弹窗 |
-| 局部视图切换 | `ShadTabs` | 表达同一页面的视图切换，保留选择与键盘焦点 |
-| 错误与结果反馈 | `ShadAlert` 与包的 Toast 提示机制 | 持续错误留在相关区域，短提示不替代可恢复的错误说明 |
+| Product role | Candidate component | Requirement |
+|--------------|---------------------|-------------|
+| Shared theme | `ShadThemeData`, `ShadColorScheme` | Define brand, surface, text and semantic colors once |
+| Create, save and secondary actions | `ShadButton` variants | Make action priority, disabled state and pending work clear |
+| Title, location and other fields | `ShadInput`, `ShadForm` | Place errors beside fields and retain input on failure |
+| Date selection | `ShadDatePicker` | Validate the date range; keep time and recurrence rules in domain code |
+| Task completion | `ShadCheckbox` | Keep pointer, keyboard and screen-reader state in agreement |
+| Editors and high-impact confirmation | `ShadDialog` | Use for focused editing, whole-data replacement and clearing; avoid routine confirmation dialogs |
+| Views within one page | `ShadTabs` | Preserve selection and keyboard focus |
+| Errors and results | `ShadAlert` and the package's toast mechanism | Keep persistent errors near the affected content; a toast is not recovery guidance |
 
-周课表的时间布局、日程块、重复展开与冲突显示属于 Cadence 的产品组件和业务逻辑；该库不被假定提供完整 scheduler。月份日期选择器不能代替一周日程视图。以上是组件方向，实际构造函数、变体和组合方式在相关课程按当时锁定版本验证；本次不安装包或锁定版本。
+These are design candidates, not verified calls for a locked version. Check constructors, variants and composition during the relevant lesson. A date picker does not provide a weekly scheduler. Cadence owns its time grid, schedule blocks, repeat rules and conflict display.
 
-## 学术手帐风格
+## Visual direction and assets
 
-主要面向学生，也适合教师等用户。课程、会议、研究和私人安排是同一日程体系中的类型，不要求学校身份。灰酒红 `#7C394B`、暖纸 `#F6F5F1`、鼠尾草 `#6F877C` 构成独立品牌，不复制九大官方形象。具体规范见 [DESIGN.md](DESIGN.md)。
+Use an independent academic-journal style: muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C` and graphite text. Clear dates, fine rules, space and restrained corners keep attention on time. Categories need text or icons as well as color. Do not copy university branding or show invented login, rankings or cloud-save status. See [DESIGN.md](DESIGN.md).
 
-用清晰日期、细线、留白和克制圆角表达手帐感，不让装饰压过时间。分类同时使用文字/图标，不能仅靠颜色。避免排行榜、虚假学校登录或未经实现的云保存状态。
+The [v2 artwork library](../assets/README.md) supplies 56 interface icons at 24 × 24, ten text-free state illustrations, brand variants and platform exports. The website and Windows/macOS launcher references use it. Flutter pages have not adopted these assets or an SVG dependency. Declare only the assets used by each implemented feature, with localized text, accessible button names and correct state semantics.
 
-## 美术素材接入
+Use `empty-tasks` for an empty list, `all-done` when every task is complete and `save-error` for a failed save. An illustration does not replace an explanation or recovery action. Dark brand assets do not mean a dark UI has passed acceptance. See the [asset catalogue](../assets/catalog.html) for files and sizes.
 
-[素材库 v2](../assets/README.md) 提供 56 枚 24 × 24 功能图标、10 幅无文字状态插画、品牌变体及平台导出。官网与 Windows/macOS 启动图标已使用新版；Flutter 页面尚未接入这些插画或引入 SVG 渲染依赖。进入对应课程时只声明实际使用的 assets，并保留本地化文本、图标按钮名称和状态语义。
+## Pages and navigation
 
-空列表使用 `empty-tasks`，全部完成使用 `all-done`，保存失败使用 `save-error`；这些插画不代替真实提示和操作。深色品牌文件仅用于标志展示，不代表深色 UI 已验收。完整文件与使用尺寸见 [预览目录](../assets/catalog.html)。
+The learner accepted this layout on 2026-11-11: a light sidebar, a two-column Today page, a wide Week calendar and editors that open on demand. Keep three main destinations: **Today / Week / Tasks**. Open Courses and Weekly Review from Week; put Settings at the bottom of the sidebar. A narrow layout changes presentation, not access to these pages. The website's previews remain concepts and may not yet match this revised layout.
 
-## 页面与状态
+| Page or action | Planned interaction | Required visible state |
+|----------------|---------------------|------------------------|
+| Application shell | Main destinations, language and data controls | Current page, date and return path |
+| Today | Courses, personal plans and tasks for the day | Empty state, completion, time and location |
+| Week | Browse dates and open entries | Week range, repeats and editing entry points |
+| Schedule editor | Title, category, time, location and bounded repeats | Validation, save/cancel and deletion scope |
+| Tasks | Add, complete, reopen and edit tasks | Completion and empty-list state |
+| Data controls | Saving choice, JSON preview, export and clear | Storage mode, failed saves and replacement scope |
 
-| 页面 / 操作 | 计划交互 | 必须表达 |
-|-------------|----------|----------|
-| 应用框架 | 今天、周计划、待办，语言与数据入口 | 当前页面、日期和返回路径 |
-| 今天 | 当天课程/个人安排与待办 | 空状态、完成、时间与地点 |
-| 周计划 | 一周条目、日期切换、查看安排 | 周范围、重复与编辑入口 |
-| 日程编辑 | 标题、类别、时间、地点、有界重复 | 校验、保存/取消、删除范围 |
-| 待办 | 添加、完成/撤销及必要编辑 | 完成状态与空列表 |
-| 数据管理 | 保存选择、JSON 预览、导出、清除 | 内存模式、保存失败、替换范围 |
+Business components receive data and callbacks. Shared validation and schedule expansion remain separately testable; do not repeat them inside controls. Create files with working features rather than empty architecture folders.
 
-未来使用选定包的主题、表单、按钮、弹层和提示时，按锁定版本核对 API。业务组件接收数据与回调；公共校验和日程展开由独立可测试逻辑承担，不能散落在控件中。文件结构跟随实际实现，不创建空壳架构。
+### Today
 
-宽窗口可用侧栏与主内容，窄桌面窗口采用单栏与可折叠导航/详情。按翻译长度和字体缩放验证断点，保留日期、选择与输入。窄窗口适配不等于开发手机应用。
+Place the date, today's pending-task count and a New action above the content. Start with roughly 40% task space and 60% timeline space, excluding the sidebar. Adjust these proportions after checking long text and actual windows.
 
-## 初期 Web 数据交互设计
+- Left: quick task entry, tasks due today, a separate overdue section, and collapsible undated and completed sections. Overdue and undated items do not increase today's pending count. Follow [Today rules](TODAY.md).
+- Right: a compact next-commitment summary with time and location, then the day's timeline. Position entries by actual time, show a current-time marker and leave free intervals visible.
+- A deadline alone never becomes a duration block. Scheduling task work requires an explicit timed plan.
+- Keep summaries compact. Do not add a row of statistics cards above the work area.
 
-默认只在内存中；用户明确选择后才将数据写入当前浏览器。小快照拟采用 `localStorage`，但必须验证配额、失败、清除与多标签边界。JSON 计划限制 1 MiB UTF-8、总记录 2,000 项；严格校验、预览数量和替换范围，确认后整份替换。失败保留原数据。
+### Week
 
-导出包含私人安排/待办，不标为公开课表分享。清除说明本应用保存范围，不保证撤回已下载或分享文件。初期 Web 不含后台、账号、同步、学校接口、CSV、系统通知或单次调课。以上均待学生按阶段实现。
+Use a toolbar with previous/next week, the week range, This week and New. Below it, give the seven-day time grid most of the available space, with an all-day band above the timed rows. A collapsible task tray sits on the right.
 
-## 实施与验收
+Show course or plan title and location on readable blocks, with restrained category color and text. Open details only after selection. Courses and Weekly Review are secondary actions here. Dragging a task into the calendar is optional later work, not a first-version requirement; explicit start/end editing comes first.
 
-已完成课次与下一步以 [学习记录](LEARNING.md) 为准；后续逐步推进任务行为、导航、shadcn_ui 主题、保存和错误反馈。官网视觉可以帮助讨论方向，但不能作为保存或恢复能力的证据。
+### Tasks and editing
 
-正式页面验证日/英/中文、输入法、键盘、长文本、字体缩放、读屏、存储失败和导入错误。Web 阶段另验刷新、资源路径、浏览器数据清除及实际部署。编译通过不等于可靠存储或安全验收，约束见 [SECURITY.md](SECURITY.md)。
+Use one focused list with quick entry at the top and lightweight filters and section headings. Completion has its own checkbox on the left. Once editing exists, selecting the title opens the editor; it no longer toggles completion. Date and course metadata stay secondary. Keep delete discoverable in an accessible actions menu and available without hover.
+
+Retain the current row-tap toggle and visible delete button until their replacements are implemented and tested. A visual migration must preserve addition, validation, completion, deletion and latest-only undo.
+
+Simple edits may stay inline. Full editing opens a right-side overlay, not another permanent column beside Today's tasks and timeline. Closing returns focus to the opening control and preserves the browsing position. Keep unsaved input according to [editing rules](EDITING.md).
+
+### Window sizes and staged delivery
+
+Collapse navigation when space is limited, stack Today's sections and let the editor use the available width. For Week, keep columns readable with an explicitly bounded horizontal scroll area or a labelled day view. Do not squeeze three or four columns into a narrow window. Choose breakpoints from translated text, keyboard use and 200% text scaling, rather than a device name. Preserve dates, selection and input across resize. A narrow layout is not a mobile-app commitment.
+
+Lessons 11–16 establish theme, task controls and shell layout. They do not deliver a timetable. Expose functional destinations as their data and behavior arrive; do not present placeholder pages or invented calendar entries as working planning features. Today and personal plans follow in lessons 27–34; courses and the full Week timetable follow in lessons 35–46. See [the curriculum](CURRICULUM.md).
+
+### Design references
+
+These products inform specific interaction choices. Cadence keeps its own visual identity and feature scope.
+
+| Reference | Useful idea | Cadence decision |
+|---|---|---|
+| [Things](https://culturedcode.com/things/features/) | Calm task lists, headings and details revealed when needed | Lightweight list sections and focused editing |
+| [Structured](https://structured.app/) | A visible daily timeline | Today's right column shows actual time and free intervals |
+| [Morgen](https://www.morgen.so/tasks-and-monotasking) | Tasks alongside calendar planning | Week has an optional task tray; explicit scheduling comes first |
+| [MyStudyLife](https://mystudylife.com/tour/) | Classes, tasks and upcoming academic commitments | Surface the next commitment's time and location |
+
+## Saving and connection states
+
+Storage choice, write status and network connection are separate. Use plain labels that explain the user's current situation:
+
+| Situation | Visible label and behavior |
+|-----------|----------------------------|
+| Temporary session | "Temporary use"; explain that closing or refreshing loses data, with explicit save/export actions |
+| Local write pending | "Saving..."; keep the input visible and prevent duplicate submissions |
+| Latest write confirmed | "Saved on this device"; do not imply cloud sync, encryption or backup |
+| Local write failed | "Could not save"; retain input, identify the affected action and offer retry/export |
+| Switch back to temporary use | Explain whether the old saved copy is kept or cleared; start an empty temporary session after pending work is resolved |
+| Clear partly failed | "Cleanup incomplete"; name the unfinished step and offer retry, never "All data cleared" |
+| Approved school source is offline | Show "Offline copy" and the last successful read time; this does not change personal-data save status |
+
+Do not use a green icon as the only proof of saving. Announce meaningful status changes without moving focus. After an error, keep the correction or retry action reachable by keyboard. See the [application contracts](APPLICATION.md) for data-flow rules.
+
+## First Web data flow
+
+Default to memory. Save business data only after an explicit choice. [ADR-005](adr/005-local-offline-and-school-gated-web.md) recommends IndexedDB and replaces the earlier localStorage snapshot candidate; localStorage is only for small non-sensitive preferences. Test quotas, transaction failures, clearing and coordination between tabs. An offline restart claim also needs tested application-resource caching.
+
+JSON transfer is limited to 1 MiB UTF-8 and 2,000 total records. Validate before showing counts and replacement scope. Replace the full dataset only after confirmation; failure preserves the original. Import cannot change the storage choice or restore a login.
+
+Exports contain private plans and tasks and are not public timetable-sharing files. Clearing describes the application's own saved scope; it cannot retract downloaded or shared files. Initial Web scope excludes backend/accounts, sync, school APIs, CSV, system notifications and single-occurrence changes. These features remain learner-led future work.
+
+## Implementation and acceptance
+
+Follow [LEARNING.md](LEARNING.md) for current lessons. Introduce task behavior, navigation, the shadcn_ui theme, saving and error feedback step by step. Website visuals are useful for discussion but do not prove storage or recovery behavior.
+
+Test Japanese, English and Chinese, input methods, keyboard access, long text, text scaling, screen readers, storage failures and invalid imports. Web acceptance also covers reloads, resource paths, browser-data clearing and the actual deployment. Compilation does not prove reliable storage or security; follow [SECURITY.md](SECURITY.md).

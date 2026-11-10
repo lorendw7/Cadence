@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. Lessons 1–10 have passed implementation review and automated acceptance, with 26 passing tests. The application supports validated addition, completion toggling, empty-list feedback, deletion and single-level undo in memory. The learner confirmed the empty-list/add/toggle flow; deletion/undo and title-validation manual confirmation remain pending. The redundant nested setState has been cleaned up. Persistence remains future work. The website is a concept presentation. The learner implements core features; the assistant handles delegated documentation/website work, teaching, review and tests. School integration remains separately optional and permission-dependent.
+Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. Lessons 1–10 have passed implementation review and automated acceptance, with 26 passing tests. The application supports validated addition, completion toggling, empty-list feedback, deletion and single-level undo in memory. The learner confirmed the empty-list/add/toggle and actual-window deletion/undo flows; title-validation manual confirmation remains pending. The redundant nested setState has been cleaned up. Persistence remains future work. The website is a concept presentation. The learner implements core features; the assistant handles delegated documentation/website work, teaching, review and tests. School integration remains separately optional and permission-dependent.
 
 Latest constraint: desktop is primary; deploy the Web planner only after explicit school permission. User-selected local retention, offline use and comparable-product research are in [ADR-005](adr/005-local-offline-and-school-gated-web.md). These features are not implemented.
 
@@ -50,7 +50,8 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 | [Lesson 7](lessons/07-title-input.md) | Text input, controller disposal, Row layout and scroll-aware testing |
 | [Lesson 8](lessons/08-add-task.md) | Task addition, session IDs, input clearing and learner-confirmed operation |
 | [Lesson 9](lessons/09-validation.md) | Title validation and empty-list feedback; empty-list flow manually confirmed |
-| [Lesson 10](lessons/10-delete-undo.md) | Deletion and single-level undo, 26 passing tests; manual confirmation pending |
+| [Lesson 10](lessons/10-delete-undo.md) | Deletion and single-level undo, 26 passing tests; actual-window flow confirmed |
+| [Lesson 11](lessons/11-theme.md) | Assigned theme exercise: constants, ARGB colors and named theme arguments; not implemented |
 | [Learning path](LEARNING.md) | Technology stack, teaching agreement and one-lesson workflow |
 | [Curriculum](CURRICULUM.md) | 64-lesson Windows / 80–100 desktop baseline, provisional 8–16 extra Web lessons |
 | [Project workflow](PROJECT_WORKFLOW.md) | Acceptance tasks, implementation, review, merge and milestone release |

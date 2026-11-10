@@ -1,155 +1,157 @@
-# Cadence：学生与教师都能使用的时间手帐
+# Product design
 
-更新：2026-11-10。本文件全部为分阶段产品规划。当前 lib/main.dart 显示“今天”、两条只读示例任务及可加一/归零的练习计数。第 1–4 节已完成，10 项测试通过，学习者已确认热重载与重启的状态差异；任务交互与保存仍未实现。shadcn_ui 已选但未引入，Web 已确定为目标但尚未开发；官网仅有概念视觉示例。
+Updated: 2026-11-11. Status: staged product plan. The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Persistence and course management are not implemented. Current acceptance and pending manual checks live in the [project README](../README.md) and [learning log](LEARNING.md). shadcn_ui is selected but not installed; Web remains a future target. The website shows concepts.
 
-## 定位与边界
+## Purpose and scope
 
-Cadence 是**主要面向学生，也适合教师等用户的时间管理软件**。课程是日程的一种，会议、研究、工作和个人安排同样可以录入。核心问题是：**今天有什么安排、在哪里、什么时候需要完成事情。** 不设置学校身份门槛；品牌为独立的学术手帐风，不复制九大官方形象，也不声称学校背书或教务许可。
+Cadence is a time planner primarily for students and also suitable for teachers and other people. Courses, meetings, research, work and personal plans belong in one schedule. It helps answer three questions: what is happening today, where, and what needs to be finished. No school identity is required. The academic-journal identity is independent; it does not copy Kyushu University's brand or claim its endorsement or system permission.
 
-目标平台为 Windows、Linux、macOS，先在 Windows 上完成日常使用闭环，再逐端验收，通过 GitHub Releases 分发。**不做手机端**；现有 Android 工程仅为遗留脚手架，不规划 Android/iOS 产品开发。
+Target Windows, Linux and macOS. Complete a usable Windows flow first, validate each other platform on its native host, and distribute tested packages through GitHub Releases. No Android/iOS product is planned; the Android project is legacy scaffolding.
 
-**Web 已确定为后续开发目标**，与宣传官网分开，尚未实现。产品 UI 选择 Flutter shadcn_ui，灰酒红 #7C394B、暖纸 #F6F5F1、鼠尾草 #6F877C；见 [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) 与 [ADR-004](adr/004-shadcn-web-direction.md)。初期 Web 计划默认内存，明确选择后才保存浏览器小快照，拟用 localStorage；不包含后台、账号或同步。实现时验证存储和导入安全，见 [SECURITY.md](SECURITY.md)。
+Web is a confirmed future target, separate from the static website. **Public deployment of the Web planner requires explicit school permission**, including a version with no school API. This is the user's project release condition. The selected UI is Flutter shadcn_ui, with muted wine `#7C394B`, warm paper `#F6F5F1` and sage `#6F877C`; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [ADR-004](adr/004-shadcn-web-direction.md). [ADR-005](adr/005-local-offline-and-school-gated-web.md) refines saving and deployment: default to memory, use the proposed IndexedDB adapter only after explicit choice, and reserve localStorage for small non-sensitive preferences. Validate storage and imports under [SECURITY.md](SECURITY.md).
 
-独立手动规划无需学校账号；桌面本地使用不依赖网络，Web 首次加载需要托管资源，离线重载不预先保证。学校账号认证、本人课表只读导入和后续变更刷新列入合作目标，各自以许可和可用数据通道为前提。导师可帮助咨询和建立校内窗口，学校审批及数据读取权限需另外确认；详细计划见 [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md)。
+Manual desktop planning requires neither a school account nor a network connection. Web needs hosted resources on first use; offline reload is not promised before its own acceptance. School authentication, read-only access to the user's timetable and reviewed source updates are separate optional capabilities. Each needs permission and a supported data channel. A supervisor may help find a university contact but cannot substitute for approval. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
 
-长期本地产品主要包含三类内容：**课程、个人安排、作业与考试**。课程和个人安排统一出现在“今天”和周视图里；任务截止时间不会自动占用一段日历时间。个人安排不是课程的备注，而是可以独立创建、编辑和重复的完整日程。
+The longer-term local product covers courses, personal plans, tasks and exams. Courses and personal plans share Today and Week. A task deadline does not reserve a calendar interval. Personal plans are independent entries with their own editing and repeats, not course notes.
 
-不纳入当前范围：手机应用、未经许可的教务抓取、学校密码收集、选退课和成绩读取、Google/Outlook、在线 ICS、截图识别、AI、多人实时协作、自动云同步、习惯打卡、工资计算、专注统计。产品围绕时间安排展开，暂不扩展为校园社交、交易或综合门户。
+Excluded from the current scope: mobile apps, unapproved school scraping, school-password collection, enrollment or grade access, Google/Outlook integration, online ICS, screenshot extraction, AI, live collaboration, automatic cloud sync, habits, payroll and focus tracking. Optional sync has a separate proposal in [ADR-006](adr/006-optional-multi-client-sync.md). Do not turn the planner into a campus social or commerce platform.
 
-## 使用覆盖与推广条件
+## Representative use and wider release
 
-试用覆盖学生、教师及其他个人规划用户，包括本科生、研究生、留学生、不同院系与使用辅助技术的人。选择具有代表性的真实使用场景开展自愿试用，记录实际验证范围；开发者或单个班级的课表通过，不代表已覆盖全校。
+Use voluntary trials with students, teachers and other planners, including undergraduate and graduate students, international students, different departments and people using assistive technology. Record what was actually tested. One developer's timetable or one class does not establish university-wide coverage.
 
-- 核对不同学期/学季、集中授课和不规则日期，按来源建立可编辑的配置，不预置未经核实的“全校统一课表”。
-- 地点可注明校区与楼栋；跨校区安排仍可记录，首阶段不声称自动计算通勤时间。
-- 日语、英语、中文在引导、错误、导入预览和隐私说明中保持同等功能；测试键盘、读屏和大字体。
-- 新用户可独立完成建学期、添加/导入、处理调课、备份恢复；不把学校登录作为基础使用门槛。
-- 扩大推广前明确支持入口、维护人员、数据恢复、升级与毕业交接方案；不预先承诺用户数或响应时限。
+- Check semesters, quarters, intensive courses and irregular dates. Use editable configurations with a stated source; do not invent a universal university timetable.
+- Locations may include campus and building. Cross-campus entries are allowed; automatic travel-time calculation is not a first-stage claim.
+- Give Japanese, English and Chinese equal behavior in onboarding, errors, previews and privacy text. Test keyboard access, screen readers and large text.
+- New users should be able to create a semester, add/import entries, handle moved classes and restore a backup without school login.
+- Before wider release, assign support, maintenance, recovery, upgrades and eventual handover. Do not promise user counts or response times without evidence.
 
-## 初期 Web 版本规划（尚未实现）
+## First Web version
 
-初期目标为手动课程/个人安排增删改、有结束边界的每周重复、待办及完成、今天/周视图、日英中三语。数据默认只在内存中，明确选择后才存入当前浏览器。JSON 文件不超过 1 MiB UTF-8、合计 2,000 项，严格校验后预览，经确认整份替换；支持导出与清除，失败保留原数据。计划导出包含私人安排，不是下文未来的课表分享格式。
+Plan manual course/personal-entry creation, editing and deletion; bounded weekly repeats; tasks and completion; Today/Week views; and three-language controls. Use memory by default and browser-local saving only after explicit choice. JSON files have a 1 MiB UTF-8 limit and at most 2,000 combined records. Validate, preview and confirm whole-data replacement. Offer private export and clear; failure preserves the original data. This export is not the filtered timetable-sharing format below.
 
-不含后台、账号、同步、CSV、系统通知、单次调课或完整学期模型。以下课程模型、例外、恢复草稿与完整分享契约是长期设计，均不可当作现有能力。核心功能由学生按课实现，助手只做受委托文档官网、教学评审与测试/模板；未来达到展示条件后使用 [SCHOOL_DEMO.md](SCHOOL_DEMO.md) 的虚构数据脚本，接入许可不是独立使用门槛。
+Initial Web scope excludes backend/accounts, sync, CSV, system notifications, single-occurrence changes and the full semester model. The course, exception, recoverable-draft and sharing contracts below are longer-term designs. The learner implements core features; the assistant maintains delegated documentation/website work, teaches, reviews and prepares tests/templates. Use [SCHOOL_DEMO.md](SCHOOL_DEMO.md) with fictional data only after its features pass acceptance. Desktop manual planning can progress independently; public Web deployment still follows the release condition above.
 
-## 长期页面与交互
+Both desktop and future Web distinguish temporary use from saving on this device. Temporary mode does not read an existing private database or write business data, recovery drafts or automatic backups. Explicit export is a separate action. Switching back to temporary use must explain whether the saved copy is kept or cleared. Never silently merge or overwrite memory and saved copies. Show saved status only after confirmation; preserve input and offer retry on failure. See [application contracts](APPLICATION.md) and [visible states](UI_ARCHITECTURE.md#saving-and-connection-states).
 
-主导航只保留 **今天 / 周计划 / 待办**。课程管理和“本周回顾”从周计划进入，设置放在菜单中。中间展示内容，详情仅在选中项目后打开；窄窗口使用单栏和弹出的详情面板。全局“新建”可以选择课程、个人安排或待办，不要求用户先进入某个页面。添加普通任务先只要求标题，日期、关联课程和备注按需展开。
+## Pages and interaction
 
-| 页面 | 核心内容 | 首次使用引导 |
-|------|----------|--------------|
-| 今天 | 今日待办数量、逾期与无日期分组、课程和安排、下一项 | 未建学期时仍可添加个人安排；详见 [TODAY.md](TODAY.md) |
-| 周计划 | 周一到周日的时间轴；课程、安排、考试叠加；全天区域 | 选择本周、返回今天、切换课程/安排可见性 |
-| 课程 | 学期、教学周、节次、课程列表及每门课的上课规则 | 创建学期 → 设置节次 → 手动添加或预览导入 |
-| 待办 | 作业、其他任务、关联课程、截止时间、完成状态 | 一条任务可以没有截止日期 |
-| 设置 | 学期、语言、外观、导入导出、备份、数据清除 | 获准且验收后才提供学校连接；说明读取范围、最后成功时间及断开方式 |
-| 本周回顾 | 计划时长、每日安排分布、任务完成与当前逾期、与上周对比 | 从周计划进入；无数据时说明如何添加，不打分 |
+The accepted academic-journal layout uses **Today / Week / Tasks** in a light sidebar, with Settings at the bottom. Open Courses and Weekly Review from Week. On wide windows, Today combines a left task list with a larger right daily timeline; Week prioritizes a seven-day calendar and a collapsible task tray; Tasks uses a focused list. Full editors open in an overlay on selection. Narrow windows collapse navigation and stack content. See [the layout specification](UI_ARCHITECTURE.md#pages-and-navigation) for interactions, references and staged delivery.
 
-上表描述功能页面，不代表都放进主导航。统计在本机执行，不引入访问追踪或服务器依赖。首版展示计划时长，不推断实际学习时长；范围、重叠与跨日计算见 [STATISTICS.md](STATISTICS.md)。
+A global New action offers the entry types that have been implemented. The complete product can create a course, personal plan or task without first navigating elsewhere. A simple task needs only a title; date, course link and notes are optional fields. Completion uses a checkbox; selecting the title opens editing once the editor exists.
 
-周计划按真实时间定位，节次只是上课时间的辅助刻度，个人安排可发生在课间和晚间。冲突项目并排展示且可分别打开，不互相遮盖。颜色加文字／图标区分类别，不能只靠颜色。删除先说明范围，完成后提供可行的撤销方式；清空和恢复备份需要独立确认。
+| Page | Main content | First-use guidance |
+|------|--------------|--------------------|
+| Today | Task counts, overdue/undated groups, courses, plans and next entry | Personal plans work without a semester; see [TODAY.md](TODAY.md) |
+| Week | Monday–Sunday timeline with courses, plans, exams and an all-day area | Select a week, return to today and filter visible categories |
+| Courses | Semesters, teaching weeks, periods, courses and rules | Create semester → set periods → add manually or preview import |
+| Tasks | Assignments, other tasks, course links, deadlines and completion | A task may have no deadline |
+| Settings | Semester, language, appearance, transfer, backup and clear | Show school connection only after permission and acceptance; explain read scope, last successful check and disconnect |
+| Weekly Review | Planned time, daily distribution, completion, overdue tasks and week comparison | Open from Week; explain how to add data, without scores |
 
-计划支持日／英／中文；新功能引入文字时同步提供翻译。官网保持日语默认和手动语言切换。应用首版可跟随系统语言，设置中允许覆盖。
+This table lists functional pages, not extra main-navigation items. Calculate review data locally without tracking or a server. Show planned time, not inferred actual study time. Scope, overlap and cross-day rules are in [STATISTICS.md](STATISTICS.md).
 
-## 课程模型
+Place entries by actual time; period labels are an extra guide. Personal plans can occur between classes or in the evening. Show overlapping entries beside one another with separate open actions. Use text/icons as well as color. Explain deletion scope and offer an available undo; clear and backup restore require their own confirmation.
 
-### 学期与教学周
+Plan Japanese, English and Chinese together as each feature is added. The website defaults to Japanese with manual language selection. The app may initially follow the system language and offer a settings override.
 
-- 每个学期具有名称、第一教学周的周一日期、结束日期、固定学期时区和节次表。第一周即使周三开始授课，仍明确选择该周周一作为周序号锚点。
-- 教学周从 1 开始，按日期差计算；周一进入下一周。假期默认不暂停周编号。最后一周可以不满七天，以学期结束日期截断。
-- 奇偶周按教学周序号判定，不能使用公历的 ISO 周数。指定周最终归一成有效周编号集合。
-- 可存多个学期，切换当前学期只改变浏览范围，不能删除旧学期，也不能隐藏个人安排。日期重叠的学期允许存在，但明确显示课程所属学期。
-- 学期起点、时区、结束日期和节次修改前，预览受影响的课程及单次调整；不能静默改变已经调过的课。
+## Course model
 
-### 课程与上课规则
+### Semesters and teaching weeks
 
-课程包含名称、教师、默认教室、颜色和本地备注，地点允许明确校区与楼栋。一门课可有多条上课规则，例如“周一 1–2 节，每周”和“周三 3 节，仅双周”。非规则课程按明确日期/规则表达；不能从有歧义的学校数据中猜测上课日期，未支持的样本在导入预览中阻止确认并说明修正方法。
+- Each semester has a name, the Monday of teaching week 1, an end date, a fixed timezone and a period table. Even if teaching starts on Wednesday, use that week's Monday as the week anchor.
+- Number teaching weeks from 1 using calendar-date differences; a new week starts on Monday. Holidays do not pause numbering. Clip a short final week at the semester end date.
+- Odd/even rules use teaching-week numbers, not ISO calendar week numbers. Normalize selected weeks to a valid set of teaching-week numbers.
+- Keep multiple semesters. Changing the selected semester changes the view, not stored history or independent personal plans. Overlapping semesters are allowed, with clear course ownership.
+- Before changing the anchor, timezone, end date or periods, preview affected courses and exceptions. Do not silently change an already moved class.
 
-每条规则包含星期、有效周集合、起止节次或自定义起止时间，以及可覆盖的教室／教师。节次模式引用学期节次表；自定义时间不会随节次表改变。同一条规则不能同时启用两种时间输入方式。
+### Courses and rules
 
-节次必须同日且按时间递增，不重叠。跨多个节次的课程预览中展示实际起止时间，包括中间休息。首版课程不跨午夜；跨日的个人安排使用独立的日程模型。
+A course has a name, teacher, default room, color and private notes; locations may include campus and building. A course may have several rules, such as Monday periods 1–2 every week and Wednesday period 3 in even weeks. Represent irregular courses through supported explicit dates/rules. Ambiguous school data must not produce guessed dates; block unsupported imports with correction guidance.
 
-### 单次停课、调课和换教室
+A rule contains weekday, active weeks, either start/end periods or custom start/end times, and optional room/teacher overrides. Period mode refers to the semester's period table. Custom times do not change with that table. A rule cannot use both input modes.
 
-课程实例由“规则 ID + 原定日期”稳定标识。编辑时先选择“仅这一次”或“整条规则”；首版不提供复杂的“从本次起”系列分裂。
+Periods are same-day, ordered and non-overlapping. A class spanning periods shows its actual start/end interval, including the breaks between them. The first course model does not cross midnight; overnight personal plans use the separate plan model.
 
-- 停课：保存取消记录，保留原始实例身份。
-- 调课：保存新的日期／时间，原位置不再出现，目标位置只出现一次。
-- 换教室：仅覆盖该次教室。
-- 恢复原安排：移除该实例的例外，不新建一门课程。
-- 将课程从本周移到下周后，仍能按原实例身份编辑和撤销；查询目标周时必须额外查到移入的例外。
-- 修改整条规则后，仍有效的例外继续保留；被新规则排除的例外必须在预览中让用户决定删除或保留为独立个人安排，不能产生孤立记录。
+### Single cancellations, moves and room changes
 
-节假日只作为参考标记。学校校历与法定节假日不同，不能自动把节假日当天的课程取消。假期区间可经预览生成课程取消记录；补课明确指定原课程实例和新日期。详见 [HOLIDAYS.md](HOLIDAYS.md)。
+Identify a class occurrence by rule ID and original local date. Editing offers this occurrence or the whole rule. Do not add series splitting from this occurrence onward in the first version.
 
-## 个人安排模型
+- Cancellation stores an exception while preserving original identity.
+- Moving stores the replacement date/time. Remove the original position and show exactly one replacement.
+- A room change overrides only that occurrence's room.
+- Restore removes the exception; it does not create a new course.
+- A class moved into another week remains editable by its original identity. Queries must include exceptions moved into the requested week.
+- After a whole-rule edit, retain valid exceptions. Preview exceptions excluded by the new rule and let the user remove them or convert them to independent personal plans; do not leave orphaned records.
 
-个人安排无需学期，支持标题、地点、备注、颜色和可选类别。可以是一次性定时安排、全天安排，或有明确结束日期的简单每周重复安排。
+Holidays are reference markers. University calendars and public holidays differ; a public holiday does not cancel a class automatically. A vacation range can generate cancellation candidates after preview. A make-up class identifies the original occurrence and its replacement date. See [HOLIDAYS.md](HOLIDAYS.md).
 
-- 定时安排使用明确的时区和起止时间；结束必须晚于开始，允许跨午夜。
-- 全天安排使用日期区间，不参与定时安排的硬冲突判断。
-- 每周重复支持星期选择及每 N 周一次，以开始日期所在周的周一为间隔锚点；结束日期包含当天。
-- 重复安排也使用“规则 ID + 原定日期”的例外机制，支持单次取消、移动及恢复。
-- 更换系统时区不改写已存的学期或安排时区；周视图采用明确的显示时区。跨时区安排显示来源时区。夏令时中不存在或有歧义的时间需提示选择，不能静默偏移。
-- 日程浏览展开限定在当前时间范围，不预生成无限次记录。
+## Personal plans
 
-“聚餐、就医、社团、兼职班次、自习”都可以作为个人安排录入；长期首版不因类别而引入工资、打卡或复杂业务模块。
+Personal plans do not need a semester. They have a title, location, notes, color and optional category. Support one timed interval, an all-day range, or simple weekly repeats with an end date.
 
-## 作业、考试与冲突
+- Timed plans have an explicit timezone and start/end; end is later than start, including overnight plans.
+- All-day plans use date ranges and do not participate in hard timed-overlap checks.
+- Weekly repeats choose weekdays and a positive interval in weeks. Anchor the interval to Monday of the start-date week; the repeat end date is inclusive.
+- Repeats use stable rule/plan ID plus original-date identity for single cancellations, moves and restore.
+- System-timezone changes do not rewrite saved semester or plan timezones. Week has an explicit display timezone. Show source timezones when relevant; ask about nonexistent or ambiguous daylight-saving times instead of shifting them silently.
+- Expand only within a bounded query window; do not generate an infinite stored series.
 
-作业／普通任务有标题、可选课程关联、备注、可选日期或精确时间的截止信息、完成状态。按日期截止的任务在该日期结束后才算逾期；完成任务不再进入临近截止列表。默认临近截止范围为未来七天，逾期任务单列。
+Meals, medical visits, clubs, work shifts and study sessions can all be personal plans. A category does not introduce payroll, attendance or another business module.
 
-考试是一条关联课程的定时个人安排，参与冲突检测；复习任务可以另建，避免同一考试保存两份互相不一致的时间。
+## Tasks, exams and conflicts
 
-冲突只比较实际时间区间，采用半开区间 [开始, 结束)：10:00 结束与 10:00 开始不冲突。排除取消项、任务截止点和仅作标记的全天项。保存前提示课程与个人安排之间的冲突，用户可以继续保存；冲突不阻止记录真实安排。
+Assignments and general tasks have a title, optional course link, notes, optional date or exact-time deadline, and completion state. A date-only deadline becomes overdue after that date ends. Completed tasks leave the upcoming group. The default upcoming range is seven days; overdue tasks are separate.
 
-检测与显示使用同一套课程／重复实例展开逻辑。检查范围必须在界面说明，例如“已检查至本学期结束”或个人重复安排的结束日期，不能只查当前周却宣称整系列没有冲突。
+An exam is a timed personal plan linked to a course and participates in conflicts. A separate revision task is allowed, but do not store two competing copies of the exam time.
 
-## 同学分享与本地数据
+Compare actual timed intervals using `[start, end)`: an entry ending at 10:00 does not conflict with one starting at 10:00. Exclude cancellations, task deadline points and all-day markers. Warn before saving a course/personal-plan conflict, but allow the user to record a real overlap.
 
-从同学文件、模板和未来学校通道导入都经过校验、预览和确认。文件导入是快照，不能显示为实时同步。获准的学校刷新显示来源、新鲜度与变更；保留用户私人备注及本地调整，不静默覆盖。接口失败或数据缺失不能被当作停课或删除。
+Display and conflict checks use the same occurrence rules. State the checked range, such as the semester end or a repeat's end date. A current-week check cannot claim that an entire series is conflict-free.
 
-**课表分享**和**完整备份**是两个独立入口、两种文件格式：
+## Sharing, import and local data
 
-| 文件 | 内容 | 默认用途 |
-|------|------|----------|
-| `*.cadence-timetable.json` | 选定学期、节次、选定课程及其规则；经用户选择的调停课 | 发给同学 |
-| `*.cadence-backup.json` | 所有本地课程、安排、任务、例外和可导出设置；排除认证凭据 | 自己恢复数据 |
+Files from classmates, templates and future approved school sources all need validation, preview and confirmation. A file is a snapshot, not a subscription. Approved school refresh shows source, age and changes; it preserves private notes and local edits until conflicts are resolved. Failed or incomplete responses do not mean cancellation or deletion.
 
-课程名称、教室和教师在预览中明确展示；课程备注、个人安排、任务、完成状态默认且强制排除于课表分享格式。以后若增加分享字段，需要显式变更格式和界面，而不是顺带导出。
+Timetable sharing and full backup have separate actions and formats:
 
-导入流程：选择文件 → 验证版本与大小 → 预览学期、节次、课程和例外 → 选择创建新学期或映射到已有学期 → 展示冲突与重复 → 事务写入。已有学期的节次不被自动替换；不同节次需用户映射或选新学期。新学期初始推荐使用原课表周锚点；如选择新锚点，预览按周偏移重映射日期和例外。
+| File | Contents | Purpose |
+|------|----------|---------|
+| `*.cadence-timetable.json` | Selected semester, periods, selected courses/rules and explicitly selected exceptions | Share a timetable |
+| `*.cadence-backup.json` | Local courses, plans, tasks, exceptions and exportable settings; no credentials | Restore private data |
 
-文件包含导出 ID 和来源记录 ID，导入时创建新的本地 ID 并保留来源映射；相同文件重复导入默认跳过已导入项。名称相同不代表同一门课。再次收到同学修改后的文件也先预览，首版不自动合并更新或删除本地课表。
+Show course names, rooms and teachers in the sharing preview. The timetable format always excludes private notes, personal plans, tasks and completion state. Adding fields later requires an explicit format/UI change. School-source fields also obey their retention and export permission.
 
-完整恢复先检查格式、关联完整性及版本，生成当前数据的备份，再以事务替换。导入失败必须保持原数据。备份中含个人信息，应在导出界面明确提示是否加密；当前没有实现加密，不能宣称已保护为加密文件。课程文件也可能暴露上课位置。文件由用户主动选择保存和发送，基础流程不经 Cadence 服务器。所有导出均排除学校密码、令牌和会话；恢复备份不会恢复登录。
+Import flow: choose file → validate version and size → preview semester, periods, courses and exceptions → choose a new semester or map to an existing one → review conflicts and duplicates → commit in a transaction. Do not replace existing periods automatically. Different periods need explicit mapping or a new semester. Default a new semester to the source week anchor; a changed anchor previews date/exception remapping by week offsets.
 
-不承诺卸载会删除桌面数据；提供显示数据位置和明确的“清除本机数据”操作。软件升级不能覆盖用户数据目录。
+Files include export and source-record IDs. Allocate new local IDs on timetable import and keep source mappings. Skip already imported records when the same file is repeated. Names alone do not identify a course. A changed file needs another preview; the first version does not silently merge updates or delete local courses.
 
-## 技术与复杂度控制
+Validate backup format, references and version before full restore. In local-saving mode, create a current backup before transactional replacement; temporary-mode import stays in memory under [APPLICATION.md](APPLICATION.md). Failure preserves original data. Explain whether an export is encrypted; encryption is not currently implemented. Even a timetable file may reveal a person's location. Users choose when and where to save or send files; the basic flow uses no Cadence server. Exclude school passwords, tokens and sessions from every export. Restoring a backup does not restore login.
 
-保留 Flutter；产品 UI 已选择 shadcn_ui 但尚未引入，教学入口暂保留 Material。桌面按需引入 Riverpod 与 drift/SQLite，Web 存储适配在对应课次实现。先写可独立测试的教学周、实例展开、例外与冲突逻辑，再接页面。当前不安装未使用的依赖或创建大量空目录。
+Do not promise that uninstall removes desktop data. Offer the data location and an explicit clear-local-data action. Updates must not overwrite user data directories.
 
-本地闭环先完成，未来获准的认证与数据来源适配器通过应用层边界接入，不预建未使用的账号服务、网络层或同步队列。未来 Web 的浏览器存储、生命周期与文件操作需单独验证；不能直接复用桌面数据文件假设。不同设备暂通过手动备份迁移，不共享正在使用的数据库文件。
+## Technology and implementation limits
 
-长期桌面版规划应用进程运行时的本地系统通知；初期 Web 计划不包含通知；权限与平台限制见 [NOTIFICATIONS.md](NOTIFICATIONS.md)，关闭进程后提醒独立验收。编辑界面和可恢复草稿先完成，再实现试用阶段需要的固定模板导入，自动保存规则见 [EDITING.md](EDITING.md)。
+Keep Flutter. shadcn_ui is the product direction, while early lessons may retain Material. Introduce Riverpod and drift/SQLite as needed; add the browser adapter during its own stage. Test teaching weeks, occurrence expansion, exceptions and conflicts before connecting pages. Do not install unused packages or create empty layers.
 
-课表位置、私人安排与备份按敏感数据处理；最小字段、恶意输入验证、凭据隔离、日志脱敏和删除恢复是设计要求。Web 若引入后端，必须增加逐对象访问控制、会话安全和跨用户隔离验收。具体威胁、方案选择与检查见 [SECURITY.md](SECURITY.md)，当前不宣称这些安全机制已实现。
+Complete local behavior first. Future approved identity/source adapters use the application boundary; do not prebuild account services, network layers or sync queues. Browser storage, lifecycle and file handling need separate acceptance and cannot inherit desktop file assumptions. Until sync is implemented, transfer between devices uses explicit backups, not a shared live database file.
 
-架构与数据约束分别见 [ARCHITECTURE.md](ARCHITECTURE.md) 和 [DATABASE.md](DATABASE.md)。
+The later desktop plan includes local notifications while the process runs; initial Web does not. See [NOTIFICATIONS.md](NOTIFICATIONS.md) for permissions and platform limits. Closed-process reminders require separate acceptance. Build editors and recoverable drafts before later fixed-template import work; draft rules are in [EDITING.md](EDITING.md).
 
-## 实施顺序与验收
+Treat schedule locations, private plans and backups as sensitive. Minimize fields, validate untrusted input, isolate credentials, redact diagnostics and test deletion/recovery. A later backend needs object-level authorization, session security and cross-user isolation. These are requirements, not implemented safeguards; see [SECURITY.md](SECURITY.md). Architecture and data constraints are in [ARCHITECTURE.md](ARCHITECTURE.md) and [DATABASE.md](DATABASE.md).
 
-0. **教学起步**：按 [LEARNING.md](LEARNING.md) 每次完成一个小功能；学习者写功能代码，助手写测试。先用简单待办学习 Dart 和界面，再进入持久化与课程。
-1. **课表闭环**：学期、节次、课程规则、教学周和周视图；单次停调课可恢复。
-2. **个人计划闭环**：独立日程、全天和每周重复，统一 Today／周视图，冲突提示。
-3. **学习与导入闭环**：任务与考试、课表导出预览、幂等导入、固定模板 CSV/粘贴、完整备份恢复。
-4. **本地回顾**：使用同一套日程展开结果汇总计划时长和去重占用时长，结合完成时间统计任务；全程离线。
-5. **代表性试用**：Windows 主体验验收，Linux/macOS 真机验证；覆盖不同院系、学生和教师背景，检查三语、无障碍、数据保护及恢复。
-6. **扩大使用准备**：发布经过验证的平台包、安装与支持说明、维护和交接安排。跨群体服务是长期受众目标，发布说明只承诺已验证的功能与覆盖。
+## Delivery and acceptance
 
-继续由学生实现桌面核心，后续按课扩展 Web。当前只整理设计与官网；未来演示通过验收后再用于学校沟通，未完成内容如实说明。导师建议、演示或自愿试用不等于正式接入；认证与数据接口仍单独咨询，不阻塞手动规划产品。
+1. Follow [LEARNING.md](LEARNING.md) one small feature at a time. The learner writes features; the assistant prepares tests. After task basics, complete temporary/local choice, saved tasks, restart recovery, failed-save input retention and clearing before course work.
+2. Complete semesters, periods, course rules, teaching weeks and Week; cancel/move/restore one occurrence.
+3. Add independent plans, all-day and weekly repeats, shared Today/Week views and conflict warnings.
+4. Add linked tasks/exams, sharing previews, repeat-safe import, fixed-template CSV/paste and full backup/restore.
+5. Add offline review using the shared projection for planned time and union of occupied intervals, plus task completion times.
+6. Run a Windows pilot, then native Linux/macOS checks with representative students and teachers, three languages, accessibility and recovery.
+7. Publish only verified packages with installation, support and handover guidance. Audience goals do not establish tested coverage.
 
-完成标准是具体行为通过测试并能在目标系统上使用，不以目录存在或构建通过代替功能验收。详细阶段和估算见 [ROADMAP.md](ROADMAP.md)。
+The learner continues desktop work and later Web lessons. Demonstrations need tested behavior and honest limits before school discussions. Supervisor advice or voluntary feedback does not grant identity/data access and does not block the manual desktop product.
 
-验收例子：在“第 3 周周一 1–2 节”有一门单周课程时，把这次课移到周二晚间；原位置消失、目标位置出现一次，并与同时间的聚餐提示冲突。恢复原课后聚餐保持不变。将课表导出给同学，文件中不包含这次聚餐和私人作业。
+Acceptance means tested behavior works on the target system, not that a folder exists or a build succeeds. See [ROADMAP.md](ROADMAP.md) for stages and estimates.
+
+Example: move an odd-week class from Monday periods 1–2 in teaching week 3 to Tuesday evening. The original disappears, exactly one replacement appears, and a simultaneous dinner shows a conflict. Restore the class and leave dinner unchanged. Share the timetable and confirm that the file excludes dinner and private assignments.
