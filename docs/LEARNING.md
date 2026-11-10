@@ -1,6 +1,6 @@
 # 从零做 Cadence
 
-更新：2026-11-11。第 1–8 节实现及自动验收已完成，第九节标题校验部分通过，当前全部 19 项测试通过。已实现输入控制器及释放、添加任务、完成／撤销、空白标题拒绝及错误修正。学习者确认第八节实际运行中连续添加、输入清空和新任务状态切换正常。第九节校验的实际运行尚未确认，空列表提示尚未实现；接下来继续这一小步。数据仍只在内存中。
+更新：2026-11-11。第 1–10 节实现及自动验收已完成，当前全部 26 项测试通过。已实现输入、添加、标题校验、完成／撤销、空列表提示、删除及撤销最近一次删除。学习者确认空列表提示、添加后提示消失及新任务切换正常；第十节删除与撤销的实际窗口验收、标题校验的手动确认仍待完成。数据仍只在内存中。删除回调中多余的嵌套 setState 已记录为下一次由学习者整理的小项。
 
 ## 分工
 
@@ -53,10 +53,12 @@
 
 第一节已启用到 `test/domain/coursework/planner_task_test.dart`，第二节已启用到 `test/domain/coursework/planner_task_copy_with_test.dart`。第三、五节使用 `test/task_list_widget_test.dart` 检查两种窗口尺寸下的任务内容及回调；第七节将小窗口断言改为实际滚动和点击，适应列表按需创建。第四节使用 `test/practice_counter_widget_test.dart`，第六节使用 `test/task_toggle_widget_test.dart`。第七、八节的 `test/task_title_input_widget_test.dart` 当前检查添加按钮、连续添加与唯一 ID、输入清空、重建保留输入及控制器释放。第九节的 `test/task_title_validation_widget_test.dart` 检查两种尺寸下空白拒绝、不消耗编号、保留输入、首尾去空白及修正后提交。当前全部 19 项通过。`lessons/` 中的模板不重复计入覆盖数量；没有跳过测试来掩盖缺少实现。
 
+第十节新增 `test/task_delete_widget_test.dart` 和 `test/task_undo_delete_widget_test.dart`，覆盖同名任务按 ID 删除、删除不触发完成回调、删空后重新添加、恢复原对象及位置和状态、仅撤销最近一条、撤销按钮禁用，以及删除后新增再撤销。当前总计 26 项通过；上述历史课次说明中的 19 项为第九节标题校验阶段的数量。
+
 ## 时间预期
 
 原 80–140 工时仅是较早小范围桌面方案的估算，不能用于新的扩大受众后的产品目标。代表性试用、数据保护、运维支持、Web 教学与实现和学校协调需分别评估，且学校审批时间不可当作开发工时。先完成前三小节，再按实际学习与实现速度逐阶段估算，不承诺全校上线日期。
 
 学生自己学写桌面核心仍按 **64 节达到 Windows 本地试用版、80–100 节推进到经过更广泛验证的可维护桌面版本**规划，课时总数从第一节起计算。每节约 20–45 分钟讲解，编码与练习另计。复用桌面核心的无后台 Web 暂加 8–16 节，合计约 88–116 节；学校接入和后台另外评估。每约 8 节按进度修订，详见 [课程安排](CURRICULUM.md)。
 
-[第七节：输入与控制器](lessons/07-title-input.md)、[第八节：添加任务](lessons/08-add-task.md) 已完成实现及自动验收。[第九节：标题校验与空列表提示](lessons/09-validation.md) 的标题校验已通过，下一步学习空列表条件显示。此前记录见[第六节](lessons/06-task-toggle.md)、[第五节](lessons/05-task-row.md)、[第四节](lessons/04-state.md)、[第三节](lessons/03-task-list.md)、[第二节](lessons/02-copy-with.md)与[第一节](lessons/01-task.md)。
+[第九节：标题校验与空列表提示](lessons/09-validation.md) 和[第十节：删除与单次撤销](lessons/10-delete-undo.md) 已通过实现检查及自动验收。下一步先由学习者整理嵌套 setState 并确认删除／撤销实际运行，再进入第十一节桌面 UI 阶段。前序课程见[第七节](lessons/07-title-input.md)、[第八节](lessons/08-add-task.md)及更早课次。

@@ -51,10 +51,11 @@ void main() {
     });
   }
 
-  testWidgets('TaskRow reports a tap through its callback', (
+  testWidgets('TaskRow reports toggle and delete through separate callbacks', (
     WidgetTester tester,
   ) async {
     var toggleCount = 0;
+    var deleteCount = 0;
     final task = PlannerTask(id: 'callback-task', title: '回调练习');
 
     await tester.pumpWidget(
@@ -65,14 +66,24 @@ void main() {
             onToggle: () {
               toggleCount += 1;
             },
+            onDelete: () {
+              deleteCount += 1;
+            },
           ),
         ),
       ),
     );
 
     expect(toggleCount, 0);
+    expect(deleteCount, 0);
     await tester.tap(find.text('回调练习'));
     await tester.pump();
     expect(toggleCount, 1);
+    expect(deleteCount, 0);
+    await tester.tap(find.byTooltip('删除任务'));
+    await tester.pump();
+    expect(deleteCount, 1);
+    expect(toggleCount, 1);
+    expect(tester.takeException(), isNull);
   });
 }

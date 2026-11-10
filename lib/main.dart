@@ -31,6 +31,8 @@ class TodayPage extends StatefulWidget {
 class _TodayPageState extends State<TodayPage> {
   int practiceCount = 0;
   int nextTaskNumber = 1;
+  PlannerTask? lastDeletedTask;
+  int lastDeletedIndex = 0;
 
   final titleController = TextEditingController();
 
@@ -45,6 +47,19 @@ class _TodayPageState extends State<TodayPage> {
   void dispose() {
     titleController.dispose();
     super.dispose();
+  }
+
+  void undoDelete() {
+    final taskToRestore = lastDeletedTask;
+
+    if (taskToRestore == null) {
+      return;
+    }
+
+    setState(() {
+      tasks.insert(lastDeletedIndex, taskToRestore);
+      lastDeletedTask = null;
+    });
   }
 
   @override
@@ -72,6 +87,10 @@ class _TodayPageState extends State<TodayPage> {
                   });
                 },
                 child: const Text("加1"),
+              ),
+              TextButton(
+                onPressed: lastDeletedTask == null ? null : undoDelete,
+                child: const Text('撤销删除'),
               ),
             ],
           ),
@@ -109,22 +128,38 @@ class _TodayPageState extends State<TodayPage> {
             child: const Text('添加任务'),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) {
-                final task = tasks[index];
-                return TaskRow(
-                  task: task,
-                  onToggle: () {
-                    setState(() {
-                      tasks[index] = task.copyWith(
-                        isCompleted: !task.isCompleted,
+            child: tasks.isEmpty
+                ? const Center(child: Text('暂无任务，添加一条吧'))
+                : ListView.builder(
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) {
+                      final task = tasks[index];
+                      return TaskRow(
+                        task: task,
+                        onToggle: () {
+                          setState(() {
+                            tasks[index] = task.copyWith(
+                              isCompleted: !task.isCompleted,
+                            );
+                          });
+                        },
+                        onDelete: () {
+                          setState(() {
+                            final deletedIndex = tasks.indexWhere(
+                              (item) => item.id == task.id,
+                            );
+
+                            if (deletedIndex == -1) {
+                              return;
+                            }
+
+                            lastDeletedIndex = deletedIndex;
+                            lastDeletedTask = tasks.removeAt(deletedIndex);
+                          });
+                        },
                       );
-                    });
-                  },
-                );
-              },
-            ),
+                    },
+                  ),
           ),
         ],
       ),
@@ -133,17 +168,27 @@ class _TodayPageState extends State<TodayPage> {
 }
 
 class TaskRow extends StatelessWidget {
-  const TaskRow({super.key, required this.task, required this.onToggle});
+  const TaskRow({
+    super.key,
+    required this.task,
+    required this.onToggle,
+    required this.onDelete,
+  });
 
   final PlannerTask task;
   final VoidCallback onToggle;
-
+  final VoidCallback onDelete;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(task.title),
       subtitle: Text(task.isCompleted ? "已完成" : "未完成"),
       onTap: onToggle,
+      trailing: IconButton(
+        onPressed: onDelete,
+        icon: const Icon(Icons.delete_outline),
+        tooltip: '删除任务',
+      ),
     );
   }
 }
