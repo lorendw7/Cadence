@@ -34,6 +34,8 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 | [University integration](UNIVERSITY_INTEGRATION.md) | Supervisor support, school permission, read-only scope and connection lifecycle |
 | [Security and data protection](SECURITY.md) | Private data, desktop safeguards, planned Web data boundaries and future security acceptance |
 | [Developer protection technologies](DATA_PROTECTION.md) | Encrypted storage, platform key storage, authenticated backups, safe inputs and release security; candidates not installed |
+| [Multi-client sync](SYNC.md) | Conditional desktop/Web synchronization: consent, identity, outbox, conflicts, deletion, recovery and server security |
+| [ADR-006](adr/006-optional-multi-client-sync.md) | Proposed optional sync service after applicable school/hosting permissions; local-only mode retained |
 | [Notifications](NOTIFICATIONS.md) | Local reminders and platform acceptance |
 | [Quick import](QUICK_IMPORT.md) | Fixed-template CSV/paste for pilot onboarding |
 | [Local statistics](STATISTICS.md) | Planned-time calculation, overlaps, task counts and offline acceptance |

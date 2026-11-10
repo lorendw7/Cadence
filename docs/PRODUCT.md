@@ -12,6 +12,8 @@ The learning executable displays Today and two read-only sample tasks with compl
 
 ## Planned first browser-local version
 
+Optional multi-client sync is now a separate conditional proposal in [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md), not part of the initial browser-local milestone below. It requires explicit cloud-data consent and permitted hosting/retention in addition to the relevant school approvals. Login does not silently upload a local workspace, and independent local use remains available.
+
 | Area | Future implementation target |
 |------|-------------------------------|
 | Schedule | Manual course/personal-entry CRUD and bounded weekly repeats |

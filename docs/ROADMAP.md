@@ -120,6 +120,8 @@ Acceptance: supported students can discover, install, use and recover the app wi
 
 ## Estimation and deferred scope
 
+Optional multi-client sync now has a conditional design in [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md). Implement only after the local persistence/recovery foundation and applicable approval/operating conditions: two-client fictional-data prototype, retries/conflicts/deletion/expired-device recovery, then identity isolation and approved Web trial. It is outside the initial no-backend Web milestone and existing lesson estimates; no core code or deployment is implied.
+
 Developer-side protection follows [DATA_PROTECTION.md](DATA_PROTECTION.md): input and transaction safeguards with persistence, verified encryption/platform key storage, authenticated backups and recovery, then conditional API/Web hardening. These are implementation responsibilities, not optional user defenses. Re-estimate this security work in the relevant lessons; installing a package does not complete its acceptance gate.
 
 The earlier 80–140-hour figure covered a narrower local desktop plan and is not an estimate for this broader product goal. Re-estimate each stage after a working persisted slice, representative timetable samples, Web implementation constraints and official interface conditions are known. Separate engineering effort from beginner learning, tester/device availability, signing costs and school review time. Do not commit to a total completion date from the old figure.

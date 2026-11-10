@@ -62,6 +62,8 @@ Evaluate platform packages against Windows, Linux and macOS; verify browser supp
 
 ## State ownership and mutation flow
 
+For the later optional sync service, see [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md). The proposed architecture adds a single HTTPS API and PostgreSQL, with local transactional outboxes, server versions and committed change cursors. Local revisions remain local; school refresh remains a separate reviewed source flow. This does not add a backend to the current lessons or authorize deployment.
+
 Security implementation candidates are in [DATA_PROTECTION.md](DATA_PROTECTION.md): encrypted native storage and platform key management belong behind infrastructure adapters; domain rules stay independent. Do not install these packages during the current task-list lesson. Treat encryption, input validation and access authorization as developer responsibilities rather than user-controlled safety switches.
 
 | State | Owner | Rule |
