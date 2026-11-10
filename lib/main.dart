@@ -30,11 +30,22 @@ class TodayPage extends StatefulWidget {
 
 class _TodayPageState extends State<TodayPage> {
   int practiceCount = 0;
+  int nextTaskNumber = 1;
+
+  final titleController = TextEditingController();
+
+  String? titleError;
 
   final tasks = <PlannerTask>[
     PlannerTask(id: 'demo-1', title: '提交课程报告', isCompleted: false),
     PlannerTask(id: 'demo-2', title: '复习线性代数', isCompleted: true),
   ];
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +55,58 @@ class _TodayPageState extends State<TodayPage> {
         children: [
           Text("今天"),
           Text('练习次数：$practiceCount'),
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    practiceCount = 0;
+                  });
+                },
+                child: Text("归零"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    practiceCount += 1;
+                  });
+                },
+                child: const Text("加1"),
+              ),
+            ],
+          ),
+          TextField(
+            controller: titleController,
+            decoration: InputDecoration(
+              labelText: '任务标题',
+              errorText: titleError,
+            ),
+          ),
           TextButton(
             onPressed: () {
+              final title = titleController.text.trim();
+              if (title.isEmpty) {
+                setState(() {
+                  titleError = '请输入任务标题';
+                });
+
+                return;
+              }
+
+              final newTask = PlannerTask(
+                id: 'local-$nextTaskNumber',
+                title: title,
+              );
+
               setState(() {
-                practiceCount = 0;
+                tasks.add(newTask);
+                nextTaskNumber += 1;
+                titleError = null;
               });
+
+              titleController.clear();
             },
-            child: Text("归零"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                practiceCount += 1;
-              });
-            },
-            child: const Text("加1"),
+            child: const Text('添加任务'),
           ),
           Expanded(
             child: ListView.builder(

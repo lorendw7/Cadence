@@ -6,7 +6,7 @@
 
 <br clear="left">
 
-**Development status:** lessons 1–6 have passed implementation and automated acceptance, with all 13 tests passing. The learning application shows Today, two sample tasks and a practice counter with increment/reset buttons. Tapping a TaskRow toggles completion through its parent callback, copyWith and setState. The learner confirmed immediate updates and preservation of task state after counter interactions in the actual window. Next is reading a task title from an input field. Task creation, course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
+**Development status:** lessons 1–8 and the title-validation portion of lesson 9 have passed automated acceptance, with all 19 tests passing. The application supports title input, adding tasks, completion/undo and correctable blank-title errors; successful additions trim the title and clear the input. The learner confirmed continuous addition, input clearing and new-task toggling in the actual window. Lesson 9's empty-list message is next; manual title-validation confirmation is pending. Data remains in memory. Deletion, course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
 
 **Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
 
