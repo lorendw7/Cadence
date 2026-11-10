@@ -1,12 +1,34 @@
 # Architecture
 
-Updated: 2026-11-10. Status: **target architecture, not implemented**. Cadence's product goal is to serve students across Kyushu University through Windows, Linux and macOS applications. A web application is a candidate for feasibility assessment; mobile applications are outside the plan. The current executable is the small Today placeholder in `lib/main.dart`. The retained Android runner is legacy scaffolding, and there is no iOS or web runner. The learner's task-model exercise is separate from the persistence design below. [REDESIGN.md](REDESIGN.md) defines behavior; [LEARNING.md](LEARNING.md) defines teaching order.
+Updated: 2026-11-10. Status: **target architecture, not implemented**. Cadence is a planner primarily for students and also suitable for teachers and other users. Windows/Linux/macOS and Web are confirmed targets; mobile apps are excluded. The current executable remains the Today placeholder in `lib/main.dart` and separate task-model exercises. The selected Flutter shadcn_ui package is not introduced yet; the learner implements core features through lessons. The assistant handles delegated docs/website work, explanation, review and appropriate tests/templates. [ADR-004](adr/004-shadcn-web-direction.md) records the current direction.
 
-Manual planning and local import require no account or server. Authorized university authentication and read-only timetable access are conditional future capabilities, not prerequisites for the local core. No school approval or usable timetable API has been established. See [ADR-002](adr/002-university-wide-product.md) and [university integration](UNIVERSITY_INTEGRATION.md) for the product boundary and unresolved dependencies.
+Manual planning and local import require no account or server. Authorized university authentication and read-only timetable access are conditional future capabilities, not prerequisites for the local core. No school approval or usable timetable API has been established. See [ADR-004](adr/004-shadcn-web-direction.md) and [university integration](UNIVERSITY_INTEGRATION.md) for the product boundary and unresolved dependencies.
 
-## Layers
+## Selected structure and when it grows
 
-Arrows mean **imports / depends on**, not write order. `app/` constructs concrete adapters and injects them through application-owned ports.
+Use **one modular client**: one application package, with explicit internal responsibilities and one canonical store per user data directory. Each supported OS gets a build of the same product. Modules are code boundaries, not separately deployed services or independent databases. A broader student/teacher audience does not require a central backend when each user plans locally. [ADR-003](adr/003-incremental-modular-client.md) records this choice and its trade-offs.
+
+This uses the separation of responsibilities and one-way data flow described in Flutter's [architecture guide](https://docs.flutter.dev/app-architecture/guide) and [recommendations](https://docs.flutter.dev/app-architecture/recommendations). The exact modules and introduction triggers below are Cadence decisions; those guides are not a requirement to create every layer for a small task screen. Keep the repository's pinned SDK and evaluate new packages only when their working stage begins.
+
+Build a complete small user flow before introducing the next boundary. A working feature includes its relevant failure behavior, not only the happy-path screen. These are implementation triggers, not extra prerequisites for the current lesson:
+
+| Working stage | Introduce because it is needed | Keep deferred | Observable exit |
+|---------------|-------------------------------|---------------|-----------------|
+| Model and one in-memory task screen | Plain Dart task values; feature widgets; screen-local `setState` | Application ports, database, Riverpod, generic controllers | Add/complete/undo works; closing loses data and the screen says so |
+| First persisted task flow | One task query/command boundary, a small storage port, drift/SQLite adapter, startup wiring and truthful save state | Course tables, recurrence, import and remote interfaces | Restart preserves confirmed tasks; a failed save preserves input and reports failure |
+| Shared async views and recoverable editing | Shared query owner, Riverpod wiring when justified, editor-session drafts and revision checks | Global event bus, duplicated page-owned task lists, all future screens | Editing once updates every active consumer; stale results and queued draft writes cannot undo newer work |
+| Courses and multiple schedule consumers | Semester/rule models, one bounded occurrence projector, consistent schedule snapshots and preview/commit | Stored occurrence cache, advanced sync engine | Today, Week and conflicts agree on a moved or cancelled class |
+| Files, review and reminders | Dedicated consumers/adapters around existing saved data and projection | New copies of scheduling rules, speculative platform packages | Private data stays out of sharing; failed import rolls back; reminder failure does not undo a saved schedule |
+| Web implementation stage | Browser-local adapter, explicit save choice, strict JSON and deployment behavior | Accounts, backend, school API, speculative platform parity | Browser storage/failure/clearing and actual deployment accepted |
+| Approved school source, if pursued | Only adapters justified by an authorized data contract | Guessed APIs or credential collection | Permission and source-data security gates pass |
+
+Choose Riverpod for shared asynchronous view state and dependency wiring when multiple consumers or replaceable I/O make ownership difficult. A single screen's open panel, text input or selected tab still belongs in local widget state; neither persistence nor the mere existence of folders forces a new state-management package. drift is the planned desktop persistence adapter, introduced with the first saved flow. `pubspec.yaml` remains the source of truth for installed dependencies.
+
+The interface uses shared application presentation components without importing platform services into domain rules. Component/library choices and desktop interaction rules are in [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md). Work items, review and acceptance follow [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md); the learner continues through [LEARNING.md](LEARNING.md) one small exercise at a time.
+
+## Dependencies after persistence is introduced
+
+Arrows mean **imports / depends on**, not write order. This is the target for persisted/shared features, not the initial in-memory lesson. `app/` constructs concrete adapters and injects them through application-owned ports. Plain domain values may be used directly by a feature.
 
 ```mermaid
 flowchart TD
@@ -14,9 +36,10 @@ flowchart TD
     App --> Data[Data adapters: SQLite and file codecs]
     App --> Platform[Platform adapters: files and notifications]
     UI --> Application[Application: commands, queries and ports]
+    UI --> Domain[Domain: models, validation and projections]
     Data --> Application
     Platform --> Application
-    Application --> Domain[Domain: models, validation and projections]
+    Application --> Domain
     Data --> Domain
 ```
 
@@ -29,15 +52,33 @@ flowchart TD
 | `platform/` | Native file dialogs, lifecycle and notification capabilities | Ownership of canonical course/task data |
 | `app/` | Startup, wiring, routing and themes | Shared business logic |
 
-Features communicate through application queries/commands, not each other's controllers. Ports expose domain values and typed outcomes; database rows and file/plugin DTOs are mapped inside adapters. Add concrete operations for use cases instead of a generic CRUD framework. See [ADR-001](adr/001-local-application-boundaries.md) for the decision and alternatives, and [APPLICATION.md](APPLICATION.md) for transaction, query and recovery contracts.
+Persisted features communicate through application queries/commands, not each other's controllers. Ports expose domain values and typed outcomes; database rows and file/plugin DTOs are mapped inside adapters. Add concrete operations such as saving a task or previewing a course change instead of a generic CRUD framework. A trivial pure model operation does not need a separate use-case class. See [ADR-001](adr/001-local-application-boundaries.md) for the decision and alternatives, and [APPLICATION.md](APPLICATION.md) for transaction, query and recovery contracts.
 
-Widgets do not read SQL or parse import files. Domain functions do not depend on Flutter widgets, the database or system time. Inject a clock for Today and overdue calculations. Repositories expose streams; application use cases group related mutations into transactions.
+Widgets do not read SQL or parse import files. Domain functions do not depend on Flutter widgets, the database or system time. Inject a clock for Today and overdue calculations. Storage queries may return a snapshot or a stream according to the consumer; do not require every query to be reactive. Application use cases group related mutations into transactions.
 
-Begin with plain Dart models and Flutter's built-in local widget state. Introduce Riverpod when multiple screens share state and drift/SQLite when implementing desktop persistence. Current installed dependencies remain in `pubspec.yaml`. Evaluate platform packages against Windows, Linux and macOS; assess browser support separately if the web candidate is selected. An unavailable capability needs a documented fallback or a narrower release claim. Weekly review uses pure Dart calculations and basic Flutter bars/text initially; no chart service or chart package is required. See [LEARNING.md](LEARNING.md) and [STATISTICS.md](STATISTICS.md).
+Evaluate platform packages against Windows, Linux and macOS; verify browser support during the confirmed Web stage. An unavailable capability needs a documented fallback or a narrower release claim. Weekly review uses pure Dart calculations and basic Flutter bars/text initially; no chart service or chart package is required. See [STATISTICS.md](STATISTICS.md).
+
+## State ownership and mutation flow
+
+| State | Owner | Rule |
+|-------|-------|------|
+| Confirmed tasks, courses and personal plans | Local persistence adapter behind application operations | One canonical saved representation; no second mutable list in another page |
+| Model/list lesson before persistence | The single task-screen state | Temporary ownership only; explicit data-loss notice and no claimed durability |
+| Editor input and recoverable drafts | One editor session and its draft coordinator | Unsaved input is not a confirmed course; sequence saves and retain input on failure |
+| Loading, pending write, failure and last loaded data | Feature controller/shared query owner | Acknowledged persistence determines saved status; stale requests cannot replace newer ones |
+| Selection, focus, expansion and open dialogs | The nearest relevant widget or page | Keep transient UI state out of the database unless it is an explicit user preference |
+| Teaching weeks, occurrences, conflicts and review totals | Pure functions over an identified saved snapshot | Derived values are not another editable data store |
+| Reminder dispatch state | Reminder adapter/coordinator | OS delivery status is separate from schedule persistence |
+
+For a saved edit: the feature captures input → an application operation validates and commits through the writer → the storage/query owner publishes confirmed data → consumers render it. A controller must not both append an optimistic item and append the same item again when a database stream arrives. The first persisted flow uses confirmed writes and visible pending state; optimistic interactions require a separately specified rollback/reconciliation behavior if later justified. Failure keeps the editor open and does not falsely announce a successful save.
+
+Today counts, task lists and reminder decisions must derive from the same saved interpretation. Multiple views may cache read-only snapshots with request identities; none may become an independent source of task completion or course truth.
 
 ## Source organization
 
-Create modules when code is introduced, not as empty scaffolding.
+Group UI widgets and their controllers by feature; group reusable domain/application operations by the same capability. A task feature never calls a Week controller, and a storage adapter never imports a feature. Share reusable presentation components through the UI layer described in [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md), while shared scheduling rules stay in `domain/`.
+
+Create files when their first implementation is introduced. The current learning code needs only `main.dart` and `domain/coursework/planner_task.dart`; no alternate implementation is created for the learner. The first list can add `features/tasks/`; the first persisted task slice adds only its used `application/coursework/` operations/port, `data/` adapter and `app/` wiring. Do not create the complete tree below at once.
 
 ```text
 lib/
@@ -49,7 +90,7 @@ lib/
     coursework/          # deadlines and completion
     statistics/          # bounded interval aggregates, no UI or network
   application/
-    ports/               # storage, clock, timezone, files, notifications
+    ports/               # shared ports only; feature-specific ports stay with capability
     coursework/          # task commands and Today query
     scheduling/          # schedule query and preview/commit commands
     editing/             # ordered draft saves and promotion
@@ -72,17 +113,9 @@ test/                    # mirror domain/data/features modules
 integration_test/        # add with persisted user flows
 ```
 
-This tree describes the local implementation sequence. Future approved identity and timetable-source adapters belong behind application-owned ports, outside the domain. Define their concrete interfaces only after the supported protocol and data contract are known. Do not add empty authentication modules, a speculative backend or a general synchronization engine to the current exercise.
+This is a navigation map for the eventual local features, not a checklist of required folders. Keep interfaces near their consuming capability; promote one to `application/ports/` only when multiple capabilities share it. A single generic `utils/`, service locator, base repository or inheritance-heavy controller framework must not become a substitute for named responsibility. Avoid one class/file per trivial operation, a multi-package workspace, event sourcing, an event bus or persisted occurrence caches until a concrete measured need justifies the cost.
 
-| First working slice | Boundary introduced | Exit condition |
-|---------------------|---------------------|----------------|
-| Task model and in-memory list | Plain model and widget-local state | Add/complete/undo; disclose that closing loses data |
-| Saved tasks and drafts | Application command, storage port, SQLite adapter | Restart preserves confirmed data; failures retain input |
-| Today and personal plans | Injected clock and bounded queries | Midnight, deadline and resume refresh; counts equal lists |
-| Courses and single changes | Shared occurrence projection | Move across weeks, cancel and restore without duplicates |
-| Review, files and reminders | Consumers and dedicated adapters | Consistent results, privacy, rollback and native failure checks |
-
-These are incremental boundaries, not prerequisites for the current task-model lesson. Do not create empty modules, install unused dependencies or introduce an event bus/persistent occurrence cache.
+Future approved identity and timetable-source adapters belong behind application-owned ports, outside the domain. Define their concrete interfaces only after the supported protocol and data contract are known. Do not add empty authentication modules, a speculative backend or a general synchronization engine to the current exercise.
 
 ## Optional university integration
 
@@ -96,15 +129,17 @@ The initial integration target is user-initiated refresh with review, not contin
 
 Keep session secrets outside the ordinary schedule database and use a desktop secure-storage adapter only when the approved protocol requires persistence. Exclude passwords, tokens, cookies and other session material from timetable files, full backups, diagnostics and logs. A school-mandated server, if any, needs a separate deployment, operating-cost and data-retention decision; it is not assumed by the local architecture. Browser storage is not a substitute for an OS credential vault. Any web-session design needs a separate assessment under [SECURITY.md](SECURITY.md).
 
-## Web application candidate
+## Confirmed Web target, not implemented
 
-The existing `website/` is a static project website, not the planner application or a school-login service. Evaluate a browser planner as a separate candidate before adding a runner or committing to deployment. Compare a client-local application delivered as static assets with a server-backed design only if confirmed requirements need a server. Neither is selected or implemented yet.
+The `website/` project site contains concepts and is not a functional planner. Web is now a confirmed development target; the learner implements it after reusable core behavior exists. No Web app, backend or school-login surface is currently implemented.
 
-The pure Dart domain and application contracts are intended to remain reusable. Browser persistence, file export, multi-tab coordination, notifications and lifecycle require dedicated capability checks and adapters. IndexedDB-backed persistence is a candidate; do not assume a desktop SQLite file, filesystem locking or OS file dialogs exist in the browser. Test transaction behavior, quota failures, storage eviction, private-browsing restrictions and version upgrades before promising offline use or durable storage. Provide explicit export/recovery and disclose that clearing browser data can erase local records.
+The first Web plan uses memory by default and explicit browser-local saving. A small versioned snapshot in localStorage is the initial storage option, to be validated for errors, limits, clearing and concurrent tabs. Strict JSON import is limited to 1 MiB UTF-8 and 2,000 combined records, previewed before whole-data replacement; export is private, and clearing affects only this application's keys. This simplified plan is not the complete desktop SQLite/draft/backup contract.
 
-The trust boundary changes when executable assets are delivered remotely: injected scripts could read browser-held timetables. Keep timetable text inert, restrict scripts and network destinations with a reviewed CSP, avoid unneeded third-party scripts, and use HTTPS. Public static assets must contain no server secrets. A browser school connection must not expose privileged credentials or silently proxy data to an unapproved service. Do not add long-lived university tokens to ordinary browser storage.
+First-Web scope is manual courses/personal arrangements, bounded weekly repeats, Today/Week, tasks and completion, and three languages. It excludes backend/accounts, school APIs, synchronization, CSV, notifications and single-occurrence exceptions. Browser storage, files, lifecycle and future expansion require dedicated capability checks; do not promise the desktop filesystem or transaction behavior exists unchanged.
 
-If a backend is later justified, require an explicit API/data-flow design, server-side authorization for every student-owned object, separation of student data and scoped school access. Never trust a student/account ID supplied by the client as proof of access. Review secure session cookies, CSRF protection where applicable, request limits, retention/deletion and recovery before a pilot. Detailed data categories, threat assumptions and acceptance gates belong in [SECURITY.md](SECURITY.md), not implementation shortcuts in the web UI.
+Keep untrusted timetable text inert, review dependencies, constrain scripts/requests with an effective CSP and use HTTPS. Same-origin deployment shares website script/storage trust; paths do not isolate private browser data. Store no secret or personal fixture in public assets, URLs or logs. Browser clearing can lose saved data, and local saving is not encryption or backup.
+
+A later backend would require a separate justified decision, per-user object authorization, secure sessions/CSRF where applicable, retention/deletion, recovery and operational ownership. It is not implied by Web delivery. Detailed requirements are in [SECURITY.md](SECURITY.md).
 
 ## Schedule projection
 
@@ -136,7 +171,7 @@ University connection credentials and account identifiers are not part of timeta
 
 ## Platform boundary
 
-Keep standard Flutter desktop folders. No Android or iOS product release is planned; the retained Android runner does not change that scope. Share the domain and application layers across desktop targets, and evaluate reuse separately for the web candidate. A Windows pilot can validate the local model, but university-wide claims still require evidence of timetable coverage, usable languages/accessibility and the availability of the declared supported platforms.
+Keep standard Flutter desktop folders. No Android or iOS product release is planned; the retained Android runner does not change that scope. Share the domain and application layers across desktop targets, and implement and validate browser adapters in the Web stage. A Windows pilot can validate the local model, but wider student/teacher availability claims still require evidence of timetable coverage, usable languages/accessibility and the availability of the declared supported platforms.
 
 Test file dialogs, paths, keyboard input, text scaling, accessibility, persistence and resume behavior on each supported desktop host. CI debug builds prove compilation, not runtime behavior or signing. Running-process system notifications are planned behind a mockable platform adapter; see [NOTIFICATIONS.md](NOTIFICATIONS.md). Background/closed-process behavior is a separate acceptance stage on every platform; desktop behavior cannot be promised for a browser build. Draft persistence and revision ordering follow [EDITING.md](EDITING.md).
 

@@ -1,6 +1,6 @@
 # Local data model
 
-Updated: 2026-11-10. Status: local-core schema proposal, not implemented. It supports the local-first university-wide direction in [ADR-002](adr/002-university-wide-product.md); it does not assume a hosted account database or cloud synchronization. Implement migrations alongside the features in [ROADMAP.md](ROADMAP.md). Conditional university-source metadata is described below as requirements, not tables to create now.
+Updated: 2026-11-10. Status: local-core schema proposal, not implemented. It supports the local-first student/teacher direction in [ADR-004](adr/004-shadcn-web-direction.md); it does not assume a hosted account database or cloud synchronization. Implement migrations alongside the features in [ROADMAP.md](ROADMAP.md). Conditional university-source metadata is described below as requirements, not tables to create now.
 
 ## Tables
 
@@ -34,13 +34,13 @@ Drafts and notification metadata are local only. Drafts may be incomplete; valid
 
 The local-core schema contains no account/session tables, remote cursors or synchronization outbox. Do not add speculative remote fields during the current lessons. Passwords and session secrets must never be stored in the ordinary schedule database or serialized into either export format. If an approved university protocol later needs persistent credentials on desktop, keep them behind platform secure storage with an explicit deletion policy. Browser storage is not an equivalent credential vault; a web-session design needs a separate security review.
 
-## Storage boundaries and web candidate
+## Storage boundaries and planned Web snapshots
 
-The tables above describe logical data implemented initially through desktop SQLite. A web application is a candidate, with no current runner or persistence adapter. IndexedDB-backed storage may be evaluated, but a browser does not supply the same filesystem, writer locks, durability or backup behavior as desktop SQLite. Preserve invariants and transaction outcomes through an explicit adapter contract; do not promise that an ordinary SQLite database file can be shared with the browser.
+The tables above are the future desktop SQLite proposal, not current code. Web is a confirmed target with no implemented planner or persistence adapter. The first Web plan uses memory and opt-in localStorage for a small versioned snapshot, with strict JSON limited to 1 MiB UTF-8 and 2,000 combined schedule/task records. Previewed import replaces the entire snapshot; its private export is not the timetable-sharing or full desktop-backup format below. A browser does not supply desktop filesystem, writer locks, durability or backup semantics. Preserve invariants and transaction outcomes through an explicit adapter contract; do not promise that an ordinary SQLite database file can be shared with the browser.
 
 Test quota/transaction failures, cleared or evicted data, private-browsing behavior, concurrent tabs, migrations and recovery from interruption. A successful write does not establish permanent browser retention. Explain these limits and provide explicit portable exports before treating browser storage as the user's only copy. Desktop local storage likewise does not by itself imply encryption or protection against another process with access to the user's files.
 
-Keep privacy categories separate: shareable instructional fields, private plans/tasks/notes, private import provenance, and authentication secrets. Backups of the first three remain private user files; school secrets never enter them. If a server is later selected, the logical schema additionally needs enforced ownership and object-level authorization for all student data, explicit retention/deletion and controlled recovery. These server tables are not part of the current schema proposal. See [SECURITY.md](SECURITY.md).
+Keep privacy categories separate: shareable instructional fields, private plans/tasks/notes, private import provenance, and authentication secrets. Backups of the first three remain private user files; school secrets never enter them. If a server is later selected, the logical schema additionally needs enforced ownership and object-level authorization for all user data, explicit retention/deletion and controlled recovery. These server tables are not part of the current schema proposal. See [SECURITY.md](SECURITY.md).
 
 ## Future university-source provenance
 
@@ -52,7 +52,7 @@ Whether and how the source identifies a student and provides completeness/versio
 
 Timetable-sharing files exclude school account identifiers, connection metadata and source-access material. A future versioned private backup may include only the minimum non-secret provenance needed to preserve local records; disclose that personal data in the backup preview. Authentication material is always excluded. Restoring provenance cannot restore a connection: require reauthorization and a verified matching student context before using it for further reads. Incompatible or unverifiable bindings leave the restored timetable usable as local data.
 
-Campus/faculty/academic-period presets need source, version and applicability metadata when implemented. The schema must not force every Kyushu student into one timetable or period table. Validate whether the existing semester/rule representation covers the intended pilot groups before adding fields or claiming university-wide academic coverage.
+Campus/faculty/academic-period presets need source, version and applicability metadata when implemented. The schema must not force every student or teacher into one timetable or period table. Validate whether the existing semester/rule representation covers the intended pilot groups before adding fields or claiming broader academic coverage.
 
 ## Important invariants
 

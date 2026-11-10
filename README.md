@@ -2,62 +2,59 @@
 
 # Cadence
 
-**Courses and personal plans, together.** A local-first planner being built for all Kyushu University students.
+**A calm place for your time.** A time planner primarily for students, also suitable for teachers and other people organizing study, work and personal life. Courses are one kind of schedule entry; no school identity is required.
 
 <br clear="left">
 
-**Development status:** the app currently displays a Today placeholder. Windows, Linux, macOS and Android runners exist; course management, storage and sharing are not implemented yet. There is no downloadable feature-complete release.
+**Development status:** the executable is still a Today placeholder with separate task-model learning exercises. Course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
 
-**Product direction:** Windows, Linux and macOS, distributed initially through GitHub Releases. No mobile app development is planned; Android is retained only as legacy scaffolding. A Web scheduling system is a candidate pending feasibility and security review; the current website is a static project introduction.
+**Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
 
-Cadence is an independent student project. University endorsement and system access have not been obtained. Optional school-approved authentication and read-only timetable import are planned goals; basic local use will not require an account.
+Cadence is independent. It does not copy Kyushu University's official identity or imply endorsement. Future school demonstrations may invite feedback; school authentication and timetable-data access are optional integrations requiring separate authorization. Manual planning requires neither.
 
-[Product design / 产品设计](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Security / 数据保护](docs/SECURITY.md) · [University integration](docs/UNIVERSITY_INTEGRATION.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md) · [Website](https://lorendw7.github.io/Cadence/)
+[Product design / 产品设计](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [UI design](docs/UI_ARCHITECTURE.md) · [Data protection](docs/SECURITY.md) · [Future school demo](docs/SCHOOL_DEMO.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md) · [Website](https://lorendw7.github.io/Cadence/)
 
-## What we are building
+## Planned product
 
-- **Courses:** semester dates, teaching weeks, configurable periods, odd/even or selected weeks, rooms and teachers.
-- **Changes:** cancel or move one class without rewriting the whole semester.
-- **Personal plans:** appointments, study sessions and other timed or all-day arrangements, with optional simple weekly repeats.
-- **One schedule:** Today and week views show courses and personal plans together and explain time conflicts.
-- **Coursework:** assignments and exams linked to a course; deadlines and completion are distinct from booked time.
-- **Sharing and import:** preview timetable files and fixed-template CSV/paste; personal plans and coursework are excluded from timetable exports.
-- **Local data:** core planning works offline without registration. Versioned backup/restore, explicit deletion and private export boundaries are planned; encryption is not implemented or claimed.
-- **University reach:** representative trials across academic backgrounds, campuses, languages and accessibility needs, followed by supported desktop releases. Web access remains a separate candidate.
-- **Authorized integration:** investigate school-approved identity and read-only timetable access separately; preserve manual import, source freshness and user edits if integration becomes available.
-- **Local weekly review:** planned time, daily load and task completion, calculated on the device. This is planned functionality, not an implemented timer or usage tracking.
+- Courses and personal arrangements together in Today and week views.
+- Manual creation, editing and deletion, bounded weekly repeats, tasks and completion.
+- Japanese, English and Chinese, keyboard access and readable desktop/browser layouts.
+- Desktop local persistence with tested recovery; a browser-local Web version with memory mode and explicit saving choices.
+- Strict JSON import with preview and confirmation before replacement, private export and clear data controls.
+- Later desktop lessons add teaching weeks, single-class changes, filtered timetable sharing, CSV/paste, local review and tested reminders.
 
-Mobile apps, unapproved school-system scraping and credential collection are outside the plan. The local release also excludes Google/Outlook integration, online ICS subscriptions, AI extraction, collaborative editing, wage tracking and focus/habit dashboards. No backend, cloud sync or public API availability is assumed.
+The planned initial Web scope has no backend, account, school API, cloud synchronization, CSV, notifications or single-occurrence class changes. Private JSON exports are not a filtered course-sharing format. Browser storage is neither encrypted nor a durable backup. These are designs, not available features; [PRODUCT.md](docs/PRODUCT.md) defines the stage boundaries.
 
 ## Learn by building
 
-Follow the [beginner learning path](docs/LEARNING.md), one small lesson at a time. The learner writes application code; the assistant writes tests and reviews the result. Start with [lesson 01: a task model](docs/lessons/01-task.md). Pending lesson tests are templates, not passing coverage.
+The learner writes application feature code. The assistant explains, reviews, prepares appropriate tests/templates and maintains delegated documentation and the website. **The assistant does not implement the core application on the learner's behalf.** Keep `lib/main.dart` as the teaching entry and advance one small lesson at a time.
 
-## Run the current skeleton
+The [curriculum](docs/CURRICULUM.md) estimates 64 lessons for a limited Windows pilot and 80–100 for broader desktop validation. A basic browser-local Web version provisionally adds 8–16 lessons after reusable desktop behavior exists, giving about 88–116 overall. These are teaching estimates including the two completed lessons, not completion promises; backend work and school integration are excluded.
 
-Use Flutter **3.44.4** with Dart **3.12.2**, matching the project metadata and CI configuration.
+## Run the current learning application
+
+Use Flutter **3.44.4** / Dart **3.12.2**, matching the metadata and CI.
 
 ```sh
 flutter pub get
 flutter run -d windows
 ```
 
-On a configured Linux or macOS host, use `flutter run -d linux` or `flutter run -d macos`. See [SETUP.md](docs/SETUP.md) for native tools and checks.
+Use a corresponding Linux/macOS target on a configured host. Web setup will be added by the learner when that stage begins; current setup is in [SETUP.md](docs/SETUP.md).
 
 ## Repository layout
 
 | Path | Purpose |
 |------|---------|
-| `lib/` | App entry point and current Today placeholder |
-| `test/` | Flutter widget tests |
+| `lib/main.dart` | Current teaching application entry |
+| `lib/domain/coursework/` | Learner's task-model exercises |
+| `test/` | Active tests; pending lesson templates remain separate |
 | `windows/`, `linux/`, `macos/` | Native desktop runners |
-| `android/` | Legacy runner; no mobile product commitment |
-| `assets/brand/` | Source brand artwork |
-| `docs/` | Product, behavior, architecture, setup and release plans |
-| `website/` | Static website in Japanese, English and Chinese |
-| `.github/workflows/` | App checks, desktop builds and website deployment |
-
-Create the source modules in [ARCHITECTURE.md](docs/ARCHITECTURE.md) as their features are implemented. Build output and personal settings stay out of Git.
+| `android/` | Legacy scaffolding, no mobile product commitment |
+| `assets/brand/` | Independent project artwork |
+| `docs/` | Product, security, architecture, learning and release plans |
+| `website/` | Japanese/English/Chinese concept website |
+| `.github/workflows/` | App checks, builds and website deployment |
 
 ## Development
 
@@ -67,9 +64,7 @@ flutter analyze --fatal-infos --fatal-warnings
 flutter test
 ```
 
-Flutter and its starter packages are installed today. Riverpod and drift are planned; [pubspec.yaml](pubspec.yaml) is the current dependency source of truth. The package's starter version `1.0.0+1` does not indicate a production release.
-
-The website distinguishes planned capabilities from the current skeleton. Native build checks establish compilation only; each desktop release also needs real interaction and data-recovery tests.
+The selected product UI package is [shadcn_ui](https://pub.dev/packages/shadcn_ui), not `shadcn_flutter` or React shadcn/ui. It is not installed yet. [pubspec.yaml](pubspec.yaml) and its lockfile remain the installed-dependency source of truth. Introduce shadcn_ui, Riverpod and drift only during their implementation lessons. The starter version `1.0.0+1` is not a production-readiness claim.
 
 ## License
 

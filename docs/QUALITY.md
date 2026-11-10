@@ -1,6 +1,6 @@
 # Quality and acceptance
 
-The committed baseline includes the Today startup widget test; activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The university-wide goal adds representative academic coverage and maintainable support to the desktop app's correctness requirements. Windows, Linux and macOS are the targets; Android/iOS work is excluded. A candidate Web system has separate feasibility and security checks below.
+The committed baseline includes the Today startup widget test; activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
 
 ## Local and hosted checks
 
@@ -40,14 +40,15 @@ Test running-process system notifications with denied permissions, rescheduling 
 
 ## Representative student acceptance
 
-Use voluntary pilots that include students across campuses, faculties, undergraduate/graduate study, domestic/international backgrounds and accessibility needs. Verify Japanese/English/Chinese rendering with real course names and mixed scripts. Record untested groups and academic patterns. First setup, finding the next class, handling a change, importing and restoring data should be achievable without developer help. Use fictional or appropriately redacted examples in repositories and automated tests.
+Use voluntary pilots that include students and teachers across academic backgrounds, languages and accessibility needs. Verify Japanese/English/Chinese rendering with real course names and mixed scripts. Record untested groups and academic patterns. First setup, finding the next class, handling a change, importing and restoring data should be achievable without developer help. Use fictional or appropriately redacted examples in repositories and automated tests.
 
-## Candidate Web feasibility and security
+## Planned Web implementation and security
 
-These gates apply if the Web candidate proceeds; they are not claims about a finished Web app. Compare a client-local static application with a backend design, document where each data type lives and identify the operator before choosing. A static project website is a different deliverable. Browser testing must declare its actual desktop browser/OS coverage; no phone product is implied.
+These gates apply to the confirmed Web target, which is not developed. The initial scope is memory by default, explicit optional browser-local saving, manual schedules/tasks, bounded weekly repeats and three languages. It does not include a backend or account. The proposed small localStorage snapshot needs its own data flow and storage-failure checks. A static project website is a different deliverable. Browser testing must declare its actual desktop browser/OS coverage; no phone product is implied.
 
 | Boundary | Required acceptance before real student data |
 |----------|----------------------------------------------|
+| Strict JSON | 1 MiB UTF-8 and 2,000 total records; reject unsupported versions/types, duplicate IDs, invalid dates/repeats and untrusted structure; preview/cancel/replace must preserve original data on failure |
 | Browser storage | Denied/quota-limited storage, private mode, clearing site data, unexpected tab/process exit, migration and restore failures; export/recovery works and data-loss limits are visible |
 | Local concurrency | Concurrent tabs cannot silently overwrite revisions or apply a stale import/restore; behavior is defined for the selected storage implementation |
 | Untrusted content | Course titles, notes, imported files and errors are rendered as inert text; verify stored/reflected/DOM script injection paths and safe handling of links |
@@ -57,7 +58,7 @@ These gates apply if the Web candidate proceeds; they are not claims about a fin
 | Sessions, if chosen | Secure session transport and storage, expiry/rotation/revocation, logout and reconnect; no long-lived bearer tokens in script-readable persistent storage; CSRF defenses for cookie-authenticated changes and a restrictive CORS policy |
 | Service operations, if chosen | Input/file-size limits, abuse/request limits, least-privilege secrets, encryption in transit/at rest, redacted logging, retention/deletion, restricted backups and tested recovery |
 
-Use fictional data for initial feasibility. Verify the design with meaningful negative cases such as a script-bearing imported title, a second user's record identifier, a cross-site state-changing request and unavailable browser storage when those paths exist. School authentication and data-access approval remain separate requirements. A Web release additionally needs a limited pilot, privacy notice, support owner and rollback/incident procedure; see [RELEASE.md](RELEASE.md).
+Use fictional data throughout implementation and initial demonstrations. Verify the design with meaningful negative cases such as a script-bearing imported title, a second user's record identifier, a cross-site state-changing request and unavailable browser storage when those paths exist. School authentication and data-access approval remain separate requirements. A Web release additionally needs a limited pilot, privacy notice, support owner and rollback/incident procedure; see [RELEASE.md](RELEASE.md).
 
 ## Privacy and release bar
 
@@ -71,4 +72,4 @@ Check all three website languages for accurate feature status, platform claims a
 
 A milestone is complete only when its user acceptance example in [ROADMAP.md](ROADMAP.md) passes. A release additionally follows [RELEASE.md](RELEASE.md).
 
-A wider desktop release needs tested upgrade/recovery paths on the declared systems, visible coverage gaps and assigned support/security responsibilities. Any accepted Web system needs its own security and persistence acceptance. A small pilot, passing CI or a supervisor's expression of support does not establish university-wide readiness or official approval.
+A wider desktop release needs tested upgrade/recovery paths on the declared systems, visible coverage gaps and assigned support/security responsibilities. The planned Web system needs its own security and persistence acceptance. A small pilot, passing CI or a supervisor's expression of support does not establish wider-use readiness or official approval.

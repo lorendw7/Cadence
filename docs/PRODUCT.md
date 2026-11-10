@@ -1,53 +1,52 @@
 # Product scope
 
-Updated: 2026-11-10. Cadence aims to serve **all Kyushu University students** with courses, personal arrangements and coursework in one dependable planner. It is an independent student project; university endorsement, partnership and system access have not been obtained. [REDESIGN.md](REDESIGN.md) defines behavior.
+Updated: 2026-11-10. Cadence is a **time-management application primarily for students, also suitable for teachers and other users**. Courses are one schedule category alongside personal, study and work arrangements. No school identity or affiliation is required. The project is independent and has no university endorsement or integration permission.
 
-## Audience and promise
+## Direction and actual status
 
-Design for undergraduate and graduate students, international students, different campuses and departments, and students using assistive technology. Validate their actual schedules and devices in a representative pilot. Students need to know their teaching week, next class, room, personal commitments and deadlines, and handle changes without breaking the semester timetable.
+Windows, Linux, macOS and **Web are confirmed product targets**. No Android/iOS product is planned. Flutter `shadcn_ui` is selected for an academic-journal interface: muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C`. It is not installed or implemented yet. See [ADR-004](adr/004-shadcn-web-direction.md).
 
-The planned desktop core works locally, offline and without registration. Optional authorized university integration should reduce setup effort while keeping manual entry and local import available. Personal arrangements and coursework are excluded from timetable sharing. Daily planning and local statistics need no server; installation, updates and any enabled school connection use the internet.
+The executable remains a Today placeholder plus separate task-model exercises. No functional Web planner exists; the website is a concept presentation. The learner writes core code as lessons progress. The assistant handles delegated docs/website work, teaching, review and appropriate tests/templates, not a substitute implementation.
 
-Windows, Linux and macOS are the target platforms. **No Android or iOS product development is planned**; the retained Android runner is legacy scaffolding. A **Web scheduling system is a candidate**, distinct from today's static project website. Evaluate browser-local storage first and justify any backend separately; browser support, data durability, security and operating cost must pass a feasibility decision before committing to delivery. See [SECURITY.md](SECURITY.md).
+## Planned first browser-local version
 
-## Local core and pilot scope
+| Area | Future implementation target |
+|------|-------------------------------|
+| Schedule | Manual course/personal-entry CRUD and bounded weekly repeats |
+| Views | Today and week from common planning data |
+| Tasks | Manual tasks and completion |
+| Language | Japanese / English / Chinese |
+| Data | Memory by default; explicit optional browser-local saving |
+| Transfer | Strict versioned JSON, maximum 1 MiB UTF-8 and 2,000 total records; preview then confirmed whole-data replacement |
+| Control | Private JSON export and clearing application data |
+| Interface | Flutter `shadcn_ui`; keyboard and readable desktop-browser layouts |
 
-| Area | Required behavior |
-|------|-------------------|
-| Semester | Explicit week-one Monday, end date, timezone and configurable periods |
-| Courses | Multiple rules per course; weekly, odd/even and selected teaching weeks |
-| Exceptions | Cancel, move or change one occurrence and restore it |
-| Personal arrangements | Independent timed/all-day plans and bounded weekly repetition |
-| Unified schedule | Today and time-based week views, with non-blocking conflict warnings |
-| Coursework | Course-linked tasks and deadlines; exams as linked timed arrangements |
-| Today | Daily unfinished task count, separate overdue and undated groups; refresh after midnight/resume |
-| Editing | Direct course editing, recoverable local drafts, automatic persistence with truthful failure status |
-| Notifications | Opt-in local OS reminders while the process runs; closed-process delivery separately validated |
-| Weekly review | On-device planned time, daily load, completed tasks and current overdue count; see [statistics rules](STATISTICS.md) |
-| Files | Previewed timetable sharing, duplicate-aware import, full backup/restore |
-| Quick setup | Fixed-template CSV/paste with validation and preview; disclose supported formats |
-| University coverage | Validate different academic periods, irregular courses and campus/building labels; no universal preset assumed |
-| Language and access | Japanese / English / Chinese, keyboard, screen reader and large-text acceptance |
-| Desktop | Windows, Linux and macOS, each validated on its native host |
+This is a plan, not an existing MVP. The initial browser version excludes backend/accounts, cloud sync, school APIs, CSV, notifications and single-occurrence changes. Browser saving does not encrypt, synchronize or back up data. The exact adapter is evaluated during implementation; `localStorage` is the proposed small-snapshot option, with explicit limits and failure handling. Private JSON transfer is distinct from future filtered timetable sharing.
 
-A task deadline is not a reserved time slot. A public holiday is not proof a class is cancelled. An imported course is not automatically subscribed to future changes.
+## Broader desktop and learning scope
 
-## University connection and Web candidate
+| Area | Planned behavior |
+|------|------------------|
+| Semester and courses | Academic dates, teaching weeks, configurable periods, multiple rules and odd/even/selected weeks |
+| Exceptions | Preview and restore one cancellation, move or room change |
+| Personal plans | Independent timed/all-day plans and bounded repeats |
+| Schedule | Unified views, understandable conflicts and relevant provenance |
+| Coursework | Linked tasks, deadlines and exams; a deadline does not reserve time |
+| Editing and storage | SQLite, recoverable drafts, truthful failures and migrations |
+| Review/reminders | Local planned-time review; opt-in native reminders with tested limits |
+| Files | Filtered timetable sharing, duplicate-aware import, full backup/restore; later CSV/paste |
+| Reach | Three languages, accessibility, representative student/teacher trials and native validation |
 
-School-approved authentication and read-only timetable import are explicit conditional goals. Authentication and access to an individual's course data require separate confirmation; no public developer timetable API or permission has been confirmed. A willing supervisor may help establish the institutional contact, but their support is not authorization. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) defines consultation, data scope and acceptance. Missing approval does not block the local product.
+A public holiday does not cancel a class automatically; file import does not subscribe to updates. [REDESIGN.md](REDESIGN.md) defines these longer-term behaviors. None becomes complete merely because its design exists.
 
-The Web candidate should answer whether browser access reduces installation barriers without compromising private schedules. Compare a browser-local client with a justified server-backed alternative. Hosting a website does not provide accounts, cross-device sync or durable backups. No Web app, backend or chosen hosting provider is implied by this design.
+## School feedback and optional integration
 
-## Deliberate exclusions
+Prepare a fictional-data demo only after its individual features pass acceptance. [SCHOOL_DEMO.md](SCHOOL_DEMO.md) describes that future demonstration, not an available app or a sent invitation. Students and teachers may provide feedback without authenticating a school identity.
 
-Mobile apps, unapproved school scraping, credential collection, enrollment writes and grade retrieval are outside the plan. External calendar APIs/subscriptions, screenshot/AI extraction, collaborative editing, wages and focus/habit dashboards remain out of active scope. A central account service, hosted personal database, cloud sync and telemetry are not prerequisites; any proposal needs a purpose, security review, owner and cost plan. Initial desktop delivery uses GitHub Releases; no automatic updater or store release is promised.
+School identity and read-only timetable import remain optional future possibilities. A supervisor's support or student's consent does not grant system access. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) defines the separate permission route. **School approval is not a prerequisite for developing or independently using the manual planner.**
 
-## Distribution and success
+## Delivery and success
 
-Distribute verified desktop packages through GitHub Releases. Progress from a working local slice to a representative pilot across academic backgrounds, campuses, languages and accessibility needs, then wider university availability. The Web candidate and authorized integration have separate decision gates. Record actual tested coverage and unresolved cases rather than claiming all students are already served.
+Begin with a small independently usable local slice; release only platforms and capabilities actually validated. Desktop delivery initially uses GitHub Releases; the future Web app needs its own deployment/storage/security checks. Wider use needs support ownership and recovery guidance, not invented adoption claims.
 
-Success means students can independently set up/import courses, find today's room, handle changes, recover data and get help. Use voluntary usability sessions and privacy-preserving issue reports; do not collect timetable contents or add background analytics. Wider release requires named maintainers, upgrade/recovery guidance and a handover plan, without invented adoption numbers or response guarantees.
-
-## Current status
-
-The repository contains a Today placeholder, a separate task-model exercise, platform scaffolding and check workflows. Course management, storage, imports, school login and the Web system remain unimplemented. Preserve that distinction on the website and retain the small-lesson teaching agreement in [LEARNING.md](LEARNING.md).
+Success means a user can record a commitment, understand today's time, finish a task, recover their own data and get help. Mobile apps, credential collection, unapproved scraping, enrollment/grade writes, AI extraction and unrelated lifestyle dashboards remain excluded. Backend data storage, synchronization and external calendar APIs require separate decisions.
