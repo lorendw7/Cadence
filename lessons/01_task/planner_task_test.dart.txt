@@ -1,4 +1,4 @@
-// Pending lesson 01 contract. Activate only when the learner creates the model.
+// Historical lesson 01 template. Active tests already exist at the destination.
 // Destination: test/domain/coursework/planner_task_test.dart
 import 'package:cadence/domain/coursework/planner_task.dart';
 import 'package:flutter_test/flutter_test.dart';

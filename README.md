@@ -6,7 +6,7 @@
 
 <br clear="left">
 
-**Development status:** lessons 1–10 have passed implementation review and automated acceptance, with all 26 tests passing. The application supports input, validated task addition, completion toggling, empty-list feedback, deletion and undo of the most recent deletion. Undo restores the original task, position and completion state once. The learner confirmed the empty-list/add/toggle flow; manual deletion/undo and title-validation confirmation remain pending. A redundant nested setState in the delete callback is recorded for learner cleanup. Data remains in memory; course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
+**Development status:** lessons 1–10 have passed implementation review and automated acceptance, with all 26 tests passing. The application supports input, validated task addition, completion toggling, empty-list feedback, deletion and undo of the most recent deletion. Undo restores the original task, position and completion state once. The learner confirmed the empty-list/add/toggle flow; manual deletion/undo and title-validation confirmation remain pending. The delete callback has been simplified to one setState. Data remains in memory; course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
 
 **Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
 
@@ -60,6 +60,8 @@ Use a corresponding Linux/macOS target on a configured host. Web setup will be a
 | `windows/`, `linux/`, `macos/` | Native desktop runners |
 | `android/` | Legacy scaffolding, no mobile product commitment |
 | `assets/` | [Independent artwork library](assets/README.md): brand, icons, illustrations and platform exports |
+| `lessons/` | Historical exercise templates; see [template index](lessons/README.md) |
+| `tools/` | Artwork generators and read-only repository checks |
 | `docs/` | Product, security, architecture, learning and release plans |
 | `website/` | Japanese/English/Chinese concept website |
 | `.github/workflows/` | App checks, builds and website deployment |

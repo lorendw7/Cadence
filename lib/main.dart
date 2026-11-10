@@ -144,15 +144,15 @@ class _TodayPageState extends State<TodayPage> {
                           });
                         },
                         onDelete: () {
+                          final deletedIndex = tasks.indexWhere(
+                            (item) => item.id == task.id,
+                          );
+
+                          if (deletedIndex == -1) {
+                            return;
+                          }
+
                           setState(() {
-                            final deletedIndex = tasks.indexWhere(
-                              (item) => item.id == task.id,
-                            );
-
-                            if (deletedIndex == -1) {
-                              return;
-                            }
-
                             lastDeletedIndex = deletedIndex;
                             lastDeletedTask = tasks.removeAt(deletedIndex);
                           });
@@ -178,6 +178,7 @@ class TaskRow extends StatelessWidget {
   final PlannerTask task;
   final VoidCallback onToggle;
   final VoidCallback onDelete;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
