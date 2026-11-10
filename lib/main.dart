@@ -21,8 +21,15 @@ class CadenceApp extends StatelessWidget {
   }
 }
 
-class TodayPage extends StatelessWidget {
+class TodayPage extends StatefulWidget {
   const TodayPage({super.key});
+
+  @override
+  State<TodayPage> createState() => _TodayPageState();
+}
+
+class _TodayPageState extends State<TodayPage> {
+  int practiceCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +43,23 @@ class TodayPage extends StatelessWidget {
       body: Column(
         children: [
           Text("今天"),
+          Text('练习次数：$practiceCount'),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                practiceCount = 0;
+              });
+            },
+            child: Text("归零"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                practiceCount += 1;
+              });
+            },
+            child: const Text("加1"),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: tasks.length,

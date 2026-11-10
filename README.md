@@ -6,7 +6,7 @@
 
 <br clear="left">
 
-**Development status:** the learning application now shows Today and two read-only sample tasks with their completion status. The learner's lesson 3 implementation passes automated checks; local Windows visual confirmation is the next step. Task interactions, course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
+**Development status:** lessons 1–4 are complete. The learning application shows Today, two read-only sample tasks and a practice counter with increment/reset buttons. All 10 tests pass; the learner confirmed that hot reload retains the counter and both restart types reset it. Next is extracting a task-row component. Task interactions, course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
 
 **Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
 
