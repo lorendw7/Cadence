@@ -1,19 +1,19 @@
-# 第八节：添加任务
+# Lesson 8: add a task
 
-更新：2026-11-11。学习者实现完成，当时全部 17 项测试通过；学习者实际确认连续添加、输入清空和新任务完成状态切换均正常。
+Completed: 2026-11-11. The learner wrote the feature and all 17 tests passed at that stage. The learner confirmed repeated additions, cleared input, and completion changes for new tasks.
 
-## 实现与语法
+## Implementation
 
-State 保存 nextTaskNumber，初始为 1。添加时读取输入，创建默认未完成的 PlannerTask，以字符串插值生成 local-编号 ID，在 setState 内调用 tasks.add(newTask) 并递增编号，随后执行 titleController.clear()。按钮文字由“读取标题”改为“添加任务”。
+State stores nextTaskNumber, starting at one. Addition reads the title and creates an incomplete PlannerTask. Its ID uses the local- prefix and the counter. Inside setState, tasks.add appends it and the counter increases. The controller is cleared after the title has been read.
 
-List.add 修改原列表并增加长度；final 不禁止修改列表元素。编号与练习计数独立，不因计数归零而复用；local- 前缀与 demo- 样例 ID 不冲突。该编号方案只用于当前内存练习，持久化与导入前需要重新评估。
+List.add changes the existing list and its length. final does not forbid this. The task counter is separate from the practice counter, so resetting the practice count cannot reuse IDs. local- IDs do not clash with demo- sample IDs.
 
-clear 是控制器的方法，会通知输入框更新；普通列表的修改仍需要 setState 安排重建。先读取再清空，避免读到空字符串。
+This ID scheme is only for the memory exercise. Revisit it before persistence or import. clear notifies the TextField through its controller; list changes still need setState.
 
-## 验收
+## Acceptance
 
-学习者首次遗漏按钮改名；功能测试通过，标签测试失败。学习者修正后，格式、静态分析及全部 17 项通过。
+The first implementation kept the old button label. Behavior tests passed but the label test failed. The learner corrected it; formatting, analysis, and all 17 tests passed.
 
-[输入与添加测试](../../test/task_title_input_widget_test.dart) 以添加行为替换旧版打印日志断言，检查连续添加、同名任务使用不同 ID、计数操作不导致 ID 复用、输入清空、新任务可独立完成／撤销，以及控制器生命周期。实际运行结果由学习者确认，不冒充自动测试。
+The [input/addition tests](../../test/task_title_input_widget_test.dart) replaced old print-output assertions. They cover repeated additions, separate IDs for equal titles, no ID reuse after counter reset, input clearing, independent completion changes, and controller disposal.
 
-本节最初允许空白标题，随后由[第九节](09-validation.md) 校验补齐。应用仍不保存到磁盘，关闭后数据丢失。
+The learner confirmed real-window behavior separately. This lesson initially accepted blank titles; [lesson 9](09-validation.md) added validation. Nothing is saved to disk.

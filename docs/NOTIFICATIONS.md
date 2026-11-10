@@ -1,29 +1,29 @@
-# 本地通知
+# Local notifications
 
-2026-11-09，已纳入功能规划，尚未实现。
+Updated: 2026-11-11. Planned desktop extension, not implemented. Build core plans, tasks and the first-use storage choice first; see [ADR-007](adr/007-general-purpose-local-planner.md). A later Web client would need separate notification design and acceptance.
 
-## 提醒内容
+## Reminder content
 
-支持课程开始前、个人安排开始前、任务截止前的本地系统通知。用户主动开启并设置提前时间，可全局关闭或对单项关闭；默认不开启系统通知，不在首次启动时直接弹权限请求。日期型截止任务必须选择提醒钟点，不默认午夜打扰。无日期任务不生成到期通知。
+Plan local system notifications before plans and task deadlines, with courses participating only if that optional extension is enabled. These rules apply equally to work, learning and daily-life arrangements. Users explicitly enable reminders and choose a lead time. Support disabling all reminders or one item's reminder. Keep notifications off by default and do not request permission at first launch. A date-only task needs a chosen reminder time; do not assume midnight. Undated tasks have no deadline reminder.
 
-通知内容可选隐藏课程/任务标题与地点。点击通知打开对应详情；记录已删除则说明不可用，不崩溃。通知不依赖服务器，不使用远程推送。
+Let users hide titles and locations in notification content. Selecting a notification opens the related detail. If the item has been deleted, explain that it is unavailable without crashing. This feature uses local delivery, without a server or remote push.
 
-## 分阶段支持
+## Platform stages
 
-1. 核心首阶段：应用进程运行时的本地系统提醒，包括最小化状态；通知适配器与日程计算分离。权限拒绝、免打扰、桌面通知服务不可用时，首页仍显示待办和下一项，并展示真实提醒状态。
-2. 独立平台阶段：关闭窗口但继续后台运行、进程完全退出后由系统定时投递，逐个平台验证。只有实测通过的平台才显示这项能力。后台运行、开机启动均需用户选择；退出、关机、休眠是不同状态，不笼统承诺“关闭也能提醒”。
+1. **Running application:** local reminders while the process runs, including when minimized. Keep the notification adapter separate from schedule calculation. If permission is denied, Do Not Disturb is active or the desktop notification service is unavailable, Today still shows tasks and the next event. Show the actual reminder status.
+2. **Background or exited application:** separately verify a closed window with a running background process and delivery scheduled by the operating system after the process exits. Expose each capability only on platforms where the actual release package passes testing. Background operation and startup at login require user choice. A closed window, process exit, shutdown and sleep are different states.
 
-候选库为 [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)。2026-11-09 查阅维护者文档：提供桌面平台实现，但 Linux 不提供与其他平台相同的系统定时能力，不能只选一个插件就宣称跨平台退出后通知一致。Windows 的重复提醒和无包身份应用的撤销/查询也有限制，不能用未验证的 ZIP 包宣称完整通知能力。具体版本和打包要求在实现时锁定；当前不安装。
+[flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) is a candidate, not an installed dependency. The maintainer documentation reviewed on 2026-11-09 described desktop implementations with differing capabilities: Linux did not provide the same system scheduling as the other platforms, and Windows had limits around repeating notifications and cancellation/querying without package identity. This is a historical research note, not a compatibility guarantee. Recheck the selected version and packaging requirements during implementation. Do not claim reliable post-exit delivery from plugin selection or a successful ZIP build alone.
 
-## 一致性和恢复
+## Consistency and recovery
 
-- 提醒以“实例身份 + 提醒偏移”作为稳定标识，关联当前正式记录版本。修改时间、调停课、删除、完成任务或关闭提醒时撤销旧通知并重建，草稿不生成提醒。
-- 持久化提醒配置与投递记录；启动/恢复时按当前数据核对，避免重复投递。仅在系统接口接受请求后记录已提交；不把已提交等同于用户已看到。
-- 注入时钟测试到期与时区。睡眠恢复后将遗漏事项汇总为一条可查看的提示，避免一次弹出大量旧提醒。系统免打扰、关机等不在应用保证范围内。
-- 修改课程与通知重建不能假设处于同一数据库事务。保存课程成功后重建失败，应保留课程并显示提醒待重试。
+- Use occurrence identity plus reminder offset as a stable reminder identifier, tied to the current committed record revision. When time, a class override, deletion, task completion or reminder settings change, cancel obsolete notifications and rebuild the desired set. Drafts never create reminders.
+- Persist reminder settings and delivery records only in a mode where saving is allowed. Reconcile them with current data at startup or resume to avoid duplicates. Record submission only after the system API accepts it. Accepted does not mean seen by the user. Session-only use must not leave persistent reminder records or post-session deliveries.
+- Use an injected clock to test deadlines and time zones. After sleep, summarize missed items in one inspectable notice instead of flooding the user with old notifications. System Do Not Disturb and shutdown remain outside the application's delivery guarantee.
+- Saving a plan and rebuilding system notifications cannot be assumed to share a database transaction. If a saved plan's reminder update fails, keep the plan and show that its reminders need a retry.
 
-## 验收与估算
+## Acceptance and estimates
 
-自动测试覆盖触发时刻、取消、重复启动、时间变更、已完成任务排除、权限拒绝与投递失败。每个平台用实际发布包检查最小化、重启、睡眠恢复、通知点击、权限拒绝和免打扰。构建通过不代表通知通过。
+Automated checks cover trigger times, cancellation, repeated startup, time changes, completed-task exclusion, permission denial and delivery failure. On each supported platform, test the actual release package while minimized, after restart and sleep, on notification click, and with denied permission and Do Not Disturb. A successful build is not notification acceptance.
 
-运行中通知预计 8–14 小时；退出后/后台可靠提醒另需平台可行性验证，暂估额外 12–24 小时，不纳入基础估算，也不宣称已经支持。
+The earlier estimate for reminders while running is 8–14 development hours. Reliable background or post-exit delivery needs separate platform feasibility work; the provisional extra estimate is 12–24 hours, outside the base estimate. These are planning estimates, not completed support or delivery promises.

@@ -1,19 +1,29 @@
-# 今天：首页与每日待办
+# Today: the home page and daily tasks
 
-2026-11-09，规划。启动默认进入今天，无登录、无全屏统计面板。
+Updated: 2026-11-11. Planned behavior for the general local planner. Today is the default start page, without an account requirement or a full-screen statistics dashboard. Implement it after the task model and persistence lessons; the current teaching app remains a basic in-memory task list. Work, learning, household and personal tasks use the same rules; see [ADR-007](adr/007-general-purpose-local-planner.md).
 
-顶部显示本地日期和“今日待办 N 项”，下面就是可勾选的任务列表。无需先打开统计页。课程与个人安排在下方按时间排列，并指出下一项。
+Show the local date and the number of tasks due today above a checkable list. The count must not require opening a statistics page. Below the tasks, show plans in time order and identify the next item. Course occurrences join this list only when the optional course feature is in use.
 
-## 数量口径
+## Counting and grouping
 
-- 今日待办：截止日期在显示时区的今天、且尚未完成的任务。无精确时刻的日期按用户指定的日历日期判断。
-- 已逾期：截至当前时刻已超过截止且未完成的任务，单独分组。今天 09:00 截止但已经到 10:00 的任务移入逾期组，不在今日组重复显示；所以顶部今日数量只计仍未逾期的今日任务。
-- 未设日期：全部无截止日期且未完成的任务，独立可展开分组；不计入今日数量，不隐藏掉。
-- 已完成：当日截止且已经完成的任务可折叠查看，不计入未完成数量。这不是周回顾中的“本日完成事件数”，后者按 completedAt 计算。
-- 未来截止的任务仍在待办页可见，不混入今日数字。课程和日程数量不算待办任务数。
+- **Due today:** incomplete tasks due on today's date in the display time zone that are not already overdue. A date-only deadline uses the calendar date chosen by the user.
+- **Overdue:** incomplete tasks at or past an exact deadline (`now >= deadline`). A task due today at 09:00 moves here at 09:00 and must not also appear in Due today. A date-only deadline becomes overdue at the next local midnight.
+- **No date:** all incomplete tasks without a deadline. Keep them in a separate expandable group and out of the daily count; do not hide them entirely.
+- **Completed:** completed tasks due today may be viewed in a collapsed group. Exclude them from incomplete counts. This group differs from the weekly review's completion count, which uses `completedAt`.
+- Future tasks remain visible on the Tasks page. Course and schedule counts are not task counts.
 
-例如今日仍待办 3 项、已逾期 1 项、未设日期 2 项，分别展示，不能写成“今日 6 项”。分组使用同一份投影，数字与列表一致。全部完成时显示“今天的待办已完成”；另有逾期或未设日期任务时继续保留对应提示。
+For example, show 3 due today, 1 overdue and 2 without dates separately. Do not call the total "6 tasks due today." Derive groups and counts from the same projection. If today's tasks are complete, say so while keeping any overdue and undated groups visible.
 
-勾选后数量立即响应，持久化状态遵循 [EDITING.md](EDITING.md)。跨过本地午夜、切换时区、恢复前台或休眠恢复时重新计算；电脑长时间不关闭应用也必须换日。使用注入时钟测试，不能只在启动时取一次日期。
+After a completion change, update the count promptly and follow the save-status behavior in [EDITING.md](EDITING.md). Use the same rules in local-saving and temporary modes.
 
-自动测试覆盖空列表、完成与撤销、逾期迁移、无日期、未来任务、午夜切换、恢复前台及保存失败。此需求将在模型与持久化之后接入，第一节仍只实现待办的三个基础字段。
+## Refresh while the page stays open
+
+Schedule a refresh for the next exact deadline among incomplete tasks, as well as the next local midnight. Refresh at the next visible schedule boundary when it changes the current or next plan. A task due at 09:00 must move to Overdue at that boundary even if the user does nothing; a midnight-only or interaction-only refresh is insufficient.
+
+After each refresh or task creation, deadline edit, completion, reversal or deletion, cancel the previous timer and calculate the next future boundary from the latest projection. Recalculate on a time-zone or system-clock change, on return to the foreground and after sleep. If a timer fires late, use the current injected clock rather than applying one stale transition. A completed or deleted task must not keep an obsolete deadline timer alive. Do not repeatedly schedule an already-passed boundary.
+
+An application left open overnight must change its day, and one left open during the day must update overdue counts. Use an injected clock and scheduler rather than reading the date only at startup.
+
+## Acceptance
+
+Cover an empty list, completion and reversal, undated and future tasks, date-only deadlines, midnight, foreground recovery and save failure. With a fake clock, leave Today idle across an exact deadline and verify that the task moves groups and both counts change once. Check rescheduling after a deadline edit, removal after completion/deletion, late timers after sleep and clock changes. Confirm that every visible count matches its list. These requirements do not expand the first lesson's three-field task exercise.

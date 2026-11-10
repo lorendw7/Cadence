@@ -1,6 +1,6 @@
 # ADR-001: A local application layer and one schedule projection
 
-**Status:** Accepted for local application boundaries; implementation is incremental. Historical audience/platform extensions in ADR-002 are now partially superseded by [ADR-004](004-shadcn-web-direction.md). The learner remains the core implementation author.
+**Status:** Accepted for local application boundaries; implementation is incremental. [ADR-007](007-general-purpose-local-planner.md) defines the current general-purpose local product and optional extensions. Earlier university/audience assumptions below are historical. The learner remains the core implementation author.
 **Date:** 2026-11-09
 **Deciders:** Cadence maintainer; the learner remains the author of application code.
 
@@ -37,7 +37,7 @@ Use local root revisions for writes and a data generation for query/preview inva
 
 - [x] Document dependencies, command/query contracts and failure handling.
 - [x] Align schema proposal, roadmap and acceptance examples.
-- [ ] Complete the learner's model and in-memory task list.
+- [x] Complete the learner's model and basic in-memory task list; current acceptance and remaining manual checks are in [LEARNING.md](../LEARNING.md).
 - [ ] Add storage ports, revisions and ordered drafts with persistence.
 - [ ] Test the shared projector before connecting multiple schedule consumers.
 - [ ] Validate instance ownership and reminder reconciliation on each desktop OS; verify browser storage/lifecycle/writer behavior for the planned Web version under ADR-004; do not imply the full SQLite design is implemented there.

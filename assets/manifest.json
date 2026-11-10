@@ -11,19 +11,19 @@
   "files": [
     {
       "path": "assets/brand/cadence-icon-dark.svg",
-      "bytes": 387,
+      "bytes": 386,
       "type": "svg",
       "category": "brand"
     },
     {
       "path": "assets/brand/cadence-icon-paper.svg",
-      "bytes": 387,
+      "bytes": 386,
       "type": "svg",
       "category": "brand"
     },
     {
       "path": "assets/brand/cadence-icon-v2.svg",
-      "bytes": 387,
+      "bytes": 386,
       "type": "svg",
       "category": "brand"
     },
@@ -35,31 +35,31 @@
     },
     {
       "path": "assets/brand/cadence-lockup-paper.svg",
-      "bytes": 888,
+      "bytes": 887,
       "type": "svg",
       "category": "brand"
     },
     {
       "path": "assets/brand/cadence-lockup.svg",
-      "bytes": 888,
+      "bytes": 887,
       "type": "svg",
       "category": "brand"
     },
     {
       "path": "assets/brand/cadence-mark-ink.svg",
-      "bytes": 331,
+      "bytes": 330,
       "type": "svg",
       "category": "brand"
     },
     {
       "path": "assets/brand/cadence-mark-paper.svg",
-      "bytes": 331,
+      "bytes": 330,
       "type": "svg",
       "category": "brand"
     },
     {
       "path": "assets/brand/cadence-mark-wine.svg",
-      "bytes": 331,
+      "bytes": 330,
       "type": "svg",
       "category": "brand"
     },
@@ -71,373 +71,373 @@
     },
     {
       "path": "assets/icons/add.svg",
-      "bytes": 289,
+      "bytes": 288,
       "type": "svg",
       "category": "icons"
     },
     {
       "path": "assets/icons/all-day.svg",
-      "bytes": 406,
+      "bytes": 405,
       "type": "svg",
       "category": "icons"
     },
     {
       "path": "assets/icons/arrow-up-right.svg",
-      "bytes": 315,
+      "bytes": 314,
       "type": "svg",
       "category": "icons"
     },
     {
       "path": "assets/icons/backup.svg",
-      "bytes": 311,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/check.svg",
-      "bytes": 291,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/chevron-down.svg",
-      "bytes": 303,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/chevron-left.svg",
-      "bytes": 304,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/chevron-right.svg",
-      "bytes": 305,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/clock.svg",
-      "bytes": 319,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/close.svg",
-      "bytes": 297,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/conflict.svg",
-      "bytes": 395,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/course.svg",
-      "bytes": 344,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/data.svg",
-      "bytes": 342,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/deadline.svg",
-      "bytes": 339,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/delete.svg",
-      "bytes": 327,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/device.svg",
-      "bytes": 342,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/edit.svg",
-      "bytes": 308,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/error.svg",
-      "bytes": 324,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/exam.svg",
-      "bytes": 374,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/export.svg",
-      "bytes": 313,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/external.svg",
-      "bytes": 319,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/file-json.svg",
-      "bytes": 407,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/filter.svg",
-      "bytes": 301,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/help.svg",
-      "bytes": 344,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/import.svg",
-      "bytes": 313,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/info.svg",
-      "bytes": 322,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/keyboard.svg",
-      "bytes": 397,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/language.svg",
-      "bytes": 350,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/link.svg",
-      "bytes": 339,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/location.svg",
-      "bytes": 360,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/meeting.svg",
-      "bytes": 385,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/memory.svg",
-      "bytes": 427,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/menu.svg",
-      "bytes": 298,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/moon.svg",
-      "bytes": 313,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/more.svg",
-      "bytes": 355,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/notification.svg",
-      "bytes": 331,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/offline.svg",
-      "bytes": 401,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/personal.svg",
-      "bytes": 338,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/refresh.svg",
-      "bytes": 348,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/repeat.svg",
-      "bytes": 348,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/research.svg",
-      "bytes": 388,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/restore.svg",
-      "bytes": 319,
-      "type": "svg",
-      "category": "icons"
-    },
-    {
-      "path": "assets/icons/review.svg",
       "bytes": 310,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/save.svg",
-      "bytes": 317,
+      "path": "assets/icons/check.svg",
+      "bytes": 290,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/search.svg",
-      "bytes": 320,
+      "path": "assets/icons/chevron-down.svg",
+      "bytes": 302,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/semester.svg",
-      "bytes": 381,
+      "path": "assets/icons/chevron-left.svg",
+      "bytes": 303,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/settings.svg",
-      "bytes": 414,
+      "path": "assets/icons/chevron-right.svg",
+      "bytes": 304,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/sprite.svg",
-      "bytes": 13001,
+      "path": "assets/icons/clock.svg",
+      "bytes": 318,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/study.svg",
-      "bytes": 339,
+      "path": "assets/icons/close.svg",
+      "bytes": 296,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/success.svg",
-      "bytes": 325,
+      "path": "assets/icons/conflict.svg",
+      "bytes": 394,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/sun.svg",
-      "bytes": 368,
+      "path": "assets/icons/course.svg",
+      "bytes": 343,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/tasks.svg",
-      "bytes": 324,
+      "path": "assets/icons/data.svg",
+      "bytes": 341,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/today.svg",
-      "bytes": 378,
+      "path": "assets/icons/deadline.svg",
+      "bytes": 338,
       "type": "svg",
       "category": "icons"
     },
     {
-      "path": "assets/icons/undo.svg",
+      "path": "assets/icons/delete.svg",
+      "bytes": 326,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/device.svg",
+      "bytes": 341,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/edit.svg",
+      "bytes": 307,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/error.svg",
+      "bytes": 323,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/exam.svg",
+      "bytes": 373,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/export.svg",
+      "bytes": 312,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/external.svg",
+      "bytes": 318,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/file-json.svg",
+      "bytes": 406,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/filter.svg",
+      "bytes": 300,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/help.svg",
+      "bytes": 343,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/import.svg",
+      "bytes": 312,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/info.svg",
+      "bytes": 321,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/keyboard.svg",
+      "bytes": 396,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/language.svg",
+      "bytes": 349,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/link.svg",
+      "bytes": 338,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/location.svg",
+      "bytes": 359,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/meeting.svg",
+      "bytes": 384,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/memory.svg",
+      "bytes": 426,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/menu.svg",
+      "bytes": 297,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/moon.svg",
+      "bytes": 312,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/more.svg",
+      "bytes": 354,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/notification.svg",
+      "bytes": 330,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/offline.svg",
+      "bytes": 400,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/personal.svg",
+      "bytes": 337,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/refresh.svg",
+      "bytes": 347,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/repeat.svg",
+      "bytes": 347,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/research.svg",
+      "bytes": 387,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/restore.svg",
+      "bytes": 318,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/review.svg",
       "bytes": 309,
       "type": "svg",
       "category": "icons"
     },
     {
+      "path": "assets/icons/save.svg",
+      "bytes": 316,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/search.svg",
+      "bytes": 319,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/semester.svg",
+      "bytes": 380,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/settings.svg",
+      "bytes": 413,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/sprite.svg",
+      "bytes": 13000,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/study.svg",
+      "bytes": 338,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/success.svg",
+      "bytes": 324,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/sun.svg",
+      "bytes": 367,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/tasks.svg",
+      "bytes": 323,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/today.svg",
+      "bytes": 377,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/undo.svg",
+      "bytes": 308,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
       "path": "assets/icons/warning.svg",
-      "bytes": 360,
+      "bytes": 359,
       "type": "svg",
       "category": "icons"
     },
     {
       "path": "assets/icons/week.svg",
-      "bytes": 381,
+      "bytes": 380,
       "type": "svg",
       "category": "icons"
     },
     {
       "path": "assets/icons/work.svg",
-      "bytes": 360,
+      "bytes": 359,
       "type": "svg",
       "category": "icons"
     },
     {
       "path": "assets/illustrations/all-done.svg",
-      "bytes": 668,
+      "bytes": 667,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/empty-tasks.svg",
-      "bytes": 667,
+      "bytes": 666,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/empty-today.svg",
-      "bytes": 581,
+      "bytes": 580,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/empty-week.svg",
-      "bytes": 667,
+      "bytes": 666,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/import-preview.svg",
-      "bytes": 638,
+      "bytes": 637,
       "type": "svg",
       "category": "illustrations"
     },
@@ -449,49 +449,49 @@
     },
     {
       "path": "assets/illustrations/no-courses.svg",
-      "bytes": 615,
+      "bytes": 614,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/no-results.svg",
-      "bytes": 539,
+      "bytes": 538,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/no-review.svg",
-      "bytes": 641,
+      "bytes": 640,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/restore-backup.svg",
-      "bytes": 554,
+      "bytes": 553,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/illustrations/save-error.svg",
-      "bytes": 579,
+      "bytes": 578,
       "type": "svg",
       "category": "illustrations"
     },
     {
       "path": "assets/patterns/journal-dots.svg",
-      "bytes": 202,
+      "bytes": 201,
       "type": "svg",
       "category": "patterns"
     },
     {
       "path": "assets/patterns/journal-grid.svg",
-      "bytes": 224,
+      "bytes": 223,
       "type": "svg",
       "category": "patterns"
     },
     {
       "path": "assets/patterns/journal-rules.svg",
-      "bytes": 197,
+      "bytes": 196,
       "type": "svg",
       "category": "patterns"
     },
@@ -503,7 +503,7 @@
     },
     {
       "path": "assets/social/social-card.svg",
-      "bytes": 1229,
+      "bytes": 1228,
       "type": "svg",
       "category": "social"
     },
@@ -584,6 +584,51 @@
       "bytes": 1439,
       "type": "png",
       "category": "platform"
+    }
+  ],
+  "webExports": [
+    {
+      "path": "website/assets/journal-editorial-480.webp",
+      "source": "assets/illustrations/journal-editorial.png",
+      "width": 480,
+      "height": 320,
+      "bytes": 8228,
+      "maxBytes": 20000,
+      "transform": "webp-quality-82"
+    },
+    {
+      "path": "website/assets/journal-editorial-960.webp",
+      "source": "assets/illustrations/journal-editorial.png",
+      "width": 960,
+      "height": 640,
+      "bytes": 32292,
+      "maxBytes": 60000,
+      "transform": "webp-quality-82"
+    },
+    {
+      "path": "website/assets/journal-editorial-1536.webp",
+      "source": "assets/illustrations/journal-editorial.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 99470,
+      "maxBytes": 160000,
+      "transform": "webp-quality-82"
+    },
+    {
+      "path": "website/assets/journal-editorial.png",
+      "source": "assets/illustrations/journal-editorial.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2586082,
+      "transform": "copy"
+    },
+    {
+      "path": "website/assets/social-card.png",
+      "source": "assets/social/social-card.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 53114,
+      "transform": "copy"
     }
   ]
 }

@@ -1,56 +1,59 @@
 # Product scope
 
-Desktop is primary. Per the user's release constraint, deploy the Web planner only after explicit school permission, including a version without school APIs. Authentication, timetable access and offline retention permissions remain separate. [ADR-005](adr/005-local-offline-and-school-gated-web.md) defines user-selected saving/offline modes and comparable-product research. This does not turn the existing static concept website into a planner.
+Updated: 2026-11-11. Cadence is a **general-purpose local time planner** for personal life, work, study and other daily commitments. Personal plans, tasks, Today and Week are the core. Courses are optional. No account, school identity, semester or organization is required. [ADR-007](adr/007-general-purpose-local-planner.md) records this direction and replaces the earlier university-centered scope and school gate for general Web deployment.
 
-Updated: 2026-11-10. Cadence is a **time-management application primarily for students, also suitable for teachers and other users**. Courses are one schedule category alongside personal, study and work arrangements. No school identity or affiliation is required. The project is independent and has no university endorsement or integration permission.
+## Current state
 
-## Direction and actual status
+The teaching app supports validated task addition, completion toggling, empty-list feedback, deletion and single-level undo in memory. It does not yet save data or manage schedules. The website is a concept presentation, not a working planner. Current lesson results and pending manual checks belong in the [project README](../README.md) and [learning log](LEARNING.md).
 
-Windows, Linux, macOS and **Web are confirmed product targets**. No Android/iOS product is planned. Flutter `shadcn_ui` is selected for an academic-journal interface: muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C`. It is not installed or implemented yet. See [ADR-004](adr/004-shadcn-web-direction.md).
+The learner writes core code through small lessons. The assistant maintains delegated documentation, artwork and website work, teaches, reviews and prepares tests/templates. A design update does not implement a future lesson.
 
-The learning executable displays Today, two read-only sample tasks with completion labels and an increment/reset practice counter. Lesson 4 is complete; the learner confirmed hot-reload/restart behavior and all 10 tests pass. Task editing and persistence are not implemented. No functional Web planner exists; the website is a concept presentation. The learner writes core code as lessons progress. The assistant handles delegated docs/website work, teaching, review and appropriate tests/templates, not a substitute implementation.
-
-## Planned first browser-local version
-
-Optional multi-client sync is now a separate conditional proposal in [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md), not part of the initial browser-local milestone below. It requires explicit cloud-data consent and permitted hosting/retention in addition to the relevant school approvals. Login does not silently upload a local workspace, and independent local use remains available.
-
-| Area | Future implementation target |
-|------|-------------------------------|
-| Schedule | Manual course/personal-entry CRUD and bounded weekly repeats |
-| Views | Today and week from common planning data |
-| Tasks | Manual tasks and completion |
-| Language | Japanese / English / Chinese |
-| Data | Memory by default; explicit optional browser-local saving |
-| Transfer | Strict versioned JSON, maximum 1 MiB UTF-8 and 2,000 total records; preview then confirmed whole-data replacement |
-| Control | Private JSON export and clearing application data |
-| Interface | Flutter `shadcn_ui`; keyboard and readable desktop-browser layouts |
-
-This is a plan, not an existing MVP. The initial browser version excludes backend/accounts, cloud sync, school APIs, CSV, notifications and single-occurrence changes. Browser saving does not encrypt, synchronize or back up data. The exact adapter is evaluated during implementation; IndexedDB is the recommended offline-storage option, with explicit limits and failure handling. Private JSON transfer is distinct from future filtered timetable sharing.
-
-## Broader desktop and learning scope
+## First useful local product
 
 | Area | Planned behavior |
 |------|------------------|
-| Semester and courses | Academic dates, teaching weeks, configurable periods, multiple rules and odd/even/selected weeks |
-| Exceptions | Preview and restore one cancellation, move or room change |
-| Personal plans | Independent timed/all-day plans and bounded repeats |
-| Schedule | Unified views, understandable conflicts and relevant provenance |
-| Coursework | Linked tasks, deadlines and exams; a deadline does not reserve time |
-| Editing and storage | SQLite, recoverable drafts, truthful failures and migrations |
-| Review/reminders | Local planned-time review; opt-in native reminders with tested limits |
-| Files | Filtered timetable sharing, duplicate-aware import, full backup/restore; later CSV/paste |
-| Reach | Three languages, accessibility, representative student/teacher trials and native validation |
+| Tasks | Create, edit, complete, reopen and delete tasks; optional deadlines; undo where supported |
+| Personal plans | Timed and all-day entries, optional categories and bounded weekly repeats |
+| Today | Today's tasks and plans, separate overdue/undated groups and the next entry |
+| Week | One view of timed entries and all-day plans, with clear dates and overlap warnings |
+| Saving | First-use choice between saving on this device and temporary use; no business persistence before consent |
+| Recovery | Confirmed local writes, input retained on failure, restart recovery, private export/import and explicit clearing |
+| Use | Offline local planning without login, a server, school connection or telemetry |
+| Interface | Keyboard access, readable resizable desktop layouts, Japanese/English/Chinese controls |
 
-A public holiday does not cancel a class automatically; file import does not subscribe to updates. [REDESIGN.md](REDESIGN.md) defines these longer-term behaviors. None becomes complete merely because its design exists.
+The first release must make these basic flows dependable before adding specialized modules. A task deadline does not reserve a calendar interval. A repeat always has a bounded range. [REDESIGN.md](REDESIGN.md) defines behavior and [ROADMAP.md](ROADMAP.md) separates implementation stages from release gates.
 
-## School feedback and optional integration
+On first use, explain **Save on this device** and **Temporary use**. Until the user chooses saving, keep business data in memory and explain loss on close. Remembering an explicit choice is allowed. Temporary mode does not open an old private database or write recoverable drafts/automatic backups. Saving does not imply encryption, cloud sync or backup. The detailed transitions are in [APPLICATION.md](APPLICATION.md#retention-mode-and-session-transitions).
 
-Prepare a fictional-data demo only after its individual features pass acceptance. [SCHOOL_DEMO.md](SCHOOL_DEMO.md) describes that future demonstration, not an available app or a sent invitation. Students and teachers may provide feedback without authenticating a school identity.
+## Platforms and visual direction
 
-School identity and read-only timetable import remain optional future possibilities. A supervisor's support or student's consent does not grant system access. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) defines the separate permission route. **School approval is not a prerequisite for developing or independently using the manual planner.**
+Desktop is primary: Windows first, then Linux and macOS after each passes native acceptance. No Android/iOS product is planned; Android is legacy scaffolding. Web and multi-device sync are optional later extensions, not promised parts of the first release.
 
-## Delivery and success
+Keep Flutter and the selected shadcn_ui direction, which is not installed yet. Use a quiet paper-and-ink interface with the existing independent C mark, muted wine `#7C394B`, warm paper `#F6F5F1` and sage `#6F877C`. Everyday examples should include work and personal life as well as study. The brand has no university affiliation. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [DESIGN.md](DESIGN.md).
 
-Begin with a small independently usable local slice; release only platforms and capabilities actually validated. Desktop delivery initially uses GitHub Releases; the future Web app needs its own deployment/storage/security checks. Wider use needs support ownership and recovery guidance, not invented adoption claims.
+## Optional later work
 
-Success means a user can record a commitment, understand today's time, finish a task, recover their own data and get help. Mobile apps, credential collection, unapproved scraping, enrollment/grade writes, AI extraction and unrelated lifestyle dashboards remain excluded. Backend data storage, synchronization and external calendar APIs require separate decisions.
+| Extension | Scope and decision boundary |
+|-----------|-----------------------------|
+| Courses | Semesters, periods, teaching weeks, multiple rules, single class changes and filtered timetable sharing; not required to use personal plans/tasks |
+| Review and reminders | Local planned-time review and opt-in native reminders with tested platform limits; not actual-time tracking |
+| Assisted import | Fixed-template CSV/paste after direct editing and native file recovery work; unknown formats need separate validation |
+| Web | Reuse proven local behavior only after browser storage, lifecycle, accessibility and hosting checks; no school permission is required for a general planner |
+| Sync | Separate user consent, identity, cloud copies, conflicts, deletion, security and operating ownership under [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md) |
+| External connections | Only supported, authorized sources; each connection has its own data-access and retention rules |
+
+If Web is chosen, its first candidate is browser-local: memory until explicit saving, an evaluated IndexedDB adapter, Today/Week/tasks, bounded repeats and strict private JSON transfer. The candidate limits remain 1 MiB UTF-8 and 2,000 total records, with preview before whole-data replacement. Browser storage is not encrypted storage or a durable backup. Initial Web would exclude backend/accounts, sync, school APIs, CSV, notifications and single-occurrence changes. This is an extension design, not a committed delivery stage.
+
+If sync is chosen, login must not upload independent local data automatically. Local-only use remains available. A school identity provider is not a general requirement; any particular provider's approval and data terms apply only when that integration is used.
+
+## Connections and independence
+
+General development and release do not need university approval. School authentication, timetable reads, local retention and exports still require the relevant permission when a school connection is pursued. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md) are optional reference material, not the main delivery path.
+
+Do not collect school passwords, scrape without permission or imply institutional endorsement. A declined or unavailable connection must leave the independent local planner useful.
+
+## Success and exclusions
+
+Success means a person can record a commitment, understand today and the week, finish a task, recover their own data and find help without the developer's assistance. Test different routines and accessibility needs rather than one institution's timetable. Desktop releases initially use GitHub Releases and list only verified platforms/features.
+
+Mobile apps, required cloud accounts, live collaboration, AI extraction, enrollment/grade operations, social feeds, payroll and unrelated dashboards remain outside the core scope. New integrations or services need a concrete use case and separate acceptance. Broader audience does not mean adding more infrastructure before local use works.

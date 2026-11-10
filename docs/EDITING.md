@@ -1,22 +1,22 @@
-# 本地编辑与自动保存
+# Local editing and saving
 
-2026-11-09，规划。第一版优先软件内直接编辑，固定模板导入后置。
+Updated: 2026-11-11. Planned behavior; persistent drafts and schedule editing are not implemented. Build direct editing before template import. On first use, explicitly offer Save on this device or Temporary use, with no account required. Saving follows that choice; before a choice or during temporary use, do not create persistent planner records, drafts or automatic backups. See [ADR-007](adr/007-general-purpose-local-planner.md).
 
-在周计划的空白时段新建课程或个人安排，点击已有条目打开编辑面板。名称、星期与时间放在前面；教室、教师、周次等按需展开。单次修改与整条规则修改保持显式选择。
+Create a plan from an empty time slot in the week view. Select an existing item to open its editor. Show the title, date and time first, followed by optional location, category and repeat settings. Room, teacher and teaching-week fields belong to the optional course extension; ordinary work, learning and daily-life plans do not require a semester. Make the choice between editing one occurrence and its whole repeat rule explicit when that later capability is implemented.
 
-## 保存行为
+## Save behavior
 
-- 表单输入首先是草稿；输入短暂停顿后自动保存到独立本地草稿记录，失去焦点或主动关闭编辑器时也尝试保存。不只依赖退出程序时写入。
-- 明确显示“尚未保存 / 保存中 / 草稿已保存 / 保存失败”。只有数据库写入成功才显示已保存；保存了草稿不代表已经更新正式课表。
-- 草稿可以暂缺必填信息，不进入周视图、统计或通知。确认时验证完整数据，将课程和规则以事务提交，并清除对应草稿；校验失败保留输入。
-- 重启后提示恢复已保存草稿，不自动提交。修改已有记录的草稿保留原记录版本，若原记录已变化需重新确认，不能覆盖新数据。
-- 普通待办完成/撤销操作直接提交事务；列表可以显示待保存状态，成功后更新已保存提示，失败保留可重试操作，不假装写入成功。
-- 并发写入按版本或队列排序，较早的慢请求不能覆盖较新的输入。关闭时还有未保存内容要提示继续保存、重试或明确放弃。
-- 每份草稿使用递增的编辑序号；旧请求的成功回执不能把新输入标成已保存。提交时冻结本次草稿版本，在事务内检查正式记录及依赖版本，再提交并删除草稿。关闭、放弃与提交先停止该编辑会话的后续写入，取消防抖计时器并处理完已排队写入，避免迟到的自动保存让已删除草稿重新出现。应用层契约见 [APPLICATION.md](APPLICATION.md)。
-- 删除支持撤销；数据迁移、批量改课和完整恢复前使用经验证的本地快照。备份与自动保存不同，仍提供独立导出备份入口。
+- Form input is a draft. In a mode that allows local saving, save it to a separate draft record after a short pause in typing, on blur and when closing the editor. Do not rely only on application shutdown. In session-only mode, keep the draft in memory and explain that closing loses it.
+- Show distinct states: Not saved, Saving, Draft saved and Save failed. Only a successful storage write can mark a draft as saved. Saving a draft does not update the schedule. Temporary mode must say that data is kept only for this session rather than claiming it was saved to disk.
+- Drafts may omit required fields. Exclude them from the week view, statistics and reminders. On confirmation, validate the full input, commit the plan and repeat rules in one transaction, and remove the matching draft. Keep the input if validation fails. The same atomic behavior applies to optional course records.
+- After restart, offer to restore saved drafts without submitting them. A draft that edits a record keeps the record's original revision. If that revision has changed, require another review instead of overwriting newer data.
+- Task completion and reversal use direct commands. In a saving mode, commit them in a transaction. The list may show a pending state, but must not claim success before storage confirms it. Keep failed operations available to retry.
+- Order concurrent writes by revision or a queue. A slower, older request must not overwrite newer input. If the editor is closing with unsaved changes, offer continued saving, retry or explicit discard.
+- Give each draft an increasing edit sequence. An old success response must not mark newer text as saved. Freeze the submitted draft version and check the record and dependency revisions in the transaction. Closing, discarding and submitting must stop later session writes, cancel debounce timers and settle queued writes so a late autosave cannot recreate a deleted draft. See [APPLICATION.md](APPLICATION.md).
+- Support undo for deletion. Before migrations, bulk changes or full restore, use a verified local snapshot where retention is allowed. Autosave is not a backup; provide a separate export action.
 
-突然断电可能丢失尚未写入的最近输入；磁盘损坏也不能靠自动保存完全防止。界面承诺恢复已确认保存的数据，不承诺永不丢失。
+A power loss may discard input that has not been written. Autosave cannot prevent disk failure. Promise recovery of confirmed saved data within the tested storage contract, not that data can never be lost.
 
-## 验收
+## Acceptance
 
-保存后重启内容一致；部分填写的草稿能恢复；写入失败时文本仍在且可重试；快速连续输入最终保留最新值；取消草稿不修改正式课程；提交事务失败不产生部分课程；撤销删除可恢复。使用临时数据库和可模拟失败的存储接口测试。
+Check the first-use choice before any persistent planner write. Saved content must survive restart and partial drafts must be recoverable. Failed writes must leave input available to retry. Rapid edits must retain the latest value. Discarding a draft must leave the plan unchanged. A failed submit must not leave a partial plan or course. Undo must restore the deleted item. Temporary editing must leave no persistent draft, database write or automatic backup. All core editing must work offline. Test with a temporary database and a storage adapter that can simulate failures.

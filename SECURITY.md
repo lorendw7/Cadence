@@ -1,11 +1,11 @@
 # Security and private data
 
-Cadence's security design and acceptance requirements are in [docs/SECURITY.md](docs/SECURITY.md). The Web application is a confirmed future target but is not implemented. This policy is design guidance, not a completed security review.
+Cadence is a general-purpose local planner under development. The current app keeps tasks in memory. Saving, encryption, backup, Web, and sync designs are not implemented protections.
 
-[Developer protection technologies](docs/DATA_PROTECTION.md) proposes encrypted native storage, platform key storage, authenticated backups, input validation and release hardening. These are not installed or implemented features; defenses are implementation responsibilities, not optional user safety switches. Web planner deployment requires explicit school permission under [ADR-005](docs/adr/005-local-offline-and-school-gated-web.md).
+[Security requirements](docs/SECURITY.md) describe data boundaries and acceptance. [Data protection](docs/DATA_PROTECTION.md) describes candidate storage, key, backup, input, and release protections.
 
-The initial Web design proposes memory by default and optional, explicit browser-local saving. No account, backend or university connection is implemented or required for the manual-planning design. Browser data and exported JSON are private, unencrypted planning data; do not use real sensitive schedules in concept examples or public reports.
+The core is designed to work offline without an account or school identity. At first use, the user will choose local saving or a temporary session. The app must explain what is retained, what is lost on exit, and how to export or clear data. Plain JSON backups contain private data; they are not a safe sharing format.
 
-Do not post passwords, tokens, complete schedules, backups or exploitable private-data details in public issues. For ordinary reproducible bugs, use fictional examples and report the version, platform and steps. Sensitive findings require a private channel agreed with the maintainer; no dedicated response time or school incident channel is currently promised. Establish that reporting route before a wider real-data trial.
+Kyushu and other school connections are optional extensions. Only those connections need the relevant school's interface and data permissions. General product releases are independent of them. See [ADR-007](docs/adr/007-general-purpose-local-planner.md).
 
-The desktop manual core is independent of university integration approval. Per this project's release constraint, the Web planner requires school deployment permission even without school APIs. Any school authentication, data access and permitted retention/export must pass their separate requirements.
+Do not post passwords, tokens, full schedules, backups, or exploitable private-data details in public issues. For ordinary bugs, use fictional examples and include the version, platform, and reproduction steps. Agree on a private channel with the maintainer for sensitive findings. No dedicated response time is promised yet; establish the reporting route before a wider real-data trial.

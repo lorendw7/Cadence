@@ -1,4 +1,4 @@
-/* Rasterize project-native SVGs only. Requires sharp; does not edit generated art. */
+/* Export project artwork. Requires sharp; preserves every editable master. */
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const sharp = require('sharp');
@@ -7,7 +7,22 @@ async function png(source, destination, size) {
   await fs.mkdir(path.dirname(destination), {recursive: true});
   await sharp(source, {density: 192}).resize(size, size).png().toFile(destination);
 }
+async function editorial() {
+  const source = path.join(root, 'assets/illustrations/journal-editorial.png');
+  // Keep the full composition and source pixels; these are delivery derivatives.
+  for (const width of [480, 960, 1536]) {
+    await sharp(source).resize({width, withoutEnlargement: true})
+      .webp({quality: 82, effort: 6})
+      .toFile(path.join(root, `website/assets/journal-editorial-${width}.webp`));
+  }
+  await fs.copyFile(source, path.join(root, 'website/assets/journal-editorial.png'));
+}
 async function main() {
+  if (process.argv.includes('--editorial-only')) {
+    await editorial();
+    console.log('Exported responsive WebP artwork and synchronized the PNG fallback.');
+    return;
+  }
   const source = path.join(root, 'assets/brand/cadence-icon-v2.svg');
   for (const size of [16, 24, 32, 48, 64, 128, 180, 192, 256, 512, 1024]) {
     await png(source, path.join(root, `assets/platform/png/cadence-${size}.png`), size);
@@ -57,6 +72,7 @@ async function main() {
   }
   await sharp(path.join(root, 'assets/social/social-card.svg')).png().toFile(path.join(root, 'assets/social/social-card.png'));
   await fs.copyFile(path.join(root, 'assets/social/social-card.png'), path.join(root, 'website/assets/social-card.png'));
-  console.log('Exported PNG, ICO, ICNS, macOS icon set and website assets.');
+  await editorial();
+  console.log('Exported PNG, WebP, ICO, ICNS, macOS icon set and website assets.');
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

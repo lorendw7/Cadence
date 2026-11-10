@@ -1,54 +1,38 @@
-# 第三节：把待办显示成列表
+# Lesson 3: display a task list
 
-更新：2026-11-10。状态：学习者已实现，格式、静态分析及自动验收通过；实际运行阶段已完成，学习者随后完成第四节按钮与重启实验。目标是在“今天”页面显示两条待办；预计 20–45 分钟。你写界面代码，助手负责测试和审阅。
+Completed: 2026-11-10. The learner wrote the UI. Formatting, analysis, and all nine tests passed at this stage. The learner later completed the real-window experiment in lesson 4. This note describes the historical read-only list.
 
-前两节已经有了 `PlannerTask` 和 `copyWith`。这一节只把对象中的数据画出来，不修改完成状态，也不添加输入框、数据库或新依赖。
+The goal was to show two tasks on Today in about 20–45 minutes. Do not add input, completion changes, storage, or dependencies for this exercise.
 
-## 先理解列表
+## Lists
 
-`List<PlannerTask>` 表示“里面放的是 PlannerTask 对象的列表”。和 Java 的泛型列表类似，尖括号说明元素类型。
-
-先看一个文字列表：
+List<PlannerTask> means a list of PlannerTask objects. Its type parameter is similar to a Java generic list.
 
 ```dart
-final colors = <String>['红色', '蓝色'];
-
-print(colors.length); // 2：元素数量。
-print(colors[0]); // 红色：下标从 0 开始。
-print(colors[1]); // 蓝色。
+final colors = <String>['red', 'blue'];
+print(colors.length); // 2
+print(colors[0]); // red; indexes start at zero
+print(colors[1]); // blue
 ```
 
-`final` 表示不能把 `colors` 变量重新指向另一个列表，并不自动禁止修改列表内容。本节不修改列表，也不把列表下标当作任务 ID。
+final prevents assigning another list to colors. It does not make the contents immutable. A task ID is not its list index.
 
-## 你的第一步：准备两条任务
+## Prepare sample tasks
 
-修改 [lib/main.dart](../../lib/main.dart)，先导入已有模型：
+In [main.dart](../../lib/main.dart), import the existing model. In the historical TodayPage build method, create a local tasks list before returning the Scaffold.
 
-```dart
-import 'package:cadence/domain/coursework/planner_task.dart';
-```
+| ID | Meaning of the existing Chinese sample title | Completed |
+|---|---|---|
+| demo-1 | Submit the course report | false |
+| demo-2 | Review linear algebra | true |
 
-找到 **TodayPage** 的 `build` 方法。在它的 `return Scaffold(...)` 前，自己创建名为 `tasks` 的 `List<PlannerTask>`，包含下列对象：
+Keep the sample titles in the code unchanged. Documentation uses English; this lesson does not translate the app.
 
-| id | title | isCompleted |
-|----|-------|-------------|
-| `demo-1` | `提交课程报告` | `false` |
-| `demo-2` | `复习线性代数` | `true` |
+A list literal uses square brackets and comma-separated constructor calls. At this stage, build recreates the sample list every time. It is suitable for display practice but cannot keep user changes. Later lessons move it into State.
 
-列表字面量用方括号 `[]`，对象的构造函数调用放在里面，以逗号分隔。第一条可以沿用模型默认的未完成状态。
+## Build a row
 
-这里的列表是临时的只读演示数据：每次 `build` 执行都会重新创建。它适合这一节的显示练习，**不是以后保存用户修改的方式**。保留 `const TodayPage({super.key})`；无需新增字段或改成有状态组件。
-
-## 从一个元素画出一行
-
-`ListView.builder` 根据需要创建列表中的行：
-
-- `itemCount` 告诉它共有多少行。
-- `itemBuilder` 是传给它的函数；Flutter 在需要某一行时调用这个函数。
-- 函数的 `index` 是这一行的下标，可以用来取对应元素；`context` 是 Flutter 提供的界面上下文，本节不需要额外操作它。
-- 函数必须 `return` 一个 Widget，表示这一行长什么样。
-
-继续用颜色作为例子，下面是一个列表控件片段，不是整个页面：
+ListView.builder creates rows as needed. itemCount gives the number of items. itemBuilder is a function Flutter calls with context and an index. It must return a Widget.
 
 ```dart
 ListView.builder(
@@ -59,44 +43,20 @@ ListView.builder(
 )
 ```
 
-你的任务行使用 `ListTile`。它的 `title` 是主要文字，`subtitle` 是下面一行说明，例如：
+Use ListTile for each task. Its title shows the task title; its subtitle shows the completion state. A conditional expression chooses a value, as in isOpen ? 'Open' : 'Closed'.
 
-```dart
-ListTile(
-  title: Text('Dart 入门'),
-  subtitle: Text('借阅中'),
-)
-```
+## Give the list a height
 
-把示例中的固定文字换成当前任务的数据：主标题显示 `title`，副标题在 `isCompleted` 为 `true` 时显示 **已完成**，否则显示 **未完成**。
+Keep the Cadence app bar and the Today page title. Use a Column with the title first and an Expanded containing the ListView second. Expanded gives the scrolling list the remaining height. An unconstrained ListView inside Column causes a layout problem.
 
-可以用条件表达式选择文字。另一个例子是 `isOpen ? '营业中' : '已打烊'`：问号前为 `true` 时取第一个值，否则取冒号后的值。
+The body reads local variables, so the whole body cannot be const. Individual fixed Text widgets may still be const.
 
-## 放回“今天”页面
+## Acceptance
 
-保留 `AppBar` 中的 **Cadence**，并让页面仍有一个可见的 **今天** 标题。只替换原来的占位 `body`：
+Both task titles and completion states should match the data, with no layout exception. Clicking was not required to change state in this lesson.
 
-1. 用 `Column` 上下排列标题和列表。
-2. 第一项是显示“今天”的 `Text`。
-3. 第二项用 `Expanded` 包住 `ListView.builder`，让列表使用剩余高度。
-4. `itemCount` 来自任务列表长度；在 `itemBuilder` 中取出当前任务，返回对应的 `ListTile`。
+The [list tests](../../test/task_list_widget_test.dart) checked 800 × 600 and 400 × 320 layouts. Later input controls reduced visible list space, so current tests scroll to reach off-screen rows rather than requiring both rows to exist at once.
 
-`Column` 内的滚动列表需要明确的高度范围，`Expanded` 在这里负责把页面剩余高度交给它。不要直接把无高度限制的 `ListView` 放入 `Column`。
+The historical checks were Dart formatting, Flutter analysis, and nine passing tests. The learner wrote feature code; the assistant reviewed and maintained tests. Automatic widget tests do not replace manual window checks.
 
-原来的 `body: const Center(...)` 是固定内容；新的列表会读取局部变量，不能把整个新 `body` 标为 `const`。固定的“今天”文字仍可单独使用 `const Text(...)`。
-
-这一节的中文标题和示例任务用于学习，产品的日英中三语支持会在后续实现；现在不增加语言系统。
-
-## 怎么验收
-
-运行后应看到：
-
-- 顶部标题 **Cadence**，页面标题 **今天**。
-- 两条任务：**提交课程报告 / 未完成**、**复习线性代数 / 已完成**。
-- 没有布局异常；任务当前只可查看，点击不需要改变状态。
-
-[已启用的界面测试](../../test/task_list_widget_test.dart) 检查两条 `ListTile` 各自的标题和完成状态、总行数，以及 800×600 和 400×320 两种测试窗口下没有布局异常。
-
-本节验收：`dart format --output=none --set-exit-if-changed lib test`、`flutter analyze --no-pub --fatal-infos --fatal-warnings` 和 `flutter test --no-pub` 全部通过，共 9 项测试。现有启动测试保留了应用标题、“今天”和异常检查，名称已改为 Today page。助手未修改学习者的功能代码。
-
-复习时可在项目根目录执行 `flutter run -d windows`，确认实际窗口显示上述内容；自动 widget 测试不能代替手动运行。学习者现已完成[第四节](04-state.md)的实际运行实验，当前页面另有练习计数和两个按钮。本节只代表界面能显示演示数据；添加、完成与撤销、保存和恢复属于后续小节。
+Continue with [lesson 4](04-state.md). Current application behavior is in [LEARNING.md](../LEARNING.md).

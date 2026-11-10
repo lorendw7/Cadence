@@ -1,175 +1,91 @@
-# Dart Guide (for this project, coming from TypeScript)
+# Dart guide for Cadence
 
-This is learning material. Historical milestone labels and example features below are illustrative, not the current implementation plan; follow [ROADMAP.md](ROADMAP.md) and [REDESIGN.md](REDESIGN.md) for scope.
+This is a short reference for the current lessons. The learner knows other languages but is new to Dart and Flutter. Read the relevant part when a lesson needs it. Examples are explanations, not permission to implement future features.
 
-You know TypeScript. Dart will feel ~70% familiar — this guide covers the 30% that differs, in the order Cadence needs it. Read each part when its milestone starts, not all up front.
+Current progress is in [LEARNING.md](LEARNING.md). Scope and ordering are in [PRODUCT.md](PRODUCT.md) and [CURRICULUM.md](CURRICULUM.md).
 
----
+## Values and types
 
-## Part 0 — Dart is TypeScript with the guardrails always on (v0.0)
-
-| TypeScript | Dart | Note |
+| Concept | Dart | Meaning |
 |---|---|---|
-| `const x = 5` | `final x = 5;` | `final` = set once. Dart's `const` is stricter: compile-time constant |
-| `let y` | `var y;` | Type inferred, like TS |
-| `string` / `number` / `boolean` | `String` / `int` `double` / `bool` | Capitalized; `int` and `double` are distinct |
-| `string \| null` | `String?` | **Sound null safety**: non-`?` types can never be null — the compiler proves it |
-| `x?.y`, `x ?? z` | same | Plus `late` = "will be set before first read, trust me" |
-| `Event[]` | `List<Event>` | Also `Map<K,V>`, `Set<T>` |
-| `interface` / type alias | `class` | Dart classes are the data carriers; no structural typing |
-| arrow fn `=>` | `=>` for one-liners | `int double_(int x) => x * 2;` |
-| `JSON.parse` | `jsonDecode` + hand-written `fromJson` | No reflection; drift generates this for DB rows |
+| Text | String | A text value |
+| Whole number | int | A whole-number value |
+| Decimal number | double | A floating-point value |
+| Boolean | bool | true or false |
+| Inferred type | var count = 0; | Type is inferred; the value may change |
+| Assign once | final title = readTitle(); | Value may be calculated at runtime |
+| Compile-time constant | const limit = 10; | Value must be known at compile time |
+| Nullable type | String? | A string or null |
+| List | List<PlannerTask> | An ordered group of tasks |
 
-Semicolons are **required**. Everything lives in classes/functions — no top-level statements except `main()`.
+Semicolons end statements. Dart also supports top-level functions and variables. main is the program entry point.
 
-```dart
-void main() {
-  final greeting = greet('lorendw7');
-  print(greeting);
-}
+final does not make an object deeply immutable. A final List variable can still have elements added or replaced unless the list itself is immutable.
 
-String greet(String name) => 'Hello, $name!';   // $var interpolation, like `${}` in TS
-```
+## Classes and constructors
 
----
-
-## Part 1 — Widgets: UI = f(state), but literally (v0.0)
-
-Flutter has no HTML/CSS. **Everything is a widget** — layout, padding, text, the app itself — and the UI is a tree of constructor calls:
+A class defines fields and behavior. A constructor initializes an instance.
 
 ```dart
-class TodayScreen extends StatelessWidget {
-  const TodayScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Today')),
-      body: Column(
-        children: [
-          const Text('Habits'),
-          ElevatedButton(
-            onPressed: () => print('check in'),   // callbacks, like React props
-            child: const Text('Check in'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-```
-
-React mapping that makes it click instantly:
-
-| React | Flutter |
-|---|---|
-| function component | `StatelessWidget.build()` |
-| component with `useState` | `StatefulWidget` + `setState()` |
-| props | constructor parameters |
-| `children` | `child:` / `children:` |
-| CSS flexbox | `Row` / `Column` / `Expanded` |
-| CSS padding/margin | `Padding(padding: EdgeInsets.all(8), child: …)` |
-| conditional render `{x && <A/>}` | `if (x) A()` inside a `children: [ … ]` list |
-| list `.map()` | `items.map((e) => Tile(e)).toList()` or `ListView.builder` |
-
-Rebuild model is identical to React: state changes → `build()` runs again → framework diffs the widget tree. Hot reload keeps state while swapping code.
-
----
-
-## Part 2 — Async: Future = Promise, Stream = the new one (v0.1)
-
-```dart
-Future<List<Event>> loadEvents() async {          // Future<T> ≈ Promise<T>
-  final rows = await repository.eventsInRange(a, b);
-  return rows;
-}
-```
-
-`async`/`await`/`try-catch` work exactly as in TS. The genuinely new concept is **`Stream<T>`** — a Promise that keeps resolving. drift queries return streams, so the DB pushes updates to the UI:
-
-```dart
-Stream<List<Habit>> watchHabits() =>
-    (select(habits)..where((h) => h.archived.equals(false))).watch();
-```
-
-Subscribe in the UI via Riverpod's `StreamProvider` — every emission rebuilds the watchers. This replaces all manual "refetch after mutation" logic: **write to the DB, and every screen showing that data updates itself.**
-
----
-
-## Part 3 — Riverpod in 60 seconds (v0.1)
-
-```dart
-final habitsProvider = StreamProvider<List<Habit>>(
-  (ref) => ref.watch(dbProvider).habitRepo.watchHabits(),
-);
-
-class HabitList extends ConsumerWidget {                    // ConsumerWidget = widget + ref
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final habits = ref.watch(habitsProvider);               // rebuilds on every emission
-    return habits.when(
-      data: (list) => ListView(children: [for (final h in list) HabitTile(h)]),
-      loading: () => const CircularProgressIndicator(),
-      error: (e, _) => Text('Error: $e'),
-    );
-  }
-}
-```
-
-- `ref.watch` in `build` = subscribe. `ref.read` in callbacks = one-shot (don't subscribe inside `onPressed`).
-- `AsyncValue.when` forces you to render loading/error states — the UI equivalent of null safety.
-
----
-
-## Part 4 — Classes, named params, sealed types (v0.1–v0.2)
-
-```dart
-class Habit {
-  final String id;
+class Book {
   final String title;
-  final String? icon;                     // nullable field
+  final bool isBorrowed;
 
-  const Habit({required this.id, required this.title, this.icon});
-
-  Habit copyWith({String? title}) =>      // immutable-update pattern (like TS spread)
-      Habit(id: id, title: title ?? this.title, icon: icon);
+  const Book({required this.title, this.isBorrowed = false});
 }
 ```
 
-Named parameters (`{required this.id}`) are why Flutter code reads like labeled JSON. For the event categories, Dart enums carry behavior:
+Braces define named parameters. required means the caller must supply that parameter. this.title initializes the field from the argument. const allows constant construction when the arguments qualify; it does not require every call to use const.
+
+## Null and optional parameters
+
+A nullable type permits null; it does not by itself make a parameter optional. These signatures differ:
 
 ```dart
-enum Category {
-  class_, meeting, todo;
-
-  bool get supportsPriority => this == Category.todo;
-}
+void requiredValue(bool? value) {}
+void optionalValue({bool? value}) {}
 ```
 
-`switch` on an enum is exhaustive — the compiler errors if you forget a case (the same safety Rust's `match` gives).
+The first needs an argument. The second can be called without one. value ?? oldValue uses the old value only when value is null. false is a real value and does not trigger that fallback.
 
----
+The current PlannerTask uses copyWith to return a new task while keeping its ID. Read [lesson 2](lessons/02-copy-with.md) for the learner's implementation.
 
-## Part 5 — What generates code, and why (v0.1)
+## Widgets and state
 
-Dart has no runtime reflection, so libraries generate code at build time:
+Flutter describes UI with widgets. build returns the widget tree for the current inputs and state. StatelessWidget reads its inputs; StatefulWidget has a separate State object for values that change while it is mounted.
 
-- **drift**: you declare tables → `dart run build_runner build` generates row classes + typed queries into `*.g.dart` files.
-- **intl/ARB**: you write `app_en.arb` etc. → `flutter gen-l10n` generates `AppLocalizations` with a typed getter per string; the UI calls `AppLocalizations.of(context).habitStreak(count)`.
+Keep persistent page state outside build. Call setState for synchronous state changes that should rebuild the page. Do not put asynchronous work inside its callback. Saving to disk is separate from rebuilding.
 
-Treat `*.g.dart` as build artifacts: never edit, do commit (or ignore + CI-generate; this project commits them for simplicity).
+Parent widgets pass data down and callbacks to invoke on user actions. VoidCallback means void Function(). Passing onTap: onToggle gives Flutter a function to call later; onToggle() calls it now.
 
----
+## Layout and lists
 
-## How to get unstuck
+Row arranges children horizontally; Column arranges them vertically. Expanded gives a child the remaining bounded space on the main axis.
 
-1. Read the error **top line first** — Flutter errors bury the cause above a long widget-tree dump.
-2. The widget inspector (VS Code sidebar) shows the live tree — most layout confusion dies there.
-3. In chat, paste the full error + the widget — I'll explain 中英文 and point you at the fix; you type it.
+ListView.builder creates rows when needed. A narrow window may not build all rows at once. Tests should scroll to reach off-screen content. A list position is not a stable task ID.
 
-## Reading list (free, short)
+## Input and lifetime
 
-- Dart language tour: <https://dart.dev/language> — skim in one evening with your TS glasses on.
-- Flutter "first app" codelab, then **Layout basics**: <https://docs.flutter.dev/ui/layout>.
-- Riverpod docs: <https://riverpod.dev> — read "Providers" and "Reading" pages only, at v0.1.
-- drift: <https://drift.simonbinder.eu> — "Getting started" at v0.1.
+TextEditingController holds input text. Store it in State so rebuilds reuse it. Read the text before clearing it. Dispose of the controller when its State is disposed.
+
+trim returns a new string without leading and trailing whitespace. It does not edit the field. Keep failed input, show an error, and return from the outer submission callback before creating a task.
+
+## Async work, later
+
+Future<T> represents one result or error that may arrive later. async/await lets code wait without blocking the event loop. Stream<T> can deliver a sequence of values or errors; it is not a Future that repeatedly completes.
+
+Introduce shared-state and database libraries only when the lessons need them. Riverpod and drift are planned, not installed. Their generated APIs and commands must be checked against the version introduced at that time.
+
+## Debugging
+
+Read the first relevant error before the long stack trace. Compare the actual value, state update, and widget rebuild separately. Use the widget inspector for layout problems. Share the error and the smallest relevant code; the learner makes the correction.
+
+Hot reload usually keeps existing state. Hot restart and a full restart initialize it again. Neither proves that data is saved. See [lesson 4](lessons/04-state.md) for the observed experiment.
+
+## References
+
+- [Dart language](https://dart.dev/language)
+- [Flutter layout](https://docs.flutter.dev/ui/layout)
+- [Flutter hot reload](https://docs.flutter.dev/tools/hot-reload)
+- [Riverpod](https://riverpod.dev/)
+- [drift](https://drift.simonbinder.eu/)

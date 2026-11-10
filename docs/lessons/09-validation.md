@@ -1,23 +1,29 @@
-# 第九节：标题校验与空列表提示
+# Lesson 9: title validation and empty lists
 
-更新：2026-11-11。标题校验与空列表提示均已实现。学习者实际确认空列表提示正常，添加后提示消失，新任务能切换状态，并已恢复两条样例。标题校验最初验收为 19 项测试通过；第十节删除测试接入后补充了空列表自动覆盖，当前全部 26 项通过。标题校验的独立手动确认仍未提供。
+Updated: 2026-11-11. Both behaviors are implemented. The learner confirmed the empty-list prompt, its removal after adding a task, and completion changes for that task, then restored the two samples.
 
-## 已实现的标题校验
+Title validation first passed with 19 tests. Lesson 10 later added automatic empty-list coverage and brought the total to 26. Separate manual title-validation confirmation remains pending.
 
-读取 titleController.text.trim()，使用 isEmpty 拒绝空白输入。State 的 String? titleError 保存可空错误文字，初始 null；InputDecoration.errorText 显示错误。该配置引用运行时变量，因此移除 const。
+## Validation
 
-失败时在 setState 中设置“请输入任务标题”，然后在外层 onPressed 回调中 return，跳过创建任务、递增编号及清空输入。有效提交时添加任务并将 titleError 设回 null，再清空输入。
+Read titleController.text.trim() and reject isEmpty. State holds a nullable String? titleError, initially null. InputDecoration.errorText displays it. Because the decoration now reads runtime state, it cannot be const.
 
-trim 返回移除首尾空白的新字符串，不直接改动输入框，保留中间空格。isEmpty 是属性。String? 允许字符串或 null，null 与空字符串不同。return 必须放在 setState 外才能结束整个提交回调。当前采用提交时校验，错误在下一次有效提交时清除。
+On failure, setState sets the error, then return from the outer onPressed callback. Do not create a task, consume an ID, or clear input. A valid submission adds the task, resets titleError to null, and clears the controller.
 
-## 验收与测试修正
+trim returns a new string with leading/trailing whitespace removed; it does not change the field and keeps internal spaces. isEmpty is a property. null and an empty string are different. A return inside setState would only leave that inner callback, so the submission's early return must be outside it.
 
-[标题校验测试](../../test/task_title_validation_widget_test.dart) 在 800×600、400×320 两种窗口下检查：空输入、普通空格、制表符及全角空格被拒绝；错误位于窗口内；失败不添加任务、不消耗编号、不清空输入；输入有效标题后成功添加、移除错误并清空输入；首尾空格移除且中间空格保留。
+Validation happens on submission. The error clears after a valid submission, not on every keystroke.
 
-助手编写测试时修正了两项测试假设：错误说明文字不是点击目标，用实际布局边界验证；单行 TextField 会过滤换行，因此保留输入应比较提交前后的实际控制器内容。未修改功能代码来迁就测试。学习者完成了 InputDecoration 格式修正。
+## Acceptance and test corrections
 
-最近验收：格式通过（10 个文件无需调整）、静态分析通过、全部 19 项测试通过。功能代码由学习者编写，助手维护测试与文档。
+The [validation tests](../../test/task_title_validation_widget_test.dart) use 800 × 600 and 400 × 320 windows. They check empty input, ordinary spaces, tabs, and full-width spaces; visible error text; no task or ID on failure; preserved input; correction and successful addition; and trimmed edges with internal spaces kept.
 
-## 已完成：空列表提示
+Two test assumptions were corrected. Error text is not a tap target, so its actual bounds determine visibility. A single-line TextField filters newlines, so preservation compares the actual controller value before and after submission. Feature code was not changed to satisfy faulty test assumptions.
 
-学习者在 Expanded 中根据 tasks.isEmpty 选择 const Center 提示或原 ListView.builder。列表为空不等于所有任务已完成。通过临时移除样例、重启应用，实际确认空列表与新增任务流程后恢复样例。[第十节](10-delete-undo.md) 现已提供删除路径；删除测试在两种窗口尺寸下检查删除至空列表、空标题被拒绝、重新添加及切换状态。
+Formatting, analysis, and 19 tests passed at the original validation stage. The learner also corrected InputDecoration formatting.
+
+## Empty lists
+
+Inside Expanded, tasks.isEmpty selects a centered prompt or the original ListView.builder. An empty list differs from a list of completed tasks.
+
+The learner temporarily removed samples and restarted to check the empty-list/addition flow, then restored the samples. [Lesson 10](10-delete-undo.md) now provides a normal delete-to-empty path. Its tests check deleting all tasks, rejecting a blank title, adding again, and toggling completion at both sizes.

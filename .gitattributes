@@ -3,3 +3,15 @@ linux/flutter/generated_plugin_registrant.cc text eol=lf
 linux/flutter/generated_plugin_registrant.h text eol=lf
 linux/flutter/generated_plugins.cmake text eol=lf
 macos/Flutter/GeneratedPluginRegistrant.swift text eol=lf
+
+# Artwork byte counts and deployment copies must match on every host.
+*.svg text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+.gitattributes text eol=lf

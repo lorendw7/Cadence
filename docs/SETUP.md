@@ -1,6 +1,6 @@
 # Setup
 
-The product targets Windows, Linux, macOS and Web; only the existing learning desktop checkout is described by current run commands. Their runners do not establish runtime support; test each target on its native host. Android remains legacy scaffolding and has no product/release commitment; Android/iOS development is excluded. Web is a confirmed future development stage, and there is no functional Web planner in this checkout; see [ROADMAP.md](ROADMAP.md).
+Cadence is a local desktop planner for Windows, Linux, and macOS. These commands run the current learning app. A runner or successful build does not prove runtime support; check each platform on its native host. Android is legacy scaffolding, and mobile apps are outside scope. Web is an optional later direction, not an implemented target; see [ROADMAP.md](ROADMAP.md).
 
 ## Toolchain
 
@@ -33,9 +33,9 @@ flutter run -d linux
 flutter run -d macos
 ```
 
-The current learning app starts with two sample tasks. You can add validated titles, toggle completion, delete tasks and undo the latest deletion once. Empty lists show a prompt; the practice counter has `加1`/`归零` buttons. Tasks, input and the undo record are in memory; restarting restores the initial samples. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter. See [learning progress](LEARNING.md) for automated and manual acceptance details.
+The current learning app starts with two sample tasks. You can add validated titles, toggle completion, delete tasks and undo the latest deletion once. Empty lists show a prompt; the practice counter has increment and reset buttons. Tasks, input and the undo record are in memory; restarting restores the initial samples. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter. See [learning progress](LEARNING.md) for automated and manual acceptance details.
 
-Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner will add the Web target and selected shadcn_ui dependency during their implementation stages. No alternate core implementation is provided by the assistant.
+Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner will introduce shadcn_ui during the UI lessons. Add a Web target only if that optional stage is chosen. No alternate core implementation is provided by the assistant.
 
 ## Validate
 
@@ -51,7 +51,7 @@ CI checks formatting without changing files:
 dart format --output=none --set-exit-if-changed lib test
 ```
 
-With Node and Git installed, check repository-local document/website paths and JavaScript syntax using `node tools/check_repository.cjs`. This read-only check does not replace browser or external-link validation.
+Run the read-only checks in [tools/README.md](../tools/README.md) for documentation, website translations/markup, and artwork. They require Node, Git, and Python and do not replace browser or remote-link validation.
 
 Native build checks, on the corresponding hosts:
 

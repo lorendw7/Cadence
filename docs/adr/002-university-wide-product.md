@@ -1,11 +1,11 @@
 # ADR-002: A local-first planner for students across Kyushu University
 
-**Status:** Historical; partially superseded by [ADR-004](004-shadcn-web-direction.md). Its Kyushu-student-only audience and Web-candidate status are no longer current. Local-first behavior and separately authorized optional school integration remain valid.
+**Status:** Historical. [ADR-004](004-shadcn-web-direction.md) first broadened the audience; [ADR-007](007-general-purpose-local-planner.md) now replaces the university-centered scope with a general local planner. School integration is optional, not a delivery path or release gate. Local-first behavior and authorization for any specific school connection remain valid.
 **Date:** 2026-11-10
 **Deciders:** Cadence maintainer, following the user's university-wide product goal.
 **Related:** [Product](../PRODUCT.md), [behavior](../REDESIGN.md), [university integration](../UNIVERSITY_INTEGRATION.md), [ADR-001](001-local-application-boundaries.md).
 
-The text below preserves the decision at that time; use ADR-004 and PRODUCT.md for the current student/teacher audience, selected-but-not-introduced shadcn_ui and planned Web target.
+The text below preserves the decision at that time. Use ADR-007 and [PRODUCT.md](../PRODUCT.md) for the current general audience, selected-but-not-installed shadcn_ui and optional Web/sync extensions. No university-wide rollout is currently promised.
 
 ## Context
 

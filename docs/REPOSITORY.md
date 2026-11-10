@@ -1,42 +1,56 @@
-# 仓库导航与维护
+# Repository map and maintenance
 
-更新：2026-11-11。目录保持原有路径，避免破坏教学引用和平台工程。当前学习进度以 [LEARNING.md](LEARNING.md) 为准，课时以 [CURRICULUM.md](CURRICULUM.md) 为准；各课笔记保留当时的测试数量，不代表最新总数。
+Updated: 2026-11-11. Keep paths stable so lesson links and platform projects continue to work. [LEARNING.md](LEARNING.md) owns current progress; [CURRICULUM.md](CURRICULUM.md) owns teaching estimates. Older lesson counts are historical.
 
-| 目录 | 内容与维护边界 |
+## Ownership
+
+| Directory | Contents and rules |
 |---|---|
-| `lib/` | 学习者实现的 Flutter 入口和任务模型；按课推进，不预建空架构 |
-| `test/` | 正在执行的模型与界面测试；`flutter test` 的覆盖来源 |
-| [lessons/](../lessons/README.md) | 历史练习模板，非活动测试，不覆盖当前测试 |
-| `docs/lessons/` | 第一至十节教学与验收记录 |
-| `docs/`、`docs/adr/` | 进度、产品规划、设计取舍与验收要求；规划不等于已实现 |
-| [assets/](../assets/README.md) | 可编辑美术源文件、导出素材和目录；历史标志保留 |
-| [website/](../website/README.md) | 三语静态概念官网；独立于尚未实现的 Web 规划应用 |
-| [tools/](../tools/README.md) | 素材生成工具与只读链接/语法检查 |
-| `windows/`、`linux/`、`macos/` | 原生桌面工程；编译支持不等于各平台实际运行已验收 |
-| `android/` | 保留的旧脚手架，不代表有手机产品计划 |
-| `.github/workflows/` | Flutter 检查和三桌面构建；官网仅发布 website 目录 |
+| lib/ | Learner-written Flutter entry and task model; no empty future layers |
+| test/ | Active coverage run by flutter test |
+| [lessons/](../lessons/README.md) | Historical templates; do not overwrite current tests |
+| docs/lessons/ | Lesson explanations and acceptance records |
+| docs/ and docs/adr/ | Requirements, plans, and decisions; plans are not implemented features |
+| [assets/](../assets/README.md) | Editable artwork, exports, catalogue, and manifest |
+| [website/](../website/README.md) | Three-language static concept site |
+| [tools/](../tools/README.md) | Generators and read-only checks |
+| windows/, linux/, macos/ | Desktop projects; compilation alone does not prove runtime support |
+| android/ | Legacy scaffolding, with no mobile release commitment |
+| .github/workflows/ | Repository checks, Flutter checks/builds, and Pages deployment |
 
-## 日常检查
+## Documentation rules
+
+Use plain English in all documentation, including future updates. Keep product translations separate. The durable rule is in [AGENTS.md](../AGENTS.md).
+
+Use [the documentation index](README.md) to find the main owner of each topic. Write current requirements there and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
+
+The general-purpose local direction is in [ADR-007](adr/007-general-purpose-local-planner.md). School material remains an optional extension; it does not control the core release.
+
+## Routine checks
 
 ```sh
 node tools/check_repository.cjs
+node tools/check_website.cjs
+python tools/check_artwork.py
 dart format --output=none --set-exit-if-changed lib test
 flutter analyze --no-pub --fatal-infos --fatal-warnings
 flutter test --no-pub
 ```
 
-首次拉取或依赖发生变化时先按 [SETUP.md](SETUP.md) 执行 flutter pub get。Windows 主机可另运行 `flutter build windows --debug --no-pub`；其他桌面系统在对应主机或 CI 验证。只读脚本检查本地文件目标和 JS 语法，不代替浏览器、远程链接或锚点验证。
+Run flutter pub get after a fresh checkout or dependency change. Use [SETUP.md](SETUP.md) for native builds. Website source checks do not replace browser layout and interaction checks. Artifact checks do not prove a release package is safe or ready.
 
-## 文件保留规则
+Repository checks run in CI. Pages runs them before publishing. CI uses standard Node/Python tools for these checks; image generation is not part of deployment.
 
-构建缓存、IDE 本地配置和凭据由 .gitignore 排除；不为清理工作区而删除用户文件。四个 Flutter 插件注册生成文件在 .gitattributes 中固定 LF，以减少跨平台换行噪声。它们仍受版本控制。
+## Keep source and generated files distinct
 
-素材源文件、官网部署副本和平台图标虽有重复，但用途不同，不能作为冗余文件直接删除。再生成顺序见素材库说明。目录整理不重新发布素材或创建新网站。
+Ignore build caches, local IDE settings, logs, and credentials. Do not delete user files to make a workspace look clean.
 
-## 当前边界
+Flutter plugin registrants and SVG assets have LF rules in .gitattributes. SVG line endings affect manifest byte counts and copy checks. Preserve those rules across hosts.
 
-应用已形成内存待办闭环：输入、校验、添加、完成切换、删空提示、删除和最近一次撤销。重启后任务和撤销记录丢失。数据库、正式页面主题与导航、课表、日程、备份、通知和 Web 应用仍待课程实现；美术素材就绪不表示这些功能已完成。
+Artwork sources, website copies, and launcher exports serve different uses. They are not duplicates to delete. Follow [regeneration](../assets/README.md#regeneration) when changing art. Do not run a generator as unrelated cleanup.
 
-## 本次整理验收
+## Current limits
 
-2026-11-11：536 个本地 Markdown/HTML 文件链接与项目 JavaScript 语法检查通过；Dart 格式检查、静态分析和全部 26 项测试通过；Windows 调试构建成功。未在本机验收 Linux/macOS 运行，未将调试构建宣称为正式安装包。本次未改动官网展示行为，未重复宣称浏览器验收结果。
+The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, the full planner, the selected UI package, backups, reminders, Web, and integrations remain future work. The asset library and concept website do not change those limits.
+
+Record only checks actually run in the change summary. Do not keep a growing list of old validation totals in this document.

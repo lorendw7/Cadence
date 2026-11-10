@@ -1,42 +1,42 @@
-# ADR-006：学校许可后的可选多客户端同步
+# ADR-006: Optional multi-client sync
 
-**状态：** Proposed，假设学校允许 Web 部署与账号接入后的扩展设计，尚未实施或取得许可。
-**日期：** 2026-11-10
-**决策参与：** 项目维护者、未来运营方；学校确认身份、数据读取、托管及保留等适用许可。
+**Status:** Proposed, not implemented. [ADR-007](007-general-purpose-local-planner.md) makes sync an optional extension after the general local core. Earlier assumptions that all sync identity or hosting depends on a school are superseded; a specific provider or school-data connection still needs its relevant permission.
+**Date:** 2026-11-10; wording clarified on 2026-11-11.
+**Deciders:** The maintainer and a future operator. A chosen external provider confirms permissions for its own identity/data service, where required.
 
-## 背景
+## Context
 
-用户希望 Windows/macOS/Linux 与未来 Web 能自动同步任务和日程，并继续离线使用。现有 ADR-005 的本地独立核心保留。账号登录、学校课表读取、学校数据的跨设备托管是不同权限；“学校同意接入”不自动授权我们保存全部私人数据。手机应用仍不在范围。
+An earlier request explored task/schedule sync across desktop and a future Web client while keeping offline use. The current ADR-007 direction makes this optional, not part of the first useful local release. Local-only planning requires no account or server. If sync is selected, identity, cloud storage and operating responsibilities need their own design. A school provider is only one possible integration; school login, timetable reads and cross-device school-data hosting remain separate permissions. Mobile apps remain excluded.
 
-## 推荐决策
+## Proposed decision
 
-增加独立、明确开启的 Cadence 同步服务：单体 HTTPS API + PostgreSQL，客户端保留本地存储，使用持久待发送队列、幂等操作、服务器版本与增量游标进行同步。先做同一人的设备同步，不做多人协作。完整契约见 [SYNC.md](../SYNC.md)。
+If sync is selected, use one HTTPS API and PostgreSQL as the first technical candidate. Clients keep local storage and use a durable outgoing queue, repeat-safe operations, server record versions and incremental change cursors. Start with one person's devices, not collaboration. Choose identity without requiring school membership for general use. [SYNC.md](../SYNC.md) defines the proposed contract.
 
-登录不自动上传既有本地数据。首次开启时预览要同步的工作区及学校字段许可；本地独立工作区与同步工作区分开。用户可在 Web 临时模式登录查看云数据，但不承诺刷新后的离线保存或保留未确认上传的编辑。
+Login does not upload existing local data. First enablement previews the workspace and permitted school fields. Keep independent local and sync-enabled workspaces separate. A user may sign in to view cloud data in temporary Web mode, but refresh does not preserve offline data or unconfirmed edits.
 
-## 选项比较
+## Options considered
 
-| 方案 | 优点 | 代价 | 决策 |
-|------|------|------|------|
-| 网盘同步 SQLite 整文件 | 看似无需业务后端 | 活跃数据库、WAL、锁和并发恢复困难 | 不采用 |
-| 单体 API + PostgreSQL + 版本化记录同步 | 权限、事务、约束与错误行为清楚 | 需要运营、备份、账号及冲突处理 | 推荐第一阶段 |
-| 从第一天引入通用 CRDT 与多人协作 | 有利于实时协同编辑 | 课表跨记录约束、删除和权限仍需额外处理，学习成本高 | 暂不采用 |
-| 客户端端到端加密后同步 | 降低服务器读取私人正文的能力 | 密钥分发/恢复、密文冲突、服务端校验与 Web 信任更复杂 | 单独评估的后续方案，不冒充已支持 |
+| Option | Benefit | Cost or limit | Decision |
+|--------|---------|---------------|----------|
+| Sync the SQLite file through a cloud drive | Appears to avoid a service | Live database files, WAL, locks and concurrent recovery are unsafe as a record-sync protocol | Reject |
+| One API, PostgreSQL and versioned record sync | Clear authorization, transactions, constraints and failures | Needs operations, backup, identity and conflict handling | Recommended first stage |
+| General CRDT and live collaboration from the start | Helps collaborative editing | Cross-record timetable rules, deletion and permissions still need separate work; much higher learning cost | Defer |
+| Client-side end-to-end encryption | Reduces server access to private content | Harder key distribution/recovery, encrypted conflicts, server checks and Web trust | Assess separately; do not claim it is supported |
 
-推荐第一阶段使用 TLS、受控服务器存储加密、应用权限及数据库隔离。服务器进程能够处理正文，必须明确告知运营方可读这一边界；磁盘加密不是端到端加密。若“运营方绝不能读取内容”是发布硬条件，不能用这一阶段代替，需要先完成 E2EE 专项设计与审查，否则继续只提供本地模式。
+The first proposed stage uses TLS, controlled server-storage encryption, application authorization and database isolation. The server process can read content; disclose that the operator has this capability. Disk encryption is not end-to-end encryption. If the operator must never read content, this stage is insufficient: complete and review an end-to-end design first or keep local-only use.
 
-## 后果
+## Consequences
 
-- 真实多端同步需要保存云端业务副本，与之前“不集中存课表”的本地方案属于不同部署模式；不能继续使用零服务器数据的宣传。
-- 学校来源更新与个人数据同步使用不同流程，学校变化仍按已有预览/确认契约处理。
-- 离线可继续编辑，重连后自动传输；语义冲突需要用户确认，不保证所有修改无感合并。
-- 云同步不能代替独立备份；误删和恶意修改也可能同步到其他设备。
-- 本提案不改变制定时的第三节代码、基础课堂范围或既有无后台 Web 阶段；同步/账号/运营课时另估。
+- Real multi-client sync creates cloud business-data copies. It is a different deployment mode from the local-only design and cannot claim zero server data.
+- School-source refresh and private-data sync are separate flows. School changes still require the existing preview and confirmation rules.
+- Offline edits can transfer automatically after reconnection, but meaningful conflicts require a user decision. Do not promise invisible merging of every change.
+- Sync is not backup. Mistakes, deletions and malicious changes may propagate to other devices.
+- This proposal does not alter current teaching code or commit to a Web release. Sync, identity and operations need separate lesson estimates and a reason to maintain the service.
 
-## 待办
+## Follow-up
 
-- [ ] 确认学校批准范围、身份协议、课表再托管和账号失效后的数据处理条件。
-- [ ] 确认云服务运营者、域名、费用、数据区域、日志/备份保留及删除责任。
-- [ ] 以两台虚构数据客户端完成协议原型，先验证重复提交、断网、冲突和删除传播。
-- [ ] 再决定实现语言/框架及托管方式；不提前假定具体云平台或采购服务。
-- [ ] 经过权限测试、恢复演练和有限试用，才开放真实多端同步。
+- [ ] Choose identity and account-lifecycle rules for general users. If a school provider or school data is involved, confirm its permission, hosting rights and expiry handling separately.
+- [ ] Assign the service operator, domain, cost, data region, log/backup retention and deletion duties.
+- [ ] Prototype with two fictional-data clients: repeated submission, disconnection, conflicts and deletion propagation come first.
+- [ ] Choose implementation language, framework and hosting only after the requirements are known; do not assume a platform or purchase.
+- [ ] Complete authorization tests, recovery drills and a limited trial before real multi-client use.
