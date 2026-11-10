@@ -1,4 +1,4 @@
-// Pending lesson 02 contract. Activate when the learner adds copyWith.
+// Historical lesson 02 template. Active tests already exist at the destination.
 // Destination: test/domain/coursework/planner_task_copy_with_test.dart
 import 'package:cadence/domain/coursework/planner_task.dart';
 import 'package:flutter_test/flutter_test.dart';

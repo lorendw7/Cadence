@@ -1,0 +1,30 @@
+// Historical lesson 03 template. Active tests already exist at the destination.
+// Destination: test/task_list_widget_test.dart
+// Not active coverage. Current tests also cover scrolling and callbacks.
+import 'package:cadence/main.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  testWidgets('Today displays both tasks with their completion status', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const CadenceApp());
+
+    final reportRow = find.widgetWithText(ListTile, '提交课程报告');
+    final reviewRow = find.widgetWithText(ListTile, '复习线性代数');
+
+    expect(find.byType(ListTile), findsNWidgets(2));
+    expect(reportRow, findsOneWidget);
+    expect(reviewRow, findsOneWidget);
+    expect(
+      find.descendant(of: reportRow, matching: find.text('未完成')),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: reviewRow, matching: find.text('已完成')),
+      findsOneWidget,
+    );
+    expect(tester.takeException(), isNull);
+  });
+}

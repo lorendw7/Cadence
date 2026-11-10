@@ -12,6 +12,8 @@ A native build is not a UI test or a signed release. Platform functionality is a
 
 ## Artwork and website checks
 
+Run `node tools/check_repository.cjs` for local Markdown/HTML file targets and JavaScript syntax. Its scope and limitations are documented in [tools](../tools/README.md); it does not check external URLs, anchors or browser behavior.
+
 For the v2 library, validate SVG parsing, PNG dimensions/alpha, ICO frames, ICNS structure, native resource mappings and equality of deployment copies. Inspect icon readability and state illustrations visually; decorative strokes are not accessibility evidence for interactive controls. Website checks cover both pages in Japanese, English and Chinese at wide/narrow widths, local asset loading, translation-key coverage, preview interaction and page overflow. The recorded 2026-11-11 results and platform limitations are in the [artwork library](../assets/README.md#本次验证). Recheck the exact source revision before publishing changes; a local Windows build is not macOS/Linux runtime acceptance.
 
 ## Tests worth maintaining
