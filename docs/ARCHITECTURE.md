@@ -1,5 +1,7 @@
 # Architecture
 
+Latest refinement: [ADR-005](adr/005-local-offline-and-school-gated-web.md) makes desktop primary and Web deployment conditional on school permission. It recommends IndexedDB instead of the earlier localStorage snapshot candidate, separates local retention from school connectivity, and specifies offline resources and deletion coordination. None of this is implemented.
+
 Updated: 2026-11-10. Status: **target architecture, not implemented**. Cadence is a planner primarily for students and also suitable for teachers and other users. Windows/Linux/macOS and Web are confirmed targets; mobile apps are excluded. The current executable displays Today and two read-only sample tasks in `lib/main.dart`, using the learner's task model. Lesson 3 automated checks pass; Windows visual confirmation remains pending. The selected Flutter shadcn_ui package is not introduced yet; the learner implements core features through lessons. The assistant handles delegated docs/website work, explanation, review and appropriate tests/templates. [ADR-004](adr/004-shadcn-web-direction.md) records the current direction.
 
 Manual planning and local import require no account or server. Authorized university authentication and read-only timetable access are conditional future capabilities, not prerequisites for the local core. No school approval or usable timetable API has been established. See [ADR-004](adr/004-shadcn-web-direction.md) and [university integration](UNIVERSITY_INTEGRATION.md) for the product boundary and unresolved dependencies.
@@ -59,6 +61,8 @@ Widgets do not read SQL or parse import files. Domain functions do not depend on
 Evaluate platform packages against Windows, Linux and macOS; verify browser support during the confirmed Web stage. An unavailable capability needs a documented fallback or a narrower release claim. Weekly review uses pure Dart calculations and basic Flutter bars/text initially; no chart service or chart package is required. See [STATISTICS.md](STATISTICS.md).
 
 ## State ownership and mutation flow
+
+Security implementation candidates are in [DATA_PROTECTION.md](DATA_PROTECTION.md): encrypted native storage and platform key management belong behind infrastructure adapters; domain rules stay independent. Do not install these packages during the current task-list lesson. Treat encryption, input validation and access authorization as developer responsibilities rather than user-controlled safety switches.
 
 | State | Owner | Rule |
 |-------|-------|------|
@@ -133,7 +137,7 @@ Keep session secrets outside the ordinary schedule database and use a desktop se
 
 The `website/` project site contains concepts and is not a functional planner. Web is now a confirmed development target; the learner implements it after reusable core behavior exists. No Web app, backend or school-login surface is currently implemented.
 
-The first Web plan uses memory by default and explicit browser-local saving. A small versioned snapshot in localStorage is the initial storage option, to be validated for errors, limits, clearing and concurrent tabs. Strict JSON import is limited to 1 MiB UTF-8 and 2,000 combined records, previewed before whole-data replacement; export is private, and clearing affects only this application's keys. This simplified plan is not the complete desktop SQLite/draft/backup contract.
+The first Web plan uses memory by default and explicit browser-local saving. IndexedDB is the recommended storage option for the offline planner, to be validated for errors, limits, clearing and concurrent tabs. Strict JSON import is limited to 1 MiB UTF-8 and 2,000 combined records, previewed before whole-data replacement; export is private, and clearing affects only this application's keys. This simplified plan is not the complete desktop SQLite/draft/backup contract.
 
 First-Web scope is manual courses/personal arrangements, bounded weekly repeats, Today/Week, tasks and completion, and three languages. It excludes backend/accounts, school APIs, synchronization, CSV, notifications and single-occurrence exceptions. Browser storage, files, lifecycle and future expansion require dedicated capability checks; do not promise the desktop filesystem or transaction behavior exists unchanged.
 

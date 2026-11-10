@@ -1,5 +1,7 @@
 # Application contracts and recovery
 
+[ADR-005](adr/005-local-offline-and-school-gated-web.md) adds independent retention/network choices, temporary school viewing versus explicitly retained snapshots, offline resource readiness and generation-checked clearing. Web deployment requires school permission. These are future contracts; current lessons remain unchanged.
+
 Updated: 2026-11-10. **Target design; not implemented.** This remains a learner-led implementation plan; the selected shadcn_ui and confirmed Web target do not create a functioning application. This document makes the boundaries in [ARCHITECTURE.md](ARCHITECTURE.md) concrete. Introduce the local contracts with persistence/shared views, not during the learner's current model exercise. The optional university-source section is a later acceptance contract, conditional on approved access and a known interface. Product behavior remains in [REDESIGN.md](REDESIGN.md).
 
 ## Contract introduction and ownership

@@ -1,5 +1,7 @@
 # Roadmap
 
+Desktop is the primary delivery. Web remains a future target, but deployment requires explicit school permission. [ADR-005](adr/005-local-offline-and-school-gated-web.md) refines local saving/offline behavior and storage choice; re-estimate the Web stage for offline resource loading and concurrency guarantees rather than assuming the earlier 8–16 lessons cover them.
+
 Updated: 2026-11-10. Goal: **a time planner primarily for students, also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with Flutter shadcn_ui selected but not installed. No mobile product is planned. [REDESIGN.md](REDESIGN.md) defines behavior; [ADR-004](adr/004-shadcn-web-direction.md) records the current direction.
 
 ## Repository baseline
@@ -85,7 +87,7 @@ Web is a confirmed target, not yet developed. Complete reusable local behavior f
 
 - [ ] Introduce the selected shadcn_ui package in the UI stage after pinned-SDK and dependency checks.
 - [ ] Build manual schedule CRUD, bounded weekly repeats, tasks/completion and Today/Week in the browser with three-language controls.
-- [ ] Default to memory; require explicit selection for browser-local saving. Validate the proposed localStorage snapshot adapter, failures, clearing and single/multiple-tab limits.
+- [ ] Default to memory; require explicit selection for browser-local saving. Validate the recommended IndexedDB adapter, failures, clearing and multi-tab coordination; verify offline application resources before claiming offline restart.
 - [ ] Implement strict versioned JSON with 1 MiB UTF-8 / 2,000-record limits, preview, cancel, confirmed whole-data replacement, private export and clearing.
 - [ ] Test malicious input, invalid files, quota/unavailable storage, failed replacement and restoration from export using fictional data.
 - [ ] Verify browser layout, keyboard access, resource paths, hosting security, privacy explanation and actual deployed behavior.
@@ -117,6 +119,8 @@ Follow [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). No credential col
 Acceptance: supported students can discover, install, use and recover the app without knowing its developer; support and maintenance remain assigned. Academic coverage and platform gaps are visible. A broad target audience does not mean claiming every student or teacher uses it.
 
 ## Estimation and deferred scope
+
+Developer-side protection follows [DATA_PROTECTION.md](DATA_PROTECTION.md): input and transaction safeguards with persistence, verified encryption/platform key storage, authenticated backups and recovery, then conditional API/Web hardening. These are implementation responsibilities, not optional user defenses. Re-estimate this security work in the relevant lessons; installing a package does not complete its acceptance gate.
 
 The earlier 80–140-hour figure covered a narrower local desktop plan and is not an estimate for this broader product goal. Re-estimate each stage after a working persisted slice, representative timetable samples, Web implementation constraints and official interface conditions are known. Separate engineering effort from beginner learning, tester/device availability, signing costs and school review time. Do not commit to a total completion date from the old figure.
 
