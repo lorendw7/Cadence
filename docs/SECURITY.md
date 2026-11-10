@@ -1,76 +1,81 @@
-# 安全与数据保护设计
+# Security and data protection
 
-最新方案见 [ADR-005](adr/005-local-offline-and-school-gated-web.md)：桌面优先，Web 规划应用须经学校允许才部署；本机保存和学校连接分别选择；课表离线保存须同时满足用户选择与学校许可。该方案还规定草稿、备份、清除、凭据及离线资源边界，尚未实现。
+Updated: 2026-11-11. These are requirements for the planned local desktop core and optional Web, sync and school extensions, not completed security checks. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current direction: a general-purpose offline planner without accounts, with an explicit first-use choice between local saving and temporary use. School permission applies only to a school's interfaces and data; ordinary desktop and Web use do not depend on it.
 
-更新：2026-11-10。范围为学生、教师等用户的独立时间规划、尚未开发的 Web 目标、未来桌面完整功能及可选学校连接。设计要求不等于已通过安全认证；每次发布记录实际验证结果。学校身份不是产品使用门槛，手机应用不在计划中。
+Cadence supports work, study and personal planning. Mobile applications are out of scope. Record actual verification for each release rather than treating a design document as certification. A local-save choice, sync opt-in and external-source consent are separate decisions.
 
-## 保护的数据与威胁
+## Data and threats
 
-课程、地点、日期、个人安排、任务和导出 JSON 能透露行动规律，均按私人数据处理。只使用公开课程信息也不能推导个人课表可以公开。主要威胁是共享浏览器暴露、误导出/误替换、不可信导入、脚本注入、存储失败或清理、供应链变化。当前没有学校凭据；将来若需要，也必须与普通日程数据隔离。
+Events, locations, dates, tasks, notes and backup files can reveal someone's routine. Treat them as private, even if some source details are public. Main risks include shared-device exposure, accidental export or replacement, hostile imports, script injection, storage failure or clearing, and changes in dependencies or deployment. There are no service credentials today; any future credentials must remain separate from planning records.
 
-本地运行不代表已加密。当前没有数据库/浏览器文件加密，也没有端到端加密承诺。无法防御已完全受控的操作系统、浏览器或拥有同一用户文件权限的其他软件。
+Local use does not imply encryption. The current application has no encrypted database, encrypted browser storage or end-to-end encryption. It cannot protect data against a fully compromised OS/browser or all software with the same user file permissions.
 
-## 开发者实现责任
+## Implementation responsibilities
 
-[数据保护技术方案](DATA_PROTECTION.md) 明确由开发者选择并验证保护手段，不把防攻击责任交给用户开关。推荐评估 drift 加密 SQLite 构建、flutter_secure_storage 平台密钥存储、cryptography 认证加密备份，并落实参数化查询、严格输入校验、权限隔离和发布链保护。当前未安装这些依赖，也未完成加密实现。
+[DATA_PROTECTION.md](DATA_PROTECTION.md) describes candidate encrypted SQLite, device key storage and authenticated backups. None is installed or implemented. Developers must also provide parameter binding, input validation, authorization and release controls. Users choose data-retention and connection options; they cannot disable required checks or secure transport.
 
-用户只需决定数据是否留在本地、是否连接学校等使用边界；相关功能的基础校验、授权和安全传输不能关闭。设备密钥丢失、无加密引擎、存储服务故障时禁止静默降级为明文。加密不能代替备份，也不能防住解锁时被控制的进程或网页脚本。
+Do not silently fall back to plaintext if keys, the encryption engine or a storage service are unavailable. Encryption cannot replace backups or protect plaintext from a compromised process while unlocked.
 
-## 初期 Web 规划的数据边界（尚未实现）
+## Saving mode and optional Web data boundaries
 
-| 操作 | 要求 |
-|------|------|
-| 默认使用 | 数据只在当前页面内存中；明确刷新/关闭后的丢失边界 |
-| 本机保存 | 用户明确选择后才写入本应用数据库（离线 Web 推荐 IndexedDB）；显示实际成功或失败，不默默上传 |
-| 重新打开 | 只读本应用的保存内容并再次严格验证；损坏或不支持格式不得被当作有效记录 |
-| JSON 导入 | UTF-8 内容最大 1 MiB，日程与任务合计最多 2,000 项；严格校验后预览，确认后整份替换 |
-| JSON 导出 | 用户主动下载；文件含私人日程/任务，不是过滤后的公开课表分享 |
-| 清除 | 明确当前数据和本应用持久键的范围；不清空其他网站/同源应用的数据，不声称擦除已下载副本 |
-| 学校演示 | 使用虚构数据；不收集学号、密码、成绩或真实课表样本 |
+The core must offer Save on this device and Temporary use on first use, before opening saved records. Temporary use starts empty and keeps planning data and drafts only in the current session. An explicitly chosen local-saving mode may be resumed later, but simply opening the app must not create that choice. Label the active mode and explain the data affected by a switch.
 
-默认内存模式与明确选择本机保存必须能在界面分辨。浏览器存储未加密，可能被用户或浏览器清除，私密窗口、配额和受限存储也可能导致失败。保存成功只说明本次写入成功，不说明永久留存；用户需要主动导出备份。[MDN 存储配额与清理](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria)
+If a first Web client is built, it has no backend, account, sync, school API, CSV, system notifications or single-occurrence course changes. The same saving choice applies in the browser.
 
-不把浏览器数据库描述为安全保险箱。IndexedDB 的事务不能解决 XSS；localStorage 只用于少量非敏感偏好，不存秘密凭据。共享设备使用默认内存模式。正式本机保存必须验证多标签写入、迁移和清除协调；无法协调时阻止写入，不能只提示用户少开标签。
+| Operation | Requirement |
+|---|---|
+| First use | Offer Save on this device and Temporary use before reading planning data; explain loss on refresh/close for temporary use |
+| Local saving | Write only after an explicit choice; use the selected app database, with IndexedDB as the offline candidate; report real success or failure |
+| Reopen | Resolve the saving mode first. Only an explicitly selected/resumed local-saving mode may read this app's saved records and validate them. Temporary mode must not read the old database, drafts or device key; reject damaged/unsupported saved records without replacing them. |
+| JSON import | At most 1 MiB of UTF-8 content and 2,000 combined schedules/tasks; validate, preview, then replace only after confirmation |
+| JSON export | User-requested download containing private records; not a filtered public timetable |
+| Clear | Name the affected memory and app storage; do not clear other sites/apps or claim to remove downloaded files |
+| Demonstration | Fictional data only; no real private schedules, passwords or tokens; school-extension demos also exclude student IDs, grades and real timetable samples |
 
-初期 Web 规划不含后台、账号、同步、学校接口、CSV、系统通知或单次调课。当前不存在规划应用或后台接收私人日程的流程；托管服务仍接收页面和资源访问请求。部署方访问日志与应用数据处理需要分别说明，不宣传“使用网页绝不产生网络记录”。
+Clearly distinguish memory mode from local saving. Browser storage is unencrypted and may be cleared or denied. Private windows, quota limits and restricted storage may cause failures. A successful write is not a promise of permanent retention; provide explicit backup export. See [browser storage limits](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).
 
-## 严格导入与替换
+Do not call browser storage a secure vault. Transactions do not solve script injection. Use localStorage only for small, non-sensitive preferences, never secret credentials. Explain that temporary use is suitable for a shared device, but still let the user choose before records are loaded. Before releasing local saving, verify multiple-tab writes, migrations and coordinated clearing. If writes cannot be coordinated safely, block them rather than relying on a warning to close extra tabs.
 
-解析前检查大小，解析后检查根对象、格式/版本、字段类型、总记录数、重复 ID、允许类别、非空标题、字段长度、日期时间范围和有界重复。拒绝不支持的字段/版本和非法结构，不凭猜测修复为有效记录。课程名、备注和地点只按文本处理，不执行 HTML、脚本、表达式、命令、文件路径或请求。
+The current concept site has no planner data receiver. Hosting still receives page and asset requests. Describe hosting access logs separately from application records; do not promise that visiting a website creates no network records.
 
-导入预览说明数量、时间范围和“替换当前全部规划数据”，允许取消并提醒先导出。确认前不得改写内存或持久数据；校验、预览、应用使用同一份已验证快照。预览期间发生本地修改时需重新确认，不能用过期预览覆盖新编辑。失败后保留原数据，持久写入失败不能显示已保存。具体字段/格式在对应课程中以版本化契约和测试明确，不预建额外实现目录。
+## Import and replacement
 
-初期 Web JSON 不冒充未来 `cadence-timetable` 分享或桌面完整备份格式。未来兼容需显式迁移和测试，不能把所有 JSON 文件都视作可导入。
+Check size before parsing. Then validate the root object, format/version, field types, total records, unique IDs, allowed categories, nonempty titles, string lengths, date/time ranges and bounded repeats. Reject unsupported fields, versions and references. Do not guess how to repair invalid data. Treat names, notes and locations as text, never HTML, scripts, expressions, commands, paths or requests.
 
-## Web 页面与托管
+The preview shows counts, date range and the fact that all current planning records will be replaced. Allow cancellation and suggest export first. Before confirmation, change neither memory nor persistent records. Validate, preview and apply the same snapshot. If local records change while the preview is open, require a fresh confirmation. A stale preview cannot overwrite newer work.
 
-- 通过 HTTPS 分发，审查实际脚本、资源与依赖。使用适合实际 Flutter 构建的 CSP，并验证必要资源；不写一个无法运行的策略后宣称安全。
-- 正式规划应用与宣传官网使用不同 origin；不同 URL 路径不提供隔离。避免不必要第三方脚本，不能把同源持久数据称为对官网脚本不可见。
-- 私人数据不进入 URL、静态构建资源、源映射、公开仓库、错误报告或分析事件。导入后按文本渲染，测试恶意标题/备注不会执行。
-- 当前不需要会话令牌。未来会话标识和长期令牌不得放入 `localStorage`/`sessionStorage` 或普通导出。[OWASP HTML5 安全](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html)
-- 若启用 Service Worker，只缓存明确允许的静态应用资源；不缓存私人 JSON、认证回调和私人 API 响应。没有验证离线资源加载时，不承诺离线刷新或关闭浏览器后的提醒。
-- 构建和部署不打包私人测试数据、密钥或下载的备份；用虚构数据检查生产路径、导出、刷新、保存选择与清除。
+A failed replacement preserves the old data. A failed persistent write cannot report success. Define the versioned contract and tests in its implementation lesson; do not create unused directories in advance. Initial Web JSON is not automatically compatible with the future `cadence-timetable` sharing format or full desktop backup. Add explicit migration tests before accepting either format.
 
-## 长期桌面与完整数据功能
+## Web delivery
 
-未来数据库、草稿和备份存入应用用户目录，正常用户权限运行；不存入代码仓库、安装目录或自动公开目录。SQLite 事务、迁移备份、恢复预览及失败回滚按 [APPLICATION.md](APPLICATION.md) 和 [DATABASE.md](DATABASE.md) 实现，不能宣称 localStorage 自动提供这些完整保证。
+- Use HTTPS and review the scripts, assets and dependencies actually shipped. Test a practical CSP against the real Flutter build.
+- Give the planner and concept website different origins. Different URL paths do not isolate storage or script access. Minimize third-party scripts.
+- Keep private records out of URLs, public bundles, source maps, repositories, error reports and analytics. Verify that hostile imported text cannot execute.
+- Sessions are not needed now. Future session identifiers and long-lived tokens must not enter localStorage, sessionStorage or ordinary exports. See [OWASP browser guidance](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html).
+- If a service worker is added, cache only allowlisted program resources. Exclude private JSON, authentication callbacks and private API responses. Do not promise offline reload or closed-browser reminders without testing them.
+- Use fictional data to check production paths, export, refresh, saving choices and clear. Never bundle private fixtures, keys or downloaded backups.
 
-未来课表分享采用字段白名单，排除私人安排、任务、备注和来源凭据；完整备份另设入口。文件大小、记录数、字段长度与引用关系均受控，导入不执行任意路径或请求。加密实现、密钥恢复及迁移按 [数据保护技术方案](DATA_PROTECTION.md) 分阶段验证。删除说明覆盖草稿、临时副本与局限，不承诺物理擦除磁盘或撤回已分享文件。
+## Desktop and full data features
 
-## 仅当以后引入连接或后台
+In local-saving mode, store databases and saved drafts in the app's user-data directory under normal user permissions, not the repository, installation folder or an automatically public directory. Temporary mode does not open or write that store; an explicit export is a separate user action with a clear private-file notice. Backups follow the selected private destination. [APPLICATION.md](APPLICATION.md) and [DATABASE.md](DATABASE.md) define transactions, migration backups, restore preview and rollback. Browser localStorage does not provide these guarantees by itself.
 
-[多客户端同步提案](SYNC.md) 与 [ADR-006](adr/006-optional-multi-client-sync.md) 明确：学校登录许可不等于云端保存私人规划或再托管课表的许可。开启同步须单独说明云副本及运营方可读边界，使用内部身份绑定、逐工作区授权、设备撤销、删除传播和可验证恢复。第一阶段服务器可处理正文，不宣称端到端加密；若服务器不可读是硬条件，需先完成独立 E2EE 设计。
+Future timetable sharing uses an explicit field allowlist that excludes private plans, tasks, notes and credentials. Full backup has a separate entry point. Bound file size, counts, fields and references. Imports must not trigger arbitrary file or network access. Follow [DATA_PROTECTION.md](DATA_PROTECTION.md) for encryption, key recovery and migration acceptance. Clearing covers drafts and temporary copies but cannot promise physical disk erasure or recall of shared files.
 
-这些是后续条件要求，不是现有接口或必备基础设施：
+## Optional connections and backend
 
-- 学校认证与本人课表读取分别获准；学校演示和教师建议不能替代授权。不收集学校密码，不以未获准抓取补替官方接口。见 [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md)。
-- 所有私人 API 逐请求验证身份、记录所有权和字段权限，默认拒绝；客户端用户 ID 不是授权。测试跨账户读取、导出、修改和删除。[OWASP 授权](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
-- 会话短期且可撤销；Cookie 使用适当 Secure/HttpOnly/SameSite/作用域，按协议验证回调与防重放，变更请求有 CSRF 防护，CORS 明确限制。退出、撤销和过期必须可测试。[OWASP 会话管理](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- TLS、最小权限秘密管理、私人备份、脱敏日志、保留/删除、限流、恢复、运行费用和维护者在真实数据试用前明确。私有响应不能进入公共缓存。
-- 独立规划不因连接关闭而失效；断开和数据清除语义可理解。不凭一个登录页宣称浏览器本地数据已保密。
+[SYNC.md](SYNC.md), [ADR-006](adr/006-optional-multi-client-sync.md) and [ADR-007](adr/007-general-purpose-local-planner.md) describe optional sync, separate from the local core and school adapters. Its identity provider is a later design choice, not a mandatory school account. Sync needs its own explanation of cloud copies, operator access, identity binding, workspace authorization, device revocation, deletion and recovery. If a school source is included, its login, data-access and cloud-retention permissions remain separate. The proposed first server can process plaintext; it is not end-to-end encrypted. If unreadable-to-server storage becomes mandatory, complete a separate E2EE design first.
 
-## 验收与报告
+Before introducing these future services:
 
-未来 Web 实现时先验证：默认不持久保存、选择后写入、存储失败反馈、严格 JSON 大小/数量/结构校验、预览取消/替换、导出内容、恶意文本、清除范围、三语说明和真实部署。至少包括上限边界、损坏文件和替换失败保留原数据的负向用例。完成记录必须对应实际代码与部署，不能把设计勾成已通过。
+- For a school adapter, obtain authentication and personal-timetable access permission separately. A demo or teacher's support does not replace authorization. Do not collect school passwords or substitute unapproved scraping. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+- Verify identity, object ownership and field permissions on every private API call, denying access by default. A client user ID grants no authority. Test cross-account reads, exports, edits and deletes. See [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
+- Use expiring, revocable sessions. Set appropriate cookie attributes and scope, validate protocol callbacks and replay defenses, protect cookie-authenticated changes against CSRF, and restrict CORS. Test logout, expiry and revocation. See [OWASP sessions](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html).
+- Before voluntary logout or account switching, resolve unsent work: confirm sync, allow a permitted private export, or obtain an explicit discard choice. Forced expiry/revocation must stop requests immediately and isolate the old account's queue rather than silently erase it or replay it under a new account. See [SYNC.md](SYNC.md#identity-and-account-lifecycle) for temporary-session limits and recovery.
+- Define TLS, minimal secret access, private backups, redacted logs, retention/deletion, rate limits, recovery, operating cost and ownership before real-data use. Keep private responses out of public caches.
+- Keep independent local planning usable when a connection is disabled. Explain disconnect and deletion separately. A login page does not make browser-local data confidential.
 
-当前只更新设计与官网，尚未执行应用安全验收。扩大真实数据试用前，确定维护者、升级/恢复方案、准确隐私说明和敏感问题的私下报告渠道。不要要求用户在公开 issue 粘贴密码、令牌、完整课表或备份。没有资源时不承诺响应时限或学校应急联系人。发生泄漏时先停止相关暴露、保护凭据、评估影响，再按已确定流程处理与通知。
+## Acceptance and reports
+
+For the local core, test the first-use saving choice, temporary startup with an existing database, explicit saving, mode switches, write failures and recovery. If Web is built, also test browser storage, strict JSON limits, preview/cancel/replace, export contents, hostile text, clear scope, three-language explanations and the actual deployment. Include boundary values, corrupt files and failed replacement with original data intact. Record results against actual code and deployment; do not mark design requirements as passed.
+
+Application security acceptance is still future work. Before wider real-data use, assign a maintainer, upgrade/recovery plan, accurate privacy notice and private reporting route. Never ask for passwords, tokens, full timetables or backups in a public issue. Do not promise response times or school emergency contacts without resources. For a leak, first stop the exposure, protect credentials and assess scope, then follow the agreed response and notification process.

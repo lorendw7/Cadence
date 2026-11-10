@@ -1,102 +1,115 @@
-# 开发者侧的数据保护技术方案
+# Data protection implementation plan
 
-更新：2026-11-10。状态：技术候选与未来验收要求，尚未实现。补充 [ADR-005](adr/005-local-offline-and-school-gated-web.md) 与 [安全设计](SECURITY.md)。本文回答“开发者采用什么技术保护数据”，不是让用户自行配置防攻击开关。
+Updated: 2026-11-11. Status: proposed technologies and future acceptance checks. None of the storage or encryption features below is implemented. This document follows [ADR-007](adr/007-general-purpose-local-planner.md) and [the security design](SECURITY.md). ADR-007 replaces the earlier broad school gate while keeping the data-protection requirements that still apply.
 
-用户仍决定是否本地保存、是否连接学校；输入校验、密钥隔离、访问授权等安全责任由实现承担。桌面优先，Web 只在学校允许后部署；加密不会放宽学校数据保留许可。当前不安装依赖、不实现核心代码。
+The core is a local offline planner without an account. First use offers Save on this device or Temporary use before reading saved planning data. A later Web client, cloud sync and school adapters are separate choices. School permission applies only to a school's interfaces and data, not to ordinary desktop or Web use. Encryption does not expand source-retention rights. Input checks, key isolation and access control remain implementation duties, not optional security switches. Introduce these tools only in their lessons.
 
-## 推荐技术组合
+## Candidate tools
 
-| 保护边界 | 推荐技术或实现方式 | 引入阶段与限制 |
-|----------|--------------------|----------------|
-| 桌面结构化数据 | drift + sqlite3，采用经验证的加密 SQLite 构建；优先评估 drift 当前文档支持的 SQLite3MultipleCiphers | 持久化阶段验证；drift 本身不等于加密；普通课堂原型不得宣传为安全数据库 |
-| 设备上的少量秘密 | flutter_secure_storage，通过平台安全存储保护随机数据库密钥 | 桌面持久化阶段评估；不能把大量日程塞进密钥库，也不保证抵抗同一系统账户下的恶意进程 |
-| 私人备份加密 | cryptography 的认证加密，例如 AES-GCM；若使用备份口令，评估 Argon2id 派生密钥 | 备份阶段；库只是基础工具，还需版本化文件格式、资源上限和恢复测试 |
-| 数据库与导入安全 | drift 参数绑定、外键/唯一约束、事务、Dart 严格字段校验和有界重复计算 | 第一条持久化路径就引入；生成模型/JSON 解析成功不代表输入安全 |
-| Web 脚本与会话 | 独立 origin、HTTPS、适配实际 Flutter 构建的 CSP、纯文本渲染；会话按批准协议处理 | 学校允许部署后验收；IndexedDB 不是秘密保险箱，不以加密代替防 XSS |
-| 接口越权与滥用 | 服务端逐对象授权、固定上游、超时/限流/大小限制，必要的 CSRF 防护 | 仅在批准接口确实需要中间服务时引入，不提前建后台 |
-| 构建与发布 | 锁文件、依赖公告复核、CI 最小权限、Action 完整 SHA、密钥扫描、可信签名分发 | 相关发布阶段；这是待完成加固，现有工作流不自动满足所有要求 |
+| Boundary | Candidate | Stage and limits |
+|---|---|---|
+| Desktop records | drift + sqlite3 with a verified encrypted SQLite build; evaluate SQLite3MultipleCiphers against the pinned drift version | Persistence lessons. drift alone does not encrypt data. Do not describe a plain classroom database as protected storage. |
+| Small device secrets | flutter_secure_storage for a random database key | Check each desktop platform. Do not put schedules in the key store or promise protection from all software under the same OS account. |
+| Private backup | Authenticated encryption from cryptography, such as AES-GCM; evaluate Argon2id for password-derived keys | Backup lessons. A library still needs a reviewed file format, resource limits and restore tests. |
+| Queries and imports | Parameter binding, foreign keys, unique constraints, transactions, strict Dart validation and bounded recurrence | Start with the first persistence path. Parsing JSON or generating a model does not make input safe. |
+| Optional Web client | Separate origin, HTTPS, a tested CSP for the actual Flutter build and text-only rendering | If the Web extension is built. IndexedDB is not a secret vault. Encryption does not replace script-injection prevention. |
+| Optional service access | Per-object server authorization, size limits, timeouts, rate limits and applicable CSRF protection; fixed upstreams for school intermediaries | Optional sync follows ADR-006/007. A school intermediary also needs permission for its interface and data. Neither is required by the local core. |
+| Build and release | Lockfiles, dependency review, minimal CI permissions, reviewed full Action SHAs, secret scanning and trusted distribution | Required at the relevant release stage; existing workflows do not establish that these checks have passed. |
 
-这些是候选组合，不是一次性安装清单。引入时记录精确版本、Flutter/Dart 兼容性、许可证、平台依赖、维护状态和失败行为。
+These are candidates, not an installation list. Record exact versions, Flutter/Dart support, licenses, native requirements, maintenance status and failure behavior when selecting them.
 
-### 1. 桌面数据库加密与密钥管理
+## Desktop database and keys
 
-[drift 当前加密文档](https://drift.simonbinder.eu/platforms/encryption/)推荐原生 NativeDatabase 路线，并支持通过 sqlite3 构建配置采用 SQLite3MultipleCiphers。不要照搬旧教程一律添加 sqlcipher_flutter_libs；具体路线以届时锁定版本为准，SQLCipher 与 SQLite3MultipleCiphers 也不是同一个产品。
+Evaluate the native database path in [drift's encryption documentation](https://drift.simonbinder.eu/platforms/encryption/) against the version selected for the lesson. The earlier research identified SQLite3MultipleCiphers as a candidate. Do not copy an old instruction to install `sqlcipher_flutter_libs` without checking compatibility. SQLCipher and SQLite3MultipleCiphers are different products.
 
-建议每个本机数据库生成独立的高强度随机密钥，通过 [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage) 对接平台安全存储。macOS、Windows、Linux 必须分别验证打包、访问控制、锁定、缺失密钥与账户迁移；Linux 还需验证目标系统的 libsecret/密钥环服务。不能把数据库密钥写进源代码、.env、普通设置、日志或与数据库同目录的明文文件。
+Give each local database a strong random key and protect it with [platform secure storage](https://pub.dev/packages/flutter_secure_storage). Test packaging, access control, locked or missing keys and account migration on macOS, Windows and Linux. Linux acceptance includes the required secret service/keyring. Never put keys in source, `.env`, ordinary settings, logs or a plaintext file beside the database.
 
-程序启动顺序：读取设备密钥 → 检查实际加密引擎 → 设置密钥 → 打开并验证数据库 → 迁移 → 提供业务操作。加密能力检查必须在 release 构建仍生效，不能只用会被移除的 assert。密钥服务不可用、密钥缺失、文件损坏时明确报错并提供恢复，不创建一个空库冒充原数据，不静默退回明文保存。
+Startup first resolves the user's saving mode. On first use, wait for Save on this device or Temporary use. Temporary use starts an empty in-memory session without reading a saved database, fetching its key or opening persisted drafts. If an earlier explicit local-saving choice is resumed, disclose that mode before loading records; launch alone is not consent to enable saving.
 
-设备安全存储适合减少数据库文件单独泄漏后的风险，不等于独立口令保险箱。若威胁模型包含“同一个已登录系统账户被他人使用”，还需要单独设计口令/系统认证解锁；不能声称存进安全存储后同账户软件就绝对取不到密钥。
+Only after local saving is selected or explicitly resumed: read the device key, verify the encryption engine, set the key, open and validate the database, run migrations, then enable business operations. The engine check must run in release builds, not only in an assertion. Missing keys, an unavailable key service or a damaged file must produce a clear recovery state. Do not create an empty replacement or silently save plaintext. Switching from temporary use must follow the reviewed migration/replacement flow, not merge silently into an old database.
 
-检查加密覆盖范围：主库、WAL/日志、草稿、敏感索引、临时文件、自动恢复副本。采用引擎支持的经过验证的加密与完整性机制，不自行拼接字段加密。开启加密或升级格式采用可恢复迁移，成功校验新库后才切换；迁移失败保留原数据。加密不能撤回以前的明文导出或物理擦除磁盘残留。
+Secure storage reduces the risk from a database file being copied alone. It is not a separate password vault. If another person using the same logged-in OS account is in scope, design a separate password or system-authentication unlock. Do not promise that other software under that account can never obtain a key.
 
-默认设备密钥不能作为唯一恢复机制：丢失设备密钥可能导致数据库无法打开。私人备份应有独立、可跨设备验证的恢复方式，不把设备密钥明文放进备份，也不假定操作系统账户迁移会带走可用密钥。
+Check the main database, WAL/journal, drafts, indexes, temporary files and recovery copies. Use the engine's tested encryption and integrity features; do not invent field encryption. Migrate recoverably, validate the new file before switching, and keep the original on failure. Encryption cannot recall old plaintext exports or guarantee physical disk erasure.
 
-### 2. 备份使用认证加密
+A device key cannot be the only recovery path. Losing it may make the database unreadable. A private backup needs an independent recovery method that works on another device. Never include the device key as plaintext or assume OS account migration transfers a working key.
 
-[cryptography API](https://pub.dev/documentation/cryptography/latest/index.html)提供 AES-GCM、Argon2id 等算法，适合作为候选基础库；实际平台实现与耗时要测量。cryptography_flutter 仅在确认收益和兼容性后引入，不能假定各桌面平台都使用同一种硬件或系统加速。
+## Authenticated backups
 
-建议采用版本化加密容器：随机数据密钥负责加密数据，独立备份口令经合适的 KDF 派生包装密钥来保护数据密钥。使用成熟实现、平台安全随机数、独立盐及正确 nonce 管理；同一密钥下 nonce 不复用。算法/KDF 参数、版本等关键头部也需受认证保护，不自己设计密码算法。准确参数与格式在实现前审查，本文不是已完成的密码协议。
+The [cryptography API](https://pub.dev/documentation/cryptography/latest/index.html) is a candidate source of authenticated encryption and password derivation. Measure the actual platform implementation and cost. Add `cryptography_flutter` only after proving its benefit and compatibility; do not assume identical acceleration on every desktop.
 
-导出默认文件名不含姓名、学号或课程名，不自动上传。恢复流程为：限制外部文件大小和 KDF 资源预算 → 验证/解密 → 严格校验业务结构 → 预览 → 事务恢复。错误口令、修改后的密文、超大参数都不得改写现有数据或输出私人明文。初期明文 JSON 的 1 MiB/2,000 项限制继续作用于解密后的内容；密文容器另设有限上限，不把加密变成绕过导入限制的入口。
+Review a versioned container before implementation. A random data key encrypts the content; a suitable password-derived key can protect that data key. Use established implementations, secure randomness, separate salts and correct nonce handling. Never reuse a nonce with the same key. Authenticate important header fields, including algorithm, derivation parameters and format version. This document is not a finished cryptographic protocol.
 
-口令不持久保存，丢失口令且没有其他可用副本时无法恢复。UI 限次不能阻止文件被复制后的离线猜测；不能用短 PIN、一次 SHA-256 或硬编码密钥代替合适 KDF。更换当前口令不会撤销旧备份与旧口令；密钥泄漏后需轮换数据密钥，旧副本仍不能收回。认证加密也不能单独检测整个文件被替换成旧版合法备份。
+Default backup filenames must not contain names, student IDs or course titles. Do not upload automatically. Restore in this order:
 
-普通数据库加密和便携备份加密分开设计。明确标记用户主动导出的明文格式；分享与备份仍遵守字段白名单和学校许可，不把全部私人数据作为公开课表导出。
+1. Bound the input size and password-derivation resource budget.
+2. Authenticate and decrypt.
+3. Strictly validate the business format.
+4. Show a preview and obtain replacement confirmation.
+5. Restore transactionally.
 
-### 3. 防止恶意输入破坏数据
+A wrong password, changed ciphertext or excessive derivation parameters must leave existing records intact and avoid private error output. The initial 1 MiB / 2,000-record JSON limit still applies after decryption. Set a separate finite ciphertext-container limit; encryption is not a way around import limits.
 
-使用 drift 类型化查询与参数绑定，不拼接用户输入成 SQL。创建数据库连接时显式启用并验证外键，重要业务约束同时由领域层和事务落实。
+Do not persist the backup password. If it and all usable copies are lost, recovery may be impossible. UI retry limits do not stop offline guessing of a copied file. A short PIN, one SHA-256 hash or a hard-coded key is not a substitute for suitable password derivation. A new password does not revoke old backups or old passwords. After key exposure, rotate the data key; old copies remain outside control. Authenticated encryption alone also cannot detect replacement with an older, valid backup.
 
-所有文件、API 响应和已保存的浏览器数据都按不可信输入处理。除字段类型外，还限制字符串长度、集合规模、嵌套深度、日期范围、关联 ID、重复规则的展开成本。拒绝未知格式/不合法引用；日期解析成功不等于业务规则有效。错误信息不要带完整导入正文。
+Design database encryption and portable backup encryption separately. Clearly label any user-requested plaintext export. Sharing needs a field allowlist; school or other restricted-source content also needs the applicable retention/export permission. A private backup is not a public schedule.
 
-第一版不支持富文本执行、任意插件、导入脚本或动态代码。标题/备注按文本渲染；未来如果允许链接，需限制协议并明确用户主动打开，不能把标题自动变成请求、命令或任意文件访问。异步任务使用版本/代次检查，防止过期响应覆盖新数据或重新创建已清除内容。
+## Untrusted input
 
-### 4. Web 的重点是脚本、会话与发布可信度
+Use typed queries and parameter binding instead of constructing SQL from user text. Enable and verify foreign keys for every database connection. Enforce important rules in both domain validation and transactions.
 
-IndexedDB 保存本地业务数据，但同源恶意脚本仍可能读取。正式应用与宣传官网分不同 origin，限制第三方脚本与连接目的地，按实际 Flutter/Wasm 构建配置并测试 CSP；不要为解决构建问题直接将策略放宽到所有来源。HTTPS 正常验证证书，不引入忽略证书错误的生产代码。
+Treat files, API responses and saved browser data as untrusted. Bound strings, record counts, nesting, dates, references and recurrence expansion. Reject unknown formats and invalid references. A parseable date may still violate business rules. Errors must not echo an entire private import.
 
-flutter_secure_storage 的 Web 实现不是桌面系统密钥库的等价物，不能据此声称可以安全持久保存学校 bearer token。浏览器会话按学校批准的协议单独设计；若采用服务端会话，使用适当 Secure/HttpOnly/SameSite Cookie 并实现相应 CSRF 防护、过期和撤销。CORS 不能替代授权。
+The first version does not execute rich text, plugins, imported scripts or dynamic code. Render titles and notes as text. If links are added later, allow only reviewed protocols and require a user action to open them. A title must not become a network request, command or arbitrary file access. Async work checks revisions and generations so stale results cannot overwrite newer edits or recreate cleared data.
 
-浏览器加密库暂缓单独评估：即使磁盘上是密文，被控制的网页仍可能在解锁时窃取口令或明文。不能把长期解密秘密作为普通浏览器存储项，也不能把它编译进前端。Service Worker 只缓存白名单程序资源，不缓存私人 API/认证响应；测试旧资源升级与数据迁移失败路径。
+## Web scripts, sessions and delivery
 
-### 5. 学校中间服务与发布链
+IndexedDB can hold local records, but a malicious same-origin script may read them. Put the real planner and concept website on separate origins. Minimize third-party scripts and connection destinations. Test CSP with the selected Flutter/Wasm build; do not allow every source just to make a build run. Use HTTPS with normal certificate checks.
 
-仅当获准接口需要服务器身份时才增加中间服务。服务端从已验证会话确定用户，逐对象检查本人权限；客户端学号、owner_id 或随机 ID 都不是授权。上游域名/路径由服务端固定，限制重定向，不接受任意 URL 代理。设置请求/响应上限、超时和限流，凭据使用部署环境的秘密管理，禁止在客户端分发。
+The Web implementation of a secure-storage package is not equivalent to a desktop key store. It does not establish that long-lived bearer tokens can be safely kept in browser storage. Sessions are needed only for an optional service; use its reviewed protocol, plus school approval if it uses a school identity service. If server sessions are used, apply suitable Secure/HttpOnly/SameSite cookies, CSRF defenses, expiry and revocation. CORS does not replace authorization.
 
-日志只记录定位故障所需的最少元数据，避免令牌、请求/响应正文、课表和备注；必要访问日志遵守实际获准范围和保留要求。私人响应不得进入公共 CDN/缓存。无业务数据库不等于不处理私人数据，也不等于没有会话与日志。
+Evaluate browser encryption separately. A compromised page can steal a password or plaintext while unlocked, even if stored bytes are encrypted. Do not keep long-term decryption secrets in ordinary browser storage or compile them into the frontend. Service workers may cache only approved program resources, never private API or authentication responses. Test cache upgrades and failed data migrations.
 
-构建采用受控依赖和锁文件；依赖公告、密钥扫描与适用安全扫描结果必须处理，不把“工具无告警”当安全证明。GitHub Actions 固定到审查过的完整提交 SHA，并有后续更新流程；PR 检查不给发布秘密，部署权限只给需要的作业。正式发布按平台验证代码签名/可信分发；校验和有助于发现变化，但同渠道一起被替换时不能证明发布者身份。不要求用户关闭操作系统安全检查。
+## Optional service and release controls
 
-Dart 代码混淆只能提高阅读难度，不能保护客户端内嵌秘密，也不能替代上述设计。不为安全名义引入没有实际必要的微服务、强制云账户或自制加密算法。
+A school intermediary is needed only if an approved school interface requires server identity. This restriction does not exclude a separately chosen sync service: [SYNC.md](SYNC.md), [ADR-006](adr/006-optional-multi-client-sync.md) and [ADR-007](adr/007-general-purpose-local-planner.md) govern that optional extension. Neither service is part of the local core.
 
-## 实施顺序与验收
+For any private service, derive the user from a verified session and check ownership for each object. A client-supplied user/student ID, `owner_id` or random record ID is not authorization. For intermediaries, fix upstream hosts and paths on the server, restrict redirects and reject arbitrary proxy URLs. Bound requests, responses, time and rate. Keep credentials in deployment secret storage, not client files.
 
-1. 当前课堂继续任务功能；先通过输入/业务规则校验与失败处理建立基础。
-2. 到持久化课程，验证 drift 事务/约束，再完成加密引擎与设备密钥原型，明确普通课堂数据和真实数据发布边界。
-3. 在备份阶段完成认证加密、跨设备恢复、迁移和清除；通知只保留必要信息，避免旁路泄漏。
-4. 学校批准相关范围后实施 API/Web；分别完成权限、会话、脚本策略及发布链验收。
+Log only the metadata needed to diagnose faults. Exclude tokens, full requests/responses, timetables and notes. Apply the approved access-log scope and retention. Do not place private responses in public caches. A service without a business database can still process private data through sessions and logs.
 
-| 验收场景 | 必须得到的结果 |
-|----------|----------------|
-| release 包缺少加密引擎、设备密钥服务不可用 | 明确拒绝打开受保护库，不静默明文降级或创建空库 |
-| 数据库被单独复制、检查旁路文件 | 不能直接读取私人内容；检查 WAL、草稿、临时文件、日志及自动备份 |
-| 错口令、密文截断、关键头部被改、恶意 KDF 参数 | 拒绝恢复且原数据完整，资源消耗受限，无私人错误输出 |
-| 迁移中断/磁盘写满、设备密钥丢失 | 有已验证恢复路径，失败状态可解释，不损毁唯一可用副本 |
-| 恶意 JSON、SQL 字符串、脚本标题、巨大重复规则 | 输入作为数据处理，非法结构被拒绝，不执行或耗尽资源 |
-| A 用户请求 B 的对象、任意代理 URL | 服务端拒绝，不透露 B 的记录或发起非授权上游访问 |
-| 清除后旧标签/学校请求返回 | 不能重新创建数据、凭据或显示旧账号内容 |
-| 新设备恢复私人备份 | 无原设备密钥时仍可通过独立备份恢复方式还原；凭据不随备份恢复 |
+Use reviewed dependencies and lockfiles. Resolve relevant dependency and secret-scan findings; a clean scan is not proof of safety. Pin Actions to reviewed full SHAs and maintain an update process. Do not expose release secrets to pull-request checks; grant deployment permissions only to deployment jobs. Validate signing or trusted distribution on each release platform. Checksums detect change but do not prove publisher identity if the archive and checksum are replaced together. Never ask users to disable OS security globally.
 
-这些是未来验收，不是现有测试结果。真实数据试用前记录精确平台/版本和审查范围；密码格式与密钥流程需由实现者以外的合适审查者复核。保护无法保证抵御已完全受控的操作系统、解锁中的恶意代码或恶意发布者；加密降低泄露风险，备份降低损坏风险，两者需要一起设计。
+Dart obfuscation only makes code harder to read. It cannot protect embedded client secrets. Do not add unnecessary microservices, mandatory cloud accounts or custom cryptography in the name of safety.
 
-## 技术依据
+## Implementation order and acceptance
 
-查阅日期 2026-11-10。库能力来自维护者文档；上述具体组合与阶段是 Cadence 的建议，版本在实现时复核。
+1. Continue the task lessons with input checks and clear failures.
+2. In persistence lessons, verify transactions and constraints, then prototype the cipher engine and device key store. Separate classroom data from real-data release requirements.
+3. In backup lessons, verify authenticated backup, cross-device restore, migration and clearing. Keep notification content minimal.
+4. Evaluate optional Web and sync work separately after the local core. Complete their storage, access, session, script-policy and release checks. Add school adapters only with the required interface and data permissions.
 
-- [drift 加密数据库](https://drift.simonbinder.eu/platforms/encryption/)
+| Scenario | Required result |
+|---|---|
+| First launch or temporary mode with an existing saved database | Ask for a saving mode before reading records; temporary use does not fetch the saved key, read drafts or open the database |
+| Release lacks the cipher engine or device key service | Refuse to open protected data; no plaintext fallback or empty replacement |
+| Database is copied alone | Private content cannot be read directly; inspect WAL, drafts, temporary files, logs and recovery copies |
+| Wrong password, truncated ciphertext, changed header or excessive KDF parameters | Reject with bounded resource use; preserve current records and avoid private error output |
+| Migration interrupted, disk full or device key lost | Explain the failure and use a tested recovery path without damaging the only copy |
+| Hostile JSON, SQL text, script title or huge recurrence | Treat input as data; reject invalid structures without execution or resource exhaustion |
+| User A requests B's record or an arbitrary upstream URL | Reject without revealing B's data or making an unauthorized request |
+| Old tab/request returns after clear | Do not recreate records, credentials or the previous account's view |
+| Backup restored on a new device | Independent backup recovery works without the old device key; credentials are not restored |
+
+These are future checks, not current results. Before real-data use, record tested versions, platforms and scope. Have someone other than the implementer review the cryptographic format and key flow. A compromised OS, unlocked process or malicious publisher remains outside these protections. Encryption limits exposure; backups limit data loss. Both are needed.
+
+## References
+
+The original technology review was recorded on 2026-11-10. Recheck library support when implementing. The combinations and stages above are Cadence proposals.
+
+- [drift encryption](https://drift.simonbinder.eu/platforms/encryption/)
 - [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
-- [cryptography API](https://pub.dev/documentation/cryptography/latest/index.html) 与 [cryptography_flutter](https://pub.dev/packages/cryptography_flutter)
-- [OWASP 加密存储](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html) 与 [口令派生参考](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
-- [OWASP 浏览器安全](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html)
-- [GitHub Actions 安全](https://docs.github.com/en/actions/reference/security/secure-use)
+- [cryptography API](https://pub.dev/documentation/cryptography/latest/index.html) and [cryptography_flutter](https://pub.dev/packages/cryptography_flutter)
+- [OWASP cryptographic storage](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html) and [password storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
+- [OWASP browser security](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html)
+- [GitHub Actions security](https://docs.github.com/en/actions/reference/security/secure-use)

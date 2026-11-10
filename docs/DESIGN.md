@@ -1,8 +1,8 @@
 # Cadence design system
 
-Updated: 2026-11-11. Direction: an **academic journal for time planning**, primarily for students and also useful to teachers and others. Courses are one kind of commitment. Cadence has its own identity; do not copy Kyushu University's official image or imply endorsement.
+Updated: 2026-11-11. Cadence is a general-purpose local time planner with a **quiet journal** visual style. Work, study and personal life share the same planning space. Courses are an optional kind of commitment. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current scope. Cadence has its own identity and does not imply endorsement by a school or other institution.
 
-The selected product UI is Flutter [shadcn_ui](https://pub.dev/packages/shadcn_ui), not installed or implemented yet. The learner entry may retain Material. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. Web is a confirmed development target, not an existing application; mobile apps are excluded.
+The selected product UI is Flutter [shadcn_ui](https://pub.dev/packages/shadcn_ui), not installed or implemented yet. The learner entry may retain Material. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. The core is an offline desktop app without accounts. Web and sync are optional later work; mobile apps are excluded.
 
 ## Palette
 
@@ -43,27 +43,31 @@ Use an 8-unit rhythm, light separators and modest rounding. Show the current dat
 
 ## Page composition
 
-The layout below was accepted on 2026-11-11. It is a product design, not an implemented screen. Today, Week and Tasks share a light sidebar and one planning state. Put Settings at the bottom; open Courses and Weekly Review from Week.
+The layout below was accepted on 2026-11-11. It is a product design, not an implemented screen. Today, Week and Tasks share a light sidebar and one planning state. Put Settings at the bottom and open Weekly Review from Week. Course tools belong to the optional course extension rather than the main navigation for everyone.
 
 On wide windows, Today has a task column on the left and a daily timeline on the right, starting at roughly 40% / 60% of the content width. Its header shows the date, today's pending count and New. Week gives most space to a seven-day calendar, with a task tray that can be collapsed. Tasks uses a focused list. Full editors open in a right-side overlay only when needed.
 
-Use fine rules and whitespace to separate sections. Avoid a dashboard of summary cards, a permanent details column and decorative notebook controls. Preserve the academic-journal character through typography, paper color, quiet accents and clear dates. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md#pages-and-navigation) defines the page interactions and responsive behavior.
+Use fine rules and whitespace to separate sections. Avoid a dashboard of summary cards, a permanent details column and decorative notebook controls. Preserve the quiet-journal character through typography, paper color, restrained accents and clear dates. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md#pages-and-navigation) defines the page interactions and responsive behavior.
 
 Narrow windows collapse navigation and stack Today's sections. Keep Week readable through a bounded calendar scroll area or a clearly labelled day view. Editors fit the available window. Preserve selection, drafts, scroll position and focus when resizing or closing an editor.
 
-Courses, meetings, study and personal arrangements are peers. Use category names/icons and restrained accents. Deadline-only tasks do not occupy calendar time. The future full timetable adds explicit conflicts and course exceptions; the MVP advertises only tested behavior.
+Meetings, study sessions, errands and personal arrangements are peers. Use category names/icons and restrained accents. Deadline-only tasks do not occupy calendar time. Optional course tools can add teaching weeks and course exceptions without changing the core task/event model. Advertise only tested behavior.
 
-Empty states teach the next local action instead of prompting school login. Editing needs validation, cancel and truthful results. Import replacement/clearing explains scope; small routine changes do not all need confirmation dialogs.
+Empty states teach the next local action. Core planning has no login requirement. Editing needs validation, cancel and truthful results. Import replacement/clearing explains scope; small routine changes do not all need confirmation dialogs.
 
 ## Identity and artwork
 
 Keep **Cadence** in Latin letters in every language. Retain the independent C/clock mark; never replace it with a university crest. `assets/brand/cadence-icon-v2.svg` is the current master; `website/assets/icon-v2.svg` is its deployment copy. The original mark geometry remains recognizable. Use the 24-unit, 1.75-stroke interface set consistently, with semantic labels and generous click targets. Decorative artwork never replaces text, validation or status feedback. The [catalogue](../assets/catalog.html) previews the complete asset family; [usage and generation instructions](../assets/README.md) describe platform exports and staged application integration.
 
+Keep editable artwork separate from delivery exports. Preserve the editorial PNG master and use the generated 480/960/1536 px WebP files on the website. The asset manifest records source paths, dimensions and byte budgets; `python tools/check_artwork.py` checks them. Choose responsive image sizes from the displayed layout and reserve the aspect ratio to avoid shifts while loading.
+
 ## Privacy in the interface
 
-The planned first Web version defaults to memory mode. Browser saving is explicit and labelled local, with backup/clearing guidance. Private JSON export is distinct from future filtered timetable sharing. Import preview explains whole-data replacement. No account, backend or cloud-saved state is implied.
+On first use, offer **Save on this device** and **Temporary use** before opening any saved planning data. Explain that local saving keeps records on this device, while temporary use keeps them in the current session and loses them on close. Do not infer a saving choice from app launch or sign-in. Label the active mode and explain any later switch, including whether an existing saved copy is kept or cleared.
 
-School demos use fictional entries. No Kyushu affiliation is required. See [SECURITY.md](SECURITY.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
+The same choice applies if a browser client is later built. Show truthful write results and backup/clearing guidance. Private JSON backup is separate from filtered sharing. Import preview explains replacement scope. No account, backend or cloud-saved state is implied; optional sync needs a separate opt-in.
+
+All demos use fictional entries. School connections, including a possible Kyushu University adapter, are optional extensions whose permissions cover their interfaces and data only. See [SECURITY.md](SECURITY.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
 
 ## Language, access and motion
 
@@ -75,4 +79,4 @@ Use brief restrained transitions and respect reduced motion. Task completion and
 
 The project website explains the product and links only to actual accepted deliverables. The future Flutter planner will be a separate application even if delivered beside the website. Never put private planning data into public assets. Sharing an origin also shares storage/script trust; different URL paths do not create isolation.
 
-The website uses this academic-journal palette and fictional illustrations with accurate status. Distinguish the current teaching task list with a practice counter, concept website and planned desktop/Web application. Do not invent school endorsement, adoption, download availability or privacy guarantees.
+The website uses this quiet-journal palette and fictional illustrations with accurate status. Distinguish the current teaching task list with a practice counter, concept website, planned local desktop application and optional later clients. Do not invent endorsement, adoption, download availability or privacy guarantees. A general desktop or Web release does not depend on school permission; only the relevant school extension does.

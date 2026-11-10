@@ -6,6 +6,7 @@
   var buttons = Array.from(tabs.querySelectorAll('[role="tab"]'));
   var tasks = Array.from(document.querySelectorAll("[data-demo-task]"));
   var status = document.getElementById("demo-status");
+  var reset = document.getElementById("reset-preview");
   var lastStatusKey = null;
 
   function selectTab(button, focus) {
@@ -23,7 +24,8 @@
     var copy = window.CadenceCopy[window.CadenceLanguage || "ja"];
     document.querySelectorAll("[data-count]").forEach(function (node) {
       node.dataset.count = String(remaining);
-      node.textContent = copy["preview.remaining"].replace("{count}", String(remaining));
+      var key = remaining === 0 ? "preview.allDone" : remaining === 1 ? "preview.remainingOne" : "preview.remaining";
+      node.textContent = copy[key].replace("{count}", String(remaining));
     });
     if (lastStatusKey) status.textContent = copy[lastStatusKey];
   }
@@ -48,7 +50,14 @@
       renderTasks();
     });
   });
+  reset.addEventListener("click", function () {
+    tasks.forEach(function (task) { task.checked = task.defaultChecked; });
+    lastStatusKey = "preview.statusReset";
+    renderTasks();
+  });
   document.addEventListener("cadence:language", renderTasks);
   tabs.hidden = false;
+  reset.hidden = false;
+  document.querySelector(".preview-instruction").hidden = false;
   renderTasks();
 })();

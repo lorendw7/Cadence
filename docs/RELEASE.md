@@ -1,73 +1,78 @@
-# Releases for students, teachers and other users
+# Release plan
 
-New release gate: the Web planner may be deployed only after explicit school permission, even if it has no school API. Desktop local use remains independent. Follow [ADR-005](adr/005-local-offline-and-school-gated-web.md) for local-retention choices and offline acceptance. School authentication, data access and permitted retention/export are separate approvals.
+Updated: 2026-11-11. [ADR-007](adr/007-general-purpose-local-planner.md) defines Cadence as a general-purpose local time planner. The desktop core works offline without an account. On first use, users choose Save on this device or Temporary use before saved planning data is opened. Web, sync and school adapters are optional later extensions.
 
-Updated: 2026-11-11. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current accepted learning baseline supports task input, addition, completion/undo and blank-title validation in memory; current lesson acceptance is tracked in the [project README](../README.md) and [learning log](LEARNING.md). The website is a concept presentation. There is no functional MVP, completed release or university endorsement.
+School permission applies only to school interfaces and data, including any limits on retaining or sharing that data. It does not block a general desktop or Web release. The older blanket Web gate is superseded.
+
+The learning app currently supports validated task addition, completion toggling, empty-list feedback, deletion and one-level undo in memory. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance. shadcn_ui, persistence and the full planner are not implemented. The website presents concepts; there is no released planning MVP or institutional endorsement.
 
 ## Artwork readiness
 
-The 2026-11-11 [v2 artwork library](../assets/README.md) supplies Windows ICO, macOS PNG/ICNS, Linux-ready PNG/SVG and website assets. Windows and macOS launcher references use v2; a local Windows debug build passed. Check the installed icon, taskbar/Dock and operating-system icon cache on each release target. Linux desktop-entry/icon installation and macOS/Linux runtime acceptance remain pending. Source publication and a concept-site deployment do not constitute a packaged application release.
+The [v2 artwork library](../assets/README.md) provides Windows ICO, macOS PNG/ICNS, Linux PNG/SVG and website assets. Windows and macOS launcher references use v2; an earlier Windows debug build passed. Check the installed icon, taskbar/Dock and OS icon cache on each release target. Linux desktop-entry/icon installation and macOS/Linux runtime acceptance remain pending. Source publication and concept-site deployment are separate from an application release.
 
 ## Before the first trial
 
-- Finish and verify the promised milestone in [ROADMAP.md](ROADMAP.md).
-- Decide which native platforms actually passed runtime acceptance and list untested ones explicitly.
-- Use a pre-1.0 product version for the first feature release; the existing generated package version is not evidence of readiness.
-- Explain known limitations, supported import/backup versions and data-folder location.
-- Verify notification capabilities with the actual package identity/format, including denied permission, cancellation and click-through; do not promise closed-process delivery without native tests.
-- Provide an example timetable with fictional data and a short setup guide.
-- Recruit pilot students beyond the developer's class and record which campuses, study levels, academic patterns, languages and accessibility needs have been covered.
-- Keep manual entry and local import usable without a school login. Clearly mark official integration unavailable unless its approval and acceptance gates have passed; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+- Finish the included milestone in [ROADMAP.md](ROADMAP.md), with its actual acceptance checks. Do not require optional course, school or sync features for the local core.
+- List the native systems that passed runtime acceptance and those not tested.
+- Use a pre-1.0 version for the first feature release. The starter package version does not establish readiness.
+- Explain saving choices, known limits, supported import/backup versions and the data-folder location. Verify temporary use does not read or modify an existing saved workspace.
+- For included reminders, test the actual package identity/format, denied permission, cancellation and click-through. Do not promise delivery after app exit without native tests.
+- Provide fictional work, study and personal examples with a short setup guide. No login or school connection is needed for core planning.
+- Include people with different planning routines, languages and accessibility needs in the pilot. Record tested and untested cases.
 
 ## Build and package
 
-Before releasing protected storage, verify the actual cipher-enabled runtime and key-store behavior in the distributed build on each supported desktop platform. Follow [DATA_PROTECTION.md](DATA_PROTECTION.md) for dependency review, secret scanning, least-privilege CI, reviewed Action SHA pins and platform signing/trusted distribution. These are future hardening requirements; this documentation update does not change workflows or enable deployment. Checksums alone do not prove publisher identity if both archive and checksum can be replaced.
+Before releasing protected storage, check the cipher-enabled runtime and key store in the actual package on each supported platform. [DATA_PROTECTION.md](DATA_PROTECTION.md) covers dependency review, secret scanning, minimal CI permissions, reviewed Action SHAs and signing or trusted distribution. These remain release requirements; source publication does not prove they passed. Checksums alone cannot prove publisher identity if the archive and checksum can be replaced together.
 
-Build each target on its own host using the pinned Flutter SDK. Keep debug CI checks separate from release packaging.
+Build each target on its own host using the pinned Flutter SDK. Keep debug CI separate from release packaging.
 
-| Platform | Initial package direction | Required validation |
-|----------|---------------------------|---------------------|
-| Windows | Complete release bundle in ZIP; installer can follow | Include DLL/data files, run on a clean machine, check data persistence |
-| Linux | Complete release bundle for the tested distribution/architecture | Document runtime libraries; verify file dialogs and desktop session behavior |
-| macOS | App bundle in an appropriate archive/DMG | Test on the declared architecture; plan Developer ID signing and notarization for convenient distribution |
+| Platform | Initial package | Required checks |
+|---|---|---|
+| Windows | Complete release bundle in ZIP; installer may follow | Include DLL/data files, run on a clean machine, verify selected saving mode and restart recovery |
+| Linux | Complete bundle for the tested distribution/architecture | Document runtime libraries; verify file dialogs, desktop session behavior and storage |
+| macOS | App bundle in an appropriate archive/DMG | Test declared architectures; plan Developer ID signing and notarization for convenient distribution |
 
-These are delivery plans, not currently automated release artifacts. Do not tell users to disable OS security globally. Verify current signing and distribution prerequisites when packaging begins. A Windows pilot is useful progress; wider availability also requires representative student acceptance and support readiness. Publish only platforms actually validated and describe unsupported targets plainly. The retained Android runner is legacy scaffolding and has no release plan.
+These are package plans, not existing automated release artifacts. Recheck current signing/distribution requirements when packaging starts. Never ask users to disable OS security globally. Publish only validated targets and state support gaps. Android is retained scaffolding with no release plan; mobile apps are out of scope.
 
 ## Publish a version
 
-1. Run local checks and inspect hosted build results for the exact commit.
-2. Exercise timetable sharing and backup/restore with the release binary.
-3. Produce packages and SHA-256 checksums; verify each archive contains the full runtime.
+1. Run relevant local checks and inspect hosted build results for the exact commit.
+2. Exercise every included saving, sharing, backup and restore path in the release binary. Test first-use choice and offline operation; do not imply optional future features are included.
+3. Produce full runtime packages and SHA-256 checksums, then inspect the archives.
 4. Tag the release and describe implemented features, supported systems, limitations and upgrade steps.
-5. Link the downloads from the website only when those assets exist.
-6. For wider rollout, confirm onboarding, support ownership, privacy information and a way to withdraw a faulty release. School-related features must identify their actual approval status and last validated interface version.
+5. Add website download links only after the files exist.
+6. Before wider rollout, confirm onboarding, support ownership, privacy information and a way to withdraw a faulty release. State the approval status and tested interface version of any included external connector.
 
-Publishing binaries/tags is a separate action from ordinary source commits. The existing Pages workflow may publish website changes on main.
+Publishing binaries/tags is separate from source commits. The existing Pages workflow may publish concept-site changes on main.
 
 ## Upgrade and support
 
-Use manual desktop downloads initially. Preserve the user data directory across upgrades; take a database backup before a migration. Do not downgrade an unsupported schema in place. A release rollback must use a compatible recovery/export path rather than assume an older app can open newer data. During the planned Web implementation, validate browser-data migrations, cache/version behavior and export/recovery before its own rollout.
+Use manual desktop downloads initially. Preserve the user-data directory across upgrades. Only open or migrate a saved database in the selected local-saving mode, with a recoverable backup. Temporary use must not open a private old database just to upgrade it. Do not downgrade an unsupported schema in place. A rollback needs a compatible recovery/export path; an older application may not read newer data.
 
-Provide explicit data export and deletion instructions; uninstalling a desktop application may leave its data behind. Issue reports should include version, OS and steps, with private course/plan content removed. Never request school passwords, session tokens or a full backup in a public issue. No remote telemetry is needed for a pilot or wider release; local weekly review is not usage tracking.
+Explain export and deletion, including that uninstalling may leave user data behind. Issue reports should include version, OS and reproduction steps with private content removed. Never request passwords, tokens or full backups in a public issue. The local core needs no remote telemetry; local weekly review is not usage tracking.
 
-## Responsibilities before wider release
+Name the people responsible for releases, support, private security reports and any external-service liaison. One person may hold several roles, but contacts and duties must be clear. Keep credentials and service ownership secure, with a handover or shutdown plan. Do not promise a service-level agreement without the resources to meet it.
 
-Name the people responsible for releases, user support, privacy/security reports and any school liaison. One person may initially hold several roles, but the responsibilities and contact paths must be explicit. Record release credentials and service ownership securely, with a handover or shutdown plan for graduation, departure or loss of maintainer availability. Do not promise an unsupported service-level agreement.
+Provide user-facing onboarding and help in Japanese, English and Chinese as those interfaces are released. Repository documentation stays in plain English. Check that someone unfamiliar with GitHub can find the correct download, install it, choose a saving mode and restore their data. State accessibility and platform gaps in release notes.
 
-Provide Japanese and English onboarding and help, alongside the planned Chinese interface/help coverage. Verify that a student unfamiliar with GitHub can find the correct supported download, install it and restore their own data. Accessibility and platform gaps belong in release notes rather than being hidden behind the all-student audience goal.
+Keep a public route for ordinary bugs and a private route for sensitive reports. Explain any voluntary diagnostics and how to redact them. Review dependency/security issues before wider release and document how to pause downloads or disable an affected optional connection while preserving local records.
 
-Keep a public route for ordinary bugs and a private route for sensitive reports. Explain what voluntary diagnostics may contain and how to redact them. Review dependency/security issues before a wider release and document how to pause downloads or disable an affected optional connection while preserving local data.
+## Optional Web release
 
-## Future Web release gate
+A concept website is not a planner. If built, the first browser client is local to the browser, without accounts, backend or sync. It offers the same first-use choice between local saving and temporary use. Its initial data scope includes manual schedules/tasks, bounded weekly repeats, strict 1 MiB / 2,000-record JSON preview/replacement/export and clearing. CSV, notifications and single-occurrence course changes remain outside that scope.
 
-A changed concept website is not a functional planner. The first planned Web version is browser-local, without backend or accounts. Before release establish browser support, explicit saving/clearing behavior, JSON recovery, privacy information, operator and deployment costs. See the Web track in [ROADMAP.md](ROADMAP.md) and security acceptance in [QUALITY.md](QUALITY.md). The first browser plan is memory by default and explicit local saving, with strict 1 MiB / 2,000-record JSON preview/replacement/export and clearing; it excludes accounts, backend, CSV, notifications and single-occurrence changes.
+Before release, establish supported browsers, saving/clearing behavior, storage failures, JSON recovery, privacy information, operator and deployment costs. Verify HTTPS, script/import handling, reviewed dependencies, a practical CSP and deployment rollback. Check browser-data migrations, asset/cache updates and failed restore. Public assets, URLs, logs and service-worker caches must not contain private schedules, backups, credentials or tokens.
 
-Before a student-data pilot, verify HTTPS and hosting configuration, script/import handling, third-party dependencies, content security policy and deployment rollback. Public assets, URLs, logs and service-worker caches must not contain student schedules, backups, credentials or session tokens. Document when browser data can be cleared or unavailable and provide a tested export/recovery path; client-local storage does not itself provide backup or synchronization.
+Document when browser storage can be unavailable or cleared. A successful local write does not provide backup or sync. Test temporary startup without opening an old saved workspace, multiple-tab coordination and an explicit recovery path. Use fictional data first, then a limited voluntary pilot after the relevant [quality checks](QUALITY.md). No school permission is needed for a general browser client.
 
-If the selected design has accounts or a backend, additionally test cross-user access isolation, session creation/revocation, CSRF protection where applicable, minimum data retention, deletion, backup access and incident handling. Define request limits, costs and ownership. Use a limited voluntary pilot before general availability; using real data requires the applicable gates, not merely a successful deploy. Use [SCHOOL_DEMO.md](SCHOOL_DEMO.md) only after its future demonstration conditions are met; current concept visuals cannot be presented as a working MVP.
+## Optional sync service
 
-## Optional school services
+Sync is a separate product and operating decision under [SYNC.md](SYNC.md), [ADR-006](adr/006-optional-multi-client-sync.md) and [ADR-007](adr/007-general-purpose-local-planner.md). It does not become a dependency of local planning. Before real-data use, define the identity route, operator, data region, costs, quotas, retention/deletion, backups and incident handling. Explain cloud copies and whether the operator can read records.
 
-Publish a data-flow and privacy explanation before enabling an approved school connection or backend. Include the operator, read-only scope, consent, retention, disconnect/deletion behavior and failure handling. Never imply that a student's consent replaces school authorization or that university authentication automatically grants timetable access.
+Test cross-user isolation, session expiry/revocation, applicable CSRF defenses, device revocation, conflicts, deletion and recovery with two clients. Voluntary logout must resolve pending work through confirmed sync, a permitted private export or explicit discard. Forced session loss must freeze and isolate the old account's queue without replaying it under a new account. Test temporary-session loss notices. Use a limited pilot before wider availability.
 
-Roll out an approved connector to a small voluntary cohort first. Check request limits, refresh failures, stale data presentation, local edit preservation, and any backend concurrency/cost limits. Assign an operational contact and a way to suspend the connector without breaking local schedules. Follow the integration design for the exact permission and release gates; account and timetable access remain optional for basic planning.
+## Optional school adapters
+
+Kyushu University or another school may be an optional source adapter. Obtain the necessary authentication, interface, retention and sharing permissions for that source. A user's consent does not replace school authorization, and university authentication does not automatically grant timetable access. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+
+Before enabling an adapter, publish its data flow, operator, read-only scope, consent, retention, disconnect/deletion behavior and failure handling. Trial it with a small voluntary group. Test limits, refresh failures, stale data, local edit preservation and any intermediary costs. Name an operational contact and provide a way to suspend the adapter without breaking independent local records. School demo guidance applies only to that extension, not to the core release.

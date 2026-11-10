@@ -1,10 +1,10 @@
 # ADR-004: shadcn_ui and a student/teacher planner for desktop and Web
 
-**Status:** Accepted design direction; not implemented.
+**Status:** Partially superseded by [ADR-007](007-general-purpose-local-planner.md). The selected shadcn_ui library and independent palette remain. The student-first audience and committed Web delivery are historical; the current product is a general desktop-first local planner with optional Web and sync.
 **Date:** 2026-11-10
 **Supersedes:** ADR-002's Kyushu-student-only audience and Web-candidate status, and the earlier Material-only product UI recommendation.
 
-**Later refinement:** [ADR-005](005-local-offline-and-school-gated-web.md) adds school-gated Web deployment and user-selected offline retention, and recommends IndexedDB instead of the localStorage candidate below. The original decision is retained as history.
+**Later refinements:** [ADR-005](005-local-offline-and-school-gated-web.md) introduced explicit retention, IndexedDB and a school-gated Web policy. ADR-007 keeps the retention/storage design but removes the gate for general product/Web release. The original decision below is retained as history, not the current delivery promise.
 
 ## Decision
 

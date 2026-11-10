@@ -1,97 +1,75 @@
-# Cadence 项目推进方式
+# Project workflow
 
-更新：2026-11-10。本文定义接下来的工作方式，不表示已创建 issue、分支、PR 或发布版本。教学顺序与节数估计见 [LEARNING.md](LEARNING.md)，产品阶段见 [ROADMAP.md](ROADMAP.md)。
+Updated: 2026-11-11. These are working rules. Examples below are not existing issues, branches, pull requests, or releases.
 
-Cadence 主要面向学生，也适合教师等用户；目标为 Windows、Linux、macOS 与已确定但尚未开发的 Web 目标，不做手机应用。没有学校身份门槛，学校连接需要另行确认许可与接口。先把一个学生能实际使用的本地功能做好，再扩展下一项。
+Cadence is a local planner for work, study, and daily life. Desktop comes first. Web, sync, and school connections are optional later work. School permission applies only to the relevant school interface and data. Mobile apps are outside scope. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md), and [roadmap](ROADMAP.md).
 
-## 分工与工作单位
+## Ownership and size
 
-你负责教学入口和课程指定模块的功能代码与需求取舍；助手负责把目标拆成小节、解释必要概念、编写有意义的测试、运行检查、审阅和维护受委托的文档。助手不提前完成后续课程，也不改弱测试来掩盖问题。受委托的仓库维护可做保行为整理；新增核心功能始终由学习者按课推进。
+The learner writes core features and makes product choices. The assistant explains one lesson at a time, writes useful tests, reviews results, and maintains delegated documents, artwork, the website, and repository checks. Authorized maintenance may simplify code without changing behavior. Do not implement future lessons or weaken tests.
 
-用一个 **issue（任务卡）** 描述一个能验收的结果，例如“用户可以添加一条待办，并在列表中看到它”。一张卡可能需要几节课；一节课也可能只完成模型或校验这一步。内部练习完成不等于整个功能可用，卡片只有达到验收条件后才关闭。
+A task describes an observable result, such as adding a task to the session list. It may take several lessons. Close it only after its acceptance conditions pass. Work on one feature task at a time; record unrelated ideas for later. Keep blocking fixes separate when useful. Small wording changes do not need a large process.
 
-一次只推进一张开发卡。发现新需求或不相关问题，先放入待办；必要的阻塞修复可以单独拆卡。不要为一个字段或一次文案修改引入复杂流程，也不要把整个课表系统塞进一个 PR。
+## A complete change
 
-## 一次完整迭代
+| Step | Work | Result |
+|---|---|---|
+| Choose | Pick the smallest useful result | Scope and acceptance conditions |
+| Prepare | Read code, identify concepts and data risks, choose checks | Enough information to start |
+| Branch | Preserve existing work; use a short branch when appropriate, such as codex/task-list | Focused changes |
+| Build | Explain one goal; learner writes and corrects code | Working increment |
+| Review | Inspect small commits and describe final behavior and checks | Reviewable diff |
+| Merge or push | Resolve supported findings and verify the final change | Traceable main-branch update |
+| Release | Package a milestone and test the actual package | A real download and follow-up tasks |
 
-| 步骤 | 要做的事 | 留下的结果 |
-|------|----------|------------|
-| 1. 选任务 | 从路线图选择当前最小可交付结果，明确用户操作与边界 | 一张任务卡及可检查的验收条件 |
-| 2. 准备 | 确认已有代码、需要学习的概念、涉及的数据和验证方法 | 满足下文“可以开始”的条件 |
-| 3. 开小分支 | 从合适的最新主分支建立短期功能分支；先检查并保留现有未提交改动 | 只包含本任务的改动，例如 `feat/task-list` |
-| 4. 按节实现 | 助手讲一个目标，你写代码；根据测试失败或实际运行结果修正 | 一个逐步可运行的功能，不预建空架构 |
-| 5. 提交与审阅 | 整理小提交，创建 PR，说明实际行为变化、验证和限制 | 可审阅的差异与验证记录 |
-| 6. 合并 | 处理有依据的审阅问题，检查最终提交的验证结果，再合并主分支 | 可追溯到任务卡的完成结果 |
-| 7. 版本与反馈 | 累积到一个可用里程碑后，验证实际安装包并发布版本；收集下一轮问题 | 真实可下载的版本、说明和新的任务卡 |
+Use issues and pull requests when useful. Local task notes and diff review are enough before remote collaboration begins. A user may ask for a direct main-branch push; do not invent a pull-request requirement.
 
-默认使用仓库的 issue/PR 记录开发。尚未使用远程协作时，也可以先在本地记录同样的任务说明和差异审阅，不需要采购项目管理工具或增加产品账号系统。只有实际创建后才记录 issue/PR 链接；文档中的例子不是已创建的工作项。
+Only record remote links after they exist. A main-branch update is not a desktop release. Changes under website/ may publish through GitHub Pages. Follow [RELEASE.md](RELEASE.md) for product delivery.
 
-合并与发布是不同动作。源代码进入主分支不表示桌面安装包已经可用；当前官网工作流可能随主分支更新发布静态网站，涉及 `website/` 的 PR 应检查这一影响。功能发布遵循 [RELEASE.md](RELEASE.md)。
+## Ready to start
 
-## 任务卡：可以开始
+Identify the user, situation, two to four observable acceptance conditions, scope, dependencies, and checks. For saving, import, networking, or private data, explain where data goes and how failure preserves it.
 
-开工前只要求以下信息足够清楚：
+Example task:
 
-- 谁在什么情况下需要什么结果，属于路线图哪个阶段。
-- 两到四条能观察的验收条件，包含这次最重要的失败或边界情况。
-- 这次做什么、不做什么，以及依赖是否已经具备。
-- 如何检查结果；涉及保存、导入、网络或私人数据时，明确数据会去哪、失败后怎样保留原数据。
+- Goal: enter a title and see a new task.
+- Acceptance: valid input adds a row; blank input shows an error.
+- Scope: memory only; closing the app loses the list.
+- Checks: input/addition widget tests and one manual window check.
+- Data: fictional examples; no school access or upload.
 
-可以使用这个短模板：
+This example does not prove that a feature is implemented.
 
-```text
-标题：添加待办并显示在列表中
-目标：用户输入标题后，能在当前会话的列表中看到待办。
-验收：有效标题可以添加；空白标题给出提示；列表显示新待办。
-范围：当前会话内使用，明确说明关闭会丢失；本任务不接数据库。
-验证：输入与添加的 widget 测试，加一次实际窗口操作。
-数据影响：只使用内存和虚构样例，不读取或上传学校数据。
-```
+## Ready to finish
 
-这只是任务拆分示例。实际开课时根据已有实现确定验收，不能提前宣称示例功能完成。
+Confirm that the behavior works, relevant tests and required checks pass, errors and data boundaries have been reviewed, and the learner understands the key code. Update affected behavior documents and interface text. Keep credentials and private schedules out of commits.
 
-## PR：怎样才算完成
+Use [QUALITY.md](QUALITY.md) for feature checks. Documents and websites need suitable link, language, asset, and browser checks. Do not add tests that only repeat low-risk implementation details. Repeat passed checks only after relevant changes or new concerns.
 
-一个功能可合并时，应能回答这些问题：
+A short review description should state the problem, new behavior, checks, and any remaining limit. Do not write an activity log.
 
-- 任务卡的验收行为是否已实现，能否实际操作或用对应的领域测试证明？
-- 相关测试、格式与静态检查是否通过，是否还有影响本次行为的已知失败？
-- 助手是否审阅了正确性、错误处理和本次涉及的数据边界，你是否理解关键实现？
-- 行为说明、界面文字和必要文档是否与最终实现一致，是否说明仍未支持的范围？
-- 提交里是否仅有本任务的必要变更，且没有密码、令牌、真实私人课表或完整备份？
+Never report an unrun check as passed. Unit tests do not prove recovery, platform support, or release security. Releases need actual package and host checks.
 
-功能代码修改按 [QUALITY.md](QUALITY.md) 运行适当的测试和仓库要求的检查，先跑相关测试以定位问题，再完成必要的整体检查。文档或官网修改做相应的链接、内容、语言和页面验证；不为了凑测试数量写与实现逐字对应的测试。改动后只有出现新问题或验证范围变化才额外重复检查。
+## Review effort follows the change
 
-PR 描述以“解决什么问题、现在会怎样”开头，补充验证结果和实际限制即可。普通小改动不需要长报告。示例结构：
+| Change | Main checks |
+|---|---|
+| Memory model, list, or copy | Input edges, clear errors, no private data in logs or commits |
+| Saving, migration, backup | Failed writes preserve data; recovery works; private backups differ from sharing |
+| Import and sharing | Untrusted input limits, accurate preview, field allowlist |
+| Initial Web planner | Fictional demos, explicit saving, strict JSON checks, failed storage, clearing, script injection |
+| School connection or backend | Permission, authorization, sessions, minimal data, expiry, user isolation |
 
-```text
-用户此前……；现在可以……。
-验证：……。
-限制或后续任务：……（没有则省略）。
-```
+See [SECURITY.md](SECURITY.md). Work without networking does not need a backend or account dependency.
 
-测试通过不代表数据恢复、平台支持或安全验收全部完成。未完成部分不能靠跳过测试、降低断言或把未运行的检查写成“通过”来隐藏。真正的发布还需要安装包和目标系统验证。
+## Design records and documentation
 
-## 安全检查随改动大小安排
+Use an ADR for choices that affect several features, data compatibility, or trust boundaries. Explain the problem, realistic options, decision, and cost. Small field and button decisions belong in the task or review. An ADR is neither school permission nor implementation acceptance.
 
-每次审阅关注实际变化，不要求每个小练习都跑全套安全流程：
+All documents use plain English. Keep paths stable, place requirements in their main document, and link to them. Current progress belongs in [LEARNING.md](LEARNING.md); lesson notes keep historical counts.
 
-| 这次改变了什么 | 本次重点验证 |
-|----------------|--------------|
-| 内存模型、列表或文案 | 输入边界、错误提示、无意泄漏到日志或提交的真实数据 |
-| 本地保存、迁移或备份 | 写入失败保留原数据、恢复可用、私人备份与分享内容分开 |
-| 课表导入与分享 | 不可信输入校验、大小限制、预览与实际内容一致、字段白名单 |
-| 未来初期 Web 实现 | 虚构数据演示、明确选择本机保存、严格 JSON 限制与预览替换、脚本注入/存储失败/清除验收 |
-| 学校连接或后台服务 | 先确认范围与许可；再验证授权、会话、数据最小化、失效处理及适用的跨用户隔离 |
+## From lessons to useful software
 
-详细要求以 [SECURITY.md](SECURITY.md) 为准。未触及网络的任务不因此增加后端、云账号或认证依赖；测试和公开反馈使用虚构或适当脱敏的数据。
+Follow the current [roadmap](ROADMAP.md): establish reliable local tasks, then personal planning, backup/recovery, a representative pilot, and wider desktop delivery. Test with people using the app for work, study, and daily life. Course tools, Web, sync, and school integrations are separate extensions.
 
-## 什么时候需要设计记录
-
-普通字段、按钮和局部实现选择，写在任务或 PR 中即可。只有影响多个功能、长期数据兼容性或重要信任边界的取舍才新增 ADR，例如更换存储方案、决定是否开展 Web 系统、引入服务端同步。ADR 说明问题、可行选项、决定及代价，链接相关产品和安全要求；不能用一份设计记录代替学校授权或实现验收。
-
-## 从学习走向可用软件
-
-路线图 A–C 把课程、个人安排、待办和文件能力做成闭环；D 用不同背景学生验证能否独立使用；F 在支持、恢复和维护责任清楚后扩大桌面发布。E 是确定的 Web 开发阶段，学校接入是独立的条件路线，都不阻塞本地功能学习。
-
-每完成一个小功能，就在真实窗口里用虚构数据演示一次；每完成一个阶段，再按路线图的用户场景验收。课时估计随学习速度和实际问题修订，完成课程数量不能代替完成产品。继续教学时仍一次只讲一个小目标，并保留你亲自编写功能代码的节奏。
+Demonstrate completed behavior with fictional data in a real window. Check whole user scenarios at each stage. Revise estimates when needed; lesson counts never replace product acceptance.

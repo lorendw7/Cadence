@@ -61,4 +61,5 @@
   });
 
   applyLanguage(pickLanguage());
+  document.querySelectorAll(".languages").forEach(function (group) { group.hidden = false; });
 })();

@@ -1,81 +1,81 @@
-# 九州大学合作与教务接入
+# Optional university connection reference
 
-按用户最新要求，Web 规划应用只在学校明确允许后部署，即使不调用学校接口；桌面本地核心继续独立推进。这是项目发布约束。认证、课表读取、本地保留和导出权限分别确认，详见 [ADR-005](adr/005-local-offline-and-school-gated-web.md)。下文预览后写入流程只适用于用户选择且获准保存的模式；临时查看不得写入数据库、草稿或自动备份。
+Updated: 2026-11-11. Design and consultation preparation only. No school permission, supervisor commitment or usable timetable interface has been confirmed. This document describes an optional connection for the [general planning product](PRODUCT.md); Cadence is not an official university service.
 
-更新：2026-11-10。状态：设计与咨询准备，尚未取得学校许可、导师承诺或可用课表接口。本文件说明 [通用规划产品](PRODUCT.md) 的可选学校连接，不表示 Cadence 已成为学校官方服务。
+The general local planner, and any later general Web client, do not require school permission for publication or use. [ADR-007](adr/007-general-purpose-local-planner.md) replaces the earlier school-gated Web direction. This document retains Kyushu University research only as an optional integration reference, not a product audience or release requirement. Authentication, school-data reading, retention and export each need permission for that connection. Preview-and-save flows below apply only when the user chooses saving and retention is permitted. Temporary viewing must not write to a database, persistent draft or automatic backup.
 
-## 目标与范围
+## Purpose and scope
 
-独立手动规划不需要学校身份或接入批准。先使用 [中日展示脚本](SCHOOL_DEMO.md) 沟通需求；演示支持不等于学校授权。未来可减少学生首次录入和维护课表的负担。分开推进三项能力：
+Independent manual planning does not require school identity or system access approval. Use the [school demonstration brief](SCHOOL_DEMO.md) to discuss needs first. Willingness to watch a demonstration is not school authorization. A later connection could reduce first-time timetable entry and maintenance. Keep these capabilities separate:
 
-| 能力 | 需要确认的条件 | 产品结果 |
-|------|----------------|----------|
-| 学校账号认证 | 项目资格、校内窗口、认证接入许可及协议 | 经学校认可的方式确认用户身份 |
-| 本人课表只读导入 | 数据管理部门许可、可用接口或导出格式、允许字段 | 预览后导入课程、日期、时间和教室等必要信息 |
-| 课表变更刷新 | 另行确认读取频率、变更语义和运行责任 | 展示待确认的变化、来源与最后成功检查时间 |
+| Capability | Conditions to confirm | Intended result |
+|------------|-----------------------|-----------------|
+| School authentication | Project eligibility, school contact, authentication permission and protocol | Confirm identity through a school-approved method |
+| Read-only import of the user's own timetable | Data-owner permission, an available API or export format, and allowed fields | Preview before importing necessary course, date, time and room data |
+| Checking timetable changes | Reading frequency, change semantics and operating responsibilities | Show changes for review, their source and the last successful check |
 
-认证成功不能替代课表数据授权。若学校支持无需应用登录的本人课表导出，可优先适配该文件；当前尚未确认具体导出功能与格式。没有正式数据通道时，继续使用本地手动编辑和已经验收的 JSON 文件操作；固定模板 CSV/粘贴属于未来桌面计划，不在初期 Web 规划中，当前 Web 尚未开发。
+Successful authentication is not permission to read timetable data. If the school offers users a timetable file that can be exported without an application login, consider adapting that file first. No specific export feature or format has been confirmed. Without an approved data route, continue local manual work and introduce JSON operations only after their own implementation and acceptance. Fixed-template CSV and paste are later desktop plans and are outside the initial Web scope. The Web planner is not implemented.
 
-## 已核对的学校资料
+## Previously reviewed school materials
 
-以下为 2026-11-10 查阅的公开资料；提交申请前向学校确认现行要求。
+The project notes record a review of these public materials on 2026-11-10. The English summary below preserves that research; it is not a fresh verification of current school requirements. Confirm the current terms with the school before applying.
 
-- 《全学共通認証基盤サービス認証機能利用要項》（标注最后修订 2022-11-28）：第 3 条规定校内职员管理员或认可窗口；第 6 条规定系统资格；第 7 条要求至少提前一个月申请并获许可；第 12、13 条规定部局总务受理及提交流程。第 9、11 条涉及年度更新、密码不保存和运行义务。[官方要项](https://web.sso.kyushu-u.ac.jp/documents/rules/ninsyou_youkou.pdf)
-- 2026 年《学生ポータルシステム利用の手引き》第 1 页说明 Campusmate-J 的用途，并提醒第三方课表应用收取账号密码的风险。这不能作为学校允许自动读取的依据。[官方手册](https://www.kyushu-u.ac.jp/f/65028/tebiki_2026.pdf)
+- The university-wide authentication service terms, marked last revised on 2022-11-28, describe an internal staff administrator or approved contact in Article 3, system eligibility in Article 6, an application at least one month in advance and permission in Article 7, and departmental administration and submission procedures in Articles 12–13. Articles 9 and 11 address annual renewal, not storing passwords and operating duties. See the [official terms](https://web.sso.kyushu-u.ac.jp/documents/rules/ninsyou_youkou.pdf).
+- Page 1 of the 2026 student portal guide describes Campusmate-J and warns about third-party timetable applications collecting account passwords. It does not grant permission for automatic access. See the [official guide](https://www.kyushu-u.ac.jp/f/65028/tebiki_2026.pdf).
 
-本次未确认公开开发者课表 API、学生项目的具体资格、费用、审批周期或可读字段。不得把“提前一个月申请”写成“一个月内获批”。
+The review did not confirm a public developer timetable API, student-project eligibility, fees, approval time or readable fields. A requirement to apply a month in advance is not a promise of approval within one month.
 
-## 导师与学校的角色
+## Supervisor and school roles
 
-先请九大在职导师协助咨询项目资格、校内负责人与数据管理部门；若导师愿意承担相应职责，再确认其是否能担任认可的窗口。导师支持本身不授予系统权限，项目仍需满足学校标准并完成审批。
+Ask a current Kyushu University supervisor to help identify project eligibility, the responsible school contacts and the data owner. If the supervisor is willing to take on duties, separately confirm whether they can serve as an approved contact. Supervisor support does not itself grant system access; the project still needs to meet school requirements and complete approval.
 
-| 角色 | 咨询或实施时确认的职责 |
-|------|----------------------|
-| 学生开发者 / 项目维护者 | 展示原型、整理必要字段与数据流、维护客户端、处理缺陷与退出方案 |
-| 导师或校内支持部门 | 协助联系、判断是否愿意作为项目窗口及承担对应运行责任 |
-| 部局总务及相关负责人 | 按学校规定处理申请与部局意见 |
-| 信息统括本部认证相关部门 | 确认资格、认证方式、申请要求与许可条件 |
-| 教务系统 / 数据管理部门 | 确认本人课表读取权限、格式、限制、数据含义及支持方式 |
+| Role | Responsibilities to discuss |
+|------|----------------------------|
+| Student developer or maintainer | Demonstrate the prototype, document required fields and data flow, maintain clients, fix defects and plan withdrawal |
+| Supervisor or supporting department | Help establish contact and decide whether to act as the project contact with the associated duties |
+| Departmental administration and responsible staff | Handle the application and departmental review under school rules |
+| School authentication team | Confirm eligibility, authentication methods, application requirements and permission conditions |
+| Academic-system team or data owner | Confirm access to the user's own timetable, format, limits, field meanings and support |
 
-以上为拟议分工，具体责任人与审批链以学校答复为准。咨询可以与本地原型并行；正式接入测试应在范围明确并获准后进行。
+These are proposed roles. The school's response determines the actual people and approval process. Consultation can run alongside the local prototype. Integration testing must wait until its scope is clear and authorized.
 
-## 咨询材料与待回答问题
+## Consultation materials and questions
 
-若进入 [多端同步阶段](SYNC.md)，需另外确认服务器运营方、个人规划托管、学校课表跨设备/云端保留与导出、身份稳定标识、毕业/资格失效后的访问和数据处理。允许 Web 与账号接入不自动涵盖这些条件；学校课表读取不等于 Cadence 私人数据同步。
+If optional school data is later included in [multi-client synchronization](SYNC.md), separately confirm the server operator, cross-device or cloud retention and export of that data, stable identity, and handling after graduation or loss of eligibility. Permission for school authentication does not automatically cover these uses. Reading a school timetable is different from synchronizing private Cadence data. General personal-data synchronization remains an optional product feature with its own consent and security requirements; it is not controlled by this school integration process.
 
-准备一页说明和使用虚构数据的演示，说明主要学生及教师等受众、独立项目身份、当前进度、只读目的、预计试用范围、必要字段、存放位置、维护人与毕业交接方案。不要把未完成能力描述成已上线。
+Prepare a one-page explanation and a demonstration with fictional data. Describe the general local planner first, then the specific student or teacher needs the optional connection would address. State independent status, actual progress, read-only purpose, likely integration-pilot size, required fields, storage locations, maintainer and graduation handover plan. Do not describe unfinished features as available.
 
-1. 学生项目是否具备资格，能否由导师或部门担任窗口，需要哪些材料？
-2. 是否提供本人课表 API 或可下载文件？不同学部、学府、学期和非规则课程的覆盖范围是什么？
-3. 账号认证与课表读取分别由谁审批，允许哪些字段、使用场景和保留期限？
-4. 桌面端及 Web 系统允许什么认证方式，是否需要中间服务、测试环境及运营方？
-5. 请求频率、会话有效期、接口变更通知、支持联系和停止接入条件是什么？
-6. 年度更新、费用、运行记录、故障处理和维护人员变更有哪些要求？
+1. Is the student project eligible? Can a supervisor or department act as its contact, and what materials are required?
+2. Is there an API or downloadable file for a user's own timetable? Which faculties, graduate schools, semesters and irregular classes does it cover?
+3. Who separately approves authentication and timetable reading? Which fields, purposes and retention periods are allowed?
+4. Which authentication methods are allowed for desktop and Web clients? Is an intermediate service, test environment or named operator required?
+5. What are the request limits, session lifetime, change-notice arrangements, support contacts and conditions for stopping access?
+6. What requirements apply to renewal, fees, operating records, incidents and changes of maintainer?
 
-## 用户流程
+## User flow
 
-基础入口提供已经验收的手动规划与文件操作，不要求学校账号。未来的模板粘贴不得提前写成现有能力。只有获准并通过测试的接入方式才显示为可用的学校连接入口；尚未可用时不出现可点击的假登录流程。
+The basic product entry should offer manual planning and file operations only as they become implemented and accepted, without requiring school credentials. Do not present future paste/import work as already available. Show a usable school connection only when its method is authorized and tested; do not offer a fake login while access is unavailable.
 
-连接流程：说明读取范围和数据存放位置 → 用户选择连接 → 学校认可的认证流程 → 读取允许的数据 → 标出不支持或缺失的字段 → 预览学期映射、重复与冲突 → 用户确认 → 事务写入。具体协议和回调方案由获准接口决定，不预设 OAuth、SAML 或中间服务器已可用。
+The planned connection flow is: explain reading scope and storage → user chooses to connect → school-approved authentication → read permitted data → flag unsupported or missing fields → preview semester mapping, duplicates and conflicts → user confirms → commit in the selected storage mode. The authorized interface determines protocols and callbacks; do not assume OAuth, SAML or a middle server is available.
 
-刷新时显示新增、修改、取消和无法确定的项目；保留本地备注与用户调整。读取失败或部分响应不得解释为“所有课程已删除”。源数据中消失不自动等于停课，需有明确语义并经确认。缺少来源 ID 时人工匹配，不按同名自动合并。
+On refresh, show additions, changes, cancellations and uncertain items. Preserve local notes and user adjustments. A failed or partial response must not mean that every course was deleted. A missing source item is not automatically a cancelled class; require clear source semantics and user confirmation. Without a source ID, use manual matching rather than merging on course name alone.
 
-课表显示来源、导入或最后成功检查时间及待处理变化。手动导入不显示“实时同步”。离线、认证失效或学校停止服务时仍可使用已有本地课表，提示以学校原系统为准。
+Show the source, import or last successful check time, and pending changes. Do not label manual import as real-time synchronization. When offline, authentication expires or the school stops service, previously saved timetables may remain usable only where retention is allowed. Mark stale information and advise checking the school's source. Temporary viewing does not create an offline copy.
 
-## 隐私与维护约束
+## Privacy and maintenance
 
-- 不收集或保存学校密码，不以模拟登录抓取作为未获准接入的替代方案。
-- 首次只申请本人课表必需数据；不读取成绩或其他学生信息，不执行选课、退课或成绩修改。
-- 个人安排、任务和私有备注留在本地；未来在线数据流须在启用前告知用途、接收方和删除方式。
-- 获准协议若需要会话或令牌，按 [SECURITY.md](SECURITY.md) 存储、过期和撤销，排除于分享、备份和问题报告。
-- 断开连接停止访问并清理本地凭据；按协议尽可能撤销远端授权，明确结果。已导入课程可保留供离线使用，清除另设入口，不连带删除个人安排。
-- 对外接入前明确维护者、费用、许可更新和毕业交接；学校要求的运行记录与产品使用分析分别处理，限定内容及保留期限。
+- Do not collect or store school passwords, or substitute simulated-login scraping for an approved connection.
+- Initially request only data needed for the user's own timetable. Do not read grades or other students' data, or perform course registration, withdrawal or grade changes.
+- Personal plans, tasks and private notes stay local in the base design. Before any future online flow is enabled, explain its purpose, recipients and deletion behavior.
+- If an approved protocol needs sessions or tokens, follow [SECURITY.md](SECURITY.md) for storage, expiry and revocation. Exclude credentials from sharing, backups and issue reports.
+- Disconnecting stops access and removes local credentials. Revoke remote authorization where the protocol allows and report the result. Imported courses may remain offline only where retention is allowed; provide a separate removal action without deleting unrelated personal plans.
+- Before public integration, establish the maintainer, costs, permission renewal and graduation handover. Treat school-required operating records separately from product analytics, with limits on content and retention.
 
-## 接入验收关口
+## Acceptance gates
 
-1. **咨询完成**：记录学校回复、资格、窗口、允许的数据路线和待解决事项。
-2. **授权完成**：保存许可范围与条件；认证和课表读取分别确认，未获准能力保持关闭。
-3. **有限试用**：验证本人数据范围、拒绝与撤销、失效、重复导入、部分失败、新鲜度和本地冲突。
-4. **推广准备**：覆盖声明中的学生群体与客户端，完成隐私说明、维护交接、接口变更响应和停止接入演练。
+1. **Consultation:** record the school's response, eligibility, contact, permitted data route and open questions.
+2. **Authorization:** retain permission scope and conditions. Confirm authentication and timetable reading separately; keep unapproved capabilities disabled.
+3. **Limited pilot:** verify own-data scope, refusal and revocation, expiry, duplicate import, partial failure, freshness and local conflicts.
+4. **Wider use:** cover the stated user groups and clients. Complete the privacy notice, maintenance handover, interface-change response and a drill for stopping access.
 
-本地产品与代表性试用按 [ROADMAP.md](ROADMAP.md) 推进。教务接入是否获批单独记录，连接失败不能使基本日程不可用。
+The general local product and representative pilot follow [ROADMAP.md](ROADMAP.md), independently of this optional school process. Record school-access approval separately. Connection failure must not disable the local planner or affect users who have no school connection.

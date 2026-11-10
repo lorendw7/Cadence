@@ -1,34 +1,34 @@
-# 本地周回顾
+# Local weekly review
 
-更新：2026-11-09。状态：规划，尚未实现。
+Updated: 2026-11-11. Planned desktop review, not implemented. This is a later addition to the general local planner, not a requirement for first use. See [ADR-007](adr/007-general-purpose-local-planner.md).
 
-## 入口与边界
+## Entry and scope
 
-从“周计划 → 本周回顾”进入。只展示计划时长、每日安排分布、完成任务和当前逾期；不占据首页，不增加主导航，不给用户打效率分。数据与计算均在本机，不上传，不需要账号、服务端、统计 SDK 或付费 API。
+Open the review from Week → Review this week. Show planned duration, the daily distribution of plans, completed tasks and tasks currently overdue. Keep it out of the home page and main navigation. Do not assign a productivity score. Data and calculations stay on the device and require no account, server, analytics SDK or paid API.
 
-第一版不是计时器。课表中的两小时代表计划两小时，不表示已经学习两小时。实际计时、暂停恢复与实际用时分析留待后续明确需求。
+The first version is not a timer. A two-hour plan means two planned hours, not two hours of completed work or study. Actual timing, pause/resume and time-use analysis need a later, explicit requirement. Work, learning and personal plans follow the same calculation rules, without requiring courses or semesters.
 
-## 统一计算口径
+## Calculation rules
 
-- 周范围按显示时区的周一 00:00 至下周一 00:00，采用左闭右开区间。对比采用相邻两个完整自然周，明确包含尚未发生的计划，不把半周实际进度与整周计划混为一谈。
-- 数据来自与周视图相同的实例展开结果。取消的课程不计入；调课只在新的时间计一次；只展开所选范围。
-- 跨周事件先裁剪至查询范围，跨日事件按当地日期切分。使用实际时刻计算分钟，不假设夏令时切换日一定有 24 小时。
-- “课程计划时长”“个人安排计划时长”各自累加有效事件时长，重叠可以重复计入，明确标注“项目累计时长”。
-- “日程占用时长”先合并所有重叠区间再计算，展示每日分布。不能把分类累计之和当作去重占用；全天项目和任务截止点不参与小时数统计，单列数量。
-- 时间以分钟累计，最后统一格式化；不要先逐项四舍五入。没有数据展示零和添加入口，不生成示例数据冒充用户统计。
-- 与上周优先显示分钟数/任务数差值。上周为零时不计算增长百分比，显示“上周无记录”。
+- A week is the half-open interval from Monday 00:00 to the next Monday 00:00 in the display time zone. Compare two adjacent complete calendar-week ranges. Make clear that a range may include future plans; do not compare partial actual progress with a whole week of planned time.
+- Use the same expanded occurrences as the week view. Exclude cancelled occurrences and count a moved occurrence once at its new time. Expand only the requested range. Apply the same rule to course occurrences if that optional extension is active.
+- Clip cross-week events to the query range and split cross-day events by local calendar date. Calculate minutes from actual instants; a daylight-saving transition day need not have 24 hours.
+- Each plan category sums its valid events. Overlaps may count more than once in category totals. Label them as summed event duration. A course category appears only if the course extension is in use; the basic review must work without it.
+- Occupied schedule duration merges overlapping intervals before counting and shows the daily distribution. Do not treat the sum of category totals as unique occupied time. All-day entries and task deadline points do not contribute hours; show their counts separately.
+- Accumulate minutes and format once at the end, without rounding each event first. Empty data shows zero and an entry action, never invented example statistics.
+- Prefer differences in minutes or task counts over percentage growth. If the previous week is zero, show that there were no records instead of calculating a percentage.
 
-例：课程 09:00–10:00、个人安排 09:30–10:30，项目累计为各 60 分钟，去重占用为 90 分钟。
+Example: a work plan from 09:00–10:00 and a personal plan from 09:30–10:30 each contribute 60 minutes to their category total. Together they occupy 90 unique minutes.
 
-## 任务统计
+## Task counts
 
-- 后续任务模型增加可空的 `completedAt`；完成时记录当前时刻，撤销完成时清除。完成状态与完成时间必须一致。
-- “本周完成”是当前处于完成状态且 `completedAt` 在所选周内的任务数，不是勾选按钮的点击次数。无截止日期的任务也可计入完成数。
-- “当前逾期”使用注入的当前时间，统计截止已过且仍未完成的任务。按日期截止的任务在次日本地零点才逾期。它是当前状态，不冒充过去某周末的历史快照。
-- 第一版不保存操作日志或不可变历史报表。撤销、修改、删除会重新计算过去周的结果，页面说明“按当前记录计算”。备份保留任务状态和完成时间；课表分享不含任务或统计。
+- A later task-model lesson adds nullable `completedAt`. Record the current instant on completion and clear it when completion is reversed. Completion state and timestamp must agree.
+- Completed this week counts tasks that are currently complete and whose `completedAt` lies in the selected week. It does not count checkbox clicks. Tasks without deadlines may contribute.
+- Currently overdue uses the injected current time to count incomplete tasks at or past an exact deadline (`now >= deadline`), matching [TODAY.md](TODAY.md). Date-only deadlines become overdue at the next local midnight. This is a present-state count, not a historical snapshot of a past week's end.
+- The first version stores no operation log or immutable historical reports. Reversing completion, editing or deleting records recalculates past results. Explain that the review is calculated from current records. Private backups retain task states and completion timestamps; timetable sharing excludes tasks and statistics.
 
-## 验收
+## Acceptance and estimate
 
-断网后可查看和重新计算；改变课程或撤销任务完成后同步更新。自动化测试覆盖空数据、相邻/重叠区间、跨日跨周、调停课、全天项目、零基数对比和任务完成撤销。测试使用固定时钟，结果不随运行日期变化。
+The review must work and recalculate offline in both local-saving and temporary modes, without creating persistent review records in temporary mode. Plan edits and reversed task completion must update it. Cover empty data, adjacent and overlapping intervals, day/week boundaries, moved and cancelled occurrences, all-day entries, zero-baseline comparisons and task completion reversal. Include optional course cases only when that extension is implemented. Use a fixed clock so tests do not change with the run date.
 
-基础回顾预计增加 6–10 个开发工时。技术使用纯 Dart 聚合与 Flutter 简单条形展示；不为第一版引入图表服务。估算和教学安排见 [ROADMAP.md](ROADMAP.md) 与 [LEARNING.md](LEARNING.md)。
+The earlier estimate is 6–10 development hours for the basic review, using pure Dart aggregation and simple Flutter bars. Do not add a chart service for the first version. See [ROADMAP.md](ROADMAP.md) and [LEARNING.md](LEARNING.md) for staged estimates and lessons.

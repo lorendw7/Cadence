@@ -1,11 +1,11 @@
-# 历史练习模板
+# Historical exercise templates
 
-这些 `.dart.txt` 文件保留第一至三节的原始练习契约，不由 `flutter test` 执行，也不重复计入测试数量。相应课程已经完成；不要将旧模板复制回去覆盖当前测试。
+These .dart.txt files preserve the original exercises for lessons 1–3. They are not run by flutter test and do not count toward active coverage. These lessons are complete. Do not copy an old template over a current test.
 
-| 模板 | 当前测试 |
+| Template | Current test |
 |---|---|
-| [第一节](01_task/planner_task_test.dart.txt) | [任务模型](../test/domain/coursework/planner_task_test.dart) |
-| [第二节](02_copy_with/planner_task_copy_with_test.dart.txt) | [copyWith](../test/domain/coursework/planner_task_copy_with_test.dart) |
-| [第三节](03_task_list/task_list_widget_test.dart.txt) | [列表与回调](../test/task_list_widget_test.dart) |
+| [Lesson 1](01_task/planner_task_test.dart.txt) | [Task model](../test/domain/coursework/planner_task_test.dart) |
+| [Lesson 2](02_copy_with/planner_task_copy_with_test.dart.txt) | [copyWith](../test/domain/coursework/planner_task_copy_with_test.dart) |
+| [Lesson 3](03_task_list/task_list_widget_test.dart.txt) | [List and callbacks](../test/task_list_widget_test.dart) |
 
-课程笔记放在 [docs/lessons](../docs/lessons/)，实际进度以 [LEARNING.md](../docs/LEARNING.md) 为准。
+Lesson notes are in [docs/lessons](../docs/lessons/). Current progress is in [LEARNING.md](../docs/LEARNING.md). Documentation uses plain English; app sample data may use the product languages.

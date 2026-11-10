@@ -3,7 +3,7 @@ name: Deploy website to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['website/**']
+    paths: ['website/**', '.github/workflows/pages.yml', '.github/workflows/repository.yml']
   workflow_dispatch:
 
 permissions:
@@ -16,7 +16,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  validate:
+    uses: ./.github/workflows/repository.yml
+    permissions:
+      contents: read
+
   deploy:
+    needs: validate
     runs-on: ubuntu-latest
     environment:
       name: github-pages

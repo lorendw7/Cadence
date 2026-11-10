@@ -16,7 +16,7 @@ All repository documentation uses plain English. Product translations remain Jap
 
 ## Learn tools when needed
 
-Cadence is mainly for students, but teachers and others can use it without a school identity. Desktop comes first. Web is a later target that needs school permission before deployment. Mobile apps are outside scope.
+Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Web and sync are optional later work. Kyushu and other school connections are optional extensions with their own interface and data permissions. Mobile apps are outside scope. See [ADR-007](adr/007-general-purpose-local-planner.md).
 
 | Tool | Purpose | When to introduce it |
 |---|---|---|
@@ -43,14 +43,14 @@ Each item is a stage, not one lesson. Split stages into 20–45 minute lessons o
 2. A small in-memory list: display, input, addition, completion, deletion, and undo.
 3. Desktop UI, then saving: async work, storage boundaries, restart recovery, drafts, failed writes, and shared state.
 4. Today and personal plans: counts, date changes, start/end times, editing, deletion, and repeats.
-5. Week and courses: single events, semesters, periods, teaching weeks, and individual class changes.
-6. Task deadlines, course links, and exams.
-7. Full backup/restore, filtered course sharing, and fixed-template import. Basic recovery checks start during persistence.
+5. Week: seven-day plans, bounded repeats, conflicts, and reliable editing.
+6. Task deadlines and optional links to personal plans.
+7. Full backup/restore and clear data controls. Basic recovery checks start during persistence.
 8. Weekly review: planned time, overlap removal, task counts, and the previous week.
 9. Reminders: running-app behavior first, background behavior checked per platform.
 10. Windows pilot checks, then Linux/macOS runtime checks and release work.
 
-Language support, keyboard access, protection, and tests apply throughout. Arbitrary school-table and screenshot recognition are not starting requirements. [CSV/paste import](QUICK_IMPORT.md) follows stable models and native import. Web and school connections have separate acceptance and permission requirements. Documents, artwork, and website work do not count as core lessons.
+Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks, exams, [course import](QUICK_IMPORT.md), and school connections are optional education work after the local core. They do not block a general release. Web and sync need separate decisions and checks. Documents, artwork, and website work do not count as core lessons.
 
 ## Tests and templates
 
@@ -71,8 +71,8 @@ Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Its checks cove
 
 ## Estimates and next step
 
-The baseline is 64 lessons for a small Windows pilot and 80–100 for broader desktop validation. A basic Web version was estimated to add 8–16 lessons after reusable desktop behavior exists, or 88–116 overall. Later offline and storage requirements need a new estimate at that stage.
+The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–100 for broader desktop checks, plus 8–16 for Web. Those totals are historical. The current plan separates the general local core from optional education, Web, and sync work. Keep the next UI and persistence lessons, then re-estimate the remaining core from actual progress; see [CURRICULUM.md](CURRICULUM.md).
 
-These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, school coordination, and maintenance separately; approval time is not coding time. Review the plan about every eight lessons.
+These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
 
 Next: [lesson 11](lessons/11-theme.md), shared theme constants and the paper/wine direction. This lesson is assigned, not implemented. Explain the syntax before the learner edits the application. The accepted [layout](UI_ARCHITECTURE.md#pages-and-navigation) and detailed [lessons 11–16](CURRICULUM.md#lessons-1116-desktop-ui-foundations) guide the desktop UI stage. Lesson 12 introduces shadcn_ui after compatibility checks. Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open; lesson 10's actual-window deletion/undo flow is confirmed.

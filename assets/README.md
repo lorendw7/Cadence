@@ -1,59 +1,79 @@
-# Cadence 美术素材库 · v2
+# Cadence artwork library
 
-2026-11-11。覆盖目前产品规划中的桌面 / Web 品牌、导航、编辑、数据管理、空状态与官网宣传场景。可直接打开 [素材预览](catalog.html)、[视觉总览](preview.png)，或查看 [机器可读清单](manifest.json)。功能代码仍按教学进度实现；素材存在不代表相关功能已经可用。
+Updated: 2026-11-11. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers the desktop identity, navigation, editing, data controls, empty states and concept website; some assets prepare for optional later extensions. Browse the [catalogue](catalog.html), [visual overview](preview.png) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
 
-## 视觉判断与优化
+## Visual direction
 
-原方案的长处是安静、容易阅读、C 标志有辨识度，符合学术手帐定位。主要缺口是应用与官网色值不同、原生启动图标仍为脚手架素材、功能图标没有统一规格、缺少可复用的状态配图。
+Keep the original C mark and its rhythm dot. Use muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C` and ink `#2F3033`. Interface icons use a 24 × 24 grid with 1.75-unit round strokes. Sparse illustrations support guidance and empty states. Keep text, forms and timelines on plain surfaces.
 
-v2 保留 C / 节奏点的几何关系，统一灰酒红 `#7C394B`、暖纸 `#F6F5F1`、鼠尾草 `#6F877C`、墨色 `#2F3033`。功能图标使用 24 × 24 网格、1.75 单位圆头线条；低密度插画只用于引导和空状态。时间轴、表单和正文后方保持纯色，不叠加纸纹。
+The same visual family serves work, home plans and study. Course and semester symbols remain available for optional course tools; they are not required navigation or setup. The core is local and offline without an account, with an explicit saving choice. Web, sync and school adapters are separate later work under [ADR-007](../docs/adr/007-general-purpose-local-planner.md). No new artwork is needed for this change of audience.
 
-## 交付内容
+Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4E` for green text on warm paper. Exact color-pair measurements and usage are in [the design system](../docs/DESIGN.md#color-pairs).
 
-| 目录 | 内容 | 使用场景 |
+## Contents
+
+| Directory | Contents | Intended use |
 |---|---|---|
-| `brand/` | v2 主图标、纸色/深色底版本、三种单色标志、正反组合标志；保留历史 SVG | 品牌、启动、标题栏、官网 |
-| `icons/` | 56 个独立 SVG 和 `sprite.svg` | 导航、类别、时间、编辑、文件、设置、反馈；通知/回顾等为后续功能预备 |
-| `illustrations/` | 10 幅 320 × 240 状态 SVG；1536 × 1024 手帐主视觉 PNG | 今天/周计划/待办/课程/回顾为空、完成、无结果、导入预览、保存失败、备份恢复 |
-| `patterns/` | 3 个 32 × 32 无缝 SVG 单元 | 点阵、方格、横线；仅限非文字背景装饰 |
-| `platform/png/` | 16、24、32、48、64、128、180、192、256、512、1024 px PNG | Windows/Linux 图标及未来 Web 资源 |
-| `platform/` | 多尺寸 ICO 与 128–1024 px ICNS | Windows 与 macOS 打包 |
-| `social/` | 1200 × 630 SVG / PNG 分享卡 | 官网链接预览，明确开发中 |
+| `brand/` | Main, paper and dark icons; single-color marks; two lockups; retained original SVGs | Brand, launcher, title bar and website |
+| `icons/` | 56 SVGs and one sprite | Navigation, categories, editing, files, settings and feedback |
+| `illustrations/` | Ten 320 × 240 SVG states and a 1536 × 1024 editorial PNG | Empty views, completion, search, import, save failure and recovery |
+| `patterns/` | Three seamless 32 × 32 SVG tiles | Decorative dots, grid and ruled paper |
+| `platform/png/` | 16–1024 px PNG exports | Desktop icons and future Web resources |
+| `platform/` | Multi-size ICO and 128–1024 px ICNS | Windows and macOS packaging |
+| `social/` | 1200 × 630 SVG and PNG | Link preview, marked in development |
 
-主视觉由内置 imagegen 生成，原图完整保留；[生成提示词](ART_PROMPTS.md) 可用于后续同风格扩展。其余素材均为项目自有 SVG 源码，遵循仓库 MIT 许可；没有引入第三方图标包、字体包或大学标识。
+The built-in image generator produced the editorial illustration; its original PNG is preserved. See [the prompt and provenance](ART_PROMPTS.md). All other artwork comes from project-owned SVG source under the repository's MIT license. No third-party icon pack, font pack or university identity was added.
 
-## 接入状态
+## Website delivery
 
-- 官网首页与隐私页已改用 v2 图标与 favicon；首页接入三枚功能图标、主视觉和分享图。图片全部本地加载，主视觉延迟加载，没有新增远程请求来源。
-- Windows `Runner.rc` 已引用新增 `cadence-v2.ico`；原图标保留。macOS `Contents.json` 已引用新增的 v2 PNG；旧 PNG 保留。实际系统图标缓存与 macOS/Linux 安装包需各平台验收。
-- Linux 的 SVG / PNG 已就绪，安装器今后将其放到 `hicolor` 图标目录并用对应 desktop entry 引用；当前未引入安装器或改动 GTK 功能代码。
-- Flutter 页面素材已备齐，但未修改 `lib/`、安装 SVG 插件或提前声明未使用的 bundle。PNG 可在相关课程声明 assets 后交给 `Image.asset`；SVG 需要届时选择的渲染方式。原生启动图标不依赖 Flutter assets 声明。
-- 没有为遗留 Android 工程添加产品素材；本项目不做手机产品。180 px 网页触控图标仅是浏览器书签兼容资源。
+The website uses three WebP exports of the editorial master. The composition and aspect ratio stay the same; only size and compression change. The original PNG remains the fallback.
 
-## 使用规范
+| Export in `website/assets/` | Dimensions | Current bytes | Budget |
+|---|---|---:|---:|
+| `journal-editorial-480.webp` | 480 × 320 | 8,228 | 20,000 |
+| `journal-editorial-960.webp` | 960 × 640 | 32,292 | 60,000 |
+| `journal-editorial-1536.webp` | 1536 × 1024 | 99,470 | 160,000 |
+| `journal-editorial.png` | 1536 × 1024 | 2,586,082 | Original fallback |
 
-1. 图标推荐显示为 20 或 24 px。按钮触达区至少 40–44 px；图形尺寸不等于点击区域。独立 SVG 默认墨色；内联 SVG / sprite 使用父级 `color`。外部 `<img>` 不继承宿主文字颜色。
-2. 有可见文字时将装饰图 `alt=""`，图标按钮必须在按钮上提供本地化名称。禁止只靠颜色区分完成、冲突或错误。
-3. 空状态推荐显示宽 160–240 px，旁边使用真实 HTML / Flutter 文本和下一步按钮。配图无内嵌文案，三语共用；`all-done` 只表示完成，不能替代“尚未添加任务”。
-4. 状态 SVG 的柔和灰线只作装饰，不能直接当作输入框边框或必要状态标识。`save-error` 配图不应替代错误详情及重试入口。
-5. `cadence-icon-dark.svg` 和反白标志是品牌适配资源，不表示产品深色主题已完成。不做自动反色；正文主题需要另行验证。
-6. C 标志的最小可用外框为 16 px，展示组合标志建议宽度至少 160 px；保留周围空白，不拉伸、不旋转。点和 C 缺口必须一起保留。
+Even the largest WebP transfers about 96% fewer bytes than the PNG. Use `srcset` and `sizes` so the browser can select a suitable export. Keep explicit image dimensions, lazy loading and asynchronous decoding for this below-the-fold decoration. All image requests stay local to the website.
 
-## 再生成
+The manifest separates editable artwork from `webExports`, which record source, dimensions, file size and delivery budget. The export script also synchronizes the PNG fallback; do not maintain it by hand.
+
+## Integration status
+
+- The homepage and privacy page use the v2 identity and browser icons. The homepage uses local editorial artwork, feature icons and the sharing card.
+- Windows `Runner.rc` references `cadence-v2.ico`; macOS `Contents.json` references v2 PNGs. Original files remain available. System icon caches and installed packages need native platform checks.
+- Linux SVG and PNG assets are ready. A later installer must place them in the icon theme and reference them from its desktop entry. No installer was added.
+- Flutter page theming remains a learner exercise. No SVG package or unused asset bundle is installed. Native launcher resources do not require a Flutter asset declaration.
+- Android is legacy scaffolding, not a product target. The 180 px touch icon supports browser bookmarks, not a mobile application.
+
+## Usage
+
+1. Show interface icons at 20 or 24 px. Give controls at least 40–44 px hit areas. Graphic size and hit area are separate.
+2. When visible text names a control, use `alt=""` for its decorative image. Give icon-only buttons localized names. Never use color alone for completion, conflict or errors.
+3. Standalone icon SVGs default to ink. Sprite instances use their host `color`; inline copies can override the root color. An external `<img>` does not inherit surrounding text color.
+4. Show state illustrations around 160–240 px wide, next to real text and an action. The artwork contains no language-specific text. `all-done` means completion, not an empty list with no tasks.
+5. Faint illustration lines are decorative. Do not reuse them as required control boundaries or error indicators. `save-error` still needs a text explanation and retry action.
+6. Dark and inverse brand variants do not imply a finished dark theme. Check each actual theme surface separately.
+7. Keep the C mark and dot together. Minimum icon size is 16 px; show lockups at least 160 px wide. Preserve aspect ratio and clear space.
+
+## Regeneration
 
 ```sh
 python tools/build_artwork.py
 node tools/export_artwork.cjs
 python tools/build_artwork.py
+python tools/check_artwork.py
 ```
 
-Python 脚本只用标准库。Node 导出脚本需要 `sharp`（可以通过本地工具环境的 `NODE_PATH` 提供，不是应用运行依赖）；将 SVG 渲染为 PNG / ICO / ICNS，并同步官网、Windows 与 macOS 的引用资源。最后一次 Python 运行更新清单中的导出文件。生成式主视觉不被脚本改写，也不会自动重复调用 AI。
+The Python tools use only the standard library. Raster export requires `sharp`, available through `NODE_PATH` in a local tool environment; it is not an application dependency. SVG masters produce PNG, ICO and ICNS files and platform copies. The final Python run refreshes the manifest after raster export.
 
-官网保留同一 PNG 原图副本；如替换主视觉，请同步 `website/assets/journal-editorial.png`，保持与源文件一致。打开预览可在仓库根目录运行 `python -m http.server 8000 --bind 127.0.0.1`，浏览 `/assets/catalog.html` 与 `/website/`。不要把整个仓库作为公开网站发布，既有部署仍只发布 `website/`。
+For editorial delivery changes alone, run `node tools/export_artwork.cjs --editorial-only`, then rebuild the manifest and run the checker. This produces WebP derivatives without changing the original PNG or calling an image generator.
 
-## 本次验证
+From the repository root, `python -m http.server 8000 --bind 127.0.0.1` serves the local catalogue at `/assets/catalog.html` and the concept site at `/website/`. Publish only `website/`, as the existing Pages workflow does.
 
-- 88 个项目/官网 SVG 均通过 XML 解析；PNG 尺寸及透明边缘、多帧 ICO、ICNS 和 macOS 资源映射均检查通过，官网部署副本与源图一致。
-- Chrome 检查官网首页与隐私页：日/英/中文 × 1440/390 px，未发现 404、页面脚本错误或横向溢出；Today/Week/Tasks 切换及示例任务勾选正常。
-- 素材目录与总览完成浏览器渲染及目视检查。
-- `flutter build windows --debug --no-pub` 成功，包含新版图标资源。macOS/Linux 未在本机运行验收；未发布网站或安装包。
+## Validation
+
+`python tools/check_artwork.py` checks SVG parsing and unsafe SVG content, manifest coverage and sizes, responsive image dimensions and budgets, platform PNG sizes, macOS mappings and exact deployment copies. It uses no external packages. It does not replace visual review, browser checks or native packaging tests.
+
+The original v2 review checked SVGs, PNG transparency, ICO frames, ICNS structure, the catalogue and both website pages in Japanese, English and Chinese at 1440 and 390 px. A Windows debug build succeeded. macOS and Linux runtime icon acceptance remains pending. Recheck changed assets and the exact website revision before publication; those earlier results do not validate later edits.

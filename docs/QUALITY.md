@@ -1,87 +1,108 @@
 # Quality and acceptance
 
-[ADR-005](adr/005-local-offline-and-school-gated-web.md) adds acceptance for temporary versus persisted data, offline restart, concurrent-tab writes and clearing, source-retention consent, and preventing stale callbacks from recreating deleted data. School permission is required before Web deployment. These are future checks, not passed tests.
+[ADR-007](adr/007-general-purpose-local-planner.md) defines the current scope: a general-purpose local offline planner without accounts. First use offers Save on this device and Temporary use before reading saved planning data. Web, sync and school adapters are optional later extensions. School permission applies only to the relevant school interfaces and data, not general desktop or Web delivery.
 
-Accepted lesson coverage and test counts are tracked in [LEARNING.md](LEARNING.md), with the current behavior summarized in the [project README](../README.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
+Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux and macOS are desktop targets; mobile apps are excluded. shadcn_ui is selected but not introduced. A concept website is separate from a functional planner.
 
 ## Local and hosted checks
 
-Run `dart format lib test`, `flutter analyze --fatal-infos --fatal-warnings` and `flutter test`. The [Flutter workflow](../.github/workflows/flutter.yml) checks format, analysis and tests, then compiles Windows, Linux and macOS debug apps. The [Pages workflow](../.github/workflows/pages.yml) deploys the static site.
+Run `dart format lib test`, `flutter analyze --fatal-infos --fatal-warnings` and `flutter test`. The [Flutter workflow](../.github/workflows/flutter.yml) checks formatting, analysis and tests, then compiles Windows, Linux and macOS debug apps. The [Pages workflow](../.github/workflows/pages.yml) deploys the static concept site.
 
-A native build is not a UI test or a signed release. Platform functionality is accepted only after testing on the corresponding host.
+A native build is not a UI test or signed release. Accept platform functionality only after testing it on the corresponding host. Do not add optional-extension requirements to an unrelated core lesson.
 
 ## Artwork and website checks
 
-Run `node tools/check_repository.cjs` for local Markdown/HTML file targets and JavaScript syntax. Its scope and limitations are documented in [tools](../tools/README.md); it does not check external URLs, anchors or browser behavior.
+Run `node tools/check_repository.cjs` for local document/site links and project JavaScript checks. Its current scope and limits are in [tools](../tools/README.md). Browser behavior and external services need separate checks.
 
-For the v2 library, validate SVG parsing, PNG dimensions/alpha, ICO frames, ICNS structure, native resource mappings and equality of deployment copies. Inspect icon readability and state illustrations visually; decorative strokes are not accessibility evidence for interactive controls. Website checks cover both pages in Japanese, English and Chinese at wide/narrow widths, local asset loading, translation-key coverage, preview interaction and page overflow. The recorded 2026-11-11 results and platform limitations are in the [artwork library](../assets/README.md#本次验证). Recheck the exact source revision before publishing changes; a local Windows build is not macOS/Linux runtime acceptance.
+Run `python tools/check_artwork.py` for SVG parsing, manifest coverage and sizes, responsive WebP dimensions and byte budgets, platform PNG sizes, native mappings and exact deployment copies. It uses the Python standard library. After changing platform exports, also inspect PNG transparency, ICO frames and ICNS structure.
 
-## Tests worth maintaining
+Review icon readability and illustrations visually; decorative strokes do not prove that controls are accessible. Check both website pages in Japanese, English and Chinese at wide and narrow widths. Cover asset loading, translation keys, preview interaction, keyboard focus and overflow. Confirm that a supporting browser selects a suitable editorial WebP instead of the full PNG. See the [artwork validation record](../assets/README.md#validation) for earlier results and limits. Recheck the exact revision before publication; a Windows build does not establish macOS/Linux runtime acceptance.
+
+## Core scenarios
 
 | Area | Critical cases |
-|------|----------------|
-| Teaching weeks | First-week Monday, midweek first class, partial last week, odd/even weeks, vacation does not silently renumber |
-| Occurrences | Multiple rules, cancellations, moved-in/out instances, restoring one instance, rule edits with existing overrides |
-| Personal arrangements | Independent of semester selection, overnight/all-day intervals, bounded weekly repeat, timezone and DST cases |
-| Conflicts | End equals start, course versus personal plan, cancelled class, deadlines excluded, visible range honestly disclosed |
-| Coursework | Date-only versus timed deadlines, overdue transition using injected clock, completed tasks excluded |
-| Local weekly review | Empty data, clipped week/day boundaries, overlaps, cancellations/moves, completion/undo, zero comparison base; see [STATISTICS.md](STATISTICS.md) |
-| Sharing | No private fields, preview equals payload, reference remapping, repeat import, incompatible periods |
-| Backup | Round trip, active database consistency, invalid/future versions, failed restore leaves original usable |
-| Today | Counts match lists, no duplicate overdue items, undated tasks retained, midnight and resume refresh |
-| Autosave | Saved drafts survive restart; failure retains input; latest revision wins; formal records update atomically |
-| Application contracts | Consistent snapshots; stale query/preview rejection; conflicting revisions; discarded drafts cannot reappear; see [APPLICATION.md](APPLICATION.md) |
-| Process and restore lifecycle | One writer; migration failure preserves data; restore drains writes and rejects pre-restore callbacks |
-| Notifications | Timing, cancellation, completion, deduplication, permission denial, dispatch failure and native click-through |
-| Migration | Previous supported schema to new schema preserves schedule identities and private data |
-| Academic coverage | Representative faculty/graduate timetables, multiple academic periods, configurable periods, irregular classes and missing room information; verify samples instead of assuming one university-wide template |
-| Assisted entry | CSV/paste errors are visible, preview matches imported content, repeated import is handled, manual entry remains available |
-| Optional school connection | Only after approval: consent, logout/disconnect, expired/revoked access, partial or failed refresh, source attribution, last refresh time and local edit preservation |
+|---|---|
+| Saving choice | First use offers both modes before reading records; an existing database stays unopened in temporary mode; remembered choices are explicit and visible |
+| Mode changes | Temporary-to-local preview uses the current snapshot, handles an existing saved workspace explicitly, and reports failure honestly; switching away resolves pending writes and makes keep/clear scope clear |
+| Tasks | Separate identity from title, valid/blank input, completion/undo, deletion and restoration; date-only versus timed deadlines; overdue transitions using an injected clock |
+| Events and repeats | Start/end validation, overnight and all-day intervals, bounded weekly repeats, timezone/DST cases and independent personal categories |
+| Conflicts | End equals start, overlapping events, deadlines excluded, and the checked date range honestly disclosed |
+| Today | Counts match lists, overdue items are not duplicated, undated tasks remain available, midnight/resume refresh uses the right date |
+| Week | All seven days are reachable, long events and text remain readable, narrow layout preserves selection and focus |
+| Local review, when included | Empty data, clipped day/week boundaries, overlap removal, completion/undo and zero comparison base; see [STATISTICS.md](STATISTICS.md) |
+| Backup | Round trip, consistent active database, invalid/future versions and failed restore preserving the original usable copy |
+| Drafts and failed writes | Persist drafts only in selected local mode; temporary drafts remain in memory; failures retain input and never claim a successful save |
+| Application contracts | Consistent snapshots, stale-query/preview rejection, conflicting revisions and discarded drafts not reappearing; see [APPLICATION.md](APPLICATION.md) |
+| Process and restore lifecycle | One writer, migration failure preserving data, restore draining writes and rejecting old callbacks |
+| Migration | Supported schema upgrade preserves identities and private data; temporary launch does not migrate an unrelated saved database |
+| Notifications, when included | Timing, cancellation, completion, deduplication, denied permission, dispatch failure and native click-through |
 
-Avoid tests that only mirror UI implementation details. Add widget tests for meaningful flows such as scope selection, conflict confirmation and import preview.
+Avoid tests that only mirror UI implementation details. Add widget tests for real flows such as saving choice, failed save, scope selection and import preview. A planned test is not passed coverage.
 
-## Manual desktop matrix
+## Optional course and import scenarios
 
-For Windows, Linux and macOS check startup, persistence after restart, file pick/save dialogs, Unicode paths, keyboard navigation, focus, 200% text scaling, narrow windows and light/dark contrast. Check update behavior with an existing user database.
+The local core does not need a school connection. Course-specific rules can be added as an extension and should not gate a generic task/event release.
 
-Test running-process system notifications with denied permissions, rescheduling and resume on each host. Delivery after exit is a separate feature; an in-app message does not prove OS delivery. See [NOTIFICATIONS.md](NOTIFICATIONS.md).
+| Area | Critical cases |
+|---|---|
+| Teaching weeks | First-week Monday, midweek first class, partial final week, odd/even rules and vacations without silent renumbering |
+| Course occurrences | Multiple rules, cancellation, moved-in/out occurrences, single-instance restore and edits with existing overrides |
+| Course-linked tasks | Valid references, course deletion without loss of private tasks, exams and deadline behavior |
+| Filtered sharing | Allowed fields only, preview equals payload, reference remapping, repeat import and incompatible periods; private backup remains separate |
+| CSV/paste, when included | Visible errors, preview matching the import, repeated imports and manual entry remaining available |
+| Course coverage | Different academic periods, configurable times, irregular classes and missing locations; do not assume one university template |
+| School adapter, only after permission | Consent, disconnect, expired/revoked access, partial refresh, source labels, refresh time, local edit preservation and source-retention limits |
 
-## Representative student acceptance
+## Manual desktop checks
 
-Use voluntary pilots that include students and teachers across academic backgrounds, languages and accessibility needs. Verify Japanese/English/Chinese rendering with real course names and mixed scripts. Record untested groups and academic patterns. First setup, finding the next class, handling a change, importing and restoring data should be achievable without developer help. Use fictional or appropriately redacted examples in repositories and automated tests.
+On each supported platform, check startup, selected saving mode, offline use, restart recovery, file pick/save dialogs, Unicode paths, keyboard navigation, focus, 200% text scaling and narrow windows. Check every shipped theme; dark artwork alone does not establish a dark theme. Check upgrades against existing saved data when persistence is implemented.
 
-## Planned Web implementation and security
+Test included OS reminders while running, with denied permissions, rescheduling and resume. Delivery after app exit is a separate feature. An in-app message does not prove OS delivery. See [NOTIFICATIONS.md](NOTIFICATIONS.md).
 
-These gates apply to the confirmed Web target, which is not developed. The initial scope is memory by default, explicit optional browser-local saving, manual schedules/tasks, bounded weekly repeats and three languages. It does not include a backend or account. The recommended IndexedDB adapter needs its own data flow and storage-failure checks. A static project website is a different deliverable. Browser testing must declare its actual desktop browser/OS coverage; no phone product is implied.
+## Representative user acceptance
 
-| Boundary | Required acceptance before real student data |
-|----------|----------------------------------------------|
-| Strict JSON | 1 MiB UTF-8 and 2,000 total records; reject unsupported versions/types, duplicate IDs, invalid dates/repeats and untrusted structure; preview/cancel/replace must preserve original data on failure |
-| Browser storage | Denied/quota-limited storage, private mode, clearing site data, unexpected tab/process exit, migration and restore failures; export/recovery works and data-loss limits are visible |
-| Local concurrency | Concurrent tabs cannot silently overwrite revisions or apply a stale import/restore; behavior is defined for the selected storage implementation |
-| Untrusted content | Course titles, notes, imported files and errors are rendered as inert text; verify stored/reflected/DOM script injection paths and safe handling of links |
-| Scripts and hosting | HTTPS, restrictive feasible CSP, reviewed dependencies and minimized third-party scripts; no credentials or private fixtures in bundled assets/source maps |
-| URLs, logs and caches | No personal schedules, backup content, credentials or tokens in query strings/fragments, analytics, routine logs or service-worker caches; caching scope and update/rollback behavior are explicit |
-| Backend authorization, if chosen | Server-side ownership checks on every read/write/export/delete route; one user's object ID never grants another user access; errors do not expose private records |
-| Sessions, if chosen | Secure session transport and storage, expiry/rotation/revocation, logout and reconnect; no long-lived bearer tokens in script-readable persistent storage; CSRF defenses for cookie-authenticated changes and a restrictive CORS policy |
-| Service operations, if chosen | Input/file-size limits, abuse/request limits, least-privilege secrets, encryption in transit/at rest, redacted logging, retention/deletion, restricted backups and tested recovery |
+Use voluntary pilots with different work, study and personal routines, languages and accessibility needs. Check Japanese/English/Chinese rendering with long names and mixed scripts. Record untested groups and scenarios. First setup, choosing a saving mode, finding the next commitment, making a change and restoring data should work without developer help. Use fictional or properly redacted examples in repositories and automated tests.
 
-Use fictional data throughout implementation and initial demonstrations. Verify the design with meaningful negative cases such as a script-bearing imported title, a second user's record identifier, a cross-site state-changing request and unavailable browser storage when those paths exist. School authentication and data-access approval remain separate requirements. A Web release additionally needs a limited pilot, privacy notice, support owner and rollback/incident procedure; see [RELEASE.md](RELEASE.md).
+If a course or school extension is included, test representative academic patterns separately. Its coverage does not stand in for general planning acceptance, and a general pilot does not establish permission to access school systems.
 
-## Privacy and release bar
+## Optional Web checks
 
-The optional sync extension has separate gates in [SYNC.md](SYNC.md): duplicate/unknown-outcome submissions, commit-order-safe cursors, offline conflicts, cross-workspace authorization, deletion and expired-device recovery, account switching and server snapshot restoration. Exercise two clients and failure injection before any real-data pilot; these are future scenarios, not passed coverage.
+If built, the initial browser client has no account or backend. It offers the same first-use saving choice, manual schedules/tasks, bounded weekly repeats and three languages. The proposed IndexedDB adapter needs its own storage-failure and data-flow checks. Declare actual desktop browser/OS coverage; no phone product is implied.
 
-[DATA_PROTECTION.md](DATA_PROTECTION.md) defines staged security acceptance: cipher availability in release builds, missing device keys, plaintext leakage through side files, corrupted/enormous encrypted backups, bounded KDF parameters, interrupted migration and cross-device recovery. Add these tests with their features; they are not existing coverage. Review cryptographic formats and key handling separately from routine UI tests.
+| Boundary | Required acceptance before private data use |
+|---|---|
+| Startup mode | No saved business data, drafts or decryption key is read before a local-saving choice; temporary reopening stays empty even when an old database exists |
+| Strict JSON | 1 MiB UTF-8 and 2,000 records; reject unsupported versions/types, duplicate IDs, invalid dates/repeats and bad structure; preview/cancel/replace preserves the original on failure |
+| Browser storage | Denied/quota-limited storage, private mode, clearing, unexpected exit, migration and failed restore; export/recovery works and loss limits are visible |
+| Local concurrency | Tabs cannot silently overwrite revisions or apply a stale import/restore; clearing invalidates old callbacks and pending writes |
+| Untrusted content | Titles, notes, imported files and errors remain inert text; check stored/reflected/DOM injection and link handling |
+| Scripts and hosting | HTTPS, practical restrictive CSP, reviewed dependencies and minimal third-party scripts; no private fixtures or credentials in bundles/source maps |
+| URLs, logs and caches | No private schedules, backup bodies, credentials or tokens in URLs, analytics, ordinary logs or service-worker caches; cache update/rollback is defined |
 
-Timetable exports must be allowlisted; private backup is visibly separate. The offline core has no mandatory account, uploads or telemetry. Local user-facing weekly statistics remain entirely on-device. Never ask a student to post a full backup, school credentials or session tokens in a public issue.
+Use fictional data during implementation and initial demos. Test hostile titles, unavailable storage, stale previews and interrupted replacement. Before release, define browser support, a limited pilot, privacy notice, support owner and rollback process. General Web deployment does not require school permission; included school adapters still need their own authorization. See [RELEASE.md](RELEASE.md).
 
-An optional official connection has a separate acceptance gate in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md): school approval, data-access scope, informed student consent and verified handling of credentials, tokens and personal data. Do not collect school passwords or assume consent permits scraping. If network services are introduced, validate documented retention/deletion and failure behavior before release. Declining or losing the connection must leave manual planning and stored local data usable.
+## Optional service and sync checks
 
-Lesson test templates in `lessons/` are not executed by CI and do not count as coverage. Activate a template in `test/` when its lesson begins implementation; require it to pass before considering that lesson complete. Do not skip or weaken an activated test to hide unfinished implementation.
+Add these gates only if an account/backend extension is chosen:
 
-Check all three website languages for accurate feature status, platform claims and working links. Retain the Japanese-default language behavior.
+| Boundary | Required acceptance |
+|---|---|
+| Authorization | Ownership on every read/write/export/delete; another user's ID grants no access; cross-workspace references fail |
+| Sessions | Safe transport/storage, expiry/revocation, reconnect and device control; no long-lived tokens in ordinary browser storage; appropriate CSRF and CORS controls |
+| Voluntary logout/switch | Resolve unsent and unknown-outcome work through confirmed sync, permitted private export or explicit discard; cancellation preserves the current session's work |
+| Forced session loss | Stop requests immediately, freeze and isolate the old account's queue, prevent reading/replay by a new account, and show temporary-memory loss limits |
+| Operation | Input/request limits, minimal secret access, encrypted transport/storage, redacted logs, retention/deletion, restricted backups and tested recovery |
 
-A milestone is complete only when its user acceptance example in [ROADMAP.md](ROADMAP.md) passes. A release additionally follows [RELEASE.md](RELEASE.md).
+[SYNC.md](SYNC.md) adds duplicate and unknown-outcome submissions, safe committed-order cursors, offline conflicts, deletion, expired devices, snapshot failure and server restore. Exercise two clients and inject failures before real-data use. These are future scenarios, not passed coverage.
 
-A wider desktop release needs tested upgrade/recovery paths on the declared systems, visible coverage gaps and assigned support/security responsibilities. The planned Web system needs its own security and persistence acceptance. A small pilot, passing CI or a supervisor's expression of support does not establish wider-use readiness or official approval.
+## Privacy and release acceptance
+
+[DATA_PROTECTION.md](DATA_PROTECTION.md) defines staged checks for cipher availability in release builds, missing device keys, plaintext in side files, corrupt/oversized encrypted backups, bounded password-derivation parameters, interrupted migration and cross-device restore. Add these with the features. Review cryptographic formats and key handling separately from routine UI tests.
+
+The local core has no mandatory account, upload or telemetry. Weekly review stays on the device. Filtered sharing uses allowed fields, while private backup is clearly separate. Never ask anyone to post a full backup, credentials or tokens in a public issue.
+
+A school adapter follows [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md): permission for its interface and data, informed consent, safe credentials, retention/export limits and failure handling. Do not collect school passwords or treat consent as permission to scrape. Declining or losing a connection must leave independent planning usable; imported school data follows its source-retention rules.
+
+Lesson templates in `lessons/` are not executed by CI or counted as active coverage. Activate a relevant test with the lesson and require it to pass. Never skip or weaken a test to hide unfinished implementation.
+
+Check all website languages for truthful feature status, platforms and links. Keep the Japanese-default switch behavior. A milestone is complete only when its [roadmap acceptance](ROADMAP.md) passes. A release also follows [RELEASE.md](RELEASE.md), with actual upgrade/recovery checks and support responsibilities. Passing CI, finishing a small pilot or receiving a teacher's support does not establish wider readiness or official approval.

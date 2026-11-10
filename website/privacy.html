@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#F6F5F1">
 <title>データとプライバシー — Cadence</title>
-<meta name="description" content="Cadence 紹介サイトの言語設定と通信、および未実装の Web 版で予定するデータ保護設計について。">
+<meta name="description" content="現在の Cadence 紹介サイトの動作と、開発中の端末内保存・一時利用・将来の任意接続について。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="データとプライバシー — Cadence">
-<meta property="og:description" content="Cadence 紹介サイトの言語設定と通信、および未実装の Web 版で予定するデータ保護設計について。">
+<meta property="og:description" content="現在の Cadence 紹介サイトの動作と、開発中の端末内保存・一時利用・将来の任意接続について。">
 <meta property="og:url" content="https://lorendw7.github.io/Cadence/privacy.html">
 <link rel="canonical" href="https://lorendw7.github.io/Cadence/privacy.html">
 <link rel="alternate" hreflang="ja" href="https://lorendw7.github.io/Cadence/privacy.html?lang=ja">
@@ -17,26 +17,26 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" href="assets/icon-v2.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/site.css?v=20261111-art">
-<script src="assets/content.js?v=20261110-2" defer></script>
-<script src="assets/lang.js?v=20261110-2" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=20261111-week">
+<script src="assets/content.js?v=20261111-week" defer></script>
+<script src="assets/lang.js?v=20261111-week" defer></script>
 
 </head>
 <body data-page="privacy">
 <a class="skip-link" href="#main">本文へ / Skip to content / 跳至正文</a>
-<header class="site-header"><nav class="nav-shell" aria-label="Cadence"><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><div class="nav-end"><div class="languages" role="group" aria-label="表示言語" data-i18n-aria="lang.label"><button type="button" data-set="ja" aria-pressed="true">日本語</button><button type="button" data-set="en" aria-pressed="false">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div><a class="nav-app" href="index.html?lang=ja#preview" data-language-link><span data-i18n="nav.open">デザインを見る</span><span aria-hidden="true">↗</span></a></div></nav></header>
+<header class="site-header"><nav class="nav-shell" aria-label="Cadence"><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><div class="nav-end"><div class="languages" role="group" hidden aria-label="表示言語" data-i18n-aria="lang.label"><button type="button" data-set="ja" aria-pressed="true">日本語</button><button type="button" data-set="en" aria-pressed="false">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div><a class="nav-app" href="index.html?lang=ja#preview" data-language-link><span data-i18n="nav.open">デザインを見る</span><span aria-hidden="true">↗</span></a></div></nav></header>
 <main id="main" class="privacy-page page-width">
-  <div class="privacy-header"><p data-i18n="privacy.kicker" class="eyebrow">DATA &amp; PRIVACY</p><h1 data-i18n="privacy.title">データを、どう扱うか。</h1><p data-i18n="privacy.intro" class="section-lead">現在の紹介サイトが扱うデータと、今後の Web 版に向けた設計要件を分けて説明します。日程管理の Web アプリは、まだ提供していません。</p><p data-i18n="privacy.date" class="document-date">最終更新：2026年11月10日</p></div>
-  <div class="privacy-body"><section><h2 data-i18n="privacy.1.title">01 — 現在の紹介サイト</h2><p data-i18n="privacy.1.text">表示言語の選択だけを cadence-lang というキーでブラウザーの localStorage に保存します。インタラクティブな例は架空のデータを使い、操作結果は保存しません。個人の日程、タスク、学校アカウントを入力・アップロードする機能はありません。</p></section>
-    <section><h2 data-i18n="privacy.2.title">02 — Web 版の標準動作：未実装</h2><p data-i18n="privacy.2.text">今後の Web 版は、標準では予定とタスクを実行中のメモリー内だけで扱う設計です。再読み込みやタブ終了で未保存の内容が失われることを明示します。基本機能に学校ログインや登録を要求しない方針です。これらはまだ実装されていません。</p></section>
-    <section><h2 data-i18n="privacy.3.title">03 — 任意の端末内保存：設計要件</h2><p data-i18n="privacy.3.text">明示的に本機への保存を有効にした場合だけ、ブラウザーの localStorage に書き込む計画です。暗号化された保存ではなく、同じブラウザーの利用者から見える可能性があります。共用端末では有効にしないこと、ブラウザーのデータ消去で失われることを案内します。この保存機能は未実装です。</p></section>
-    <section><h2 data-i18n="privacy.4.title">04 — バックアップと削除：設計要件</h2><p data-i18n="privacy.4.text">JSON ファイルでの書き出しと読み込み、明示的なデータ削除を計画しています。JSON は個人情報を含む平文の完全バックアップで、匿名の時間割共有形式ではありません。ブラウザー内データの削除と書き出し済みファイルの削除は別であり、復元には事前のバックアップが必要であることを説明します。これらも未実装です。</p></section>
-    <section><h2 data-i18n="privacy.5.title">05 — 通信と外部サービス</h2><p data-i18n="privacy.5.text">現在のサイトは GitHub Pages で配信し、ホスティング側では IP アドレスなどの基本的なリクエスト情報が記録される場合があります。外部の解析スクリプト、広告、リモートフォントは使っていません。将来の Web 版では予定やタスクをサーバーへ送信しない設計を基本とし、データの扱いが変わる場合は提供前に説明を更新します。</p></section>
-    <section><h2 data-i18n="privacy.6.title">06 — 学校との関係</h2><p data-i18n="privacy.6.text">Cadence は学生や教員などが独立して使えるツールを目指すプロジェクトで、九州大学の公式サービスではありません。学校アカウントの認証情報を求める機能や学校システムとの同期はありません。将来の接続には正式な許可とデータ提供方法の確認が必要です。</p></section>
-    <section><h2 data-i18n="privacy.7.title">07 — 問題を報告するとき</h2><p data-i18n="privacy.7.text">公開の GitHub Issue に個人の予定、学校のパスワード、認証情報や個人データのファイルを添付しないでください。ブラウザーと再現手順など、問題の説明に必要な情報だけを共有してください。</p></section>
+  <div class="privacy-header"><p data-i18n="privacy.kicker" class="eyebrow">DATA &amp; PRIVACY</p><h1 data-i18n="privacy.title">データを、どう扱うか。</h1><p data-i18n="privacy.intro" class="section-lead">現在の紹介サイトの動作と、開発中のローカルな時間管理ツールの設計を分けて説明します。学習用アプリのタスクはメモリー内のみで、日程管理や保存機能はまだ実装されていません。</p><p data-i18n="privacy.date" class="document-date">最終更新：2026年11月11日</p></div>
+  <div class="privacy-body"><section><h2 data-i18n="privacy.1.title">01 — 現在の紹介サイト</h2><p data-i18n="privacy.1.text">表示言語の選択だけを cadence-lang というキーでブラウザーの localStorage に保存します。架空のプレビューの操作結果は保存しません。個人の日程、タスクやアカウントを入力・アップロードする機能はありません。</p></section>
+    <section><h2 data-i18n="privacy.2.title">02 — 初回に保存方法を選ぶ：設計</h2><p data-i18n="privacy.2.text">デスクトップ版では、初回に「この端末に保存」か「一時的に使う」を明示的に選ぶ設計です。どちらもアカウントは不要です。一時利用はメモリー内だけで、終了すると失われます。保存を選ぶ前に、予定・タスク・草稿を永続保存しません。これらの保存選択は未実装です。</p></section>
+    <section><h2 data-i18n="privacy.3.title">03 — 端末内のデータ：設計</h2><p data-i18n="privacy.3.text">端末内保存を選ぶと、予定やタスクをその端末で保存し、オフラインで開ける設計です。本機への保存は、暗号化や確実なバックアップを意味しません。共用端末では一時利用を選び、保存した端末やファイルのアクセス管理にも注意が必要です。現在、この保存機能は未実装です。</p></section>
+    <section><h2 data-i18n="privacy.4.title">04 — バックアップと削除：設計</h2><p data-i18n="privacy.4.text">JSON の書き出し、読み込み前の確認、明示的な削除を計画しています。JSON は個人の予定やタスクを含む平文のバックアップで、公開共有用ではありません。アプリ内データの削除で、書き出したファイルや他の人に渡したコピーは消えません。これらは未実装です。</p></section>
+    <section><h2 data-i18n="privacy.5.title">05 — 通信と外部サービス</h2><p data-i18n="privacy.5.text">現在のサイトは GitHub Pages で配信し、ホスティング側で IP アドレスなどの基本的なリクエスト情報が記録される場合があります。外部の解析、広告、リモートフォントは使っていません。将来のローカルアプリは予定やタスクを送信せずに使える設計です。</p></section>
+    <section><h2 data-i18n="privacy.6.title">06 — 将来の任意接続</h2><p data-i18n="privacy.6.text">Web 版や端末間同期は任意の後続機能です。有効にする前に、送信先・保存範囲・削除方法を説明し、明示的な選択を必要とする設計です。学校や職場のシステム接続には、その接続先の許可が必要です。こうした許可は一般のローカル利用や製品公開の条件ではありません。現在、これらの接続はありません。</p></section>
+    <section><h2 data-i18n="privacy.7.title">07 — 問題を報告するとき</h2><p data-i18n="privacy.7.text">公開の GitHub Issue に個人の予定、パスワード、認証情報や個人データのファイルを添付しないでください。ブラウザーや OS、再現手順など、問題の説明に必要な情報だけを共有してください。</p></section>
     <p class="privacy-actions"><a class="text-link" href="index.html?lang=ja" data-language-link><span aria-hidden="true">←</span><span data-i18n="footer.back">ホームに戻る</span></a><a class="text-link" href="https://github.com/lorendw7/Cadence">GitHub ↗</a></p>
   </div>
 </main>
-<footer class="site-footer page-width"><div><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><p data-i18n="footer.tagline" class="footer-tagline">授業にも、自分の時間にも。</p></div><div class="footer-right"><p data-i18n="footer.independent" class="independent-note">独立したプロジェクトです。九州大学の公式サービスではありません。</p><p class="copyright">© 2026 Cadence · MIT</p></div></footer>
+<footer class="site-footer page-width"><div><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><p data-i18n="footer.tagline" class="footer-tagline">仕事にも、学びにも、自分の時間にも。</p></div><div class="footer-right"><p data-i18n="footer.independent" class="independent-note">自分の端末から始める、独立した時間管理プロジェクト。</p><p class="copyright">© 2026 Cadence · MIT</p></div></footer>
 </body>
 </html>

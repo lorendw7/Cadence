@@ -1,131 +1,107 @@
 # Roadmap
 
-Desktop is the primary delivery. Web remains a future target, but deployment requires explicit school permission. [ADR-005](adr/005-local-offline-and-school-gated-web.md) refines local saving/offline behavior and storage choice; re-estimate the Web stage for offline resource loading and concurrency guarantees rather than assuming the earlier 8–16 lessons cover them.
-
-Updated: 2026-11-11. Goal: **a time planner primarily for students, also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with Flutter shadcn_ui selected but not installed. No mobile product is planned. [REDESIGN.md](REDESIGN.md) defines behavior; [ADR-004](adr/004-shadcn-web-direction.md) records the current direction.
+Updated: 2026-11-11. Build a **general-purpose local time planner**. Personal plans, tasks, Today and Week come first. Courses are optional; no school, account or semester setup is needed for core use. [ADR-007](adr/007-general-purpose-local-planner.md) replaces the earlier university-first order and school-permission gate for general Web release. Desktop is primary; Web and sync are optional later work.
 
 ## Repository baseline
 
-The accepted learning application supports task input, addition, completion/undo, title validation and a practice counter in memory. Current lesson acceptance and pending manual checks are tracked in the [project README](../README.md) and [learning log](LEARNING.md). Windows, Linux and macOS runners and debug-build workflows exist; Android is legacy scaffolding. There is no functional Web planner or completed release. The public website is a concept presentation. Feature checkboxes below remain open until their full implementation and acceptance pass; core application features remain learner-led work.
+The teaching app supports validated task addition, completion toggling, empty-list feedback, deletion and single-level undo in memory. Current acceptance and pending manual checks are in [LEARNING.md](LEARNING.md). There is no persistent planner, working Web app or feature release. Windows/Linux/macOS runners and debug workflows exist; Android is legacy scaffolding.
 
-The 2026-11-11 [artwork library](../assets/README.md) is ready: v2 branding, 56 interface icons, 10 state graphics, editorial imagery and platform exports. The website and Windows/macOS launcher references use it. Flutter screen integration, shadcn_ui theming and macOS/Linux runtime icon checks remain future work.
+The [artwork library](../assets/README.md) and static concept website support design discussion. Windows/macOS launcher references use the v2 mark. Flutter page theming, shadcn_ui installation and macOS/Linux runtime icon acceptance remain future work. Artwork, a source commit or a successful build is not an application release.
 
-## Implementation order
+## Working order
 
-The stages group product acceptance, not the order of beginner lessons. Follow [LEARNING.md](LEARNING.md): task model → in-memory task list → local persistence and recoverable drafts → Today/personal plans → course rules → review/files/reminders. The current focus is task foundations; the executable supports basic in-memory task entry but has no saved schedule. Build a usable local slice before expanding infrastructure; plan Web implementation and separately confirm school-interface conditions without making either a dependency for local progress.
+Follow small learner-written features: task behavior → explicit local/temporary choice → reliable task saving and recovery → personal plans and Today/Week → repeats and private backup/restore → a limited desktop trial. Course features, review/reminders, Web, sync and external sources can be selected afterward. Do not make a basic local planner wait for those extensions.
 
-The [architecture decision](adr/001-local-application-boundaries.md) and [application contracts](APPLICATION.md) define the next boundaries. Add them per working slice, without prebuilding empty layers. Persistence introduces revision-checked commands, one database writer and honest save failures. Multiple schedule consumers introduce consistent snapshots and one bounded occurrence projector. These are design decisions, not completed features.
+Introduce only the boundaries used by the current feature. Persistence needs one writer, a small storage port, revision checks and honest save failures. Multiple schedule views need a shared bounded projector and consistent snapshots. Use [APPLICATION.md](APPLICATION.md), [DATABASE.md](DATABASE.md) and [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md). The learner implements core code; the assistant teaches, reviews and prepares tests.
 
-Use [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md) to turn one acceptance outcome at a time into a small task, branch, tested/reviewed PR and eventual versioned release. A lesson may complete one internal step; a feature closes only when its acceptance passes. The learner writes application code while the assistant teaches, tests and reviews. Lesson planning and its provisional estimates belong in [LEARNING.md](LEARNING.md), not in release-readiness claims.
+## A — Reliable local tasks
 
-## A — Course timetable
+- [ ] Explain and offer Save on this device or Temporary use on first use; persist no business data before a choice.
+- [ ] Keep temporary use in memory without opening an old private database or writing drafts/automatic backups.
+- [ ] Save tasks through one local writer; show success only after acknowledgement and keep input on failure.
+- [ ] Open or replace an existing saved copy only through an explicit choice and preview.
+- [ ] Test restart recovery, failed mode-preference writes and uncertain retries without duplicate tasks.
+- [ ] Add task editing, optional deadlines and dependable completion/deletion behavior without a course dependency.
+- [ ] Keep or clear an old local copy explicitly when switching to temporary use.
+- [ ] Reject obsolete work after switch/restore/clear; report and resume incomplete cleanup.
 
-- [ ] Three main destinations: Today / Week / Tasks; courses and review under Week, settings in a menu.
-- [ ] Today counts and overdue/undated groups, with midnight/resume refresh; see [TODAY.md](TODAY.md).
-- [ ] Course editor with recoverable drafts and honest save status; see [EDITING.md](EDITING.md).
-- [ ] Local database, migrations, injected clock and basic locale support.
-- [ ] Application storage ports, revision checks, consistent read snapshots and stale-result rejection.
-- [ ] One writer per data directory; startup/migration failures preserve recovery options.
-- [ ] Semester anchor, end date, timezone and configurable periods.
-- [ ] Multiple course rules, odd/even/selected teaching weeks.
-- [ ] Time-based weekly view with visible teaching-week number.
-- [ ] Cancel/move/change room for one occurrence; restore the original.
-- [ ] Validate week boundaries, moved-in occurrences and semester edits.
+Acceptance: create and complete a task without an account, save it on this device, restart offline and recover it. A failed save preserves input and the old saved copy. Temporary startup exposes no old private data. See [session transitions](APPLICATION.md#retention-mode-and-session-transitions).
 
-Acceptance: create a semester and course; move one class to another week; verify original removal, one target instance and successful restoration.
+## B — Personal plans, Today and Week
 
-## B — Personal arrangements
+- [ ] Provide Today / Week / Tasks navigation with Settings in a menu; no required school or semester fields.
+- [ ] Add, edit and delete timed and all-day personal plans with a required title and optional category, location and notes as specified in [REDESIGN.md](REDESIGN.md).
+- [ ] Use an explicit timezone and test overnight entries, date-only ranges and daylight-saving boundaries.
+- [ ] Show due-today, overdue, undated and completed tasks from the same interpretation as their counts.
+- [ ] Refresh at precise deadlines, local midnight, timezone changes and resume; see [TODAY.md](TODAY.md).
+- [ ] Derive Today and Week from one consistent snapshot and reject stale query results.
+- [ ] Offer bounded weekly repeats; implement and test any exposed single-occurrence change scope before offering it.
+- [ ] Display overlapping entries separately and allow intentional conflicts; state the checked time range.
+- [ ] Introduce shadcn_ui in the UI lesson after compatibility checks; preserve input, focus and selection across resize.
+- [ ] Add recoverable drafts only in saving mode; see [EDITING.md](EDITING.md).
 
-- [ ] Timed and all-day arrangements independent of a semester.
-- [ ] Bounded weekly repeats with selected weekdays and week interval.
-- [ ] Single-occurrence changes and cancellation.
-- [ ] Unified Today and week projection; filter courses/personal plans.
-- [ ] Explain overlap warnings and permit intentional conflicts.
-- [ ] Test overnight plans, timezone display and half-open boundaries.
+Acceptance: plan a meeting, a personal appointment and an all-day reminder without a semester. View the same entries in Today and Week, complete a task and keep counts consistent. A repeat ends on the chosen date; overlapping entries remain independently readable. Failure and restart behavior remain truthful.
 
-Acceptance: a personal appointment conflicts with a moved class; both remain visible, and restoring the class leaves the appointment unchanged.
+## C — Private recovery and first desktop trial
 
-## C — Coursework and files
+- [ ] Define versioned private export/import with bounded input, strict validation and a replacement preview.
+- [ ] Preserve IDs and valid references on full restore; create a verified pre-restore copy only where local retention is allowed.
+- [ ] Drain pending work before restore and reject earlier callbacks afterward; failed import/restore leaves the original usable.
+- [ ] Verify clear scope, exported-copy limits, data location and recovery after migration failure.
+- [ ] Test Japanese/English/Chinese, keyboard access, input methods, screen readers, large text and narrow windows.
+- [ ] Run a Windows trial with people planning different work, home and study routines; record actual coverage and feedback.
+- [ ] Validate Linux/macOS on native hosts before offering those packages.
+- [ ] Provide full packages, checksums, versioned upgrade/recovery guidance, known issues and a support route.
+- [ ] Match the website to implemented features and tested platforms; do not add download claims before packages exist.
 
-- [ ] Course-linked and independent tasks; date/time deadlines and completion.
-- [ ] Exams as course-linked personal arrangements.
-- [ ] Versioned timetable file with exact export preview and field allowlist.
-- [ ] Validated import, new/existing semester mapping and duplicate detection.
-- [ ] Fixed-template CSV/paste entry with row errors and a confirmation preview; see [QUICK_IMPORT.md](QUICK_IMPORT.md).
-- [ ] Validate supported school-export formats only when real, appropriately shared examples and permitted use are available; retain manual entry as a complete path.
-- [ ] Full private backup and transactional restore with pre-restore backup.
-- [ ] Test malformed/future-version files and rollback.
-- [ ] Exclusive restore drains pending writes and invalidates all pre-restore commands/previews.
+Acceptance: a person unfamiliar with the project can install the supported desktop app, choose storage, plan a week offline, export private data, recover it and clear local data. Unsupported cases are explained. Follow [QUALITY.md](QUALITY.md) and [RELEASE.md](RELEASE.md); a passing debug build is insufficient.
 
-Acceptance: a student can set up a timetable without a school connection or app account, import a supported file twice without duplicate courses, and recover a full backup. Shared files exclude personal arrangements, private notes and tasks. Unsupported school formats receive an honest explanation and a manual/template alternative.
+## Optional — Local review and reminders
 
-## Local review and notifications
+- [ ] Calculate planned time and the union of occupied intervals locally, with no claim to measure actual work.
+- [ ] Count completed tasks, current overdue tasks and meaningful week comparisons; see [STATISTICS.md](STATISTICS.md).
+- [ ] Provide opt-in native reminders while the process runs, with permission, cancellation, resume and failure checks.
+- [ ] Reconcile reminders from confirmed records; a reminder failure does not undo a saved plan.
 
-- [ ] Planned time and daily union of occupied intervals; no actual-time claim.
-- [ ] Completed tasks, current overdue count and clearly scoped week comparison.
-- [ ] Offline aggregation and boundary tests; see [STATISTICS.md](STATISTICS.md).
-- [ ] Opt-in local system notifications while the application process runs.
-- [ ] Cancel/reconcile reminders after changes; permissions and resume tests; see [NOTIFICATIONS.md](NOTIFICATIONS.md).
+Closed-process delivery requires separate platform acceptance under [NOTIFICATIONS.md](NOTIFICATIONS.md). These features can follow a useful first local release.
 
-Closed-process delivery requires separate platform acceptance. All these features remain planned.
+## Optional — Course planning and assisted import
 
-## D — Representative student and teacher pilot
+- [ ] Introduce semesters, teaching-week anchors, period times and course tables only with the optional course feature.
+- [ ] Support multiple rules, odd/even/selected weeks and configurable academic periods without assuming one institution's timetable.
+- [ ] Preview semester/rule edits; cancel, move, change room and restore one occurrence without orphaned exceptions.
+- [ ] Keep personal plans and independent tasks usable without a selected semester; exams are timed plans, not duplicate task timestamps.
+- [ ] Add filtered timetable sharing with an exact field allowlist and export preview.
+- [ ] Validate imports, map new/existing semesters and periods, and detect repeated native files without matching only names.
+- [ ] Add fixed-template CSV/paste with row errors and explicit duplicate choices; see [QUICK_IMPORT.md](QUICK_IMPORT.md).
+- [ ] Test representative academic patterns only if claiming support for them; unknown school formats need real permitted samples and separate validation.
 
-- [ ] Run a limited Windows pilot, then validate Linux/macOS on native hosts before offering those packages.
-- [ ] Recruit voluntary student and teacher participants across academic backgrounds and accessibility needs; document gaps in coverage.
-- [ ] Verify actual academic-period, teaching-week, period-time, room and irregular-course needs with participants instead of treating one faculty's timetable as universal.
-- [ ] Japanese / English / Chinese strings and usable keyboard navigation.
-- [ ] Light/dark modes, small windows and large text.
-- [ ] Data retained across app updates; clear data-folder instructions.
-- [ ] Downloadable packages, checksums, known issues and manual upgrade notes.
-- [ ] Website matches available features and actual tested platforms.
-- [ ] Record voluntary feedback about first setup, next-class lookup, changed classes and recovery without collecting complete private schedules.
+Acceptance: add a course alongside an existing personal week, move one class to another week and restore it. Sharing excludes private plans, notes and tasks. Importing the same native file twice creates no duplicate courses. Removing the course feature's setup requirements from core onboarding remains part of acceptance.
 
-Acceptance: students outside the developer's own class can complete the core flows without developer assistance, and identified unsupported academic patterns are either fixed or clearly documented. Serving students and teachers describes the audience; it does not imply every device is supported. Publish the desktop requirements and access gaps honestly.
+## Optional — Browser-local Web
 
-## E — Planned Web implementation
+Choose this extension only after reusable local behavior exists and there is a reason to maintain it. A general Web planner has no school-approval gate. Its browser storage, hosting and security still need their own acceptance.
 
-Web is a confirmed target, not yet developed. Complete reusable local behavior first; the learner implements this stage through small lessons.
+- [ ] Define the supported browser/OS scope and preserve the explicit temporary/local choice.
+- [ ] Evaluate IndexedDB for transactional saves, migrations, quota failures and multiple tabs; never copy desktop file-lock assumptions.
+- [ ] Verify offline program resources and upgrades before claiming offline startup; a never-opened app needs its first download.
+- [ ] Keep the initial candidate small: manual plans/tasks, bounded repeats, Today/Week and three languages.
+- [ ] Validate private JSON with the candidate 1 MiB UTF-8 / 2,000-record limits, preview/cancel/replacement, export and clear.
+- [ ] Use an origin separate from the static website, HTTPS, a tested script policy and accurate privacy text.
+- [ ] Test hostile input, storage eviction, interrupted writes, stale tabs and recovery before real-data use.
 
-- [ ] Introduce the selected shadcn_ui package in the UI stage after pinned-SDK and dependency checks.
-- [ ] Build manual schedule CRUD, bounded weekly repeats, tasks/completion and Today/Week in the browser with three-language controls.
-- [ ] Default to memory; require explicit selection for browser-local saving. Validate the recommended IndexedDB adapter, failures, clearing and multi-tab coordination; verify offline application resources before claiming offline restart.
-- [ ] Implement strict versioned JSON with 1 MiB UTF-8 / 2,000-record limits, preview, cancel, confirmed whole-data replacement, private export and clearing.
-- [ ] Test malicious input, invalid files, quota/unavailable storage, failed replacement and restoration from export using fictional data.
-- [ ] Verify browser layout, keyboard access, resource paths, hosting security, privacy explanation and actual deployed behavior.
-- [ ] Only after acceptance, prepare a functional school/user demonstration following [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
+The initial candidate excludes backend/accounts, sync, school APIs, CSV, notifications and single-occurrence changes. It is not committed feature parity with desktop. Re-estimate implementation and maintenance when selected; earlier 8–16 extra-lesson estimates are not promises.
 
-Acceptance: the declared browser-local flows work and limitations are visible. No backend, account, cloud sync, school API, CSV, notifications or single-occurrence class change is included. The website currently shows concepts only. This stage is provisionally 8–16 extra lessons after reusable desktop behavior exists; see [CURRICULUM.md](CURRICULUM.md), not a fixed delivery promise.
+## Optional — Sync and external connections
 
-## Parallel track — Approved university integration
+Sync under [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md) needs separate consent, identity, operating ownership and tests for retries, conflicts, deletion, expired devices and recovery. It is not required for local planning. School identity is only one possible integration, not a universal prerequisite.
 
-- [ ] Seek a willing Kyushu University staff contact, potentially a supervisor, and confirm project eligibility and the application route.
-- [ ] Confirm authentication approval separately from access to students' course data; record available interfaces and allowed uses.
-- [ ] Define minimum read-only fields, student consent, retention, disconnect behavior, failure recovery and responsibility before implementation.
-- [ ] If approved, prototype with authorized accounts and fixtures, then run a limited voluntary trial before wider availability.
-- [ ] Validate provenance, last successful refresh, duplicate detection and previewed changes without overwriting private local edits.
-- [ ] Retain useful manual entry/import when authorization is denied, withdrawn or temporarily unavailable.
+A school or other external source needs the relevant access, retention and export permission, a supported interface and a reviewed import flow. Do not collect passwords or use unapproved scraping as a fallback. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) holds the school-specific reference. If access is unavailable or withdrawn, manual planning and eligible saved local data remain useful. The general app's development or release does not wait for a connection.
 
-Follow [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). No credential collection, simulated-login scraping or claim of university endorsement is an assumed fallback. School approval and data availability are external dependencies, not promised milestone dates. A local/manual release can progress independently.
+## Maintenance and estimates
 
-## F — Wider availability and maintenance
+Before wider release, assign releases, support, security reports and handover. Keep a public bug route and a private route for sensitive reports. Test upgrades and withdrawal/recovery using actual packages. Do not require telemetry or invent adoption targets. If a service is later added, define its cost, limits, deletion, backup, ownership and shutdown plan separately.
 
-- [ ] Broaden desktop rollout after representative pilot findings and native acceptance; publish supported systems, academic patterns and known gaps. The planned Web app passes its own pilot and security gates.
-- [ ] Assign release, support, privacy/security and school-contact responsibilities; document handover when the student maintainer graduates or leaves.
-- [ ] Provide onboarding, accessible help, a public issue route and a private route for sensitive reports, with realistic response expectations.
-- [ ] Verify upgrade/recovery procedures, dependency review and rollback/release-withdrawal handling with actual packages.
-- [ ] Publish an accurate privacy notice before enabling any network service; document data flow and service operators.
-- [ ] If approved integration introduces a backend, assess expected concurrency, request limits, operating costs and service degradation before enabling it broadly.
-- [ ] Review success through voluntary task-based feedback and support outcomes; do not require telemetry or invent adoption targets/results.
+Implement data protection with the relevant storage and release stages under [DATA_PROTECTION.md](DATA_PROTECTION.md). Installing a package does not pass encryption or recovery acceptance. Keep proposed mechanisms separate from verified behavior.
 
-Acceptance: supported students can discover, install, use and recover the app without knowing its developer; support and maintenance remain assigned. Academic coverage and platform gaps are visible. A broad target audience does not mean claiming every student or teacher uses it.
-
-## Estimation and deferred scope
-
-Optional multi-client sync now has a conditional design in [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md). Implement only after the local persistence/recovery foundation and applicable approval/operating conditions: two-client fictional-data prototype, retries/conflicts/deletion/expired-device recovery, then identity isolation and approved Web trial. It is outside the initial no-backend Web milestone and existing lesson estimates; no core code or deployment is implied.
-
-Developer-side protection follows [DATA_PROTECTION.md](DATA_PROTECTION.md): input and transaction safeguards with persistence, verified encryption/platform key storage, authenticated backups and recovery, then conditional API/Web hardening. These are implementation responsibilities, not optional user defenses. Re-estimate this security work in the relevant lessons; installing a package does not complete its acceptance gate.
-
-The earlier 80–140-hour figure covered a narrower local desktop plan and is not an estimate for this broader product goal. Re-estimate each stage after a working persisted slice, representative timetable samples, Web implementation constraints and official interface conditions are known. Separate engineering effort from beginner learning, tester/device availability, signing costs and school review time. Do not commit to a total completion date from the old figure.
-
-Cross-device cloud synchronization, external calendar integrations, AI extraction, collaborative editing and actual-time tracking remain separate proposals requiring demonstrated demand and their own designs. The expanded audience does not by itself justify adding a hosted database or mandatory account to the offline core.
+Older course-first, university-wide and combined desktop/Web estimates describe earlier scope. Re-estimate the local core and each optional extension from working code, teaching progress and target-device evidence. Separate learning time, engineering effort, testing access and external integration work; do not turn an old total into a completion date.

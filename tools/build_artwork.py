@@ -5,8 +5,8 @@ Raster exports: node tools/export_artwork.cjs (requires sharp).
 The editorial PNG is generated separately; this script never modifies it.
 """
 from pathlib import Path
-import html
 import json
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'assets'
@@ -15,7 +15,8 @@ WINE, PAPER, SAGE, INK, RULE = '#7C394B', '#F6F5F1', '#6F877C', '#2F3033', '#DDD
 
 def write(path, content):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content + '\n', encoding='utf-8')
+    # Stable byte sizes and deployment copies on Windows and Unix checkouts.
+    path.write_text(content + '\n', encoding='utf-8', newline='\n')
 
 
 def svg(body, width, height, title, extra=''):
@@ -175,7 +176,7 @@ def social():
 
 
 def catalogue():
-    sections = [('Brand / 品牌与变体', 'brand', '*.svg'), ('Interface / 功能图标', 'icons', '*.svg'), ('States / 空状态与反馈', 'illustrations', '*.svg'), ('Paper / 手帐底纹', 'patterns', '*.svg'), ('Social / 分享预览', 'social', '*.svg'), ('Editorial / 主视觉', 'illustrations', '*.png'), ('Platform / 图标尺寸', 'platform/png', '*.png')]
+    sections = [('Brand', 'brand', '*.svg'), ('Interface icons', 'icons', '*.svg'), ('Empty states and feedback', 'illustrations', '*.svg'), ('Paper patterns', 'patterns', '*.svg'), ('Sharing card', 'social', '*.svg'), ('Editorial artwork', 'illustrations', '*.png'), ('Platform icons', 'platform/png', '*.png')]
     content = ''
     for title, folder, glob in sections:
         cards = ''
@@ -186,20 +187,39 @@ def catalogue():
             cls = 'icon' if folder == 'icons' else 'art'
             if 'paper' in f.stem and 'icon' not in f.stem:
                 cls += ' inverse'
-            sample = f'<div class="sample"><img src="{uri}" alt="{html.escape(f.stem)}" loading="lazy"></div>'
+            sample = f'<div class="sample"><img src="{uri}" alt="" loading="lazy"></div>'
             if folder == 'patterns':
                 sample = f'<div class="sample" style="background-image:url({uri});background-repeat:repeat"></div>'
             cards += f'<a class="card {cls}" href="{uri}" download>{sample}<span>{f.stem}</span></a>'
         content += f'<section><h2>{title}</h2><div class="grid {"icons" if folder == "icons" else ""}">{cards}</div></section>'
-    write(ART / 'catalog.html', '''<!doctype html><html lang="zh-Hans"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cadence · Artwork library</title>
+    write(ART / 'catalog.html', '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cadence · Artwork library</title>
 <style>*{box-sizing:border-box}body{margin:0;background:#F6F5F1;color:#2F3033;font:15px/1.7 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:64px 28px}header{border-bottom:1px solid #DDDCD5;padding-bottom:36px}h1{font:64px/1.1 Georgia,serif;letter-spacing:-2px;margin:20px 0}h2{font:26px Georgia,serif;margin:48px 0 20px}.eyebrow{color:#7C394B;letter-spacing:3px;font-size:12px}.intro{max-width:680px;color:#666761}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.grid.icons{grid-template-columns:repeat(auto-fit,minmax(115px,1fr))}.card{color:inherit;text-decoration:none;background:#FDFCF9;border:1px solid #DDDCD5;border-radius:8px;overflow:hidden}.sample{height:200px;display:flex;align-items:center;justify-content:center;padding:24px}.sample img{max-width:100%;max-height:100%}.icon .sample{height:88px}.icon img{width:24px;height:24px}.inverse .sample{background:#2F3033}.card span{display:block;padding:10px 14px;border-top:1px solid #DDDCD5;font:11px/1.5 monospace;overflow-wrap:anywhere}.card:hover{border-color:#7C394B}.card:focus-visible{outline:3px solid #7C394B;outline-offset:4px}.palette{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}.swatch{display:flex;gap:9px;align-items:center;font-size:12px}.swatch i{width:22px;height:22px;border-radius:50%;border:1px solid #DDDCD5}footer{margin-top:55px;color:#666761;font-size:12px}</style>
-<main><header><div class="eyebrow">CADENCE / VISUAL LIBRARY / 02</div><h1>A little structure.<br>A little space.</h1><p class="intro">学术手帐视觉素材库。延续独立 C 标志，用统一线条、暖纸与克制的酒红表达时间的节奏。点击卡片下载源文件。素材已准备；规划中的功能并不因此视为已实现。</p><div class="palette">''' + ''.join(f'<span class="swatch"><i style="background:{c}"></i>{n} {c}</span>' for n, c in [('Wine', WINE), ('Paper', PAPER), ('Sage', SAGE), ('Ink', INK)]) + '</div></header>' + content + '<footer>Original Cadence vector artwork · MIT project license · Editorial illustration generated with built-in imagegen. No university affiliation.</footer></main></html>')
+<main><header><div class="eyebrow">CADENCE / VISUAL LIBRARY / 02</div><h1>A little structure.<br>A little space.</h1><p class="intro">A quiet visual library for a general-purpose local time planner. The independent C mark, consistent lines, warm paper and muted wine serve work, personal life and study. Select a card to download its source. These assets support the planned product; their presence does not mean a feature is implemented.</p><div class="palette">''' + ''.join(f'<span class="swatch"><i style="background:{c}"></i>{n} {c}</span>' for n, c in [('Wine', WINE), ('Paper', PAPER), ('Sage', SAGE), ('Ink', INK)]) + '</div></header>' + content + '<footer>Original Cadence vector artwork · MIT project license · Editorial illustration generated with built-in imagegen. Independent project. No institutional affiliation.</footer></main></html>')
     files = []
     for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform']:
         for f in sorted((ART / folder).rglob('*')):
             if f.is_file():
                 files.append({'path': f.relative_to(ROOT).as_posix(), 'bytes': f.stat().st_size, 'type': f.suffix[1:], 'category': folder})
-    write(ART / 'manifest.json', json.dumps({'version': 2, 'palette': {'wine': WINE, 'paper': PAPER, 'sage': SAGE, 'ink': INK}, 'iconGrid': 24, 'iconStroke': 1.75, 'files': files}, ensure_ascii=False, indent=2))
+    # Deployment metadata is separate from editable masters. Budgets catch an
+    # accidentally copied full-resolution PNG in a responsive WebP slot.
+    web_exports = []
+    editorial_source = 'assets/illustrations/journal-editorial.png'
+    for width, height, budget in [(480, 320, 20000), (960, 640, 60000), (1536, 1024, 160000)]:
+        uri = f'website/assets/journal-editorial-{width}.webp'
+        if (ROOT / uri).exists():
+            web_exports.append({'path': uri, 'source': editorial_source,
+                                'width': width, 'height': height,
+                                'bytes': (ROOT / uri).stat().st_size,
+                                'maxBytes': budget, 'transform': 'webp-quality-82'})
+    for name, source in [('journal-editorial.png', editorial_source),
+                         ('social-card.png', 'assets/social/social-card.png')]:
+        target = ROOT / 'website' / 'assets' / name
+        if target.exists():
+            width, height = struct.unpack('>II', target.read_bytes()[16:24])
+            web_exports.append({'path': target.relative_to(ROOT).as_posix(),
+                                'source': source, 'width': width, 'height': height,
+                                'bytes': target.stat().st_size, 'transform': 'copy'})
+    write(ART / 'manifest.json', json.dumps({'version': 2, 'palette': {'wine': WINE, 'paper': PAPER, 'sage': SAGE, 'ink': INK}, 'iconGrid': 24, 'iconStroke': 1.75, 'files': files, 'webExports': web_exports}, ensure_ascii=False, indent=2))
 
 
 if __name__ == '__main__':

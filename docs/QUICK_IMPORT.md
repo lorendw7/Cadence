@@ -1,23 +1,23 @@
-# 快速录入课程：全校试用的入门路径
+# Optional quick course entry
 
-更新：2026-11-10。固定模板 CSV/粘贴属于未来桌面学习与试用规划，尚未实现，不在初期 Web 规划中；Web 尚未实现，首阶段计划严格 JSON 预览后整份替换，见 [PRODUCT.md](PRODUCT.md)。
+Updated: 2026-11-11. Reference design for an optional course extension. Fixed-template CSV and pasted course tables are not implemented and are not required for the general local planner. Build the ordinary plans, tasks and storage choices first; see [PRODUCT.md](PRODUCT.md) and [ADR-007](adr/007-general-purpose-local-planner.md). Any later Web client needs its own import acceptance; this desktop template does not automatically become part of its scope.
 
-先完成软件内编辑、自动保存和原生导入，再实现本流程，见 [EDITING.md](EDITING.md)。用户无需学校账号即可录入；官方课表格式适配依赖真实脱敏样本和允许的数据通道，见 [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md)。
+Build direct editing, the explicit first-use choice between local saving and temporary use, and native import first; see [EDITING.md](EDITING.md). Manual entry does not require a school account. Support for an official school format needs a real, properly anonymized sample and a permitted data route; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Those permissions apply to the optional connection, not general product publication.
 
-## 优先顺序
+## Entry formats
 
-已获得 Cadence 课表文件时，优先使用原生导入，行为见 [REDESIGN.md](REDESIGN.md)。首次录入提供固定模板 CSV 或从 Excel 粘贴制表符分隔的表格，全程本地解析。不同院系的表格不会自动被视为支持的模板，界面说明需要哪些列及如何修正。
+Prefer the native Cadence timetable format when the user already has one; its intended behavior is in [REDESIGN.md](REDESIGN.md). For first-time entry, offer a fixed CSV template or tab-separated data pasted from a spreadsheet, parsed locally. Do not assume that tables from every department match the supported template. Explain the required columns and how to correct errors.
 
-模板列：课程名称、星期（1–7）、开始节次、结束节次、教室、教师、上课周次。首次导入前设置学期第一周周一、学期结束日和节次时间。周次示例：`1-16`、`1-16单`、`2,4,6`。每一行表示一条上课规则；同名课程的归属在预览中确认，不能只凭名称自动合并。
+The template has course title, weekday (1–7), start period, end period, room, teacher and teaching weeks. Before import, configure the semester's week-one Monday, end date and period times. The planned week syntax covers ranges, odd/even weeks and lists, such as weeks 1–16, odd weeks in 1–16, and weeks 2, 4 and 6. Freeze the exact language-neutral input tokens and examples during the import lesson before accepting files; translated labels must not create different parsing rules. Each row represents one teaching rule. Confirm how same-named rows belong to courses in the preview; a shared name is not enough to merge them.
 
-## 流程与约束
+## Import flow
 
-选择文件或粘贴 → 校验表头/编码/文件大小 → 解析 → 标出有问题的行 → 预览课程和周次 → 确认 → 一次性写入。
+Select a file or paste text → validate headers, encoding and size → parse → identify invalid rows → preview courses and weeks → confirm → write the complete result.
 
-明确采用 UTF-8 CSV，兼容 UTF-8 BOM；带逗号的周次必须按 CSV 规则加引号。粘贴采用制表符分列。验证星期、节次存在与顺序、周次范围、空标题；错误行不静默丢弃，修正全部错误后才能确认。
+Use UTF-8 CSV and accept a UTF-8 BOM. A field containing commas, such as a week list, must be quoted using CSV rules. Pasted tables use tabs between columns. Validate weekdays, existing periods and their order, week ranges and nonempty titles. Never silently drop invalid rows. All errors must be corrected before confirmation.
 
-预览指出疑似重复，提供跳过或明确保留选择；名称相同不等于重复，CSV 没有原生导出 ID，不承诺跨版本自动合并。确认前不修改数据库，写入失败不留下半份课表。重复与冲突检查复用核心日程规则。
+Show possible duplicates in the preview and let the user skip or explicitly retain each one. Equal names do not prove duplication. CSV lacks native export IDs, so it cannot promise automatic merging across file versions. Do not change the database before confirmation or leave a partial timetable after a failed write. Reuse the core schedule rules for duplicate and conflict checks. In session-only mode, the confirmed result stays in memory and creates no automatic backup.
 
-不直接读取任意 XLSX、学校登录页面或截图。任意表格、离线 OCR、PDF 解析需另行评估，不引入云端识别服务。导入内容按不可信文本处理，限大小、字段长度和记录数；不执行公式、HTML 或文件中的链接，不自动上传内容，见 [SECURITY.md](SECURITY.md)。
+Do not read arbitrary XLSX files, school login pages or screenshots. Other table formats, offline OCR and PDF parsing need separate evaluation; do not introduce cloud recognition for this scope. Treat imported fields as untrusted text. Limit file size, field length and record count. Do not run formulas, HTML or links from a file, or upload its contents. See [SECURITY.md](SECURITY.md).
 
-未来若将 CSV 扩展到 Web，需要独立验证文件选择、粘贴、浏览器事务和恢复；不默认拥有桌面文件系统能力。按实际输入样本与试用反馈重新估算，复杂学校格式与官方连接不包含在固定模板开发中。
+Any later Web CSV support needs separate checks for file selection, paste, browser transactions and recovery. It cannot assume desktop file-system access. Re-estimate from actual input samples and pilot feedback. Complex school formats and official connections are outside the fixed-template estimate.

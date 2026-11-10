@@ -2,79 +2,83 @@
 
 # Cadence
 
-**A calm place for your time.** A time planner primarily for students, also suitable for teachers and other people organizing study, work and personal life. Courses are one kind of schedule entry; no school identity is required.
+**A calm place for your time.** A local planner for work, study, and everyday life.
 
 <br clear="left">
 
-**Development status:** lessons 1–10 have passed implementation review and automated acceptance, with all 26 tests passing. The application supports input, validated task addition, completion toggling, empty-list feedback, deletion and undo of the most recent deletion. Undo restores the original task, position and completion state once. The learner confirmed the empty-list/add/toggle and actual-window deletion/undo flows; title-validation manual confirmation remains pending. The delete callback has been simplified to one setState. Data remains in memory; course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
+Cadence is being designed around three views: **Today, Week, and Tasks**. The desktop app should work offline without an account. At first use, people will choose whether to save on their device or use a temporary session. School connections, including Kyushu University, are optional extensions.
 
-**Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
+**Current status:** the learning app supports task input, validation, addition, completion, deletion, and undo of the latest deletion. Data stays in memory. Lessons 1–10 are implemented, with 26 passing tests. Lesson 11 is assigned; the product theme, persistence, and full planner are not implemented. See [learning progress](docs/LEARNING.md) for automated and manual checks.
 
-Cadence is independent. It does not copy Kyushu University's official identity or imply endorsement. Future school demonstrations may invite feedback; school authentication and timetable-data access are optional integrations requiring separate authorization. Manual planning requires neither.
+[Website](https://lorendw7.github.io/Cadence/) · [Product](docs/PRODUCT.md) · [Design](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md)
 
-[Product design / 产品设计](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [UI design](docs/UI_ARCHITECTURE.md) · [Data protection](docs/SECURITY.md) · [Future school demo](docs/SCHOOL_DEMO.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md) · [Website](https://lorendw7.github.io/Cadence/)
+## Product direction
 
-## Planned product
+- Plan appointments, focused work, study, and personal time together.
+- Keep tasks and bounded repeating plans easy to create, edit, and complete.
+- Use Windows, Linux, or macOS without a required account or server.
+- Make local saving, temporary use, backup, recovery, and deletion clear.
+- Support Japanese, English, and Chinese, keyboard use, and readable layouts.
 
-- Courses and personal arrangements together in Today and week views.
-- Manual creation, editing and deletion, bounded weekly repeats, tasks and completion.
-- Japanese, English and Chinese, keyboard access and readable desktop/browser layouts.
-- Desktop local persistence with tested recovery; a browser-local Web version with memory mode and explicit saving choices.
-- Strict JSON import with preview and confirmation before replacement, private export and clear data controls.
-- Later desktop lessons add teaching weeks, single-class changes, filtered timetable sharing, CSV/paste, local review and tested reminders.
+These are design goals. The first useful release should prove a small local planning flow before adding advanced features. Course rules and school imports belong to an optional education extension. A Web version and multi-device sync may be considered later; they are not required for the desktop core.
 
-The planned initial Web scope has no backend, account, school API, cloud synchronization, CSV, notifications or single-occurrence class changes. Private JSON exports are not a filtered course-sharing format. Browser storage is neither encrypted nor a durable backup. These are designs, not available features; [PRODUCT.md](docs/PRODUCT.md) defines the stage boundaries.
-
-## Artwork and visual identity
-
-The v2 artwork library follows the academic-journal palette and retains Cadence's original C mark. It includes 56 interface icons, 10 state illustrations, an editorial image, paper patterns, platform icon exports and a website sharing card. The website and Windows/macOS launcher references use the new assets; application page theming remains a future learner exercise.
-
-[Visual overview](assets/preview.png) · [Full catalogue](assets/catalog.html) · [Usage and regeneration](assets/README.md) · [Design system](docs/DESIGN.md)
-
-The artwork passed asset validation and three-language website checks at wide and narrow widths. A local Windows debug build succeeded; macOS/Linux runtime icon acceptance remains pending. These assets are not a feature release or evidence that the planned screens are implemented.
+General product releases do not depend on a school. Any school connection needs permission for that specific interface and data. Cadence is independent and has no university endorsement. The current direction is recorded in [ADR-007](docs/adr/007-general-purpose-local-planner.md).
 
 ## Learn by building
 
-The learner writes application feature code. The assistant explains, reviews, prepares appropriate tests/templates and maintains delegated documentation and the website. **The assistant does not implement the core application on the learner's behalf.** Keep `lib/main.dart` as the teaching entry and advance one small lesson at a time.
+The learner writes core application features. The assistant explains, reviews, prepares useful tests, and maintains delegated documents, artwork, and the website. Work advances one small lesson at a time; lib/main.dart remains the teaching entry.
 
-The [curriculum](docs/CURRICULUM.md) estimates 64 lessons for a limited Windows pilot and 80–100 for broader desktop validation. A basic browser-local Web version provisionally adds 8–16 lessons after reusable desktop behavior exists, giving about 88–116 overall. These are teaching estimates counted from lesson 1, not completion promises; backend work and school integration are excluded.
+Start with [the learning guide](docs/LEARNING.md) and [curriculum](docs/CURRICULUM.md). Earlier course-heavy estimates are being separated into core and optional work. Lesson counts are estimates, not release promises.
 
-## Run the current learning application
+All repository documentation uses plain English. This rule also applies to future updates; see [AGENTS.md](AGENTS.md). Product translations remain separate.
 
-Use Flutter **3.44.4** / Dart **3.12.2**, matching the metadata and CI.
+## Run the current app
+
+Use Flutter **3.44.4** / Dart **3.12.2**, matching CI.
 
 ```sh
 flutter pub get
 flutter run -d windows
 ```
 
-Use a corresponding Linux/macOS target on a configured host. Web setup will be added by the learner when that stage begins; current setup is in [SETUP.md](docs/SETUP.md).
+Use the matching Linux/macOS target on a configured host. [Setup](docs/SETUP.md) lists the required tools and checks. There is no implemented Web planner in this checkout.
 
-## Repository layout
+The selected product UI library is Flutter **shadcn_ui**. It is not installed yet. Introduce it, Riverpod, and drift only when the relevant lessons need them. [pubspec.yaml](pubspec.yaml) and its lockfile record installed dependencies. The starter version is not a production-readiness claim.
+
+## Artwork and website
+
+The quiet journal style uses warm paper, muted wine, sage, and graphite. The v2 library has 56 interface icons, 10 state illustrations, an editorial image, patterns, platform icons, and a sharing card. Responsive WebP exports reduce website image size while preserving the original artwork.
+
+[Visual overview](assets/preview.png) · [Catalogue](assets/catalog.html) · [Artwork guide](assets/README.md) · [Design system](docs/DESIGN.md)
+
+The Japanese/English/Chinese website shows fictional concepts. It is not a working planner or a download page. GitHub Pages publishes only the website directory.
+
+## Repository
 
 | Path | Purpose |
-|------|---------|
-| `lib/main.dart` | Current teaching application entry |
-| `lib/domain/coursework/` | Learner's task-model exercises |
-| `test/` | Active tests; pending lesson templates remain separate |
-| `windows/`, `linux/`, `macos/` | Native desktop runners |
-| `android/` | Legacy scaffolding, no mobile product commitment |
-| `assets/` | [Independent artwork library](assets/README.md): brand, icons, illustrations and platform exports |
-| `lessons/` | Historical exercise templates; see [template index](lessons/README.md) |
-| `tools/` | Artwork generators and read-only repository checks |
-| `docs/` | Product, security, architecture, learning and release plans |
-| `website/` | Japanese/English/Chinese concept website |
-| `.github/workflows/` | App checks, builds and website deployment |
+|---|---|
+| lib/ and test/ | Learning app and active tests |
+| docs/ | Product, architecture, learning, and release guides |
+| lessons/ | Historical exercise templates |
+| assets/ | Artwork sources and exports |
+| website/ | Static concept website |
+| tools/ | Generators and read-only checks |
+| windows/, linux/, macos/ | Desktop runners |
+| android/ | Legacy scaffolding; no mobile product plan |
+| .github/workflows/ | Checks, desktop builds, and website delivery |
 
-## Development
+See [the repository map](docs/REPOSITORY.md) and [maintenance tools](tools/README.md).
+
+## Checks
 
 ```sh
-dart format lib test
+node tools/check_repository.cjs
+node tools/check_website.cjs
+python tools/check_artwork.py
+dart format --output=none --set-exit-if-changed lib test
 flutter analyze --fatal-infos --fatal-warnings
 flutter test
 ```
-
-The selected product UI package is [shadcn_ui](https://pub.dev/packages/shadcn_ui), not `shadcn_flutter` or React shadcn/ui. It is not installed yet. [pubspec.yaml](pubspec.yaml) and its lockfile remain the installed-dependency source of truth. Introduce shadcn_ui, Riverpod and drift only during their implementation lessons. The starter version `1.0.0+1` is not a production-readiness claim.
 
 ## License
 
