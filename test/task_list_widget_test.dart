@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   for (final size in [const Size(800, 600), const Size(400, 320)]) {
-    testWidgets('Today displays both tasks at $size without layout errors', (
+    testWidgets('Today exposes both tasks at $size without layout errors', (
       WidgetTester tester,
     ) async {
       await tester.binding.setSurfaceSize(size);
@@ -14,18 +14,37 @@ void main() {
 
       expect(find.text('Cadence'), findsOneWidget);
       expect(find.text('今天'), findsOneWidget);
-      expect(find.byType(ListTile), findsNWidgets(2));
-
       final reportRow = find.widgetWithText(ListTile, '提交课程报告');
       final reviewRow = find.widgetWithText(ListTile, '复习线性代数');
       expect(reportRow, findsOneWidget);
-      expect(reviewRow, findsOneWidget);
+      expect(find.text('提交课程报告').hitTestable(), findsOneWidget);
       expect(
         find.descendant(of: reportRow, matching: find.text('未完成')),
         findsOneWidget,
       );
+
+      // ListView.builder may not build off-screen rows until scrolling.
+      // Verify that the second task is reachable, rather than requiring both
+      // rows to exist simultaneously in a small viewport.
+      await tester.scrollUntilVisible(
+        reviewRow,
+        40,
+        scrollable: find.descendant(
+          of: find.byType(ListView),
+          matching: find.byType(Scrollable),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(reviewRow, findsOneWidget);
+      expect(find.text('复习线性代数').hitTestable(), findsOneWidget);
       expect(
         find.descendant(of: reviewRow, matching: find.text('已完成')),
+        findsOneWidget,
+      );
+      await tester.tap(find.text('复习线性代数'));
+      await tester.pump();
+      expect(
+        find.descendant(of: reviewRow, matching: find.text('未完成')),
         findsOneWidget,
       );
       expect(tester.takeException(), isNull);

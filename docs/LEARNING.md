@@ -1,6 +1,6 @@
 # 从零做 Cadence
 
-更新：2026-11-10。第 1–6 节实现及自动验收已完成，全部 13 项测试通过。第六节将任务列表移入 State，通过 copyWith 和 setState 实现点击任务行完成／撤销；学习者确认实际窗口中状态立即切换，点击计数按钮后仍保留。下一步为第七节：读取输入框中的任务标题并学习控制器生命周期。添加任务与持久化尚未实现。
+更新：2026-11-11。第 1–8 节实现及自动验收已完成，第九节标题校验部分通过，当前全部 19 项测试通过。已实现输入控制器及释放、添加任务、完成／撤销、空白标题拒绝及错误修正。学习者确认第八节实际运行中连续添加、输入清空和新任务状态切换正常。第九节校验的实际运行尚未确认，空列表提示尚未实现；接下来继续这一小步。数据仍只在内存中。
 
 ## 分工
 
@@ -51,7 +51,7 @@
 
 第一节原始测试模板保留在 `lessons/01_task/planner_task_test.dart.txt`。尚未开始的课程使用 `.txt` 后缀，避免在功能文件未创建时因导入失败阻塞自动检查；开始实现后才复制到自动测试目录。
 
-第一节已启用到 `test/domain/coursework/planner_task_test.dart`，第二节已启用到 `test/domain/coursework/planner_task_copy_with_test.dart`。第三节在学习者实现后启用 `test/task_list_widget_test.dart`，检查两条任务的状态对应关系及两种窗口尺寸下的布局。第四节启用 `test/practice_counter_widget_test.dart`，验证加一、归零、再次加一且任务行不变。第五节在列表测试中增加回调验收：构建时不调用，点击一次调用一次。第六节增加 `test/task_toggle_widget_test.dart`，检查两条任务独立切换及撤销、计数加一和归零后保留修改；当前全部 13 项测试通过。`lessons/` 中已有模板不重复计入覆盖数量，也不通过跳过测试掩盖缺少实现。现有启动测试保留，名称已更新为 Today page。
+第一节已启用到 `test/domain/coursework/planner_task_test.dart`，第二节已启用到 `test/domain/coursework/planner_task_copy_with_test.dart`。第三、五节使用 `test/task_list_widget_test.dart` 检查两种窗口尺寸下的任务内容及回调；第七节将小窗口断言改为实际滚动和点击，适应列表按需创建。第四节使用 `test/practice_counter_widget_test.dart`，第六节使用 `test/task_toggle_widget_test.dart`。第七、八节的 `test/task_title_input_widget_test.dart` 当前检查添加按钮、连续添加与唯一 ID、输入清空、重建保留输入及控制器释放。第九节的 `test/task_title_validation_widget_test.dart` 检查两种尺寸下空白拒绝、不消耗编号、保留输入、首尾去空白及修正后提交。当前全部 19 项通过。`lessons/` 中的模板不重复计入覆盖数量；没有跳过测试来掩盖缺少实现。
 
 ## 时间预期
 
@@ -59,4 +59,4 @@
 
 学生自己学写桌面核心仍按 **64 节达到 Windows 本地试用版、80–100 节推进到经过更广泛验证的可维护桌面版本**规划，课时总数从第一节起计算。每节约 20–45 分钟讲解，编码与练习另计。复用桌面核心的无后台 Web 暂加 8–16 节，合计约 88–116 节；学校接入和后台另外评估。每约 8 节按进度修订，详见 [课程安排](CURRICULUM.md)。
 
-[第六节：任务完成与撤销](lessons/06-task-toggle.md) 已通过自动验收与学习者实际运行确认。接下来进入第七节，先解释 TextField、TextEditingController、text 和 dispose，再由学习者实现读取输入；添加任务在第八节进行。可回看[第五节](lessons/05-task-row.md)、[第四节](lessons/04-state.md)、[第三节](lessons/03-task-list.md)、[第二节](lessons/02-copy-with.md)与[第一节](lessons/01-task.md)。
+[第七节：输入与控制器](lessons/07-title-input.md)、[第八节：添加任务](lessons/08-add-task.md) 已完成实现及自动验收。[第九节：标题校验与空列表提示](lessons/09-validation.md) 的标题校验已通过，下一步学习空列表条件显示。此前记录见[第六节](lessons/06-task-toggle.md)、[第五节](lessons/05-task-row.md)、[第四节](lessons/04-state.md)、[第三节](lessons/03-task-list.md)、[第二节](lessons/02-copy-with.md)与[第一节](lessons/01-task.md)。
