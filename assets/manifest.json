@@ -1,0 +1,589 @@
+{
+  "version": 2,
+  "palette": {
+    "wine": "#7C394B",
+    "paper": "#F6F5F1",
+    "sage": "#6F877C",
+    "ink": "#2F3033"
+  },
+  "iconGrid": 24,
+  "iconStroke": 1.75,
+  "files": [
+    {
+      "path": "assets/brand/cadence-icon-dark.svg",
+      "bytes": 387,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-icon-paper.svg",
+      "bytes": 387,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-icon-v2.svg",
+      "bytes": 387,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-icon.svg",
+      "bytes": 637,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-lockup-paper.svg",
+      "bytes": 888,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-lockup.svg",
+      "bytes": 888,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-mark-ink.svg",
+      "bytes": 331,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-mark-paper.svg",
+      "bytes": 331,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-mark-wine.svg",
+      "bytes": 331,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/brand/cadence-mark.svg",
+      "bytes": 587,
+      "type": "svg",
+      "category": "brand"
+    },
+    {
+      "path": "assets/icons/add.svg",
+      "bytes": 289,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/all-day.svg",
+      "bytes": 406,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/arrow-up-right.svg",
+      "bytes": 315,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/backup.svg",
+      "bytes": 311,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/check.svg",
+      "bytes": 291,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/chevron-down.svg",
+      "bytes": 303,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/chevron-left.svg",
+      "bytes": 304,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/chevron-right.svg",
+      "bytes": 305,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/clock.svg",
+      "bytes": 319,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/close.svg",
+      "bytes": 297,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/conflict.svg",
+      "bytes": 395,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/course.svg",
+      "bytes": 344,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/data.svg",
+      "bytes": 342,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/deadline.svg",
+      "bytes": 339,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/delete.svg",
+      "bytes": 327,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/device.svg",
+      "bytes": 342,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/edit.svg",
+      "bytes": 308,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/error.svg",
+      "bytes": 324,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/exam.svg",
+      "bytes": 374,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/export.svg",
+      "bytes": 313,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/external.svg",
+      "bytes": 319,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/file-json.svg",
+      "bytes": 407,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/filter.svg",
+      "bytes": 301,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/help.svg",
+      "bytes": 344,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/import.svg",
+      "bytes": 313,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/info.svg",
+      "bytes": 322,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/keyboard.svg",
+      "bytes": 397,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/language.svg",
+      "bytes": 350,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/link.svg",
+      "bytes": 339,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/location.svg",
+      "bytes": 360,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/meeting.svg",
+      "bytes": 385,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/memory.svg",
+      "bytes": 427,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/menu.svg",
+      "bytes": 298,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/moon.svg",
+      "bytes": 313,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/more.svg",
+      "bytes": 355,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/notification.svg",
+      "bytes": 331,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/offline.svg",
+      "bytes": 401,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/personal.svg",
+      "bytes": 338,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/refresh.svg",
+      "bytes": 348,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/repeat.svg",
+      "bytes": 348,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/research.svg",
+      "bytes": 388,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/restore.svg",
+      "bytes": 319,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/review.svg",
+      "bytes": 310,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/save.svg",
+      "bytes": 317,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/search.svg",
+      "bytes": 320,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/semester.svg",
+      "bytes": 381,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/settings.svg",
+      "bytes": 414,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/sprite.svg",
+      "bytes": 13001,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/study.svg",
+      "bytes": 339,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/success.svg",
+      "bytes": 325,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/sun.svg",
+      "bytes": 368,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/tasks.svg",
+      "bytes": 324,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/today.svg",
+      "bytes": 378,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/undo.svg",
+      "bytes": 309,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/warning.svg",
+      "bytes": 360,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/week.svg",
+      "bytes": 381,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/icons/work.svg",
+      "bytes": 360,
+      "type": "svg",
+      "category": "icons"
+    },
+    {
+      "path": "assets/illustrations/all-done.svg",
+      "bytes": 668,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/empty-tasks.svg",
+      "bytes": 667,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/empty-today.svg",
+      "bytes": 581,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/empty-week.svg",
+      "bytes": 667,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/import-preview.svg",
+      "bytes": 638,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/journal-editorial.png",
+      "bytes": 2586082,
+      "type": "png",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/no-courses.svg",
+      "bytes": 615,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/no-results.svg",
+      "bytes": 539,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/no-review.svg",
+      "bytes": 641,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/restore-backup.svg",
+      "bytes": 554,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/illustrations/save-error.svg",
+      "bytes": 579,
+      "type": "svg",
+      "category": "illustrations"
+    },
+    {
+      "path": "assets/patterns/journal-dots.svg",
+      "bytes": 202,
+      "type": "svg",
+      "category": "patterns"
+    },
+    {
+      "path": "assets/patterns/journal-grid.svg",
+      "bytes": 224,
+      "type": "svg",
+      "category": "patterns"
+    },
+    {
+      "path": "assets/patterns/journal-rules.svg",
+      "bytes": 197,
+      "type": "svg",
+      "category": "patterns"
+    },
+    {
+      "path": "assets/social/social-card.png",
+      "bytes": 53114,
+      "type": "png",
+      "category": "social"
+    },
+    {
+      "path": "assets/social/social-card.svg",
+      "bytes": 1229,
+      "type": "svg",
+      "category": "social"
+    },
+    {
+      "path": "assets/platform/cadence.icns",
+      "bytes": 79429,
+      "type": "icns",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/cadence.ico",
+      "bytes": 14717,
+      "type": "ico",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-1024.png",
+      "bytes": 50556,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-128.png",
+      "bytes": 3163,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-16.png",
+      "bytes": 397,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-180.png",
+      "bytes": 4730,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-192.png",
+      "bytes": 5183,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-24.png",
+      "bytes": 601,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-256.png",
+      "bytes": 7134,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-32.png",
+      "bytes": 742,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-48.png",
+      "bytes": 1123,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-512.png",
+      "bytes": 18536,
+      "type": "png",
+      "category": "platform"
+    },
+    {
+      "path": "assets/platform/png/cadence-64.png",
+      "bytes": 1439,
+      "type": "png",
+      "category": "platform"
+    }
+  ]
+}

@@ -14,7 +14,13 @@ Cadence is being designed for students, teachers and other people organizing the
 | `assets/content.js` | Complete fixed translations, including metadata and accessible labels |
 | `assets/lang.js` | Language selection, text-only rendering, metadata and local-link updates |
 | `assets/preview.js` | Accessible preview tabs and temporary sample-task completion |
-| `assets/icon.svg` | Original Cadence C mark in the website palette |
+| `assets/icon-v2.svg` | Current Cadence C mark; matches the application artwork master |
+| `assets/icons/` | Original, consistent SVG feature icons |
+| `assets/journal-editorial.png` | Decorative academic-journal illustration; lazy-loaded, no embedded text |
+| `assets/social-card.png` | 1200 × 630 sharing card, explicitly marked in development |
+| `assets/favicon.ico`, `assets/favicon-32.png`, `assets/apple-touch-icon.png` | Browser and bookmark icons |
+
+Editable masters, generation scripts and the full catalogue are documented in [the artwork library](../assets/README.md). Legacy `assets/icon.svg` is retained. No functional planner behavior is implied by these visuals.
 
 No build step, external font, third-party script, analytics or runtime service is needed. The existing GitHub Pages deployment remains the hosting target; do not register a second Site.
 
@@ -43,3 +49,7 @@ Cadence has no university endorsement or school-system integration permission. I
 ## Publication
 
 [pages.yml](../.github/workflows/pages.yml) publishes the existing website from the main branch or manual dispatch. Validate local assets, language key parity, internal anchors, JavaScript syntax and the interactive preview before publishing. Keep project claims, privacy text and all three translations aligned with actual capabilities.
+
+## 2026-11-11 visual update
+
+Both pages use the v2 identity and browser icons. The homepage adds consistent Today/Week/Tasks symbols, a local editorial image and an Open Graph sharing card marked in development. Copy and the fictional preview behavior remain aligned across Japanese, English and Chinese. The artwork validation covered both pages at 1440 px and 390 px, image loading, script errors, overflow, tabs and sample-task completion. The existing Pages workflow publishes only `website/`; the full editable artwork catalogue stays in the repository.

@@ -1,6 +1,6 @@
 # Cadence design system
 
-Updated: 2026-11-10. Direction: an **academic journal for time planning**, primarily for students and also useful to teachers and others. Courses are one kind of commitment. Cadence has its own identity; do not copy Kyushu University's official image or imply endorsement.
+Updated: 2026-11-11. Direction: an **academic journal for time planning**, primarily for students and also useful to teachers and others. Courses are one kind of commitment. Cadence has its own identity; do not copy Kyushu University's official image or imply endorsement.
 
 The selected product UI is Flutter [shadcn_ui](https://pub.dev/packages/shadcn_ui), not installed or implemented yet. The learner entry may retain Material. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. Web is a confirmed development target, not an existing application; mobile apps are excluded.
 
@@ -15,7 +15,7 @@ The selected product UI is Flutter [shadcn_ui](https://pub.dev/packages/shadcn_u
 | Muted ink | `#666761` | Secondary labels; check actual contrast |
 | Rule | `#DDDCD5` | Dividers and calendar guides |
 
-These are independent project colors, not a reconstruction of a university palette. Earlier wine/paper tokens are superseded. This documentation/website update applies the new palette to the public site only. Existing application artwork in `assets/brand/` is retained for the learner to migrate during the later app-design stage; no application asset migration is claimed.
+These are independent project colors, not a reconstruction of a university palette. Earlier wine/paper tokens are superseded. The 2026-11-11 artwork update supplies matching v2 brand assets, interface icons, empty-state graphics and platform exports. Windows/macOS launcher references and the website use v2; Flutter page theming remains a later learner exercise. Historical artwork is retained. See the [artwork library](../assets/README.md).
 
 Error, warning and success use semantic labels/icons. Color is never the only signal for completion or conflict. Validate actual contrast pairs; no compliance follows automatically from the palette. Dark mode, if offered, requires checked surface/text combinations and is not presumed finished in the initial MVP.
 
@@ -35,7 +35,7 @@ Empty states teach the next local action instead of prompting school login. Edit
 
 ## Identity and artwork
 
-Keep **Cadence** in Latin letters in every language. The independent C/clock mark can remain; never replace it with a university crest. `assets/brand/` holds the earlier application artwork; `website/assets/icon.svg` is the independently themed website rendition for this update. Retain recognizable geometry while documenting this temporary palette difference. Reconcile application assets when the learner reaches the app-design stage, rather than changing core assets during a documentation/website task.
+Keep **Cadence** in Latin letters in every language. Retain the independent C/clock mark; never replace it with a university crest. `assets/brand/cadence-icon-v2.svg` is the current master; `website/assets/icon-v2.svg` is its deployment copy. The original mark geometry remains recognizable. Use the 24-unit, 1.75-stroke interface set consistently, with semantic labels and generous click targets. Decorative artwork never replaces text, validation or status feedback. The [catalogue](../assets/catalog.html) previews the complete asset family; [usage and generation instructions](../assets/README.md) describe platform exports and staged application integration.
 
 ## Privacy in the interface
 
