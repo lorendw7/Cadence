@@ -1,6 +1,6 @@
 # Quality and acceptance
 
-The committed baseline includes the Today startup widget test; activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist.
+The committed baseline includes the Today startup widget test; activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The university-wide goal adds representative academic coverage and maintainable support to the desktop app's correctness requirements. Windows, Linux and macOS are the targets; Android/iOS work is excluded. A candidate Web system has separate feasibility and security checks below.
 
 ## Local and hosted checks
 
@@ -26,6 +26,9 @@ A native build is not a UI test or a signed release. Platform functionality is a
 | Process and restore lifecycle | One writer; migration failure preserves data; restore drains writes and rejects pre-restore callbacks |
 | Notifications | Timing, cancellation, completion, deduplication, permission denial, dispatch failure and native click-through |
 | Migration | Previous supported schema to new schema preserves schedule identities and private data |
+| Academic coverage | Representative faculty/graduate timetables, multiple academic periods, configurable periods, irregular classes and missing room information; verify samples instead of assuming one university-wide template |
+| Assisted entry | CSV/paste errors are visible, preview matches imported content, repeated import is handled, manual entry remains available |
+| Optional school connection | Only after approval: consent, logout/disconnect, expired/revoked access, partial or failed refresh, source attribution, last refresh time and local edit preservation |
 
 Avoid tests that only mirror UI implementation details. Add widget tests for meaningful flows such as scope selection, conflict confirmation and import preview.
 
@@ -35,12 +38,37 @@ For Windows, Linux and macOS check startup, persistence after restart, file pick
 
 Test running-process system notifications with denied permissions, rescheduling and resume on each host. Delivery after exit is a separate feature; an in-app message does not prove OS delivery. See [NOTIFICATIONS.md](NOTIFICATIONS.md).
 
+## Representative student acceptance
+
+Use voluntary pilots that include students across campuses, faculties, undergraduate/graduate study, domestic/international backgrounds and accessibility needs. Verify Japanese/English/Chinese rendering with real course names and mixed scripts. Record untested groups and academic patterns. First setup, finding the next class, handling a change, importing and restoring data should be achievable without developer help. Use fictional or appropriately redacted examples in repositories and automated tests.
+
+## Candidate Web feasibility and security
+
+These gates apply if the Web candidate proceeds; they are not claims about a finished Web app. Compare a client-local static application with a backend design, document where each data type lives and identify the operator before choosing. A static project website is a different deliverable. Browser testing must declare its actual desktop browser/OS coverage; no phone product is implied.
+
+| Boundary | Required acceptance before real student data |
+|----------|----------------------------------------------|
+| Browser storage | Denied/quota-limited storage, private mode, clearing site data, unexpected tab/process exit, migration and restore failures; export/recovery works and data-loss limits are visible |
+| Local concurrency | Concurrent tabs cannot silently overwrite revisions or apply a stale import/restore; behavior is defined for the selected storage implementation |
+| Untrusted content | Course titles, notes, imported files and errors are rendered as inert text; verify stored/reflected/DOM script injection paths and safe handling of links |
+| Scripts and hosting | HTTPS, restrictive feasible CSP, reviewed dependencies and minimized third-party scripts; no credentials or private fixtures in bundled assets/source maps |
+| URLs, logs and caches | No personal schedules, backup content, credentials or tokens in query strings/fragments, analytics, routine logs or service-worker caches; caching scope and update/rollback behavior are explicit |
+| Backend authorization, if chosen | Server-side ownership checks on every read/write/export/delete route; one user's object ID never grants another user access; errors do not expose private records |
+| Sessions, if chosen | Secure session transport and storage, expiry/rotation/revocation, logout and reconnect; no long-lived bearer tokens in script-readable persistent storage; CSRF defenses for cookie-authenticated changes and a restrictive CORS policy |
+| Service operations, if chosen | Input/file-size limits, abuse/request limits, least-privilege secrets, encryption in transit/at rest, redacted logging, retention/deletion, restricted backups and tested recovery |
+
+Use fictional data for initial feasibility. Verify the design with meaningful negative cases such as a script-bearing imported title, a second user's record identifier, a cross-site state-changing request and unavailable browser storage when those paths exist. School authentication and data-access approval remain separate requirements. A Web release additionally needs a limited pilot, privacy notice, support owner and rollback/incident procedure; see [RELEASE.md](RELEASE.md).
+
 ## Privacy and release bar
 
-Timetable exports must be allowlisted; private backup is visibly separate. No automatic uploads, telemetry, external calendar connections or account login. Local user-facing weekly statistics remain entirely on-device. Never ask a classmate to post a full backup in a public issue.
+Timetable exports must be allowlisted; private backup is visibly separate. The offline core has no mandatory account, uploads or telemetry. Local user-facing weekly statistics remain entirely on-device. Never ask a student to post a full backup, school credentials or session tokens in a public issue.
+
+An optional official connection has a separate acceptance gate in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md): school approval, data-access scope, informed student consent and verified handling of credentials, tokens and personal data. Do not collect school passwords or assume consent permits scraping. If network services are introduced, validate documented retention/deletion and failure behavior before release. Declining or losing the connection must leave manual planning and stored local data usable.
 
 Lesson test templates in `lessons/` are not executed by CI and do not count as coverage. Activate a template in `test/` when its lesson begins implementation; require it to pass before considering that lesson complete. Do not skip or weaken an activated test to hide unfinished implementation.
 
 Check all three website languages for accurate feature status, platform claims and working links. Retain the Japanese-default language behavior.
 
 A milestone is complete only when its user acceptance example in [ROADMAP.md](ROADMAP.md) passes. A release additionally follows [RELEASE.md](RELEASE.md).
+
+A wider desktop release needs tested upgrade/recovery paths on the declared systems, visible coverage gaps and assigned support/security responsibilities. Any accepted Web system needs its own security and persistence acceptance. A small pilot, passing CI or a supervisor's expression of support does not establish university-wide readiness or official approval.

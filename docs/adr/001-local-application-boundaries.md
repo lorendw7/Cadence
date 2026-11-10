@@ -1,12 +1,14 @@
 # ADR-001: A local application layer and one schedule projection
 
-**Status:** Accepted as the target design; implementation is incremental.
+**Status:** Accepted for local application boundaries; implementation is incremental. Product/platform scope extended by [ADR-002](002-university-wide-product.md) on 2026-11-10.
 **Date:** 2026-11-09
 **Deciders:** Cadence maintainer; the learner remains the author of application code.
 
 ## Context
 
-Cadence is a single-user desktop planner without a server. Today, Week, review and reminders need the same interpretation of saved records. Draft writes can finish out of order, and OS notifications cannot join SQLite transactions. The first learning exercises still cover a small task model, so boundaries must grow with working features.
+At the time of this decision, Cadence was scoped as a single-user desktop planner without a server. Today, Week, review and reminders need the same interpretation of saved records. Draft writes can finish out of order, and OS notifications cannot join SQLite transactions. The first learning exercises still cover a small task model, so boundaries must grow with working features.
+
+The 2026-11-10 product expansion targets students across Kyushu University through desktop applications, with a web application candidate and conditional authorized university integration. Mobile applications are outside scope. ADR-002 extends the audience and integration assumptions while retaining this decision's local transactions, ports and shared projector. It does not make university access or a server a prerequisite for the local application.
 
 ## Decision
 
@@ -38,6 +40,6 @@ Use local root revisions for writes and a data generation for query/preview inva
 - [ ] Complete the learner's model and in-memory task list.
 - [ ] Add storage ports, revisions and ordered drafts with persistence.
 - [ ] Test the shared projector before connecting multiple schedule consumers.
-- [ ] Validate instance ownership and reminder reconciliation on each desktop OS.
+- [ ] Validate instance ownership and reminder reconciliation on each desktop OS; separately assess browser storage/lifecycle/writer contracts for the web candidate under ADR-002.
 
-Revisit for confirmed multi-process editing, cloud sync, durable history or measured query bottlenecks.
+Revisit for confirmed multi-process editing, cloud sync, durable history or measured query bottlenecks. Approved source adapters must follow the local import/preview contracts; they do not bypass this decision's writer or transaction boundaries.

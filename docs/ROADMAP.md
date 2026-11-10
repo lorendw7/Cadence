@@ -1,14 +1,14 @@
 # Roadmap
 
-Current scope: **courses and personal plans, local-only, desktop-first**. [REDESIGN.md](REDESIGN.md) is the behavior specification. External calendar integrations and store releases are not on this roadmap.
+Updated: 2026-11-10. Goal: **a course and personal planner for all Kyushu University students**. [REDESIGN.md](REDESIGN.md) defines product behavior. Windows, Linux and macOS are the product targets; no Android or iOS product is planned. A Web system is a candidate to evaluate, not a committed hosted service. A useful offline core, representative student trials and sustainable support come first. Official school integration is a separate, conditional workstream.
 
 ## Repository baseline
 
-The current application is a Today placeholder. Platform runners and check workflows exist; feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release.
+The current application is a Today placeholder with separate task-model learning work. Windows, Linux, macOS and Android runners and desktop check workflows exist. Android is retained legacy scaffolding, not a release commitment; there is no iOS runner or functional Web app. The public website is a static project site. Feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release. No school partnership, integration permission or student adoption is established.
 
 ## Implementation order
 
-The A–D sections group product acceptance, not the order of beginner lessons. Follow [LEARNING.md](LEARNING.md): task model → in-memory task list → local persistence and recoverable drafts → Today/personal plans → course rules → review/files/reminders. The current focus is task foundations; the executable still has no task editor or saved schedule.
+The stages group product acceptance, not the order of beginner lessons. Follow [LEARNING.md](LEARNING.md): task model → in-memory task list → local persistence and recoverable drafts → Today/personal plans → course rules → review/files/reminders. The current focus is task foundations; the executable still has no task editor or saved schedule. Build a usable local slice before expanding infrastructure; evaluate Web feasibility and school-interface conditions without making either a dependency for local progress.
 
 The [architecture decision](adr/001-local-application-boundaries.md) and [application contracts](APPLICATION.md) define the next boundaries. Add them per working slice, without prebuilding empty layers. Persistence introduces revision-checked commands, one database writer and honest save failures. Multiple schedule consumers introduce consistent snapshots and one bounded occurrence projector. These are design decisions, not completed features.
 
@@ -45,11 +45,13 @@ Acceptance: a personal appointment conflicts with a moved class; both remain vis
 - [ ] Exams as course-linked personal arrangements.
 - [ ] Versioned timetable file with exact export preview and field allowlist.
 - [ ] Validated import, new/existing semester mapping and duplicate detection.
+- [ ] Fixed-template CSV/paste entry with row errors and a confirmation preview; see [QUICK_IMPORT.md](QUICK_IMPORT.md).
+- [ ] Validate supported school-export formats only when real, appropriately shared examples and permitted use are available; retain manual entry as a complete path.
 - [ ] Full private backup and transactional restore with pre-restore backup.
 - [ ] Test malformed/future-version files and rollback.
 - [ ] Exclusive restore drains pending writes and invalidates all pre-restore commands/previews.
 
-Acceptance: a classmate imports a timetable twice without duplicate courses; no personal arrangements, private notes or tasks appear in the shared file; full backup round-trips all local data.
+Acceptance: a student can set up a timetable without a school connection or app account, import a supported file twice without duplicate courses, and recover a full backup. Shared files exclude personal arrangements, private notes and tasks. Unsupported school formats receive an honest explanation and a manual/template alternative.
 
 ## Local review and notifications
 
@@ -61,34 +63,57 @@ Acceptance: a classmate imports a timetable twice without duplicate courses; no 
 
 Closed-process delivery requires separate platform acceptance. All these features remain planned.
 
-## D — Classmate trial and desktop delivery
+## D — Representative student pilot
 
-- [ ] Windows daily-use trial, then Linux and macOS native runtime checks.
+- [ ] Run a limited Windows pilot, then validate Linux/macOS on native hosts before offering those packages.
+- [ ] Recruit voluntary participants across campuses, faculties, undergraduate/graduate study, domestic/international backgrounds and accessibility needs; document gaps in coverage.
+- [ ] Verify actual academic-period, teaching-week, period-time, room and irregular-course needs with participants instead of treating one faculty's timetable as universal.
 - [ ] Japanese / English / Chinese strings and usable keyboard navigation.
 - [ ] Light/dark modes, small windows and large text.
 - [ ] Data retained across app updates; clear data-folder instructions.
 - [ ] Downloadable packages, checksums, known issues and manual upgrade notes.
 - [ ] Website matches available features and actual tested platforms.
+- [ ] Record voluntary feedback about first setup, next-class lookup, changed classes and recovery without collecting complete private schedules.
 
-Distribute through GitHub Releases. No app-store submission, hosted backend, telemetry or automatic updater.
+Acceptance: students outside the developer's own class can complete the core flows without developer assistance, and identified unsupported academic patterns are either fixed or clearly documented. Serving all students describes the audience; it does not imply every device is supported. Publish the desktop requirements and access gaps honestly.
 
-## Estimates
+## E — Candidate Web system decision
 
-Single-developer focused engineering estimates, including meaningful tests and routine fixes:
+- [ ] Identify the student need and browser/platform coverage a Web system would address; distinguish it from the current public project website.
+- [ ] Compare a static client-local application with an application that has a backend. Evaluate local browser storage, file exchange, offline behavior, hosting/maintenance cost and data exposure before choosing.
+- [ ] Use fictional data for a feasibility prototype. Verify storage denial/quota, browser data clearing, private mode, export/recovery and application updates; do not promise browser storage is permanent or automatically synchronized.
+- [ ] Review threat boundaries and data flows. Prevent imported titles/notes from executing as markup or scripts; restrict third-party scripts and define an effective content security policy for the chosen host.
+- [ ] Keep private schedules, credentials and tokens out of public static assets, source maps, URLs, logs and service-worker caches. Decide cache scope and recovery behavior before adding a service worker.
+- [ ] If a backend is justified, define authentication, per-user authorization, session/CSRF protection, token handling, encryption, retention/deletion, abuse limits and operational ownership before using real student data.
+- [ ] Record a decision to proceed, narrow scope or defer. A proceed decision needs its own implementation, security acceptance and limited-pilot plan; school connection approval remains separate.
 
-| Stage | Estimate |
-|-------|----------|
-| A: course timetable | 20–35 h |
-| B: personal arrangements | 14–24 h |
-| C: coursework, sharing and recovery | 16–26 h |
-| D: three-desktop trial and packaging | 10–20 h |
-| Local weekly review | 6–10 h |
-| Recoverable drafts and save failures beyond basic persistence | 6–10 h |
-| Running-process local notifications | 8–14 h |
-| **Total** | **80–139 h (approximately 80–140 h)** |
+Acceptance: a documented feasibility and security decision with explicit data location, supported browsers, recovery limits, costs and owner. This stage does not promise a Web release, accounts or cloud synchronization. Follow [ARCHITECTURE.md](ARCHITECTURE.md) and [QUALITY.md](QUALITY.md) for boundaries and candidate-specific checks. No phone app work is included.
 
-This estimate includes local review, recoverable editing, daily counts and running-process notifications. Learning time, waiting for testers/devices, signing setup and mobile releases are excluded. Closed-process/background delivery is a separate provisional 12–24 h, subject to platform feasibility. Fixed-template CSV/paste import is a candidate 6–10 h after the core importer, see [QUICK_IMPORT.md](QUICK_IMPORT.md). At 10 engineering hours/week, the base is roughly 8–14 weeks; beginner learning takes longer. Start with [LEARNING.md](LEARNING.md) and revise after the first three lessons.
+## Parallel track — Approved university integration
 
-## Later, only after trial feedback
+- [ ] Seek a willing Kyushu University staff contact, potentially a supervisor, and confirm project eligibility and the application route.
+- [ ] Confirm authentication approval separately from access to students' course data; record available interfaces and allowed uses.
+- [ ] Define minimum read-only fields, student consent, retention, disconnect behavior, failure recovery and responsibility before implementation.
+- [ ] If approved, prototype with authorized accounts and fixtures, then run a limited voluntary trial before wider availability.
+- [ ] Validate provenance, last successful refresh, duplicate detection and previewed changes without overwriting private local edits.
+- [ ] Retain useful manual entry/import when authorization is denied, withdrawn or temporarily unavailable.
 
-Closed-process notifications with platform tests; actual-time tracking; CSV/paste import; Android UX; month view; advanced school-calendar tools. Each needs its own scope and acceptance criteria. External calendar sync, AI and account systems are not presumed follow-up work.
+Follow [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). No credential collection, simulated-login scraping or claim of university endorsement is an assumed fallback. School approval and data availability are external dependencies, not promised milestone dates. A local/manual release can progress independently.
+
+## F — University-wide availability and maintenance
+
+- [ ] Broaden desktop rollout after representative pilot findings and native acceptance; publish supported systems, academic patterns and known gaps. Any accepted Web project follows its own pilot and security gates.
+- [ ] Assign release, support, privacy/security and school-contact responsibilities; document handover when the student maintainer graduates or leaves.
+- [ ] Provide onboarding, accessible help, a public issue route and a private route for sensitive reports, with realistic response expectations.
+- [ ] Verify upgrade/recovery procedures, dependency review and rollback/release-withdrawal handling with actual packages.
+- [ ] Publish an accurate privacy notice before enabling any network service; document data flow and service operators.
+- [ ] If approved integration introduces a backend, assess expected concurrency, request limits, operating costs and service degradation before enabling it broadly.
+- [ ] Review success through voluntary task-based feedback and support outcomes; do not require telemetry or invent adoption targets/results.
+
+Acceptance: supported students can discover, install, use and recover the app without knowing its developer; support and maintenance remain assigned. Academic coverage and platform gaps are visible. Being available to all students does not mean claiming every student uses it.
+
+## Estimation and deferred scope
+
+The earlier 80–140-hour figure covered a narrower local desktop plan and is not an estimate for this university-wide goal. Re-estimate each stage after a working persisted slice, representative timetable samples, any Web decision and official interface conditions are known. Separate engineering effort from beginner learning, tester/device availability, signing costs and school review time. Do not commit to a total completion date from the old figure.
+
+Cross-device cloud synchronization, external calendar integrations, AI extraction, collaborative editing and actual-time tracking remain separate proposals requiring demonstrated demand and their own designs. The expanded audience does not by itself justify adding a hosted database or mandatory account to the offline core.

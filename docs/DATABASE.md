@@ -1,6 +1,6 @@
 # Local data model
 
-Status: schema proposal, not implemented. This replaces the earlier general-purpose calendar/cloud-sync proposals. Implement migrations alongside the features in [ROADMAP.md](ROADMAP.md).
+Updated: 2026-11-10. Status: local-core schema proposal, not implemented. It supports the local-first university-wide direction in [ADR-002](adr/002-university-wide-product.md); it does not assume a hosted account database or cloud synchronization. Implement migrations alongside the features in [ROADMAP.md](ROADMAP.md). Conditional university-source metadata is described below as requirements, not tables to create now.
 
 ## Tables
 
@@ -32,7 +32,27 @@ Mutable roots (`semesters`, `courses`, `personal_plans`, `tasks`) also carry a p
 
 Drafts and notification metadata are local only. Drafts may be incomplete; validate before promotion to formal records in one transaction. Full backups include recoverable drafts and reminder preferences, but OS handles/delivery state are rebuilt on restore, not blindly replayed. Timetable exports exclude drafts, notification settings and task statistics.
 
-Do not store OAuth accounts, access tokens, external event bindings, sync cursors or an outbox.
+The local-core schema contains no account/session tables, remote cursors or synchronization outbox. Do not add speculative remote fields during the current lessons. Passwords and session secrets must never be stored in the ordinary schedule database or serialized into either export format. If an approved university protocol later needs persistent credentials on desktop, keep them behind platform secure storage with an explicit deletion policy. Browser storage is not an equivalent credential vault; a web-session design needs a separate security review.
+
+## Storage boundaries and web candidate
+
+The tables above describe logical data implemented initially through desktop SQLite. A web application is a candidate, with no current runner or persistence adapter. IndexedDB-backed storage may be evaluated, but a browser does not supply the same filesystem, writer locks, durability or backup behavior as desktop SQLite. Preserve invariants and transaction outcomes through an explicit adapter contract; do not promise that an ordinary SQLite database file can be shared with the browser.
+
+Test quota/transaction failures, cleared or evicted data, private-browsing behavior, concurrent tabs, migrations and recovery from interruption. A successful write does not establish permanent browser retention. Explain these limits and provide explicit portable exports before treating browser storage as the user's only copy. Desktop local storage likewise does not by itself imply encryption or protection against another process with access to the user's files.
+
+Keep privacy categories separate: shareable instructional fields, private plans/tasks/notes, private import provenance, and authentication secrets. Backups of the first three remain private user files; school secrets never enter them. If a server is later selected, the logical schema additionally needs enforced ownership and object-level authorization for all student data, explicit retention/deletion and controlled recovery. These server tables are not part of the current schema proposal. See [SECURITY.md](SECURITY.md).
+
+## Future university-source provenance
+
+No school API or authorization is assumed. Design a source-specific migration only after the approved contract and representative timetable samples are available; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). The existing `import_batches`/`import_items` keys describe Cadence file import and must not be reinterpreted silently as university account or course identifiers.
+
+An authorized read adapter will need minimal non-secret metadata for the source and student context, the academic-period scope, stable source record identity, its local-record mapping, the last accepted source baseline and the last successful check. Keep the baseline separate from locally edited values so a refresh can explain changes without overwriting private notes or accepted local overrides. Do not overload a local root `revision` with the source's version; the two have different meanings.
+
+Whether and how the source identifies a student and provides completeness/version information must be established before enabling repeated updates. Do not invent globally stable course IDs, assume a missing row is a deletion, or store a complete raw portal response for convenience. Distinguish a complete empty source snapshot from a partial response or access failure. Unknown identity or scope requires review instead of destructive reconciliation.
+
+Timetable-sharing files exclude school account identifiers, connection metadata and source-access material. A future versioned private backup may include only the minimum non-secret provenance needed to preserve local records; disclose that personal data in the backup preview. Authentication material is always excluded. Restoring provenance cannot restore a connection: require reauthorization and a verified matching student context before using it for further reads. Incompatible or unverifiable bindings leave the restored timetable usable as local data.
+
+Campus/faculty/academic-period presets need source, version and applicability metadata when implemented. The schema must not force every Kyushu student into one timetable or period table. Validate whether the existing semester/rule representation covers the intended pilot groups before adding fields or claiming university-wide academic coverage.
 
 ## Important invariants
 
@@ -59,7 +79,7 @@ Compare expected revisions and preview generation inside the write transaction, 
 
 `*.cadence-timetable.json` has an envelope with `format: "cadence-timetable"`, integer `version`, `export_id`, `exported_at`, semester metadata, periods, selected courses/rules/weeks and explicitly selected exceptions.
 
-The export schema allowlists instructional fields: course name, teacher, room, color and schedule. It excludes course private_notes, personal_plans, tasks, completed states and settings. The preview must match the exact serialized content.
+The export schema allowlists instructional fields: course name, teacher, room, color and schedule. It excludes course private_notes, personal_plans, tasks, completed states, settings and any university account/connection metadata. The preview must match the exact serialized content.
 
 New local IDs are allocated at import and references remapped consistently. Duplicate import detection uses export/source identities, never only course titles. A modified export with a new export_id is a new candidate, not an automatic overwrite. Users resolve likely duplicates in preview.
 
@@ -67,7 +87,7 @@ When importing into a new semester with a different anchor, remap occurrence dat
 
 ## Full backup format
 
-`*.cadence-backup.json` uses a different `format` value, its own integer schema version and a complete logical data snapshot including provenance. Keep stable IDs for a full restore. This file contains private data and is never offered by the timetable-sharing shortcut.
+`*.cadence-backup.json` uses a different `format` value, its own integer schema version and a logical snapshot of user planning data including supported non-secret provenance. Keep stable IDs for a full restore. Session secrets and OS operational handles are excluded. This file contains private data and is never offered by the timetable-sharing shortcut.
 
 Check version, references, duplicate IDs, sizes, date constraints and recurrence limits before a restore. Reject unknown future versions rather than guessing. Back up the current database first, then restore atomically. On failure the original state remains usable.
 
