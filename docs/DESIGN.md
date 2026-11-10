@@ -53,4 +53,4 @@ Use brief restrained transitions and respect reduced motion. Task completion and
 
 The project website explains the product and links only to actual accepted deliverables. The future Flutter planner will be a separate application even if delivered beside the website. Never put private planning data into public assets. Sharing an origin also shares storage/script trust; different URL paths do not create isolation.
 
-The website uses this academic-journal palette and fictional illustrations with accurate status. Distinguish the current teaching placeholder, concept website and planned desktop/Web application. Do not invent school endorsement, adoption, download availability or privacy guarantees.
+The website uses this academic-journal palette and fictional illustrations with accurate status. Distinguish the current read-only teaching task list, concept website and planned desktop/Web application. Do not invent school endorsement, adoption, download availability or privacy guarantees.

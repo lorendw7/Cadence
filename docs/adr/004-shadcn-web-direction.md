@@ -12,7 +12,7 @@ Select Flutter's **pub.dev `shadcn_ui` package**, distinct from `shadcn_flutter`
 
 Web is now a confirmed development target alongside Windows/Linux/macOS. No mobile app is planned. The first Web plan is a browser-local application: manual course/personal-entry CRUD, bounded weekly repeats, Today/Week, tasks/completion, three languages, memory default, explicit local saving, strict JSON preview/replacement/export and clearing. Proposed transfer limits are 1 MiB UTF-8 and 2,000 total records. The small-snapshot storage option is localStorage, subject to failure/recovery validation during implementation.
 
-No implementation or functional MVP is implied. The current app remains a Today placeholder and task-model exercises; the website shows concepts. Initial Web scope excludes backend/accounts, cloud sync, school APIs, CSV, notifications and single-occurrence changes. Broader desktop behavior remains separately staged.
+No implementation or functional MVP is implied. At the time of this decision, the app was a Today placeholder with task-model exercises; the website shows concepts. Initial Web scope excludes backend/accounts, cloud sync, school APIs, CSV, notifications and single-occurrence changes. Broader desktop behavior remains separately staged.
 
 ## Consequences
 

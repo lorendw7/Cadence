@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable remains a Today placeholder with task-model exercises; the website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
+Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable displays Today and two read-only sample tasks using the learner's task model; the website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
 
 ## Read in this order
 

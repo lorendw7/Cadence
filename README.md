@@ -6,7 +6,7 @@
 
 <br clear="left">
 
-**Development status:** the executable is still a Today placeholder with separate task-model learning exercises. Course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
+**Development status:** the learning application now shows Today and two read-only sample tasks with their completion status. The learner's lesson 3 implementation passes automated checks; local Windows visual confirmation is the next step. Task interactions, course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
 
 **Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
 
@@ -29,7 +29,7 @@ The planned initial Web scope has no backend, account, school API, cloud synchro
 
 The learner writes application feature code. The assistant explains, reviews, prepares appropriate tests/templates and maintains delegated documentation and the website. **The assistant does not implement the core application on the learner's behalf.** Keep `lib/main.dart` as the teaching entry and advance one small lesson at a time.
 
-The [curriculum](docs/CURRICULUM.md) estimates 64 lessons for a limited Windows pilot and 80–100 for broader desktop validation. A basic browser-local Web version provisionally adds 8–16 lessons after reusable desktop behavior exists, giving about 88–116 overall. These are teaching estimates including the two completed lessons, not completion promises; backend work and school integration are excluded.
+The [curriculum](docs/CURRICULUM.md) estimates 64 lessons for a limited Windows pilot and 80–100 for broader desktop validation. A basic browser-local Web version provisionally adds 8–16 lessons after reusable desktop behavior exists, giving about 88–116 overall. These are teaching estimates counted from lesson 1, not completion promises; backend work and school integration are excluded.
 
 ## Run the current learning application
 
