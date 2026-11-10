@@ -1,6 +1,27 @@
 # Application contracts and recovery
 
-Updated: 2026-11-10. **Target design; not implemented.** This document makes the boundaries in [ARCHITECTURE.md](ARCHITECTURE.md) concrete. Introduce the local contracts with persistence/shared views, not during the learner's current model exercise. The optional university-source section is a later acceptance contract, conditional on approved access and a known interface. Product behavior remains in [REDESIGN.md](REDESIGN.md).
+Updated: 2026-11-10. **Target design; not implemented.** This remains a learner-led implementation plan; the selected shadcn_ui and confirmed Web target do not create a functioning application. This document makes the boundaries in [ARCHITECTURE.md](ARCHITECTURE.md) concrete. Introduce the local contracts with persistence/shared views, not during the learner's current model exercise. The optional university-source section is a later acceptance contract, conditional on approved access and a known interface. Product behavior remains in [REDESIGN.md](REDESIGN.md).
+
+## Contract introduction and ownership
+
+The initial in-memory task lesson needs a plain model, a list and local widget state; it does not implement this entire document. [ADR-003](adr/003-incremental-modular-client.md) defines how the modular client grows. Introduce the following contracts only when the corresponding behavior begins:
+
+| Trigger | Minimum application responsibility |
+|---------|------------------------------------|
+| First saved task | One task read operation and explicit desired-state write; injected storage; loading/pending/failure states; restart recovery |
+| Revision-aware edits | Check the saved revision and return a typed stale/deleted result; keep unsaved input |
+| Recoverable editor | Ordered draft writes and atomic promotion; distinguish draft-saved from formal-record-saved |
+| Multiple views | One shared query owner or identified read snapshots; invalidate from confirmed writes; reject stale responses |
+| Courses and schedule views | One bounded occurrence projector with explicit time, scope and consistent reads |
+| Structural edits/import | Reviewable change set, dependency recheck and atomic commit |
+| Backup/restore and reminders | Exclusive restore and stale-work invalidation; reminders reconcile after saved changes |
+| Approved external source or Web decision | Only the relevant conditional contracts later in this document |
+
+Use plain functions/classes with concrete operations. Do not add a command bus, generic use-case base class, global service registry or a repository method for every database table. A port describes what its consuming feature needs, such as reading tasks or saving a validated task; the adapter owns SQL and row mapping. It can remain alongside that capability until another feature actually shares it.
+
+After persistence exists, confirmed records come from storage/query results. A feature controller owns input/loading/write status, not a second permanent task or course database. Keep UI-only selection and focus local. Shared async state may use Riverpod as described in [ARCHITECTURE.md](ARCHITECTURE.md); it cannot replace transactional checks or become a second source of confirmed records.
+
+For the first saved flow, show a pending state until the adapter confirms the write. Preserve input on failure, expose a useful retry and keep last loaded data visibly distinct from newly saved data. Either consume the confirmed command result or refresh the subscribed query in a coordinated way; do not add the same item twice when both complete. If the command's result is uncertain, reload before retrying rather than duplicating an add. Optimistic UI is not required for the initial persisted slice.
 
 ## Queries: one saved snapshot
 
@@ -8,11 +29,13 @@ A schedule request carries a bounded half-open window `[start, end)`, display ti
 
 The repository adapter reads rules, periods and exceptions in one consistent read snapshot. Expand in each source timezone, apply exceptions, filter by final overlap and deduplicate by `(source kind, rule/plan ID, original local date)`. A move keeps its original identity. Sort by start, end and identity for stable rendering. Read moved-in exceptions by replacement interval, including their referenced rules outside the original query window.
 
-Each result carries its window, timezone, scope and `data_generation`. The application assigns request IDs and a runtime generation; only the latest matching request may update a controller. A slow previous-week query cannot replace the newly selected week. Restore invalidates every pre-restore request.
+Each persisted schedule result carries its window, timezone, scope and `data_generation`. The application assigns request IDs and a runtime generation; only the latest matching request may update a controller. A slow previous-week query cannot replace the newly selected week. Restore invalidates every pre-restore request. A simple task list does not need a fabricated schedule window or occurrence object to use the same stale-request principle.
 
 Today, Week, review and conflict checking use the same pure domain projector with their declared scopes. Conflict previews include personal arrangements even if a display filter hides them. Review states its scope; reminders consider all eligible records, not just the visible semester. File export preserves canonical rules through a separate allowlisted codec.
 
 Task grouping captures `now` once for both counts and lists. Schedule the next refresh at the next deadline or local midnight, and recalculate on committed writes, timezone changes and foreground/sleep resume. Use an injected clock; do not depend on a widget rebuilding, fixed 24-hour increments or startup-only date capture. See [TODAY.md](TODAY.md).
+
+Keep three meanings of time distinct: calendar dates for teaching weeks/all-day ranges/original occurrence identity, wall times plus a named timezone for recurring classes, and instants for overlap/notification delivery. A task deadline is not an occupied interval. Time ranges are half-open; teaching weeks come from the semester anchor rather than ISO week numbers. Display-timezone changes must not rewrite stored source times or occurrence identities. These invariants belong to the shared domain projector, not individual page controllers.
 
 ## Commands: validate, transact, then notify
 
@@ -52,13 +75,13 @@ Disconnect stops further requests, invalidates in-flight requests/previews and r
 
 No continuous polling or background import is implied. Such behavior requires a later decision on school access limits, user consent, platform background execution and conflict handling. Never log or export passwords, tokens, cookies or raw authentication responses when diagnosing an integration failure.
 
-## Web candidate contract checks
+## Web target contract checks
 
-A browser implementation is a candidate, not an available platform. Reuse the domain/application behavior only after a storage adapter can provide equivalent transaction, preview-invalidating and recovery guarantees. Browser storage quota or unavailable persistence must produce an explicit failure while retaining the editor input; it cannot be reported as a saved record. Warn about persistence limits before relying on private browsing or evictable local storage. Offer a user-controlled export independently of any future hosted account.
+Web is a confirmed future target, not an implemented platform. Its first browser-local version intentionally has a smaller feature contract than the full desktop design: memory by default, opt-in local saving, strict JSON preview/replace/export and clearing, without accounts, backend, school data, CSV, notifications or single exceptions. Reuse the domain/application behavior only after a storage adapter can provide equivalent transaction, preview-invalidating and recovery guarantees. Browser storage quota or unavailable persistence must produce an explicit failure while retaining the editor input; it cannot be reported as a saved record. Warn about persistence limits before relying on private browsing or evictable local storage. Offer a user-controlled export independently of any future hosted account.
 
-Multiple browser tabs and workers must coordinate the same logical writer and schema version. Test a tab suspended during migration, another tab editing after a preview, and stale callbacks after restore/disconnect. Do not copy the desktop process-lock assumption into a browser or open a transaction across a network request. If required guarantees cannot be met, narrow the candidate's supported behavior and document the limitation before release.
+Multiple browser tabs and workers must coordinate the same logical writer and schema version. Test a tab suspended during migration, another tab editing after a preview, and stale callbacks after restore/disconnect. Do not copy the desktop process-lock assumption into a browser or open a transaction across a network request. If required guarantees cannot be met, narrow the Web release's supported behavior and document the limitation before release.
 
-Any future server API must authorize each requested student-owned object using the authenticated server context; UI filters and client-provided owner IDs are not authorization. Treat school responses, imported files and free text as untrusted data at every rendering boundary. Session/CSRF controls, script policy, data retention and diagnostic redaction are specified in [SECURITY.md](SECURITY.md). These requirements do not authorize or imply a backend deployment.
+Any future server API must authorize each requested user-owned object using the authenticated server context; UI filters and client-provided owner IDs are not authorization. Treat school responses, imported files and free text as untrusted data at every rendering boundary. Session/CSRF controls, script policy, data retention and diagnostic redaction are specified in [SECURITY.md](SECURITY.md). These requirements do not authorize or imply a backend deployment.
 
 ## Draft ordering
 

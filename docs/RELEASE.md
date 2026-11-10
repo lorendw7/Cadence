@@ -1,6 +1,6 @@
-# Releases for Kyushu University students
+# Releases for students, teachers and other users
 
-Updated: 2026-11-10. The target audience is all Kyushu University students, reached through a limited pilot and a gradual wider desktop release. Windows, Linux and macOS are the product targets, distributed initially through GitHub Releases. Android/iOS products are excluded. A Web system is a candidate with a separate feasibility/security decision; the current public website is only a static project site. The repository is currently a skeleton; no feature-complete release or university endorsement is declared.
+Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app remains a learning placeholder and the website a concept presentation. There is no functional MVP, completed release or university endorsement.
 
 ## Before the first trial
 
@@ -38,7 +38,7 @@ Publishing binaries/tags is a separate action from ordinary source commits. The 
 
 ## Upgrade and support
 
-Use manual desktop downloads initially. Preserve the user data directory across upgrades; take a database backup before a migration. Do not downgrade an unsupported schema in place. A release rollback must use a compatible recovery/export path rather than assume an older app can open newer data. If a Web system is later accepted, validate browser-data migrations, cache/version behavior and export/recovery before its own rollout.
+Use manual desktop downloads initially. Preserve the user data directory across upgrades; take a database backup before a migration. Do not downgrade an unsupported schema in place. A release rollback must use a compatible recovery/export path rather than assume an older app can open newer data. During the planned Web implementation, validate browser-data migrations, cache/version behavior and export/recovery before its own rollout.
 
 Provide explicit data export and deletion instructions; uninstalling a desktop application may leave its data behind. Issue reports should include version, OS and steps, with private course/plan content removed. Never request school passwords, session tokens or a full backup in a public issue. No remote telemetry is needed for a pilot or wider release; local weekly review is not usage tracking.
 
@@ -50,13 +50,13 @@ Provide Japanese and English onboarding and help, alongside the planned Chinese 
 
 Keep a public route for ordinary bugs and a private route for sensitive reports. Explain what voluntary diagnostics may contain and how to redact them. Review dependency/security issues before a wider release and document how to pause downloads or disable an affected optional connection while preserving local data.
 
-## Candidate Web system release gate
+## Future Web release gate
 
-A Web prototype or a changed project website is not a released planner. A separate decision must select a client-local architecture or justify a backend, identify an operator and establish browser support, persistence/recovery behavior, privacy disclosures and operational costs. See the candidate track in [ROADMAP.md](ROADMAP.md) and security acceptance in [QUALITY.md](QUALITY.md).
+A changed concept website is not a functional planner. The first planned Web version is browser-local, without backend or accounts. Before release establish browser support, explicit saving/clearing behavior, JSON recovery, privacy information, operator and deployment costs. See the Web track in [ROADMAP.md](ROADMAP.md) and security acceptance in [QUALITY.md](QUALITY.md). The first browser plan is memory by default and explicit local saving, with strict 1 MiB / 2,000-record JSON preview/replacement/export and clearing; it excludes accounts, backend, CSV, notifications and single-occurrence changes.
 
 Before a student-data pilot, verify HTTPS and hosting configuration, script/import handling, third-party dependencies, content security policy and deployment rollback. Public assets, URLs, logs and service-worker caches must not contain student schedules, backups, credentials or session tokens. Document when browser data can be cleared or unavailable and provide a tested export/recovery path; client-local storage does not itself provide backup or synchronization.
 
-If the selected design has accounts or a backend, additionally test cross-user access isolation, session creation/revocation, CSRF protection where applicable, minimum data retention, deletion, backup access and incident handling. Define request limits, costs and ownership. Use a limited voluntary pilot before general availability; collecting real data requires these gates, not merely a successful deploy.
+If the selected design has accounts or a backend, additionally test cross-user access isolation, session creation/revocation, CSRF protection where applicable, minimum data retention, deletion, backup access and incident handling. Define request limits, costs and ownership. Use a limited voluntary pilot before general availability; using real data requires the applicable gates, not merely a successful deploy. Use [SCHOOL_DEMO.md](SCHOOL_DEMO.md) only after its future demonstration conditions are met; current concept visuals cannot be presented as a working MVP.
 
 ## Optional school services
 

@@ -1,16 +1,18 @@
 # Roadmap
 
-Updated: 2026-11-10. Goal: **a course and personal planner for all Kyushu University students**. [REDESIGN.md](REDESIGN.md) defines product behavior. Windows, Linux and macOS are the product targets; no Android or iOS product is planned. A Web system is a candidate to evaluate, not a committed hosted service. A useful offline core, representative student trials and sustainable support come first. Official school integration is a separate, conditional workstream.
+Updated: 2026-11-10. Goal: **a time planner primarily for students, also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with Flutter shadcn_ui selected but not installed. No mobile product is planned. [REDESIGN.md](REDESIGN.md) defines behavior; [ADR-004](adr/004-shadcn-web-direction.md) records the current direction.
 
 ## Repository baseline
 
-The current application is a Today placeholder with separate task-model learning work. Windows, Linux, macOS and Android runners and desktop check workflows exist. Android is retained legacy scaffolding, not a release commitment; there is no iOS runner or functional Web app. The public website is a static project site. Feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release. No school partnership, integration permission or student adoption is established.
+The current application is a Today placeholder with separate task-model learning work. Windows, Linux, macOS and Android runners and desktop check workflows exist. Android is retained legacy scaffolding, not a release commitment; there is no iOS runner or functional Web app. The public website is a static project site. Feature checkboxes below remain open until implementation and acceptance pass. The starter package version is not a completed release. No school partnership, integration permission or adoption is established. All application features remain learner-led work; this update changes docs and the concept website, not core implementation.
 
 ## Implementation order
 
-The stages group product acceptance, not the order of beginner lessons. Follow [LEARNING.md](LEARNING.md): task model → in-memory task list → local persistence and recoverable drafts → Today/personal plans → course rules → review/files/reminders. The current focus is task foundations; the executable still has no task editor or saved schedule. Build a usable local slice before expanding infrastructure; evaluate Web feasibility and school-interface conditions without making either a dependency for local progress.
+The stages group product acceptance, not the order of beginner lessons. Follow [LEARNING.md](LEARNING.md): task model → in-memory task list → local persistence and recoverable drafts → Today/personal plans → course rules → review/files/reminders. The current focus is task foundations; the executable still has no task editor or saved schedule. Build a usable local slice before expanding infrastructure; plan Web implementation and separately confirm school-interface conditions without making either a dependency for local progress.
 
 The [architecture decision](adr/001-local-application-boundaries.md) and [application contracts](APPLICATION.md) define the next boundaries. Add them per working slice, without prebuilding empty layers. Persistence introduces revision-checked commands, one database writer and honest save failures. Multiple schedule consumers introduce consistent snapshots and one bounded occurrence projector. These are design decisions, not completed features.
+
+Use [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md) to turn one acceptance outcome at a time into a small task, branch, tested/reviewed PR and eventual versioned release. A lesson may complete one internal step; a feature closes only when its acceptance passes. The learner writes application code while the assistant teaches, tests and reviews. Lesson planning and its provisional estimates belong in [LEARNING.md](LEARNING.md), not in release-readiness claims.
 
 ## A — Course timetable
 
@@ -63,10 +65,10 @@ Acceptance: a student can set up a timetable without a school connection or app 
 
 Closed-process delivery requires separate platform acceptance. All these features remain planned.
 
-## D — Representative student pilot
+## D — Representative student and teacher pilot
 
 - [ ] Run a limited Windows pilot, then validate Linux/macOS on native hosts before offering those packages.
-- [ ] Recruit voluntary participants across campuses, faculties, undergraduate/graduate study, domestic/international backgrounds and accessibility needs; document gaps in coverage.
+- [ ] Recruit voluntary student and teacher participants across academic backgrounds and accessibility needs; document gaps in coverage.
 - [ ] Verify actual academic-period, teaching-week, period-time, room and irregular-course needs with participants instead of treating one faculty's timetable as universal.
 - [ ] Japanese / English / Chinese strings and usable keyboard navigation.
 - [ ] Light/dark modes, small windows and large text.
@@ -75,19 +77,21 @@ Closed-process delivery requires separate platform acceptance. All these feature
 - [ ] Website matches available features and actual tested platforms.
 - [ ] Record voluntary feedback about first setup, next-class lookup, changed classes and recovery without collecting complete private schedules.
 
-Acceptance: students outside the developer's own class can complete the core flows without developer assistance, and identified unsupported academic patterns are either fixed or clearly documented. Serving all students describes the audience; it does not imply every device is supported. Publish the desktop requirements and access gaps honestly.
+Acceptance: students outside the developer's own class can complete the core flows without developer assistance, and identified unsupported academic patterns are either fixed or clearly documented. Serving students and teachers describes the audience; it does not imply every device is supported. Publish the desktop requirements and access gaps honestly.
 
-## E — Candidate Web system decision
+## E — Planned Web implementation
 
-- [ ] Identify the student need and browser/platform coverage a Web system would address; distinguish it from the current public project website.
-- [ ] Compare a static client-local application with an application that has a backend. Evaluate local browser storage, file exchange, offline behavior, hosting/maintenance cost and data exposure before choosing.
-- [ ] Use fictional data for a feasibility prototype. Verify storage denial/quota, browser data clearing, private mode, export/recovery and application updates; do not promise browser storage is permanent or automatically synchronized.
-- [ ] Review threat boundaries and data flows. Prevent imported titles/notes from executing as markup or scripts; restrict third-party scripts and define an effective content security policy for the chosen host.
-- [ ] Keep private schedules, credentials and tokens out of public static assets, source maps, URLs, logs and service-worker caches. Decide cache scope and recovery behavior before adding a service worker.
-- [ ] If a backend is justified, define authentication, per-user authorization, session/CSRF protection, token handling, encryption, retention/deletion, abuse limits and operational ownership before using real student data.
-- [ ] Record a decision to proceed, narrow scope or defer. A proceed decision needs its own implementation, security acceptance and limited-pilot plan; school connection approval remains separate.
+Web is a confirmed target, not yet developed. Complete reusable local behavior first; the learner implements this stage through small lessons.
 
-Acceptance: a documented feasibility and security decision with explicit data location, supported browsers, recovery limits, costs and owner. This stage does not promise a Web release, accounts or cloud synchronization. Follow [ARCHITECTURE.md](ARCHITECTURE.md) and [QUALITY.md](QUALITY.md) for boundaries and candidate-specific checks. No phone app work is included.
+- [ ] Introduce the selected shadcn_ui package in the UI stage after pinned-SDK and dependency checks.
+- [ ] Build manual schedule CRUD, bounded weekly repeats, tasks/completion and Today/Week in the browser with three-language controls.
+- [ ] Default to memory; require explicit selection for browser-local saving. Validate the proposed localStorage snapshot adapter, failures, clearing and single/multiple-tab limits.
+- [ ] Implement strict versioned JSON with 1 MiB UTF-8 / 2,000-record limits, preview, cancel, confirmed whole-data replacement, private export and clearing.
+- [ ] Test malicious input, invalid files, quota/unavailable storage, failed replacement and restoration from export using fictional data.
+- [ ] Verify browser layout, keyboard access, resource paths, hosting security, privacy explanation and actual deployed behavior.
+- [ ] Only after acceptance, prepare a functional school/user demonstration following [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
+
+Acceptance: the declared browser-local flows work and limitations are visible. No backend, account, cloud sync, school API, CSV, notifications or single-occurrence class change is included. The website currently shows concepts only. This stage is provisionally 8–16 extra lessons after reusable desktop behavior exists; see [CURRICULUM.md](CURRICULUM.md), not a fixed delivery promise.
 
 ## Parallel track — Approved university integration
 
@@ -100,9 +104,9 @@ Acceptance: a documented feasibility and security decision with explicit data lo
 
 Follow [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). No credential collection, simulated-login scraping or claim of university endorsement is an assumed fallback. School approval and data availability are external dependencies, not promised milestone dates. A local/manual release can progress independently.
 
-## F — University-wide availability and maintenance
+## F — Wider availability and maintenance
 
-- [ ] Broaden desktop rollout after representative pilot findings and native acceptance; publish supported systems, academic patterns and known gaps. Any accepted Web project follows its own pilot and security gates.
+- [ ] Broaden desktop rollout after representative pilot findings and native acceptance; publish supported systems, academic patterns and known gaps. The planned Web app passes its own pilot and security gates.
 - [ ] Assign release, support, privacy/security and school-contact responsibilities; document handover when the student maintainer graduates or leaves.
 - [ ] Provide onboarding, accessible help, a public issue route and a private route for sensitive reports, with realistic response expectations.
 - [ ] Verify upgrade/recovery procedures, dependency review and rollback/release-withdrawal handling with actual packages.
@@ -110,10 +114,10 @@ Follow [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). No credential col
 - [ ] If approved integration introduces a backend, assess expected concurrency, request limits, operating costs and service degradation before enabling it broadly.
 - [ ] Review success through voluntary task-based feedback and support outcomes; do not require telemetry or invent adoption targets/results.
 
-Acceptance: supported students can discover, install, use and recover the app without knowing its developer; support and maintenance remain assigned. Academic coverage and platform gaps are visible. Being available to all students does not mean claiming every student uses it.
+Acceptance: supported students can discover, install, use and recover the app without knowing its developer; support and maintenance remain assigned. Academic coverage and platform gaps are visible. A broad target audience does not mean claiming every student or teacher uses it.
 
 ## Estimation and deferred scope
 
-The earlier 80–140-hour figure covered a narrower local desktop plan and is not an estimate for this university-wide goal. Re-estimate each stage after a working persisted slice, representative timetable samples, any Web decision and official interface conditions are known. Separate engineering effort from beginner learning, tester/device availability, signing costs and school review time. Do not commit to a total completion date from the old figure.
+The earlier 80–140-hour figure covered a narrower local desktop plan and is not an estimate for this broader product goal. Re-estimate each stage after a working persisted slice, representative timetable samples, Web implementation constraints and official interface conditions are known. Separate engineering effort from beginner learning, tester/device availability, signing costs and school review time. Do not commit to a total completion date from the old figure.
 
 Cross-device cloud synchronization, external calendar integrations, AI extraction, collaborative editing and actual-time tracking remain separate proposals requiring demonstrated demand and their own designs. The expanded audience does not by itself justify adding a hosted database or mandatory account to the offline core.

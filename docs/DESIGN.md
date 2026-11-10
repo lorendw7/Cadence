@@ -1,122 +1,56 @@
-# Design System
+# Cadence design system
 
-Status: design target for courses and personal plans; the current placeholder does not implement these screens. Behavior and scope are defined in [REDESIGN.md](REDESIGN.md).
+Updated: 2026-11-10. Direction: an **academic journal for time planning**, primarily for students and also useful to teachers and others. Courses are one kind of commitment. Cadence has its own identity; do not copy Kyushu University's official image or imply endorsement.
 
-Audience: all Kyushu University students. Product targets are Windows/Linux/macOS, with no mobile app plan. A Web scheduling system is a separate candidate; responsive behavior of the current static website is not evidence of a Web or mobile app. The brand belongs to this independent project and must not imply university endorsement or use an official university mark without permission.
+The selected product UI is Flutter [shadcn_ui](https://pub.dev/packages/shadcn_ui), not installed or implemented yet. The learner entry may retain Material. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. Web is a confirmed development target, not an existing application; mobile apps are excluded.
 
-One word: **落ち着いた** (calm). Cadence looks like a well-organized desk — dense with information, never cluttered. This file is the single source of truth for color, type, and layout; the website follows it too.
+## Palette
 
----
+| Token | Value | Use |
+|-------|-------|-----|
+| Muted wine | `#7C394B` | Primary actions, selected navigation, restrained brand emphasis |
+| Warm paper | `#F6F5F1` | Main canvas |
+| Sage | `#6F877C` | Secondary accent and personal-plan decoration |
+| Ink | `#2F3033` | Main light-surface text |
+| Muted ink | `#666761` | Secondary labels; check actual contrast |
+| Rule | `#DDDCD5` | Dividers and calendar guides |
 
-## Brand color: 臙脂 (Enji) — deep crimson
+These are independent project colors, not a reconstruction of a university palette. Earlier wine/paper tokens are superseded. This documentation/website update applies the new palette to the public site only. Existing application artwork in `assets/brand/` is retained for the learner to migrate during the later app-design stage; no application asset migration is claimed.
 
-Inspired by the wine-red of Kyushu University's school color: scholarly, calm, distinctly Japanese. Not a loud red — a fabric-dyed one.
+Error, warning and success use semantic labels/icons. Color is never the only signal for completion or conflict. Validate actual contrast pairs; no compliance follows automatically from the palette. Dark mode, if offered, requires checked surface/text combinations and is not presumed finished in the initial MVP.
 
-### Tokens
+## Typography and density
 
-| Token | Light | Dark | Use |
-|-------|-------|------|-----|
-| `enji` (seed) | `#8A2432` | — | Material 3 seed color; the brand |
-| `primary` | M3-derived from seed (~`#8A2432`) | M3-derived (~`#FFB2BB` tonal) | Buttons, selected states, FAB, links |
-| `onPrimary` | `#FFFFFF` | derived | Text/icons on primary |
-| `surface` | warm white `#FBF8F7` | `#141012` | App background (slightly warm, paper-like) |
-| `holiday` | `#C4384D` | `#E06A7C` | 祝日 & Sundays on the calendar — **brighter** than enji so it reads as "date color", not "button" |
-| `error` | M3 default `#BA1A1A` | M3 default | Validation, destructive actions |
+Use readable system fallbacks for Japanese, English and Chinese. Dates and times should scan quickly, with weight used for hierarchy. Test 200% text scaling. Decorative handwriting and paper textures must not impair readability or inflate downloads.
 
-Implementation: `ColorScheme.fromSeed(seedColor: Color(0xFF8A2432))` per brightness — Material 3 generates the full tonal palette, dark mode included, for free. Don't hand-pick 30 colors; override only `holiday` as a theme extension.
+Use an 8-unit rhythm, light separators and modest rounding. Show the current date/range, relevant commitments and one clear creation action before secondary controls. Accommodate long course names, locations and translations.
 
-### The red-on-red rule
+## Page composition
 
-Three reds coexist; they must never be confusable:
-1. **Enji (brand)** — brownish, muted → interactive things.
-2. **Holiday red** — brighter, only ever on calendar dates/labels.
-3. **Error red** — M3's default, only for errors/destructive confirmation.
+Today, Week and Tasks share one shell and one planning state. Wide windows may use side navigation; narrow desktop windows use accessible single-column navigation and dialogs. Details open when needed instead of leaving an empty panel.
 
-If a screen makes you hesitate about which red you're seeing, the screen is wrong.
+Courses, meetings, study and personal arrangements are peers. Use category names/icons and restrained accents. Deadline-only tasks do not occupy calendar time. The future full timetable adds explicit conflicts and course exceptions; the MVP advertises only tested behavior.
 
-### Category colors (events)
+Empty states teach the next local action instead of prompting school login. Editing needs validation, cancel and truthful results. Import replacement/clearing explains scope; small routine changes do not all need confirmation dialogs.
 
-Defaults chosen to sit calmly next to enji (user can override per item):
-course `#5B7A9D` slate blue · personal plan `#7D9B76` sage · task `#C9A227` mustard · exam `#9C7BB8` wisteria. Category labels/icons accompany color. Overlaps are side-by-side and independently selectable.
+## Identity and artwork
 
----
+Keep **Cadence** in Latin letters in every language. The independent C/clock mark can remain; never replace it with a university crest. `assets/brand/` holds the earlier application artwork; `website/assets/icon.svg` is the independently themed website rendition for this update. Retain recognizable geometry while documenting this temporary palette difference. Reconcile application assets when the learner reaches the app-design stage, rather than changing core assets during a documentation/website task.
 
-## The mark (app icon)
+## Privacy in the interface
 
-**Concept:** a paper-white **"C"** — the initial, drawn as a broken ring like a clock face — with the **next beat** sitting detached in its opening. A cadence is a rhythm that keeps going; the dot is the beat that hasn't happened yet. Deliberately *not* a calendar grid: every scheduling app on the store is a grid, and a grid says "boxes", not "rhythm".
+The planned first Web version defaults to memory mode. Browser saving is explicit and labelled local, with backup/clearing guidance. Private JSON export is distinct from future filtered timetable sharing. Import preview explains whole-data replacement. No account, backend or cloud-saved state is implied.
 
-| File | What it is |
-|---|---|
-| `assets/brand/cadence-icon.svg` | **Source of truth.** Full icon: enji field + mark, 512×512, `rx=112` rounded square. |
-| `assets/brand/cadence-mark.svg` | Mark alone on transparent ground, `currentColor` — for inline use where the surface already carries the color. |
-| `website/assets/icon.svg` | Deployable copy of the icon (favicon + site header). GitHub Pages publishes only `website/`, so this copy exists on purpose — **when the icon changes, re-copy it; the geometry must never diverge** (only the file comment differs). |
+School demos use fictional entries. No Kyushu affiliation is required. See [SECURITY.md](SECURITY.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
 
-**Construction** (so it can be redrawn exactly): 512×512 · field `#8A2432` (the seed itself, flat — no gradient) · mark `#FDFAF9` · ring `r=136`, `stroke-width=52`, round caps, `stroke-dasharray="75 25"` on `pathLength=100` rotated `45°` → a 90° opening centred at 3 o'clock · beat dot `r=30` at `(392, 256)`. Round caps eat ~11° per side, so the visible gap reads ~68°.
+## Language, access and motion
 
-**Rules**
-- The mark is never re-colored per screen; it is enji-on-paper or paper-on-enji, nothing else.
-- Never place the mark on a *third* red — it would collide with the red-on-red rule above.
-- The name is always written **"Cadence" in Latin letters**, in every locale (ja/en/zh). No katakana rendering, no translated name — the wordmark is the constant across languages.
-- Clear space around the icon ≥ 1/8 of its width; below 24px use the icon (with field), not the bare mark.
+Japanese, English and Chinese provide equal features and limitations. Keep the website's Japanese default and explicit switch. Check keyboard order, focus, input methods, screen-reader labels, narrow windows and long text; do not rely on hover or color alone.
 
-The SVG is the brand source. Platform runners currently include generated starter PNG/ICO assets; replace those with validated brand exports before release. Keep required native assets in version control; regenerate them from the SVG rather than editing pixels manually.
+Use brief restrained transitions and respect reduced motion. Task completion and data operations need clear feedback, not decorative animation.
 
----
+## Website and Web planner
 
-## Typography
+The project website explains the product and links only to actual accepted deliverables. The future Flutter planner will be a separate application even if delivered beside the website. Never put private planning data into public assets. Sharing an origin also shares storage/script trust; different URL paths do not create isolation.
 
-- Use system font fallbacks and verify Japanese, Chinese and English on Windows, Linux and macOS; no bundled font is currently planned.
-- Scale (M3 defaults, don't invent): `titleLarge` screen titles · `titleMedium` cards/dialog headers · `bodyMedium` default · `labelSmall` timestamps/captions.
-- Teaching-week numbers, start times and deadline dates must be easy to scan; use tabular figures where supported.
-- Never below 12sp; everything must survive 200% font scale ([QUALITY.md](QUALITY.md)).
-
-## Layout principles
-
-1. **8dp grid**; screen edge padding 16dp; cards `Radius.circular(12)`.
-2. **One accent per screen** — enji draws the eye to exactly one primary action (usually the FAB).
-3. **Whitespace over dividers; dividers over boxes.** Prefer spacing to lines; avoid nesting cards in cards.
-4. **Calendar is ink-on-paper**: neutral surfaces, thin grid lines; color appears only as small event dots/chips and red holiday numerals. The month view should look like a printed 手帳 (planner), not a candy box.
-5. **Empty states teach**: each empty screen shows one sentence + one button (e.g. 時間割 empty → "学期を設定して授業を追加 → [設定する]").
-6. **Desktop navigation**: Today / Week / Tasks only. Courses and weekly review open from Week; settings live in a menu. Collapse navigation at narrow widths and open details in a sheet; avoid squeezing three columns into a small window. Weekly review uses readable figures and simple labeled bars, with no productivity score, streak pressure or dashboard on startup.
-7. **One week, real time**: courses and personal plans share a time axis, with period labels as guides and all-day items in a separate region. Deadline-only tasks are not drawn as occupied time.
-8. **Explicit edit scope**: show “this occurrence” versus “entire rule” before editing repeats. Preview effects before changing semester periods or importing files.
-9. **Truthful data status**: distinguish manual entries, file snapshots and any approved school connection. Show source/freshness and pending changes without calling imports live sync. Keep private backup and timetable sharing visibly separate.
-10. **Candidate Web boundaries**: if commissioned, explain browser-local storage, backup and clearing in the user's language; never imply shared-device storage is private merely because there is a login screen. Security behavior follows [SECURITY.md](SECURITY.md).
-
-## Motion & feedback
-
-- Standard M3 transitions only; every animation ≤ 300ms; honor reduced-motion.
-- Task completion gives immediate, reversible feedback. Save/import status must be visible without decorative animations.
-
-## Dark mode
-
-Derived from the same seed — never hand-tweaked per screen. Watch two spots: holiday red on dark surfaces (use the lighter `#E06A7C`), and enji chips on dark (M3's tonal container handles it — trust it).
-
----
-
-## Website (same system)
-
-The site uses the same tokens: enji accent on warm-neutral surfaces, light/dark via `prefers-color-scheme`, system font stack. The site should feel like a preview of the app, not a startup landing page.
-
-**Structure** — two hand-written static pages, no build step, deployed from `website/` by [`pages.yml`](../.github/workflows/pages.yml):
-
-```
-website/
-  index.html      landing page   (ja / en / zh in one file)
-  privacy.html    privacy policy (ja / en / zh in one file)
-  assets/site.css shared styles
-  assets/lang.js  shared language switcher
-  assets/preview.js Week/Today concept tabs (no persistence)
-  assets/icon.svg favicon + header mark
-```
-
-**Trilingual, Japanese-first.** Each page carries all three languages as sibling `[data-lang]` blocks; `lang.js` shows exactly one. The rules that matter:
-
-- Lead with the product promise and an original timetable illustration, followed by course exceptions, private sharing, platform targets, progress and FAQ. Label all fictional interface previews as concepts; they must not imply the current placeholder implements those features.
-- Preview tabs support arrow keys, Home and End; FAQ uses native disclosures. Keep visible focus, reduced-motion support and horizontal timetable scrolling inside its own panel on narrow screens.
-
-- **Japanese is the default in the markup, not only in the script**: `site.css` shows `[data-lang="ja"]` and hides the rest, so a visitor with JavaScript off — or reading it before the script runs — still gets a complete Japanese page. The script only ever switches *away* from Japanese.
-- Resolution order: `?lang=` → the visitor's own earlier choice (`localStorage`) → **`ja`**. **Browser language is deliberately not consulted.** Cadence is a Japan-first product and Japanese is the reference locale, so *every* first-time visitor lands on the Japanese page — a Chinese or English browser does not silently redecide that. The switcher in the top bar is always one click away, and once clicked the choice is remembered.
-- Switching also updates `<title>`, the meta description (per-page `window.CADENCE_META`), `<html lang>`, and the `?lang=` in the URL — so a link someone shares opens in the language they were reading.
-- **Translations are peers, not a fallback chain**: no language may carry a feature the others lack. Add a section to all three, or to none.
-- The product name stays "Cadence" in every language; only the surrounding copy is translated.
+The website uses this academic-journal palette and fictional illustrations with accurate status. Distinguish the current teaching placeholder, concept website and planned desktop/Web application. Do not invent school endorsement, adoption, download availability or privacy guarantees.
