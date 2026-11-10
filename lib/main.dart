@@ -65,15 +65,33 @@ class _TodayPageState extends State<TodayPage> {
               itemCount: tasks.length,
               itemBuilder: (context, index) {
                 final task = tasks[index];
-                return ListTile(
-                  title: Text(task.title),
-                  subtitle: task.isCompleted ? Text("已完成") : Text("未完成"),
+                return TaskRow(
+                  task: task,
+                  onToggle: () {
+                    debugPrint('点击了任务: ${task.title}');
+                  },
                 );
               },
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class TaskRow extends StatelessWidget {
+  const TaskRow({super.key, required this.task, required this.onToggle});
+
+  final PlannerTask task;
+  final VoidCallback onToggle;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(task.title),
+      subtitle: Text(task.isCompleted ? "已完成" : "未完成"),
+      onTap: onToggle,
     );
   }
 }

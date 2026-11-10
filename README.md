@@ -6,7 +6,7 @@
 
 <br clear="left">
 
-**Development status:** lessons 1–4 are complete. The learning application shows Today, two read-only sample tasks and a practice counter with increment/reset buttons. All 10 tests pass; the learner confirmed that hot reload retains the counter and both restart types reset it. Next is extracting a task-row component. Task interactions, course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
+**Development status:** lessons 1–5 have passed implementation and automated acceptance, with all 11 tests passing. The learning application shows Today, two sample tasks and a practice counter with increment/reset buttons. The extracted TaskRow receives task data and a callback; tapping a row prints its title without changing completion status. Manual confirmation of the click logs is pending. Next is task completion and undo. Course management, persistence, the selected UI system and the Web application are not implemented. The website shows concepts, not a functional planning MVP.
 
 **Selected direction:** Windows, Linux, macOS and Web, using Flutter's **shadcn_ui** package in an independent academic-journal style. The package is selected but has not been introduced. No Android/iOS product is planned; Android is legacy scaffolding. Web is a confirmed development target, with its own storage, security and delivery acceptance.
 

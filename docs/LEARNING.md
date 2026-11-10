@@ -1,8 +1,10 @@
 # 从零做 Cadence
 
-更新：2026-11-10。第 1–4 节已完成。第四节实现 StatefulWidget、练习计数、“加1”和“归零”；格式、静态分析及全部 10 项测试通过。学习者确认热重载后计数为 3，热重启和完全重启后均为 0。下一步为第五节：提取任务行组件。任务完成/撤销与持久化尚未实现。
+更新：2026-11-10。第 1–5 节实现及自动验收已完成，全部 11 项测试通过。第五节提取 TaskRow，通过 task 传入数据、VoidCallback 传入回调，点击任务行时由父页面打印标题；学习者已完成格式化。第五节实际窗口点击日志尚未由学习者确认。下一步为第六节：任务完成与撤销。任务状态修改与持久化尚未实现。
 
 ## 分工
+
+学习者有其他语言的编程基础，但未学过 Dart 和 Flutter。新语法和框架概念先解释，再结合已有编程知识指导实现；不默认已掌握命名参数、构造函数简写、Widget、生命周期或回调类型。
 
 你写教学入口 `lib/main.dart` 及课程指定模块的功能代码；助手负责测试、解释、审阅和受委托文档。助手不代写核心应用；本次仅整理文档和官网，讲解、评审并准备需要的测试/模板。每次只讲一个小节，等你写完、检查通过后再继续。助手不会提前替你写下一节的实现。
 
@@ -49,7 +51,7 @@
 
 第一节原始测试模板保留在 `lessons/01_task/planner_task_test.dart.txt`。尚未开始的课程使用 `.txt` 后缀，避免在功能文件未创建时因导入失败阻塞自动检查；开始实现后才复制到自动测试目录。
 
-第一节已启用到 `test/domain/coursework/planner_task_test.dart`，第二节已启用到 `test/domain/coursework/planner_task_copy_with_test.dart`。第三节在学习者实现后启用 `test/task_list_widget_test.dart`，检查两条任务的状态对应关系及两种窗口尺寸下的布局。第四节启用 `test/practice_counter_widget_test.dart`，验证加一、归零、再次加一且任务行不变；当前全部 10 项测试通过。`lessons/` 中已有模板不重复计入覆盖数量，也不通过跳过测试掩盖缺少实现。现有启动测试保留，名称已更新为 Today page。
+第一节已启用到 `test/domain/coursework/planner_task_test.dart`，第二节已启用到 `test/domain/coursework/planner_task_copy_with_test.dart`。第三节在学习者实现后启用 `test/task_list_widget_test.dart`，检查两条任务的状态对应关系及两种窗口尺寸下的布局。第四节启用 `test/practice_counter_widget_test.dart`，验证加一、归零、再次加一且任务行不变。第五节在列表测试中增加回调验收：构建时不调用，点击一次调用一次；当前全部 11 项测试通过。`lessons/` 中已有模板不重复计入覆盖数量，也不通过跳过测试掩盖缺少实现。现有启动测试保留，名称已更新为 Today page。
 
 ## 时间预期
 
@@ -57,4 +59,4 @@
 
 学生自己学写桌面核心仍按 **64 节达到 Windows 本地试用版、80–100 节推进到经过更广泛验证的可维护桌面版本**规划，课时总数从第一节起计算。每节约 20–45 分钟讲解，编码与练习另计。复用桌面核心的无后台 Web 暂加 8–16 节，合计约 88–116 节；学校接入和后台另外评估。每约 8 节按进度修订，详见 [课程安排](CURRICULUM.md)。
 
-[第四节：状态与界面重建](lessons/04-state.md) 已完成自动和实际运行验收。接下来进入第五节，先将任务行提取为组件，再逐步学习数据和回调传递；不提前实现任务勾选或保存。可回看[第三节](lessons/03-task-list.md)、[第二节](lessons/02-copy-with.md)与[第一节](lessons/01-task.md)。
+[第五节：任务行组件与回调](lessons/05-task-row.md) 已完成实现和自动验收；下一次先确认实际窗口点击日志，再进入第六节的任务完成与撤销。可回看[第四节](lessons/04-state.md)、[第三节](lessons/03-task-list.md)、[第二节](lessons/02-copy-with.md)与[第一节](lessons/01-task.md)。
