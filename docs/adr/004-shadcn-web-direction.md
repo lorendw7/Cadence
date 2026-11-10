@@ -4,6 +4,8 @@
 **Date:** 2026-11-10
 **Supersedes:** ADR-002's Kyushu-student-only audience and Web-candidate status, and the earlier Material-only product UI recommendation.
 
+**Later refinement:** [ADR-005](005-local-offline-and-school-gated-web.md) adds school-gated Web deployment and user-selected offline retention, and recommends IndexedDB instead of the localStorage candidate below. The original decision is retained as history.
+
 ## Decision
 
 Cadence primarily serves students and is also suitable for teachers and other people organizing time. Courses are one schedule category; no school identity is required. Keep an independent academic-journal identity: muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C`. Do not reproduce the university's official image or imply endorsement.

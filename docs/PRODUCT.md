@@ -1,5 +1,7 @@
 # Product scope
 
+Desktop is primary. Per the user's release constraint, deploy the Web planner only after explicit school permission, including a version without school APIs. Authentication, timetable access and offline retention permissions remain separate. [ADR-005](adr/005-local-offline-and-school-gated-web.md) defines user-selected saving/offline modes and comparable-product research. This does not turn the existing static concept website into a planner.
+
 Updated: 2026-11-10. Cadence is a **time-management application primarily for students, also suitable for teachers and other users**. Courses are one schedule category alongside personal, study and work arrangements. No school identity or affiliation is required. The project is independent and has no university endorsement or integration permission.
 
 ## Direction and actual status
@@ -21,7 +23,7 @@ The learning executable displays Today and two read-only sample tasks with compl
 | Control | Private JSON export and clearing application data |
 | Interface | Flutter `shadcn_ui`; keyboard and readable desktop-browser layouts |
 
-This is a plan, not an existing MVP. The initial browser version excludes backend/accounts, cloud sync, school APIs, CSV, notifications and single-occurrence changes. Browser saving does not encrypt, synchronize or back up data. The exact adapter is evaluated during implementation; `localStorage` is the proposed small-snapshot option, with explicit limits and failure handling. Private JSON transfer is distinct from future filtered timetable sharing.
+This is a plan, not an existing MVP. The initial browser version excludes backend/accounts, cloud sync, school APIs, CSV, notifications and single-occurrence changes. Browser saving does not encrypt, synchronize or back up data. The exact adapter is evaluated during implementation; IndexedDB is the recommended offline-storage option, with explicit limits and failure handling. Private JSON transfer is distinct from future filtered timetable sharing.
 
 ## Broader desktop and learning scope
 

@@ -2,6 +2,8 @@
 
 Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable displays Today and two read-only sample tasks using the learner's task model; the website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
 
+Latest constraint: desktop is primary; deploy the Web planner only after explicit school permission. User-selected local retention, offline use and comparable-product research are in [ADR-005](adr/005-local-offline-and-school-gated-web.md). These features are not implemented.
+
 ## Read in this order
 
 For a complete beginner, start with [the learning path](LEARNING.md) and [lesson 01](lessons/01-task.md). Read the reference documents as needed, not all at once.
@@ -27,9 +29,11 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 | [ADR-002](adr/002-university-wide-product.md) | University-wide goal, desktop scope and conditional extensions |
 | [ADR-003](adr/003-incremental-modular-client.md) | Incremental client architecture and when to introduce each boundary |
 | [ADR-004](adr/004-shadcn-web-direction.md) | shadcn_ui selection, student/teacher audience and confirmed Web target |
+| [ADR-005](adr/005-local-offline-and-school-gated-web.md) | User-selected local storage, offline design, comparable products and school-gated Web deployment |
 | [Future school demo](SCHOOL_DEMO.md) | Preconditions and Chinese/Japanese script; current website is concepts only |
 | [University integration](UNIVERSITY_INTEGRATION.md) | Supervisor support, school permission, read-only scope and connection lifecycle |
 | [Security and data protection](SECURITY.md) | Private data, desktop safeguards, planned Web data boundaries and future security acceptance |
+| [Developer protection technologies](DATA_PROTECTION.md) | Encrypted storage, platform key storage, authenticated backups, safe inputs and release security; candidates not installed |
 | [Notifications](NOTIFICATIONS.md) | Local reminders and platform acceptance |
 | [Quick import](QUICK_IMPORT.md) | Fixed-template CSV/paste for pilot onboarding |
 | [Local statistics](STATISTICS.md) | Planned-time calculation, overlaps, task counts and offline acceptance |

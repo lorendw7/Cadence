@@ -1,5 +1,7 @@
 # Local data model
 
+[ADR-005](adr/005-local-offline-and-school-gated-web.md) refines the proposal: temporary mode has no business-data persistence, drafts or automatic backups; school snapshots require separate consent and permitted retention. The offline Web adapter is now recommended to use IndexedDB. Saving choices and clear-generation metadata are operational settings, not imported records. Add no speculative tables during the current lessons.
+
 Updated: 2026-11-10. Status: local-core schema proposal, not implemented. It supports the local-first student/teacher direction in [ADR-004](adr/004-shadcn-web-direction.md); it does not assume a hosted account database or cloud synchronization. Implement migrations alongside the features in [ROADMAP.md](ROADMAP.md). Conditional university-source metadata is described below as requirements, not tables to create now.
 
 ## Tables
@@ -36,7 +38,7 @@ The local-core schema contains no account/session tables, remote cursors or sync
 
 ## Storage boundaries and planned Web snapshots
 
-The tables above are the future desktop SQLite proposal, not current code. Web is a confirmed target with no implemented planner or persistence adapter. The first Web plan uses memory and opt-in localStorage for a small versioned snapshot, with strict JSON limited to 1 MiB UTF-8 and 2,000 combined schedule/task records. Previewed import replaces the entire snapshot; its private export is not the timetable-sharing or full desktop-backup format below. A browser does not supply desktop filesystem, writer locks, durability or backup semantics. Preserve invariants and transaction outcomes through an explicit adapter contract; do not promise that an ordinary SQLite database file can be shared with the browser.
+The tables above are the future desktop SQLite proposal, not current code. Web is a confirmed target with no implemented planner or persistence adapter. The first Web plan uses memory and opt-in IndexedDB storage for a small versioned snapshot, with strict JSON limited to 1 MiB UTF-8 and 2,000 combined schedule/task records. Previewed import replaces the entire snapshot; its private export is not the timetable-sharing or full desktop-backup format below. A browser does not supply desktop filesystem, writer locks, durability or backup semantics. Preserve invariants and transaction outcomes through an explicit adapter contract; do not promise that an ordinary SQLite database file can be shared with the browser.
 
 Test quota/transaction failures, cleared or evicted data, private-browsing behavior, concurrent tabs, migrations and recovery from interruption. A successful write does not establish permanent browser retention. Explain these limits and provide explicit portable exports before treating browser storage as the user's only copy. Desktop local storage likewise does not by itself imply encryption or protection against another process with access to the user's files.
 
@@ -94,5 +96,7 @@ Check version, references, duplicate IDs, sizes, date constraints and recurrence
 Restoration requires exclusive application maintenance after pending writes and drafts are drained. Preserve logical IDs and entity revisions from the backup, but advance the current local generation and replace the runtime generation so pre-restore requests cannot apply. Rebuild OS delivery state from saved preferences. One writer process owns the data directory; a second instance cannot migrate, restore or dispatch reminders concurrently. Startup and failure ordering are specified in [APPLICATION.md](APPLICATION.md).
 
 ## Migration policy
+
+Developer-side encryption candidates and key lifecycle are specified in [DATA_PROTECTION.md](DATA_PROTECTION.md). drift alone is not encryption. Check the actual cipher-enabled native engine in release builds, protect random per-database keys through verified platform storage, and cover journals/drafts/temp files and recovery copies. Missing keys must not trigger plaintext fallback or replacement with an empty database. Portable encrypted backups need independent recovery, not a plaintext copy of the device key.
 
 Version every schema change; test migration from the previous supported version with representative course exceptions, overnight plans, tasks and imports. Keep user data outside install/build directories. No application upgrade or uninstall behavior may be assumed to erase or migrate data without explicit implementation.

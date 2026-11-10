@@ -1,5 +1,7 @@
 # Quality and acceptance
 
+[ADR-005](adr/005-local-offline-and-school-gated-web.md) adds acceptance for temporary versus persisted data, offline restart, concurrent-tab writes and clearing, source-retention consent, and preventing stale callbacks from recreating deleted data. School permission is required before Web deployment. These are future checks, not passed tests.
+
 The baseline includes task-model tests, the Today startup test and two task-list window-size tests (nine tests total); activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
 
 ## Local and hosted checks
@@ -44,7 +46,7 @@ Use voluntary pilots that include students and teachers across academic backgrou
 
 ## Planned Web implementation and security
 
-These gates apply to the confirmed Web target, which is not developed. The initial scope is memory by default, explicit optional browser-local saving, manual schedules/tasks, bounded weekly repeats and three languages. It does not include a backend or account. The proposed small localStorage snapshot needs its own data flow and storage-failure checks. A static project website is a different deliverable. Browser testing must declare its actual desktop browser/OS coverage; no phone product is implied.
+These gates apply to the confirmed Web target, which is not developed. The initial scope is memory by default, explicit optional browser-local saving, manual schedules/tasks, bounded weekly repeats and three languages. It does not include a backend or account. The recommended IndexedDB adapter needs its own data flow and storage-failure checks. A static project website is a different deliverable. Browser testing must declare its actual desktop browser/OS coverage; no phone product is implied.
 
 | Boundary | Required acceptance before real student data |
 |----------|----------------------------------------------|
@@ -61,6 +63,8 @@ These gates apply to the confirmed Web target, which is not developed. The initi
 Use fictional data throughout implementation and initial demonstrations. Verify the design with meaningful negative cases such as a script-bearing imported title, a second user's record identifier, a cross-site state-changing request and unavailable browser storage when those paths exist. School authentication and data-access approval remain separate requirements. A Web release additionally needs a limited pilot, privacy notice, support owner and rollback/incident procedure; see [RELEASE.md](RELEASE.md).
 
 ## Privacy and release bar
+
+[DATA_PROTECTION.md](DATA_PROTECTION.md) defines staged security acceptance: cipher availability in release builds, missing device keys, plaintext leakage through side files, corrupted/enormous encrypted backups, bounded KDF parameters, interrupted migration and cross-device recovery. Add these tests with their features; they are not existing coverage. Review cryptographic formats and key handling separately from routine UI tests.
 
 Timetable exports must be allowlisted; private backup is visibly separate. The offline core has no mandatory account, uploads or telemetry. Local user-facing weekly statistics remain entirely on-device. Never ask a student to post a full backup, school credentials or session tokens in a public issue.
 

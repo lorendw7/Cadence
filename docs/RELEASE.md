@@ -1,5 +1,7 @@
 # Releases for students, teachers and other users
 
+New release gate: the Web planner may be deployed only after explicit school permission, even if it has no school API. Desktop local use remains independent. Follow [ADR-005](adr/005-local-offline-and-school-gated-web.md) for local-retention choices and offline acceptance. School authentication, data access and permitted retention/export are separate approvals.
+
 Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app is a read-only sample task list for learning and the website a concept presentation. There is no functional MVP, completed release or university endorsement.
 
 ## Before the first trial
@@ -14,6 +16,8 @@ Updated: 2026-11-10. Cadence targets students primarily and also teachers and ot
 - Keep manual entry and local import usable without a school login. Clearly mark official integration unavailable unless its approval and acceptance gates have passed; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
 
 ## Build and package
+
+Before releasing protected storage, verify the actual cipher-enabled runtime and key-store behavior in the distributed build on each supported desktop platform. Follow [DATA_PROTECTION.md](DATA_PROTECTION.md) for dependency review, secret scanning, least-privilege CI, reviewed Action SHA pins and platform signing/trusted distribution. These are future hardening requirements; this documentation update does not change workflows or enable deployment. Checksums alone do not prove publisher identity if both archive and checksum can be replaced.
 
 Build each target on its own host using the pinned Flutter SDK. Keep debug CI checks separate from release packaging.
 
