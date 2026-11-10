@@ -1,63 +1,87 @@
-# 课程安排与完成预期
+# Curriculum and estimates
 
-新增设计约束见 [ADR-005](adr/005-local-offline-and-school-gated-web.md)：Web 部署须经学校允许，新增离线启动与并发清除验收。原 8–16 节是基础 Web 范围的暂估，不能保证覆盖这些新增工作；到该阶段重新拆课估算。这些设计扩展不计作课堂完成，学习者自己写核心代码的安排不变。
+Updated: 2026-11-11. Lessons 1–10 are implemented, with 26 tests passing at the last application check. The learner confirmed the empty-list flow and deletion/undo in the actual window. Title-validation manual confirmation remains pending. The accepted academic-journal layout is planned, not implemented. See [current progress](LEARNING.md).
 
-更新：2026-11-11。当前第 1–10 节实现及自动验收已完成，全部 26 项测试通过。空列表提示已经学习者实际确认；删除与单次撤销已通过自动验收，实际窗口结果待确认。仓库整理已移除删除回调的冗余嵌套 setState。每节约 20–45 分钟讲解和指导，编码、调试与复习另计。学习者有其他语言基础，Dart/Flutter 从零学习；新语法先解释，功能由学习者实现，助手负责测试、审阅及受委托文档。
+The learner writes new core features. Each lesson has about 20–45 minutes of explanation and guidance; coding, debugging, and review take extra time. Explain Dart and Flutter even when the learner knows another language.
 
-## 预计多少节
+## Baseline
 
-以 **64 节形成 Windows 上可供少量学生试用的本地版本**为排课基线，再安排约 **16–36 节**处理真实反馈、三桌面平台和公开维护，桌面阶段按 **80–100 节**规划。课时总数从第一节起计算，是教学估算，不是进度或质量保证；难点可以拆课，已经掌握的内容可以合并。
+Plan for 64 lessons to reach a small Windows pilot, then 16–36 for feedback, wider platform checks, and maintenance. The desktop total is 80–100 lessons from lesson 1.
 
-“完成 64 节”还需实际通过保存、课程、导入、恢复与试用验收，才叫试用版；不会因课时用完而跳过功能或数据保护。更广泛受众目标的达成，还取决于代表性学生验证与维护资源。
+These are estimates. Saving, courses, import, recovery, protection, and trial checks must pass before a pilot. Wider use also needs representative feedback and maintenance capacity. Increase the estimate when needed instead of lowering acceptance.
 
-按前十节实现及自动验收进度，距离 Windows 本地试用版基线约剩 54 节，另需完成本节实际确认。若只想先拥有可保存、重启后恢复任务的本地待办，目标约为累计第 26 节（约剩 16 节）；它尚不包含完整课表、统计和提醒。64 节基线涵盖这些后续功能与试用验收；80–100 节用于更广泛的桌面验证和维护。各数字均为教学估算，不因已有其他语言基础而跳过 Dart/Flutter 必要概念。
+After lesson 10, roughly 54 lessons remain in the Windows baseline. A smaller task app that saves and restores after restart is planned around lesson 26, or about 16 more lessons. It does not include the full timetable, statistics, or reminders.
 
-这个估算仅指学生亲自学写的桌面核心。文档、官网和素材维护不计为核心课程完成。Web 已确定为后续目标；在桌面模型和 UI 能复用、只做无后台浏览器本地版本的假设下，暂增 8–16 节，连同桌面约 88–116 节。若遇到存储或组件兼容性重做，需上调；学校接入、账号后台与云同步不包含在内。手机端不安排课程。
+Web was provisionally estimated at 8–16 extra lessons after reusable desktop behavior, or 88–116 overall. That does not guarantee coverage of later offline-start and concurrent-clear requirements in [ADR-005](adr/005-local-offline-and-school-gated-web.md). Re-estimate before Web starts. School integration, backend work, and cloud sync are separate. Mobile apps are excluded.
 
-## 64 节基础计划
+## First 64 lessons
 
-| 课次 | 节数 | 学习与交付重点 | 阶段结果 |
-|------|------|----------------|----------|
-| 1–2 | 2 | 模型、构造函数、final、copyWith | 已完成基础任务模型练习 |
-| 3–10 | 8 | 列表、组件、状态、输入、完成/撤销、校验 | 内存中的待办闭环，明确重启不保存 |
-| 11–16 | 6 | shadcn_ui 兼容性与引入、主题、组件、导航、窗口适配、状态归属 | 清晰的桌面 UI 骨架；共享状态有需要才引入 Riverpod |
-| 17–26 | 10 | 异步、存储边界、drift/SQLite、迁移、草稿、写入失败 | 任务重启恢复、失败保留输入、基础备份恢复验证 |
-| 27–34 | 8 | 截止、今天分组、时钟、个人安排、重复与冲突 | 个人计划与 Today 的最小闭环 |
-| 35–46 | 12 | 学期、节次、周次、课程规则、单次例外、统一展开 | 周课表、跨周调课、恢复和冲突显示 |
-| 47–54 | 8 | 课程关联与考试、分享白名单、正式导入/备份、CSV/粘贴 | 可核对的课表交换和完整恢复，私人数据边界明确 |
-| 55–58 | 4 | 本地周回顾、统计口径、重叠去重、边界验证 | 计划时间与任务完成统计 |
-| 59–64 | 6 | Windows 运行中提醒、三语基础、数据保护复核、试用包 | 通过实际验收后供少量学生试用 |
-| **合计** | **64** | 不含 Web / 学校接入 | 本地桌面试用基线 |
+| Lessons | Count | Work | Result |
+|---|---|---|---|
+| 1–2 | 2 | Models, constructors, final, copyWith | Basic task model |
+| 3–10 | 8 | Lists, components, state, input, completion, validation, deletion, undo | In-memory task flow |
+| 11–16 | 6 | shadcn_ui compatibility and setup, theme, components, navigation, window sizes, state ownership | Desktop UI structure; Riverpod only when needed |
+| 17–26 | 10 | Async work, storage boundaries, drift/SQLite, migrations, drafts, failed writes | Restart recovery, preserved input, basic backup/restore checks |
+| 27–34 | 8 | Deadlines, Today groups, clock, personal plans, repeats, conflicts | Small personal-planning flow |
+| 35–46 | 12 | Semesters, periods, teaching weeks, course rules, exceptions, occurrence expansion | Week timetable, moved classes, restore, conflicts |
+| 47–54 | 8 | Course links, exams, sharing allowlists, import/backup, CSV/paste | Reviewable exchange and full recovery |
+| 55–58 | 4 | Weekly review, calculation rules, overlap removal, boundaries | Planned-time and completion statistics |
+| 59–64 | 6 | Windows running-app reminders, language checks, protection review, pilot package | Small pilot after actual acceptance |
+| **Total** | **64** | Excludes Web and school integration | Desktop pilot baseline |
 
-表中每行是容量预留，不要求一个小节塞进整项复杂功能。三语、键盘、数据安全和测试贯穿所有阶段；最后阶段做集中验收，不把这些要求拖到最后才考虑。Linux/macOS 编译检查可早做，完整原生交互验收放入后续阶段。
+Each row reserves capacity; it is not one lesson. Languages, keyboard access, data safety, and tests apply throughout. Linux/macOS compile checks can start early; full native interaction checks follow later.
 
-## 第 3–10 节的近期安排
+## Lessons 3–10
 
-| 课次 | 一个小目标 | 验收方式 |
-|------|------------|----------|
-| 3 | 将两个 PlannerTask 显示为只读列表 | 标题和完成状态分别对应数据，没有布局异常 |
-| 4 | 理解 StatefulWidget 与 setState | 一个临时界面值改变后能重画，说明数据仍在内存 |
-| 5 | 将任务行提取为接收数据与回调的组件 | 行展示一致，父页面仍持有列表 |
-| 6 | 点击任务行完成与撤销 | 使用 copyWith 和 setState 替换对应对象，其他任务不变；已通过自动与实际验收 |
-| 7 | 从输入框取得任务标题 | 读取、控制器释放和重建保留输入已通过自动验收 |
-| 8 | 点击添加一条任务 | 唯一 ID、列表增一、成功后清空输入；自动及实际运行通过 |
-| 9 | 拒绝空白标题，提供空列表反馈 | 自动验收通过，空列表实际运行已确认 |
-| 10 | 删除与可行的撤销，回顾数据流 | 单次撤销恢复原对象、位置和状态；自动通过，实际确认待完成 |
+| Lesson | Goal | Acceptance |
+|---|---|---|
+| 3 | Display two tasks | Titles and states match at two window sizes |
+| 4 | Learn StatefulWidget and setState | Counter changes rebuild the UI; explain memory-only state |
+| 5 | Extract a task row | Parent keeps the list and passes callbacks |
+| 6 | Toggle completion | Replace the right object; automatic and manual checks passed |
+| 7 | Read a title | Input survives rebuilds; controller is disposed |
+| 8 | Add a task | Unique session IDs, new row, cleared input; automatic and manual checks passed |
+| 9 | Reject blank titles; show an empty list | Automatic checks passed; empty-list flow confirmed |
+| 10 | Delete and undo once | Restore original object, position, and state; automated checks passed and actual-window deletion/undo confirmed |
 
-后续课程在前一节通过后再细化。当前先完成[第 10 节](lessons/10-delete-undo.md) 实际确认，然后进入第十一节桌面 UI 阶段。
+The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Continue with lesson 11; retain the separate title-validation manual check in the learning log.
 
-## 从试用到可维护版本
+## Lessons 11–16: desktop UI foundations
 
-第 65–80 节优先处理代表性学生反馈、院系课程差异、Linux/macOS 真机验收、键盘与读屏、语言覆盖、恢复和升级、发布文档与维护流程。第 81–100 节为缺陷、复杂输入、性能和安全补强留出弹性；退出进程后的通知需按平台决定是否纳入，未验证的平台不承诺该能力。
+Use the accepted [layout specification](UI_ARCHITECTURE.md#pages-and-navigation). Explain each new Dart or Flutter construct before the exercise. The learner writes the application changes; review one small step before continuing. A numbered lesson may need several exchanges.
 
-每完成约 8 节回顾一次：实际学习时间、返工原因、未支持行为、下一阶段范围。按每周 3–5 节计算，64 节约 13–22 周，80–100 节约 16–34 周，仅代表课程节奏；练习量、休息、设备与试用等待会改变日历进度。
+| Lesson | Concepts and exercise | Acceptance |
+|---|---|---|
+| 11 | Theme basics: top-level constants, Color, hexadecimal ARGB and named theme arguments. Apply paper and wine through the existing Material theme. | The app has the new canvas and primary color direction; task behavior stays intact. No package migration yet. See [lesson 11](lessons/11-theme.md). |
+| 12 | Check shadcn_ui compatibility and license, choose and lock a version, explain dependencies and the theme/root adapter, then introduce the package with one used control. | The selected package runs with the pinned SDK; migrated and remaining controls work together, with no unused dependency. |
+| 13 | Build a coherent task surface: spacing, text hierarchy, input, buttons and an explicit completion checkbox. Introduce each needed component API before use. | Add, validate, complete, delete and undo still work; keyboard labels and narrow-window controls remain usable. Keep title editing deferred until an editor exists. |
+| 14 | Introduce the desktop shell: sidebar layout, selection and state ownership. Put the real task flow in Tasks. | The sidebar reflects the current page. Rebuilds preserve tasks, input and undo. Add Today/Week destinations when their real features arrive; no fake calendar pages. |
+| 15 | Explain layout constraints and responsive choices. Adapt the shell and list to narrow windows, long text and keyboard focus. | No unreachable controls or overflow in agreed test sizes; test 200% text scaling and visible focus. |
+| 16 | Review component responsibilities and state lifetime; remove the practice counter after its teaching role ends and update its tests deliberately. | One clear owner for task state; all applicable task regressions pass. Introduce Riverpod only if actual shared-state needs justify it. |
 
-## 后续 Web 暂定容量
+By lesson 16, expect a themed desktop task application with a usable shell. The full Today timeline, weekly calendar, course editor and persistence are later milestones. Website mockups do not count toward these results.
 
-8–16 节仅覆盖复用已完成桌面行为后：Web 构建与部署路径、浏览器布局/键盘、显式保存与失败处理、严格 JSON 预览替换/导出/清除、存储丢失与隐私提示、浏览器安全及真实部署验收。初期不含账号、后台、学校接口、CSV、通知或单次调课。不是在 8 节里从零重写整个产品；到达该阶段后再分解和重估。
+## Delivering the rest of the layout
 
-## 正式项目与教学的关系
+- Lessons 17–26 add explicit saving, restart recovery and failure handling to the task application.
+- Lessons 27–34 add real deadlines and personal plans, then the two-column Today page, next-commitment summary, clock behavior and an editor overlay. Introduce a simple Week view when timed personal plans can populate it.
+- Lessons 35–46 extend Week with courses, teaching weeks, exceptions, conflicts and the collapsible task tray. Keep seven-day and narrow-window behavior testable.
+- Later stages add import, review and reminders through the existing shell. Drag-to-schedule remains optional and is not included in the baseline acceptance.
 
-课程练习完成后，按 [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md) 整理为小范围可审阅变更：验收任务 → 实现 → 测试 → 审阅 → 合并；到里程碑才打包发布。每节课不等于一个版本，文档中的未来测试也不等于已通过。
+These allocations are capacity estimates, not a promise that a complex feature fits one exchange. Re-estimate when component migration or calendar work needs more practice.
 
-产品范围以 [PRODUCT.md](PRODUCT.md)、验收里程碑以 [ROADMAP.md](ROADMAP.md) 为准。本文件只安排学习容量；如验收需要更多练习，更新估算，不降低验收标准。
+## After the baseline
+
+Lessons 65–80 focus on student feedback, varied course structures, Linux/macOS runtime behavior, keyboard and screen readers, languages, recovery, upgrades, releases, and maintenance. Lessons 81–100 allow for defects, complex input, performance, and security work.
+
+Decide support for reminders after app exit separately for each platform. Do not claim it on an untested platform.
+
+Review actual learning time, rework, unsupported behavior, and next scope about every eight lessons. At three to five lessons a week, 64 lessons means about 13–22 weeks, and 80–100 means about 16–34 weeks. Practice, breaks, equipment, and trial waiting time change the calendar.
+
+## Later Web work
+
+The provisional Web capacity covers builds and delivery, browser layout and keyboard access, explicit saving, failed storage, strict JSON preview/replace/export/clear, storage-loss notices, browser security, and real deployment checks. It assumes desktop behavior can be reused.
+
+The initial scope excludes accounts, a backend, school APIs, CSV, notifications, and single-occurrence changes. Web deployment requires school permission. Break down and re-estimate this stage before implementation.
+
+Follow [the workflow](PROJECT_WORKFLOW.md) for reviewed changes. A lesson is not a release; a planned test is not a passed test. Documents, artwork, and website work do not advance the core lesson count. [PRODUCT.md](PRODUCT.md) defines scope and [ROADMAP.md](ROADMAP.md) defines acceptance.

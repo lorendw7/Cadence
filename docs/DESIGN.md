@@ -11,13 +11,29 @@ The selected product UI is Flutter [shadcn_ui](https://pub.dev/packages/shadcn_u
 | Muted wine | `#7C394B` | Primary actions, selected navigation, restrained brand emphasis |
 | Warm paper | `#F6F5F1` | Main canvas |
 | Sage | `#6F877C` | Secondary accent and personal-plan decoration |
+| Dark sage | `#415A4E` | Green labels and icons on light surfaces |
 | Ink | `#2F3033` | Main light-surface text |
-| Muted ink | `#666761` | Secondary labels; check actual contrast |
+| Muted ink | `#666761` | Secondary labels on warm paper |
 | Rule | `#DDDCD5` | Dividers and calendar guides |
 
 These are independent project colors, not a reconstruction of a university palette. Earlier wine/paper tokens are superseded. The 2026-11-11 artwork update supplies matching v2 brand assets, interface icons, empty-state graphics and platform exports. Windows/macOS launcher references and the website use v2; Flutter page theming remains a later learner exercise. Historical artwork is retained. See the [artwork library](../assets/README.md).
 
 Error, warning and success use semantic labels/icons. Color is never the only signal for completion or conflict. Validate actual contrast pairs; no compliance follows automatically from the palette. Dark mode, if offered, requires checked surface/text combinations and is not presumed finished in the initial MVP.
+
+### Color pairs
+
+These ratios use the exact solid colors on warm paper `#F6F5F1`. Opacity, images and different surfaces change the result. Check final controls and focus states in context.
+
+| Foreground | Contrast on paper | Use |
+|---|---:|---|
+| Ink `#2F3033` | 12.10:1 | Body text and headings |
+| Muted ink `#666761` | 5.23:1 | Secondary text |
+| Wine `#7C394B` | 7.57:1 | Links, selected labels and focus |
+| Dark sage `#415A4E` | 6.88:1 | Green text and meaningful icons |
+| Sage `#6F877C` | 3.54:1 | Decoration; do not use for normal small text |
+| Rule `#DDDCD5` | 1.26:1 | Decorative separators; not the only control boundary |
+
+Keep the light sage accent for the illustration family. Dark sage provides readable green labels without changing that artwork. Do not lower text opacity to create a muted state; use a checked solid color and a text or icon label when the state matters.
 
 ## Typography and density
 
@@ -27,7 +43,13 @@ Use an 8-unit rhythm, light separators and modest rounding. Show the current dat
 
 ## Page composition
 
-Today, Week and Tasks share one shell and one planning state. Wide windows may use side navigation; narrow desktop windows use accessible single-column navigation and dialogs. Details open when needed instead of leaving an empty panel.
+The layout below was accepted on 2026-11-11. It is a product design, not an implemented screen. Today, Week and Tasks share a light sidebar and one planning state. Put Settings at the bottom; open Courses and Weekly Review from Week.
+
+On wide windows, Today has a task column on the left and a daily timeline on the right, starting at roughly 40% / 60% of the content width. Its header shows the date, today's pending count and New. Week gives most space to a seven-day calendar, with a task tray that can be collapsed. Tasks uses a focused list. Full editors open in a right-side overlay only when needed.
+
+Use fine rules and whitespace to separate sections. Avoid a dashboard of summary cards, a permanent details column and decorative notebook controls. Preserve the academic-journal character through typography, paper color, quiet accents and clear dates. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md#pages-and-navigation) defines the page interactions and responsive behavior.
+
+Narrow windows collapse navigation and stack Today's sections. Keep Week readable through a bounded calendar scroll area or a clearly labelled day view. Editors fit the available window. Preserve selection, drafts, scroll position and focus when resizing or closing an editor.
 
 Courses, meetings, study and personal arrangements are peers. Use category names/icons and restrained accents. Deadline-only tasks do not occupy calendar time. The future full timetable adds explicit conflicts and course exceptions; the MVP advertises only tested behavior.
 
