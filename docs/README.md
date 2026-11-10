@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable displays Today, two sample tasks and the learner's increment/reset practice counter. Lessons 1–5 have passed implementation and automated acceptance with 11 passing tests. TaskRow receives data and a callback that prints the tapped task title; completion state remains unchanged, and manual click-log confirmation is pending. The website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
+Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable displays Today, two sample tasks and the learner's increment/reset practice counter. Lessons 1–6 have passed implementation and automated acceptance with 13 passing tests. Tapping a TaskRow toggles completion through its parent callback; the learner confirmed immediate updates and preservation of task state after counter interactions in the actual window. Input and task creation are next, and persistence is not implemented. The website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
 
 Latest constraint: desktop is primary; deploy the Web planner only after explicit school permission. User-selected local retention, offline use and comparable-product research are in [ADR-005](adr/005-local-offline-and-school-gated-web.md). These features are not implemented.
 
@@ -40,7 +40,8 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 | [Quick import](QUICK_IMPORT.md) | Fixed-template CSV/paste for pilot onboarding |
 | [Local statistics](STATISTICS.md) | Planned-time calculation, overlaps, task counts and offline acceptance |
 | [Lesson 4](lessons/04-state.md) | Completed state/button exercise, hot-reload versus restart experiment and acceptance results |
-| [Lesson 5](lessons/05-task-row.md) | TaskRow data and callback exercise, automated acceptance and pending manual click-log check |
+| [Lesson 5](lessons/05-task-row.md) | Historical TaskRow data/callback exercise; its log callback is superseded by lesson 6 |
+| [Lesson 6](lessons/06-task-toggle.md) | Task completion/undo, setState debugging, 13 passing tests and learner-confirmed window behavior |
 | [Learning path](LEARNING.md) | Technology stack, teaching agreement and one-lesson workflow |
 | [Curriculum](CURRICULUM.md) | 64-lesson Windows / 80–100 desktop baseline, provisional 8–16 extra Web lessons |
 | [Project workflow](PROJECT_WORKFLOW.md) | Acceptance tasks, implementation, review, merge and milestone release |

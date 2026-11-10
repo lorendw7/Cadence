@@ -31,13 +31,13 @@ class TodayPage extends StatefulWidget {
 class _TodayPageState extends State<TodayPage> {
   int practiceCount = 0;
 
+  final tasks = <PlannerTask>[
+    PlannerTask(id: 'demo-1', title: '提交课程报告', isCompleted: false),
+    PlannerTask(id: 'demo-2', title: '复习线性代数', isCompleted: true),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final tasks = <PlannerTask>[
-      PlannerTask(id: 'demo-1', title: '提交课程报告', isCompleted: false),
-      PlannerTask(id: 'demo-2', title: '复习线性代数', isCompleted: true),
-    ];
-
     return Scaffold(
       appBar: AppBar(title: const Text('Cadence')),
       body: Column(
@@ -68,7 +68,11 @@ class _TodayPageState extends State<TodayPage> {
                 return TaskRow(
                   task: task,
                   onToggle: () {
-                    debugPrint('点击了任务: ${task.title}');
+                    setState(() {
+                      tasks[index] = task.copyWith(
+                        isCompleted: !task.isCompleted,
+                      );
+                    });
                   },
                 );
               },
