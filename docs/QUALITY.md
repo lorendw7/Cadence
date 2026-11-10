@@ -2,13 +2,17 @@
 
 [ADR-005](adr/005-local-offline-and-school-gated-web.md) adds acceptance for temporary versus persisted data, offline restart, concurrent-tab writes and clearing, source-retention consent, and preventing stale callbacks from recreating deleted data. School permission is required before Web deployment. These are future checks, not passed tests.
 
-The baseline includes task-model tests, the Today startup test and two task-list window-size tests (nine tests total); activated lesson coverage is tracked in [LEARNING.md](LEARNING.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
+Accepted lesson coverage and test counts are tracked in [LEARNING.md](LEARNING.md), with the current behavior summarized in the [project README](../README.md). The requirements below are acceptance gates for planned features, not claims that the features exist. The student/teacher audience adds representative academic coverage and support requirements. Windows/Linux/macOS and Web are targets; mobile work is excluded. shadcn_ui is selected but not introduced. Web behavior and security checks below apply to future learner implementation, not an existing MVP.
 
 ## Local and hosted checks
 
 Run `dart format lib test`, `flutter analyze --fatal-infos --fatal-warnings` and `flutter test`. The [Flutter workflow](../.github/workflows/flutter.yml) checks format, analysis and tests, then compiles Windows, Linux and macOS debug apps. The [Pages workflow](../.github/workflows/pages.yml) deploys the static site.
 
 A native build is not a UI test or a signed release. Platform functionality is accepted only after testing on the corresponding host.
+
+## Artwork and website checks
+
+For the v2 library, validate SVG parsing, PNG dimensions/alpha, ICO frames, ICNS structure, native resource mappings and equality of deployment copies. Inspect icon readability and state illustrations visually; decorative strokes are not accessibility evidence for interactive controls. Website checks cover both pages in Japanese, English and Chinese at wide/narrow widths, local asset loading, translation-key coverage, preview interaction and page overflow. The recorded 2026-11-11 results and platform limitations are in the [artwork library](../assets/README.md#本次验证). Recheck the exact source revision before publishing changes; a local Windows build is not macOS/Linux runtime acceptance.
 
 ## Tests worth maintaining
 

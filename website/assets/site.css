@@ -134,6 +134,8 @@ h2 { font-size: clamp(30px,3.1vw,44px); line-height: 1.4; letter-spacing: -1.1px
 .editorial-row h3 { font-family: var(--serif); font-weight: 500; font-size: 23px; line-height: 1.5; }
 .editorial-row > p { font-size: 13px; line-height: 1.9; color: var(--muted); max-width: 470px; }
 .row-symbol { color: var(--sage); text-align: right; font-size: 27px; font-weight: 300; }
+.row-symbol img { width: 28px; height: 28px; display: block; }
+.journal-editorial { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; margin-bottom: 24px; border-radius: 4px; }
 .life-section { background: #eeeee7; overflow: hidden; }
 .life-inner { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 105px; align-items: center; padding-block: 75px; }
 .life-inner h2 { max-width: 500px; }

@@ -1,4 +1,4 @@
-<img src="assets/brand/cadence-icon.svg" alt="" width="88" align="left" hspace="16">
+<img src="assets/brand/cadence-icon-v2.svg" alt="" width="88" align="left" hspace="16">
 
 # Cadence
 
@@ -24,6 +24,14 @@ Cadence is independent. It does not copy Kyushu University's official identity o
 - Later desktop lessons add teaching weeks, single-class changes, filtered timetable sharing, CSV/paste, local review and tested reminders.
 
 The planned initial Web scope has no backend, account, school API, cloud synchronization, CSV, notifications or single-occurrence class changes. Private JSON exports are not a filtered course-sharing format. Browser storage is neither encrypted nor a durable backup. These are designs, not available features; [PRODUCT.md](docs/PRODUCT.md) defines the stage boundaries.
+
+## Artwork and visual identity
+
+The v2 artwork library follows the academic-journal palette and retains Cadence's original C mark. It includes 56 interface icons, 10 state illustrations, an editorial image, paper patterns, platform icon exports and a website sharing card. The website and Windows/macOS launcher references use the new assets; application page theming remains a future learner exercise.
+
+[Visual overview](assets/preview.png) · [Full catalogue](assets/catalog.html) · [Usage and regeneration](assets/README.md) · [Design system](docs/DESIGN.md)
+
+The artwork passed asset validation and three-language website checks at wide and narrow widths. A local Windows debug build succeeded; macOS/Linux runtime icon acceptance remains pending. These assets are not a feature release or evidence that the planned screens are implemented.
 
 ## Learn by building
 
@@ -51,7 +59,7 @@ Use a corresponding Linux/macOS target on a configured host. Web setup will be a
 | `test/` | Active tests; pending lesson templates remain separate |
 | `windows/`, `linux/`, `macos/` | Native desktop runners |
 | `android/` | Legacy scaffolding, no mobile product commitment |
-| `assets/brand/` | Independent project artwork |
+| `assets/` | [Independent artwork library](assets/README.md): brand, icons, illustrations and platform exports |
 | `docs/` | Product, security, architecture, learning and release plans |
 | `website/` | Japanese/English/Chinese concept website |
 | `.github/workflows/` | App checks, builds and website deployment |

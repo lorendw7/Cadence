@@ -2,7 +2,11 @@
 
 New release gate: the Web planner may be deployed only after explicit school permission, even if it has no school API. Desktop local use remains independent. Follow [ADR-005](adr/005-local-offline-and-school-gated-web.md) for local-retention choices and offline acceptance. School authentication, data access and permitted retention/export are separate approvals.
 
-Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app is a read-only sample task list with an in-memory increment/reset practice counter; lessons 1–4 are complete. The website is a concept presentation. There is no functional MVP, completed release or university endorsement.
+Updated: 2026-11-11. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current accepted learning baseline supports task input, addition, completion/undo and blank-title validation in memory; current lesson acceptance is tracked in the [project README](../README.md) and [learning log](LEARNING.md). The website is a concept presentation. There is no functional MVP, completed release or university endorsement.
+
+## Artwork readiness
+
+The 2026-11-11 [v2 artwork library](../assets/README.md) supplies Windows ICO, macOS PNG/ICNS, Linux-ready PNG/SVG and website assets. Windows and macOS launcher references use v2; a local Windows debug build passed. Check the installed icon, taskbar/Dock and operating-system icon cache on each release target. Linux desktop-entry/icon installation and macOS/Linux runtime acceptance remain pending. Source publication and a concept-site deployment do not constitute a packaged application release.
 
 ## Before the first trial
 

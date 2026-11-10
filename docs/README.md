@@ -4,6 +4,8 @@ Cadence is a planned **time-management application primarily for students and al
 
 Latest constraint: desktop is primary; deploy the Web planner only after explicit school permission. User-selected local retention, offline use and comparable-product research are in [ADR-005](adr/005-local-offline-and-school-gated-web.md). These features are not implemented.
 
+The 2026-11-11 [artwork update](../assets/README.md) adds a complete v2 asset library and concept-site integration. Windows/macOS launcher references are updated; Flutter page theming remains a future lesson. Browse the [visual overview](../assets/preview.png) or [asset catalogue](../assets/catalog.html).
+
 ## Read in this order
 
 For a complete beginner, start with [the learning path](LEARNING.md) and [lesson 01](lessons/01-task.md). Read the reference documents as needed, not all at once.
@@ -20,6 +22,7 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 |----------|---------|
 | [Academic calendar](HOLIDAYS.md) | Teaching weeks, vacations, cancelled and make-up classes |
 | [Design system](DESIGN.md) | Brand, responsive layout and language behavior |
+| [Artwork library](../assets/README.md) | v2 brand, 56 icons, state illustrations, platform exports and visual catalogue |
 | [UI components and layout](UI_ARCHITECTURE.md) | Selected shadcn_ui direction, staged migration and page/UI state design |
 | [Quality](QUALITY.md) | Domain, file, UI and platform acceptance |
 | [Today](TODAY.md) | Daily task counts, grouping and date refresh |

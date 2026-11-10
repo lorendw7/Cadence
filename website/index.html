@@ -10,12 +10,19 @@
 <meta property="og:title" content="Cadence — 自分のリズムで、一週間を。">
 <meta property="og:description" content="授業、研究、仕事、自分の時間。今日・週間・タスクをつなぐ Cadence の開発構想と、架空の予定で試せるインタラクティブなデザイン。">
 <meta property="og:url" content="https://lorendw7.github.io/Cadence/">
+<meta property="og:image" content="https://lorendw7.github.io/Cadence/assets/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cadence — independent time planner in development">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://lorendw7.github.io/Cadence/">
 <link rel="alternate" hreflang="ja" href="https://lorendw7.github.io/Cadence/?lang=ja">
 <link rel="alternate" hreflang="en" href="https://lorendw7.github.io/Cadence/?lang=en">
 <link rel="alternate" hreflang="zh-Hans" href="https://lorendw7.github.io/Cadence/?lang=zh">
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css?v=20261110-2">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/icon-v2.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/site.css?v=20261111-art">
 <script src="assets/content.js?v=20261110-2" defer></script>
 <script src="assets/lang.js?v=20261110-2" defer></script>
 <script src="assets/preview.js?v=20261110-2" defer></script>
@@ -24,7 +31,7 @@
 <a class="skip-link" href="#main">本文へ / Skip to content / 跳至正文</a>
 <header class="site-header">
   <nav class="nav-shell" aria-label="Cadence">
-    <a class="brand" href="index.html" data-language-link><img src="assets/icon.svg" width="32" height="32" alt=""><span>Cadence</span></a>
+    <a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a>
     <div class="nav-middle"><a href="#essentials"><span data-i18n="nav.features">できること</span></a><a href="#your-data"><span data-i18n="nav.privacy">データについて</span></a></div>
     <div class="nav-end"><div class="languages" role="group" aria-label="表示言語" data-i18n-aria="lang.label"><button type="button" data-set="ja" aria-pressed="true">日本語</button><button type="button" data-set="en" aria-pressed="false">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div><a class="nav-app" href="#preview"><span data-i18n="nav.open">デザインを見る</span><span aria-hidden="true">↗</span></a></div>
   </nav>
@@ -42,7 +49,7 @@
     <figure id="preview" class="planner-figure" aria-describedby="preview-caption">
       <div class="figure-top"><span class="tiny-rule"></span><span data-i18n="preview.label" class="micro">A WEEK, IN YOUR OWN RHYTHM</span><span class="edition">01</span></div>
       <div class="planner">
-        <div class="planner-top"><div><p data-i18n="preview.date" class="planner-date">11月12日・木曜日</p><p data-i18n="preview.sample" class="sample-label">架空のサンプル</p></div><img src="assets/icon.svg" alt="" width="27" height="27"></div>
+        <div class="planner-top"><div><p data-i18n="preview.date" class="planner-date">11月12日・木曜日</p><p data-i18n="preview.sample" class="sample-label">架空のサンプル</p></div><img src="assets/icon-v2.svg" alt="" width="27" height="27"></div>
         <div class="preview-tabs" role="tablist" aria-label="表示の切り替え" data-i18n-aria="preview.tabs" hidden>
           <button type="button" role="tab" id="tab-today" aria-controls="panel-today" aria-selected="true" data-view="today"><span data-i18n="preview.today">今日</span></button>
           <button type="button" role="tab" id="tab-week" aria-controls="panel-week" aria-selected="false" tabindex="-1" data-view="week"><span data-i18n="preview.week">週間</span></button>
@@ -94,15 +101,16 @@
   <section class="essentials page-width" id="essentials">
     <div class="section-intro"><p data-i18n="features.kicker" class="eyebrow">01 / THE EVERYDAY ESSENTIALS</p><h2 data-i18n="features.title">見たいのは、次の一歩。</h2><p data-i18n="features.intro" class="section-lead">今と一週間をつなぐ、三つの入口を設計しています。以下は開発予定の機能です。</p></div>
     <div class="editorial-rows">
-      <article class="editorial-row"><span class="row-index">01</span><h3><span data-i18n="features.today.title">今日に、集中する。</span></h3><p data-i18n="features.today.text">時間順の予定と未完了のタスクを確認できる設計です。次の授業、会議、自分の時間を、同じ流れに並べます。</p><span class="row-symbol" aria-hidden="true">◷</span></article>
-      <article class="editorial-row"><span class="row-index">02</span><h3><span data-i18n="features.week.title">一週間を、見渡す。</span></h3><p data-i18n="features.week.text">授業と個人の予定を並べ、日時や場所を編集する計画です。毎週の繰り返しには、明確な終了日を設けます。</p><span class="row-symbol" aria-hidden="true">▦</span></article>
-      <article class="editorial-row"><span class="row-index">03</span><h3><span data-i18n="features.tasks.title">やることを、ひとつずつ。</span></h3><p data-i18n="features.tasks.text">やることを書きとめ、終えたらチェックする機能を計画しています。課題にも、研究の準備にも、日々の小さな用事にも。</p><span class="row-symbol" aria-hidden="true">✓</span></article>
+      <article class="editorial-row"><span class="row-index">01</span><h3><span data-i18n="features.today.title">今日に、集中する。</span></h3><p data-i18n="features.today.text">時間順の予定と未完了のタスクを確認できる設計です。次の授業、会議、自分の時間を、同じ流れに並べます。</p><span class="row-symbol" aria-hidden="true"><img src="assets/icons/today.svg" width="28" height="28" alt="" loading="lazy"></span></article>
+      <article class="editorial-row"><span class="row-index">02</span><h3><span data-i18n="features.week.title">一週間を、見渡す。</span></h3><p data-i18n="features.week.text">授業と個人の予定を並べ、日時や場所を編集する計画です。毎週の繰り返しには、明確な終了日を設けます。</p><span class="row-symbol" aria-hidden="true"><img src="assets/icons/week.svg" width="28" height="28" alt="" loading="lazy"></span></article>
+      <article class="editorial-row"><span class="row-index">03</span><h3><span data-i18n="features.tasks.title">やることを、ひとつずつ。</span></h3><p data-i18n="features.tasks.text">やることを書きとめ、終えたらチェックする機能を計画しています。課題にも、研究の準備にも、日々の小さな用事にも。</p><span class="row-symbol" aria-hidden="true"><img src="assets/icons/tasks.svg" width="28" height="28" alt="" loading="lazy"></span></article>
     </div>
   </section>
   <section class="life-section">
     <div class="life-inner page-width">
       <div><p data-i18n="use.kicker" class="eyebrow">FOR LEARNING, AND LIVING</p><h2 data-i18n="use.title">授業だけで、一日は終わらない。</h2><p data-i18n="use.text" class="section-lead">九大の学生の暮らしから考えた、誰でも使える時間管理を目指して。学生にも、教員にも、学校のアカウントを持たない人にも。</p></div>
       <div class="life-notebook" aria-hidden="true">
+        <img class="journal-editorial" src="assets/journal-editorial.png" width="1536" height="1024" alt="" loading="lazy" decoding="async">
         <div class="notebook-label"><span>NOTES ON A WEEK</span><span>— 01</span></div>
         <div class="notebook-line"><i class="notebook-dot dot-1"></i><span data-i18n="use.tag1">授業・学習</span><span class="notebook-stroke"></span></div>
         <div class="notebook-line"><i class="notebook-dot dot-2"></i><span data-i18n="use.tag2">研究・面談</span><span class="notebook-stroke"></span></div>
@@ -127,6 +135,6 @@
     <details><summary><span data-i18n="faq.q4">九州大学の公式サービスですか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a4">いいえ。Cadence は独立したプロジェクトです。大学の公認やシステム接続の許可は取得していません。将来の学校連携は、正式な許可とデータ提供方法の確認が前提です。</p></details></div></section>
   <section class="closing page-width"><p data-i18n="closing.kicker" class="eyebrow">A LITTLE STRUCTURE. A LITTLE SPACE.</p><div class="closing-line"><h2 data-i18n="closing.title">次の一週間を、想像してみる。</h2><a class="button button-wine" href="#preview"><span data-i18n="hero.open">デザインを試す</span><span aria-hidden="true">↗</span></a></div><p data-i18n="closing.text" class="section-lead">今日・週間・タスク。架空の予定で、使い方を試せます。</p></section>
 </main>
-<footer class="site-footer page-width"><div><a class="brand" href="index.html" data-language-link><img src="assets/icon.svg" width="32" height="32" alt=""><span>Cadence</span></a><p data-i18n="footer.tagline" class="footer-tagline">授業にも、自分の時間にも。</p></div><div class="footer-right"><div class="footer-links"><a href="privacy.html?lang=ja" data-language-link><span data-i18n="footer.privacy">データとプライバシー</span></a><a href="https://github.com/lorendw7/Cadence/blob/main/docs/SCHOOL_DEMO.md"><span data-i18n="footer.school">学校向けの説明</span></a><a href="https://github.com/lorendw7/Cadence">GitHub ↗</a></div><p data-i18n="footer.independent" class="independent-note">独立したプロジェクトです。九州大学の公式サービスではありません。</p><p class="copyright">© 2026 Cadence · MIT</p></div></footer>
+<footer class="site-footer page-width"><div><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><p data-i18n="footer.tagline" class="footer-tagline">授業にも、自分の時間にも。</p></div><div class="footer-right"><div class="footer-links"><a href="privacy.html?lang=ja" data-language-link><span data-i18n="footer.privacy">データとプライバシー</span></a><a href="https://github.com/lorendw7/Cadence/blob/main/docs/SCHOOL_DEMO.md"><span data-i18n="footer.school">学校向けの説明</span></a><a href="https://github.com/lorendw7/Cadence">GitHub ↗</a></div><p data-i18n="footer.independent" class="independent-note">独立したプロジェクトです。九州大学の公式サービスではありません。</p><p class="copyright">© 2026 Cadence · MIT</p></div></footer>
 </body>
 </html>
