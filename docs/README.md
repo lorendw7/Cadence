@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable displays Today and two read-only sample tasks using the learner's task model; the website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
+Cadence is a planned **time-management application primarily for students and also suitable for teachers and other users**. Courses are one schedule category; no school identity is required. Windows/Linux/macOS and Web are confirmed targets, with no mobile app. Flutter shadcn_ui is selected but not introduced. The current executable displays Today, two read-only sample tasks and the learner's increment/reset practice counter. Lessons 1–4 are complete with 10 passing tests and learner-confirmed restart behavior; the website is a concept presentation. The learner implements core features, while the assistant handles delegated documentation/website work, teaching, review and tests/templates. School integration remains separately optional and permission-dependent.
 
 Latest constraint: desktop is primary; deploy the Web planner only after explicit school permission. User-selected local retention, offline use and comparable-product research are in [ADR-005](adr/005-local-offline-and-school-gated-web.md). These features are not implemented.
 
@@ -39,6 +39,7 @@ For a complete beginner, start with [the learning path](LEARNING.md) and [lesson
 | [Notifications](NOTIFICATIONS.md) | Local reminders and platform acceptance |
 | [Quick import](QUICK_IMPORT.md) | Fixed-template CSV/paste for pilot onboarding |
 | [Local statistics](STATISTICS.md) | Planned-time calculation, overlaps, task counts and offline acceptance |
+| [Lesson 4](lessons/04-state.md) | Completed state/button exercise, hot-reload versus restart experiment and acceptance results |
 | [Learning path](LEARNING.md) | Technology stack, teaching agreement and one-lesson workflow |
 | [Curriculum](CURRICULUM.md) | 64-lesson Windows / 80–100 desktop baseline, provisional 8–16 extra Web lessons |
 | [Project workflow](PROJECT_WORKFLOW.md) | Acceptance tasks, implementation, review, merge and milestone release |

@@ -2,7 +2,7 @@
 
 New release gate: the Web planner may be deployed only after explicit school permission, even if it has no school API. Desktop local use remains independent. Follow [ADR-005](adr/005-local-offline-and-school-gated-web.md) for local-retention choices and offline acceptance. School authentication, data access and permitted retention/export are separate approvals.
 
-Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app is a read-only sample task list for learning and the website a concept presentation. There is no functional MVP, completed release or university endorsement.
+Updated: 2026-11-10. Cadence targets students primarily and also teachers and other users, without a school identity gate. Windows/Linux/macOS and Web are selected directions; mobile apps are excluded. shadcn_ui and the Web planner are not implemented. The current app is a read-only sample task list with an in-memory increment/reset practice counter; lessons 1–4 are complete. The website is a concept presentation. There is no functional MVP, completed release or university endorsement.
 
 ## Before the first trial
 

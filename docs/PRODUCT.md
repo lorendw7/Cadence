@@ -8,7 +8,7 @@ Updated: 2026-11-10. Cadence is a **time-management application primarily for st
 
 Windows, Linux, macOS and **Web are confirmed product targets**. No Android/iOS product is planned. Flutter `shadcn_ui` is selected for an academic-journal interface: muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C`. It is not installed or implemented yet. See [ADR-004](adr/004-shadcn-web-direction.md).
 
-The learning executable displays Today and two read-only sample tasks with completion labels. Task editing and persistence are not implemented. No functional Web planner exists; the website is a concept presentation. The learner writes core code as lessons progress. The assistant handles delegated docs/website work, teaching, review and appropriate tests/templates, not a substitute implementation.
+The learning executable displays Today, two read-only sample tasks with completion labels and an increment/reset practice counter. Lesson 4 is complete; the learner confirmed hot-reload/restart behavior and all 10 tests pass. Task editing and persistence are not implemented. No functional Web planner exists; the website is a concept presentation. The learner writes core code as lessons progress. The assistant handles delegated docs/website work, teaching, review and appropriate tests/templates, not a substitute implementation.
 
 ## Planned first browser-local version
 
