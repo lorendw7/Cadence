@@ -46,6 +46,8 @@ Keep privacy categories separate: shareable instructional fields, private plans/
 
 ## Future university-source provenance
 
+The conditional cloud-sync schema is specified separately in [SYNC.md](SYNC.md): internal users, external identity bindings, owned workspaces, same-workspace references, server versions, operation receipts, change logs and tombstones. Client outbox/baselines/cursors are a later migration, not new fields for the current lesson. Cloud consent and permitted school-data rehosting are distinct from local retention, and local revisions must not be reused as server versions.
+
 No school API or authorization is assumed. Design a source-specific migration only after the approved contract and representative timetable samples are available; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). The existing `import_batches`/`import_items` keys describe Cadence file import and must not be reinterpreted silently as university account or course identifiers.
 
 An authorized read adapter will need minimal non-secret metadata for the source and student context, the academic-period scope, stable source record identity, its local-record mapping, the last accepted source baseline and the last successful check. Keep the baseline separate from locally edited values so a refresh can explain changes without overwriting private notes or accepted local overrides. Do not overload a local root `revision` with the source's version; the two have different meanings.

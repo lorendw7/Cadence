@@ -64,6 +64,8 @@ Use fictional data throughout implementation and initial demonstrations. Verify 
 
 ## Privacy and release bar
 
+The optional sync extension has separate gates in [SYNC.md](SYNC.md): duplicate/unknown-outcome submissions, commit-order-safe cursors, offline conflicts, cross-workspace authorization, deletion and expired-device recovery, account switching and server snapshot restoration. Exercise two clients and failure injection before any real-data pilot; these are future scenarios, not passed coverage.
+
 [DATA_PROTECTION.md](DATA_PROTECTION.md) defines staged security acceptance: cipher availability in release builds, missing device keys, plaintext leakage through side files, corrupted/enormous encrypted backups, bounded KDF parameters, interrupted migration and cross-device recovery. Add these tests with their features; they are not existing coverage. Review cryptographic formats and key handling separately from routine UI tests.
 
 Timetable exports must be allowlisted; private backup is visibly separate. The offline core has no mandatory account, uploads or telemetry. Local user-facing weekly statistics remain entirely on-device. Never ask a student to post a full backup, school credentials or session tokens in a public issue.
