@@ -64,7 +64,7 @@ Keep seven-day and narrow-window behavior testable. Drag-to-schedule is optional
 
 ## Optional work
 
-Course rules, teaching weeks, class exceptions, filtered course sharing, and [CSV/paste import](QUICK_IMPORT.md) form an education extension. Kyushu and other school connections need their own permission and interface checks. They do not block general releases.
+Course rules, teaching weeks, class exceptions and filtered course sharing form an education extension. [Assisted import](QUICK_IMPORT.md) covers local CSV/paste, screenshots and PDFs, with optional personal API keys for cloud help. It follows editing and recovery; only course input depends on the education extension. Kyushu and other school connections need their own permission and interface checks. They do not block general releases. These plans do not advance the current lesson or authorize assistant-written core features.
 
 Local review and reminders can follow a reliable core. Check reminders after app exit per platform before promising them. Web and multi-device sync require separate scope, maintenance, storage, and security decisions.
 

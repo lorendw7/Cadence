@@ -14,7 +14,7 @@ Core desktop planning needs no account, backend or runtime network connection. O
 
 Personal plans have their own editing and repeats. Tasks may have deadlines, but a deadline does not reserve a calendar interval. Courses and exams can later extend the same views without owning the core data model or onboarding.
 
-Excluded from the core scope: mobile apps, mandatory cloud accounts, external calendar integration, online ICS, screenshot extraction, AI, live collaboration, automatic cloud sync, habits, payroll and focus tracking. School-password collection, unauthorized scraping and enrollment/grade operations are not product features. Optional sync has a separate proposal in [ADR-006](adr/006-optional-multi-client-sync.md).
+Excluded from the core scope: mobile apps, mandatory cloud accounts, external calendar integration, online ICS, live collaboration, automatic cloud sync, habits, payroll and focus tracking. Local screenshot/PDF import with pdfrx and RapidOCR, plus optional cloud help using personal API keys, is accepted extension work under [QUICK_IMPORT.md](QUICK_IMPORT.md). It is not implemented or required for the first local release. Its goal is less manual entry and correction work, with review before saving. School-password collection, unauthorized scraping and enrollment/grade operations are not product features. Optional sync has a separate proposal in [ADR-006](adr/006-optional-multi-client-sync.md).
 
 ## First use and saving
 
@@ -156,7 +156,7 @@ Keep Flutter and the selected shadcn_ui direction; early lessons may retain Mate
 
 Complete local behavior first. Future identity/source adapters use the application boundary, but no account service, network layer or sync queue belongs in the core by default. Browser storage, lifecycle and file handling need separate acceptance. Until sync is implemented, transfer between devices uses explicit backups rather than a shared live database file.
 
-Optional desktop reminders may run while the process is active; the first Web candidate excludes them. See [NOTIFICATIONS.md](NOTIFICATIONS.md) for permission and platform limits. Closed-process reminders require separate acceptance. Build editors and permitted recoverable drafts before later fixed-template import; see [EDITING.md](EDITING.md).
+Optional desktop reminders may run while the process is active; the first Web candidate excludes them. See [NOTIFICATIONS.md](NOTIFICATIONS.md) for permission and platform limits. Closed-process reminders require separate acceptance. Build editors and permitted recoverable drafts before later assisted import; see [EDITING.md](EDITING.md) and [QUICK_IMPORT.md](QUICK_IMPORT.md).
 
 Treat locations, private plans and backups as sensitive. Minimize fields, validate untrusted input, isolate credentials where used, redact diagnostics and test deletion/recovery. A later backend needs object-level authorization, session security and cross-user isolation. These are requirements, not implemented safeguards; see [SECURITY.md](SECURITY.md). Architecture and data constraints are in [ARCHITECTURE.md](ARCHITECTURE.md) and [DATABASE.md](DATABASE.md).
 

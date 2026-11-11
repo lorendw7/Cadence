@@ -34,6 +34,14 @@ Check the main database, WAL/journal, drafts, indexes, temporary files and recov
 
 A device key cannot be the only recovery path. Losing it may make the database unreadable. A private backup needs an independent recovery method that works on another device. Never include the device key as plaintext or assume OS account migration transfers a working key.
 
+## Optional AI provider keys and import files
+
+The [assisted import design](QUICK_IMPORT.md) uses local pdfrx/RapidOCR processing and optional direct cloud requests. Provider keys are separate from the database encryption key. Keep them in memory by default. Remember key is a separate, explicit choice using tested platform credential storage. Temporary mode may use a remembered key only after a session-specific choice and must not save a new one.
+
+Store a separate secret per provider profile. Ordinary settings may reference the secret but must not contain it. Profile removal clears the stored secret and memory copy; remote revocation remains a provider action. Missing or locked storage needs an error or memory-only use, never a plaintext fallback. Verify that exports, logs, crash reports and source files exclude keys and request bodies.
+
+Source documents, rendered pages and recognition drafts are private. Avoid retaining them after review; they are not automatic backup attachments. Test dependency caches and crash cleanup. If a path writes private files that cannot meet temporary-mode rules, disable that path in temporary mode. Model downloads are separate public resources. Local clear cannot remove data already sent to a chosen provider.
+
 ## Authenticated backups
 
 The [cryptography API](https://pub.dev/documentation/cryptography/latest/index.html) is a candidate source of authenticated encryption and password derivation. Measure the actual platform implementation and cost. Add `cryptography_flutter` only after proving its benefit and compatibility; do not assume identical acceleration on every desktop.

@@ -65,7 +65,7 @@ Acceptance: a person unfamiliar with the project can install the supported deskt
 
 Closed-process delivery requires separate platform acceptance under [NOTIFICATIONS.md](NOTIFICATIONS.md). These features can follow a useful first local release.
 
-## Optional — Course planning and assisted import
+## Optional — Course planning
 
 - [ ] Introduce semesters, teaching-week anchors, period times and course tables only with the optional course feature.
 - [ ] Support multiple rules, odd/even/selected weeks and configurable academic periods without assuming one institution's timetable.
@@ -73,10 +73,38 @@ Closed-process delivery requires separate platform acceptance under [NOTIFICATIO
 - [ ] Keep personal plans and independent tasks usable without a selected semester; exams are timed plans, not duplicate task timestamps.
 - [ ] Add filtered timetable sharing with an exact field allowlist and export preview.
 - [ ] Validate imports, map new/existing semesters and periods, and detect repeated native files without matching only names.
-- [ ] Add fixed-template CSV/paste with row errors and explicit duplicate choices; see [QUICK_IMPORT.md](QUICK_IMPORT.md).
 - [ ] Test representative academic patterns only if claiming support for them; unknown school formats need real permitted samples and separate validation.
 
 Acceptance: add a course alongside an existing personal week, move one class to another week and restore it. Sharing excludes private plans, notes and tasks. Importing the same native file twice creates no duplicate courses. Removing the course feature's setup requirements from core onboarding remains part of acceptance.
+
+## Optional — Local file and image import
+
+Accepted design, not implemented. Build direct editing and private recovery first. Use [QUICK_IMPORT.md](QUICK_IMPORT.md) as the import contract. Course input also waits for course rules; personal plans do not need a semester.
+
+- [ ] Define one editable draft, source comparison, missing-field checks, occurrence preview and atomic commit for all import routes.
+- [ ] Add fixed-template CSV/paste with row errors and explicit duplicate choices.
+- [ ] Evaluate and pin pdfrx/PDFium and RapidOCR models, licenses and runtime packaging; add no packages before their lesson.
+- [ ] Support PNG/JPEG and selected PDF pages through drag and drop and a keyboard-accessible file picker. Extract PDF text first; use local OCR for image regions.
+- [ ] Provide page/crop selection, progress, cancellation and useful partial drafts. Keep unresolved fields visible and allow explicit exclusions.
+- [ ] Bound file bytes, pages, decoded pixels, output and recurrence. Test corrupt inputs, worker failure, changed files and late results.
+- [ ] Verify offline use after explicit model setup, temporary-mode privacy, Windows resource use and native packaging. Check other desktop platforms separately.
+- [ ] Compare manual entry with import plus review on the same permitted sample set. Record completion time, corrected fields, missing/extra entries and final date/week errors by language and layout.
+
+Acceptance: a user can turn a supported screenshot or PDF into a checked schedule with less total work than typing it from scratch. Count selection, recognition, review and correction time. A useful partial draft is acceptable; silently missing entries are not. Set the pilot's time-saving target before evaluation and report cases where import is slower. Recognition cannot save directly, change the storage choice or leave a partial batch. No accuracy or time-saving result exists yet.
+
+## Optional — Cloud help with personal API keys
+
+This follows the shared import draft. Local import remains complete without a key. Cadence provides no paid AI account or request relay.
+
+- [ ] Add multiple provider profiles with service address, model and separate key references. Validate capabilities per provider/model; do not promise universal compatibility.
+- [ ] Support a tested OpenAI-compatible adapter first, and add other adapters only when needed. Publish only combinations that pass acceptance.
+- [ ] Show destination and selected text/images before each explicit send. Never upload or switch providers automatically.
+- [ ] Keep keys in memory by default; test explicit secure-store saving, session-only use, key deletion and missing/locked stores. Exclude secrets from exports and logs.
+- [ ] Set request/output/time limits and no automatic billable retries. Explain user-paid usage and unknown billing after timeout.
+- [ ] Test wrong keys, quota errors, unsupported inputs, invalid output, cancellation and stale responses. Cloud results remain editable, validated drafts.
+- [ ] Compare each selected model with local-only and manual entry on the same samples. Record whether cloud help reduces total correction work and at what measured cost.
+
+Acceptance: opting out or losing cloud access leaves local import usable. The selected provider receives only reviewed content after consent. No response can bypass preview or write records. Provider retention is explained separately from local saving. Cloud help is worth offering only where evaluation shows a useful reduction in user effort; a valid JSON response is not proof of correct dates.
 
 ## Optional — Browser-local Web
 
