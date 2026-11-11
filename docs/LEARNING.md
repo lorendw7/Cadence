@@ -50,7 +50,7 @@ Each item is a stage, not one lesson. Split stages into 20–45 minute lessons o
 9. Reminders: running-app behavior first, background behavior checked per platform.
 10. Windows pilot checks, then Linux/macOS runtime checks and release work.
 
-Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks, exams, [course import](QUICK_IMPORT.md), and school connections are optional education work after the local core. They do not block a general release. Web and sync need separate decisions and checks. Documents, artwork, and website work do not count as core lessons.
+Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks, exams and school connections are optional education work after the local core. [Assisted import](QUICK_IMPORT.md) is a later design for local tables, screenshots and PDFs, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. Web and sync need separate decisions and checks. Documents, artwork, and website work do not count as core lessons.
 
 ## Tests and templates
 

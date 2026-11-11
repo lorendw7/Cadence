@@ -39,6 +39,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | [Security](SECURITY.md) | Data boundaries, threats, and acceptance |
 | [Data protection](DATA_PROTECTION.md) | Candidate storage, key, backup, and input protections |
 | [Optional sync](SYNC.md) | A future extension: identity, queues, conflicts, and recovery |
+| [Assisted import](QUICK_IMPORT.md) | Local screenshot/PDF and table drafts; optional personal API keys; review effort and accuracy checks |
 | [Quality](QUALITY.md) | Required behavior, file, UI, and platform checks |
 | [Release](RELEASE.md) | Staged delivery, recovery, support, and release evidence |
 | [Public security policy](../SECURITY.md) | Safe reporting and current limits |
@@ -50,7 +51,6 @@ These documents describe possible extensions. They are not prerequisites for loc
 | Document | Purpose |
 |---|---|
 | [Academic calendar](HOLIDAYS.md) | Teaching weeks, holidays, and changed classes |
-| [Quick import](QUICK_IMPORT.md) | Fixed-template course import |
 | [School integration](UNIVERSITY_INTEGRATION.md) | Optional interfaces, permissions, and connection lifecycle |
 | [School demonstration](SCHOOL_DEMO.md) | An optional explanation for school staff |
 

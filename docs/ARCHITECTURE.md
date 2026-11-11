@@ -29,6 +29,14 @@ Choose Riverpod for shared asynchronous view state and dependency wiring when mu
 
 The interface uses shared application presentation components without importing platform services into domain rules. Component/library choices and desktop interaction rules are in [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md). Work items, review and acceptance follow [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md); the learner continues through [LEARNING.md](LEARNING.md) one small exercise at a time.
 
+## Optional import boundary
+
+[QUICK_IMPORT.md](QUICK_IMPORT.md) selects pdfrx for PDF input and RapidOCR for local image text recognition. A local extraction adapter produces editable candidates with source positions. Optional cloud adapters use user-supplied keys and produce the same draft format. These tools and boundaries are planned, not installed.
+
+Keep provider addresses, capabilities and keys outside domain rules and planning records. Cloud requests go directly from the desktop client to the selected provider after explicit consent; no Cadence relay or shared paid account is planned. Provider failure must not block local extraction or editing.
+
+The application owns validation, preview, revision checks and the single batch commit. Neither OCR nor AI may write records. Run bounded recognition away from the UI thread and reject obsolete results. Add this boundary only with its learner-written feature. It must not introduce a second schedule engine or require course setup for personal plans.
+
 ## Dependencies after persistence is introduced
 
 Arrows mean **imports / depends on**, not write order. This is the target for persisted/shared features, not the initial in-memory lesson. `app/` constructs concrete adapters and injects them through application-owned ports. Plain domain values may be used directly by a feature.
