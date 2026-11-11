@@ -31,7 +31,7 @@ The interface uses shared application presentation components without importing 
 
 ## Optional import boundary
 
-[QUICK_IMPORT.md](QUICK_IMPORT.md) selects pdfrx for PDF input and RapidOCR for local image text recognition. A local extraction adapter produces editable candidates with source positions. Optional cloud adapters use user-supplied keys and produce the same draft format. These tools and boundaries are planned, not installed.
+[QUICK_IMPORT.md](QUICK_IMPORT.md) selects RapidOCR for local screenshot text recognition. A local extraction adapter produces editable candidates with source positions. Optional cloud adapters use user-supplied keys and produce the same draft format. These tools and boundaries are planned, not installed.
 
 Keep provider addresses, capabilities and keys outside domain rules and planning records. Cloud requests go directly from the desktop client to the selected provider after explicit consent; no Cadence relay or shared paid account is planned. Provider failure must not block local extraction or editing.
 

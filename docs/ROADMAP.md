@@ -77,20 +77,20 @@ Closed-process delivery requires separate platform acceptance under [NOTIFICATIO
 
 Acceptance: add a course alongside an existing personal week, move one class to another week and restore it. Sharing excludes private plans, notes and tasks. Importing the same native file twice creates no duplicate courses. Removing the course feature's setup requirements from core onboarding remains part of acceptance.
 
-## Optional — Local file and image import
+## Optional — Local screenshot and table import
 
 Accepted design, not implemented. Build direct editing and private recovery first. Use [QUICK_IMPORT.md](QUICK_IMPORT.md) as the import contract. Course input also waits for course rules; personal plans do not need a semester.
 
 - [ ] Define one editable draft, source comparison, missing-field checks, occurrence preview and atomic commit for all import routes.
 - [ ] Add fixed-template CSV/paste with row errors and explicit duplicate choices.
-- [ ] Evaluate and pin pdfrx/PDFium and RapidOCR models, licenses and runtime packaging; add no packages before their lesson.
-- [ ] Support PNG/JPEG and selected PDF pages through drag and drop and a keyboard-accessible file picker. Extract PDF text first; use local OCR for image regions.
-- [ ] Provide page/crop selection, progress, cancellation and useful partial drafts. Keep unresolved fields visible and allow explicit exclusions.
-- [ ] Bound file bytes, pages, decoded pixels, output and recurrence. Test corrupt inputs, worker failure, changed files and late results.
+- [ ] Evaluate and pin RapidOCR models, licenses and runtime packaging; add no packages before their lesson.
+- [ ] Support one PNG/JPEG screenshot at a time through image paste, drag and drop and a keyboard-accessible file picker. Users capture the source with their system tools; direct PDF input and a built-in capture/editor are out of scope.
+- [ ] Provide source comparison, progress, cancellation and useful partial drafts. Keep unresolved fields visible and allow explicit exclusions.
+- [ ] Bound file bytes, decoded pixels, output and recurrence. Test corrupt inputs, worker failure, changed files and late results.
 - [ ] Verify offline use after explicit model setup, temporary-mode privacy, Windows resource use and native packaging. Check other desktop platforms separately.
 - [ ] Compare manual entry with import plus review on the same permitted sample set. Record completion time, corrected fields, missing/extra entries and final date/week errors by language and layout.
 
-Acceptance: a user can turn a supported screenshot or PDF into a checked schedule with less total work than typing it from scratch. Count selection, recognition, review and correction time. A useful partial draft is acceptable; silently missing entries are not. Set the pilot's time-saving target before evaluation and report cases where import is slower. Recognition cannot save directly, change the storage choice or leave a partial batch. No accuracy or time-saving result exists yet.
+Acceptance: a user can turn a supported screenshot into a checked schedule with less total work than typing it from scratch. Count taking the screenshot, input selection, recognition, review and correction time. A useful partial draft is acceptable; silently missing entries are not. Set the pilot's time-saving target before evaluation and report cases where import is slower. Recognition cannot save directly, change the storage choice or leave a partial batch. No accuracy or time-saving result exists yet.
 
 ## Optional — Cloud help with personal API keys
 
