@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. Cadence is a general-purpose local time planner with a **quiet journal** visual style. Work, study and personal life share the same planning space. Courses are an optional kind of commitment. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current scope. Cadence has its own identity and does not imply endorsement by a school or other institution.
 
-The first product UI uses themed Flutter Material controls under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style without a required component-library migration. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. The core is an offline desktop app without accounts. Web and sync are considered only for a school connection that needs them; mobile apps are excluded.
+The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. The core is an offline desktop app without accounts. Web and sync are considered only for a school connection that needs them; mobile apps are excluded.
 
 ## Palette
 

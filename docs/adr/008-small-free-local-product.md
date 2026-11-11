@@ -6,12 +6,12 @@
 
 ## Context
 
-The plans grew beyond the needs of one person using one computer. They required saved editing drafts, encrypted storage and key recovery, many architecture layers, a new UI library and detailed Web/sync work before these needs were proven. Screenshot import already aims to reduce manual work rather than promise perfect recognition.
+The plans grew beyond the needs of one person using one computer. They required saved editing drafts, encrypted storage and key recovery, many architecture layers and detailed Web/sync work before these needs were proven. Screenshot import already aims to reduce manual work rather than promise perfect recognition.
 
 ## Decision
 
 - Build a free Windows local planner first. Keep Today, Week, Tasks and the independent journal style. Other desktop packages follow native testing.
-- Keep Flutter Material controls and a shared theme. A switch to shadcn_ui is no longer required. Keep the accepted layout and the current teaching exercise.
+- Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with used controls and no extra wrapper framework. Existing Material controls may remain during lessons. Keep the accepted layout and current teaching exercise.
 - Use one workspace, one writer and one small drift/SQLite adapter when saving is taught. Share state with ordinary Flutter tools first. Add a boundary or package only for a working feature.
 - Keep the explicit Save on this device / Temporary use choice. Use explicit editor Save and in-memory unsaved input. Persistent draft recovery is deferred.
 - Use ordinary local SQLite and a versioned, unencrypted JSON backup first. Explain that both contain private data. Do not advertise encrypted storage. Encryption and password recovery need a later decision and tests.
@@ -31,7 +31,7 @@ Choose the second option. Keep transaction safety, input validation, backup reco
 
 ## Consequences
 
-This refines ADR-007. It replaces ADR-004's required UI-library switch and the earlier default encryption, persistent-draft and broad Web/sync plans. Historical ADRs remain at their paths. ADR-006 and SYNC.md are reference material for a separately justified school need, not an implementation backlog.
+This refines ADR-007. It keeps ADR-004's shadcn_ui choice while replacing the earlier default encryption, persistent-draft and broad Web/sync plans. Historical ADRs remain at their paths. ADR-006 and SYNC.md are reference material for a separately justified school need, not an implementation backlog.
 
 A person with access to the OS account or copied local files may read an unencrypted planner. Unsaved form input may be lost on a crash. State both limits clearly. Keep AI keys in memory or an explicitly selected OS credential store; never put them in the ordinary database or backup.
 

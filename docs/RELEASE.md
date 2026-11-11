@@ -1,12 +1,12 @@
 # Release plan
 
-Release scope follows [ADR-008](adr/008-small-free-local-product.md): a free Windows local app first. Saved drafts, encryption and extra UI libraries are not release gates. Web and sync sections apply only if a school connection needs those capabilities.
+Release scope follows [ADR-008](adr/008-small-free-local-product.md): a free Windows local app first. Saved drafts, encryption and extra UI frameworks are not release gates. Keep the selected shadcn_ui direction. Web and sync sections apply only if a school connection needs those capabilities.
 
 Updated: 2026-11-11. [ADR-007](adr/007-general-purpose-local-planner.md) defines Cadence as a general-purpose local time planner. The desktop core works offline without an account. On first use, users choose Save on this device or Temporary use before saved planning data is opened. School adapters are optional; Web and sync are considered only if a selected connection needs them.
 
 School permission applies only to school interfaces and data, including any limits on retaining or sharing that data. It does not block a general desktop or Web release. The older blanket Web gate is superseded.
 
-The learning app currently supports validated task addition, completion toggling, empty-list feedback, deletion and one-level undo in memory. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance. Persistence and the full planner are not implemented; no UI-library migration is required. The website presents concepts; there is no released planning MVP or institutional endorsement.
+The learning app currently supports validated task addition, completion toggling, empty-list feedback, deletion and one-level undo in memory. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance. Persistence and the full planner are not implemented. shadcn_ui remains the selected UI direction. The website presents concepts; there is no released planning MVP or institutional endorsement.
 
 ## Artwork readiness
 

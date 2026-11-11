@@ -5,7 +5,7 @@
 **Deciders:** Cadence maintainer, following the user's university-wide product goal.
 **Related:** [Product](../PRODUCT.md), [behavior](../REDESIGN.md), [university integration](../UNIVERSITY_INTEGRATION.md), [ADR-001](001-local-application-boundaries.md).
 
-The text below preserves the decision at that time. Use ADR-007 and [PRODUCT.md](../PRODUCT.md) for the current general audience, selected-but-not-installed shadcn_ui and optional Web/sync extensions. No university-wide rollout is currently promised.
+The text below preserves the decision at that time. Use ADR-007, [ADR-008](008-small-free-local-product.md) and [PRODUCT.md](../PRODUCT.md) for the current general audience and selected shadcn_ui direction. Web and sync are considered only when a school connection needs them. No university-wide rollout is currently promised.
 
 ## Context
 

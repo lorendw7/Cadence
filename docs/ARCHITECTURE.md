@@ -4,7 +4,7 @@ Updated: 2026-11-11. Status: planned, not implemented. [ADR-008](adr/008-small-f
 
 ## Selected structure and when it grows
 
-Use one Flutter application and one local workspace. Keep Material controls and the shared journal theme. No UI-library migration is required. Use setState and ordinary Flutter state sharing while ownership is clear. Riverpod is a possible response to demonstrated complexity, not a lesson or release gate.
+Use one Flutter application and one local workspace. Keep the selected shadcn_ui direction and shared journal theme. Integrate it gradually; existing Material controls may remain during lessons. Avoid a second component framework. Use setState and ordinary Flutter state sharing while ownership is clear. Riverpod is a possible response to demonstrated complexity, not a lesson or release gate.
 
 Introduce one drift/SQLite adapter when persistent saving is taught. Keep one writer and a short queue of writes. A second desktop process must not write the same store. No event bus, plugin framework, service locator, remote outbox or multi-package workspace is needed.
 

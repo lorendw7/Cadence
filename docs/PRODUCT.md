@@ -31,7 +31,7 @@ On first use, explain **Save on this device** and **Temporary use**. Until the u
 
 Desktop is primary: Windows first, then Linux and macOS after each passes native acceptance. No Android/iOS product is planned; Android is legacy scaffolding. Web and synchronization are considered only for a school connection that needs them. There is no general Web planner or personal cloud-sync delivery track.
 
-Keep Flutter Material controls and a shared theme; no shadcn_ui migration is required. Use a quiet paper-and-ink interface with the existing independent C mark, muted wine `#7C394B`, warm paper `#F6F5F1` and sage `#6F877C`. Everyday examples should include work and personal life as well as study. The brand has no university affiliation. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [DESIGN.md](DESIGN.md).
+Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working controls, without extra wrapper layers. Use a quiet paper-and-ink interface with the existing independent C mark, muted wine `#7C394B`, warm paper `#F6F5F1` and sage `#6F877C`. Everyday examples should include work and personal life as well as study. The brand has no university affiliation. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [DESIGN.md](DESIGN.md).
 
 ## Optional later work
 

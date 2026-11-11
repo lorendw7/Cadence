@@ -6,7 +6,7 @@ The product is in development. The current desktop learning app has basic in-mem
 
 ## Product direction
 
-Desktop local use comes first, on Windows, macOS and Linux. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
+A free, simple local app comes first. Windows is the first release target. macOS and Linux follow checks on each native system. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
 
 Web and synchronization are considered only when a school connection needs them, under [ADR-008](../docs/adr/008-small-free-local-product.md). There is no general Web planner or personal cloud-sync delivery track. General product publication does not require school permission. Authorization applies only to an optional connection to a school, workplace or other external provider. See [ADR-007](../docs/adr/007-general-purpose-local-planner.md) and [the product design](../docs/REDESIGN.md).
 
@@ -49,7 +49,7 @@ Week shows all seven days, Monday through Sunday. Today and Week share the same 
 
 The current website stores only a language preference. It has no personal planner input, upload, authentication or synchronization. GitHub Pages still processes page requests. The privacy page must distinguish those actual behaviors from the future application's first-use choice, local saving, temporary mode, private JSON backups and optional connections.
 
-Local saving does not automatically provide encryption or backup. Temporary use must not leave persistent drafts or automatic backups. JSON exports contain private information, and deleting app data cannot remove exported files or copies shared elsewhere. Keep these claims aligned with the implementation as each feature is added.
+The first local release uses explicit Save and Cancel. Unsaved forms stay in memory and can be lost on a crash. Local files and private JSON backups are not encrypted. Optional AI help uses a personal API key and may incur provider charges. It is not required for local use. Show the destination and selected content before each send. Keys never enter planner backups. Local saving does not automatically provide a backup. Temporary use must not leave persistent drafts or automatic backups. JSON exports contain private information, and deleting app data cannot remove exported files or copies shared elsewhere. Keep these claims aligned with the implementation as each feature is added.
 
 ## Checks and publication
 
@@ -63,4 +63,6 @@ Run this from the repository root. It checks translation keys and placeholders, 
 
 ## 2026-11-11 design update
 
-The current pass clarifies the general local-planner audience, replaces school-led examples with work, learning and daily-life plans, and separates current learning-app behavior from desktop requirements and optional later Web/sync work. It also adds a development timeline, clearer sample labels, larger language and tab targets, task reset, complete Thursday examples and responsive WebP artwork. Browser checks from an earlier artwork pass do not validate later copy or layout changes; review the current version before publishing.
+The site now leads with local, free and simple use. The progress section separates working memory-only tasks, the planned first local release and optional import help. Screenshot and table import remain plans. AI help is optional and uses the user's own API key. Web and sync are considered only when a school connection needs them. The existing journal style, artwork, three languages and preview controls are unchanged.
+
+Browser checks on this copy covered all three languages on the home and privacy pages, language links between pages, task completion and reset, state kept during a language change, and arrow-key tab switching. Desktop home views and a 390 px narrow view were inspected. The narrow Chinese home and Japanese privacy page had no page-wide horizontal overflow. This is a focused check, not a full browser or accessibility audit. JavaScript-disabled behavior and Home/End keyboard handling were not rechecked in this pass.

@@ -1,10 +1,10 @@
 # UI components and page design
 
-Updated: 2026-11-11. Status: planned, not implemented. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The first release keeps Flutter Material controls and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
+Updated: 2026-11-11. Status: planned, not implemented. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
 
 ## Library and teaching boundaries
 
-Use existing Flutter controls with shared colors, spacing and text styles. ADR-008 replaces the required shadcn_ui switch in [ADR-004](adr/004-shadcn-web-direction.md). Revisit a library only for a concrete unmet need. Keep the accepted layout and learner-written implementation.
+Use Flutter shadcn_ui as selected in [ADR-004](adr/004-shadcn-web-direction.md). ADR-008 simplifies the surrounding design, not this library choice. Introduce one used control at a time and preserve existing Material controls during lessons. Keep shared colors, spacing and text styles without a second wrapper framework. The learner implements the accepted layout.
 
 Installed dependencies are defined by `pubspec.yaml` and its lockfile. Riverpod and drift serve state and storage needs; they are not UI libraries. Add them only when needed. The assistant maintains delegated documentation and website work, teaches, reviews and prepares tests/templates. The learner writes core application features.
 
@@ -12,11 +12,11 @@ Installed dependencies are defined by `pubspec.yaml` and its lockfile. Riverpod 
 
 | Product role | Candidate component | Requirement |
 |--------------|---------------------|-------------|
-| Shared theme | Shared Material theme | Define brand, surface, text and semantic colors once |
-| Create, save and secondary actions | Standard buttons | Make action priority, disabled state and pending work clear |
-| Title, location and other fields | Standard text fields and forms | Place errors beside fields and retain input on failure |
-| Date selection | Standard date picker | Validate the date range; keep time and recurrence rules in domain code |
-| Task completion | Checkbox | Keep pointer, keyboard and screen-reader state in agreement |
+| Shared theme | Shared shadcn_ui theme | Define brand, surface, text and semantic colors once |
+| Create, save and secondary actions | shadcn_ui buttons | Make action priority, disabled state and pending work clear |
+| Title, location and other fields | shadcn_ui inputs and forms | Place errors beside fields and retain input on failure |
+| Date selection | shadcn_ui date picker | Validate the date range; keep time and recurrence rules in domain code |
+| Task completion | shadcn_ui checkbox | Keep pointer, keyboard and screen-reader state in agreement |
 | Editors and high-impact confirmation | Dialog or editor overlay | Use for focused editing, whole-data replacement and clearing; avoid routine confirmation dialogs |
 | Views within one page | Tabs where needed | Preserve selection and keyboard focus |
 | Errors and results | Inline error and result text | Keep persistent errors near the affected content; a toast is not recovery guidance |

@@ -4,7 +4,7 @@ Scope update: [ADR-008](adr/008-small-free-local-product.md) defines the first-r
 
 [ADR-007](adr/007-general-purpose-local-planner.md) defines the current scope: a general-purpose local offline planner without accounts. First use offers Save on this device and Temporary use before reading saved planning data. School adapters are optional; Web and sync are considered only if a selected connection needs them. School permission applies only to the relevant school interfaces and data, not general desktop or Web delivery.
 
-Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux and macOS are desktop targets; mobile apps are excluded. The first release uses themed Material controls. A concept website is separate from a functional planner.
+Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux and macOS are desktop targets; mobile apps are excluded. The product uses shadcn_ui; existing Material controls may remain during the learning stages. A concept website is separate from a functional planner.
 
 ## Local and hosted checks
 

@@ -8,7 +8,7 @@ The app has in-memory task addition, validation, completion, deletion and one-le
 
 ## Working order
 
-Keep the accepted theme and layout lessons using Material controls. Then build saving and explicit editing, personal plans, Today/Week and backup recovery. A working free Windows package is the first target. Linux/macOS packages follow native checks. Do not require a UI-library migration, Riverpod, saved draft recovery, encryption or a service before that trial.
+Keep the accepted theme, layout and shadcn_ui lessons. Introduce one used control at a time. Then build saving and explicit editing, personal plans, Today/Week and backup recovery. A working free Windows package is the first target. Linux/macOS packages follow native checks. Avoid a separate UI framework or a rewrite of every control at once. Riverpod, saved draft recovery, encryption and services are not trial prerequisites.
 
 ## A — Reliable local tasks
 
@@ -30,7 +30,7 @@ Acceptance: saved tasks survive restart; temporary startup does not open an old 
 - [ ] Derive lists, counts, overlaps and views from the same confirmed data and date rules.
 - [ ] Add basic weekly repeats with an end date. Clearly edit/delete the whole series; defer single-occurrence changes.
 - [ ] Refresh at deadlines, midnight and resume; discard obsolete query results.
-- [ ] Keep the journal layout, keyboard access, readable narrow windows and three-language behavior with existing Flutter controls.
+- [ ] Keep the journal layout, keyboard access, readable narrow windows and three-language behavior with the selected shadcn_ui controls and shared theme.
 
 Acceptance: record a meeting, an all-day plan and a task without a school or account. Today and Week agree. Repeats end on the chosen date. Real overlaps remain visible and allowed.
 

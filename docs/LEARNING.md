@@ -22,6 +22,7 @@ Cadence is a local planner for work, study, and daily life. The desktop core nee
 |---|---|---|
 | Dart | Data, decisions, and calculations | Lesson 1 |
 | Flutter and Material widgets | Basic interface and layout | After the first model lessons |
+| shadcn_ui | Selected product UI controls | UI lessons, one working control at a time |
 | setState | Rebuild a page after state changes | Early lists and forms |
 | Riverpod | Possible later shared-state tool | Only if ordinary Flutter state sharing becomes hard to maintain |
 | SQLite and drift | Save and query local data | Persistence lessons |
@@ -30,7 +31,7 @@ Cadence is a local planner for work, study, and daily life. The desktop core nee
 | Dart calculations and Flutter charts | Show a local weekly review | After schedule and task data are stable |
 | HTML, CSS, and JavaScript | Run the separate concept website | Maintained by the assistant |
 
-Use Flutter 3.44.4 / Dart 3.12.2. [pubspec.yaml](../pubspec.yaml) and its lockfile record the current dependencies. [ADR-008](adr/008-small-free-local-product.md) removes the required shadcn_ui migration; this design does not remove packages from any in-progress lesson. Add a package only when a working feature needs it.
+Use Flutter 3.44.4 / Dart 3.12.2. [pubspec.yaml](../pubspec.yaml) and its lockfile record the current dependencies. [ADR-008](adr/008-small-free-local-product.md) keeps shadcn_ui as the product UI choice; this design does not change packages in any in-progress lesson. Add a package only when a working feature needs it.
 
 See [UI design](UI_ARCHITECTURE.md), [workflow](PROJECT_WORKFLOW.md), and [curriculum](CURRICULUM.md). Official references: [Flutter desktop](https://docs.flutter.dev/platform-integration/desktop), [Riverpod](https://riverpod.dev/), and [drift](https://drift.simonbinder.eu/).
 
@@ -74,4 +75,4 @@ The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–
 
 These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
 
-Next: [lesson 11](lessons/11-theme.md), shared theme constants and the paper/wine direction. This lesson is assigned, not implemented. Explain the syntax before the learner edits the application. The accepted [layout](UI_ARCHITECTURE.md#pages-and-navigation) and detailed [lessons 11–16](CURRICULUM.md#lessons-1116-desktop-ui-foundations) guide the desktop UI stage. Lesson 12 continues with themed Material controls under [ADR-008](adr/008-small-free-local-product.md). Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open; lesson 10's actual-window deletion/undo flow is confirmed.
+Next: [lesson 11](lessons/11-theme.md), shared theme constants and the paper/wine direction. This lesson is assigned, not implemented. Explain the syntax before the learner edits the application. The accepted [layout](UI_ARCHITECTURE.md#pages-and-navigation) and detailed [lessons 11–16](CURRICULUM.md#lessons-1116-desktop-ui-foundations) guide the desktop UI stage. Lesson 12 introduces the selected shadcn_ui controls gradually under [ADR-008](adr/008-small-free-local-product.md). Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open; lesson 10's actual-window deletion/undo flow is confirmed.
