@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. Design and consultation preparation only. No school permission, supervisor commitment or usable timetable interface has been confirmed. This document describes an optional connection for the [general planning product](PRODUCT.md); Cadence is not an official university service.
 
-The general local planner, and any later general Web client, do not require school permission for publication or use. [ADR-007](adr/007-general-purpose-local-planner.md) replaces the earlier school-gated Web direction. This document retains Kyushu University research only as an optional integration reference, not a product audience or release requirement. Authentication, school-data reading, retention and export each need permission for that connection. Preview-and-save flows below apply only when the user chooses saving and retention is permitted. Temporary viewing must not write to a database, persistent draft or automatic backup.
+The general local planner does not require school permission for publication or use. Web/sync work is now considered only if a school connection needs it; this scope choice does not give schools control over the independent local release. [ADR-007](adr/007-general-purpose-local-planner.md) replaces the earlier school-gated Web direction. This document retains Kyushu University research only as an optional integration reference, not a product audience or release requirement. Authentication, school-data reading, retention and export each need permission for that connection. Preview-and-save flows below apply only when the user chooses saving and retention is permitted. Temporary viewing must not write to a database, persistent draft or automatic backup.
 
 ## Purpose and scope
 
@@ -15,6 +15,26 @@ Independent manual planning does not require school identity or system access ap
 | Checking timetable changes | Reading frequency, change semantics and operating responsibilities | Show changes for review, their source and the last successful check |
 
 Successful authentication is not permission to read timetable data. If the school offers users a timetable file that can be exported without an application login, consider adapting that file first. No specific export feature or format has been confirmed. Without an approved data route, continue local manual work and introduce JSON operations only after their own implementation and acceptance. Fixed-template CSV and paste are later desktop plans and are outside the initial Web scope. The Web planner is not implemented.
+
+## Documented source boundary
+
+[ADR-008](adr/008-small-free-local-product.md) limits Web and synchronization work to a school connection that needs them. This section describes a future interface, not new code, a promised school API or permission to call one.
+
+Prefer the smallest route: a user-exported file, then a read-only local adapter if needed. A login alone does not require a Web planner or full synchronization. Keep passwords on the school's approved authentication surface.
+
+| Operation | Input | Output and limits |
+|---|---|---|
+| Describe source | A supported school and interface version | Supported fields, date range, access method and known limits |
+| Read snapshot | Explicit user request, permitted connection context and bounded academic period | Candidate rows with source IDs if available, timezone/week context, completeness and source warnings |
+| Review changes | Candidates and current local records | Editable additions/changes and possible duplicates; no write yet |
+| Apply reviewed batch | Confirmed preview and current local state | One validated local transaction; failure preserves existing records |
+| Disconnect | The selected connection | Stop access and clear its credentials; do not delete unrelated local plans |
+
+Keep this mapping at the application boundary. Source adapters cannot write the database, choose a storage mode or overwrite local edits. Reuse the screenshot/table review flow where its fields fit. Preserve source identity when available; names alone are not reliable keys. An incomplete or failed snapshot is not an instruction to delete courses. Recheck permission before storing or exporting source data.
+
+Only when the source requires a Web surface or service should its design begin. Record why a local adapter is insufficient, what data leaves the device, who operates and pays for it, and how it can be disabled. Keep the existing concept site separate from private data.
+
+Start updates with user-requested read and review. If synchronization is actually needed, specify its direction and source of truth. A school-to-local refresh is not two-way sync of personal tasks. Do not upload independent local data by default. Use only the relevant parts of [SYNC.md](SYNC.md); accounts, server workspaces, queues and conflict protocols are not automatically required. No connection may block independent offline use or general product release.
 
 ## Previously reviewed school materials
 

@@ -74,7 +74,7 @@ trim returns a new string without leading and trailing whitespace. It does not e
 
 Future<T> represents one result or error that may arrive later. async/await lets code wait without blocking the event loop. Stream<T> can deliver a sequence of values or errors; it is not a Future that repeatedly completes.
 
-Introduce shared-state and database libraries only when the lessons need them. Riverpod and drift are planned, not installed. Their generated APIs and commands must be checked against the version introduced at that time.
+Introduce shared-state and database libraries only when the lessons need them. drift is planned for saving. Riverpod is optional if ordinary Flutter state sharing becomes hard to maintain. Their generated APIs and commands must be checked against the version introduced at that time.
 
 ## Debugging
 

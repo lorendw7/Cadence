@@ -1,5 +1,7 @@
 # Security and data protection
 
+Scope update: [ADR-008](adr/008-small-free-local-product.md) keeps the first release local, with no saved editor drafts or application-level encryption. Web/service requirements below are conditional on a school connection that needs them, not a general product backlog.
+
 Updated: 2026-11-11. These are requirements for the planned local desktop core and optional Web, sync and school extensions, not completed security checks. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current direction: a general-purpose offline planner without accounts, with an explicit first-use choice between local saving and temporary use. School permission applies only to a school's interfaces and data; ordinary desktop and Web use do not depend on it.
 
 Cadence supports work, study and personal planning. Mobile applications are out of scope. Record actual verification for each release rather than treating a design document as certification. A local-save choice, sync opt-in and external-source consent are separate decisions.
@@ -12,31 +14,17 @@ Local use does not imply encryption. The current application has no encrypted da
 
 ## Implementation responsibilities
 
-[DATA_PROTECTION.md](DATA_PROTECTION.md) describes candidate encrypted SQLite, device key storage and authenticated backups. None is installed or implemented. Developers must also provide parameter binding, input validation, authorization and release controls. Users choose data-retention and connection options; they cannot disable required checks or secure transport.
+[DATA_PROTECTION.md](DATA_PROTECTION.md) defines ordinary local SQLite and private unencrypted JSON backups for the first release. Encryption is deferred; optional AI keys still require memory or an explicitly selected OS credential store. Developers must also provide parameter binding, input validation, authorization and release controls. Users choose data-retention and connection options; they cannot disable required checks or secure transport.
 
-Do not silently fall back to plaintext if keys, the encryption engine or a storage service are unavailable. Encryption cannot replace backups or protect plaintext from a compromised process while unlocked.
+If an encrypted format is added later, do not silently fall back to plaintext when its key or engine is unavailable. Encryption cannot replace backups or protect plaintext from a compromised process while unlocked.
 
 ## Saving mode and optional Web data boundaries
 
-The core must offer Save on this device and Temporary use on first use, before opening saved records. Temporary use starts empty and keeps planning data and drafts only in the current session. An explicitly chosen local-saving mode may be resumed later, but simply opening the app must not create that choice. Label the active mode and explain the data affected by a switch.
+Offer Save on this device and Temporary use before opening saved planning records. Remember an explicit choice and show the active mode. Temporary sessions start empty and do not read an old database, save drafts or create automatic backups. A user-requested export is a separate action. Keep unsaved editor input in memory even in local-saving mode.
 
-If a first Web client is built, it has no backend, account, sync, school API, CSV, system notifications or single-occurrence course changes. The same saving choice applies in the browser.
+Mode changes resolve pending work and explain which saved copy remains. Clear names the app-owned files affected and reports incomplete steps. It cannot remove exported copies or promise physical erasure. [APPLICATION.md](APPLICATION.md) defines the single-writer and session rules.
 
-| Operation | Requirement |
-|---|---|
-| First use | Offer Save on this device and Temporary use before reading planning data; explain loss on refresh/close for temporary use |
-| Local saving | Write only after an explicit choice; use the selected app database, with IndexedDB as the offline candidate; report real success or failure |
-| Reopen | Resolve the saving mode first. Only an explicitly selected/resumed local-saving mode may read this app's saved records and validate them. Temporary mode must not read the old database, drafts or device key; reject damaged/unsupported saved records without replacing them. |
-| JSON import | At most 1 MiB of UTF-8 content and 2,000 combined schedules/tasks; validate, preview, then replace only after confirmation |
-| JSON export | User-requested download containing private records; not a filtered public timetable |
-| Clear | Name the affected memory and app storage; do not clear other sites/apps or claim to remove downloaded files |
-| Demonstration | Fictional data only; no real private schedules, passwords or tokens; school-extension demos also exclude student IDs, grades and real timetable samples |
-
-Clearly distinguish memory mode from local saving. Browser storage is unencrypted and may be cleared or denied. Private windows, quota limits and restricted storage may cause failures. A successful write is not a promise of permanent retention; provide explicit backup export. See [browser storage limits](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).
-
-Do not call browser storage a secure vault. Transactions do not solve script injection. Use localStorage only for small, non-sensitive preferences, never secret credentials. Explain that temporary use is suitable for a shared device, but still let the user choose before records are loaded. Before releasing local saving, verify multiple-tab writes, migrations and coordinated clearing. If writes cannot be coordinated safely, block them rather than relying on a warning to close extra tabs.
-
-The current concept site has no planner data receiver. Hosting still receives page and asset requests. Describe hosting access logs separately from application records; do not promise that visiting a website creates no network records.
+If a school connection needs a browser surface, define its data scope and storage separately. Browser storage is not an OS secret store. Do not copy desktop file and process assumptions into it. The concept site has no private planner-data receiver; hosting still receives ordinary page requests.
 
 ## Import and replacement
 
@@ -65,22 +53,15 @@ Keep keys in memory unless the user explicitly chooses the operating system's cr
 
 ## Desktop and full data features
 
-In local-saving mode, store databases and saved drafts in the app's user-data directory under normal user permissions, not the repository, installation folder or an automatically public directory. Temporary mode does not open or write that store; an explicit export is a separate user action with a clear private-file notice. Backups follow the selected private destination. [APPLICATION.md](APPLICATION.md) and [DATABASE.md](DATABASE.md) define transactions, migration backups, restore preview and rollback. Browser localStorage does not provide these guarantees by itself.
+In local-saving mode, store databases and app-managed recovery copies in the app's user-data directory under normal user permissions, not the repository, installation folder or an automatically public directory. Temporary mode does not open or write that store; an explicit export is a separate user action with a clear private-file notice. Backups follow the selected private destination. [APPLICATION.md](APPLICATION.md) and [DATABASE.md](DATABASE.md) define transactions, migration backups, restore preview and rollback. Browser localStorage does not provide these guarantees by itself.
 
-Future timetable sharing uses an explicit field allowlist that excludes private plans, tasks, notes and credentials. Full backup has a separate entry point. Bound file size, counts, fields and references. Imports must not trigger arbitrary file or network access. Follow [DATA_PROTECTION.md](DATA_PROTECTION.md) for encryption, key recovery and migration acceptance. Clearing covers drafts and temporary copies but cannot promise physical disk erasure or recall of shared files.
+Future timetable sharing uses an explicit field allowlist that excludes private plans, tasks, notes and credentials. Full backup has a separate entry point. Bound file size, counts, fields and references. Imports must not trigger arbitrary file or network access. Follow [DATA_PROTECTION.md](DATA_PROTECTION.md) for the current file-privacy and recovery limits and any later encryption work. Clearing covers drafts and temporary copies but cannot promise physical disk erasure or recall of shared files.
 
 ## Optional connections and backend
 
-[SYNC.md](SYNC.md), [ADR-006](adr/006-optional-multi-client-sync.md) and [ADR-007](adr/007-general-purpose-local-planner.md) describe optional sync, separate from the local core and school adapters. Its identity provider is a later design choice, not a mandatory school account. Sync needs its own explanation of cloud copies, operator access, identity binding, workspace authorization, device revocation, deletion and recovery. If a school source is included, its login, data-access and cloud-retention permissions remain separate. The proposed first server can process plaintext; it is not end-to-end encrypted. If unreadable-to-server storage becomes mandatory, complete a separate E2EE design first.
+Web and synchronization are considered only for a school connection that needs them. Prefer local read-only import and a reviewed update. Do not add a general account service, cloud workspace or sync queue to the local app. The boundary in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) reads permitted data into candidates; it does not write records or grant retention rights.
 
-Before introducing these future services:
-
-- For a school adapter, obtain authentication and personal-timetable access permission separately. A demo or teacher's support does not replace authorization. Do not collect school passwords or substitute unapproved scraping. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
-- Verify identity, object ownership and field permissions on every private API call, denying access by default. A client user ID grants no authority. Test cross-account reads, exports, edits and deletes. See [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
-- Use expiring, revocable sessions. Set appropriate cookie attributes and scope, validate protocol callbacks and replay defenses, protect cookie-authenticated changes against CSRF, and restrict CORS. Test logout, expiry and revocation. See [OWASP sessions](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html).
-- Before voluntary logout or account switching, resolve unsent work: confirm sync, allow a permitted private export, or obtain an explicit discard choice. Forced expiry/revocation must stop requests immediately and isolate the old account's queue rather than silently erase it or replay it under a new account. See [SYNC.md](SYNC.md#identity-and-account-lifecycle) for temporary-session limits and recovery.
-- Define TLS, minimal secret access, private backups, redacted logs, retention/deletion, rate limits, recovery, operating cost and ownership before real-data use. Keep private responses out of public caches.
-- Keep independent local planning usable when a connection is disabled. Explain disconnect and deletion separately. A login page does not make browser-local data confidential.
+If a service becomes necessary, define permission, ownership checks, session security, retention, deletion and operating cost before enabling it. [SYNC.md](SYNC.md) is conditional research, not an approved backend plan. Keep local editing and recovery usable after disconnect or shutdown. Authentication permission is separate from permission to read or retain timetable data.
 
 ## Acceptance and reports
 

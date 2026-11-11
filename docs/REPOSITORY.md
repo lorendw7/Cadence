@@ -51,6 +51,6 @@ Artwork sources, website copies, and launcher exports serve different uses. They
 
 ## Current limits
 
-The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, the full planner, the selected UI package, backups, reminders, Web, and integrations remain future work. The asset library and concept website do not change those limits.
+The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, the full planner, backups and reminders remain future work. The first release keeps Material controls; Web/sync is considered only for school connections that need it. The asset library and concept website do not change those limits.
 
 Record only checks actually run in the change summary. Do not keep a growing list of old validation totals in this document.

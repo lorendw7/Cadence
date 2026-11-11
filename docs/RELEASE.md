@@ -1,10 +1,12 @@
 # Release plan
 
-Updated: 2026-11-11. [ADR-007](adr/007-general-purpose-local-planner.md) defines Cadence as a general-purpose local time planner. The desktop core works offline without an account. On first use, users choose Save on this device or Temporary use before saved planning data is opened. Web, sync and school adapters are optional later extensions.
+Release scope follows [ADR-008](adr/008-small-free-local-product.md): a free Windows local app first. Saved drafts, encryption and extra UI libraries are not release gates. Web and sync sections apply only if a school connection needs those capabilities.
+
+Updated: 2026-11-11. [ADR-007](adr/007-general-purpose-local-planner.md) defines Cadence as a general-purpose local time planner. The desktop core works offline without an account. On first use, users choose Save on this device or Temporary use before saved planning data is opened. School adapters are optional; Web and sync are considered only if a selected connection needs them.
 
 School permission applies only to school interfaces and data, including any limits on retaining or sharing that data. It does not block a general desktop or Web release. The older blanket Web gate is superseded.
 
-The learning app currently supports validated task addition, completion toggling, empty-list feedback, deletion and one-level undo in memory. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance. shadcn_ui, persistence and the full planner are not implemented. The website presents concepts; there is no released planning MVP or institutional endorsement.
+The learning app currently supports validated task addition, completion toggling, empty-list feedback, deletion and one-level undo in memory. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance. Persistence and the full planner are not implemented; no UI-library migration is required. The website presents concepts; there is no released planning MVP or institutional endorsement.
 
 ## Artwork readiness
 
@@ -22,7 +24,7 @@ The [v2 artwork library](../assets/README.md) provides Windows ICO, macOS PNG/IC
 
 ## Build and package
 
-Before releasing protected storage, check the cipher-enabled runtime and key store in the actual package on each supported platform. [DATA_PROTECTION.md](DATA_PROTECTION.md) covers dependency review, secret scanning, minimal CI permissions, reviewed Action SHAs and signing or trusted distribution. These remain release requirements; source publication does not prove they passed. Checksums alone cannot prove publisher identity if the archive and checksum can be replaced together.
+The first release uses ordinary SQLite and unencrypted JSON backups, clearly labelled. If encrypted storage is later offered, verify its engine and key recovery in the actual package. [DATA_PROTECTION.md](DATA_PROTECTION.md) covers data limits and recovery. Review dependencies and secrets, keep CI permissions small and verify trusted distribution. These remain release requirements; source publication does not prove they passed. Checksums alone cannot prove publisher identity if the archive and checksum can be replaced together.
 
 Build each target on its own host using the pinned Flutter SDK. Keep debug CI separate from release packaging.
 
@@ -59,17 +61,11 @@ Keep a public route for ordinary bugs and a private route for sensitive reports.
 
 ## Optional Web release
 
-A concept website is not a planner. If built, the first browser client is local to the browser, without accounts, backend or sync. It offers the same first-use choice between local saving and temporary use. Its initial data scope includes manual schedules/tasks, bounded weekly repeats, strict 1 MiB / 2,000-record JSON preview/replacement/export and clearing. CSV, notifications and single-occurrence course changes remain outside that scope.
-
-Before release, establish supported browsers, saving/clearing behavior, storage failures, JSON recovery, privacy information, operator and deployment costs. Verify HTTPS, script/import handling, reviewed dependencies, a practical CSP and deployment rollback. Check browser-data migrations, asset/cache updates and failed restore. Public assets, URLs, logs and service-worker caches must not contain private schedules, backups, credentials or tokens.
-
-Document when browser storage can be unavailable or cleared. A successful local write does not provide backup or sync. Test temporary startup without opening an old saved workspace, multiple-tab coordination and an explicit recovery path. Use fictional data first, then a limited voluntary pilot after the relevant [quality checks](QUALITY.md). No school permission is needed for a general browser client.
+Consider Web only when a school connection needs it. Specify the actual surface and data route first; it may be a small authorization flow rather than a planner. Do not copy the earlier general browser-client checklist into the local release. If private data reaches a browser, test storage limits, script isolation, HTTPS, cleanup and the chosen login protocol on supported browsers. The concept site must not receive private planner data.
 
 ## Optional sync service
 
-Sync is a separate product and operating decision under [SYNC.md](SYNC.md), [ADR-006](adr/006-optional-multi-client-sync.md) and [ADR-007](adr/007-general-purpose-local-planner.md). It does not become a dependency of local planning. Before real-data use, define the identity route, operator, data region, costs, quotas, retention/deletion, backups and incident handling. Explain cloud copies and whether the operator can read records.
-
-Test cross-user isolation, session expiry/revocation, applicable CSRF defenses, device revocation, conflicts, deletion and recovery with two clients. Voluntary logout must resolve pending work through confirmed sync, a permitted private export or explicit discard. Forced session loss must freeze and isolate the old account's queue without replaying it under a new account. Test temporary-session loss notices. Use a limited pilot before wider availability.
+Consider synchronization only if the school connection needs ongoing updates. Prefer user-requested read and review. A bidirectional service needs an explicit source of truth, conflict rules, permission, retention, recovery and operating ownership before implementation. Local planning must survive service shutdown. [SYNC.md](SYNC.md) is a study to draw from, not a list of required infrastructure.
 
 ## Optional school adapters
 

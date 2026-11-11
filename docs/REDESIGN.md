@@ -1,6 +1,8 @@
 # Product design
 
-Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [project README](../README.md) and [learning log](LEARNING.md). shadcn_ui is selected but not installed. The website shows concepts.
+Current first-release limits are in [ADR-008](adr/008-small-free-local-product.md): one workspace, explicit Save, memory-only unsaved forms, ordinary SQLite and private unencrypted JSON backups. Detailed course rules below are later reference material, not first-release work.
+
+Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [project README](../README.md) and [learning log](LEARNING.md). The first release keeps themed Material controls under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
 
 ## Purpose and scope
 
@@ -8,7 +10,7 @@ Cadence is a local time planner for everyday work, personal life, study and othe
 
 Target Windows, Linux and macOS. Complete a usable Windows flow first, validate each other platform on its native host, and distribute tested packages through GitHub Releases. No Android/iOS product is planned; the Android project is legacy scaffolding.
 
-Web and multi-device sync are optional later extensions. Neither blocks a useful desktop release. General development and release, including a possible general Web planner, require no school approval. School or other third-party connections still need their own permissions. The selected UI remains Flutter shadcn_ui, with muted wine #7C394B, warm paper #F6F5F1 and sage #6F877C; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+Web and synchronization are considered only when a school connection needs them. Neither is a general local-product delivery track. General development and release, including a possible general Web planner, require no school approval. School or other third-party connections still need their own permissions. The UI uses themed Flutter Material controls, with muted wine #7C394B, warm paper #F6F5F1 and sage #6F877C; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 Core desktop planning needs no account, backend or runtime network connection. Once installed, it can use chosen local data offline. A download and any optional network service have separate delivery needs. Do not require login, connection setup or a semester wizard before the first task or plan.
 
@@ -55,13 +57,13 @@ Plan Japanese, English and Chinese together as each feature is added. The websit
 
 ## Personal plans
 
-Personal plans need no semester or account. They have a required title, optional location and notes, a color and an optional category. Support one timed interval, an all-day range, or simple weekly repeats with an end date.
+Personal plans need no semester or account. They have a required title, optional location and notes, an optional display color. A custom category manager is deferred. Support one timed interval, an all-day range, or simple weekly repeats with an end date.
 
-- Timed plans have an explicit timezone and start/end; end is later than start, including overnight plans.
+- Timed plans use the workspace timezone and explicit start/end; end is later than start, including overnight plans.
 - All-day plans use date ranges and do not participate in hard timed-overlap checks.
-- Weekly repeats choose weekdays and a positive interval in weeks. Anchor the interval to Monday of the start-date week; the repeat end date is inclusive.
-- Repeats use stable rule/plan ID plus original-date identity for single cancellations, moves and restore.
-- System-timezone changes do not rewrite saved semester or plan timezones. Week has an explicit display timezone. Show source timezones when relevant; ask about nonexistent or ambiguous daylight-saving times instead of shifting them silently.
+- Basic weekly repeats choose weekdays and an inclusive end date. Other repeat intervals wait for a demonstrated need.
+- The first repeat editor changes the whole series. Single cancellations and moves are later work; do not offer them before their data rules are implemented.
+- Use one workspace timezone, initially the system timezone. Keep it stable after a system timezone change. Defer per-plan zones and travel controls; handle ambiguous or missing daylight-saving times explicitly.
 - Expand only within a bounded query window; do not generate an infinite stored series.
 
 Meals, medical visits, clubs, work shifts and study sessions can all be personal plans. A category does not introduce payroll, attendance or another business module.
@@ -82,9 +84,9 @@ Provide private export/import for core tasks and personal plans before a real-da
 
 In local-saving mode, preserve a verified current backup before a full replacement. Temporary-mode import stays in memory and must not silently enable saving or create an automatic disk backup. Drain pending writes, recheck the reviewed data version and reject stale work after restore. Failure leaves existing records usable.
 
-Explain whether an export is encrypted; encryption is not currently implemented. Private backup files can reveal routines and locations. Users choose where to save them; the core flow has no upload. Exclude credentials and operational session/sync metadata. Restoring a backup does not restore login, change the local-saving choice or cancel unfinished cleanup.
+The first JSON export is unencrypted; explain this before export. Application-level encryption is deferred. Private backup files can reveal routines and locations. Users choose where to save them; the core flow has no upload. Exclude credentials and operational session/sync metadata. Restoring a backup does not restore login, change the local-saving choice or cancel unfinished cleanup.
 
-Show the local data location and an explicit clear action. Clearing includes application-managed drafts and recovery copies, reports incomplete steps and can resume after interruption. It cannot retract exports or promise physical disk erasure. Uninstall may leave data behind; updates must not overwrite the user-data directory. Detailed contracts are in [APPLICATION.md](APPLICATION.md) and [DATABASE.md](DATABASE.md).
+Show the local data location and an explicit clear action. Clearing includes application-managed recovery copies and private temporary files, reports incomplete steps and can resume after interruption. It cannot retract exports or promise physical disk erasure. Uninstall may leave data behind; updates must not overwrite the user-data directory. Detailed contracts are in [APPLICATION.md](APPLICATION.md) and [DATABASE.md](DATABASE.md).
 
 ## Optional course model
 
@@ -138,25 +140,21 @@ Import flow: choose file → validate version and size → preview semester, per
 
 Files include export and source-record IDs. Allocate new local IDs on timetable import and keep source mappings. Skip already imported records when the same file is repeated. Names alone do not identify a course. A changed file needs another preview; the first version does not silently merge updates or delete local courses.
 
-Validate backup format, references and version before full restore. In local-saving mode, create a current backup before transactional replacement; temporary-mode import stays in memory under [APPLICATION.md](APPLICATION.md). Failure preserves original data. Explain whether an export is encrypted; encryption is not currently implemented. Even a timetable file may reveal a person's location. Users choose when and where to save or send files; the basic flow uses no Cadence server. Exclude school passwords, tokens and sessions from every export. Restoring a backup does not restore login.
+Validate backup format, references and version before full restore. In local-saving mode, create a current backup before transactional replacement; temporary-mode import stays in memory under [APPLICATION.md](APPLICATION.md). Failure preserves original data. The first JSON export is unencrypted; explain this before export. Application-level encryption is deferred. Even a timetable file may reveal a person's location. Users choose when and where to save or send files; the basic flow uses no Cadence server. Exclude school passwords, tokens and sessions from every export. Restoring a backup does not restore login.
 
 Do not promise that uninstall removes desktop data. Offer the data location and an explicit clear-local-data action. Updates must not overwrite user data directories.
 
 ## Optional browser-local version
 
-If Web is selected later, start with manual personal entries, bounded weekly repeats, tasks/completion, Today/Week and three-language controls. Offer temporary use or explicit browser-local saving through an evaluated IndexedDB adapter. Use localStorage only for small non-sensitive preferences.
-
-Candidate JSON limits remain 1 MiB UTF-8 and 2,000 combined records. Validate, preview and confirm whole-data replacement. Offer private export and clear; failure preserves original data. This export is not the filtered timetable-sharing format.
-
-The first Web candidate excludes backend/accounts, sync, school APIs, CSV, system notifications, single-occurrence changes and the full semester model. It needs separate storage, lifecycle, offline-resource and hosting acceptance; it is not promised desktop parity. A never-opened Web app cannot start offline. General Web release has no school-permission gate. An institution-specific demo or connection is separate optional work.
+There is no general Web planner delivery track. Keep the existing static concept site. Consider a Web surface only when a concrete school connection needs one. Do not assume this means a full browser planner, cloud database or bidirectional sync. Define scope and permission from that school's interface first; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
 
 ## Technology and implementation limits
 
-Keep Flutter and the selected shadcn_ui direction; early lessons may retain Material. Introduce Riverpod and drift/SQLite as needed. Build task saving and personal-plan rules before optional course modules. Test date handling, bounded expansion and overlap rules before connecting multiple views. Do not install unused packages or create empty layers.
+Keep Flutter Material controls and the shared theme. Introduce one drift/SQLite adapter with saving. Add Riverpod only if ordinary state sharing becomes hard to maintain. Build task saving and personal-plan rules before optional course modules. Test date handling, bounded expansion and overlap rules before connecting multiple views. Do not install unused packages or create empty layers.
 
 Complete local behavior first. Future identity/source adapters use the application boundary, but no account service, network layer or sync queue belongs in the core by default. Browser storage, lifecycle and file handling need separate acceptance. Until sync is implemented, transfer between devices uses explicit backups rather than a shared live database file.
 
-Optional desktop reminders may run while the process is active; the first Web candidate excludes them. See [NOTIFICATIONS.md](NOTIFICATIONS.md) for permission and platform limits. Closed-process reminders require separate acceptance. Build editors and permitted recoverable drafts before later assisted import; see [EDITING.md](EDITING.md) and [QUICK_IMPORT.md](QUICK_IMPORT.md).
+Optional desktop reminders may run while the process is active; the first Web candidate excludes them. See [NOTIFICATIONS.md](NOTIFICATIONS.md) for permission and platform limits. Closed-process reminders require separate acceptance. Build explicit editors and reliable recovery of confirmed records before assisted import; see [EDITING.md](EDITING.md) and [QUICK_IMPORT.md](QUICK_IMPORT.md).
 
 Treat locations, private plans and backups as sensitive. Minimize fields, validate untrusted input, isolate credentials where used, redact diagnostics and test deletion/recovery. A later backend needs object-level authorization, session security and cross-user isolation. These are requirements, not implemented safeguards; see [SECURITY.md](SECURITY.md). Architecture and data constraints are in [ARCHITECTURE.md](ARCHITECTURE.md) and [DATABASE.md](DATABASE.md).
 
@@ -168,7 +166,7 @@ School connections are optional adapters. Authentication, timetable reads, reten
 2. Add personal timed/all-day plans, shared Today/Week, bounded repeats, task deadlines and overlap warnings without semester setup.
 3. Complete private export/import, tested recovery, migrations, accessible three-language controls and clear storage explanations.
 4. Run a Windows trial across different daily routines, then validate Linux/macOS on native hosts. Publish only tested packages with support and upgrade/recovery guidance.
-5. Select optional course tools, local review/reminders, Web, sync or external connections only from a concrete need; estimate and validate each separately.
+5. Select local extensions from trial feedback. Consider Web or synchronization only for a school connection that needs them; estimate and validate that connection separately.
 
 The learner continues desktop work; Web is not a required lesson or release milestone. Use fictional data in demonstrations and state real feature limits. School discussions apply only to an optional school connection and do not gate the independent product.
 

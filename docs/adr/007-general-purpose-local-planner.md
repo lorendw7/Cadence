@@ -1,5 +1,7 @@
 # ADR-007: A general-purpose local planner
 
+Later decision: [ADR-008](008-small-free-local-product.md) narrows the first release to themed Material controls, explicit saves, memory-only unsaved forms and ordinary local storage. Earlier UI-library, saved-draft, encryption and broad Web/sync requirements below are historical where they conflict. Web/sync is now considered only for a school connection that needs it.
+
 **Status:** Accepted product direction; implementation remains staged and learner-led.
 **Date:** 2026-11-11
 **Decider:** The project owner, following the request to make software anyone can use locally rather than a product tied to Kyushu University.

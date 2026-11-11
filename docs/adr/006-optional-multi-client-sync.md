@@ -1,5 +1,7 @@
 # ADR-006: Optional multi-client sync
 
+Scope update (2026-11-11): [ADR-008](008-small-free-local-product.md) parks this study. Web and synchronization are considered only for a specific school connection that needs them. This is not a general cloud-sync backlog; reuse only the parts justified by that connection. No backend, queue or account implementation is authorized by this reference.
+
 **Status:** Proposed, not implemented. [ADR-007](007-general-purpose-local-planner.md) makes sync an optional extension after the general local core. Earlier assumptions that all sync identity or hosting depends on a school are superseded; a specific provider or school-data connection still needs its relevant permission.
 **Date:** 2026-11-10; wording clarified on 2026-11-11.
 **Deciders:** The maintainer and a future operator. A chosen external provider confirms permissions for its own identity/data service, where required.

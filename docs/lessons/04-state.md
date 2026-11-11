@@ -19,7 +19,7 @@ A field survives while the same State object exists. A local variable initialize
 | FilledButton | Strong background for a main action |
 | OutlinedButton | Visible border for a secondary action |
 
-onPressed determines behavior; appearance does not. child holds the button's text or icon. The teaching app uses Material. shadcn_ui is selected for the future product UI but is not installed.
+onPressed determines behavior; appearance does not. child holds the button's text or icon. The teaching app uses Material. At the time, shadcn_ui was selected for later use. [ADR-008](../adr/008-small-free-local-product.md) now keeps Material for the first release; this historical lesson result is unchanged.
 
 ## Reload experiment
 

@@ -1,8 +1,10 @@
 # Quality and acceptance
 
-[ADR-007](adr/007-general-purpose-local-planner.md) defines the current scope: a general-purpose local offline planner without accounts. First use offers Save on this device and Temporary use before reading saved planning data. Web, sync and school adapters are optional later extensions. School permission applies only to the relevant school interfaces and data, not general desktop or Web delivery.
+Scope update: [ADR-008](adr/008-small-free-local-product.md) defines the first-release gates. Web/service checks below apply only if a school connection needs those parts. They are not tasks for a general Web or personal sync product.
 
-Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux and macOS are desktop targets; mobile apps are excluded. shadcn_ui is selected but not introduced. A concept website is separate from a functional planner.
+[ADR-007](adr/007-general-purpose-local-planner.md) defines the current scope: a general-purpose local offline planner without accounts. First use offers Save on this device and Temporary use before reading saved planning data. School adapters are optional; Web and sync are considered only if a selected connection needs them. School permission applies only to the relevant school interfaces and data, not general desktop or Web delivery.
+
+Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux and macOS are desktop targets; mobile apps are excluded. The first release uses themed Material controls. A concept website is separate from a functional planner.
 
 ## Local and hosted checks
 
@@ -25,14 +27,14 @@ Review icon readability and illustrations visually; decorative strokes do not pr
 | Saving choice | First use offers both modes before reading records; an existing database stays unopened in temporary mode; remembered choices are explicit and visible |
 | Mode changes | Temporary-to-local preview uses the current snapshot, handles an existing saved workspace explicitly, and reports failure honestly; switching away resolves pending writes and makes keep/clear scope clear |
 | Tasks | Separate identity from title, valid/blank input, completion/undo, deletion and restoration; date-only versus timed deadlines; overdue transitions using an injected clock |
-| Events and repeats | Start/end validation, overnight and all-day intervals, bounded weekly repeats, timezone/DST cases and independent personal categories |
+| Events and repeats | Start/end validation, overnight/all-day intervals, bounded weekly repeats, whole-series edit scope and one workspace timezone with DST checks |
 | Conflicts | End equals start, overlapping events, deadlines excluded, and the checked date range honestly disclosed |
 | Today | Counts match lists, overdue items are not duplicated, undated tasks remain available, midnight/resume refresh uses the right date |
 | Week | All seven days are reachable, long events and text remain readable, narrow layout preserves selection and focus |
 | Local review, when included | Empty data, clipped day/week boundaries, overlap removal, completion/undo and zero comparison base; see [STATISTICS.md](STATISTICS.md) |
 | Backup | Round trip, consistent active database, invalid/future versions and failed restore preserving the original usable copy |
-| Drafts and failed writes | Persist drafts only in selected local mode; temporary drafts remain in memory; failures retain input and never claim a successful save |
-| Application contracts | Consistent snapshots, stale-query/preview rejection, conflicting revisions and discarded drafts not reappearing; see [APPLICATION.md](APPLICATION.md) |
+| Drafts and failed writes | Keep incomplete forms in memory in both modes; test Save/Discard/Cancel, failed-write input retention and truthful status |
+| Application contracts | Consistent snapshots, stale-query/preview rejection, duplicate submission and discarded input not reappearing; see [APPLICATION.md](APPLICATION.md) |
 | Process and restore lifecycle | One writer, migration failure preserving data, restore draining writes and rejecting old callbacks |
 | Migration | Supported schema upgrade preserves identities and private data; temporary launch does not migrate an unrelated saved database |
 | Notifications, when included | Timing, cancellation, completion, deduplication, denied permission, dispatch failure and native click-through |
@@ -67,33 +69,11 @@ If a course or school extension is included, test representative academic patter
 
 ## Optional Web checks
 
-If built, the initial browser client has no account or backend. It offers the same first-use saving choice, manual schedules/tasks, bounded weekly repeats and three languages. The proposed IndexedDB adapter needs its own storage-failure and data-flow checks. Declare actual desktop browser/OS coverage; no phone product is implied.
-
-| Boundary | Required acceptance before private data use |
-|---|---|
-| Startup mode | No saved business data, drafts or decryption key is read before a local-saving choice; temporary reopening stays empty even when an old database exists |
-| Strict JSON | 1 MiB UTF-8 and 2,000 records; reject unsupported versions/types, duplicate IDs, invalid dates/repeats and bad structure; preview/cancel/replace preserves the original on failure |
-| Browser storage | Denied/quota-limited storage, private mode, clearing, unexpected exit, migration and failed restore; export/recovery works and loss limits are visible |
-| Local concurrency | Tabs cannot silently overwrite revisions or apply a stale import/restore; clearing invalidates old callbacks and pending writes |
-| Untrusted content | Titles, notes, imported files and errors remain inert text; check stored/reflected/DOM injection and link handling |
-| Scripts and hosting | HTTPS, practical restrictive CSP, reviewed dependencies and minimal third-party scripts; no private fixtures or credentials in bundles/source maps |
-| URLs, logs and caches | No private schedules, backup bodies, credentials or tokens in URLs, analytics, ordinary logs or service-worker caches; cache update/rollback is defined |
-
-Use fictional data during implementation and initial demos. Test hostile titles, unavailable storage, stale previews and interrupted replacement. Before release, define browser support, a limited pilot, privacy notice, support owner and rollback process. General Web deployment does not require school permission; included school adapters still need their own authorization. See [RELEASE.md](RELEASE.md).
+Only a school connection that needs Web can activate this work. Define the actual browser surface and supported platforms first. Test hostile text, script isolation, HTTPS, chosen authentication flow, storage failures and clearing for the data it handles. If it saves planner records, prove preview, failed replacement and stale-tab handling. Do not require a full browser planner merely to complete authorization.
 
 ## Optional service and sync checks
 
-Add these gates only if an account/backend extension is chosen:
-
-| Boundary | Required acceptance |
-|---|---|
-| Authorization | Ownership on every read/write/export/delete; another user's ID grants no access; cross-workspace references fail |
-| Sessions | Safe transport/storage, expiry/revocation, reconnect and device control; no long-lived tokens in ordinary browser storage; appropriate CSRF and CORS controls |
-| Voluntary logout/switch | Resolve unsent and unknown-outcome work through confirmed sync, permitted private export or explicit discard; cancellation preserves the current session's work |
-| Forced session loss | Stop requests immediately, freeze and isolate the old account's queue, prevent reading/replay by a new account, and show temporary-memory loss limits |
-| Operation | Input/request limits, minimal secret access, encrypted transport/storage, redacted logs, retention/deletion, restricted backups and tested recovery |
-
-[SYNC.md](SYNC.md) adds duplicate and unknown-outcome submissions, safe committed-order cursors, offline conflicts, deletion, expired devices, snapshot failure and server restore. Exercise two clients and inject failures before real-data use. These are future scenarios, not passed coverage.
+Only add these checks if a school connection actually uses a service. Verify permission, ownership checks, session expiry, retention, deletion and bounded requests. For updates, test duplicate/partial snapshots, stale responses and local-edit preservation. A failed read must not look like deletion. Bidirectional sync needs separate conflict and recovery tests. Reuse relevant cases from [SYNC.md](SYNC.md), not its entire proposed system. No school or cloud failure may block independent local work.
 
 ## Optional assisted import acceptance
 
@@ -105,7 +85,7 @@ Check no writes before confirmation, atomic batch failure, duplicates, late resp
 
 ## Privacy and release acceptance
 
-[DATA_PROTECTION.md](DATA_PROTECTION.md) defines staged checks for cipher availability in release builds, missing device keys, plaintext in side files, corrupt/oversized encrypted backups, bounded password-derivation parameters, interrupted migration and cross-device restore. Add these with the features. Review cryptographic formats and key handling separately from routine UI tests.
+[DATA_PROTECTION.md](DATA_PROTECTION.md) covers local file privacy, confirmed writes, migration, backup recovery and optional API keys. The first release uses ordinary SQLite and unencrypted JSON with clear labels. Persistent drafts and encrypted storage are not offered. Any later encrypted format needs its own key-loss, migration and recovery acceptance.
 
 The local core has no mandatory account, upload or telemetry. Weekly review stays on the device. Filtered sharing uses allowed fields, while private backup is clearly separate. Never ask anyone to post a full backup, credentials or tokens in a public issue.
 

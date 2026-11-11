@@ -1,22 +1,20 @@
 # Local editing and saving
 
-Updated: 2026-11-11. Planned behavior; persistent drafts and schedule editing are not implemented. Build direct editing before template import. On first use, explicitly offer Save on this device or Temporary use, with no account required. Saving follows that choice; before a choice or during temporary use, do not create persistent planner records, drafts or automatic backups. See [ADR-007](adr/007-general-purpose-local-planner.md).
-
-Create a plan from an empty time slot in the week view. Select an existing item to open its editor. Show the title, date and time first, followed by optional location, category and repeat settings. Room, teacher and teaching-week fields belong to the optional course extension; ordinary work, learning and daily-life plans do not require a semester. Make the choice between editing one occurrence and its whole repeat rule explicit when that later capability is implemented.
+Updated: 2026-11-11. Planned behavior under [ADR-008](adr/008-small-free-local-product.md). The first release uses explicit Save and unsaved input in memory. Persistent draft recovery is deferred. Current application progress is in [LEARNING.md](LEARNING.md).
 
 ## Save behavior
 
-- Form input is a draft. In a mode that allows local saving, save it to a separate draft record after a short pause in typing, on blur and when closing the editor. Do not rely only on application shutdown. In session-only mode, keep the draft in memory and explain that closing loses it.
-- Show distinct states: Not saved, Saving, Draft saved and Save failed. Only a successful storage write can mark a draft as saved. Saving a draft does not update the schedule. Temporary mode must say that data is kept only for this session rather than claiming it was saved to disk.
-- Drafts may omit required fields. Exclude them from the week view, statistics and reminders. On confirmation, validate the full input, commit the plan and repeat rules in one transaction, and remove the matching draft. Keep the input if validation fails. The same atomic behavior applies to optional course records.
-- After restart, offer to restore saved drafts without submitting them. A draft that edits a record keeps the record's original revision. If that revision has changed, require another review instead of overwriting newer data.
-- Task completion and reversal use direct commands. In a saving mode, commit them in a transaction. The list may show a pending state, but must not claim success before storage confirms it. Keep failed operations available to retry.
-- Order concurrent writes by revision or a queue. A slower, older request must not overwrite newer input. If the editor is closing with unsaved changes, offer continued saving, retry or explicit discard.
-- Give each draft an increasing edit sequence. An old success response must not mark newer text as saved. Freeze the submitted draft version and check the record and dependency revisions in the transaction. Closing, discarding and submitting must stop later session writes, cancel debounce timers and settle queued writes so a late autosave cannot recreate a deleted draft. See [APPLICATION.md](APPLICATION.md).
-- Support undo for deletion. Before migrations, bulk changes or full restore, use a verified local snapshot where retention is allowed. Autosave is not a backup; provide a separate export action.
+- A form has Save and Cancel. Required fields and errors are visible. Extra fields stay optional.
+- Keep one active editor per record. Opening an existing record does not change it.
+- Save validates the current input and waits for a confirmed local write. Prevent duplicate submission while pending.
+- On failure, keep the form and input. Explain the error and offer retry. Do not show Saved before acknowledgement.
+- Closing a changed form offers Save, Discard or Cancel. A cancelled close preserves the input.
+- Temporary mode changes only memory and says Kept for this session. It does not create a draft file or automatic backup.
+- Task completion is a direct action with pending/error feedback. Keep the existing one-level delete undo where supported; do not build an unlimited history system.
+- The first repeat editor changes the whole series and says so. Single-occurrence changes are later work.
 
-A power loss may discard input that has not been written. Autosave cannot prevent disk failure. Promise recovery of confirmed saved data within the tested storage contract, not that data can never be lost.
+No autosave timers, draft promotion protocol or restart recovery for incomplete forms is required. Warn about unsaved input on normal exit where possible. A crash can lose it; say so without suggesting that confirmed saved records are also temporary.
 
 ## Acceptance
 
-Check the first-use choice before any persistent planner write. Saved content must survive restart and partial drafts must be recoverable. Failed writes must leave input available to retry. Rapid edits must retain the latest value. Discarding a draft must leave the plan unchanged. A failed submit must not leave a partial plan or course. Undo must restore the deleted item. Temporary editing must leave no persistent draft, database write or automatic backup. All core editing must work offline. Test with a temporary database and a storage adapter that can simulate failures.
+Check validation, explicit save/cancel, closing with changed input, double submission and failed writes. A failed save keeps the old record and input. Confirmed records survive restart in local mode; incomplete forms do not. Temporary editing leaves no private disk copy. Older callbacks must not recreate discarded data. See [APPLICATION.md](APPLICATION.md) for session and restore rules.
