@@ -2,7 +2,7 @@
 
 Current first-release limits are in [ADR-008](adr/008-small-free-local-product.md): one workspace, explicit Save, memory-only unsaved forms, ordinary SQLite and private unencrypted JSON backups. Detailed course rules below are later reference material, not first-release work.
 
-Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [project README](../README.md) and [learning log](LEARNING.md). The first release keeps themed Material controls under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
+Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [project README](../README.md) and [learning log](LEARNING.md). The product keeps the selected shadcn_ui direction under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
 
 ## Purpose and scope
 
@@ -10,7 +10,7 @@ Cadence is a local time planner for everyday work, personal life, study and othe
 
 Target Windows, Linux and macOS. Complete a usable Windows flow first, validate each other platform on its native host, and distribute tested packages through GitHub Releases. No Android/iOS product is planned; the Android project is legacy scaffolding.
 
-Web and synchronization are considered only when a school connection needs them. Neither is a general local-product delivery track. General development and release, including a possible general Web planner, require no school approval. School or other third-party connections still need their own permissions. The UI uses themed Flutter Material controls, with muted wine #7C394B, warm paper #F6F5F1 and sage #6F877C; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+Web and synchronization are considered only when a school connection needs them. Neither is a general local-product delivery track. General local-product development and release require no school approval. School or other third-party connections still need their own permissions. The UI uses Flutter shadcn_ui, with muted wine #7C394B, warm paper #F6F5F1 and sage #6F877C; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 Core desktop planning needs no account, backend or runtime network connection. Once installed, it can use chosen local data offline. A download and any optional network service have separate delivery needs. Do not require login, connection setup or a semester wizard before the first task or plan.
 
@@ -150,7 +150,7 @@ There is no general Web planner delivery track. Keep the existing static concept
 
 ## Technology and implementation limits
 
-Keep Flutter Material controls and the shared theme. Introduce one drift/SQLite adapter with saving. Add Riverpod only if ordinary state sharing becomes hard to maintain. Build task saving and personal-plan rules before optional course modules. Test date handling, bounded expansion and overlap rules before connecting multiple views. Do not install unused packages or create empty layers.
+Keep Flutter shadcn_ui and the shared theme; integrate controls gradually. Introduce one drift/SQLite adapter with saving. Add Riverpod only if ordinary state sharing becomes hard to maintain. Build task saving and personal-plan rules before optional course modules. Test date handling, bounded expansion and overlap rules before connecting multiple views. Do not install unused packages or create empty layers.
 
 Complete local behavior first. Future identity/source adapters use the application boundary, but no account service, network layer or sync queue belongs in the core by default. Browser storage, lifecycle and file handling need separate acceptance. Until sync is implemented, transfer between devices uses explicit backups rather than a shared live database file.
 

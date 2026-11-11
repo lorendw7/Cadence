@@ -35,7 +35,7 @@ flutter run -d macos
 
 The current learning app starts with two sample tasks. You can add validated titles, toggle completion, delete tasks and undo the latest deletion once. Empty lists show a prompt; the practice counter has increment and reset buttons. Tasks, input and the undo record are in memory; restarting restores the initial samples. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter. See [learning progress](LEARNING.md) for automated and manual acceptance details.
 
-Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner uses themed Material controls. Add Web work only if a school connection needs it. No alternate core implementation is provided by the assistant.
+Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner introduces shadcn_ui gradually while preserving working controls. Add Web work only if a school connection needs it. No alternate core implementation is provided by the assistant.
 
 ## Validate
 
@@ -65,7 +65,7 @@ These debug builds are compilation checks, not signed release artifacts or deskt
 
 ## Dependencies and data
 
-Current dependencies are in [pubspec.yaml](../pubspec.yaml). No UI-library migration is required. Introduce drift with local saving; add Riverpod only for a demonstrated state-sharing need. The current skeleton does not yet store courses or personal plans.
+Current dependencies are in [pubspec.yaml](../pubspec.yaml). shadcn_ui remains the selected UI library; use the version in pubspec.yaml and verify it during the UI lessons. Introduce drift with local saving; add Riverpod only for a demonstrated state-sharing need. The current skeleton does not yet store courses or personal plans.
 
 No account, cloud credentials or API registration is required for this checkout or the planned offline core. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. Optional official school integration has a separate permission and interface track in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Do not add school credentials to source files, fixtures or setup instructions.
 

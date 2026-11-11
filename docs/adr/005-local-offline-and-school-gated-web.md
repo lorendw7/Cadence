@@ -1,6 +1,6 @@
 # ADR-005: User-chosen local saving, offline use and school-gated Web deployment
 
-Later decision: [ADR-008](008-small-free-local-product.md) narrows the first release to themed Material controls, explicit saves, memory-only unsaved forms and ordinary local storage. Earlier UI-library, saved-draft, encryption and broad Web/sync requirements below are historical where they conflict. Web/sync is now considered only for a school connection that needs it.
+Later decision: [ADR-008](008-small-free-local-product.md) keeps shadcn_ui and narrows the first release to explicit saves, memory-only unsaved forms and ordinary local storage. Earlier saved-draft, encryption and broad Web/sync requirements below are historical where they conflict. Web/sync is now considered only for a school connection that needs it.
 
 **Status:** Partially superseded by [ADR-007](007-general-purpose-local-planner.md). The school-permission gate for general product/Web deployment below was the user's earlier direction and no longer applies. Explicit saving, offline use, recovery, storage isolation and permissions for a particular school connection remain valid. Technical choices are proposed, not implemented.
 **Date:** 2026-11-10; wording and application contracts clarified on 2026-11-11.

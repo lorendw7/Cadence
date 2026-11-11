@@ -14,7 +14,7 @@ Keep the next UI and persistence lessons. Remove education-specific work from th
 |---|---|---|
 | Lessons 1–2 | Models, constructors, final, copyWith | Completed task model |
 | Lessons 3–10 | Lists, components, state, input, completion, validation, deletion, undo | Completed in-memory task flow |
-| Lessons 11–16 | Theme, existing Flutter controls, components, navigation, window sizes, state ownership | A clear desktop task interface |
+| Lessons 11–16 | Theme, gradual shadcn_ui integration, components, navigation, window sizes, state ownership | A clear desktop task interface |
 | Lessons 17–26 | Async work, explicit storage choice, drift/SQLite, migrations, explicit Save, failed writes | Restart recovery when saving is enabled, preserved input, basic backup/restore checks |
 | Lessons 27–34 | Deadlines, date changes, personal plans, bounded repeats, conflicts | A small Today and personal-planning flow |
 | Re-estimate after persistence | Seven-day Week view, data controls, tested backup/restore, languages, keyboard use, package checks | A small general local-planner pilot |
@@ -46,7 +46,7 @@ Use the accepted [layout specification](UI_ARCHITECTURE.md#pages-and-navigation)
 | Lesson | Concepts and exercise | Acceptance |
 |---|---|---|
 | 11 | Theme basics: top-level constants, Color, hexadecimal ARGB and named theme arguments. Apply paper and wine through the existing Material theme. | The app has the new canvas and primary color direction; task behavior stays intact. No package migration yet. See [lesson 11](lessons/11-theme.md). |
-| 12 | Reuse themed Material controls for the task input and actions. Explain shared styling and focus without adding a UI package. | Existing task behavior and keyboard access remain intact; styles come from the shared theme. |
+| 12 | Check the selected shadcn_ui version and SDK compatibility, explain its theme and introduce one used control. Keep working Material controls during the transition. | The used control works with the shared theme, keyboard access and existing task behavior; no unused wrapper framework. |
 | 13 | Build a coherent task surface: spacing, text hierarchy, input, buttons and an explicit completion checkbox. Introduce each needed component API before use. | Add, validate, complete, delete and undo still work; keyboard labels and narrow-window controls remain usable. Keep title editing deferred until an editor exists. |
 | 14 | Introduce the desktop shell: sidebar layout, selection and state ownership. Put the real task flow in Tasks. | The sidebar reflects the current page. Rebuilds preserve tasks, input and undo. Add Today/Week destinations when their real features arrive; no fake calendar pages. |
 | 15 | Explain layout constraints and responsive choices. Adapt the shell and list to narrow windows, long text and keyboard focus. | No unreachable controls or overflow in agreed test sizes; test 200% text scaling and visible focus. |

@@ -43,7 +43,7 @@ flutter run -d windows
 
 Use the matching Linux/macOS target on a configured host. [Setup](docs/SETUP.md) lists the required tools and checks. There is no implemented Web planner in this checkout.
 
-The first release keeps themed Flutter Material controls. Introduce drift with local saving; add another package only for a demonstrated need. [ADR-008](docs/adr/008-small-free-local-product.md) records the smaller design, including explicit Save, memory-only unsaved forms and ordinary local storage. [pubspec.yaml](pubspec.yaml) and its lockfile record installed dependencies. The starter version is not a production-readiness claim.
+The product UI uses Flutter shadcn_ui, introduced one used control at a time. Introduce drift with local saving; add another package only for a demonstrated need. [ADR-008](docs/adr/008-small-free-local-product.md) records the smaller design, including explicit Save, memory-only unsaved forms and ordinary local storage. [pubspec.yaml](pubspec.yaml) and its lockfile record installed dependencies. The starter version is not a production-readiness claim.
 
 ## Artwork and website
 
