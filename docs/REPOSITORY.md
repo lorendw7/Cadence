@@ -11,7 +11,7 @@ Updated: 2026-11-11. Keep paths stable so lesson links and platform projects con
 | [lessons/](../lessons/README.md) | Historical templates; do not overwrite current tests |
 | docs/lessons/ | Lesson explanations and acceptance records |
 | docs/ and docs/adr/ | Requirements, plans, and decisions; plans are not implemented features |
-| [assets/](../assets/README.md) | Editable artwork, exports, catalogue, and manifest |
+| [assets/](../assets/README.md) | Artwork sources, exports, searchable catalogue, generated preview sheets, and manifest |
 | [website/](../website/README.md) | Three-language static concept site |
 | [tools/](../tools/README.md) | Generators and read-only checks |
 | windows/, linux/, macos/ | Desktop projects; compilation alone does not prove runtime support |
@@ -48,6 +48,10 @@ Ignore build caches, local IDE settings, logs, and credentials. Do not delete us
 Flutter plugin registrants and SVG assets have LF rules in .gitattributes. SVG line endings affect manifest byte counts and copy checks. Preserve those rules across hosts.
 
 Artwork sources, website copies, and launcher exports serve different uses. They are not duplicates to delete. Follow [regeneration](../assets/README.md#regeneration) when changing art. Do not run a generator as unrelated cleanup.
+
+The artwork scripts have separate jobs. `tools/build_artwork.py` defines the vector shapes. `tools/artwork_catalog.py` defines groups and use descriptions and generates the catalogue and manifest. `tools/artwork_previews.cjs` defines the preview sheets; `tools/export_artwork.cjs` runs their export. Edit catalogue styling and interactions in `assets/catalog.css` and `assets/catalog.js`.
+
+Keep the preview source fingerprints in `assets/manifest.json`. Only a new preview export updates them; rebuilding the catalogue preserves them so an old image cannot pass as current. See the [catalogue browser check](../assets/README.md#catalogue-browser-check) for the latest recorded interaction and layout results. Local browser screenshots and Python caches are ignored build outputs.
 
 ## Current limits
 

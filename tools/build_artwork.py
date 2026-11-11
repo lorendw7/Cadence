@@ -5,8 +5,6 @@ Raster exports: node tools/export_artwork.cjs (requires sharp).
 The editorial PNG is generated separately; this script never modifies it.
 """
 from pathlib import Path
-import json
-import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'assets'
@@ -141,15 +139,15 @@ def states():
     rules = '<path d="M108 110h94m-94 22h68m-68 22h84" stroke="#DDDCD5"/>'
     bodies = {
         'empty-today': paper + '<path d="M84 81h142M113 32v24m84-24v24" stroke="#7C394B"/>' + '<circle cx="155" cy="132" r="26" fill="#E6ECE6" stroke="#6F877C"/><path d="M155 116v16l11 7" stroke="#415A4E"/>',
-        'empty-week': '<rect x="48" y="53" width="224" height="130" rx="6" fill="#FDFCF9" stroke="#DDDCD5"/><path d="M48 87h224m-192 0v96m32-96v96m32-96v96m32-96v96m32-96v96m32-96v96M48 119h224M48 151h224" stroke="#DDDCD5"/><path d="M72 41v25m48-25v25m48-25v25m48-25v25m32-25v25" stroke="#7C394B"/><rect x="116" y="93" width="24" height="20" rx="3" fill="#E6ECE6"/>',
+        'empty-week': '<rect x="48" y="53" width="224" height="130" rx="6" fill="#FDFCF9" stroke="#DDDCD5"/><path d="M48 87h224m-192 0v96m32-96v96m32-96v96m32-96v96m32-96v96m32-96v96M48 119h224M48 151h224" stroke="#DDDCD5"/><path d="M72 41v25m48-25v25m48-25v25m48-25v25m32-25v25" stroke="#7C394B"/>',
         'empty-tasks': paper + rules + '<rect x="104" y="62" width="15" height="15" rx="3" stroke="#7C394B"/><path d="M133 70h65" stroke="#DDDCD5"/><path d="m231 111 14-14 12 12-14 14-24 24-18 5 5-18z" fill="#E6ECE6" stroke="#6F877C"/>',
         'all-done': '<circle cx="160" cy="114" r="63" fill="#E6ECE6"/><circle cx="160" cy="114" r="44" stroke="#6F877C"/><path d="m137 113 16 17 33-36" stroke="#415A4E" stroke-width="4"/><path d="M72 145c0-25 13-40 28-47M76 124c-20-2-20-16-20-16 16 0 20 16 20 16m2 10c18-5 22-18 22-18-18-2-22 18-22 18" stroke="#6F877C"/><circle cx="240" cy="66" r="4" fill="#7C394B"/>',
         'no-results': '<circle cx="145" cy="99" r="49" fill="#FDFCF9" stroke="#DDDCD5"/><circle cx="145" cy="99" r="34" stroke="#7C394B"/><path d="m181 135 42 42" stroke="#7C394B" stroke-width="9"/><path d="M128 99h34" stroke="#DDDCD5"/>',
-        'import-preview': paper + '<path d="M114 71h41m-41 13h60M160 103v55m-18-18 18 18 18-18" stroke="#7C394B"/><path d="M118 163v15h84v-15" stroke="#6F877C"/><circle cx="239" cy="79" r="19" fill="#E6ECE6"/><path d="m231 79 5 5 11-12" stroke="#415A4E"/>',
+        'import-preview': paper + '<path d="M114 71h41m-41 13h60M160 103v55m-18-18 18 18 18-18" stroke="#7C394B"/><path d="M118 163v15h84v-15" stroke="#6F877C"/><circle cx="239" cy="79" r="21" fill="#E6ECE6"/><circle cx="236" cy="76" r="8" stroke="#415A4E"/><path d="m242 82 7 7" stroke="#415A4E"/>',
         'save-error': paper + rules + '<path d="m234 109-39 67h78z" fill="#F0E6E7" stroke="#7C394B"/><path d="M234 131v20m0 10v2" stroke="#7C394B"/>',
         'restore-backup': '<path d="M73 87h174v94H73z" fill="#FDFCF9" stroke="#DDDCD5"/><rect x="65" y="63" width="190" height="27" rx="4" fill="#E6ECE6" stroke="#6F877C"/><path d="M140 109h40M134 151a30 30 0 1 0 7-20m-9-8v19h19" stroke="#7C394B"/>',
         'no-courses': '<path d="M55 60c43-10 73-2 105 16 32-18 62-26 105-16v113c-43-10-73-2-105 16-32-18-62-26-105-16z" fill="#FDFCF9" stroke="#DDDCD5"/><path d="M160 76v113m-85-94c23-3 41 0 62 10m-62 16c23-3 41 0 62 10m48-26c21-10 39-13 62-10" stroke="#DDDCD5"/><path d="M214 58v55l13-9 13 9V56" fill="#6F877C"/>',
-        'no-review': '<path d="M72 49v136h182" stroke="#DDDCD5"/><rect x="98" y="125" width="26" height="60" rx="4" fill="#E6ECE6"/><rect x="146" y="97" width="26" height="88" rx="4" fill="#F0E6E7"/><rect x="194" y="69" width="26" height="116" rx="4" fill="#E6ECE6"/><path d="M100 99 160 70 208 43" stroke="#6F877C" stroke-dasharray="3 6"/>',
+        'no-review': '<path d="M72 49v136h182" stroke="#DDDCD5"/><path d="M88 73h150M88 117h150M88 161h150" stroke="#DDDCD5" stroke-dasharray="3 6"/><circle cx="164" cy="117" r="30" fill="#FDFCF9" stroke="#DDDCD5"/><path d="M152 117h24" stroke="#7C394B"/>',
     }
     for name, body in bodies.items():
         decor = '<path d="M43 202h234" stroke="#DDDCD5"/><circle cx="58" cy="66" r="3" fill="#6F877C"/>'
@@ -176,50 +174,8 @@ def social():
 
 
 def catalogue():
-    sections = [('Brand', 'brand', '*.svg'), ('Interface icons', 'icons', '*.svg'), ('Empty states and feedback', 'illustrations', '*.svg'), ('Paper patterns', 'patterns', '*.svg'), ('Sharing card', 'social', '*.svg'), ('Editorial artwork', 'illustrations', '*.png'), ('Platform icons', 'platform/png', '*.png')]
-    content = ''
-    for title, folder, glob in sections:
-        cards = ''
-        for f in sorted((ART / folder).glob(glob)):
-            if f.name in ['sprite.svg', 'cadence-icon.svg', 'cadence-mark.svg']:
-                continue
-            uri = f.relative_to(ART).as_posix()
-            cls = 'icon' if folder == 'icons' else 'art'
-            if 'paper' in f.stem and 'icon' not in f.stem:
-                cls += ' inverse'
-            sample = f'<div class="sample"><img src="{uri}" alt="" loading="lazy"></div>'
-            if folder == 'patterns':
-                sample = f'<div class="sample" style="background-image:url({uri});background-repeat:repeat"></div>'
-            cards += f'<a class="card {cls}" href="{uri}" download>{sample}<span>{f.stem}</span></a>'
-        content += f'<section><h2>{title}</h2><div class="grid {"icons" if folder == "icons" else ""}">{cards}</div></section>'
-    write(ART / 'catalog.html', '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cadence · Artwork library</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#F6F5F1;color:#2F3033;font:15px/1.7 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:64px 28px}header{border-bottom:1px solid #DDDCD5;padding-bottom:36px}h1{font:64px/1.1 Georgia,serif;letter-spacing:-2px;margin:20px 0}h2{font:26px Georgia,serif;margin:48px 0 20px}.eyebrow{color:#7C394B;letter-spacing:3px;font-size:12px}.intro{max-width:680px;color:#666761}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.grid.icons{grid-template-columns:repeat(auto-fit,minmax(115px,1fr))}.card{color:inherit;text-decoration:none;background:#FDFCF9;border:1px solid #DDDCD5;border-radius:8px;overflow:hidden}.sample{height:200px;display:flex;align-items:center;justify-content:center;padding:24px}.sample img{max-width:100%;max-height:100%}.icon .sample{height:88px}.icon img{width:24px;height:24px}.inverse .sample{background:#2F3033}.card span{display:block;padding:10px 14px;border-top:1px solid #DDDCD5;font:11px/1.5 monospace;overflow-wrap:anywhere}.card:hover{border-color:#7C394B}.card:focus-visible{outline:3px solid #7C394B;outline-offset:4px}.palette{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}.swatch{display:flex;gap:9px;align-items:center;font-size:12px}.swatch i{width:22px;height:22px;border-radius:50%;border:1px solid #DDDCD5}footer{margin-top:55px;color:#666761;font-size:12px}</style>
-<main><header><div class="eyebrow">CADENCE / VISUAL LIBRARY / 02</div><h1>A little structure.<br>A little space.</h1><p class="intro">A quiet visual library for a general-purpose local time planner. The independent C mark, consistent lines, warm paper and muted wine serve work, personal life and study. Select a card to download its source. These assets support the planned product; their presence does not mean a feature is implemented.</p><div class="palette">''' + ''.join(f'<span class="swatch"><i style="background:{c}"></i>{n} {c}</span>' for n, c in [('Wine', WINE), ('Paper', PAPER), ('Sage', SAGE), ('Ink', INK)]) + '</div></header>' + content + '<footer>Original Cadence vector artwork · MIT project license · Editorial illustration generated with built-in imagegen. Independent project. No institutional affiliation.</footer></main></html>')
-    files = []
-    for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform']:
-        for f in sorted((ART / folder).rglob('*')):
-            if f.is_file():
-                files.append({'path': f.relative_to(ROOT).as_posix(), 'bytes': f.stat().st_size, 'type': f.suffix[1:], 'category': folder})
-    # Deployment metadata is separate from editable masters. Budgets catch an
-    # accidentally copied full-resolution PNG in a responsive WebP slot.
-    web_exports = []
-    editorial_source = 'assets/illustrations/journal-editorial.png'
-    for width, height, budget in [(480, 320, 20000), (960, 640, 60000), (1536, 1024, 160000)]:
-        uri = f'website/assets/journal-editorial-{width}.webp'
-        if (ROOT / uri).exists():
-            web_exports.append({'path': uri, 'source': editorial_source,
-                                'width': width, 'height': height,
-                                'bytes': (ROOT / uri).stat().st_size,
-                                'maxBytes': budget, 'transform': 'webp-quality-82'})
-    for name, source in [('journal-editorial.png', editorial_source),
-                         ('social-card.png', 'assets/social/social-card.png')]:
-        target = ROOT / 'website' / 'assets' / name
-        if target.exists():
-            width, height = struct.unpack('>II', target.read_bytes()[16:24])
-            web_exports.append({'path': target.relative_to(ROOT).as_posix(),
-                                'source': source, 'width': width, 'height': height,
-                                'bytes': target.stat().st_size, 'transform': 'copy'})
-    write(ART / 'manifest.json', json.dumps({'version': 2, 'palette': {'wine': WINE, 'paper': PAPER, 'sage': SAGE, 'ink': INK}, 'iconGrid': 24, 'iconStroke': 1.75, 'files': files, 'webExports': web_exports}, ensure_ascii=False, indent=2))
+    from artwork_catalog import build
+    build(ROOT, {'wine': WINE, 'paper': PAPER, 'sage': SAGE, 'ink': INK}, write)
 
 
 if __name__ == '__main__':

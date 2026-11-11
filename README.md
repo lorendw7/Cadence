@@ -49,7 +49,9 @@ The product UI uses Flutter shadcn_ui, introduced one used control at a time. In
 
 The quiet journal style uses warm paper, muted wine, sage, and graphite. The v2 library has 56 interface icons, 10 state illustrations, an editorial image, patterns, platform icons, and a sharing card. Responsive WebP exports reduce website image size while preserving the original artwork.
 
-[Visual overview](assets/preview.png) · [Catalogue](assets/catalog.html) · [Artwork guide](assets/README.md) · [Design system](docs/DESIGN.md)
+The catalogue groups assets by use and offers local search, family filters, size samples, and downloads. Current artwork and retained originals are clearly marked. Both preview sheets are generated from the artwork sources, and the checker detects stale previews. The [catalogue browser check](assets/README.md#catalogue-browser-check) records verified interactions, widths, and remaining limits.
+
+[Visual overview](assets/preview.png) · [Full contact sheet](assets/preview-library.png) · [Catalogue](assets/catalog.html) · [Artwork guide](assets/README.md) · [Design system](docs/DESIGN.md)
 
 The Japanese/English/Chinese website shows fictional concepts. It is not a working planner or a download page. GitHub Pages publishes only the website directory.
 

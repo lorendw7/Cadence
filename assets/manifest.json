@@ -13,577 +13,1257 @@
       "path": "assets/brand/cadence-icon-dark.svg",
       "bytes": 386,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Use the current Cadence identity. Keep the C and rhythm dot together.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-icon-paper.svg",
       "bytes": 386,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Use the current Cadence identity. Keep the C and rhythm dot together.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-icon-v2.svg",
       "bytes": 386,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Use the current Cadence identity. Keep the C and rhythm dot together.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-icon.svg",
       "bytes": 637,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "retained",
+      "previewSurface": "paper",
+      "group": "Retained originals",
+      "use": "Historical source. Use the current v2 family for new work.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-lockup-paper.svg",
       "bytes": 887,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "ink",
+      "group": "Brand",
+      "use": "Use on a dark surface.",
+      "width": 456,
+      "height": 104
     },
     {
       "path": "assets/brand/cadence-lockup.svg",
       "bytes": 887,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Use the current Cadence identity. Keep the C and rhythm dot together.",
+      "width": 456,
+      "height": 104
     },
     {
       "path": "assets/brand/cadence-mark-ink.svg",
       "bytes": 330,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Use the current Cadence identity. Keep the C and rhythm dot together.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-mark-paper.svg",
       "bytes": 330,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "ink",
+      "group": "Brand",
+      "use": "Use on a dark surface.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-mark-wine.svg",
       "bytes": 330,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Use the current Cadence identity. Keep the C and rhythm dot together.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/brand/cadence-mark.svg",
       "bytes": 587,
       "type": "svg",
-      "category": "brand"
+      "category": "brand",
+      "role": "source",
+      "status": "retained",
+      "previewSurface": "paper",
+      "group": "Retained originals",
+      "use": "Historical source. Use the current v2 family for new work.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/icons/add.svg",
       "bytes": 288,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Create an item.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/all-day.svg",
       "bytes": 405,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Mark an all-day item.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/arrow-up-right.svg",
       "bytes": 314,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Follow a destination link.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/backup.svg",
       "bytes": 310,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Create a private backup.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/check.svg",
       "bytes": 290,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Mark completion.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/chevron-down.svg",
       "bytes": 302,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Expand a section.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/chevron-left.svg",
       "bytes": 303,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Move to the previous period.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/chevron-right.svg",
       "bytes": 304,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Move to the next period.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/clock.svg",
       "bytes": 318,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Show a time or duration.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/close.svg",
       "bytes": 296,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Close a view.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/conflict.svg",
       "bytes": 394,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Flag overlapping items.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/course.svg",
       "bytes": 343,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Optional course tools",
+      "use": "Label an optional course.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/data.svg",
       "bytes": 341,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Open data controls.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/deadline.svg",
       "bytes": 338,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Show a task deadline.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/delete.svg",
       "bytes": 326,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Delete an item.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/device.svg",
       "bytes": 341,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Label saving on this device.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/edit.svg",
       "bytes": 307,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Edit an item.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/error.svg",
       "bytes": 323,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Explain an error with text.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/exam.svg",
       "bytes": 373,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Optional course tools",
+      "use": "Label an exam.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/export.svg",
       "bytes": 312,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Write a chosen export.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/external.svg",
       "bytes": 318,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Open an external destination.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/file-json.svg",
       "bytes": 406,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Label a JSON data file.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/filter.svg",
       "bytes": 300,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Narrow the visible items.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/help.svg",
       "bytes": 343,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Open help.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/import.svg",
       "bytes": 312,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Bring in a file for review.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/info.svg",
       "bytes": 321,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Explain a detail.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/keyboard.svg",
       "bytes": 396,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Describe a keyboard shortcut.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/language.svg",
       "bytes": 349,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Choose a language.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/link.svg",
       "bytes": 338,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Link related items.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/location.svg",
       "bytes": 359,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Everyday categories",
+      "use": "Show a place.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/meeting.svg",
       "bytes": 384,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Everyday categories",
+      "use": "Label a meeting.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/memory.svg",
       "bytes": 426,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Label temporary session use.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/menu.svg",
       "bytes": 297,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Open navigation.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/moon.svg",
       "bytes": 312,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Label a dark appearance.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/more.svg",
       "bytes": 354,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Open more actions.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/notification.svg",
       "bytes": 330,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Label a reminder.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/offline.svg",
       "bytes": 400,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Describe offline use.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/personal.svg",
       "bytes": 337,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Everyday categories",
+      "use": "Label personal plans.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/refresh.svg",
       "bytes": 347,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Refresh a view.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/repeat.svg",
       "bytes": 347,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Show a repeating item.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/research.svg",
       "bytes": 387,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Optional course tools",
+      "use": "Label research work.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/restore.svg",
       "bytes": 318,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Restore a backup after review.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/review.svg",
       "bytes": 309,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Open a weekly review.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/save.svg",
       "bytes": 316,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Files and storage",
+      "use": "Save changes.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/search.svg",
       "bytes": 319,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Find matching items.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/semester.svg",
       "bytes": 380,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Optional course tools",
+      "use": "Label a course term.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/settings.svg",
       "bytes": 413,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Open settings.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/sprite.svg",
       "bytes": 13000,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "sprite",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Sprite",
+      "use": "All interface symbols. Use a symbol ID and a named host control."
     },
     {
       "path": "assets/icons/study.svg",
       "bytes": 338,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Everyday categories",
+      "use": "Label study plans.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/success.svg",
       "bytes": 324,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Confirm a completed action.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/sun.svg",
       "bytes": 367,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Label a light appearance.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/tasks.svg",
       "bytes": 323,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Open the task list.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/today.svg",
       "bytes": 377,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Open the daily plan.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/undo.svg",
       "bytes": 308,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editing and navigation",
+      "use": "Undo the last action.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/warning.svg",
       "bytes": 359,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Preferences and feedback",
+      "use": "Flag a warning with text.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/week.svg",
       "bytes": 380,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Planning",
+      "use": "Open the weekly plan.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/work.svg",
       "bytes": 359,
       "type": "svg",
-      "category": "icons"
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Everyday categories",
+      "use": "Label work plans.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/illustrations/all-done.svg",
       "bytes": 667,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "Existing tasks are complete. Do not use for a list with no tasks.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/empty-tasks.svg",
       "bytes": 666,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "No tasks yet. Invite the first task.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/empty-today.svg",
       "bytes": 580,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "No plans today. Offer a local action to add one.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/empty-week.svg",
-      "bytes": 666,
+      "bytes": 599,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "No plans this week. Show no sample commitments.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/import-preview.svg",
-      "bytes": 637,
+      "bytes": 680,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "Review a draft import. Nothing has been accepted or saved yet.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/journal-editorial.png",
       "bytes": 2586082,
       "type": "png",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Editorial artwork",
+      "use": "Decorative still life. Original image; not an application screenshot.",
+      "width": 1536,
+      "height": 1024
     },
     {
       "path": "assets/illustrations/no-courses.svg",
       "bytes": 614,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "No courses in the optional course tools.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/no-results.svg",
       "bytes": 538,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "No search matches. Offer to change or clear the query.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/no-review.svg",
-      "bytes": 640,
+      "bytes": 555,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "No review data yet. Do not imply measured progress.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/restore-backup.svg",
       "bytes": 553,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "Review a backup before replacing any data.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/illustrations/save-error.svg",
       "bytes": 578,
       "type": "svg",
-      "category": "illustrations"
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Empty states and feedback",
+      "use": "Saving failed. Explain the error and offer retry with real text.",
+      "width": 320,
+      "height": 240
     },
     {
       "path": "assets/patterns/journal-dots.svg",
       "bytes": 201,
       "type": "svg",
-      "category": "patterns"
+      "category": "patterns",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Paper patterns",
+      "use": "Repeat as faint decoration. Keep forms and text on plain surfaces.",
+      "width": 32,
+      "height": 32
     },
     {
       "path": "assets/patterns/journal-grid.svg",
       "bytes": 223,
       "type": "svg",
-      "category": "patterns"
+      "category": "patterns",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Paper patterns",
+      "use": "Repeat as faint decoration. Keep forms and text on plain surfaces.",
+      "width": 32,
+      "height": 32
     },
     {
       "path": "assets/patterns/journal-rules.svg",
       "bytes": 196,
       "type": "svg",
-      "category": "patterns"
+      "category": "patterns",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Paper patterns",
+      "use": "Repeat as faint decoration. Keep forms and text on plain surfaces.",
+      "width": 32,
+      "height": 32
     },
     {
       "path": "assets/social/social-card.png",
       "bytes": 53114,
       "type": "png",
-      "category": "social"
+      "category": "social",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Sharing card",
+      "use": "Public link preview. Describes a product in development.",
+      "source": "assets/social/social-card.svg",
+      "width": 1200,
+      "height": 630
     },
     {
       "path": "assets/social/social-card.svg",
       "bytes": 1228,
       "type": "svg",
-      "category": "social"
+      "category": "social",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Sharing card",
+      "use": "Public link preview. Describes a product in development.",
+      "width": 1200,
+      "height": 630
     },
     {
       "path": "assets/platform/cadence.icns",
       "bytes": 79429,
       "type": "icns",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check."
     },
     {
       "path": "assets/platform/cadence.ico",
       "bytes": 14717,
       "type": "ico",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check."
     },
     {
       "path": "assets/platform/png/cadence-1024.png",
       "bytes": 50556,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 1024,
+      "height": 1024
     },
     {
       "path": "assets/platform/png/cadence-128.png",
       "bytes": 3163,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 128,
+      "height": 128
     },
     {
       "path": "assets/platform/png/cadence-16.png",
       "bytes": 397,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 16,
+      "height": 16
     },
     {
       "path": "assets/platform/png/cadence-180.png",
       "bytes": 4730,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 180,
+      "height": 180
     },
     {
       "path": "assets/platform/png/cadence-192.png",
       "bytes": 5183,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 192,
+      "height": 192
     },
     {
       "path": "assets/platform/png/cadence-24.png",
       "bytes": 601,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/platform/png/cadence-256.png",
       "bytes": 7134,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 256,
+      "height": 256
     },
     {
       "path": "assets/platform/png/cadence-32.png",
       "bytes": 742,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 32,
+      "height": 32
     },
     {
       "path": "assets/platform/png/cadence-48.png",
       "bytes": 1123,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 48,
+      "height": 48
     },
     {
       "path": "assets/platform/png/cadence-512.png",
       "bytes": 18536,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/platform/png/cadence-64.png",
       "bytes": 1439,
       "type": "png",
-      "category": "platform"
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-v2.svg",
+      "use": "Launcher or browser export. Native package acceptance is a separate check.",
+      "width": 64,
+      "height": 64
     }
   ],
   "webExports": [
@@ -630,5 +1310,401 @@
       "bytes": 53114,
       "transform": "copy"
     }
-  ]
+  ],
+  "previews": {
+    "inputs": [
+      {
+        "path": "assets/brand/cadence-icon-dark.svg",
+        "sha256": "ee13dc6e5ed42ddacfb608d03110d7608739b4e6315a03056bf112501e659cf7"
+      },
+      {
+        "path": "assets/brand/cadence-icon-paper.svg",
+        "sha256": "ca321b7c3d2ae5dacc2a43cca8845ed30bbde02d4be094ad00d633493ed5653c"
+      },
+      {
+        "path": "assets/brand/cadence-icon-v2.svg",
+        "sha256": "66375b3553ae43ce7d1eb63fa2a423719076e8bd48bcc8faeadeceb80b2b547e"
+      },
+      {
+        "path": "assets/brand/cadence-icon.svg",
+        "sha256": "c2e514cfc88c6f88a3955d16421fb94c35746d1ce4797c00e23f28cc013ba674"
+      },
+      {
+        "path": "assets/brand/cadence-lockup-paper.svg",
+        "sha256": "031b65ca1f0c39823be38c2d9689176e2c286b66567489a26f728e942bfa2d3c"
+      },
+      {
+        "path": "assets/brand/cadence-lockup.svg",
+        "sha256": "4de34e21673d5e84450f2b66283ee5d199533074ecedf7742d2e843fc1d4a40e"
+      },
+      {
+        "path": "assets/brand/cadence-mark-ink.svg",
+        "sha256": "844d4ea4990e8dcf6d80f100a36ff18c25c3608db31a7c90cf7e0c37a28735ec"
+      },
+      {
+        "path": "assets/brand/cadence-mark-paper.svg",
+        "sha256": "df8e5814c06a579f1d72c36d795230dc85d205de412a841273ea58aad095657f"
+      },
+      {
+        "path": "assets/brand/cadence-mark-wine.svg",
+        "sha256": "092d02f3f98678b72bbd80d8940409173d93bd939622ab2744ad2561b743920b"
+      },
+      {
+        "path": "assets/brand/cadence-mark.svg",
+        "sha256": "3826b3d28ee8b3f56d0afef5a651c7e08286f8dff9f92c6801600af9e03a7566"
+      },
+      {
+        "path": "assets/icons/add.svg",
+        "sha256": "af0785f3d268008724a0cffed6c5bbdec33f301daa0c92390bb1ec19f31995a1"
+      },
+      {
+        "path": "assets/icons/all-day.svg",
+        "sha256": "0f7b2c75b9b48fb8faf7e32201baa9171aa54120166c6a02defe09ccfcbef2f9"
+      },
+      {
+        "path": "assets/icons/arrow-up-right.svg",
+        "sha256": "549ddda8110b258f774c728ec88d71df07d924822cba2d611b42205d41812fe9"
+      },
+      {
+        "path": "assets/icons/backup.svg",
+        "sha256": "123b2cac69953c265848de9238e9595bb874c3ba9189c9e814500c6ead7614bb"
+      },
+      {
+        "path": "assets/icons/check.svg",
+        "sha256": "4235fe2e1ebb5435c3df0d2cab9a545db3fcad8795b2fd783d4e514f7c78d8d2"
+      },
+      {
+        "path": "assets/icons/chevron-down.svg",
+        "sha256": "e686071f7530cce09365c163a3dc105c744ca0d2b3093c63a259536988aaff0d"
+      },
+      {
+        "path": "assets/icons/chevron-left.svg",
+        "sha256": "0201ff3bfbd62796351828886e93ee0a671310be40b9a2f4b5323fe9f6c7c7d0"
+      },
+      {
+        "path": "assets/icons/chevron-right.svg",
+        "sha256": "3d467a0c35e87c883ea4e272502a2940a1fcbb16a97dbdb5780808ecad656400"
+      },
+      {
+        "path": "assets/icons/clock.svg",
+        "sha256": "4b975e907b5b108bcef29ab9b9b524f9434a001aa241e0fca483d8bf98d14b16"
+      },
+      {
+        "path": "assets/icons/close.svg",
+        "sha256": "eadc3604d7158bf4f039700e7c6af371d259beb7b0cb72db0d55065c17847642"
+      },
+      {
+        "path": "assets/icons/conflict.svg",
+        "sha256": "b7e0c35760f2365daeb6fbeb228e097a18555d7cf6a5570cf96a965591800516"
+      },
+      {
+        "path": "assets/icons/course.svg",
+        "sha256": "537635ecf05e716e2039f451de180e4888e363068e682667edfb9ef7e8ac38dc"
+      },
+      {
+        "path": "assets/icons/data.svg",
+        "sha256": "d5f9504125cfd4d487a9df9a48f124791d93bcbba69e4e5e0769243f1caeb57b"
+      },
+      {
+        "path": "assets/icons/deadline.svg",
+        "sha256": "038351c72457eec7000fd45830519dc3bf351ec46961392629b61af8a026fa48"
+      },
+      {
+        "path": "assets/icons/delete.svg",
+        "sha256": "530eac0a1ca5ea8d8aa32121cc4ad0cc2cecbec6cc912f6b10e4b371635ddbff"
+      },
+      {
+        "path": "assets/icons/device.svg",
+        "sha256": "c9bb09f1b694d18e349878284e10cecdcc99a9926e33d7240cc1415110a3e9f6"
+      },
+      {
+        "path": "assets/icons/edit.svg",
+        "sha256": "8379058250dea15cc39f7ced89caf292f4aa5c646f2398da07374d72e3c5f6aa"
+      },
+      {
+        "path": "assets/icons/error.svg",
+        "sha256": "bc6b37c8a3e1dd6a11c42bd74346740ad7baeac09d138eec3b90b407853b25ac"
+      },
+      {
+        "path": "assets/icons/exam.svg",
+        "sha256": "4465d7a8af706bfbebd9a0fa7c8437fc8d429c62a4d4e5451b0ea2803f3567b3"
+      },
+      {
+        "path": "assets/icons/export.svg",
+        "sha256": "6e458970b069299951735295ad413d54e1d3f13a3a7970c841e9ea84750e177c"
+      },
+      {
+        "path": "assets/icons/external.svg",
+        "sha256": "63ea792479b776536f75c24957d38d77ce4501e2a8f5fdc6de236a8a522a10b1"
+      },
+      {
+        "path": "assets/icons/file-json.svg",
+        "sha256": "dce484fdb6491f2b4fa5aab6839d67ed3246aa4a371c0552b49a0c49329d0d7f"
+      },
+      {
+        "path": "assets/icons/filter.svg",
+        "sha256": "dd05ef03869cac3873312d2b363bd20606280cfff415d9f2f24530f19bb5649c"
+      },
+      {
+        "path": "assets/icons/help.svg",
+        "sha256": "ff2d505a60a32a55a3f7aa2d5f5adaea5bab88e2ea9b5639b01821b803a982e0"
+      },
+      {
+        "path": "assets/icons/import.svg",
+        "sha256": "4ef2e46a2b01dfffe787a89030d772869aeeb2f133150787544d5dcb007128b0"
+      },
+      {
+        "path": "assets/icons/info.svg",
+        "sha256": "44da53eb7dd70a6bbee5387f4d8f9917ad5f5516900d9791b19812b9a1bab0c1"
+      },
+      {
+        "path": "assets/icons/keyboard.svg",
+        "sha256": "aa78fce8d2a976ad43743444cdc87ee14378decaeb8946539ba7aa4b94178bd9"
+      },
+      {
+        "path": "assets/icons/language.svg",
+        "sha256": "6e4f508ca0ed2df7378be65a084dc17dcc5f419878c507bacc32ccb4a5006bf3"
+      },
+      {
+        "path": "assets/icons/link.svg",
+        "sha256": "b5cb365b31eef8d3fb13e9710f0ea495404475bb732b9b754d2c1fa014d46d3d"
+      },
+      {
+        "path": "assets/icons/location.svg",
+        "sha256": "c7fe0e9d693ff7ab62c548f6b19329ef722219ba1395ddd2c305370305562ada"
+      },
+      {
+        "path": "assets/icons/meeting.svg",
+        "sha256": "f42176aeeb98f50c90bbab433e5b9ceb7400594203296e4c6b8edd6be3577888"
+      },
+      {
+        "path": "assets/icons/memory.svg",
+        "sha256": "15f7551d5735a557206f1be202906936870ec02fa28b79f27a9f42f63d0630fa"
+      },
+      {
+        "path": "assets/icons/menu.svg",
+        "sha256": "0d3a679f53917804d574d71e5172b65478a6cec5c87e077ab1e42cf9cf2e95bf"
+      },
+      {
+        "path": "assets/icons/moon.svg",
+        "sha256": "d143c760b5be0a38be90255b8d6bc5332bc886bde5675f40ffa0931e224bd8c0"
+      },
+      {
+        "path": "assets/icons/more.svg",
+        "sha256": "ae766c558d98e6f579d3f93c07b7461d3dd04787416434ee3ee8bd000a6c8518"
+      },
+      {
+        "path": "assets/icons/notification.svg",
+        "sha256": "b97b24ab259d73b8dcf49e91d9c86777e6957187d6ea314548ca01cfe443b028"
+      },
+      {
+        "path": "assets/icons/offline.svg",
+        "sha256": "19e9405eec59c042b1fc02fed715adb7f1dd5e1cc85a79d6d07be16df81c5219"
+      },
+      {
+        "path": "assets/icons/personal.svg",
+        "sha256": "6b1d270cd363804684a47211a2a2165505ccfb3850cb9ad4d7989d4dfda41ed9"
+      },
+      {
+        "path": "assets/icons/refresh.svg",
+        "sha256": "b35440d5bb4eb1affee0dd1629ae74e9791dcb0871e6e86e8cf93554d4c79c7c"
+      },
+      {
+        "path": "assets/icons/repeat.svg",
+        "sha256": "b40580c852eda275ac5488246189274d33e72e54d682d4777670bed0e96c2906"
+      },
+      {
+        "path": "assets/icons/research.svg",
+        "sha256": "51f955622aabf6d9f93ce595f9428b4d3f799f93070aef6362224917272d0829"
+      },
+      {
+        "path": "assets/icons/restore.svg",
+        "sha256": "770d13ab7351518d0d7c4c12f99651af333f8e5e1a748c70db9bf97d76211405"
+      },
+      {
+        "path": "assets/icons/review.svg",
+        "sha256": "2d97e23ac795e5b43eacdfb0b4aa7e82f8b000dd3d83b6ccfb6ccbc887aa1db6"
+      },
+      {
+        "path": "assets/icons/save.svg",
+        "sha256": "9d28bca59202beffb9675b443b311166fe7c75a07781904a71512fdd0f017f26"
+      },
+      {
+        "path": "assets/icons/search.svg",
+        "sha256": "2f0a19ec53c59416399c942a52da3faf478d4ff608be688514ee2307ece864e8"
+      },
+      {
+        "path": "assets/icons/semester.svg",
+        "sha256": "3633d5f43dfed60427edc910c3ca6bd90bbbdcf957289389c39ba3df1c7c1b05"
+      },
+      {
+        "path": "assets/icons/settings.svg",
+        "sha256": "9bf1d5d3c98edb0215c841b159bf2aad2b22d4d1b31ae7c580878cb71fd743f7"
+      },
+      {
+        "path": "assets/icons/study.svg",
+        "sha256": "a6387bb1471412118409e0462cf13b5e4258d11f1f939b16e8b5f600053616cf"
+      },
+      {
+        "path": "assets/icons/success.svg",
+        "sha256": "c0a6a200706de7ed432b511e060b7abcf5fa2445f2c5ba3bea361d923ee1ec8e"
+      },
+      {
+        "path": "assets/icons/sun.svg",
+        "sha256": "0b5257624f4679a9b8c8db334959763d440be440a50f78d59d83f70cdde67028"
+      },
+      {
+        "path": "assets/icons/tasks.svg",
+        "sha256": "834fb1e338d3225a1c3bda7d495952ec01682ea9c25551beba9343ee03c36700"
+      },
+      {
+        "path": "assets/icons/today.svg",
+        "sha256": "f5809e94e67579ff0c112bdff83eea30298c0b2dfdb68e20dfd03a579a71917c"
+      },
+      {
+        "path": "assets/icons/undo.svg",
+        "sha256": "13359a85c18147d35f39bb602627adc3f69a88c8a3dc4f00d7af8300a3097576"
+      },
+      {
+        "path": "assets/icons/warning.svg",
+        "sha256": "70a04a5213c3cf70d47aca68d78ccadfacae6bd0b2cb86521bdc7205c073c7b9"
+      },
+      {
+        "path": "assets/icons/week.svg",
+        "sha256": "837672d26993fa98bccf121230deeb669cb640c3267dbc1f60ba8f67d810e82f"
+      },
+      {
+        "path": "assets/icons/work.svg",
+        "sha256": "c59c6538323fbad71e60dad1d4bbf64c4dee9be50f435a9af39725094e502792"
+      },
+      {
+        "path": "assets/illustrations/all-done.svg",
+        "sha256": "75b900adac3a33f4e0ce71c441d67a508200344db665a7b4d26741d893cbc8f1"
+      },
+      {
+        "path": "assets/illustrations/empty-tasks.svg",
+        "sha256": "20719e6dbbf42b900d4c966e7baabc0863b26cb7d054cacdf8013f9a238f1c3e"
+      },
+      {
+        "path": "assets/illustrations/empty-today.svg",
+        "sha256": "b729e3f0a833f804c86b92ed0ec3361cab0f357be77c9ed4fb661380bd3f6e9c"
+      },
+      {
+        "path": "assets/illustrations/empty-week.svg",
+        "sha256": "ec9caba80e65ae882c031001cff4120007f28cb8826eaa0609c434560946bb7c"
+      },
+      {
+        "path": "assets/illustrations/import-preview.svg",
+        "sha256": "306542f0806c5bf1ad34bb81eb2cc78ffd9b3a33228cd7e76e5e4f26320615f9"
+      },
+      {
+        "path": "assets/illustrations/journal-editorial.png",
+        "sha256": "507ce3aa1041709ff6833750c5f296787d9c6beb48c13f645d0c9318b89ddaa9"
+      },
+      {
+        "path": "assets/illustrations/no-courses.svg",
+        "sha256": "a858dbe2ae3cc881dbbfe7d33b180f2f94c5fcf8d58574dbaa5dfcf7bfe4cd14"
+      },
+      {
+        "path": "assets/illustrations/no-results.svg",
+        "sha256": "f6cfb1a7e46aec8e3c72bddcea7038184bd9575dbd4748ab3b29559770989619"
+      },
+      {
+        "path": "assets/illustrations/no-review.svg",
+        "sha256": "243f30e44c21cb6a412121d8ee6b14fb2c2c57e250d8c9ed1bdc0929c3656601"
+      },
+      {
+        "path": "assets/illustrations/restore-backup.svg",
+        "sha256": "fc34fc346830ba655c993d354a977cccd44adf83c3895c83c577e90b18ad0826"
+      },
+      {
+        "path": "assets/illustrations/save-error.svg",
+        "sha256": "56fd8a5904143f9630609aebedcb8139beb76405bfb9bda42a90e96eb10c9a23"
+      },
+      {
+        "path": "assets/patterns/journal-dots.svg",
+        "sha256": "002de97095965ec81f57ffdcc13cf0760e55262c8717553147e1efa790ac8f2a"
+      },
+      {
+        "path": "assets/patterns/journal-grid.svg",
+        "sha256": "5f752f22b92e7e7b2df1fb9c824d67b813f058c4f8325267f96b2526ffc899b4"
+      },
+      {
+        "path": "assets/patterns/journal-rules.svg",
+        "sha256": "b3890f9ef911f0b8a3c39efc673a85d9ccf6ac297be9d8c93cb7cc787dde9f34"
+      },
+      {
+        "path": "assets/platform/png/cadence-1024.png",
+        "sha256": "1f8e024069f8148f482f6a031d27c23ac065786700168e53eada985ed1259ef4"
+      },
+      {
+        "path": "assets/platform/png/cadence-128.png",
+        "sha256": "70c4e69b891b321f074f34feab90044581789d53df4c3ac567c2fd4312740180"
+      },
+      {
+        "path": "assets/platform/png/cadence-16.png",
+        "sha256": "b247ed9bd6097d8fc0f2b8f617deb57acfef7954977122a722962340b0e8ccaf"
+      },
+      {
+        "path": "assets/platform/png/cadence-180.png",
+        "sha256": "0e29ec3076fdac46a4cdec7f6ae20fcf50e4bc332d448b2fd05abb8998cd65b3"
+      },
+      {
+        "path": "assets/platform/png/cadence-192.png",
+        "sha256": "0162f356e91d7d4f69e1732019e508af60e160256ab74209deabf0a572e107f5"
+      },
+      {
+        "path": "assets/platform/png/cadence-24.png",
+        "sha256": "bedaa776b5e6599022eb7d5c175870cb485ac8a272e1e99ccea56e57d9727e9a"
+      },
+      {
+        "path": "assets/platform/png/cadence-256.png",
+        "sha256": "69b839e7eb141daf0f7c65c2368b1ff00de11cbef04dcefb8465352c1f505a2d"
+      },
+      {
+        "path": "assets/platform/png/cadence-32.png",
+        "sha256": "a58d7297b5c2cdfd563b24dd8ff349922f099ca48c085701eca9973ce882fa5c"
+      },
+      {
+        "path": "assets/platform/png/cadence-48.png",
+        "sha256": "1dbf701bd58061ca34e664e7b8a6625aaf458c9ec79bb34fc1494c77e5174605"
+      },
+      {
+        "path": "assets/platform/png/cadence-512.png",
+        "sha256": "f86d81a913b12c4af97a5acf6a8c9a331c04f6b2f238890cca3d9631048ea361"
+      },
+      {
+        "path": "assets/platform/png/cadence-64.png",
+        "sha256": "41f12f1fd2d5e1ce6e35ccb9d313d133b4d78bd0f0a3b187f526918859c05e5c"
+      },
+      {
+        "path": "assets/social/social-card.svg",
+        "sha256": "4059b5f0692c026bbfa215291239a0afde83f56fa815f30bae3947dae305c561"
+      },
+      {
+        "path": "tools/artwork_previews.cjs",
+        "sha256": "0c934b627577041dd3c0da59a76eb5c90273f919bd1315bdd4a8d010c8ceb723"
+      },
+      {
+        "path": "tools/export_artwork.cjs",
+        "sha256": "816506ed6ca45412408640cc39ce0a56eaa3dbba83b8af0b4f85a2290c4f2bce"
+      }
+    ],
+    "files": [
+      {
+        "path": "assets/preview.png",
+        "width": 1440,
+        "height": 1120,
+        "bytes": 446778,
+        "sha256": "91cb891982584d5249554ad230c63a8ee36375a938c8b92a6ca9689a341cba4a"
+      },
+      {
+        "path": "assets/preview-library.png",
+        "width": 1440,
+        "height": 4036,
+        "bytes": 583408,
+        "sha256": "5f973a969752237df9a052fb71f6114ce616e8d0613bad9c6622195ef47f3aea"
+      }
+    ]
+  }
 }

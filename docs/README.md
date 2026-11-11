@@ -25,7 +25,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | [Editing](EDITING.md) | Forms, drafts, validation, and failed saves |
 | [Statistics](STATISTICS.md) | Local planned-time and task calculations |
 | [Notifications](NOTIFICATIONS.md) | Later local reminders and platform checks |
-| [Artwork](../assets/README.md) | Sources, catalogue, exports, and regeneration |
+| [Artwork](../assets/README.md) | Sources, searchable catalogue, state guidance, generated previews, and exports |
 | [Image provenance](../assets/ART_PROMPTS.md) | Source and prompt for the editorial illustration |
 | [Website](../website/README.md) | Static concept site, translations, and publication |
 
