@@ -97,11 +97,11 @@ Add these gates only if an account/backend extension is chosen:
 
 ## Optional assisted import acceptance
 
-The primary measure is user effort saved, not perfect automatic recognition. Compare manual entry, local import plus review, and optional cloud help on the same permitted samples under [QUICK_IMPORT.md](QUICK_IMPORT.md). Include selection, waiting, correction and final review in completion time. Balance task order so remembering a sample does not make one method appear faster.
+The primary measure is user effort saved, not perfect automatic recognition. Compare manual entry, local import plus review, and optional cloud help on the same permitted samples under [QUICK_IMPORT.md](QUICK_IMPORT.md). Include taking the screenshot, selection, waiting, correction and final review in completion time. Balance task order so remembering a sample does not make one method appear faster.
 
 Record corrected fields, missed/extra entries, final date/week errors, resource use and any cloud usage by language and layout. Keep unreadable and rejected inputs in the coverage report. Useful partial drafts are allowed when gaps are clear and easy to fix. Set the pilot's time-saving target before evaluation; report slower cases and narrow supported scope when needed. No measured accuracy or effort-saving result exists yet.
 
-Check no writes before confirmation, atomic batch failure, duplicates, late responses, cancellation, bounded PDF/image input, offline use, temporary-file cleanup and key isolation. Test each claimed provider/model separately, including quota and malformed-output failures. Cloud failure must preserve the local draft. These are future feature checks, not current passing tests.
+Check no writes before confirmation, atomic batch failure, duplicates, late responses, cancellation, bounded screenshot input, offline use, temporary-file cleanup and key isolation. Test each claimed provider/model separately, including quota and malformed-output failures. Cloud failure must preserve the local draft. These are future feature checks, not current passing tests.
 
 ## Privacy and release acceptance
 

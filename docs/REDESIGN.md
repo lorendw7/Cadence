@@ -14,7 +14,7 @@ Core desktop planning needs no account, backend or runtime network connection. O
 
 Personal plans have their own editing and repeats. Tasks may have deadlines, but a deadline does not reserve a calendar interval. Courses and exams can later extend the same views without owning the core data model or onboarding.
 
-Excluded from the core scope: mobile apps, mandatory cloud accounts, external calendar integration, online ICS, live collaboration, automatic cloud sync, habits, payroll and focus tracking. Local screenshot/PDF import with pdfrx and RapidOCR, plus optional cloud help using personal API keys, is accepted extension work under [QUICK_IMPORT.md](QUICK_IMPORT.md). It is not implemented or required for the first local release. Its goal is less manual entry and correction work, with review before saving. School-password collection, unauthorized scraping and enrollment/grade operations are not product features. Optional sync has a separate proposal in [ADR-006](adr/006-optional-multi-client-sync.md).
+Excluded from the core scope: mobile apps, mandatory cloud accounts, external calendar integration, online ICS, live collaboration, automatic cloud sync, habits, payroll and focus tracking. Local screenshot import with RapidOCR, plus optional cloud help using personal API keys, is accepted extension work under [QUICK_IMPORT.md](QUICK_IMPORT.md). It is not implemented or required for the first local release. Its goal is less manual entry and correction work, with review before saving. School-password collection, unauthorized scraping and enrollment/grade operations are not product features. Optional sync has a separate proposal in [ADR-006](adr/006-optional-multi-client-sync.md).
 
 ## First use and saving
 

@@ -46,9 +46,9 @@ The preview shows counts, date range and the fact that all current planning reco
 
 A failed replacement preserves the old data. A failed persistent write cannot report success. Define the versioned contract and tests in its implementation lesson; do not create unused directories in advance. Initial Web JSON is not automatically compatible with the future `cadence-timetable` sharing format or full desktop backup. Add explicit migration tests before accepting either format.
 
-## Optional screenshot, PDF and AI import
+## Optional screenshot and AI import
 
-[QUICK_IMPORT.md](QUICK_IMPORT.md) defines the accepted desktop design, not implemented protection. Local extraction uses pdfrx and RapidOCR without upload. Set separate image/PDF limits for bytes, pages and decoded pixels. Treat embedded content and model output as data; do not execute scripts, follow source links or grant model tools. The full-replacement preview above applies to backup restore; assisted import instead previews a selected batch of new entries and duplicates.
+[QUICK_IMPORT.md](QUICK_IMPORT.md) defines the accepted desktop design, not implemented protection. Local extraction uses RapidOCR without upload. Set image limits for bytes and decoded pixels. Reject unsupported file types. Treat recognized text and model output as data; do not execute scripts, follow source links or grant model tools. The full-replacement preview above applies to backup restore; assisted import instead previews a selected batch of new entries and duplicates.
 
 Cloud help requires the user's own key and a reviewed send action showing destination and content. Saving locally or adding a key does not permit uploads. No automatic cloud fallback or provider switch is allowed. Provider retention applies even during temporary use. Use secure transport and never forward credentials across hosts or redirects.
 

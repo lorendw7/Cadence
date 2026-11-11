@@ -37,7 +37,7 @@ Keep Flutter and the selected shadcn_ui direction, which is not installed yet. U
 |-----------|-----------------------------|
 | Courses | Semesters, periods, teaching weeks, multiple rules, single class changes and filtered timetable sharing; not required to use personal plans/tasks |
 | Review and reminders | Local planned-time review and opt-in native reminders with tested platform limits; not actual-time tracking |
-| Assisted import | Local CSV/paste, screenshot and PDF drafts using pdfrx and RapidOCR; optional cloud AI with personal API keys and multiple provider profiles; review before saving; see [QUICK_IMPORT.md](QUICK_IMPORT.md) |
+| Assisted import | Local CSV/paste and screenshot drafts using RapidOCR; optional cloud AI with personal API keys and multiple provider profiles; review before saving; see [QUICK_IMPORT.md](QUICK_IMPORT.md) |
 | Web | Reuse proven local behavior only after browser storage, lifecycle, accessibility and hosting checks; no school permission is required for a general planner |
 | Sync | Separate user consent, identity, cloud copies, conflicts, deletion, security and operating ownership under [ADR-006](adr/006-optional-multi-client-sync.md) and [SYNC.md](SYNC.md) |
 | External connections | Only supported, authorized sources; each connection has its own data-access and retention rules |
