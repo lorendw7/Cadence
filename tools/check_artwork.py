@@ -1,5 +1,7 @@
 """Read-only artwork checks. Run with Python 3; no extra packages required."""
 from pathlib import Path
+from html.parser import HTMLParser
+import hashlib
 import json
 import struct
 import xml.etree.ElementTree as ET
@@ -32,6 +34,30 @@ def dimensions(data):
     raise ValueError('Unsupported or damaged image header')
 
 
+def svg_dimensions(data):
+    tree = ET.fromstring(data)
+    return float(tree.attrib['width']), float(tree.attrib['height'])
+
+
+def element_signature(element):
+    """Compare SVG content without depending on attribute order or spacing."""
+    return (element.tag, tuple(sorted(element.attrib.items())),
+            (element.text or '').strip(),
+            tuple(element_signature(child) for child in element))
+
+
+class CatalogueCards(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.assets = []
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if (tag == 'article' and 'card' in attributes.get('class', '').split()
+                and 'data-asset' in attributes):
+            self.assets.append(attributes['data-asset'])
+
+
 manifest = json.loads((ROOT / 'assets/manifest.json').read_text(encoding='utf-8'))
 tracked = set()
 for entry in manifest['files'] + manifest.get('webExports', []):
@@ -48,12 +74,78 @@ for entry in manifest['files'] + manifest.get('webExports', []):
         require(len(data) <= entry['maxBytes'], f'Image exceeds delivery budget: {name}')
     if 'width' in entry:
         try:
-            require(dimensions(data) == (entry['width'], entry['height']),
+            measure = svg_dimensions if file.suffix == '.svg' else dimensions
+            require(measure(data) == (entry['width'], entry['height']),
                     f'Wrong image dimensions: {name}')
-        except (ValueError, struct.error) as error:
+        except (ValueError, KeyError, ET.ParseError, struct.error) as error:
             errors.append(f'{name}: {error}')
     if entry.get('transform') == 'copy':
         require(data == (ROOT / entry['source']).read_bytes(), f'Deployment copy differs: {name}')
+
+for entry in manifest['files']:
+    name = entry['path']
+    require(entry.get('role') in {'source', 'sprite', 'export'},
+            f'Missing or invalid artwork role: {name}')
+    require(entry.get('status') in {'current', 'retained'},
+            f'Missing or invalid artwork status: {name}')
+    require(entry.get('previewSurface') in {'paper', 'ink'},
+            f'Missing or invalid preview surface: {name}')
+    for key in ['use', 'group']:
+        require(isinstance(entry.get(key), str) and bool(entry[key].strip()),
+                f'Missing artwork {key}: {name}')
+    if entry.get('type') == 'png' or (entry.get('type') == 'svg'
+                                     and entry.get('role') != 'sprite'):
+        require(all(type(entry.get(key)) is int and entry[key] > 0
+                    for key in ['width', 'height']),
+                f'Missing artwork dimensions: {name}')
+    if 'source' in entry:
+        require(entry.get('role') == 'export', f'Only exports should name a source: {name}')
+        require((ROOT / entry['source']).is_file(), f'Missing export source: {name}')
+
+catalogue = CatalogueCards()
+catalogue.feed((ROOT / 'assets/catalog.html').read_text(encoding='utf-8'))
+require(len(catalogue.assets) == len(set(catalogue.assets)),
+        'Duplicate artwork cards in catalogue')
+require(set(catalogue.assets) == {entry['path'] for entry in manifest['files']},
+        'Catalogue cards differ from manifest artwork files')
+
+previews = manifest.get('previews', {})
+preview_inputs = previews.get('inputs', [])
+preview_files = previews.get('files', [])
+expected_previews = {'assets/preview.png', 'assets/preview-library.png'}
+require({entry['path'] for entry in preview_files} == expected_previews,
+        'Manifest must list both generated artwork previews')
+require({'tools/artwork_previews.cjs', 'tools/export_artwork.cjs'}
+        <= {entry['path'] for entry in preview_inputs},
+        'Preview inputs must include both export scripts')
+expected_preview_sources = {'assets/illustrations/journal-editorial.png',
+                            'assets/social/social-card.svg'}
+for pattern in ['brand/*.svg', 'icons/*.svg', 'illustrations/*.svg',
+                'patterns/*.svg', 'platform/png/*.png']:
+    expected_preview_sources.update(file.relative_to(ROOT).as_posix()
+                                    for file in (ROOT / 'assets').glob(pattern)
+                                    if file.name != 'sprite.svg')
+require(expected_preview_sources <= {entry['path'] for entry in preview_inputs},
+        'Preview inputs omit artwork; regenerate previews after adding sources')
+for entries, label in [(preview_inputs, 'input'), (preview_files, 'output')]:
+    paths = [entry['path'] for entry in entries]
+    require(len(paths) == len(set(paths)), f'Duplicate preview {label} path')
+    for entry in entries:
+        name = entry['path']
+        file = ROOT / name
+        require(file.is_file(), f'Missing preview {label}: {name}')
+        if not file.is_file():
+            continue
+        data = file.read_bytes()
+        require(hashlib.sha256(data).hexdigest() == entry.get('sha256'),
+                f'Stale preview {label}: {name}; regenerate artwork previews')
+        if label == 'output':
+            require(len(data) == entry.get('bytes'), f'Stale preview size: {name}')
+            try:
+                require(dimensions(data) == (entry.get('width'), entry.get('height')),
+                        f'Wrong preview dimensions: {name}')
+            except (ValueError, struct.error) as error:
+                errors.append(f'{name}: {error}')
 
 for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform']:
     for file in (ROOT / 'assets' / folder).rglob('*'):
@@ -77,6 +169,45 @@ for file in svgs:
                     require(value.startswith('#'), f'External SVG reference: {file.name}')
     except ET.ParseError as error:
         errors.append(f'Invalid SVG {file.name}: {error}')
+
+namespace = '{http://www.w3.org/2000/svg}'
+icon_files = [file for file in (ROOT / 'assets/icons').glob('*.svg')
+              if file.name != 'sprite.svg']
+require(manifest.get('iconGrid') == 24, 'The interface icon grid must be 24 units')
+require(manifest.get('iconStroke') == 1.75, 'The interface icon stroke must be 1.75 units')
+try:
+    sprite = ET.fromstring((ROOT / 'assets/icons/sprite.svg').read_bytes())
+    symbols = sprite.findall(f'{namespace}symbol')
+    symbol_ids = [symbol.get('id') for symbol in symbols]
+    require(len(symbol_ids) == len(set(symbol_ids)), 'Duplicate interface sprite symbol ID')
+    require(set(symbol_ids) == {file.stem for file in icon_files},
+            'Interface sprite IDs differ from standalone icon names')
+    by_id = {symbol.get('id'): symbol for symbol in symbols}
+    expected_style = {'fill': 'none', 'stroke': 'currentColor',
+                      'stroke-width': '1.75', 'stroke-linecap': 'round',
+                      'stroke-linejoin': 'round'}
+    for file in icon_files:
+        icon = ET.fromstring(file.read_bytes())
+        require(icon.get('width') == '24' and icon.get('height') == '24'
+                and icon.get('viewBox') == '0 0 24 24',
+                f'Wrong interface icon grid: {file.name}')
+        groups = icon.findall(f'{namespace}g')
+        require(len(groups) == 1, f'Expected one interface icon group: {file.name}')
+        if len(groups) != 1:
+            continue
+        group = groups[0]
+        require(all(group.get(key) == value for key, value in expected_style.items()),
+                f'Wrong interface icon stroke style: {file.name}')
+        symbol = by_id.get(file.stem)
+        if symbol is None:
+            continue
+        require(symbol.get('viewBox') == '0 0 24 24',
+                f'Wrong sprite symbol grid: {file.stem}')
+        require(tuple(element_signature(child) for child in symbol)
+                == (element_signature(group),),
+                f'Sprite artwork differs from standalone icon: {file.stem}')
+except ET.ParseError as error:
+    errors.append(f'Cannot compare interface sprite: {error}')
 
 for file in (ROOT / 'assets/platform/png').glob('cadence-*.png'):
     size = int(file.stem.split('-')[-1])
@@ -102,4 +233,5 @@ for entry in json.loads((mac / 'Contents.json').read_text(encoding='utf-8'))['im
 
 if errors:
     raise SystemExit('\n'.join(errors))
-print(f'Checked {len(svgs)} SVGs, {len(tracked)} manifest entries, responsive image budgets and platform copies.')
+print(f'Checked {len(svgs)} SVGs, {len(tracked)} manifest entries, icon sprite parity, '
+      'catalogue coverage, preview freshness, responsive image budgets and platform copies.')

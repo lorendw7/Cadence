@@ -2,6 +2,7 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const sharp = require('sharp');
+const {previewArtwork} = require('./artwork_previews.cjs');
 const root = path.resolve(__dirname, '..');
 async function png(source, destination, size) {
   await fs.mkdir(path.dirname(destination), {recursive: true});
@@ -18,6 +19,11 @@ async function editorial() {
   await fs.copyFile(source, path.join(root, 'website/assets/journal-editorial.png'));
 }
 async function main() {
+  if (process.argv.includes('--previews-only')) {
+    await previewArtwork(root);
+    console.log('Exported the artwork overview and complete library contact sheet.');
+    return;
+  }
   if (process.argv.includes('--editorial-only')) {
     await editorial();
     console.log('Exported responsive WebP artwork and synchronized the PNG fallback.');
@@ -73,6 +79,7 @@ async function main() {
   await sharp(path.join(root, 'assets/social/social-card.svg')).png().toFile(path.join(root, 'assets/social/social-card.png'));
   await fs.copyFile(path.join(root, 'assets/social/social-card.png'), path.join(root, 'website/assets/social-card.png'));
   await editorial();
-  console.log('Exported PNG, WebP, ICO, ICNS, macOS icon set and website assets.');
+  await previewArtwork(root);
+  console.log('Exported PNG, WebP, ICO, ICNS, macOS icon set, website assets and library previews.');
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
