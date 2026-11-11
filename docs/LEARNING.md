@@ -1,8 +1,8 @@
 # Learning Cadence
 
-Updated: 2026-11-11. Lessons 1–10 are implemented and accepted. Lesson 11's shared Material theme and lesson 12's shadcn_ui root integration are implemented in the current working tree. The practice increment action is the first migrated ShadButton. Formatting and analysis pass, and all 26 active tests pass. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
+Updated: 2026-11-11. Lessons 1–10 are implemented and accepted. Lessons 11–13 are implemented, with their remaining actual-window checks listed below. Lesson 13 adds a themed and responsive task surface with Shad input, buttons, checkboxes and a labelled delete action. Formatting and analysis pass, all 27 active tests pass, and the Windows debug build succeeds. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
 
-The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title-validation and lesson 11–12 theme and keyboard confirmation are still pending. The lesson 12 Windows debug build passes after symbolic-link support was enabled.
+The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title-validation, lesson 11–12 theme and keyboard confirmation, and lesson 13 responsive and keyboard confirmation are still pending. Windows debug builds pass after symbolic-link support was enabled.
 
 ## Who does what
 
@@ -67,8 +67,9 @@ Language support, keyboard access, protection, and tests apply throughout. Cours
 | 9 | [Validation](../test/task_title_validation_widget_test.dart) at two sizes |
 | 10 | [Deletion](../test/task_delete_widget_test.dart) and [undo](../test/task_undo_delete_widget_test.dart) |
 | 11 and 12 | Existing regressions run under both theme layers; counter and rebuild checks locate the migrated ShadButton |
+| 13 | Task-surface regressions use Shad controls; [input checks](../test/task_title_input_widget_test.dart) verify wide, compact and stacked quick-entry layouts while retaining input |
 
-Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Its checks cover deleting the last task, adding again, equal titles, separate delete/toggle callbacks, and restoring the original object, position, and state. Older notes keep historical test counts.
+Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Lesson 13 brought the total to 27 with an explicit resize check. The suite covers deleting the last task, adding again, equal titles, separate delete/toggle callbacks, restoring the original object, position and state, and preserving input while quick entry changes layout. Older notes keep historical test counts.
 
 ## Estimates and next step
 
@@ -76,4 +77,4 @@ The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–
 
 These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
 
-Next: finish [lesson 12](lessons/12-shadcn-foundation.md)'s actual-window checks. Confirm the paper/wine theme, pointer activation, Tab focus and Enter/Space activation for the migrated ShadButton. Then begin lesson 13's task surface. Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open. Lesson 10's actual-window deletion/undo flow is confirmed.
+Next: complete the remaining actual-window checks for [lesson 11](lessons/11-theme.md), [lesson 12](lessons/12-shadcn-foundation.md) and [lesson 13](lessons/13-task-surface.md), while keeping [lesson 9](lessons/09-validation.md)'s title-validation confirmation open. Then begin lesson 14's desktop shell. Lesson 10's actual-window deletion/undo flow is confirmed.

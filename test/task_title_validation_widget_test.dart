@@ -1,6 +1,7 @@
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
   for (final size in [const Size(800, 600), const Size(400, 320)]) {
@@ -10,14 +11,14 @@ void main() {
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const CadenceApp());
-      final input = find.byType(TextField);
-      final addButton = find.widgetWithText(TextButton, '添加任务');
+      final input = find.byType(ShadInput);
+      final addButton = find.widgetWithText(ShadButton, '添加任务');
 
-      expect(tester.widget<TextField>(input).decoration!.errorText, isNull);
+      expect(find.text('请输入任务标题'), findsNothing);
       for (final blank in ['', '   ', '\t \n', '\u3000']) {
         await tester.enterText(input, blank);
         // Single-line fields strip newlines before the submit callback runs.
-        final enteredText = tester.widget<TextField>(input).controller!.text;
+        final enteredText = tester.widget<ShadInput>(input).controller!.text;
         await tester.tap(addButton);
         await tester.pumpAndSettle();
         expect(find.text('请输入任务标题'), findsOneWidget);
@@ -29,7 +30,7 @@ void main() {
         expect(errorBounds.bottom, lessThanOrEqualTo(size.height));
         expect(errorBounds.left, greaterThanOrEqualTo(0));
         expect(errorBounds.right, lessThanOrEqualTo(size.width));
-        expect(tester.widget<TextField>(input).controller!.text, enteredText);
+        expect(tester.widget<ShadInput>(input).controller!.text, enteredText);
         expect(
           tester
               .widget<ListView>(find.byType(ListView))
@@ -44,8 +45,7 @@ void main() {
       await tester.tap(addButton);
       await tester.pumpAndSettle();
       expect(find.text('请输入任务标题'), findsNothing);
-      expect(tester.widget<TextField>(input).decoration!.errorText, isNull);
-      expect(tester.widget<TextField>(input).controller!.text, isEmpty);
+      expect(tester.widget<ShadInput>(input).controller!.text, isEmpty);
       expect(
         tester
             .widget<ListView>(find.byType(ListView))

@@ -1,6 +1,6 @@
 # UI components and page design
 
-Updated: 2026-11-11. Status: planned, not implemented. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
+Updated: 2026-11-11. Status: accepted design; the lesson 13 task surface is partially implemented, while the desktop shell, Today and Week remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
 
 ## Library and teaching boundaries
 

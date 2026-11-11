@@ -9,6 +9,11 @@ void expectTaskStatus(String title, String status) {
   expect(find.descendant(of: row, matching: find.text(status)), findsOneWidget);
 }
 
+Finder completionCheckbox(String title) => find.descendant(
+  of: find.widgetWithText(ListTile, title),
+  matching: find.byType(ShadCheckbox),
+);
+
 void main() {
   testWidgets('Tasks toggle independently and can undo completion changes', (
     WidgetTester tester,
@@ -18,22 +23,22 @@ void main() {
     expectTaskStatus('提交课程报告', '未完成');
     expectTaskStatus('复习线性代数', '已完成');
 
-    await tester.tap(find.text('提交课程报告'));
+    await tester.tap(completionCheckbox('提交课程报告'));
     await tester.pump();
     expectTaskStatus('提交课程报告', '已完成');
     expectTaskStatus('复习线性代数', '已完成');
 
-    await tester.tap(find.text('提交课程报告'));
+    await tester.tap(completionCheckbox('提交课程报告'));
     await tester.pump();
     expectTaskStatus('提交课程报告', '未完成');
     expectTaskStatus('复习线性代数', '已完成');
 
-    await tester.tap(find.text('复习线性代数'));
+    await tester.tap(completionCheckbox('复习线性代数'));
     await tester.pump();
     expectTaskStatus('提交课程报告', '未完成');
     expectTaskStatus('复习线性代数', '未完成');
 
-    await tester.tap(find.text('复习线性代数'));
+    await tester.tap(completionCheckbox('复习线性代数'));
     await tester.pump();
     expectTaskStatus('提交课程报告', '未完成');
     expectTaskStatus('复习线性代数', '已完成');
@@ -45,9 +50,9 @@ void main() {
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const CadenceApp());
-    await tester.tap(find.text('提交课程报告'));
+    await tester.tap(completionCheckbox('提交课程报告'));
     await tester.pump();
-    await tester.tap(find.text('复习线性代数'));
+    await tester.tap(completionCheckbox('复习线性代数'));
     await tester.pump();
 
     await tester.tap(find.widgetWithText(ShadButton, '加1'));

@@ -2,6 +2,10 @@ import 'package:cadence/domain/coursework/planner_task.dart';
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
+
+Finder completionCheckbox(Finder row) =>
+    find.descendant(of: row, matching: find.byType(ShadCheckbox));
 
 void main() {
   for (final size in [const Size(800, 600), const Size(400, 320)]) {
@@ -41,7 +45,7 @@ void main() {
         find.descendant(of: reviewRow, matching: find.text('已完成')),
         findsOneWidget,
       );
-      await tester.tap(find.text('复习线性代数'));
+      await tester.tap(completionCheckbox(reviewRow));
       await tester.pump();
       expect(
         find.descendant(of: reviewRow, matching: find.text('未完成')),
@@ -51,20 +55,20 @@ void main() {
     });
   }
 
-  testWidgets('TaskRow reports toggle and delete through separate callbacks', (
+  testWidgets('TaskRow reports completion and delete separately', (
     WidgetTester tester,
   ) async {
-    var toggleCount = 0;
+    final completionValues = <bool>[];
     var deleteCount = 0;
     final task = PlannerTask(id: 'callback-task', title: '回调练习');
 
     await tester.pumpWidget(
-      MaterialApp(
+      ShadApp(
         home: Scaffold(
           body: TaskRow(
             task: task,
-            onToggle: () {
-              toggleCount += 1;
+            onCompletionChanged: (value) {
+              completionValues.add(value);
             },
             onDelete: () {
               deleteCount += 1;
@@ -74,16 +78,19 @@ void main() {
       ),
     );
 
-    expect(toggleCount, 0);
+    expect(completionValues, isEmpty);
     expect(deleteCount, 0);
     await tester.tap(find.text('回调练习'));
     await tester.pump();
-    expect(toggleCount, 1);
+    expect(completionValues, isEmpty);
+    await tester.tap(find.byType(ShadCheckbox));
+    await tester.pump();
+    expect(completionValues, [true]);
     expect(deleteCount, 0);
     await tester.tap(find.byTooltip('删除任务'));
     await tester.pump();
     expect(deleteCount, 1);
-    expect(toggleCount, 1);
+    expect(completionValues, [true]);
     expect(tester.takeException(), isNull);
   });
 }

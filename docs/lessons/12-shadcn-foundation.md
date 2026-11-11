@@ -37,4 +37,4 @@ The dependency generated Linux and Windows plugin lists through its resolved dep
 
 In the actual window, confirm the warm-paper background and wine primary button. Activate the increment action with the pointer, then use Tab to reach it and Enter or Space to activate it. The count must change without resetting tasks or input.
 
-After this confirmation, continue to lesson 13's task surface. Migrate product controls deliberately; the practice counter remains a temporary teaching control until lesson 16.
+Lesson 13 continued the task-surface migration while this actual-window check remained open. Product controls still migrate deliberately; the practice counter remains a temporary teaching control until lesson 16.

@@ -8,7 +8,7 @@
 
 Cadence is being designed around three views: **Today, Week, and Tasks**. The desktop app should work offline without an account. At first use, people will choose whether to save on their device or use a temporary session. School connections, including Kyushu University, are optional extensions.
 
-**Current status:** the learning app supports task input, validation, addition, completion, deletion, and undo of the latest deletion. Data stays in memory. Lessons 1–10 are accepted. Lesson 11's shared paper-and-wine theme and lesson 12's shadcn_ui root integration pass analysis and all 26 tests. The practice increment action is the first migrated ShadButton. Actual-window theme and keyboard confirmation remain pending. Persistence and the full planner are not implemented. See [learning progress](docs/LEARNING.md) for automated and manual checks.
+**Current status:** the learning app supports task input, validation, addition, completion, deletion, and undo of the latest deletion. Data stays in memory. Lessons 1–10 are accepted. Lessons 11–13 add the paper-and-wine theme, shadcn_ui root integration and a responsive Shad task surface. Analysis, all 27 tests and the Windows debug build pass. Actual-window theme, responsive-layout and keyboard confirmation remain pending. Persistence and the full planner are not implemented. See [learning progress](docs/LEARNING.md) for automated and manual checks.
 
 [Website](https://lorendw7.github.io/Cadence/) · [Product](docs/PRODUCT.md) · [Design](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md)
 

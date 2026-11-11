@@ -67,7 +67,7 @@ These debug builds are compilation checks, not signed release artifacts or deskt
 
 Current dependencies are in [pubspec.yaml](../pubspec.yaml). shadcn_ui 0.59.0 is the selected and locked UI library. Lesson 12 introduces its root theme bridge while existing Material controls remain. Introduce drift with local saving; add Riverpod only for a demonstrated state-sharing need. The current skeleton does not yet store courses or personal plans.
 
-No account, cloud credentials or API registration is required for this checkout or the planned offline core. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. Optional official school integration has a separate permission and interface track in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Do not add school credentials to source files, fixtures or setup instructions.
+No account, cloud credentials or API registration is required for this checkout or the planned offline core. Lesson 12 supplies the shadcn_ui root bridge, and lesson 13 uses Shad input, buttons, checkboxes and a labelled delete action in the task surface. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. Optional official school integration has a separate permission and interface track in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Do not add school credentials to source files, fixtures or setup instructions.
 
 ## Troubleshooting
 
