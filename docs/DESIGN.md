@@ -16,7 +16,7 @@ The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-p
 | Muted ink | `#666761` | Secondary labels on warm paper |
 | Rule | `#DDDCD5` | Dividers and calendar guides |
 
-These are independent project colors, not a reconstruction of a university palette. Earlier wine/paper tokens are superseded. The 2026-11-11 artwork update supplies matching v2 brand assets, interface icons, empty-state graphics and platform exports. Windows/macOS launcher references and the website use v2; Flutter page theming remains a later learner exercise. Historical artwork is retained. See the [artwork library](../assets/README.md).
+These are independent project colors, not a reconstruction of a university palette. Earlier wine/paper tokens are superseded. The 2026-11-11 artwork update supplies matching v2 brand assets, interface icons, empty-state graphics and platform exports. Windows/macOS launcher references and the website use v2. Lessons 11–13 apply the initial Flutter theme and task surface; the full shell and planning views remain future learner work. Historical artwork is retained. See the [artwork library](../assets/README.md).
 
 Error, warning and success use semantic labels/icons. Color is never the only signal for completion or conflict. Validate actual contrast pairs; no compliance follows automatically from the palette. Dark mode, if offered, requires checked surface/text combinations and is not presumed finished in the initial MVP.
 

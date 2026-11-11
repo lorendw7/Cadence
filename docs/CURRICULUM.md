@@ -1,6 +1,6 @@
 # Curriculum and estimates
 
-Updated: 2026-11-11. Lessons 1–10 are accepted. Lesson 11's shared theme and lesson 12's shadcn_ui root integration and first ShadButton are implemented, with analysis, all 26 tests and a Windows debug build passing. Manual title-validation, theme appearance and keyboard confirmation remain pending. See [current progress](LEARNING.md).
+Updated: 2026-11-11. Lessons 1–10 are accepted. Lessons 11–13 are implemented, with analysis, all 27 tests and a Windows debug build passing. Manual title-validation, theme appearance, responsive-window and keyboard confirmation remain pending. See [current progress](LEARNING.md).
 
 The learner writes core features. Each lesson includes about 20–45 minutes of explanation and guidance; coding, debugging, and review take extra time. Explain Dart and Flutter even when the learner knows another language.
 
@@ -37,7 +37,7 @@ Languages, keyboard access, and data protection apply throughout. Linux/macOS co
 | 9 | Reject blank titles; show an empty list | Automatic checks passed; empty-list flow confirmed |
 | 10 | Delete and undo once | Restore original object, position, and state; automated checks passed and actual-window deletion/undo confirmed |
 
-The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Lesson 11 passed automated checks. Continue lesson 12 with one real shadcn_ui control; retain the separate title-validation and theme appearance checks in the learning log.
+The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Lessons 11–13 pass automated checks. Retain their separate manual checks in the learning log and continue to lesson 14 after those checks.
 
 ## Lessons 11–16: desktop UI foundations
 
@@ -47,7 +47,7 @@ Use the accepted [layout specification](UI_ARCHITECTURE.md#pages-and-navigation)
 |---|---|---|
 | 11 | Theme basics: top-level constants, Color, hexadecimal ARGB and named theme arguments. Apply paper and wine through the existing Material theme. | Implemented; formatting, analysis and 26 tests pass. Actual-window color confirmation remains. See [lesson 11](lessons/11-theme.md). |
 | 12 | Check shadcn_ui 0.59.0 compatibility, add its root theme bridge and introduce one used control. Keep working Material controls during the transition. | Root integration and the first ShadButton pass analysis, 26 tests and a Windows debug build. Actual-window checks remain. See [lesson 12](lessons/12-shadcn-foundation.md). |
-| 13 | Build a coherent task surface: spacing, text hierarchy, input, buttons and an explicit completion checkbox. Introduce each needed component API before use. | Add, validate, complete, delete and undo still work; keyboard labels and narrow-window controls remain usable. Keep title editing deferred until an editor exists. |
+| 13 | Build a coherent task surface: spacing, text hierarchy, input, buttons and an explicit completion checkbox. Introduce each needed component API before use. | Implemented; analysis, 27 tests and the Windows debug build pass. Actual-window responsive and keyboard checks remain. Keep title editing deferred until an editor exists. See [lesson 13](lessons/13-task-surface.md). |
 | 14 | Introduce the desktop shell: sidebar layout, selection and state ownership. Put the real task flow in Tasks. | The sidebar reflects the current page. Rebuilds preserve tasks, input and undo. Add Today/Week destinations when their real features arrive; no fake calendar pages. |
 | 15 | Explain layout constraints and responsive choices. Adapt the shell and list to narrow windows, long text and keyboard focus. | No unreachable controls or overflow in agreed test sizes; test 200% text scaling and visible focus. |
 | 16 | Review component responsibilities and state lifetime; remove the practice counter after its teaching role ends and update its tests deliberately. | One clear owner for task state; all applicable task regressions pass. Introduce Riverpod only if actual shared-state needs justify it. |

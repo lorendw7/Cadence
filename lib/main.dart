@@ -83,13 +83,42 @@ class _TodayPageState extends State<TodayPage> {
     });
   }
 
+  void addTask() {
+    final title = titleController.text.trim();
+
+    if (title.isEmpty) {
+      setState(() {
+        titleError = '请输入任务标题';
+      });
+      return;
+    }
+
+    final newTask = PlannerTask(id: 'local-$nextTaskNumber', title: title);
+
+    setState(() {
+      tasks.add(newTask);
+      nextTaskNumber += 1;
+      titleError = null;
+    });
+
+    titleController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = ShadTheme.of(context);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Cadence')),
       body: Column(
         children: [
-          Text("今天"),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text('今天', style: theme.textTheme.h2),
+            ),
+          ),
           Text('练习次数：$practiceCount'),
           Row(
             children: [
@@ -109,44 +138,63 @@ class _TodayPageState extends State<TodayPage> {
                 },
                 child: const Text("加1"),
               ),
-              TextButton(
+              ShadButton.outline(
                 onPressed: lastDeletedTask == null ? null : undoDelete,
                 child: const Text('撤销删除'),
               ),
             ],
           ),
-          TextField(
-            controller: titleController,
-            decoration: InputDecoration(
-              labelText: '任务标题',
-              errorText: titleError,
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final titleInput = Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ShadInput(
+                      controller: titleController,
+                      placeholder: const Text('任务标题'),
+                    ),
+                    if (titleError != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          titleError!,
+                          style: TextStyle(
+                            color: theme.colorScheme.destructive,
+                          ),
+                        ),
+                      ),
+                  ],
+                );
+
+                final addButton = ShadButton(
+                  onPressed: addTask,
+                  child: const Text('添加任务'),
+                );
+
+                if (constraints.maxWidth < 360) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      titleInput,
+                      const SizedBox(height: 8),
+                      addButton,
+                    ],
+                  );
+                }
+
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: titleInput),
+                    const SizedBox(width: 8),
+                    addButton,
+                  ],
+                );
+              },
             ),
-          ),
-          TextButton(
-            onPressed: () {
-              final title = titleController.text.trim();
-              if (title.isEmpty) {
-                setState(() {
-                  titleError = '请输入任务标题';
-                });
-
-                return;
-              }
-
-              final newTask = PlannerTask(
-                id: 'local-$nextTaskNumber',
-                title: title,
-              );
-
-              setState(() {
-                tasks.add(newTask);
-                nextTaskNumber += 1;
-                titleError = null;
-              });
-
-              titleController.clear();
-            },
-            child: const Text('添加任务'),
           ),
           Expanded(
             child: tasks.isEmpty
@@ -157,10 +205,10 @@ class _TodayPageState extends State<TodayPage> {
                       final task = tasks[index];
                       return TaskRow(
                         task: task,
-                        onToggle: () {
+                        onCompletionChanged: (bool isCompleted) {
                           setState(() {
                             tasks[index] = task.copyWith(
-                              isCompleted: !task.isCompleted,
+                              isCompleted: isCompleted,
                             );
                           });
                         },
@@ -192,24 +240,44 @@ class TaskRow extends StatelessWidget {
   const TaskRow({
     super.key,
     required this.task,
-    required this.onToggle,
+    required this.onCompletionChanged,
     required this.onDelete,
   });
 
   final PlannerTask task;
-  final VoidCallback onToggle;
+  final ValueChanged<bool> onCompletionChanged;
   final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
+    final theme = ShadTheme.of(context);
     return ListTile(
-      title: Text(task.title),
-      subtitle: Text(task.isCompleted ? "已完成" : "未完成"),
-      onTap: onToggle,
-      trailing: IconButton(
-        onPressed: onDelete,
-        icon: const Icon(Icons.delete_outline),
-        tooltip: '删除任务',
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      leading: ShadCheckbox(
+        value: task.isCompleted,
+        onChanged: onCompletionChanged,
+      ),
+      title: Text(
+        task.title,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: task.isCompleted
+            ? theme.textTheme.muted.copyWith(
+                decoration: TextDecoration.lineThrough,
+              )
+            : theme.textTheme.p,
+      ),
+      subtitle: Text(
+        task.isCompleted ? '已完成' : '未完成',
+        style: theme.textTheme.muted,
+      ),
+      trailing: Tooltip(
+        message: '删除任务',
+        child: ShadIconButton.ghost(
+          onPressed: onDelete,
+          foregroundColor: theme.colorScheme.destructive,
+          icon: const Icon(Icons.delete_outline),
+        ),
       ),
     );
   }

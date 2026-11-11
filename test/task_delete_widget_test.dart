@@ -1,6 +1,10 @@
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
+
+Finder completionCheckbox(Finder row) =>
+    find.descendant(of: row, matching: find.byType(ShadCheckbox));
 
 void main() {
   for (final size in [const Size(800, 600), const Size(400, 320)]) {
@@ -40,20 +44,22 @@ void main() {
       expect(find.text('暂无任务，添加一条吧'), findsOneWidget);
       expect(find.byType(ListView), findsNothing);
       expect(find.byType(TaskRow), findsNothing);
-      await tester.tap(find.widgetWithText(TextButton, '添加任务'));
+      await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
       await tester.pumpAndSettle();
       expect(find.text('请输入任务标题'), findsOneWidget);
       expect(find.text('暂无任务，添加一条吧'), findsOneWidget);
       expect(find.byType(TaskRow), findsNothing);
 
-      await tester.enterText(find.byType(TextField), '重新开始');
-      await tester.tap(find.widgetWithText(TextButton, '添加任务'));
+      await tester.enterText(find.byType(ShadInput), '重新开始');
+      await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
       await tester.pumpAndSettle();
       expect(find.text('暂无任务，添加一条吧'), findsNothing);
       expect(find.text('请输入任务标题'), findsNothing);
       expect(find.byType(TaskRow), findsOneWidget);
       expect(find.text('未完成'), findsOneWidget);
-      await tester.tap(find.text('重新开始'));
+      await tester.tap(
+        completionCheckbox(find.widgetWithText(ListTile, '重新开始')),
+      );
       await tester.pump();
       expect(find.text('已完成'), findsOneWidget);
       expect(tester.takeException(), isNull);
@@ -67,8 +73,8 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(const CadenceApp());
     for (var i = 0; i < 2; i += 1) {
-      await tester.enterText(find.byType(TextField), '同名任务');
-      await tester.tap(find.widgetWithText(TextButton, '添加任务'));
+      await tester.enterText(find.byType(ShadInput), '同名任务');
+      await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
       await tester.pump();
     }
     final rowsBefore = tester
@@ -96,7 +102,7 @@ void main() {
       survivingIds,
     );
     // The remaining duplicate has shifted index and must still toggle correctly.
-    await tester.tap(find.text('同名任务'));
+    await tester.tap(completionCheckbox(find.widgetWithText(ListTile, '同名任务')));
     await tester.pump();
     final remaining = tester.widgetList<TaskRow>(find.byType(TaskRow)).toList();
     expect(remaining.map((row) => row.task.id).toList(), survivingIds);

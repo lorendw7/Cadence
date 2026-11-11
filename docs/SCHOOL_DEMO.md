@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. Reusable reference for a possible school audience, not the product's main positioning. Nothing in this document has been sent to anyone. Cadence is a general local time planner for work, learning and everyday life, without a required account or affiliation. It has no school endorsement or academic-system access permission. See [ADR-007](adr/007-general-purpose-local-planner.md).
 
-The current desktop learning app supports validated task addition, completion, deletion and undo of the latest deletion in memory. Lessons 1–10 have passed automated acceptance with 26 tests; manual deletion/undo and title-validation confirmation remain pending. Scheduling, local saving and a working Web planner are not implemented. The website uses fictional examples to present the intended design.
+The current desktop learning app supports validated task addition, completion, deletion and undo of the latest deletion in memory. Lessons 1–10 are accepted, lessons 11–13 are implemented, and all 27 tests pass. The learner confirmed deletion and undo in an actual window; title validation, theme, responsive-layout and keyboard checks remain open. Scheduling, local saving and a working Web planner are not implemented. The website uses fictional examples to present the intended design.
 
 ## Before a full scheduling demonstration
 
