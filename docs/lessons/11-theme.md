@@ -1,6 +1,6 @@
 # Lesson 11: a shared theme
 
-Status: assigned, not implemented or accepted. Lessons 1–10 remain the implemented baseline. The learner writes this exercise in [lib/main.dart](../../lib/main.dart).
+Status: implemented and accepted by automated checks on 2026-11-11. The learner added shared wine and paper constants and applied them to the Material theme. Formatting and analysis passed, and all 26 tests passed. Actual-window color confirmation remains pending.
 
 ## Goal
 
@@ -39,6 +39,6 @@ Keep the task data, callbacks and current widgets. Do not add packages or create
 
 Format the file and run the current app. Check that the canvas uses warm paper and themed controls follow the wine color direction. Do not expect every surface to become the same color. Check addition, completion and deletion/undo; data still resets on restart.
 
-The assistant then reviews the learner's diff and runs formatting, analysis and the existing task regression tests. Confirm the actual visual result in a window. This document records an exercise, not passed checks or a completed UI migration.
+The assistant reviewed the learner's diff. Formatting required no changes, analysis found no issues, and all 26 existing tests passed. Confirm the actual visual result in a window. Automated widget tests do not prove that the colors look right on the target display.
 
-Next: [lesson 12's package and theme migration](../CURRICULUM.md#lessons-1116-desktop-ui-foundations).
+Next: [lesson 12's shadcn_ui foundation](12-shadcn-foundation.md).

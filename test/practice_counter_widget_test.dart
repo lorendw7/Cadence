@@ -1,6 +1,7 @@
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
   testWidgets('Practice counter increments, resets and preserves task rows', (
@@ -9,7 +10,7 @@ void main() {
     await tester.pumpWidget(const CadenceApp());
 
     expect(find.text('练习次数：0'), findsOneWidget);
-    final increment = find.widgetWithText(ElevatedButton, '加1');
+    final increment = find.widgetWithText(ShadButton, '加1');
     final reset = find.widgetWithText(TextButton, '归零');
 
     for (var count = 1; count <= 3; count++) {

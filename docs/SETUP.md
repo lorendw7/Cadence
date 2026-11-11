@@ -65,7 +65,7 @@ These debug builds are compilation checks, not signed release artifacts or deskt
 
 ## Dependencies and data
 
-Current dependencies are in [pubspec.yaml](../pubspec.yaml). shadcn_ui remains the selected UI library; use the version in pubspec.yaml and verify it during the UI lessons. Introduce drift with local saving; add Riverpod only for a demonstrated state-sharing need. The current skeleton does not yet store courses or personal plans.
+Current dependencies are in [pubspec.yaml](../pubspec.yaml). shadcn_ui 0.59.0 is the selected and locked UI library. Lesson 12 introduces its root theme bridge while existing Material controls remain. Introduce drift with local saving; add Riverpod only for a demonstrated state-sharing need. The current skeleton does not yet store courses or personal plans.
 
 No account, cloud credentials or API registration is required for this checkout or the planned offline core. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. Optional official school integration has a separate permission and interface track in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Do not add school credentials to source files, fixtures or setup instructions.
 
@@ -76,6 +76,7 @@ No account, cloud credentials or API registration is required for this checkout 
 | Flutter is not recognized | Put the SDK's bin directory on PATH and reopen the terminal |
 | Dart version mismatch | Compare `flutter --version` with the pinned version above |
 | Desktop compilation fails | Run `flutter doctor -v` and install that host's native build tools |
+| Windows says plugin builds require symbolic-link support | Enable Windows Developer Mode, then rerun the build |
 | A desktop file dialog fails in a future feature build | Record the OS, desktop session and plugin version; verify on the native host |
 
 The [website](../website/README.md) has a separate static preview workflow. It is a public project site, not the planned Web planner; do not put private course data, backups or credentials in its assets.

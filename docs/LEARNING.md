@@ -1,8 +1,8 @@
 # Learning Cadence
 
-Updated: 2026-11-11. Lessons 1–10 are implemented and have passed automated checks. All 26 active tests pass. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
+Updated: 2026-11-11. Lessons 1–10 are implemented and accepted. Lesson 11's shared Material theme and lesson 12's shadcn_ui root integration are implemented in the current working tree. The practice increment action is the first migrated ShadButton. Formatting and analysis pass, and all 26 active tests pass. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
 
-The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title-validation confirmation is still pending. A later cleanup removed nested setState calls from deletion without changing behavior.
+The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title-validation and lesson 11–12 theme and keyboard confirmation are still pending. The lesson 12 Windows debug build passes after symbolic-link support was enabled.
 
 ## Who does what
 
@@ -31,7 +31,7 @@ Cadence is a local planner for work, study, and daily life. The desktop core nee
 | Dart calculations and Flutter charts | Show a local weekly review | After schedule and task data are stable |
 | HTML, CSS, and JavaScript | Run the separate concept website | Maintained by the assistant |
 
-Use Flutter 3.44.4 / Dart 3.12.2. [pubspec.yaml](../pubspec.yaml) and its lockfile record the current dependencies. [ADR-008](adr/008-small-free-local-product.md) keeps shadcn_ui as the product UI choice; this design does not change packages in any in-progress lesson. Add a package only when a working feature needs it.
+Use Flutter 3.44.4 / Dart 3.12.2. [pubspec.yaml](../pubspec.yaml) locks shadcn_ui 0.59.0 as a direct dependency, and the lockfile records its resolved dependency graph. Lesson 12 uses its root theme bridge; migrate one working control at a time. [ADR-008](adr/008-small-free-local-product.md) keeps shadcn_ui as the product UI choice. Add another package only when a working feature needs it.
 
 See [UI design](UI_ARCHITECTURE.md), [workflow](PROJECT_WORKFLOW.md), and [curriculum](CURRICULUM.md). Official references: [Flutter desktop](https://docs.flutter.dev/platform-integration/desktop), [Riverpod](https://riverpod.dev/), and [drift](https://drift.simonbinder.eu/).
 
@@ -66,6 +66,7 @@ Language support, keyboard access, protection, and tests apply throughout. Cours
 | 7 and 8 | [Input and addition](../test/task_title_input_widget_test.dart): IDs, clearing, rebuilds, and controller disposal |
 | 9 | [Validation](../test/task_title_validation_widget_test.dart) at two sizes |
 | 10 | [Deletion](../test/task_delete_widget_test.dart) and [undo](../test/task_undo_delete_widget_test.dart) |
+| 11 and 12 | Existing regressions run under both theme layers; counter and rebuild checks locate the migrated ShadButton |
 
 Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Its checks cover deleting the last task, adding again, equal titles, separate delete/toggle callbacks, and restoring the original object, position, and state. Older notes keep historical test counts.
 
@@ -75,4 +76,4 @@ The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–
 
 These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
 
-Next: [lesson 11](lessons/11-theme.md), shared theme constants and the paper/wine direction. This lesson is assigned, not implemented. Explain the syntax before the learner edits the application. The accepted [layout](UI_ARCHITECTURE.md#pages-and-navigation) and detailed [lessons 11–16](CURRICULUM.md#lessons-1116-desktop-ui-foundations) guide the desktop UI stage. Lesson 12 introduces the selected shadcn_ui controls gradually under [ADR-008](adr/008-small-free-local-product.md). Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open; lesson 10's actual-window deletion/undo flow is confirmed.
+Next: finish [lesson 12](lessons/12-shadcn-foundation.md)'s actual-window checks. Confirm the paper/wine theme, pointer activation, Tab focus and Enter/Space activation for the migrated ShadButton. Then begin lesson 13's task surface. Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open. Lesson 10's actual-window deletion/undo flow is confirmed.

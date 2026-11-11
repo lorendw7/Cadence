@@ -4,7 +4,7 @@ Updated: 2026-11-11. Status: planned, not implemented. [ADR-007](adr/007-general
 
 ## Library and teaching boundaries
 
-Use Flutter shadcn_ui as selected in [ADR-004](adr/004-shadcn-web-direction.md). ADR-008 simplifies the surrounding design, not this library choice. Introduce one used control at a time and preserve existing Material controls during lessons. Keep shared colors, spacing and text styles without a second wrapper framework. The learner implements the accepted layout.
+Use Flutter shadcn_ui as selected in [ADR-004](adr/004-shadcn-web-direction.md). ADR-008 simplifies the surrounding design, not this library choice. Lesson 12 adds ShadApp.custom around the existing MaterialApp so both control families can coexist during migration. Introduce one used control at a time and preserve working Material controls. Keep shared colors, spacing and text styles without a second wrapper framework. The learner implements the accepted layout.
 
 Installed dependencies are defined by `pubspec.yaml` and its lockfile. Riverpod and drift serve state and storage needs; they are not UI libraries. Add them only when needed. The assistant maintains delegated documentation and website work, teaches, reviews and prepares tests/templates. The learner writes core application features.
 

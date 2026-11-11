@@ -1,6 +1,7 @@
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 Finder rowWithId(String id) => find.byWidgetPredicate(
   (widget) => widget is TaskRow && widget.task.id == id,
@@ -78,7 +79,7 @@ void main() {
       await tester.enterText(find.byType(TextField), '新增任务');
       await tester.tap(find.widgetWithText(TextButton, '添加任务'));
       await tester.pump();
-      await tester.tap(find.widgetWithText(ElevatedButton, '加1'));
+      await tester.tap(find.widgetWithText(ShadButton, '加1'));
       await tester.pump();
       await tester.tap(undo);
       await tester.pump();
