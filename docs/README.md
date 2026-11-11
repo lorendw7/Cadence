@@ -83,6 +83,7 @@ Read the status at the top of each record. Older records explain past choices; t
 | [8](lessons/08-add-task.md) | Addition and session IDs |
 | [9](lessons/09-validation.md) | Validation and empty lists |
 | [10](lessons/10-delete-undo.md) | Deletion and single-level undo |
-| [11](lessons/11-theme.md) | Assigned theme exercise; not implemented |
+| [11](lessons/11-theme.md) | Shared Material theme; automated checks passed, visual confirmation pending |
+| [12](lessons/12-shadcn-foundation.md) | shadcn_ui root integration and first ShadButton; actual-window checks pending |
 
 [Historical templates](../lessons/README.md) are separate from active tests. Keep paths stable, update this index for new guides, and link to the main requirement instead of copying it into several documents.

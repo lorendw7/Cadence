@@ -1,6 +1,7 @@
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
   testWidgets('Add action is labelled as adding a task', (
@@ -44,7 +45,7 @@ void main() {
           isEmpty,
         );
 
-        await tester.tap(find.widgetWithText(ElevatedButton, '加1'));
+        await tester.tap(find.widgetWithText(ShadButton, '加1'));
         await tester.pump();
         await tester.tap(find.widgetWithText(TextButton, '归零'));
         await tester.pump();
@@ -78,7 +79,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '准备课程报告');
 
     for (final target in [
-      find.widgetWithText(ElevatedButton, '加1'),
+      find.widgetWithText(ShadButton, '加1'),
       find.widgetWithText(TextButton, '归零'),
       find.text('提交课程报告'),
     ]) {

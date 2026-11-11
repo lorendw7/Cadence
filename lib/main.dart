@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cadence/domain/coursework/planner_task.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
+
+const Color cadenceWine = Color(0xFF7C394B);
+const Color cadencePaper = Color(0xFFF6F5F1);
 
 void main() {
   runApp(const CadenceApp());
@@ -10,13 +14,30 @@ class CadenceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cadence',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+    return ShadApp.custom(
+      theme: ShadThemeData(
+        brightness: Brightness.light,
+        colorScheme: const ShadZincColorScheme.light(
+          background: cadencePaper,
+          primary: cadenceWine,
+          ring: cadenceWine,
+        ),
       ),
-      home: const TodayPage(),
+      appBuilder: (context) {
+        return MaterialApp(
+          title: 'Cadence',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: cadenceWine),
+            scaffoldBackgroundColor: cadencePaper,
+          ),
+          localizationsDelegates: const [GlobalShadLocalizations.delegate],
+          builder: (context, child) {
+            return ShadAppBuilder(child: child!);
+          },
+          home: const TodayPage(),
+        );
+      },
     );
   }
 }
@@ -80,7 +101,7 @@ class _TodayPageState extends State<TodayPage> {
                 },
                 child: Text("归零"),
               ),
-              ElevatedButton(
+              ShadButton(
                 onPressed: () {
                   setState(() {
                     practiceCount += 1;

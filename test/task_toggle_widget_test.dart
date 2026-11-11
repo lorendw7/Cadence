@@ -1,6 +1,7 @@
 import 'package:cadence/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 void expectTaskStatus(String title, String status) {
   final row = find.widgetWithText(ListTile, title);
@@ -49,7 +50,7 @@ void main() {
     await tester.tap(find.text('复习线性代数'));
     await tester.pump();
 
-    await tester.tap(find.widgetWithText(ElevatedButton, '加1'));
+    await tester.tap(find.widgetWithText(ShadButton, '加1'));
     await tester.pump();
     expect(find.text('练习次数：1'), findsOneWidget);
     expectTaskStatus('提交课程报告', '已完成');
