@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. These are working rules. Examples below are not existing issues, branches, pull requests, or releases.
 
-Cadence is a local planner for work, study, and daily life. Desktop comes first. Web, sync, and school connections are optional later work. School permission applies only to the relevant school interface and data. Mobile apps are outside scope. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md), and [roadmap](ROADMAP.md).
+Cadence is a local planner for work, study, and daily life. Desktop comes first. School connections are optional; consider Web or sync only when a selected connection needs them. School permission applies only to the relevant school interface and data. Mobile apps are outside scope. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md), and [roadmap](ROADMAP.md).
 
 ## Ownership and size
 

@@ -1,6 +1,6 @@
 # Local notifications
 
-Updated: 2026-11-11. Planned desktop extension, not implemented. Build core plans, tasks and the first-use storage choice first; see [ADR-007](adr/007-general-purpose-local-planner.md). A later Web client would need separate notification design and acceptance.
+Updated: 2026-11-11. Planned desktop extension, not implemented. Build core plans, tasks and the first-use storage choice first; see [ADR-007](adr/007-general-purpose-local-planner.md). Any school Web surface would need separate notification design and acceptance if reminders are actually required.
 
 ## Reminder content
 

@@ -4,7 +4,7 @@ Updated: 2026-11-11. Status: **accepted design direction, not implemented**. Use
 
 Build direct editing, the explicit local-saving or temporary-use choice, and private recovery first. See [PRODUCT.md](PRODUCT.md), [EDITING.md](EDITING.md) and [ROADMAP.md](ROADMAP.md). The learner writes core features in small lessons. This design does not change the current lesson.
 
-The flow can serve personal plans and work schedules as well as courses. Only course rules need semesters and periods. School accounts are not required. School connections remain separate under [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). These are desktop plans; later Web support needs its own acceptance.
+The flow can serve personal plans and work schedules as well as courses. Only course rules need semesters and periods. School accounts are not required. School connections remain separate under [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). These are desktop plans. Web support is considered only if a school connection needs it and would need separate acceptance.
 
 ## Local input and tools
 
@@ -48,7 +48,7 @@ Recognition never writes records. Recheck the reviewed draft and local data revi
 
 Cadence remains free to use and does not fund a shared cloud AI account. Users may enable cloud help for a difficult screenshot. Their provider may charge them. Do not require a Cadence account or operate a Cadence request relay. A key does not guarantee free quota or model access.
 
-Allow more than one provider profile. Each profile has a display name, service address, model and separate key reference. The user selects a profile for each request. An OpenAI-compatible interface is an initial adapter option, not a promise that all providers behave alike. Add separate adapters only when needed and tested. Record image input, text input, structured output, limits and errors for each provider/model combination. No provider is verified yet.
+Allow more than one provider profile, with one selected per request. Do not add a provider marketplace or automatic model routing. Each profile has a display name, service address, model and separate key reference. The user selects a profile for each request. An OpenAI-compatible interface is an initial adapter option, not a promise that all providers behave alike. Add separate adapters only when needed and tested. Record image input, text input, structured output, limits and errors for each provider/model combination. No provider is verified yet.
 
 Cloud help may receive locally extracted text and positions, or the imported screenshot if the model supports vision. Show the exact content before sending it. Disable unsupported choices rather than silently changing the payload or provider.
 

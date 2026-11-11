@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a general-purpose local planner for work, study, and daily life. Desktop is the core; school connections, Web delivery, and sync are optional later work. The current direction is in [ADR-007](adr/007-general-purpose-local-planner.md).
+Cadence is a general-purpose local planner for work, study, and daily life. Desktop is the core; school connections are optional. Web and sync are considered only when such a connection needs them. The current release scope is in [ADR-008](adr/008-small-free-local-product.md).
 
 All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 
@@ -37,8 +37,8 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | [Application contracts](APPLICATION.md) | Queries, commands, revisions, storage modes, and restore |
 | [Data model](DATABASE.md) | Planned records and invariants |
 | [Security](SECURITY.md) | Data boundaries, threats, and acceptance |
-| [Data protection](DATA_PROTECTION.md) | Candidate storage, key, backup, and input protections |
-| [Optional sync](SYNC.md) | A future extension: identity, queues, conflicts, and recovery |
+| [Data protection](DATA_PROTECTION.md) | Local file privacy, recovery, optional API keys and deferred encryption |
+| [Optional sync](SYNC.md) | Parked study; use only if a school connection needs synchronization |
 | [Assisted import](QUICK_IMPORT.md) | Local screenshot and table drafts; optional personal API keys; review effort and accuracy checks |
 | [Quality](QUALITY.md) | Required behavior, file, UI, and platform checks |
 | [Release](RELEASE.md) | Staged delivery, recovery, support, and release evidence |
@@ -66,7 +66,8 @@ Read the status at the top of each record. Older records explain past choices; t
 | [ADR-004](adr/004-shadcn-web-direction.md) | UI selection and earlier audience/Web direction |
 | [ADR-005](adr/005-local-offline-and-school-gated-web.md) | Local/offline design and the former school-gated Web policy |
 | [ADR-006](adr/006-optional-multi-client-sync.md) | Proposed optional sync |
-| [ADR-007](adr/007-general-purpose-local-planner.md) | Current general-purpose local product |
+| [ADR-007](adr/007-general-purpose-local-planner.md) | General-purpose local product |
+| [ADR-008](adr/008-small-free-local-product.md) | Smaller free local release and school-only Web/sync scope |
 
 ## Lesson records
 

@@ -4,7 +4,7 @@ Status: assigned, not implemented or accepted. Lessons 1–10 remain the impleme
 
 ## Goal
 
-Apply the accepted warm-paper background and wine color through the existing Material theme. This small step teaches shared visual configuration before lesson 12 introduces shadcn_ui. Material remains a teaching bridge, not a change to the selected product library.
+Apply the accepted warm-paper background and wine color through the existing Material theme. This small step teaches shared visual configuration. The later [ADR-008](../adr/008-small-free-local-product.md) keeps Material for the first release and removes the required shadcn_ui switch. The exercise and its historical acceptance status are unchanged.
 
 ## Explain before coding
 

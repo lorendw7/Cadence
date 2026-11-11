@@ -14,11 +14,11 @@ Keep the next UI and persistence lessons. Remove education-specific work from th
 |---|---|---|
 | Lessons 1–2 | Models, constructors, final, copyWith | Completed task model |
 | Lessons 3–10 | Lists, components, state, input, completion, validation, deletion, undo | Completed in-memory task flow |
-| Lessons 11–16 | Theme, selected UI package, components, navigation, window sizes, state ownership | A clear desktop task interface |
-| Lessons 17–26 | Async work, explicit storage choice, drift/SQLite, migrations, drafts, failed writes | Restart recovery when saving is enabled, preserved input, basic backup/restore checks |
+| Lessons 11–16 | Theme, existing Flutter controls, components, navigation, window sizes, state ownership | A clear desktop task interface |
+| Lessons 17–26 | Async work, explicit storage choice, drift/SQLite, migrations, explicit Save, failed writes | Restart recovery when saving is enabled, preserved input, basic backup/restore checks |
 | Lessons 27–34 | Deadlines, date changes, personal plans, bounded repeats, conflicts | A small Today and personal-planning flow |
 | Re-estimate after persistence | Seven-day Week view, data controls, tested backup/restore, languages, keyboard use, package checks | A small general local-planner pilot |
-| Optional later lessons | Review, reminders, advanced repeats, education tools, Web, sync, school interfaces | Separately scoped extensions |
+| Optional later lessons | Review, reminders, advanced repeats, education tools; school interfaces and Web/sync only if needed | Separately scoped extensions |
 
 These are capacity estimates, not completion promises. The task app with restart recovery is still provisionally planned around lesson 26. A working package, safe recovery, and actual user checks determine release readiness.
 
@@ -46,7 +46,7 @@ Use the accepted [layout specification](UI_ARCHITECTURE.md#pages-and-navigation)
 | Lesson | Concepts and exercise | Acceptance |
 |---|---|---|
 | 11 | Theme basics: top-level constants, Color, hexadecimal ARGB and named theme arguments. Apply paper and wine through the existing Material theme. | The app has the new canvas and primary color direction; task behavior stays intact. No package migration yet. See [lesson 11](lessons/11-theme.md). |
-| 12 | Check shadcn_ui compatibility and license, choose and lock a version, explain dependencies and the theme/root adapter, then introduce the package with one used control. | The selected package runs with the pinned SDK; migrated and remaining controls work together, with no unused dependency. |
+| 12 | Reuse themed Material controls for the task input and actions. Explain shared styling and focus without adding a UI package. | Existing task behavior and keyboard access remain intact; styles come from the shared theme. |
 | 13 | Build a coherent task surface: spacing, text hierarchy, input, buttons and an explicit completion checkbox. Introduce each needed component API before use. | Add, validate, complete, delete and undo still work; keyboard labels and narrow-window controls remain usable. Keep title editing deferred until an editor exists. |
 | 14 | Introduce the desktop shell: sidebar layout, selection and state ownership. Put the real task flow in Tasks. | The sidebar reflects the current page. Rebuilds preserve tasks, input and undo. Add Today/Week destinations when their real features arrive; no fake calendar pages. |
 | 15 | Explain layout constraints and responsive choices. Adapt the shell and list to narrow windows, long text and keyboard focus. | No unreachable controls or overflow in agreed test sizes; test 200% text scaling and visible focus. |
@@ -66,7 +66,7 @@ Keep seven-day and narrow-window behavior testable. Drag-to-schedule is optional
 
 Course rules, teaching weeks, class exceptions and filtered course sharing form an education extension. [Assisted import](QUICK_IMPORT.md) covers local CSV/paste and screenshots, with optional personal API keys for cloud help. It follows editing and recovery; only course input depends on the education extension. Kyushu and other school connections need their own permission and interface checks. They do not block general releases. These plans do not advance the current lesson or authorize assistant-written core features.
 
-Local review and reminders can follow a reliable core. Check reminders after app exit per platform before promising them. Web and multi-device sync require separate scope, maintenance, storage, and security decisions.
+Local review and reminders can follow a reliable core. Check reminders after app exit per platform before promising them. Web and synchronization are considered only when a school connection needs them, with separate scope, maintenance, storage and security decisions.
 
 ## Earlier estimates
 

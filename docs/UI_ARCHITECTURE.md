@@ -1,10 +1,10 @@
 # UI components and page design
 
-Updated: 2026-11-11. Status: planned, not implemented. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. Flutter `shadcn_ui` is selected but not installed. Desktop is primary; Web, sync and courses are optional later extensions. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
+Updated: 2026-11-11. Status: planned, not implemented. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The first release keeps Flutter Material controls and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
 
 ## Library and teaching boundaries
 
-Use the [shadcn_ui package on pub.dev](https://pub.dev/packages/shadcn_ui), not `shadcn_flutter` or React shadcn/ui. [ADR-004](adr/004-shadcn-web-direction.md) replaces the earlier Material-only product direction. Existing Material controls can remain during the early lessons. The learner checks compatibility, selects a version and introduces the new library during the UI lessons; do not rewrite the entry point in advance.
+Use existing Flutter controls with shared colors, spacing and text styles. ADR-008 replaces the required shadcn_ui switch in [ADR-004](adr/004-shadcn-web-direction.md). Revisit a library only for a concrete unmet need. Keep the accepted layout and learner-written implementation.
 
 Installed dependencies are defined by `pubspec.yaml` and its lockfile. Riverpod and drift serve state and storage needs; they are not UI libraries. Add them only when needed. The assistant maintains delegated documentation and website work, teaches, reviews and prepares tests/templates. The learner writes core application features.
 
@@ -12,16 +12,16 @@ Installed dependencies are defined by `pubspec.yaml` and its lockfile. Riverpod 
 
 | Product role | Candidate component | Requirement |
 |--------------|---------------------|-------------|
-| Shared theme | `ShadThemeData`, `ShadColorScheme` | Define brand, surface, text and semantic colors once |
-| Create, save and secondary actions | `ShadButton` variants | Make action priority, disabled state and pending work clear |
-| Title, location and other fields | `ShadInput`, `ShadForm` | Place errors beside fields and retain input on failure |
-| Date selection | `ShadDatePicker` | Validate the date range; keep time and recurrence rules in domain code |
-| Task completion | `ShadCheckbox` | Keep pointer, keyboard and screen-reader state in agreement |
-| Editors and high-impact confirmation | `ShadDialog` | Use for focused editing, whole-data replacement and clearing; avoid routine confirmation dialogs |
-| Views within one page | `ShadTabs` | Preserve selection and keyboard focus |
-| Errors and results | `ShadAlert` and the package's toast mechanism | Keep persistent errors near the affected content; a toast is not recovery guidance |
+| Shared theme | Shared Material theme | Define brand, surface, text and semantic colors once |
+| Create, save and secondary actions | Standard buttons | Make action priority, disabled state and pending work clear |
+| Title, location and other fields | Standard text fields and forms | Place errors beside fields and retain input on failure |
+| Date selection | Standard date picker | Validate the date range; keep time and recurrence rules in domain code |
+| Task completion | Checkbox | Keep pointer, keyboard and screen-reader state in agreement |
+| Editors and high-impact confirmation | Dialog or editor overlay | Use for focused editing, whole-data replacement and clearing; avoid routine confirmation dialogs |
+| Views within one page | Tabs where needed | Preserve selection and keyboard focus |
+| Errors and results | Inline error and result text | Keep persistent errors near the affected content; a toast is not recovery guidance |
 
-These are design candidates, not verified calls for a locked version. Check constructors, variants and composition during the relevant lesson. A date picker does not provide a weekly scheduler. Cadence owns its time grid, schedule blocks, repeat rules and conflict display.
+Reuse working controls; do not create a parallel component framework. A date picker does not provide a weekly scheduler. Cadence owns its time grid, schedule blocks, repeat rules and conflict display.
 
 ## Visual direction and assets
 
@@ -40,7 +40,7 @@ The learner accepted this layout on 2026-11-11: a light sidebar, a two-column To
 | Application shell | Main destinations, language and data controls | Current page, date and return path |
 | Today | Personal plans and tasks for the day; optional courses later | Empty state, completion, time and location |
 | Week | Browse dates and open entries | Week range, repeats and editing entry points |
-| Schedule editor | Title, category, time, location and bounded repeats | Validation, save/cancel and deletion scope |
+| Schedule editor | Title, time, optional location/notes and bounded repeats | Validation, save/cancel and deletion scope |
 | Tasks | Add, complete, reopen and edit tasks | Completion and empty-list state |
 | Data controls | Saving choice, JSON preview, export and clear | Storage mode, failed saves and replacement scope |
 
@@ -106,14 +106,10 @@ Do not use a green icon as the only proof of saving. Announce meaningful status 
 
 ## Optional Web data flow
 
-If Web is selected, keep the same explicit temporary/local choice. IndexedDB remains the candidate business-data adapter from [ADR-005](adr/005-local-offline-and-school-gated-web.md); localStorage is only for small non-sensitive preferences. ADR-007 removes the former school gate for general deployment. Test quotas, transaction failures, clearing and coordination between tabs. An offline restart claim also needs tested application-resource caching.
-
-JSON transfer is limited to 1 MiB UTF-8 and 2,000 total records. Validate before showing counts and replacement scope. Replace the full dataset only after confirmation; failure preserves the original. Import cannot change the storage choice or restore a login.
-
-Exports contain private plans and tasks and are not public timetable-sharing files. Clearing describes the application's own saved scope; it cannot retract downloaded or shared files. The first Web candidate excludes backend/accounts, sync, school APIs, CSV, system notifications and single-occurrence changes. Web remains optional learner-led future work, not part of the first desktop release.
+No Web planner or connection dashboard belongs in core navigation. If a school integration needs a Web surface, define its actual task first. Explain source access and uploads separately from local saving. Do not show login or sync controls until that connection exists and passes acceptance.
 
 ## Implementation and acceptance
 
-Follow [LEARNING.md](LEARNING.md) for current lessons. Introduce task behavior, navigation, the shadcn_ui theme, saving and error feedback step by step. Website visuals are useful for discussion but do not prove storage or recovery behavior.
+Follow [LEARNING.md](LEARNING.md) for current lessons. Introduce task behavior, navigation, the shared theme, saving and error feedback step by step. Website visuals are useful for discussion but do not prove storage or recovery behavior.
 
 Test Japanese, English and Chinese, input methods, keyboard access, long text, text scaling, screen readers, storage failures and invalid imports. Web acceptance also covers reloads, resource paths, browser-data clearing and the actual deployment. Compilation does not prove reliable storage or security; follow [SECURITY.md](SECURITY.md).

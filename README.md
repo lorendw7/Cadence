@@ -20,7 +20,7 @@ Cadence is being designed around three views: **Today, Week, and Tasks**. The de
 - Make local saving, temporary use, backup, recovery, and deletion clear.
 - Support Japanese, English, and Chinese, keyboard use, and readable layouts.
 
-These are design goals. The first useful release should prove a small local planning flow before adding advanced features. Course rules and school imports belong to an optional education extension. A Web version and multi-device sync may be considered later; they are not required for the desktop core.
+These are design goals. The first useful release should prove a small local planning flow before adding advanced features. Course rules and school imports belong to an optional education extension. Web and synchronization are considered only when a school connection needs them. There is no general Web or personal cloud-sync delivery track.
 
 General product releases do not depend on a school. Any school connection needs permission for that specific interface and data. Cadence is independent and has no university endorsement. The current direction is recorded in [ADR-007](docs/adr/007-general-purpose-local-planner.md).
 
@@ -43,7 +43,7 @@ flutter run -d windows
 
 Use the matching Linux/macOS target on a configured host. [Setup](docs/SETUP.md) lists the required tools and checks. There is no implemented Web planner in this checkout.
 
-The selected product UI library is Flutter **shadcn_ui**. It is not installed yet. Introduce it, Riverpod, and drift only when the relevant lessons need them. [pubspec.yaml](pubspec.yaml) and its lockfile record installed dependencies. The starter version is not a production-readiness claim.
+The first release keeps themed Flutter Material controls. Introduce drift with local saving; add another package only for a demonstrated need. [ADR-008](docs/adr/008-small-free-local-product.md) records the smaller design, including explicit Save, memory-only unsaved forms and ordinary local storage. [pubspec.yaml](pubspec.yaml) and its lockfile record installed dependencies. The starter version is not a production-readiness claim.
 
 ## Artwork and website
 

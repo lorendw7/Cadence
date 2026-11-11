@@ -8,7 +8,7 @@ The product is in development. The current desktop learning app has basic in-mem
 
 Desktop local use comes first, on Windows, macOS and Linux. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
 
-A Web client and cross-device sync are optional later extensions. General product publication does not require school permission. Authorization applies only to an optional connection to a school, workplace or other external provider. See [ADR-007](../docs/adr/007-general-purpose-local-planner.md) and [the product design](../docs/REDESIGN.md).
+Web and synchronization are considered only when a school connection needs them, under [ADR-008](../docs/adr/008-small-free-local-product.md). There is no general Web planner or personal cloud-sync delivery track. General product publication does not require school permission. Authorization applies only to an optional connection to a school, workplace or other external provider. See [ADR-007](../docs/adr/007-general-purpose-local-planner.md) and [the product design](../docs/REDESIGN.md).
 
 ## Files
 

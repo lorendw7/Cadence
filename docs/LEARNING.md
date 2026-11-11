@@ -16,22 +16,21 @@ All repository documentation uses plain English. Product translations remain Jap
 
 ## Learn tools when needed
 
-Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Web and sync are optional later work. Kyushu and other school connections are optional extensions with their own interface and data permissions. Mobile apps are outside scope. See [ADR-007](adr/007-general-purpose-local-planner.md).
+Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Web and sync are considered only when a school connection needs them. Kyushu and other school connections are optional extensions with their own interface and data permissions. Mobile apps are outside scope. See [ADR-007](adr/007-general-purpose-local-planner.md).
 
 | Tool | Purpose | When to introduce it |
 |---|---|---|
 | Dart | Data, decisions, and calculations | Lesson 1 |
 | Flutter and Material widgets | Basic interface and layout | After the first model lessons |
-| shadcn_ui | Selected product UI components | UI stage, after compatibility checks |
 | setState | Rebuild a page after state changes | Early lists and forms |
-| Riverpod | Share state between pages | When pages need shared data |
+| Riverpod | Possible later shared-state tool | Only if ordinary Flutter state sharing becomes hard to maintain |
 | SQLite and drift | Save and query local data | Persistence lessons |
 | Local notification adapter | Ask the OS to show reminders | After saved schedules and permission handling |
 | flutter_test | Check models and UI behavior | Throughout the course |
 | Dart calculations and Flutter charts | Show a local weekly review | After schedule and task data are stable |
 | HTML, CSS, and JavaScript | Run the separate concept website | Maintained by the assistant |
 
-Use Flutter 3.44.4 / Dart 3.12.2. shadcn_ui, Riverpod, and drift are not installed. [pubspec.yaml](../pubspec.yaml) records installed packages. Add them only when their lessons need them.
+Use Flutter 3.44.4 / Dart 3.12.2. [pubspec.yaml](../pubspec.yaml) and its lockfile record the current dependencies. [ADR-008](adr/008-small-free-local-product.md) removes the required shadcn_ui migration; this design does not remove packages from any in-progress lesson. Add a package only when a working feature needs it.
 
 See [UI design](UI_ARCHITECTURE.md), [workflow](PROJECT_WORKFLOW.md), and [curriculum](CURRICULUM.md). Official references: [Flutter desktop](https://docs.flutter.dev/platform-integration/desktop), [Riverpod](https://riverpod.dev/), and [drift](https://drift.simonbinder.eu/).
 
@@ -41,16 +40,16 @@ Each item is a stage, not one lesson. Split stages into 20–45 minute lessons o
 
 1. Task data: classes, fields, constructors, updates, and validation.
 2. A small in-memory list: display, input, addition, completion, deletion, and undo.
-3. Desktop UI, then saving: async work, storage boundaries, restart recovery, drafts, failed writes, and shared state.
+3. Desktop UI, then saving: async work, storage boundaries, restart recovery of confirmed records, explicit Save, failed writes and shared state.
 4. Today and personal plans: counts, date changes, start/end times, editing, deletion, and repeats.
 5. Week: seven-day plans, bounded repeats, conflicts, and reliable editing.
 6. Task deadlines and optional links to personal plans.
 7. Full backup/restore and clear data controls. Basic recovery checks start during persistence.
-8. Weekly review: planned time, overlap removal, task counts, and the previous week.
-9. Reminders: running-app behavior first, background behavior checked per platform.
-10. Windows pilot checks, then Linux/macOS runtime checks and release work.
+8. Windows pilot and release checks.
+9. Select local review, reminders or another desktop platform only from actual needs.
+10. Consider Web or synchronization only when a school connection needs it.
 
-Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks, exams and school connections are optional education work after the local core. [Assisted import](QUICK_IMPORT.md) is a later design for local tables and screenshots, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. Web and sync need separate decisions and checks. Documents, artwork, and website work do not count as core lessons.
+Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks, exams and school connections are optional education work after the local core. [Assisted import](QUICK_IMPORT.md) is a later design for local tables and screenshots, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. School Web/sync needs separate decisions and checks. Documents, artwork, and website work do not count as core lessons.
 
 ## Tests and templates
 
@@ -75,4 +74,4 @@ The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–
 
 These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
 
-Next: [lesson 11](lessons/11-theme.md), shared theme constants and the paper/wine direction. This lesson is assigned, not implemented. Explain the syntax before the learner edits the application. The accepted [layout](UI_ARCHITECTURE.md#pages-and-navigation) and detailed [lessons 11–16](CURRICULUM.md#lessons-1116-desktop-ui-foundations) guide the desktop UI stage. Lesson 12 introduces shadcn_ui after compatibility checks. Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open; lesson 10's actual-window deletion/undo flow is confirmed.
+Next: [lesson 11](lessons/11-theme.md), shared theme constants and the paper/wine direction. This lesson is assigned, not implemented. Explain the syntax before the learner edits the application. The accepted [layout](UI_ARCHITECTURE.md#pages-and-navigation) and detailed [lessons 11–16](CURRICULUM.md#lessons-1116-desktop-ui-foundations) guide the desktop UI stage. Lesson 12 continues with themed Material controls under [ADR-008](adr/008-small-free-local-product.md). Keep [lesson 9](lessons/09-validation.md)'s title-validation manual confirmation open; lesson 10's actual-window deletion/undo flow is confirmed.
