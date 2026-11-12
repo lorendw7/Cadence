@@ -21,6 +21,6 @@ Also check that Tasks starter shortcuts clear filters, reveal the matching card 
 
 Do not run generators as generic cleanup. The outputs are versioned design files. Flutter checks and native builds are in [SETUP.md](../docs/SETUP.md).
 
-Source checks cannot prove browser behavior, accessibility, remote-link availability, or release readiness. The documentation script check catches leftover Chinese/Japanese text in Markdown, except the explicitly requested `docs/QREC_PITCH.zh-CN.md` rehearsal translation. Local links in that file are still checked. A human review still needs to check that the English is clear and correct and that the translation matches it.
+Source checks cannot prove browser behavior, accessibility, remote-link availability, or release readiness. The documentation script check catches leftover Chinese/Japanese text in Markdown; a human review still needs to check that the English is clear and correct.
 
 The [repository workflow](../.github/workflows/repository.yml) runs the three read-only tools. The [Pages workflow](../.github/workflows/pages.yml) requires them before deployment.

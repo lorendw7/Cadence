@@ -3,10 +3,10 @@
 ## Documentation
 
 - Write all repository documentation in plain English. This applies to new and updated files, including READMEs, design documents, lesson notes, maintenance guides, and generated asset documentation.
-- The user explicitly requested a Chinese translation of the QREC rehearsal guide. Only `docs/QREC_PITCH.zh-CN.md` is exempt from the English-only rule. Keep its meaning aligned with `docs/QREC_PITCH.md`.
 - Use short sentences, familiar words, and concrete examples. Explain technical terms when they first appear.
 - Keep product translations separate from documentation. The website and future app may use Japanese, English, and Chinese. Do not remove those translations when editing documentation.
 - Keep document paths stable. Update the documentation index and local links when adding or moving a document.
+- Keep personal funding applications, pitch scripts, interview practice, translations of those materials, and private correspondence outside this public repository. A general request to organize documentation or push main does not authorize publishing them; require an explicit request to publish those specific materials.
 - Separate implemented behavior, planned work, historical lesson results, and checks that still need a person to confirm them. Never describe a plan or a passing build as a released feature.
 
 ## Learning and implementation

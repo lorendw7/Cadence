@@ -12,8 +12,6 @@ const anchors = new Map();
 let links = 0;
 let fragments = 0;
 let documents = 0;
-// Explicit user-requested rehearsal translation; all links still get checked.
-const translatedDocuments = new Set(['docs/QREC_PITCH.zh-CN.md']);
 
 function withoutCode(body) {
   return body.replace(/^(\x60{3,}|~{3,})[^\n]*\n[\s\S]*?^\1[ \t]*$/gm, '');
@@ -73,7 +71,7 @@ for (const file of files) {
     if (file.endsWith('.md')) {
       documents += 1;
       // This catches untranslated text, not English grammar or clarity.
-      if (!translatedDocuments.has(file) && /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(text)) {
+      if (/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(text)) {
         errors.push(file + ': documentation must use plain English; keep product translations in product files');
       }
       for (const match of body.matchAll(/!?\[[^\]\n]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)/g)) {
@@ -96,6 +94,6 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log('Checked ' + documents + ' documentation files (with an explicit translation exception), ' + links +
+  console.log('Checked ' + documents + ' English documentation files, ' + links +
     ' local links (' + fragments + ' anchors), and JavaScript syntax.');
 }
