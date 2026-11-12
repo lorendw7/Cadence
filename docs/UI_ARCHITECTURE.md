@@ -25,9 +25,13 @@ Reuse working controls; do not create a parallel component framework. A date pic
 
 ## Visual direction and assets
 
-Keep the independent paper-and-ink style: muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C` and graphite text. Clear dates, fine rules, space and restrained corners keep attention on time. Use ordinary work, home and study examples. Categories need text or icons as well as color. Do not imply an institution's affiliation or show invented login, rankings or cloud-save status. See [DESIGN.md](DESIGN.md).
+This section specifies a proposed visual update only. The user asked for design documents, not assistant-written application code. The learner will implement accepted changes in small lessons. Do not treat this specification as implemented behavior or advance lesson acceptance because the document changed.
 
-The [v2 artwork library](../assets/README.md) supplies 56 interface icons at 24 × 24, ten text-free state illustrations, brand variants and platform exports. The website and Windows/macOS launcher references use it. Flutter pages have not adopted these assets or an SVG dependency. Declare only the assets used by each implemented feature, with localized text, accessible button names and correct state semantics.
+The user selected the original wine accent and white software UI on 2026-11-12. Keep the independent journal style with a white `#FFFFFF` canvas, subtle `#FAFAFA` surfaces, ink `#2F3033`, muted text `#6B6B70` and fine rules `#E8E8EB`. Use wine `#7C394B` sparingly for the primary action, focus and selection, with `#F5EEF0` behind selected navigation. Warm paper and sage remain within the artwork. Clear dates, whitespace and restrained corners keep attention on time. Use ordinary work, home and study examples. Categories need text or icons as well as color. Do not imply an institution's affiliation or show invented login, rankings or cloud-save status. See [DESIGN.md](DESIGN.md).
+
+The task-surface proposal targets an 800-unit maximum content width, 32-unit wide-window gutters, 16-unit compact gutters and an 8-unit spacing rhythm. These units are Flutter logical pixels. Align the heading, quick entry and task list. Keep practice controls visible but secondary. Preserve text scaling and allow control height to follow its content. The existing learning shell has a sidebar in wide windows. Its Tasks marker has no page-switching action. This visual proposal adds no new navigation, saving or task requirements. [LEARNING.md](LEARNING.md) records actual implementation and verification separately.
+
+The [v2 artwork library](../assets/README.md) supplies 56 interface icons at 24 × 24, ten text-free state illustrations, brand variants and platform exports. The website and Windows/macOS launcher references use it. Flutter pages have not adopted these assets or an SVG dependency. For a future top bar, propose the existing 64 px brand PNG at about 28 logical pixels beside the wordmark. It would be decorative because the adjacent wordmark names the app. Do not bundle assets until a lesson uses them. Keep localized text, accessible button names and correct state semantics.
 
 Use `empty-tasks` for an empty list, `all-done` when every task is complete and `save-error` for a failed save. An illustration does not replace an explanation or recovery action. Dark brand assets do not mean a dark UI has passed acceptance. See the [asset catalogue](../assets/catalog.html) for files and sizes.
 
@@ -59,6 +63,8 @@ Place the date, today's pending-task count and a New action above the content. S
 
 Use a toolbar with previous/next week, the week range, This week and New. Below it, give the seven-day time grid most of the available space, with an all-day band above the timed rows. A collapsible task tray sits on the right.
 
+The first desktop layout keeps readable day columns in a bounded horizontal scroll area when space is limited. Keep the toolbar reachable, show a scroll cue and align all-day and timed columns. A separate day view is later work if trials show a need. Do not constrain Week to the task list's proposed 800-unit content width.
+
 Show plan title and optional location on readable blocks, with restrained category color and text. Open details only after selection. If course support is added, its entries reuse the time grid; Courses and Weekly Review stay secondary actions. Dragging a task into the calendar is optional later work, not a first-version requirement; explicit start/end editing comes first.
 
 ### Tasks and editing
@@ -71,7 +77,7 @@ Simple edits may stay inline. Full editing opens a right-side overlay, not anoth
 
 ### Window sizes and staged delivery
 
-Collapse navigation when space is limited, stack Today's sections and let the editor use the available width. For Week, keep columns readable with an explicitly bounded horizontal scroll area or a labelled day view. Do not squeeze three or four columns into a narrow window. Choose breakpoints from translated text, keyboard use and 200% text scaling, rather than a device name. Preserve dates, selection and input across resize. A narrow layout alone does not establish Android or iOS support; test touch, keyboard, safe areas, lifecycle and file operations on each target.
+Collapse navigation when space is limited, stack Today's sections and let the editor use the available width. For desktop Week, use the bounded calendar scroll described above. Do not squeeze three or four panels into a narrow window. Choose breakpoints from translated text, keyboard use and 200% text scaling, rather than a device name. Preserve dates, selection and input across resize. A narrow layout alone does not establish Android or iOS support; test touch, keyboard, safe areas, lifecycle and file operations on each target.
 
 Lessons 11–16 establish the theme, task controls and shell layout. They do not by themselves deliver a planner. Expose functional destinations as their data and behavior arrive. Do not present placeholder pages or invented entries as working features. Reliable local tasks come first, then personal plans and Today/Week; course tools are optional later work. Later lesson numbers and estimates live in [the curriculum](CURRICULUM.md).
 

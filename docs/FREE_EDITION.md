@@ -16,14 +16,7 @@ The Instagram comparison describes a possible advertising-funded model only. It 
 
 ## What the first free edition includes
 
-| Area | Planned baseline | Acceptance example |
-|---|---|---|
-| Tasks | Add, edit, complete, reopen and delete; optional deadlines; undo where offered | A failed save retains input and never reports success |
-| Personal plans | Timed and all-day plans; optional location and notes; bounded weekly repeats | Today and Week show the same confirmed meeting |
-| Navigation | Today, Week and Tasks; secondary Settings | A person can reach every main view with touch or keyboard |
-| Data choice | Save on this device or Temporary use; explicit Save and Cancel | Saved records survive restart; temporary use does not open an old database |
-| Recovery | Private versioned JSON export, validated restore preview and clear | A rejected import leaves the previous records intact |
-| Access | Japanese, English and Chinese; readable text scaling and accessible controls | Long translated titles remain readable and editable |
+The [desktop feature baseline](PRODUCT.md#first-useful-local-product) is the main feature list. It separates current behavior from planned tasks, personal plans, Today, Week, storage, recovery and access. [Desktop design priorities](REDESIGN.md#desktop-design-priorities) define the first interface choices; [ROADMAP.md](ROADMAP.md) defines release acceptance. Keep this document focused on platform differences and equal access rather than maintaining a second feature checklist.
 
 No account, subscription, ad view or network service is required to create or read local tasks and plans. Do not impose commercial record limits on the local edition. Finite import and file limits protect reliability; explain them as technical limits. Ordinary local files and initial JSON exports are unencrypted. Do not advertise an encrypted vault.
 

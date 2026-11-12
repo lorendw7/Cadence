@@ -12,16 +12,22 @@ The learner writes core code through small lessons. The assistant maintains dele
 
 ## First useful local product
 
-| Area | Planned behavior |
-|------|------------------|
-| Tasks | Create, edit, complete, reopen and delete tasks; optional deadlines; undo where supported |
-| Personal plans | Timed and all-day entries, optional location/notes and basic weekly repeats with an end date; edit the whole series |
-| Today | Today's tasks and plans, separate overdue/undated groups and the next entry |
-| Week | One view of timed entries and all-day plans, with clear dates and overlap warnings |
-| Saving | First-use choice between saving on this device and temporary use; no business persistence before consent |
-| Recovery | Explicit Save, input retained on failure, restart recovery of confirmed records, one private JSON backup/restore flow and explicit clearing |
-| Use | Offline local planning without login, a server, school connection or telemetry |
-| Interface | Keyboard and touch access, adaptive layouts, Japanese/English/Chinese controls |
+This is the desktop feature baseline. Every row is required for the first useful desktop edition, but most behavior is still planned. Start with Windows. Claim macOS or Linux support only after checks on that native system. This table owns feature scope; [ROADMAP.md](ROADMAP.md) owns delivery gates.
+
+| Area | Planned desktop behavior | Current implementation |
+|------|--------------------------|------------------------|
+| Tasks | Create, edit, complete, reopen and delete; required title, optional notes and date-only or exact-time deadline; latest-delete undo where supported | In-memory addition, title validation, completion, deletion and latest-delete undo; no editor, notes or deadlines |
+| Personal plans | Create, edit and delete timed or all-day entries; optional location/notes; weekly repeats with an end date; edit/delete the whole series | Not implemented |
+| Today | Tasks due today, separate overdue/undated/completed groups, daily timeline and next plan; counts follow the same date rules as the lists | Not implemented |
+| Week | Monday-Sunday calendar, all-day band, previous/next/This week controls and collapsible task tray; show overlaps without blocking real commitments | Not implemented |
+| Saving | Choose Save on this device or Temporary use; explicit Save, retained input on failure and restart recovery of confirmed saved records | Memory only; no storage choice or persistence |
+| Recovery | Export one private JSON backup, validate and preview replacement before restore, and explicitly clear local data | Not implemented |
+| Settings and help | Language, active storage mode, local data location, backup/restore, clear, version and a support link | Not implemented |
+| Access | Offline use without login or telemetry; keyboard and pointer access, readable resizing and 200% text scaling; Japanese/English/Chinese controls | Task exercise only; complete language and desktop access acceptance remains pending |
+
+A task answers **what needs finishing**. A plan answers **when time is reserved**. For example, a report due Friday is a task; Thursday 14:00-15:00 writing time is a separate plan. Do not silently turn deadlines into calendar blocks or claim that planned time measures actual work.
+
+The desktop edition uses one local workspace. It has no commercial task limit. File and record bounds may protect reliability. A temporary session can export a backup explicitly, but must not create automatic private disk copies. Local saving and JSON backups are initially unencrypted.
 
 The first release must make these basic flows dependable before adding specialized modules. A task deadline does not reserve a calendar interval. A repeat always has a bounded range. [REDESIGN.md](REDESIGN.md) defines behavior and [ROADMAP.md](ROADMAP.md) separates implementation stages from release gates.
 
@@ -35,6 +41,8 @@ Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working c
 
 ## Optional later work
 
+These features are outside the desktop baseline. A design study or an artwork asset does not make one a release requirement.
+
 | Extension | Scope and decision boundary |
 |-----------|-----------------------------|
 | Courses | Start only with the teaching-week and period rules needed by actual samples; single-class changes and filtered sharing can follow separately |
@@ -44,6 +52,8 @@ Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working c
 | External academic systems | Excluded; historical studies do not authorize integrations |
 
 Optional work follows a usable free edition. Keep accounts, billing, ad SDKs and sync services out of the current build. Local course rules, reminders and assisted import are also secondary to the free core. Choose later work from real feedback and measured costs.
+
+Advanced search, custom categories, drag-to-schedule, a separate month view, dark mode, persistent unsaved drafts and single-occurrence repeat changes are not first-release commitments. Add them only after a concrete need and a bounded design review. Full-text search and a category system are not needed to finish the first task and calendar flows.
 
 ## Removed connections and independence
 

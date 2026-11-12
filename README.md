@@ -8,11 +8,13 @@
 
 Cadence is being designed around three views: **Today, Week, and Tasks**. The desktop app should work offline without an account. At first use, people will choose whether to save on their device or use a temporary session. External academic-system connections, school login and automatic timetable retrieval are outside the current plan.
 
-**Current status:** the learning app supports task input, validation, addition, completion, deletion, and undo of the latest deletion. Data stays in memory. Lessons 1–10 are accepted. Lessons 11–13 add the paper-and-wine theme, shadcn_ui root integration and a responsive Shad task surface. Analysis, all 27 tests and the Windows debug build pass. Actual-window theme, responsive-layout and keyboard confirmation remain pending. Persistence and the full planner are not implemented. See [learning progress](docs/LEARNING.md) for automated and manual checks.
+**Current status:** the learning app supports task input, validation, addition, completion, deletion, and undo of the latest deletion. Data stays in memory. Persistence and the full planner are not implemented. The [learning log](docs/LEARNING.md) owns current lesson progress, automated results and pending actual-window checks. Design documents and successful builds do not establish release readiness.
 
 [Website](https://lorendw7.github.io/Cadence/) · [Product](docs/PRODUCT.md) · [Design](docs/REDESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md)
 
 ## Product direction
+
+The planned desktop edition includes task editing and deadlines, timed and all-day plans, bounded weekly repeats, Today, Week, local saving or temporary use, private backup/restore and data clearing. It will provide Japanese, English and Chinese controls, keyboard access and layouts that remain readable when resized. See the [feature baseline and current limits](docs/PRODUCT.md#first-useful-local-product). Courses, reminders, review statistics and assisted import are later options.
 
 Cadence has one free feature set for everyone. There is no paid tier, subscription, paid expansion or paid priority. Any future cloud service uses the same published quota rules for everyone. Ads are the only possible future revenue model in this plan and do not unlock features or extra capacity.
 
