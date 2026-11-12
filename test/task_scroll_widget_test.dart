@@ -21,6 +21,9 @@ void main() {
       ),
     );
     Future<void> reveal(Finder target) async {
+      // Footer actions may leave lazily built rows above the viewport.
+      tester.state<ScrollableState>(pageScroll).position.jumpTo(0);
+      await tester.pumpAndSettle();
       await tester.scrollUntilVisible(target, 60, scrollable: pageScroll);
       await tester.pumpAndSettle();
       expect(target.hitTestable(), findsOneWidget);

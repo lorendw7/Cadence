@@ -4,6 +4,8 @@ Updated: 2026-11-12. This is a design handoff for the existing in-memory task ex
 
 The learner writes the Flutter UI. This handoff does not change `lib/main.dart`, declare an asset bundle, install a package or implement another lesson. The sample language controls belong to the design viewer, not the application. [Learning progress](../../docs/LEARNING.md) owns implemented behavior and pending native checks.
 
+After this study was prepared, the learner explicitly delegated counter removal and application color alignment in lesson 16. The study retains the earlier practice footer as a historical design reference. The current app has no practice counter. The remaining study layout and artwork are still proposals.
+
 ## Review the design
 
 From the repository root, run:

@@ -2,7 +2,7 @@
 
 Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Finish the free desktop edition first; Web and mobile remain later directions. All users receive the same free functions, with no paid tier or paid capacity. Cloud sync and optional ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
-Updated: 2026-11-12. Lessons 1–10 are accepted. Lessons 11–14 are implemented, and lesson 15 has wrapping actions and a shared scrolling area for the form and tasks. Analysis, all 30 tests and a Windows debug build pass. Actual-window confirmation, 200% text scaling and keyboard checks remain open. See [current progress](LEARNING.md) for the remaining checks from earlier lessons.
+Updated: 2026-11-12. Lessons 1–10 are accepted. Lessons 11–14 are implemented. Lesson 15's remaining actual-window checks are deferred at the learner's request. Lesson 16 has retired the practice counter and aligned application colors under explicit delegation. Analysis, all 33 tests and a Windows debug build pass. The component and state-lifetime review is complete. Lesson 17 starts with Future, async and await; local saving remains unimplemented. See [current progress](LEARNING.md) for remaining acceptance checks.
 
 The learner writes core features. Each lesson includes about 20–45 minutes of explanation and guidance; coding, debugging, and review take extra time. Explain Dart and Flutter even when the learner knows another language.
 
@@ -42,7 +42,7 @@ Languages, keyboard access, and data protection apply throughout. Linux/macOS co
 | 9 | Reject blank titles; show an empty list | Automatic checks passed; empty-list flow confirmed |
 | 10 | Delete and undo once | Restore original object, position, and state; automated checks passed and actual-window deletion/undo confirmed |
 
-The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Lessons 11–14 pass their automated checks. Retain the separate manual checks in the learning log while continuing lesson 15.
+The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Lessons 11–14 pass their automated checks. Their remaining manual checks and lesson 15's deferred checks stay open in the learning log while teaching continues with lesson 17.
 
 ## Lessons 11–16: desktop UI foundations
 

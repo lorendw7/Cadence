@@ -47,7 +47,8 @@ Acceptance: record a meeting, an all-day plan and a task without a school or acc
 - [ ] Preserve a verified recovery copy before local restore/migration; use a transaction and keep original data on failure.
 - [ ] Exclude credentials, screenshots and unsaved forms from backup. Clear app-managed recovery copies with local data.
 - [ ] Test real release packages, offline use, upgrade/recovery, keyboard use, input methods, large text and each offered language.
-- [ ] Remove the teaching counter in a learner-owned lesson; provide the app version and a working help/support route without placeholder destinations.
+- [x] Remove the teaching counter in lesson 16, under the learner's explicit delegation. Task and undo regressions pass; see [learning progress](LEARNING.md).
+- [ ] Provide the app version and a working help/support route without placeholder destinations.
 - [ ] Run a small trial covering work, home and study. Record observed problems and unsupported cases.
 - [ ] Publish a complete Windows bundle with checksums, known limits, manual update instructions and a support route.
 

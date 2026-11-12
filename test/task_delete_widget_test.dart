@@ -15,28 +15,35 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const CadenceApp());
 
+      final pageScroll = find.descendant(
+        of: find.byType(CustomScrollView),
+        matching: find.byElementPredicate(
+          (element) =>
+              element.widget is Scrollable &&
+              element.findAncestorWidgetOfExactType<Scrollable>() == null,
+        ),
+      );
+      Future<void> reveal(Finder target) async {
+        tester.state<ScrollableState>(pageScroll).position.jumpTo(0);
+        await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(target, 40, scrollable: pageScroll);
+        await tester.pumpAndSettle();
+        expect(target.hitTestable(), findsOneWidget);
+      }
+
       for (final title in ['提交课程报告', '复习线性代数']) {
         final row = find.widgetWithText(ListTile, title);
-        await tester.scrollUntilVisible(
-          row,
-          40,
-          scrollable: find.descendant(
-            of: find.byType(CustomScrollView),
-            matching: find.byElementPredicate(
-              (element) =>
-                  element.widget is Scrollable &&
-                  element.findAncestorWidgetOfExactType<Scrollable>() == null,
-            ),
-          ),
+        final delete = find.descendant(
+          of: row,
+          matching: find.byTooltip('删除任务'),
         );
-        await tester.pumpAndSettle();
-        await tester.tap(
-          find.descendant(of: row, matching: find.byTooltip('删除任务')),
-        );
+        await reveal(delete);
+        await tester.tap(delete);
         await tester.pumpAndSettle();
         expect(find.text(title), findsNothing);
         if (title == '提交课程报告') {
           final survivor = find.widgetWithText(ListTile, '复习线性代数');
+          await reveal(survivor);
           expect(
             find.descendant(of: survivor, matching: find.text('已完成')),
             findsOneWidget,
@@ -45,25 +52,33 @@ void main() {
         }
       }
 
+      await reveal(find.text('暂无任务，添加一条吧'));
       expect(find.text('暂无任务，添加一条吧'), findsOneWidget);
       expect(find.byType(SliverList), findsNothing);
       expect(find.byType(TaskRow), findsNothing);
-      await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
+      final add = find.widgetWithText(ShadButton, '添加任务');
+      await reveal(add);
+      await tester.tap(add);
       await tester.pumpAndSettle();
       expect(find.text('请输入任务标题'), findsOneWidget);
       expect(find.text('暂无任务，添加一条吧'), findsOneWidget);
       expect(find.byType(TaskRow), findsNothing);
 
-      await tester.enterText(find.byType(ShadInput), '重新开始');
-      await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
+      final input = find.byType(ShadInput);
+      await reveal(input);
+      await tester.enterText(input, '重新开始');
+      await reveal(add);
+      await tester.tap(add);
       await tester.pumpAndSettle();
       expect(find.text('暂无任务，添加一条吧'), findsNothing);
       expect(find.text('请输入任务标题'), findsNothing);
+      final restartedRow = find.widgetWithText(ListTile, '重新开始');
+      await reveal(restartedRow);
       expect(find.byType(TaskRow), findsOneWidget);
       expect(find.text('未完成'), findsOneWidget);
-      await tester.tap(
-        completionCheckbox(find.widgetWithText(ListTile, '重新开始')),
-      );
+      final checkbox = completionCheckbox(restartedRow);
+      await reveal(checkbox);
+      await tester.tap(checkbox);
       await tester.pump();
       expect(find.text('已完成'), findsOneWidget);
       expect(tester.takeException(), isNull);

@@ -82,11 +82,6 @@ void main() {
           tester.widget<ShadInput>(find.byType(ShadInput)).controller!.text,
           isEmpty,
         );
-
-        await tester.tap(find.widgetWithText(ShadButton, '加1'));
-        await tester.pump();
-        await tester.tap(find.widgetWithText(TextButton, '归零'));
-        await tester.pump();
       }
 
       final firstAddedRow = find.byWidgetPredicate(
@@ -110,16 +105,19 @@ void main() {
     },
   );
 
-  testWidgets('Input survives counter and task state rebuilds', (
+  testWidgets('Input survives completion, deletion and undo rebuilds', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const CadenceApp());
     await tester.enterText(find.byType(ShadInput), '准备课程报告');
 
     for (final target in [
-      find.widgetWithText(ShadButton, '加1'),
-      find.widgetWithText(TextButton, '归零'),
       completionCheckbox(find.widgetWithText(ListTile, '提交课程报告')),
+      find.descendant(
+        of: find.widgetWithText(TaskRow, '复习线性代数'),
+        matching: find.byTooltip('删除任务'),
+      ),
+      find.widgetWithText(ShadButton, '撤销删除'),
     ]) {
       await tester.tap(target);
       await tester.pump();

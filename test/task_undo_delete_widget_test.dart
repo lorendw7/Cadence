@@ -10,22 +10,30 @@ Finder rowWithId(String id) => find.byWidgetPredicate(
 Finder completionCheckbox(Finder row) =>
     find.descendant(of: row, matching: find.byType(ShadCheckbox));
 
-Future<void> deleteTask(WidgetTester tester, String id) async {
-  final row = rowWithId(id);
-  await tester.scrollUntilVisible(
-    row,
-    40,
-    scrollable: find.descendant(
-      of: find.byType(CustomScrollView),
-      matching: find.byElementPredicate(
-        (element) =>
-            element.widget is Scrollable &&
-            element.findAncestorWidgetOfExactType<Scrollable>() == null,
-      ),
+Future<void> reveal(WidgetTester tester, Finder target) async {
+  final pageScroll = find.descendant(
+    of: find.byType(CustomScrollView),
+    matching: find.byElementPredicate(
+      (element) =>
+          element.widget is Scrollable &&
+          element.findAncestorWidgetOfExactType<Scrollable>() == null,
     ),
   );
+  // Search from the top when moving back from the footer to lazy task rows.
+  tester.state<ScrollableState>(pageScroll).position.jumpTo(0);
   await tester.pumpAndSettle();
-  await tester.tap(find.descendant(of: row, matching: find.byTooltip('删除任务')));
+  await tester.scrollUntilVisible(target, 40, scrollable: pageScroll);
+  await tester.pumpAndSettle();
+  expect(target.hitTestable(), findsOneWidget);
+}
+
+Future<void> deleteTask(WidgetTester tester, String id) async {
+  final delete = find.descendant(
+    of: rowWithId(id),
+    matching: find.byTooltip('删除任务'),
+  );
+  await reveal(tester, delete);
+  await tester.tap(delete);
   await tester.pumpAndSettle();
 }
 
@@ -38,25 +46,34 @@ void main() {
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const CadenceApp());
+      await reveal(tester, undo);
       expect(tester.widget<ShadButton>(undo).onPressed, isNull);
       await deleteTask(tester, 'demo-1');
+      await reveal(tester, undo);
       expect(tester.widget<ShadButton>(undo).onPressed, isNotNull);
       await deleteTask(tester, 'demo-2');
+      await reveal(tester, find.text('暂无任务，添加一条吧'));
       expect(find.text('暂无任务，添加一条吧'), findsOneWidget);
+      await reveal(tester, undo);
       await tester.tap(undo);
       await tester.pumpAndSettle();
+      await reveal(tester, rowWithId('demo-2'));
       expect(find.text('暂无任务，添加一条吧'), findsNothing);
       expect(find.byType(TaskRow), findsOneWidget);
       final restored = tester.widget<TaskRow>(find.byType(TaskRow)).task;
       expect(restored.id, 'demo-2');
       expect(restored.title, '复习线性代数');
       expect(restored.isCompleted, isTrue);
+      await reveal(tester, undo);
       expect(tester.widget<ShadButton>(undo).onPressed, isNull);
       await tester.tap(undo);
       await tester.pump();
+      await reveal(tester, rowWithId('demo-2'));
       expect(find.byType(TaskRow), findsOneWidget);
       expect(rowWithId('demo-1'), findsNothing);
-      await tester.tap(completionCheckbox(rowWithId('demo-2')));
+      final checkbox = completionCheckbox(rowWithId('demo-2'));
+      await reveal(tester, checkbox);
+      await tester.tap(checkbox);
       await tester.pump();
       expect(
         tester.widget<TaskRow>(rowWithId('demo-2')).task.isCompleted,
@@ -81,8 +98,10 @@ void main() {
       await tester.enterText(find.byType(ShadInput), '新增任务');
       await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
       await tester.pump();
-      await tester.tap(find.widgetWithText(ShadButton, '加1'));
+      // Validation rebuilds must also preserve the pending undo record.
+      await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
       await tester.pump();
+      expect(find.text('请输入任务标题'), findsOneWidget);
       await tester.tap(undo);
       await tester.pump();
       final rows = tester.widgetList<TaskRow>(find.byType(TaskRow)).toList();
