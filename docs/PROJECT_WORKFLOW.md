@@ -1,10 +1,10 @@
 # Project workflow
 
-Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Finish the free desktop edition first; Web and mobile remain later directions. All users receive the same free functions, with no paid tier or paid capacity. Cloud sync and optional ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-11. These are working rules. Examples below are not existing issues, branches, pull requests, or releases.
 
-Cadence is a local planner for work, study and daily life. The free edition targets desktop, Web, Android and iOS. Continue current lessons before platform work. Cloud sync, paid capacity and supplementary ads wait for review after store launch. External academic systems remain excluded. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md) and [roadmap](ROADMAP.md).
+Cadence is a local planner for work, study and daily life. The free edition targets desktop, Web, Android and iOS. Continue current lessons before platform work. Cloud sync and optional ads wait for review after store launch. External academic systems remain excluded. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md) and [roadmap](ROADMAP.md).
 
 ## Ownership and size
 

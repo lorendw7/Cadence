@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. Cadence is a general-purpose local time planner with a **quiet journal** visual style. Work, study and personal life share the same planning space. Courses are an optional kind of commitment. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current scope. Cadence has its own identity and does not imply endorsement by a school or other institution.
 
-The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. Target a free local edition for desktop, Web, Android and iOS under [ADR-010](adr/010-open-multiplatform-free-first.md). No account or ad view is required for the free core. Review cloud sync and paid expansion after store launch. External academic systems remain excluded.
+The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. Target a free local edition for desktop, Web, Android and iOS under [ADR-010](adr/010-open-multiplatform-free-first.md). No account or ad view is required for the free core. Review cloud sync and optional ads after store launch. External academic systems remain excluded.
 
 ## Palette
 
@@ -63,7 +63,7 @@ Keep editable artwork separate from delivery exports. Preserve the editorial PNG
 
 ## Multiple platforms and the free edition
 
-Keep the same white-and-wine identity and three main destinations across desktop, Web and phones. Adapt layout to available space, touch, keyboard and text scaling. Preserve readable dates and visible actions; do not squeeze a desktop calendar onto a phone. [FREE_EDITION.md](FREE_EDITION.md) defines platform checks and local-data limits. Do not add subscription, sync or advertising controls to the free-release design before those later features are approved.
+Keep the same white-and-wine identity and three main destinations across desktop, Web and phones. Adapt layout to available space, touch, keyboard and text scaling. Preserve readable dates and visible actions; do not squeeze a desktop calendar onto a phone. [FREE_EDITION.md](FREE_EDITION.md) defines platform checks and local-data limits. No subscriptions, paid capacity or feature tiers are planned. Everyone receives the same free functions. Sync and ads remain later candidates; do not add their controls to the current desktop design.
 
 ## Privacy in the interface
 

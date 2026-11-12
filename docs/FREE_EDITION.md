@@ -2,6 +2,18 @@
 
 Updated: 2026-11-12. Status: accepted design under [ADR-010](adr/010-open-multiplatform-free-first.md). The current teaching app keeps tasks in memory. Saving, calendars, full platform support and store releases are not implemented by this document. Current evidence belongs in [LEARNING.md](LEARNING.md).
 
+## Current delivery priority
+
+Current priority: finish the free desktop edition. Deliver a complete Windows flow first, then validate macOS and Linux. Web, Android and iOS remain later directions and do not add requirements to the current desktop milestone. Cloud sync and optional ads remain deferred.
+
+The platform table below preserves future design intent. Browser and phone checks are not desktop release gates. No mobile tester recruitment, store account purchase or platform setup starts as part of the current work.
+
+## Equal access
+
+Cadence has one free feature set for everyone. There is no paid tier, subscription, paid expansion or paid priority. Any future cloud service uses the same published quota rules for everyone. Ads are the only possible future revenue model in this plan and do not unlock features or extra capacity.
+
+The Instagram comparison describes a possible advertising-funded model only. It does not add social feeds, profiles or engagement-driven features to the planner. No ads or ad SDKs are part of the current desktop milestone.
+
 ## What the first free edition includes
 
 | Area | Planned baseline | Acceptance example |
@@ -40,7 +52,7 @@ Keep the existing GitHub Pages concept website. A future Web planner has a separ
 
 ## Delivery and testing
 
-Follow [ROADMAP.md](ROADMAP.md): dependable local tasks and plans, private recovery, free desktop trial, browser/mobile validation, then free store releases. Platform experiments can expose risks early, but a build is not release acceptance. Use fictional data in public examples. Do not reset lesson progress or implement future work as documentation maintenance.
+Follow [ROADMAP.md](ROADMAP.md): dependable local tasks and plans, private recovery, a free Windows trial, desktop usability fixes and native macOS/Linux validation. Review Web and mobile work after desktop acceptance; do not run those streams in parallel now. A build is not release acceptance. Use fictional examples and keep lesson progress separate from planning changes.
 
 For Google Play accounts subject to closed testing, the maintainer recruits testers. The official guidance suggests personal networks and target-user communities; it does not promise a supplied tester pool. At the time of review, personal accounts created after November 13, 2023 need at least 12 testers continuously opted in for 14 days before applying for production access. Meeting this minimum does not guarantee approval. Keep feedback, fixes and retest evidence. Recruiting 15-20 volunteers is a suggested buffer, not a platform requirement. Recheck the [official testing rules](https://support.google.com/googleplay/android-developer/answer/14151465?hl=en) before scheduling a release. No recruitment messages are authorized by this document.
 
@@ -48,18 +60,19 @@ Review current [Google Play registration requirements](https://support.google.co
 
 ## Review only after store launch
 
-The requested business direction is retained for later assessment:
+Only free cloud service and possible advertising remain candidates. Paid expansion, subscriptions, premium features, priority service and paid ad removal are excluded.
 
 | Candidate | Possible value | Decision needed before development |
 |---|---|---|
-| Limited free cloud sync | Keep a person's devices up to date | Measured per-user cost, numeric quotas, consent, conflict recovery, retention and an operating budget |
-| Paid expansion | More hosted capacity or longer hosted history | Actual demand, pricing, billing rules, cancellation, downgrade and continued data export |
-| Supplementary ads | Help cover a portion of service costs | Real net revenue, privacy and consent behavior, platform support, user impact and an easy way to stop the pilot |
+| Free cloud sync with uniform limits | Keep a person's devices up to date | Measured cost, the same published quota rules for everyone, consent, conflict recovery, retention and an operating budget |
+| Optional advertising | Help fund the free service | Measured net revenue, privacy and consent behavior, platform support, user impact and a way to stop the pilot |
 
-These are not free-edition gates. No login screen, quota meter, paywall, ad SDK, billing package or sync backend belongs in the current implementation. Numeric quotas, prices, providers and launch dates remain undecided. Do not promise unlimited or permanently free cloud hosting funded by ads. Do not interrupt planning with ads or make access to existing data depend on watching them.
+These are not desktop-release gates. No login screen, quota meter, paywall, ad SDK, billing package or sync backend belongs in the current implementation. Service limits, providers and dates remain undecided. Uniform limits may protect capacity and prevent abuse; users cannot pay or watch ads to gain extra functions or storage. If capacity is insufficient, revise the common limits or admission policy transparently while preserving local use and data export.
 
-When this review begins, use observed retention and service demand. Count hosting, database operations, storage, traffic, backups, email, support, store costs and maintenance. Advertising revenue must be measured after delivery, not inferred from downloads. Keep local planning independent if a later service is unavailable or ends.
+Do not promise unlimited or permanently available cloud hosting funded by ads. If ads are later adopted, clearly label them and keep them out of create, save, restore and recovery actions. Do not use private task titles, notes or schedule contents for ad targeting. Ad availability, consent or loading failure must not block core functions. No paid ad-free tier is planned.
+
+Evaluate demand and actual costs before any service starts. Count hosting, database operations, storage, traffic, backups, email, support and maintenance. Advertising revenue must be measured after delivery, not inferred from downloads. Preserve local planning and export if the service is unavailable or ends.
 
 ## Open source
 
-Keep Cadence under its existing [MIT license](../LICENSE). Open source does not promise free operated infrastructure. Future source releases must keep third-party notices and exclude user records, credentials, billing secrets and signing keys. No license change is made by this plan.
+Keep Cadence under its existing [MIT license](../LICENSE). Open source does not promise that a hosted service exists or can run without limits. Any Cadence cloud service considered under this plan must remain free and use uniform rules. Future source releases must keep third-party notices and exclude user records, credentials, service secrets and signing keys. No license change is made by this plan.

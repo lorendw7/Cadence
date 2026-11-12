@@ -14,13 +14,15 @@ Cadence is being designed around three views: **Today, Week, and Tasks**. The de
 
 ## Product direction
 
+Cadence has one free feature set for everyone. There is no paid tier, subscription, paid expansion or paid priority. Any future cloud service uses the same published quota rules for everyone. Ads are the only possible future revenue model in this plan and do not unlock features or extra capacity.
+
 - Plan appointments, focused work, study, and personal time together.
 - Keep tasks and bounded repeating plans easy to create, edit, and complete.
 - Target Windows, Linux, macOS, Web, Android and iOS with free local planning and no required account or server.
 - Make local saving, temporary use, backup, recovery, and deletion clear.
 - Support Japanese, English, and Chinese, keyboard use, and readable layouts.
 
-These are design goals under [ADR-010](docs/adr/010-open-multiplatform-free-first.md). Complete the free local edition and validate each target before release. Web and mobile are planned targets, not implemented products. Review limited free cloud sync, paid capacity and supplementary advertising only after store launch. External academic-system connections remain excluded. See the [free-edition design](docs/FREE_EDITION.md).
+These are design goals under [ADR-010](docs/adr/010-open-multiplatform-free-first.md). Finish the free desktop edition first: a complete Windows flow, then native macOS/Linux validation. Web and mobile remain later directions and do not expand the current milestone. Review possible free cloud sync and advertising only after store launch. External academic-system connections remain excluded. See the [free-edition design](docs/FREE_EDITION.md).
 
 General product releases do not depend on a school. Historical school-connection notes do not authorize integration work. Cadence is independent and has no university endorsement. The latest scope decision is [ADR-010](docs/adr/010-open-multiplatform-free-first.md).
 

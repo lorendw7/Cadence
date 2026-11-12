@@ -54,11 +54,11 @@ The [application contract](APPLICATION.md) defines mode changes and failed write
 
 ## Platform boundary
 
-Windows is the first complete trial target. Validate macOS/Linux, Web, Android and iOS in later stages. Keep common models, date rules and validation in the same Flutter product. Browser storage, native files, lifecycle and input have separate acceptance. Keep existing runners; add missing targets only in their implementation lessons. The existing GitHub Pages concept site remains separate from the planned Web app. See [FREE_EDITION.md](FREE_EDITION.md).
+The current delivery is a dependable free desktop edition: Windows first, then native macOS/Linux validation. Web, Android and iOS stay deferred until desktop acceptance. Do not create browser or mobile storage layers for the current milestone. Keep common models, date rules and validation in the same Flutter product. Browser storage, native files, lifecycle and input have separate acceptance. Keep existing runners; add missing targets only in their implementation lessons. The existing GitHub Pages concept site remains separate from the planned Web app. See [FREE_EDITION.md](FREE_EDITION.md).
 
 ## External services: outside scope
 
-The first free release has no account service, sync queue, billing or advertising. [ADR-010](adr/010-open-multiplatform-free-first.md) defers limited free cloud sync, paid capacity and supplementary ads to review after store launch. External school connections remain excluded. Do not create backend fields or dependencies from historical studies.
+The first free release has no account service, sync queue, billing or advertising. [ADR-010](adr/010-open-multiplatform-free-first.md) defers possible free cloud sync and advertising to review after store launch. External school connections remain excluded. Do not create backend fields or dependencies from historical studies.
 
 ## Optional university integration
 

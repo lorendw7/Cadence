@@ -2,7 +2,7 @@
 
 Updated: 2026-11-12. Cadence is a **general-purpose local time planner** for personal life, work, study and other daily commitments. Personal plans, tasks, Today and Week are the core. Courses are optional. No account, school identity, semester or organization is required. [ADR-007](adr/007-general-purpose-local-planner.md) records this direction and replaces the earlier university-centered scope and school gate for general Web deployment.
 
-[ADR-010](adr/010-open-multiplatform-free-first.md) sets the latest direction: continued MIT open-source development and free local planning on desktop, Web, Android and iOS. Complete the free edition first; review cloud sync and monetization after store launch. ADR-008 still defines the small local core. ADR-009 still excludes external academic systems.
+[ADR-010](adr/010-open-multiplatform-free-first.md) sets the latest direction: continued MIT open-source development and free local planning on desktop, Web, Android and iOS. Complete the free edition first; review cloud sync and possible ads after store launch. ADR-008 still defines the small local core. ADR-009 still excludes external academic systems.
 
 ## Current state
 
@@ -29,7 +29,7 @@ On first use, explain **Save on this device** and **Temporary use**. Until the u
 
 ## Platforms and visual direction
 
-Target Windows, Linux, macOS, Web, Android and iOS. Keep the current desktop learning sequence and validate each platform before its release. Android scaffolding is not a finished mobile app; Web and iOS delivery are also future work. The concept website remains separate from the planned Web application. See [FREE_EDITION.md](FREE_EDITION.md) for platform behavior and acceptance.
+The current delivery scope is the free desktop edition: Windows first, then macOS and Linux after native acceptance. Web, Android and iOS remain longer-term directions. Reassess them after the desktop edition is dependable; do not add browser, mobile, store-testing or service work to the current milestone. The concept website remains separate from any future Web application. See [FREE_EDITION.md](FREE_EDITION.md).
 
 Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working controls, without extra wrapper layers. Use a quiet paper-and-ink interface with the existing independent C mark, muted wine `#7C394B`, pure white `#FFFFFF` and graphite text. Paper and sage remain within the artwork. Everyday examples should include work and personal life as well as study. The brand has no university affiliation. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [DESIGN.md](DESIGN.md).
 
@@ -40,7 +40,7 @@ Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working c
 | Courses | Start only with the teaching-week and period rules needed by actual samples; single-class changes and filtered sharing can follow separately |
 | Review and reminders | Local planned-time review and opt-in native reminders with tested platform limits; not actual-time tracking |
 | Assisted import | Local CSV/paste and screenshot drafts using RapidOCR; optional cloud AI with personal API keys and multiple provider profiles; review before saving; see [QUICK_IMPORT.md](QUICK_IMPORT.md) |
-| Cloud sync, paid capacity and ads | Review only after store launch; no implementation or pricing commitment now |
+| Cloud sync and optional ads | Review only after store launch; no implementation or funding commitment now; no paid tiers |
 | External academic systems | Excluded; historical studies do not authorize integrations |
 
 Optional work follows a usable free edition. Keep accounts, billing, ad SDKs and sync services out of the current build. Local course rules, reminders and assisted import are also secondary to the free core. Choose later work from real feedback and measured costs.
@@ -53,7 +53,7 @@ Do not collect school passwords, build source adapters or imply institutional en
 
 ## Free edition and open source
 
-Keep the existing [MIT license](../LICENSE). The first free edition includes the core planning and private recovery flows, with no commercial task limit. Technical bounds protect reliability. [FREE_EDITION.md](FREE_EDITION.md) owns the detailed platform and later business boundaries. Do not create a second paid product or lock existing local data behind payment.
+Keep the existing [MIT license](../LICENSE). Cadence has one free feature set for everyone. There is no paid tier, subscription, paid expansion or paid priority. Any future cloud service uses the same published quota rules for everyone. Ads are the only possible future revenue model in this plan and do not unlock features or extra capacity. Local planning and recovery have no commercial task limit. Technical bounds protect reliability. [FREE_EDITION.md](FREE_EDITION.md) owns platform behavior and future service boundaries.
 
 ## First-release limits
 
@@ -63,4 +63,4 @@ Use one local workspace and one running writer. Keep one workspace timezone, ini
 
 Success means a person can record a commitment, understand today and the week, finish a task, recover their own data and find help without the developer's assistance. Test different routines and accessibility needs rather than one institution's timetable. Desktop packages initially use GitHub Releases; Web and mobile releases have their own gates. List only verified platforms and features.
 
-Required cloud accounts, external academic systems, live collaboration, enrollment/grade operations, social feeds, payroll and unrelated dashboards remain excluded. Local import and optional personal-key AI are later studies, not free-release requirements. The possible cloud business model is free sync within published limits, paid expansion and ads as supplementary income. Reassess it after store launch; no hosted service, quota, price or revenue is promised. Keep the free local functions useful without ads, payment or a service.
+Required cloud accounts, external academic systems, live collaboration, enrollment/grade operations, social feeds, payroll and unrelated dashboards remain excluded. Local import and optional personal-key AI are later studies, not desktop-release requirements. Possible cloud sync must remain free under the same published rules for all users. It is not promised or scheduled now. Advertising may be evaluated later; it cannot guarantee funding for unlimited hosting. Keep local functions useful without ads or a service.
