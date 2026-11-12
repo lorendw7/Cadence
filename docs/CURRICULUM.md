@@ -1,6 +1,6 @@
 # Curriculum and estimates
 
-Updated: 2026-11-11. Lessons 1–10 are accepted. Lessons 11–13 are implemented, with analysis, all 27 tests and a Windows debug build passing. Manual title-validation, theme appearance, responsive-window and keyboard confirmation remain pending. See [current progress](LEARNING.md).
+Updated: 2026-11-12. Lessons 1–10 are accepted. Lessons 11–14 are implemented, and lesson 15 has wrapping actions and a shared scrolling area for the form and tasks. Analysis, all 30 tests and a Windows debug build pass. Actual-window confirmation, 200% text scaling and keyboard checks remain open. See [current progress](LEARNING.md) for the remaining checks from earlier lessons.
 
 The learner writes core features. Each lesson includes about 20–45 minutes of explanation and guidance; coding, debugging, and review take extra time. Explain Dart and Flutter even when the learner knows another language.
 
@@ -37,7 +37,7 @@ Languages, keyboard access, and data protection apply throughout. Linux/macOS co
 | 9 | Reject blank titles; show an empty list | Automatic checks passed; empty-list flow confirmed |
 | 10 | Delete and undo once | Restore original object, position, and state; automated checks passed and actual-window deletion/undo confirmed |
 
-The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Lessons 11–13 pass automated checks. Retain their separate manual checks in the learning log and continue to lesson 14 after those checks.
+The learner has confirmed [lesson 10](lessons/10-delete-undo.md)'s actual-window deletion/undo flow. Lessons 11–14 pass their automated checks. Retain the separate manual checks in the learning log while continuing lesson 15.
 
 ## Lessons 11–16: desktop UI foundations
 

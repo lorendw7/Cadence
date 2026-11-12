@@ -1,6 +1,6 @@
 # UI components and page design
 
-Updated: 2026-11-11. Status: accepted design; the lesson 13 task surface is partially implemented, while the desktop shell, Today and Week remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
+Updated: 2026-11-12. Status: accepted design; the learning app has a task surface and a basic desktop shell with a selected Tasks marker. The form and task list share one scrolling area. Today, Week and page switching remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
 
 ## Library and teaching boundaries
 
@@ -65,7 +65,7 @@ Show plan title and optional location on readable blocks, with restrained catego
 
 Use one focused list with quick entry at the top and lightweight filters and section headings. Completion has its own checkbox on the left. Once editing exists, selecting the title opens the editor; it no longer toggles completion. Dates stay secondary; course metadata appears only with the optional extension. Keep delete discoverable in an accessible actions menu and available without hover.
 
-Retain the current row-tap toggle and visible delete button until their replacements are implemented and tested. A visual migration must preserve addition, validation, completion, deletion and latest-only undo.
+The learning app now uses a completion checkbox and a visible delete button. Selecting the title does not yet open an editor. A visual migration must preserve addition, validation, completion, deletion and latest-only undo.
 
 Simple edits may stay inline. Full editing opens a right-side overlay, not another permanent column beside Today's tasks and timeline. Closing returns focus to the opening control and preserves the browsing position. Keep unsaved input according to [editing rules](EDITING.md).
 

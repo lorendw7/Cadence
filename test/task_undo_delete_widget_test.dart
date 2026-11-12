@@ -16,8 +16,12 @@ Future<void> deleteTask(WidgetTester tester, String id) async {
     row,
     40,
     scrollable: find.descendant(
-      of: find.byType(ListView),
-      matching: find.byType(Scrollable),
+      of: find.byType(CustomScrollView),
+      matching: find.byElementPredicate(
+        (element) =>
+            element.widget is Scrollable &&
+            element.findAncestorWidgetOfExactType<Scrollable>() == null,
+      ),
     ),
   );
   await tester.pumpAndSettle();
