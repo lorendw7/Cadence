@@ -45,7 +45,7 @@ The website uses three WebP exports of the editorial master. The composition and
 | `journal-editorial-1536.webp` | 1536 × 1024 | 99,470 | 160,000 |
 | `journal-editorial.png` | 1536 × 1024 | 2,586,082 | Original fallback |
 
-Even the largest WebP transfers about 96% fewer bytes than the PNG. Use `srcset` and `sizes` so the browser can select a suitable export. Keep explicit image dimensions, lazy loading and asynchronous decoding for this below-the-fold decoration. All image requests stay local to the website.
+Even the largest WebP transfers about 96% fewer bytes than the PNG. Use `srcset` and `sizes` so the browser can select a suitable export. Keep explicit image dimensions and asynchronous decoding. The website now places this color image in the hero, with eager loading and high fetch priority. Use lazy loading if it moves below the fold again. All image requests stay local to the website.
 
 The manifest separates editable artwork from `webExports`, which record source, dimensions, file size and delivery budget. The export script also synchronizes the PNG fallback; do not maintain it by hand.
 
