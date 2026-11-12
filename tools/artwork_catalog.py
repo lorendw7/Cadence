@@ -51,6 +51,7 @@ STATE_USES = {
     'empty-today': 'No plans today. Offer a local action to add one.',
     'empty-week': 'No plans this week. Show no sample commitments.',
     'empty-tasks': 'No tasks yet. Invite the first task.',
+    'empty-tasks-compact': 'Small empty-list note for a white task surface. Pair with an instruction; no completion check.',
     'all-done': 'Existing tasks are complete. Do not use for a list with no tasks.',
     'no-results': 'No search matches. Offer to change or clear the query.',
     'import-preview': 'Review a draft import. Nothing has been accepted or saved yet.',
@@ -58,6 +59,18 @@ STATE_USES = {
     'restore-backup': 'Review a backup before replacing any data.',
     'no-courses': 'No courses in the optional course tools.',
     'no-review': 'No review data yet. Do not imply measured progress.',
+}
+APP_PALETTE = {'white': '#FFFFFF', 'soft neutral': '#FAFAFA', 'wine': '#7C394B',
+               'wine wash': '#F5EEF0', 'ink': '#2F3033', 'muted ink': '#6B6B70',
+               'rule': '#E8E8EB', 'input boundary': '#87838A'}
+TASKS_STARTER = {
+    'assets/brand/cadence-mark-wine.svg': 'Top bar mark; keep the C and dot together.',
+    'assets/icons/tasks.svg': 'Current Tasks marker; use wine on a wine wash.',
+    'assets/icons/add.svg': 'Add task; pair with a clear verb.',
+    'assets/icons/delete.svg': 'Delete action; keep visible without hover.',
+    'assets/icons/undo.svg': 'Restore the latest deletion; pair with Undo delete.',
+    'assets/icons/memory.svg': 'Session-only notice; never imply local saving.',
+    'assets/illustrations/empty-tasks-compact.svg': 'Small empty state, next to real text.',
 }
 GROUP_ORDER = ['Brand', *ICON_GROUPS, 'Empty states and feedback',
                'Paper patterns', 'Sharing card', 'Editorial artwork',
@@ -86,7 +99,7 @@ def metadata(file, root):
                          use='All interface symbols. Use a symbol ID and a named host control.')
         else:
             group = next(group for group, names in ICON_GROUPS.items() if name in names)
-            entry.update(group=group, use=ICON_GROUPS[group][name])
+            entry.update(group=group, use=ICON_GROUPS[group][name], previewSurface='white')
     elif category == 'illustrations':
         if file.suffix == '.png':
             entry.update(group='Editorial artwork',
@@ -109,6 +122,9 @@ def metadata(file, root):
     elif file.suffix == '.png':
         width, height = struct.unpack('>II', file.read_bytes()[16:24])
         entry.update(width=width, height=height)
+    if relative in TASKS_STARTER:
+        entry['appUse'] = TASKS_STARTER[relative]
+        entry['previewSurface'] = 'white'
     return entry
 
 
@@ -116,7 +132,8 @@ def card(entry):
     uri = entry['path'].removeprefix('assets/')
     name = Path(uri).stem
     title = escape(name)
-    attrs = f'data-asset="{entry["path"]}" data-search="{escape(name + " " + entry["use"], quote=True)}"'
+    card_id = 'asset-' + entry['path'].removeprefix('assets/').replace('/', '-').replace('.', '-')
+    attrs = f'id="{card_id}" data-asset="{entry["path"]}" data-search="{escape(name + " " + entry["use"] + " " + entry.get("appUse", ""), quote=True)}"'
     cls = 'card' + (' icon-card' if entry['category'] == 'icons' and entry['role'] != 'sprite' else '')
     if entry['role'] == 'sprite' or entry['type'] in ['ico', 'icns']:
         sample = f'<div class="sample file-sample" aria-hidden="true">{entry["type"].upper()}</div>'
@@ -131,8 +148,9 @@ def card(entry):
     dimensions = f'{entry["width"]} × {entry["height"]} · ' if 'width' in entry else ''
     size = f'{entry["bytes"] / 1024:.1f} KB' if entry['bytes'] >= 1024 else f'{entry["bytes"]} B'
     label = 'Retained original' if entry['status'] == 'retained' else entry['role'].capitalize()
+    app_note = f'<p class="app-use"><strong>Tasks study</strong> · {escape(entry["appUse"])}</p>' if 'appUse' in entry else ''
     return (f'<article class="{cls}" {attrs}>{sample}<div class="card-body">'
-            f'<h3>{title}</h3><p class="use">{escape(entry["use"])}</p>'
+            f'<h3>{title}</h3><p class="use">{escape(entry["use"])}</p>{app_note}'
             f'<p class="file-meta">{dimensions}{entry["type"].upper()} · {size}<br>{label}</p>'
             f'<a href="{uri}" download>Download <span class="sr-only">{title} </span>{entry["type"].upper()}</a>'
             '</div></article>')
@@ -157,6 +175,9 @@ def build(root, palette, write):
                         '<div class="grid">' + ''.join(card(entry) for entry in entries) + '</div></section>')
     swatches = ''.join(f'<span><i style="background:{color}"></i>{name.capitalize()} <code>{color}</code></span>'
                        for name, color in palette.items())
+    app_swatches = ''.join(f'<span><i style="background:{color}"></i>{name.capitalize()} <code>{color}</code></span>'
+                          for name, color in APP_PALETTE.items())
+    starter = ''.join(f'<a href="#asset-{uri.removeprefix("assets/").replace("/", "-").replace(".", "-")}">{Path(uri).stem}</a>' for uri in TASKS_STARTER)
     page = '''<!doctype html>
 <html lang="en">
 <head>
@@ -173,14 +194,23 @@ def build(root, palette, write):
   <p class="eyebrow">CADENCE / VISUAL LIBRARY / 02</p>
   <h1>A little structure.<br>A little space.</h1>
   <p class="intro">A quiet journal for work, study and everyday plans. Browse the original C mark,
-  consistent lines and warm paper surfaces. Artwork is prepared for the product direction;
+  consistent lines, white application surfaces and warm editorial artwork. Artwork is prepared for the product direction;
   it does not mean a feature is implemented.</p>
+  <h2 class="palette-label">Application surfaces</h2>
+  <div class="palette">''' + app_swatches + '''</div>
+  <h2 class="palette-label">Editorial artwork</h2>
   <div class="palette">''' + swatches + '''</div>
   <nav class="resources" aria-label="Library resources">
-    <a href="README.md">Usage guide</a><a href="preview.png">Visual overview</a>
+    <a href="README.md">Usage guide</a><a href="ui/task-study.html">Tasks design study</a><a href="preview.png">Visual overview</a>
     <a href="preview-library.png">Full contact sheet</a><a href="manifest.json">File manifest</a>
   </nav>
 </header>
+<aside class="starter" aria-label="Tasks starter set">
+  <h2>Start with the current task surface.</h2>
+  <p>Seven existing-family assets for the design study. These are source links, not a Flutter asset bundle.
+  <a href="ui/README.md">Read the handoff</a>. Shortcuts clear filters to reveal the chosen source.</p>
+  <nav class="resources" aria-label="Tasks artwork shortcuts">''' + starter + '''</nav>
+</aside>
 <aside class="guidance" aria-label="Choosing artwork">
   <p><strong>Choose by meaning.</strong> Empty lists, completed tasks, pending review and errors have different artwork. Pair each with real text and a useful action.</p>
   <p><strong>Check the actual size.</strong> Icons below appear at 20, 24 and 32 px. Use a 40–44 px control area. Pale lines and patterns are decoration.</p>
@@ -214,7 +244,7 @@ Independent project. No institutional affiliation. Retained originals keep their
             web_exports.append({'path': target.relative_to(root).as_posix(), 'source': source,
                                 'width': width, 'height': height, 'bytes': target.stat().st_size, 'transform': 'copy'})
     previous = json.loads((art / 'manifest.json').read_text(encoding='utf-8')) if (art / 'manifest.json').exists() else {}
-    manifest = {'version': 2, 'palette': palette, 'iconGrid': 24, 'iconStroke': 1.75,
+    manifest = {'version': 2, 'palette': palette, 'appPalette': APP_PALETTE, 'iconGrid': 24, 'iconStroke': 1.75,
                 'files': files, 'webExports': web_exports}
     # Only the raster exporter can attest to which sources produced the previews.
     if 'previews' in previous:

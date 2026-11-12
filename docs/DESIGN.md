@@ -108,6 +108,8 @@ Empty states teach the next local action. Core planning has no login requirement
 
 ## Identity and artwork
 
+The [Tasks design handoff](../assets/ui/README.md) adds a local visual study for the current task exercise. It compares four sample states, three sample languages and wide or compact layouts. Its artwork subset and small white-canvas empty state reuse this visual family. This is design documentation; the learner still writes the application UI. Browser results for the study do not close native application acceptance checks.
+
 Keep **Cadence** in Latin letters in every language. Retain the independent C/clock mark; never replace it with a university crest. `assets/brand/cadence-icon-v2.svg` is the current master; `website/assets/icon-v2.svg` is its deployment copy. The original mark geometry remains recognizable. Use the 24-unit, 1.75-stroke interface set consistently, with semantic labels and generous click targets. Decorative artwork never replaces text, validation or status feedback. The [catalogue](../assets/catalog.html) previews the complete asset family; [usage and generation instructions](../assets/README.md) describe platform exports and staged application integration.
 
 Keep editable artwork separate from delivery exports. Preserve the editorial PNG master and use the generated 480/960/1536 px WebP files on the website. The asset manifest records source paths, dimensions and byte budgets; `python tools/check_artwork.py` checks them. Choose responsive image sizes from the displayed layout and reserve the aspect ratio to avoid shifts while loading.

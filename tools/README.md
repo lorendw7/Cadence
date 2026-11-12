@@ -13,9 +13,11 @@ Run these commands from the repository root. They are development helpers, not F
 
 Follow the [artwork regeneration order](../assets/README.md#regeneration). The website uses 480/960/1536 px WebP exports with a PNG fallback. Keep the original image and generation inputs.
 
-`artwork_catalog.py` owns asset groups and use descriptions. `artwork_previews.cjs` owns the preview layouts. The editable catalogue styles and local filtering script are in `assets/catalog.css` and `assets/catalog.js`. The HTML catalogue and both PNG previews are generated outputs.
+`artwork_catalog.py` owns asset groups, use descriptions, application palette metadata and the Tasks starter subset. `artwork_previews.cjs` owns the preview layouts. The editable catalogue styles and local filtering script are in `assets/catalog.css` and `assets/catalog.js`. The HTML catalogue and both PNG previews are generated outputs. The [Tasks study](../assets/ui/README.md) has separate editable HTML, CSS and JavaScript files. The repository check includes JavaScript syntax under `assets/`.
 
 After changing catalogue controls or layout, serve the repository locally and check search, combined filters, empty results, reset focus, keyboard navigation, and a download. Check both sides of the 640 px and 900 px layout breaks. Keep the results and any limits in the [artwork guide](../assets/README.md#catalogue-browser-check).
+
+Also check that Tasks starter shortcuts clear filters, reveal the matching card and focus its download link. After changing the Tasks study, compare its sample states and languages at narrow and wide widths and at 200% sample text size. Keep those design-only results in its handoff; do not record them as Flutter acceptance.
 
 Do not run generators as generic cleanup. The outputs are versioned design files. Flutter checks and native builds are in [SETUP.md](../docs/SETUP.md).
 

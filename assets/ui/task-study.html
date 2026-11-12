@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadence · Tasks design study</title>
+  <link rel="stylesheet" href="task-study.css">
+  <script src="task-study.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#study">Skip to design study</a>
+<main>
+  <header class="study-header">
+    <p class="eyebrow">CADENCE / INTERFACE STUDY / 01</p>
+    <h1>Room for the task at hand.</h1>
+    <p class="intro">White surfaces. Wine accents. A quieter task list, built around the current learning exercise.</p>
+    <nav aria-label="Design resources"><a href="README.md">Design handoff</a><a href="../catalog.html">Artwork library</a><a href="../../docs/DESIGN.md">Design system</a></nav>
+  </header>
+  <section class="review-tools" aria-label="Preview options" hidden>
+    <label>Window<select id="size"><option value="fluid">Fit this window</option><option value="wide">Desktop · 1040 px</option><option value="compact">Compact · 360 px</option></select></label>
+    <label>Example state<select id="state"><option value="list">Task list</option><option value="empty">Empty list</option><option value="error">Title required</option><option value="undo">After deletion</option></select></label>
+    <label>Sample language<select id="language"><option value="zh">Chinese</option><option value="en">English</option><option value="ja">Japanese</option></select></label>
+    <label>Sample text size<select id="scale"><option value="1">100%</option><option value="2">200%</option></select></label>
+  </section>
+  <p id="preview-status" class="preview-status" role="status">Design only. The screen is a static sample; its drawn controls do not change tasks.</p>
+  <noscript><p>The Chinese task-list sample remains visible. Enable JavaScript to compare other design states.</p></noscript>
+  <section id="study" tabindex="-1" aria-label="Task screen study">
+    <div class="screen-frame" data-size="fluid" data-state="list">
+      <div class="sample-screen" lang="zh-Hans">
+        <div class="topbar">
+          <div class="brand"><img src="../brand/cadence-mark-wine.svg" width="36" height="36" alt=""><span>Cadence</span></div>
+          <span class="session-label" data-copy="session">临时会话</span>
+        </div>
+        <div class="app-body">
+          <div class="sidebar">
+            <p class="workspace" data-copy="workspace">工作区</p>
+            <div class="current-page"><svg aria-hidden="true"><use href="../icons/sprite.svg#tasks"></use></svg><span data-copy="tasks">任务</span></div>
+          </div>
+          <div class="task-main">
+            <div class="task-content">
+              <div class="page-heading"><h2 data-copy="tasks">任务</h2><p data-copy="intro">把眼前的事，一件件安排好。</p></div>
+              <div class="entry-line">
+                <div class="entry-field">
+                  <p class="field-label" data-copy="title">任务标题</p>
+                  <div class="field"><span data-copy="placeholder">写下下一件事</span></div>
+                  <p class="error-message" hidden><svg aria-hidden="true"><use href="../icons/sprite.svg#error"></use></svg><span data-copy="error">请输入任务标题</span></p>
+                </div>
+                <span class="sample-button primary"><svg aria-hidden="true"><use href="../icons/sprite.svg#add"></use></svg><span data-copy="add">添加任务</span></span>
+              </div>
+              <div class="task-list">
+                <div class="task-row" data-row="first">
+                  <span class="check-target"><span class="checkbox"></span></span>
+                  <div class="task-copy"><p class="task-title" data-copy="first">提交课程报告</p><p class="task-state" data-copy="pending">未完成</p></div>
+                  <span class="delete-target" title="Delete task"><svg aria-hidden="true"><use href="../icons/sprite.svg#delete"></use></svg><span class="sr-only" data-copy="delete">删除任务</span></span>
+                </div>
+                <div class="task-row completed" data-row="second">
+                  <span class="check-target"><span class="checkbox"><svg aria-hidden="true"><use href="../icons/sprite.svg#check"></use></svg></span></span>
+                  <div class="task-copy"><p class="task-title" data-copy="second">复习线性代数</p><p class="task-state" data-copy="complete">已完成</p></div>
+                  <span class="delete-target" title="Delete task"><svg aria-hidden="true"><use href="../icons/sprite.svg#delete"></use></svg><span class="sr-only" data-copy="delete">删除任务</span></span>
+                </div>
+                <div class="empty-state" hidden>
+                  <img src="../illustrations/empty-tasks-compact.svg" width="96" height="72" alt="">
+                  <p data-copy="empty">暂无任务，添加一条吧</p>
+                  <p class="empty-hint" data-copy="emptyHint">从上方的任务标题开始。</p>
+                </div>
+              </div>
+              <div class="undo-line"><p class="deletion-message" hidden data-copy="deleted">已删除“提交课程报告”</p><span class="sample-button undo muted"><svg aria-hidden="true"><use href="../icons/sprite.svg#undo"></use></svg><span data-copy="undo">撤销删除</span></span></div>
+              <p class="session-note"><svg aria-hidden="true"><use href="../icons/sprite.svg#memory"></use></svg><span data-copy="notice">任务仅保留在本次会话，关闭后不会保存。</span></p>
+              <div class="practice"><p data-copy="count">练习次数：0</p><div class="practice-actions"><span class="sample-button" data-copy="reset">归零</span><span class="sample-button" data-copy="increment">加1</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="notes" aria-label="Design decisions">
+    <div><span class="note-number">01 / HIERARCHY</span><h2>One clear action.</h2><p>The heading, input and list share an edge. Wine identifies Add and the current page. Fine rules keep task content easy to scan.</p></div>
+    <div><span class="note-number">02 / FEEDBACK</span><h2>Say what happened.</h2><p>Keep completion text, a strike-through and a check. Put Undo below the list. Explain that the current app only keeps tasks in memory.</p></div>
+    <div><span class="note-number">03 / ARTWORK</span><h2>Keep the family small.</h2><p>Reuse the original mark and 1.75-unit icons. A compact note supports the empty state. Paper and sage stay in the editorial artwork.</p></div>
+  </section>
+  <footer>Design reference · 2026-11-12 · No Flutter code or product behavior is supplied by this study. Browser layout checks do not validate native controls, keyboard behavior or saving.</footer>
+</main>
+</body>
+</html>
