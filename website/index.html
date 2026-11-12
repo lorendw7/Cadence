@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F6F5F1">
+<meta name="theme-color" content="#FAF9F6">
 <title>Cadence — 無料でシンプルなローカル手帳を開発中</title>
 <meta name="description" content="仕事、学び、暮らしのための、無料のローカル手帳を開発中です。今あるのはメモリー内の基本タスク操作。予定表示や保存は計画段階です。架空の画面で構想を試せます。">
 <meta property="og:type" content="website">
@@ -22,7 +22,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" href="assets/icon-v2.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/site.css?v=20261111-local-free">
+<link rel="stylesheet" href="assets/site.css?v=20261112-quiet">
 <script src="assets/content.js?v=20261111-local-free" defer></script>
 <script src="assets/lang.js?v=20261111-local-free" defer></script>
 <script src="assets/preview.js?v=20261111-local-free" defer></script>
@@ -44,10 +44,9 @@
       <p data-i18n="hero.lead" class="hero-lead">自分のパソコンで使う、無料の手帳を作っています。やることと一週間の予定を、登録なしでシンプルに。仕事にも、学びにも、日々の暮らしにも。</p>
       <div class="hero-actions"><a class="button button-wine" href="#preview"><span data-i18n="hero.open">デザインを試す</span><span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/lorendw7/Cadence/blob/main/docs/ROADMAP.md"><span data-i18n="hero.explore">開発計画を読む</span><span aria-hidden="true">↓</span></a></div>
       <p data-i18n="hero.note" class="hero-note">開発中 · 製品版は未公開 · 画面は架空のデータです</p>
-      <div class="rhythm-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><small>YOUR OWN CADENCE</small></div>
     </div>
     <figure id="preview" class="planner-figure" aria-describedby="preview-caption">
-      <div class="figure-top"><span class="tiny-rule"></span><span data-i18n="preview.label" class="micro">A WEEK, IN YOUR OWN RHYTHM</span><span class="edition">01</span></div>
+      <div class="figure-top"><span data-i18n="preview.label" class="micro">A WEEK, IN YOUR OWN RHYTHM</span></div>
       <div class="planner">
         <div class="planner-top"><div><p data-i18n="preview.date" class="planner-date">11月12日・木曜日</p><p data-i18n="preview.sample" class="sample-label">架空のサンプル</p></div><img src="assets/icon-v2.svg" alt="" width="27" height="27"></div>
         <div class="preview-tabs" role="tablist" aria-label="表示の切り替え" data-i18n-aria="preview.tabs" hidden>
@@ -58,9 +57,9 @@
         <div id="panel-today" class="preview-panel today-panel" role="tabpanel" aria-labelledby="tab-today" tabindex="0">
           <h2 data-i18n="preview.day" class="preview-heading">今日は、こんな一日。</h2>
           <div class="timeline">
-            <div class="timeline-row"><time>09:00<span>10:30</span></time><div class="timeline-plan plan-wine"><h3 data-i18n="preview.focus">集中する時間</h3><p data-i18n="preview.focusPlace">仕事 · 自宅</p></div></div>
-            <div class="timeline-row"><time>13:00<span>14:00</span></time><div class="timeline-plan plan-sage"><h3 data-i18n="preview.meeting">プロジェクトの打ち合わせ</h3><p data-i18n="preview.meetingPlace">仕事 · オンライン</p></div></div>
-            <div class="timeline-row"><time>17:00<span>18:00</span></time><div class="timeline-plan plan-stone"><h3 data-i18n="preview.reading">本を読む時間</h3><p data-i18n="preview.readingPlace">自分の時間 · 図書館</p></div></div>
+            <div class="timeline-row"><time>09:00<span>10:30</span></time><div class="timeline-plan"><h3 data-i18n="preview.focus">集中する時間</h3><p data-i18n="preview.focusPlace">仕事 · 自宅</p></div></div>
+            <div class="timeline-row"><time>13:00<span>14:00</span></time><div class="timeline-plan"><h3 data-i18n="preview.meeting">プロジェクトの打ち合わせ</h3><p data-i18n="preview.meetingPlace">仕事 · オンライン</p></div></div>
+            <div class="timeline-row"><time>17:00<span>18:00</span></time><div class="timeline-plan"><h3 data-i18n="preview.reading">本を読む時間</h3><p data-i18n="preview.readingPlace">自分の時間 · 図書館</p></div></div>
           </div>
           <div class="remaining"><span class="remaining-dot" aria-hidden="true"></span><span data-i18n="preview.remaining" data-count="1">未完了のタスク：1件</span></div>
         </div>
@@ -68,16 +67,16 @@
           <div class="week-canvas">
             <div class="week-days"><span></span><span><span data-i18n="preview.mon">月</span><b>9</b></span><span><span data-i18n="preview.tue">火</span><b>10</b></span><span><span data-i18n="preview.wed">水</span><b>11</b></span><span class="current-day"><span data-i18n="preview.thu">木</span><b>12</b></span><span><span data-i18n="preview.fri">金</span><b>13</b></span><span><span data-i18n="preview.sat">土</span><b>14</b></span><span><span data-i18n="preview.sun">日</span><b>15</b></span></div>
             <div class="week-body"><div class="week-hours"><span>09:00</span><span>11:00</span><span>13:00</span><span>15:00</span><span>17:00</span></div><div class="week-grid">
-              <div class="week-event plan-wine" style="--day:1;--row:1"><span data-i18n="preview.focus">集中する時間</span><small>09:00</small></div>
-              <div class="week-event plan-sage" style="--day:2;--row:2"><span data-i18n="preview.appointment">用事</span><small>11:00</small></div>
-              <div class="week-event plan-stone" style="--day:2;--row:4"><span data-i18n="preview.study">自習</span><small>15:00</small></div>
-              <div class="week-event plan-wine" style="--day:3;--row:3"><span data-i18n="preview.workshop">学習会</span><small>13:00</small></div>
-              <div class="week-event plan-wine" style="--day:4;--row:1"><span data-i18n="preview.focus">集中する時間</span><small>09:00</small></div>
-              <div class="week-event plan-sage" style="--day:4;--row:3"><span data-i18n="preview.meeting">プロジェクトの打ち合わせ</span><small>13:00</small></div>
-              <div class="week-event plan-stone" style="--day:4;--row:5"><span data-i18n="preview.reading">本を読む時間</span><small>17:00</small></div>
-              <div class="week-event plan-stone" style="--day:5;--row:4"><span data-i18n="preview.walk">散歩</span><small>15:00</small></div>
-              <div class="week-event plan-sage" style="--day:6;--row:2"><span data-i18n="preview.friends">友人とお茶</span><small>11:00</small></div>
-              <div class="week-event plan-stone" style="--day:7;--row:1"><span data-i18n="preview.rest">ゆっくり過ごす朝</span><small>09:00</small></div>
+              <div class="week-event" style="--day:1;--row:1"><span data-i18n="preview.focus">集中する時間</span><small>09:00</small></div>
+              <div class="week-event" style="--day:2;--row:2"><span data-i18n="preview.appointment">用事</span><small>11:00</small></div>
+              <div class="week-event" style="--day:2;--row:4"><span data-i18n="preview.study">自習</span><small>15:00</small></div>
+              <div class="week-event" style="--day:3;--row:3"><span data-i18n="preview.workshop">学習会</span><small>13:00</small></div>
+              <div class="week-event" style="--day:4;--row:1"><span data-i18n="preview.focus">集中する時間</span><small>09:00</small></div>
+              <div class="week-event" style="--day:4;--row:3"><span data-i18n="preview.meeting">プロジェクトの打ち合わせ</span><small>13:00</small></div>
+              <div class="week-event" style="--day:4;--row:5"><span data-i18n="preview.reading">本を読む時間</span><small>17:00</small></div>
+              <div class="week-event" style="--day:5;--row:4"><span data-i18n="preview.walk">散歩</span><small>15:00</small></div>
+              <div class="week-event" style="--day:6;--row:2"><span data-i18n="preview.friends">友人とお茶</span><small>11:00</small></div>
+              <div class="week-event" style="--day:7;--row:1"><span data-i18n="preview.rest">ゆっくり過ごす朝</span><small>09:00</small></div>
             </div></div>
           </div>
           <p data-i18n="preview.weekHint" class="week-hint">架空の一週間 · 横にスクロールして全体を確認できます。</p>
@@ -116,15 +115,15 @@
       <div><p data-i18n="use.kicker" class="eyebrow">WORK, LEARN, LIVE</p><h2 data-i18n="use.title">どんな一日にも、自分のリズムを。</h2><p data-i18n="use.text" class="section-lead">決まった働き方や所属を前提にしない、日々のための時間管理。仕事の日も、学ぶ日も、ゆっくり過ごす日も、ひとつの手帳で見渡せるように。</p></div>
       <div class="life-notebook" aria-hidden="true">
         <picture>
-          <source type="image/webp" srcset="assets/journal-editorial-480.webp 480w, assets/journal-editorial-960.webp 960w, assets/journal-editorial-1536.webp 1536w" sizes="(max-width: 600px) calc(100vw - 70px), (max-width: 1100px) 42vw, 505px">
+          <source type="image/webp" srcset="assets/journal-editorial-480.webp 480w, assets/journal-editorial-960.webp 960w, assets/journal-editorial-1536.webp 1536w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1100px) 42vw, 505px">
           <img class="journal-editorial" src="assets/journal-editorial.png" width="1536" height="1024" alt="" loading="lazy" decoding="async">
         </picture>
-        <div class="notebook-label"><span>NOTES ON A WEEK</span><span>— 01</span></div>
-        <div class="notebook-line"><i class="notebook-dot dot-1"></i><span data-i18n="use.tag1">仕事・集中</span><span class="notebook-stroke"></span></div>
-        <div class="notebook-line"><i class="notebook-dot dot-2"></i><span data-i18n="use.tag2">学び・練習</span><span class="notebook-stroke"></span></div>
-        <div class="notebook-line"><i class="notebook-dot dot-3"></i><span data-i18n="use.tag3">用事・約束</span><span class="notebook-stroke"></span></div>
-        <div class="notebook-line"><i class="notebook-dot dot-4"></i><span data-i18n="use.tag4">休息・自分の時間</span><span class="notebook-stroke"></span></div>
-        <svg class="cadence-orbit" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="74" stroke="currentColor" stroke-width="1"/><path d="M153 47a75 75 0 1 0 0 106" stroke="currentColor" stroke-width="10" stroke-linecap="round"/><circle cx="174" cy="100" r="7" fill="currentColor"/></svg>
+        <ul class="notebook-topics">
+          <li data-i18n="use.tag1">仕事・集中</li>
+          <li data-i18n="use.tag2">学び・練習</li>
+          <li data-i18n="use.tag3">用事・約束</li>
+          <li data-i18n="use.tag4">休息・自分の時間</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -145,7 +144,7 @@
       <p data-i18n="scope.note" class="scope-note">ここは構想を紹介するサイトで、ブラウザー版の手帳ではありません。ダウンロードできる製品版はまだなく、学習用アプリに保存機能はありません。</p>
     </div>
   </section>
-  <section class="faq page-width"><div><h2 data-i18n="faq.title">使い始める前に。</h2><span class="faq-mark" aria-hidden="true">?</span></div><div><details><summary><span data-i18n="faq.q1">無料で使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a1">はい。ローカル版は無料で、アカウントや定額契約なしで使える方針です。製品版はまだ公開していません。任意のクラウド AI は自分の API キーを使い、提供元から料金が発生する場合があります。基本の利用に AI は不要です。</p></details>
+  <section class="faq page-width"><div><h2 data-i18n="faq.title">使い始める前に。</h2></div><div><details><summary><span data-i18n="faq.q1">無料で使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a1">はい。ローカル版は無料で、アカウントや定額契約なしで使える方針です。製品版はまだ公開していません。任意のクラウド AI は自分の API キーを使い、提供元から料金が発生する場合があります。基本の利用に AI は不要です。</p></details>
     <details><summary><span data-i18n="faq.q2">このプレビューに入力した内容は残りますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a2">残りません。表示切替とチェック操作は、架空のデータを使ったデザイン例です。ここでの操作を保存する機能はありません。将来の端末内保存や JSON バックアップは未実装です。</p></details>
     <details><summary><span data-i18n="faq.q3">入力したデータは送信されますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a3">このサイトに個人の予定の入力・アップロード機能はありません。ページの表示には GitHub Pages への通信があります。開発中のローカル版は送信なしで使う設計です。任意の AI を使う場合だけ、内容と送信先を確認してから送る計画です。</p></details>
     <details><summary><span data-i18n="faq.q4">オフラインでも使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a4">基本のタスク、予定、端末内保存はオフラインで使える設計です。予定表示や保存はまだ未実装です。Web や同期は学校接続に必要な場合だけ検討し、ローカル利用の条件にはしません。</p></details></div></section>
