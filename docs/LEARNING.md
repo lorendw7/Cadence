@@ -22,7 +22,7 @@ All repository documentation uses plain English. Product translations remain Jap
 
 ## Learn tools when needed
 
-Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Desktop, Web, Android and iOS are planned targets under [ADR-010](adr/010-open-multiplatform-free-first.md). Complete the free local edition first. Cloud sync, paid capacity and supplementary ads wait for review after store launch. External academic systems remain excluded.
+Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Desktop, Web, Android and iOS are planned targets under [ADR-010](adr/010-open-multiplatform-free-first.md). Complete the free local edition first. Cloud sync and optional ads wait for review after store launch. External academic systems remain excluded.
 
 | Tool | Purpose | When to introduce it |
 |---|---|---|
@@ -41,6 +41,10 @@ Use Flutter 3.44.4 / Dart 3.12.2. [pubspec.yaml](../pubspec.yaml) locks shadcn_u
 
 See [UI design](UI_ARCHITECTURE.md), [workflow](PROJECT_WORKFLOW.md), and [curriculum](CURRICULUM.md). Official references: [Flutter desktop](https://docs.flutter.dev/platform-integration/desktop), [Riverpod](https://riverpod.dev/), and [drift](https://drift.simonbinder.eu/).
 
+## Current delivery priority
+
+Current priority: finish the free desktop edition. Deliver a complete Windows flow first, then validate macOS and Linux. Web, Android and iOS remain later directions and do not add requirements to the current desktop milestone. Cloud sync and optional ads remain deferred. Continue the existing lesson and its pending checks. This priority change does not implement or accept a lesson.
+
 ## Learning order
 
 Each item is a stage, not one lesson. Split stages into 20–45 minute lessons of explanation and guidance; practice takes extra time.
@@ -56,7 +60,7 @@ Each item is a stage, not one lesson. Split stages into 20–45 minute lessons o
 9. Validate the free edition on macOS and Linux. Keep optional review and reminders behind the core release work.
 10. Validate the free edition on Web, Android and iOS after the shared local flow works; complete each platform release separately. Review services and income after store launch.
 
-Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks and exams are optional local work after the free core; external school connections remain excluded. [Assisted import](QUICK_IMPORT.md) is a later design for local tables and screenshots, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. Cloud sync and monetization need a later decision after store launch. Documents, artwork, and website work do not count as core lessons.
+Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks and exams are optional local work after the free core; external school connections remain excluded. [Assisted import](QUICK_IMPORT.md) is a later design for local tables and screenshots, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. Free cloud sync and optional ads need a later decision after launch; no paid tiers are planned. Documents, artwork, and website work do not count as core lessons.
 
 ## Tests and templates
 

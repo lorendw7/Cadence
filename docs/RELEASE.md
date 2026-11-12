@@ -1,8 +1,8 @@
 # Release plan
 
-Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Finish the free desktop edition first; Web and mobile remain later directions. All users receive the same free functions, with no paid tier or paid capacity. Cloud sync and optional ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
-Release scope follows [ADR-010](adr/010-open-multiplatform-free-first.md): free local planning on desktop, Web, Android and iOS, delivered in stages. Keep the selected shadcn_ui direction. Cloud sync, paid capacity and ads are not release gates; review them after store launch.
+Release scope follows [ADR-010](adr/010-open-multiplatform-free-first.md): free local planning on desktop, Web, Android and iOS, delivered in stages. Keep the selected shadcn_ui direction. Cloud sync and optional ads are not release gates; review them after store launch.
 
 Updated: 2026-11-12. The free core needs no account, payment or ad view. First use offers Save on this device or Temporary use. Each platform requires runtime, recovery, accessibility and actual package checks; an uploaded build does not prove readiness. [FREE_EDITION.md](FREE_EDITION.md) defines common and platform behavior.
 
@@ -67,7 +67,7 @@ The Web planner is a planned free browser-local client. Before publishing it, va
 
 ## Optional sync service
 
-Review limited free sync, paid capacity and supplementary ads only after store launch. No backend or revenue guarantee is approved now. A later service needs costs, quotas, consent, conflict recovery, retention, deletion, billing and operating ownership. [SYNC.md](SYNC.md) remains a historical study.
+Review possible free sync and advertising only after launch. All users receive the same free functions; any cloud limits follow the same published rules. No subscription, paid capacity or paid priority is planned. A later service needs a budget, consent, conflict recovery, retention, deletion and an operator. [SYNC.md](SYNC.md) remains historical.
 
 ## Optional school adapters
 

@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a general-purpose local planner for work, study and daily life. Target desktop, Web, Android and iOS with a free local edition first. Continue MIT open-source development. Review cloud sync, paid capacity and supplementary ads after store launch. External academic systems remain excluded. The latest decision is [ADR-010](adr/010-open-multiplatform-free-first.md).
+Cadence is a general-purpose local planner for work, study and daily life. Finish the free desktop edition first: Windows, then macOS/Linux validation. Web, Android and iOS remain later directions. Continue MIT open-source development. Review cloud sync and optional ads after store launch. External academic systems remain excluded. The latest decision is [ADR-010](adr/010-open-multiplatform-free-first.md).
 
 All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 

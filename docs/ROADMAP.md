@@ -2,7 +2,7 @@
 
 Updated: 2026-11-12. [ADR-010](adr/010-open-multiplatform-free-first.md) sets an open-source, free-first product for desktop, Web, Android and iOS. Tasks, personal plans, Today, Week and recovery come first. The learner writes core features one lesson at a time. This is a plan, not shipped behavior.
 
-Current scope: complete and release the free local edition. Cloud sync, paid capacity and supplementary ads are deferred to review after store launch. External academic systems, school login and automatic timetable retrieval remain excluded.
+Current scope: finish the free desktop edition. Windows is the first complete delivery target; macOS and Linux follow native acceptance. Web, Android and iOS are later directions, not current work. Cloud sync and optional ads remain deferred. External academic systems, school login and automatic timetable retrieval stay excluded.
 
 ## Repository baseline
 
@@ -10,7 +10,7 @@ The app has in-memory task addition, validation, completion, deletion and one-le
 
 ## Working order
 
-Keep the accepted theme, layout and shadcn_ui lessons. Then build saving and explicit editing, personal plans, Today/Week and recovery. A free Windows trial gives the first complete reference flow. Validate macOS/Linux, browser storage and mobile interaction in later stages, with small feasibility checks when needed. Release each platform after its own acceptance; simultaneous launch is not required. Do not add service, billing or advertising work to these stages.
+Keep the accepted desktop theme, layout and shadcn_ui lessons. Then build saving and explicit editing, personal plans, Today/Week and recovery. Complete the Windows flow, resolve trial problems and validate macOS/Linux. Stages A-D define the desktop delivery. Stages E-F are deferred reference; review them after the desktop edition is dependable. Do not add browser/mobile experiments, tester recruitment, billing, ads or services to the current milestone.
 
 ## A — Reliable local tasks
 
@@ -48,29 +48,33 @@ Acceptance: record a meeting, an all-day plan and a task without a school or acc
 
 Acceptance: a person unfamiliar with the project can install, choose storage, plan a week, restart, export, restore and clear data without developer help. Ordinary SQLite and JSON are not encrypted; the UI must not say otherwise. A successful build is not this acceptance.
 
-## D — Free edition across target platforms
+## D — Complete the desktop edition
 
-- [ ] Validate macOS and Linux storage, file operations, input and installed packages on native hosts.
-- [ ] Keep task, plan, date and validation rules shared; add only needed platform boundaries.
-- [ ] Adapt Today, Week, Tasks and editors to keyboard, touch, safe areas and on-screen keyboards.
-- [ ] Define browser-local storage and one active writer across tabs; test quota, eviction, reload and failed writes.
-- [ ] Test browser export/restore and app cache updates. Claim offline reload only after actual checks.
-- [ ] Test Android and iOS process termination, resume, text scaling, accessibility and file import/export on real devices.
-- [ ] Retain explicit local/temporary choice, honest save status and private recovery on every offered target.
+- [ ] Resolve Windows trial problems in saving, editing, navigation and recovery before adding another platform.
+- [ ] Validate macOS and Linux installation, storage, file operations, input and packages on native hosts.
+- [ ] Check window resizing, long text, keyboard-only use, input methods and 200% text scaling.
+- [ ] Test the installed packages: offline use, restart, upgrade, failed writes, export, restore and clear.
+- [ ] Publish accepted desktop packages with versions, checksums, upgrade notes, known limits and a support route.
+- [ ] Mark unverified desktop platforms honestly; do not block a ready Windows release on unavailable native test hardware.
 
-Acceptance: the free core in [FREE_EDITION.md](FREE_EDITION.md) works on each claimed platform. No account, subscription or ad view is required. Missing platform evidence blocks that platform's release, not continued learning on others.
+Acceptance: a person unfamiliar with Cadence can install the claimed desktop version, plan a week, save and restart offline, recover a backup and clear their data without developer help. No account, payment or ad view is required. Only after this flow is dependable should the maintainer schedule Web or mobile implementation.
 
-## E — Free Web and desktop publication
+## E — Later Web and mobile review
 
-- [ ] Publish tested desktop packages with version, checksums, upgrade notes and known limits.
-- [ ] Choose a deployment origin and storage boundary for the Web app; keep the existing concept website.
-- [ ] Verify HTTPS, asset paths, reload/update behavior, storage explanations and private-data isolation in production.
-- [ ] Run a representative free trial and resolve data-loss, access and basic usability defects.
-- [ ] Publish only real capabilities; mark unsupported browsers and platforms clearly.
+Deferred until desktop acceptance. These are retained design checks, not current tasks:
 
-Acceptance: users can install or open the free edition, plan, save, export and recover without developer help. Web-local saving is clearly distinguished from cloud sync.
+- Review demand and available maintenance time before scheduling another client.
+- Keep shared task, plan and date rules; adapt navigation, editors, touch targets, safe areas and keyboards.
+- For Web, define browser-local storage, tab ownership, quota/eviction handling, export/restore, reload and cache updates.
+- Decide a deployment origin and private-data boundary before a Web app goes live; keep the existing concept website.
+- For Android and iOS, test lifecycle, process termination, accessibility, file operations and installed builds on real devices.
+- State actual supported platforms and limits. Browser-local saving does not imply cloud sync.
+
+Acceptance for starting this work: the desktop edition has passed its own gates, the next client has a bounded scope, and its maintenance cost is understood. Full target-platform coverage is not a desktop-release prerequisite.
 
 ## F — Free Android and iOS store releases
+
+Deferred until desktop acceptance and a separately scheduled mobile implementation. Keep this reference for later; do not recruit testers or register store accounts now.
 
 - [ ] Prepare signed packages, store screenshots, age ratings, support details and accurate privacy declarations for each target market.
 - [ ] Have the maintainer handle developer identity, agreements, fees and signing access. Keep secrets outside Git.
@@ -83,7 +87,7 @@ Acceptance: each store has approved its own free release and the distributed bui
 
 ## After store launch — Review services and income
 
-This is a decision checkpoint, not a current implementation stage. Review actual use and operating capacity before approving work on limited free cloud sync, paid expansion or supplementary ads. Define costs, numeric quotas, privacy, conflict recovery, deletion, cancellation and service shutdown before a service pilot. Prices, providers and dates are undecided. Ads must not be the assumed funding guarantee for everyone's cloud data. Keep local planning and export independent of later services.
+This is a deferred decision checkpoint, not an implementation stage. Paid expansion, memberships, subscriptions and premium features are excluded. Everyone receives the same free functions. If cloud sync is later offered, use the same published quota rules for all users. Evaluate advertising only after launch, with measured costs, privacy, recovery, retention and a shutdown plan. It must not block planning or grant extra capacity. No ad SDK, billing or backend work belongs in the current desktop milestone.
 
 The [free-edition design](FREE_EDITION.md#review-only-after-store-launch) retains the candidate model. Do not add accounts, payment screens, ad SDKs or a backend to satisfy a planning document.
 

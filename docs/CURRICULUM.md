@@ -1,6 +1,6 @@
 # Curriculum and estimates
 
-Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Finish the free desktop edition first; Web and mobile remain later directions. All users receive the same free functions, with no paid tier or paid capacity. Cloud sync and optional ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-12. Lessons 1–10 are accepted. Lessons 11–14 are implemented, and lesson 15 has wrapping actions and a shared scrolling area for the form and tasks. Analysis, all 30 tests and a Windows debug build pass. Actual-window confirmation, 200% text scaling and keyboard checks remain open. See [current progress](LEARNING.md) for the remaining checks from earlier lessons.
 
@@ -20,8 +20,9 @@ Keep the next UI and persistence lessons. Remove education-specific work from th
 | Lessons 17–26 | Async work, explicit storage choice, drift/SQLite, migrations, explicit Save, failed writes | Restart recovery when saving is enabled, preserved input, basic backup/restore checks |
 | Lessons 27–34 | Deadlines, date changes, personal plans, bounded repeats, conflicts | A small Today and personal-planning flow |
 | Re-estimate after persistence | Seven-day Week view, data controls, tested backup/restore, languages, keyboard use, package checks | A small general local-planner pilot |
-| Platform stages after the local pilot | Browser-local storage, touch layouts, Android/iOS lifecycle and store preparation | A tested free edition on each target |
-| Review after store launch | Limited free cloud sync, paid capacity and supplementary ads | A decision based on actual use and costs, not automatic implementation |
+| Desktop completion after the local pilot | Windows usability fixes, installed-package checks, native macOS/Linux validation | A dependable free desktop edition |
+| Deferred platform stages after desktop acceptance | Reassess Web, Android/iOS and their store work | A separate bounded plan, not current lessons |
+| Review after store launch | Limited free cloud sync and optional ads | A decision based on actual use and costs, not automatic implementation |
 | Optional later lessons | Review, reminders, advanced repeats and local course rules | Separately scoped extensions |
 
 These are capacity estimates, not completion promises. The task app with restart recovery is still provisionally planned around lesson 26. A working package, safe recovery, and actual user checks determine release readiness.
@@ -70,7 +71,7 @@ Keep seven-day and narrow-window behavior testable. Drag-to-schedule is optional
 
 Course rules, teaching weeks, class exceptions and filtered course sharing form an education extension. [Assisted import](QUICK_IMPORT.md) covers local CSV/paste and screenshots, with optional personal API keys for cloud help. It follows editing and recovery; only course input depends on the education extension. External academic-system connections remain excluded. These plans do not advance the current lesson or authorize assistant-written core features.
 
-Local review and reminders can follow a reliable core. Check reminders after app exit per platform before promising them. Web, Android and iOS follow the free-edition platform stages. Re-estimate them after the local pilot. Cloud synchronization and income models are for review after store launch.
+Local review and reminders can follow a reliable core. Check reminders after app exit per platform before promising them. Web, Android and iOS follow the free-edition platform stages. Do not start them now; re-estimate after desktop acceptance. Cloud synchronization and possible ads are for review after store launch.
 
 ## Earlier estimates
 

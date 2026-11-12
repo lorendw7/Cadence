@@ -8,9 +8,9 @@ Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general
 
 Cadence is a local time planner for everyday work, personal life, study and other commitments. Personal plans and tasks are the core. It helps answer three questions: what is happening today, when there is time this week, and what needs to be finished. No account, school, organization or semester is required. The paper-and-ink identity is independent and uses ordinary daily examples, not an institution's brand.
 
-Target Windows, Linux, macOS, Web, Android and iOS under [ADR-010](adr/010-open-multiplatform-free-first.md). Complete the free local flow first and validate every offered platform. The [free-edition design](FREE_EDITION.md) defines platform behavior, delivery and later business boundaries. Existing platform folders do not prove support.
+Target Windows, Linux, macOS, Web, Android and iOS under [ADR-010](adr/010-open-multiplatform-free-first.md). Finish the free desktop edition first: Windows, then macOS/Linux validation. Web and mobile remain later directions; their design checks are not current release gates. The [free-edition design](FREE_EDITION.md) defines platform behavior, delivery and later business boundaries. Existing platform folders do not prove support.
 
-External academic systems, school login and automatic timetable retrieval remain excluded. Web and mobile are now free-edition targets. Cloud sync, paid expansion and supplementary ads are for review after store launch. Continue MIT open-source development. Keep Flutter shadcn_ui, wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+External academic systems, school login and automatic timetable retrieval remain excluded. Web and mobile are now free-edition targets. Cloud sync and optional ads are for review after store launch. Continue MIT open-source development. Keep Flutter shadcn_ui, wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 Core desktop planning needs no account, backend or runtime network connection. Once installed, it can use chosen local data offline. A download and any optional network service have separate delivery needs. Do not require login, connection setup or a semester wizard before the first task or plan.
 
@@ -166,7 +166,7 @@ External academic-system adapters and school authentication are removed from sco
 2. Add personal timed/all-day plans, shared Today/Week, bounded repeats, task deadlines and overlap warnings without semester setup.
 3. Complete private export/import, tested recovery, migrations, accessible three-language controls and clear storage explanations.
 4. Run a Windows trial across different daily routines, then validate Linux/macOS on native hosts. Publish only tested packages with support and upgrade/recovery guidance.
-5. Validate the free edition on Web, Android and iOS, then complete platform publication and store testing. Review cloud sync, paid capacity and supplementary ads only after store launch.
+5. After desktop acceptance, review whether to schedule Web, Android and iOS, then their publication and store testing. Review cloud sync and optional ads only after store launch.
 
 The learner continues current desktop lessons, then adds the planned platform work in small steps. Use fictional data in demonstrations and state real feature limits. No application code is authorized by this document update. There is no school-connection workstream.
 
