@@ -1,6 +1,6 @@
 # Cadence website
 
-A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses warm paper, muted burgundy, sage and graphite, with Cadence's independent C mark. No school identity, university affiliation or particular occupation defines the audience.
+A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses warm white, graphite and a small burgundy accent, with Cadence's independent C mark. Wide margins, serif headings and fine rules keep the journal style. No school identity, university affiliation or particular occupation defines the audience.
 
 The product is in development. The current desktop learning app has basic in-memory tasks. The website uses fictional Today, Week and Tasks views to show the intended direction; it is not a working planner. Calls to action open the preview, product design or roadmap. Do not add download or released-feature claims without a verified release.
 
@@ -66,3 +66,11 @@ Run this from the repository root. It checks translation keys and placeholders, 
 The site now leads with local, free and simple use. The progress section separates working memory-only tasks, the planned first local release and optional import help. Screenshot and table import remain plans. AI help is optional and uses the user's own API key. Web and sync are considered only when a school connection needs them. The existing journal style, artwork, three languages and preview controls are unchanged.
 
 Browser checks on this copy covered all three languages on the home and privacy pages, language links between pages, task completion and reset, state kept during a language change, and arrow-key tab switching. Desktop home views and a 390 px narrow view were inspected. The narrow Chinese home and Japanese privacy page had no page-wide horizontal overflow. This is a focused check, not a full browser or accessibility audit. JavaScript-disabled behavior and Home/End keyboard handling were not rechecked in this pass.
+
+## 2026-11-12 visual simplification
+
+The home and privacy pages share a quieter palette and more space between sections. The home page uses a 1120 px content limit; privacy text uses a 720 px reading width. The header scrolls with the page. Colored section bands, colored sample events, the stacked preview shadow and large decorative marks were removed. The illustration and small feature icons appear in grayscale through CSS; their original files are unchanged. Translations, product claims and preview behavior are unchanged.
+
+Browser checks covered all three languages on the home page at 320, 390, 600, 601, 850, 851, 1100, 1101 and 1440 px. No page or header overflow was found. Privacy pages were checked in all three languages at 390 and 1280 px. Task completion, reset, state kept during a language change, arrow-key and Home/End tab navigation, FAQ expansion and language links were checked. The narrow Week view scrolls inside its panel. These checks do not replace a full accessibility audit. JavaScript-disabled behavior was not rechecked in a browser.
+
+The repository, website and artwork checks passed. This update changes the concept website only; it does not release planner features.
