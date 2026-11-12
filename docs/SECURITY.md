@@ -1,8 +1,8 @@
 # Security and data protection
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
-Scope update: [ADR-008](adr/008-small-free-local-product.md) keeps the first release local, with no saved editor drafts or application-level encryption. Web/service requirements below are conditional on a school connection that needs them, not a general product backlog.
+ADR-008 keeps unsaved forms in memory and defers application-level encryption. [ADR-010](adr/010-open-multiplatform-free-first.md) adds free Web and mobile targets. Their local-data checks apply before release. Cloud-service checks remain later work; no school integration is planned.
 
 Updated: 2026-11-11. These are requirements for the planned local desktop core and optional Web, sync and school extensions, not completed security checks. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current direction: a general-purpose offline planner without accounts, with an explicit first-use choice between local saving and temporary use. School permission applies only to a school's interfaces and data; ordinary desktop and Web use do not depend on it.
 
@@ -26,7 +26,7 @@ Offer Save on this device and Temporary use before opening saved planning record
 
 Mode changes resolve pending work and explain which saved copy remains. Clear names the app-owned files affected and reports incomplete steps. It cannot remove exported copies or promise physical erasure. [APPLICATION.md](APPLICATION.md) defines the single-writer and session rules.
 
-If a school connection needs a browser surface, define its data scope and storage separately. Browser storage is not an OS secret store. Do not copy desktop file and process assumptions into it. The concept site has no private planner-data receiver; hosting still receives ordinary page requests.
+Define the free Web client's storage and lifecycle independently of native files and processes. Browser storage is not an OS secret store. The concept site has no private planner-data receiver; hosting still receives ordinary page requests. Follow [FREE_EDITION.md](FREE_EDITION.md) for browser-local limits.
 
 ## Import and replacement
 
@@ -61,7 +61,7 @@ Future timetable sharing uses an explicit field allowlist that excludes private 
 
 ## Optional connections and backend
 
-Web and synchronization are considered only for a school connection that needs them. Prefer local read-only import and a reviewed update. Do not add a general account service, cloud workspace or sync queue to the local app. The boundary in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) reads permitted data into candidates; it does not write records or grant retention rights.
+No account service, sync queue, billing or ad SDK belongs in the first free edition. Review a personal cloud service only after store launch. External academic systems remain excluded. The historical [school study](UNIVERSITY_INTEGRATION.md) does not authorize source access.
 
 If a service becomes necessary, define permission, ownership checks, session security, retention, deletion and operating cost before enabling it. [SYNC.md](SYNC.md) is conditional research, not an approved backend plan. Keep local editing and recovery usable after disconnect or shutdown. Authentication permission is separate from permission to read or retain timetable data.
 

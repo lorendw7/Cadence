@@ -1,12 +1,12 @@
 # Quality and acceptance
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
-Scope update: [ADR-008](adr/008-small-free-local-product.md) defines the first-release gates. Web/service checks below apply only if a school connection needs those parts. They are not tasks for a general Web or personal sync product.
+The free-edition gates are in [ADR-010](adr/010-open-multiplatform-free-first.md) and [FREE_EDITION.md](FREE_EDITION.md). Web and mobile checks are platform requirements. Cloud-service checks are deferred to a later decision after store launch; school checks below are historical.
 
-[ADR-007](adr/007-general-purpose-local-planner.md) defines the current scope: a general-purpose local offline planner without accounts. First use offers Save on this device and Temporary use before reading saved planning data. School adapters are optional; Web and sync are considered only if a selected connection needs them. School permission applies only to the relevant school interfaces and data, not general desktop or Web delivery.
+The free core supports local planning without an account. First use offers Save on this device and Temporary use before reading saved planning data. External academic systems are excluded. Store approval, user acceptance and automated checks are separate evidence.
 
-Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux and macOS are desktop targets; mobile apps are excluded. The product uses shadcn_ui; existing Material controls may remain during the learning stages. A concept website is separate from a functional planner.
+Current lesson coverage and test counts are in [LEARNING.md](LEARNING.md), with behavior summarized in the [project README](../README.md). The requirements below describe future acceptance, not completed features. Windows, Linux, macOS, Web, Android and iOS are targets; each needs its own runtime evidence. The product uses shadcn_ui; existing Material controls may remain during the learning stages. A concept website is separate from a functional planner.
 
 ## Local and hosted checks
 
@@ -71,11 +71,11 @@ If a course or school extension is included, test representative academic patter
 
 ## Optional Web checks
 
-Only a school connection that needs Web can activate this work. Define the actual browser surface and supported platforms first. Test hostile text, script isolation, HTTPS, chosen authentication flow, storage failures and clearing for the data it handles. If it saves planner records, prove preview, failed replacement and stale-tab handling. Do not require a full browser planner merely to complete authorization.
+The planned free Web client needs these browser checks, without a school connection. Define the actual browser surface and supported platforms first. Test hostile text, script isolation, HTTPS, chosen authentication flow, storage failures and clearing for the data it handles. If it saves planner records, prove preview, failed replacement and stale-tab handling. Do not require a full browser planner merely to complete authorization.
 
 ## Optional service and sync checks
 
-Only add these checks if a school connection actually uses a service. Verify permission, ownership checks, session expiry, retention, deletion and bounded requests. For updates, test duplicate/partial snapshots, stale responses and local-edit preservation. A failed read must not look like deletion. Bidirectional sync needs separate conflict and recovery tests. Reuse relevant cases from [SYNC.md](SYNC.md), not its entire proposed system. No school or cloud failure may block independent local work.
+Activate service checks only after a separate post-store-launch decision. Verify account isolation, session expiry, consent, retention, deletion, quotas and bounded requests. For sync, test duplicate/partial snapshots, stale responses, conflicts, deletion and preservation of offline local edits. Service failure must not block local planning or export. Reuse reviewed ideas from [SYNC.md](SYNC.md), not its entire historical design.
 
 ## Optional assisted import acceptance
 

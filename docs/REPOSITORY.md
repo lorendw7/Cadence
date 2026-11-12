@@ -1,6 +1,6 @@
 # Repository map and maintenance
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-11. Keep paths stable so lesson links and platform projects continue to work. [LEARNING.md](LEARNING.md) owns current progress; [CURRICULUM.md](CURRICULUM.md) owns teaching estimates. Older lesson counts are historical.
 
@@ -26,7 +26,7 @@ Use plain English in all documentation, including future updates. Keep product t
 
 Use [the documentation index](README.md) to find the main owner of each topic. Write current requirements there and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
 
-The general-purpose local direction is in [ADR-007](adr/007-general-purpose-local-planner.md). School material remains an optional extension; it does not control the core release.
+The general-purpose local direction is in [ADR-007](adr/007-general-purpose-local-planner.md). School-connection material remains historical. [ADR-010](adr/010-open-multiplatform-free-first.md) defines the free-first desktop, Web, Android and iOS direction.
 
 ## Routine checks
 
@@ -57,6 +57,6 @@ Keep the preview source fingerprints in `assets/manifest.json`. Only a new previ
 
 ## Current limits
 
-The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, the full planner, backups and reminders remain future work. The selected product UI is shadcn_ui; Web/sync is considered only for school connections that need it. The asset library and concept website do not change those limits.
+The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, the full planner, backups and reminders remain future work. The selected product UI is shadcn_ui; Web and mobile are planned free-edition targets; sync waits for review after store launch. The asset library and concept website do not change those limits.
 
 Record only checks actually run in the change summary. Do not keep a growing list of old validation totals in this document.

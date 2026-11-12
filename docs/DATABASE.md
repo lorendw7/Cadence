@@ -1,6 +1,6 @@
 # Local data model
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-11. Proposal under [ADR-008](adr/008-small-free-local-product.md), not implemented. Add tables with learner-written features. Use ordinary drift/SQLite for one local workspace after the user chooses saving. Temporary use stays in memory.
 
@@ -52,4 +52,4 @@ Course rules, teaching-week membership, exceptions and filtered sharing are late
 
 ## Future university-source provenance
 
-A school adapter may need source IDs and a small accepted baseline to explain updates. Decide these fields from a real permitted source, not a guessed universal schema. The [source contract](UNIVERSITY_INTEGRATION.md) produces reviewed candidates. No school secret belongs in the database or backup. Web and synchronization add tables only if that school's connection requires them; [SYNC.md](SYNC.md) is reference material.
+Do not add school source IDs or adapter tables. The free edition shares task/plan meaning across native and browser stores; choose and test each storage implementation in its platform lesson. Do not add remote identities, sync queues or billing records now. [SYNC.md](SYNC.md) remains historical until a separate post-launch service decision.

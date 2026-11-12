@@ -1,6 +1,6 @@
 # Optional school demonstration reference
 
-> Historical reference only (2026-11-12). [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and sync from the current plan. The material below is retained for history, not as active requirements or implementation tasks.
+> Historical reference only. [ADR-010](adr/010-open-multiplatform-free-first.md) now targets a free local edition on desktop, Web, Android and iOS. Cloud sync and income are for review after store launch. School connections stay excluded. The proposals below do not authorize implementation or override the current [roadmap](ROADMAP.md).
 
 Updated: 2026-11-11. Reusable reference for a possible school audience, not the product's main positioning. Nothing in this document has been sent to anyone. Cadence is a general local time planner for work, learning and everyday life, without a required account or affiliation. It has no school endorsement or academic-system access permission. See [ADR-007](adr/007-general-purpose-local-planner.md).
 

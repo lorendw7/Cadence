@@ -22,7 +22,7 @@ All repository documentation uses plain English. Product translations remain Jap
 
 ## Learn tools when needed
 
-Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Web and sync are considered only when a school connection needs them. Kyushu and other school connections are optional extensions with their own interface and data permissions. Mobile apps are outside scope. See [ADR-007](adr/007-general-purpose-local-planner.md).
+Cadence is a local planner for work, study, and daily life. The desktop core needs no account, school identity, or network connection. Desktop, Web, Android and iOS are planned targets under [ADR-010](adr/010-open-multiplatform-free-first.md). Complete the free local edition first. Cloud sync, paid capacity and supplementary ads wait for review after store launch. External academic systems remain excluded.
 
 | Tool | Purpose | When to introduce it |
 |---|---|---|
@@ -53,10 +53,10 @@ Each item is a stage, not one lesson. Split stages into 20–45 minute lessons o
 6. Task deadlines and optional links to personal plans.
 7. Full backup/restore and clear data controls. Basic recovery checks start during persistence.
 8. Windows pilot and release checks.
-9. Select local review, reminders or another desktop platform only from actual needs.
-10. Consider Web or synchronization only when a school connection needs it.
+9. Validate the free edition on macOS and Linux. Keep optional review and reminders behind the core release work.
+10. Validate the free edition on Web, Android and iOS after the shared local flow works; complete each platform release separately. Review services and income after store launch.
 
-Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks, exams and school connections are optional education work after the local core. [Assisted import](QUICK_IMPORT.md) is a later design for local tables and screenshots, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. School Web/sync needs separate decisions and checks. Documents, artwork, and website work do not count as core lessons.
+Language support, keyboard access, protection, and tests apply throughout. Course semesters, teaching weeks and exams are optional local work after the free core; external school connections remain excluded. [Assisted import](QUICK_IMPORT.md) is a later design for local tables and screenshots, plus optional cloud help with personal API keys. It aims to reduce manual work and is not implemented. Course import waits for course rules; ordinary plans do not require them. These extensions do not block a general release. Cloud sync and monetization need a later decision after store launch. Documents, artwork, and website work do not count as core lessons.
 
 ## Tests and templates
 
@@ -81,8 +81,8 @@ Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Lesson 13 broug
 
 ## Estimates and next step
 
-The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–100 for broader desktop checks, plus 8–16 for Web. Those totals are historical. The current plan separates the general local core from optional education, Web, and sync work. Keep the next UI and persistence lessons, then re-estimate the remaining core from actual progress; see [CURRICULUM.md](CURRICULUM.md).
+The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–100 for broader desktop checks, plus 8–16 for Web. Those totals are historical. The current plan completes the free local core before staged desktop, Web and mobile releases; cloud sync waits for review after store launch. Keep the next UI and persistence lessons, then re-estimate the remaining core from actual progress; see [CURRICULUM.md](CURRICULUM.md).
 
-These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
+These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate platform trials and store preparation separately; review time is not coding time. Review the plan about every eight lessons.
 
 Next: confirm the scrolling step in an actual window, then continue lesson 15 with 200% text scaling and keyboard focus. Keep lesson 14's actual-window checks and the remaining checks for [lesson 11](lessons/11-theme.md), [lesson 12](lessons/12-shadcn-foundation.md) and [lesson 13](lessons/13-task-surface.md) open, along with [lesson 9](lessons/09-validation.md)'s title-validation confirmation. Lesson 10's actual-window deletion/undo flow is confirmed.

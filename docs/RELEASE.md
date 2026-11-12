@@ -1,10 +1,10 @@
 # Release plan
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
-Release scope follows [ADR-008](adr/008-small-free-local-product.md): a free Windows local app first. Saved drafts, encryption and extra UI frameworks are not release gates. Keep the selected shadcn_ui direction. Web and sync sections apply only if a school connection needs those capabilities.
+Release scope follows [ADR-010](adr/010-open-multiplatform-free-first.md): free local planning on desktop, Web, Android and iOS, delivered in stages. Keep the selected shadcn_ui direction. Cloud sync, paid capacity and ads are not release gates; review them after store launch.
 
-Updated: 2026-11-11. [ADR-007](adr/007-general-purpose-local-planner.md) defines Cadence as a general-purpose local time planner. The desktop core works offline without an account. On first use, users choose Save on this device or Temporary use before saved planning data is opened. School adapters are optional; Web and sync are considered only if a selected connection needs them.
+Updated: 2026-11-12. The free core needs no account, payment or ad view. First use offers Save on this device or Temporary use. Each platform requires runtime, recovery, accessibility and actual package checks; an uploaded build does not prove readiness. [FREE_EDITION.md](FREE_EDITION.md) defines common and platform behavior.
 
 School permission applies only to school interfaces and data, including any limits on retaining or sharing that data. It does not block a general desktop or Web release. The older blanket Web gate is superseded.
 
@@ -63,14 +63,14 @@ Keep a public route for ordinary bugs and a private route for sensitive reports.
 
 ## Optional Web release
 
-Consider Web only when a school connection needs it. Specify the actual surface and data route first; it may be a small authorization flow rather than a planner. Do not copy the earlier general browser-client checklist into the local release. If private data reaches a browser, test storage limits, script isolation, HTTPS, cleanup and the chosen login protocol on supported browsers. The concept site must not receive private planner data.
+The Web planner is a planned free browser-local client. Before publishing it, validate supported browsers, storage limits and clearing, export/restore, tab ownership, offline reload and update behavior. Use HTTPS and define isolation from the concept site. Do not describe browser-local storage as cloud sync. Follow [FREE_EDITION.md](FREE_EDITION.md).
 
 ## Optional sync service
 
-Consider synchronization only if the school connection needs ongoing updates. Prefer user-requested read and review. A bidirectional service needs an explicit source of truth, conflict rules, permission, retention, recovery and operating ownership before implementation. Local planning must survive service shutdown. [SYNC.md](SYNC.md) is a study to draw from, not a list of required infrastructure.
+Review limited free sync, paid capacity and supplementary ads only after store launch. No backend or revenue guarantee is approved now. A later service needs costs, quotas, consent, conflict recovery, retention, deletion, billing and operating ownership. [SYNC.md](SYNC.md) remains a historical study.
 
 ## Optional school adapters
 
-Kyushu University or another school may be an optional source adapter. Obtain the necessary authentication, interface, retention and sharing permissions for that source. A user's consent does not replace school authorization, and university authentication does not automatically grant timetable access. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+External academic-system adapters are excluded. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) remains historical reference; it is not a release workstream.
 
-Before enabling an adapter, publish its data flow, operator, read-only scope, consent, retention, disconnect/deletion behavior and failure handling. Trial it with a small voluntary group. Test limits, refresh failures, stale data, local edit preservation and any intermediary costs. Name an operational contact and provide a way to suspend the adapter without breaking independent local records. School demo guidance applies only to that extension, not to the core release.
+For Android and iOS, use the [store release stage](ROADMAP.md#f--free-android-and-ios-store-releases). Recruit testers, retain feedback and fixes, prepare truthful metadata and validate the store-distributed build. The maintainer handles identity, agreements, fees and signing credentials. No store submission occurs as part of this documentation change.

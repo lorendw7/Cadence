@@ -1,8 +1,8 @@
 # Setup
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
-Cadence is a local desktop planner for Windows, Linux, and macOS. These commands run the current learning app. A runner or successful build does not prove runtime support; check each platform on its native host. Android is legacy scaffolding, and mobile apps are outside scope. Web is considered only for a school connection that needs it and is not an implemented target; see [ROADMAP.md](ROADMAP.md).
+The current learning app runs on desktop. The planned free edition targets Windows, Linux, macOS, Web, Android and iOS. These commands describe the current checkout, not verified support for every future target. Existing Android scaffolding does not prove release readiness. Follow [ROADMAP.md](ROADMAP.md) for browser and mobile stages.
 
 ## Toolchain
 
@@ -23,7 +23,7 @@ flutter pub get
 flutter devices
 ```
 
-Resolve doctor findings for your chosen desktop target. Android tools are not required for this product's development path.
+Resolve doctor findings for your chosen desktop target. Android tools are not needed for the current desktop lessons. Add browser and mobile toolchains only in their platform stages.
 
 ## Run this checkout
 
@@ -37,7 +37,7 @@ flutter run -d macos
 
 The current learning app starts with two sample tasks. You can add validated titles, toggle completion, delete tasks and undo the latest deletion once. Empty lists show a prompt; the practice counter has increment and reset buttons. Tasks, input and the undo record are in memory; restarting restores the initial samples. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter. See [learning progress](LEARNING.md) for automated and manual acceptance details.
 
-Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner introduces shadcn_ui gradually while preserving working controls. Add Web work only if a school connection needs it. No alternate core implementation is provided by the assistant.
+Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner introduces shadcn_ui gradually while preserving working controls. Add Web and mobile work through their free-edition lessons, not during documentation maintenance. No alternate core implementation is provided by the assistant.
 
 ## Validate
 
@@ -69,7 +69,7 @@ These debug builds are compilation checks, not signed release artifacts or deskt
 
 Current dependencies are in [pubspec.yaml](../pubspec.yaml). shadcn_ui 0.59.0 is the selected and locked UI library. Lesson 12 introduces its root theme bridge while existing Material controls remain. Introduce drift with local saving; add Riverpod only for a demonstrated state-sharing need. The current skeleton does not yet store courses or personal plans.
 
-No account, cloud credentials or API registration is required for this checkout or the planned offline core. Lesson 12 supplies the shadcn_ui root bridge, and lesson 13 uses Shad input, buttons, checkboxes and a labelled delete action in the task surface. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. Optional official school integration has a separate permission and interface track in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Do not add school credentials to source files, fixtures or setup instructions.
+No account, cloud credentials or API registration is required for this checkout or the planned offline core. Lesson 12 supplies the shadcn_ui root bridge, and lesson 13 uses Shad input, buttons, checkboxes and a labelled delete action in the task surface. File sharing and full backup/restore are specified in [REDESIGN.md](REDESIGN.md); neither is implemented yet. School integration remains excluded; [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) is historical. Do not add school credentials to source files, fixtures or setup instructions.
 
 ## Troubleshooting
 

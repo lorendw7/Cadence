@@ -1,6 +1,6 @@
 # Local data protection
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-11. Planned behavior under [ADR-008](adr/008-small-free-local-product.md), not implemented. The first release protects against accidental loss and unintended upload. It is not an encrypted vault.
 
@@ -40,4 +40,4 @@ Application-level database encryption, encrypted backups and password recovery a
 
 Review dependencies and licenses, preserve lockfiles and keep secrets out of the repository. Verify the actual release package, use trusted distribution and provide upgrade/recovery guidance. A build or checksum alone is not proof of security. Never ask users to disable OS security globally.
 
-Web and synchronization are considered only when a school connection needs them. Their authorization, session, deletion, retention and operating costs need a separate review. Keep the independent local app usable when a connection is absent or fails. See [SECURITY.md](SECURITY.md) and [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+The free Web client needs tested browser storage, cleanup, export and recovery limits under [FREE_EDITION.md](FREE_EDITION.md). Cloud synchronization is deferred to review after store launch, with separate consent, retention, deletion and operating-cost decisions. External academic systems remain excluded. See [SECURITY.md](SECURITY.md).
