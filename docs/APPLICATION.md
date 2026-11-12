@@ -1,6 +1,6 @@
 # Application contracts
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-11. Planned behavior under [ADR-008](adr/008-small-free-local-product.md), not implemented. Start with one desktop workspace and one writer. These contracts protect local data without requiring the earlier draft-recovery, multi-tab or sync machinery.
 
@@ -61,4 +61,4 @@ These are planned checks, not current test results.
 
 Reminders, single-occurrence changes, saved drafts and advanced course rules each need their own small lesson and acceptance. Do not add their storage or scheduling machinery beforehand.
 
-School source access follows [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). Its output is an import draft, never a direct database write. Web and synchronization are considered only when that connection needs them. The earlier [sync study](SYNC.md) is not a core dependency or a promised service.
+School source access is excluded. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and the older [sync study](SYNC.md) remain historical references. The free Web and mobile clients share local task/plan contracts and validate their own storage and lifecycle behavior. Personal cloud sync is deferred until review after store launch.

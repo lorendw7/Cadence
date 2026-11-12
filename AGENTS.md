@@ -18,9 +18,10 @@
 ## Design and delivery
 
 - Preserve the independent academic-journal identity and existing GitHub Pages website. Do not create a second hosted site.
-- Cadence is a general-purpose local planner for work, study, and daily life. Desktop use is the core. External academic systems, school login, Web delivery, accounts and cloud synchronization are outside the current scope under ADR-009.
+- Cadence is a general-purpose local planner for work, study, and daily life. Target desktop, Web, Android and iOS under ADR-010. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are deferred until review after store launch. External academic systems and school login remain excluded.
 - Keep the core usable without school identity or network access. At first use, let the user choose local saving or a temporary session. Do not imply that planned saving already works.
 - The public website is a concept presentation. General product releases do not need school permission. School-connection research is historical reference only. Do not revive those integrations without a new explicit product decision.
 - Read `assets/README.md` before regenerating artwork. Keep editable sources, exports, and the manifest in sync.
+- Continue open-source development under the existing MIT license. Do not implement new app features, accounts, billing, ads or cloud infrastructure as documentation work.
 - Preserve unrelated work. Inspect the Git diff before committing and never force-push the main branch.
 - Run the relevant checks from `tools/README.md` and `docs/SETUP.md`. Report checks that could not run; do not claim they passed.

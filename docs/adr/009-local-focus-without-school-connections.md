@@ -1,6 +1,6 @@
 # ADR-009: Focus on local use and remove school connections
 
-**Status:** Accepted scope decision; not an implemented feature.
+**Status:** Partially superseded by [ADR-010](010-open-multiplatform-free-first.md). School connections stay excluded. The earlier Web/mobile scope limits below are historical. Complete the free edition before reviewing cloud services and income. Not an implemented feature.
 **Date:** 2026-11-12
 **Deciders:** The maintainer requested a more usable, easier-to-maintain planner and removed external academic systems from the current plan.
 

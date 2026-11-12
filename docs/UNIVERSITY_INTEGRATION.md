@@ -1,6 +1,6 @@
 # Optional university connection reference
 
-> Historical reference only (2026-11-12). [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and sync from the current plan. The material below is retained for history, not as active requirements or implementation tasks.
+> Historical reference only. [ADR-010](adr/010-open-multiplatform-free-first.md) now targets a free local edition on desktop, Web, Android and iOS. Cloud sync and income are for review after store launch. School connections stay excluded. The proposals below do not authorize implementation or override the current [roadmap](ROADMAP.md).
 
 Updated: 2026-11-11. Design and consultation preparation only. No school permission, supervisor commitment or usable timetable interface has been confirmed. This document describes an optional connection for the [general planning product](PRODUCT.md); Cadence is not an official university service.
 

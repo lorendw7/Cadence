@@ -16,13 +16,13 @@ Cadence is being designed around three views: **Today, Week, and Tasks**. The de
 
 - Plan appointments, focused work, study, and personal time together.
 - Keep tasks and bounded repeating plans easy to create, edit, and complete.
-- Use Windows, Linux, or macOS without a required account or server.
+- Target Windows, Linux, macOS, Web, Android and iOS with free local planning and no required account or server.
 - Make local saving, temporary use, backup, recovery, and deletion clear.
 - Support Japanese, English, and Chinese, keyboard use, and readable layouts.
 
-These are design goals. The first useful release should prove a small local planning flow before adding advanced features. Course-specific rules are possible local work later. External academic-system connections, Web delivery and cloud sync have been removed from the current plan. Prioritize everyday usability and recovery before extensions.
+These are design goals under [ADR-010](docs/adr/010-open-multiplatform-free-first.md). Complete the free local edition and validate each target before release. Web and mobile are planned targets, not implemented products. Review limited free cloud sync, paid capacity and supplementary advertising only after store launch. External academic-system connections remain excluded. See the [free-edition design](docs/FREE_EDITION.md).
 
-General product releases do not depend on a school. Historical school-connection notes do not authorize integration work. Cadence is independent and has no university endorsement. The latest scope decision is [ADR-009](docs/adr/009-local-focus-without-school-connections.md).
+General product releases do not depend on a school. Historical school-connection notes do not authorize integration work. Cadence is independent and has no university endorsement. The latest scope decision is [ADR-010](docs/adr/010-open-multiplatform-free-first.md).
 
 ## Learn by building
 
@@ -66,7 +66,7 @@ The Japanese/English/Chinese website shows fictional concepts. It is not a worki
 | website/ | Static concept website |
 | tools/ | Generators and read-only checks |
 | windows/, linux/, macos/ | Desktop runners |
-| android/ | Legacy scaffolding; no mobile product plan |
+| android/ | Existing scaffolding; Android release acceptance is future work |
 | .github/workflows/ | Checks, desktop builds, and website delivery |
 
 See [the repository map](docs/REPOSITORY.md) and [maintenance tools](tools/README.md).

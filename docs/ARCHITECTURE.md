@@ -1,6 +1,6 @@
 # Architecture
 
-Updated: 2026-11-11. Status: planned, not implemented. [ADR-008](adr/008-small-free-local-product.md) narrows the design to a free local desktop planner. Current code and acceptance belong in [LEARNING.md](LEARNING.md). The learner writes features through lib/main.dart; this document creates no code layers.
+Updated: 2026-11-12. Status: planned, not implemented. [ADR-010](adr/010-open-multiplatform-free-first.md) extends the free local product to desktop, Web, Android and iOS. Preserve the small core under ADR-008. Current code and acceptance belong in [LEARNING.md](LEARNING.md). The learner writes features through lib/main.dart; this document creates no code layers.
 
 ## Selected structure and when it grows
 
@@ -24,7 +24,7 @@ The flow is widgets → task/plan operations → local store. Date calculations 
 
 Keep one owner of confirmed records. Editors own unsaved input in memory. Save validates input, waits for the local write, then updates the confirmed state. A failed write keeps the editor open and its input available. Prevent duplicate submission while a write is pending.
 
-Use a small in-memory change counter to reject outdated previews and a session token to reject callbacks after clear, restore or mode change. No persistent cross-tab generation protocol is needed for one desktop writer. Read back uncertain results before retrying an add.
+Use a small in-memory change counter to reject outdated previews and a session token to reject callbacks after clear, restore or mode change. The first desktop stage has one writer. Before Web release, define and test single-writer tab ownership and stale-callback rejection; do not assume desktop process rules protect browser tabs. Read back uncertain results before retrying an add.
 
 ## Source organization
 
@@ -54,11 +54,11 @@ The [application contract](APPLICATION.md) defines mode changes and failed write
 
 ## Platform boundary
 
-Windows is the first release target. Linux/macOS follow native file, storage, input and package checks. Keep existing runners and artwork, but do not add mobile work. The static GitHub Pages site stays a concept site. Do not create a second site or a Web planner as part of the local release.
+Windows is the first complete trial target. Validate macOS/Linux, Web, Android and iOS in later stages. Keep common models, date rules and validation in the same Flutter product. Browser storage, native files, lifecycle and input have separate acceptance. Keep existing runners; add missing targets only in their implementation lessons. The existing GitHub Pages concept site remains separate from the planned Web app. See [FREE_EDITION.md](FREE_EDITION.md).
 
 ## External services: outside scope
 
-[ADR-009](adr/009-local-focus-without-school-connections.md) removes school connections, Web delivery and sync from the active plan. Earlier browser and connection designs are historical reference, not a reason to add remote fields, adapters or services.
+The first free release has no account service, sync queue, billing or advertising. [ADR-010](adr/010-open-multiplatform-free-first.md) defers limited free cloud sync, paid capacity and supplementary ads to review after store launch. External school connections remain excluded. Do not create backend fields or dependencies from historical studies.
 
 ## Optional university integration
 

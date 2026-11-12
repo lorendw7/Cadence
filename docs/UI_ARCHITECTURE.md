@@ -1,6 +1,6 @@
 # UI components and page design
 
-Updated: 2026-11-12. Status: accepted design; the learning app has a task surface and a basic desktop shell with a selected Tasks marker. The form and task list share one scrolling area. Today, Week and page switching remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; external academic systems, Web delivery and sync are outside the current plan under [ADR-009](adr/009-local-focus-without-school-connections.md). General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
+Updated: 2026-11-12. Status: accepted design; the learning app has a task surface and a basic desktop shell with a selected Tasks marker. The form and task list share one scrolling area. Today, Week and page switching remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop, Web, Android and iOS are targets under [ADR-010](adr/010-open-multiplatform-free-first.md). Complete the free local edition first. Cloud sync, paid capacity and supplementary ads wait for review after store launch. External academic systems remain excluded. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
 
 ## Library and teaching boundaries
 
@@ -71,7 +71,7 @@ Simple edits may stay inline. Full editing opens a right-side overlay, not anoth
 
 ### Window sizes and staged delivery
 
-Collapse navigation when space is limited, stack Today's sections and let the editor use the available width. For Week, keep columns readable with an explicitly bounded horizontal scroll area or a labelled day view. Do not squeeze three or four columns into a narrow window. Choose breakpoints from translated text, keyboard use and 200% text scaling, rather than a device name. Preserve dates, selection and input across resize. A narrow layout is not a mobile-app commitment.
+Collapse navigation when space is limited, stack Today's sections and let the editor use the available width. For Week, keep columns readable with an explicitly bounded horizontal scroll area or a labelled day view. Do not squeeze three or four columns into a narrow window. Choose breakpoints from translated text, keyboard use and 200% text scaling, rather than a device name. Preserve dates, selection and input across resize. A narrow layout alone does not establish Android or iOS support; test touch, keyboard, safe areas, lifecycle and file operations on each target.
 
 Lessons 11–16 establish the theme, task controls and shell layout. They do not by themselves deliver a planner. Expose functional destinations as their data and behavior arrive. Do not present placeholder pages or invented entries as working features. Reliable local tasks come first, then personal plans and Today/Week; course tools are optional later work. Later lesson numbers and estimates live in [the curriculum](CURRICULUM.md).
 
@@ -100,13 +100,13 @@ First use presents **Save on this device** and **Temporary use** with concise re
 | Local write failed | "Could not save"; retain input, identify the affected action and offer retry/export |
 | Switch back to temporary use | Explain whether the old saved copy is kept or cleared; start an empty temporary session after pending work is resolved |
 | Clear partly failed | "Cleanup incomplete"; name the unfinished step and offer retry, never "All data cleared" |
-| Optional external source is offline | Show "Offline copy" and the last successful read time where relevant; this does not change personal-data save status |
+| Network is unavailable | Keep local planning available; describe browser offline-reload limits truthfully; do not imply a cloud copy exists |
 
 Do not use a green icon as the only proof of saving. Announce meaningful status changes without moving focus. After an error, keep the correction or retry action reachable by keyboard. See the [application contracts](APPLICATION.md) for data-flow rules.
 
 ## Optional Web data flow
 
-No Web planner, school login or connection dashboard belongs in the current plan. External academic-system connections and sync are removed from scope. Keep navigation focused on local planning; historical connection documents do not authorize new controls or code.
+Plan the free Web client with browser-local saving, temporary use, explicit export and tested tab coordination. Phone clients use the same main destinations with compact navigation and accessible editors. [FREE_EDITION.md](FREE_EDITION.md) defines platform acceptance. No login, cloud quota, upgrade or ad controls belong in the first free edition. Keep the concept website separate from private planner storage.
 
 ## Implementation and acceptance
 

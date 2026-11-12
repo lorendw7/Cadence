@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. Cadence is a general-purpose local time planner with a **quiet journal** visual style. Work, study and personal life share the same planning space. Courses are an optional kind of commitment. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current scope. Cadence has its own identity and does not imply endorsement by a school or other institution.
 
-The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. The core is an offline desktop app without accounts. External academic systems, school login, Web delivery and sync are outside the current plan under [ADR-009](adr/009-local-focus-without-school-connections.md); mobile apps are excluded.
+The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. Target a free local edition for desktop, Web, Android and iOS under [ADR-010](adr/010-open-multiplatform-free-first.md). No account or ad view is required for the free core. Review cloud sync and paid expansion after store launch. External academic systems remain excluded.
 
 ## Palette
 
@@ -61,6 +61,10 @@ Keep **Cadence** in Latin letters in every language. Retain the independent C/cl
 
 Keep editable artwork separate from delivery exports. Preserve the editorial PNG master and use the generated 480/960/1536 px WebP files on the website. The asset manifest records source paths, dimensions and byte budgets; `python tools/check_artwork.py` checks them. Choose responsive image sizes from the displayed layout and reserve the aspect ratio to avoid shifts while loading.
 
+## Multiple platforms and the free edition
+
+Keep the same white-and-wine identity and three main destinations across desktop, Web and phones. Adapt layout to available space, touch, keyboard and text scaling. Preserve readable dates and visible actions; do not squeeze a desktop calendar onto a phone. [FREE_EDITION.md](FREE_EDITION.md) defines platform checks and local-data limits. Do not add subscription, sync or advertising controls to the free-release design before those later features are approved.
+
 ## Privacy in the interface
 
 On first use, offer **Save on this device** and **Temporary use** before opening any saved planning data. Explain that local saving keeps records on this device, while temporary use keeps them in the current session and loses them on close. Do not infer a saving choice from app launch or sign-in. Label the active mode and explain any later switch, including whether an existing saved copy is kept or cleared.
@@ -79,4 +83,4 @@ Use brief restrained transitions and respect reduced motion. Task completion and
 
 The project website explains the product and links only to actual accepted deliverables. The future Flutter planner will be a separate application even if delivered beside the website. Never put private planning data into public assets. Sharing an origin also shares storage/script trust; different URL paths do not create isolation.
 
-The website uses this quiet-journal palette and fictional illustrations with accurate status. Distinguish the current teaching task list with a practice counter, concept website, planned local desktop application and optional later clients. Do not invent endorsement, adoption, download availability or privacy guarantees. A general desktop or Web release does not depend on school permission; only the relevant school extension does.
+The website uses this quiet-journal palette and fictional illustrations with accurate status. Distinguish the current teaching task list with a practice counter, concept website, planned local desktop application and optional later clients. Do not invent endorsement, adoption, download availability or privacy guarantees. A general desktop or Web release does not depend on school permission; external academic-system connections remain excluded.

@@ -1,10 +1,10 @@
 # Project workflow
 
-Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Complete the free local edition first. Cloud sync, paid capacity and supplementary ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
 
 Updated: 2026-11-11. These are working rules. Examples below are not existing issues, branches, pull requests, or releases.
 
-Cadence is a local planner for work, study, and daily life. Desktop comes first. School connections are optional; consider Web or sync only when a selected connection needs them. School permission applies only to the relevant school interface and data. Mobile apps are outside scope. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md), and [roadmap](ROADMAP.md).
+Cadence is a local planner for work, study and daily life. The free edition targets desktop, Web, Android and iOS. Continue current lessons before platform work. Cloud sync, paid capacity and supplementary ads wait for review after store launch. External academic systems remain excluded. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md) and [roadmap](ROADMAP.md).
 
 ## Ownership and size
 

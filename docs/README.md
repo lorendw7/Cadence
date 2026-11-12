@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a general-purpose local planner for work, study, and daily life. Desktop is the core. External academic systems, Web delivery and cloud sync are outside the current plan. The current release scope is in [ADR-009](adr/009-local-focus-without-school-connections.md).
+Cadence is a general-purpose local planner for work, study and daily life. Target desktop, Web, Android and iOS with a free local edition first. Continue MIT open-source development. Review cloud sync, paid capacity and supplementary ads after store launch. External academic systems remain excluded. The latest decision is [ADR-010](adr/010-open-multiplatform-free-first.md).
 
 All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 
@@ -19,6 +19,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 
 | Document | Purpose |
 |---|---|
+| [Free edition](FREE_EDITION.md) | Platform behavior, free core, store testing and deferred business model |
 | [Design system](DESIGN.md) | Colors, type, layout, and accessible artwork use |
 | [UI architecture](UI_ARCHITECTURE.md) | Component choice, navigation, responsive layout, and UI stages |
 | [Today](TODAY.md) | Daily grouping, task counts, and clock updates |
@@ -68,7 +69,8 @@ Read the status at the top of each record. Older records explain past choices; t
 | [ADR-006](adr/006-optional-multi-client-sync.md) | Proposed optional sync |
 | [ADR-007](adr/007-general-purpose-local-planner.md) | General-purpose local product |
 | [ADR-008](adr/008-small-free-local-product.md) | Smaller free local release; school exception superseded by ADR-009 |
-| [ADR-009](adr/009-local-focus-without-school-connections.md) | Local focus; external academic systems removed from scope |
+| [ADR-009](adr/009-local-focus-without-school-connections.md) | School connections removed; platform limits superseded by ADR-010 |
+| [ADR-010](adr/010-open-multiplatform-free-first.md) | Open source, all target platforms and free edition first |
 
 ## Lesson records
 

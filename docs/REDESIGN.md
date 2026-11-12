@@ -8,15 +8,15 @@ Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general
 
 Cadence is a local time planner for everyday work, personal life, study and other commitments. Personal plans and tasks are the core. It helps answer three questions: what is happening today, when there is time this week, and what needs to be finished. No account, school, organization or semester is required. The paper-and-ink identity is independent and uses ordinary daily examples, not an institution's brand.
 
-Target Windows, Linux and macOS. Complete a usable Windows flow first, validate each other platform on its native host, and distribute tested packages through GitHub Releases. No Android/iOS product is planned; the Android project is legacy scaffolding.
+Target Windows, Linux, macOS, Web, Android and iOS under [ADR-010](adr/010-open-multiplatform-free-first.md). Complete the free local flow first and validate every offered platform. The [free-edition design](FREE_EDITION.md) defines platform behavior, delivery and later business boundaries. Existing platform folders do not prove support.
 
-[ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic-system connections, school login, automatic timetable retrieval, Web delivery and sync from the active plan. General local-product development and release require no school approval. The UI uses Flutter shadcn_ui, with muted wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+External academic systems, school login and automatic timetable retrieval remain excluded. Web and mobile are now free-edition targets. Cloud sync, paid expansion and supplementary ads are for review after store launch. Continue MIT open-source development. Keep Flutter shadcn_ui, wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 Core desktop planning needs no account, backend or runtime network connection. Once installed, it can use chosen local data offline. A download and any optional network service have separate delivery needs. Do not require login, connection setup or a semester wizard before the first task or plan.
 
 Personal plans have their own editing and repeats. Tasks may have deadlines, but a deadline does not reserve a calendar interval. Courses and exams can later extend the same views without owning the core data model or onboarding.
 
-Excluded from the core scope: mobile apps, mandatory cloud accounts, external calendar integration, online ICS, live collaboration, automatic cloud sync, habits, payroll and focus tracking. Local screenshot import with RapidOCR, plus optional cloud help using personal API keys, is accepted extension work under [QUICK_IMPORT.md](QUICK_IMPORT.md). It is not implemented or required for the first local release. Its goal is less manual entry and correction work, with review before saving. School-password collection, unauthorized scraping and enrollment/grade operations are not product features. Optional sync has a separate proposal in [ADR-006](adr/006-optional-multi-client-sync.md).
+Excluded from the first free release: required accounts, external calendar integration, online ICS, live collaboration, automatic cloud sync, advertising, billing, habits, payroll and focus tracking. Local screenshot import and optional personal-key AI are later studies under [QUICK_IMPORT.md](QUICK_IMPORT.md). School-password collection, academic scraping and enrollment/grade operations remain excluded. The older sync proposal is historical, not current implementation work.
 
 ## First use and saving
 
@@ -146,13 +146,13 @@ Do not promise that uninstall removes desktop data. Offer the data location and 
 
 ## Optional browser-local version
 
-Keep the existing static concept site. Web delivery, cloud databases, synchronization and external school interfaces are outside the current plan. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) is historical reference only.
+Keep the existing static concept site. The Web planner is a planned free browser-local application, with explicit storage choice, quota/eviction handling, export/restore, tab coordination and tested reload behavior. Browser-local storage does not imply cloud backup. Follow [FREE_EDITION.md](FREE_EDITION.md); no school interface is involved.
 
 ## Technology and implementation limits
 
 Keep Flutter shadcn_ui and the shared theme; integrate controls gradually. Introduce one drift/SQLite adapter with saving. Add Riverpod only if ordinary state sharing becomes hard to maintain. Build task saving and personal-plan rules before optional course modules. Test date handling, bounded expansion and overlap rules before connecting multiple views. Do not install unused packages or create empty layers.
 
-Complete local behavior first. Future identity/source adapters use the application boundary, but no account service, network layer or sync queue belongs in the core by default. Browser storage, lifecycle and file handling need separate acceptance. Until sync is implemented, transfer between devices uses explicit backups rather than a shared live database file.
+Complete local behavior first. Later platform storage and any separately approved identity service use the application boundary, but no account service, network layer or sync queue belongs in the core by default. Browser storage, lifecycle and file handling need separate acceptance. Until sync is implemented, transfer between devices uses explicit backups rather than a shared live database file.
 
 Optional desktop reminders may run while the process is active; the first Web candidate excludes them. See [NOTIFICATIONS.md](NOTIFICATIONS.md) for permission and platform limits. Closed-process reminders require separate acceptance. Build explicit editors and reliable recovery of confirmed records before assisted import; see [EDITING.md](EDITING.md) and [QUICK_IMPORT.md](QUICK_IMPORT.md).
 
@@ -166,9 +166,9 @@ External academic-system adapters and school authentication are removed from sco
 2. Add personal timed/all-day plans, shared Today/Week, bounded repeats, task deadlines and overlap warnings without semester setup.
 3. Complete private export/import, tested recovery, migrations, accessible three-language controls and clear storage explanations.
 4. Run a Windows trial across different daily routines, then validate Linux/macOS on native hosts. Publish only tested packages with support and upgrade/recovery guidance.
-5. Select local extensions from trial feedback. Do not add external academic systems, Web delivery or synchronization to this plan.
+5. Validate the free edition on Web, Android and iOS, then complete platform publication and store testing. Review cloud sync, paid capacity and supplementary ads only after store launch.
 
-The learner continues desktop work; Web is not a required lesson or release milestone. Use fictional data in demonstrations and state real feature limits. There is no school-connection workstream.
+The learner continues current desktop lessons, then adds the planned platform work in small steps. Use fictional data in demonstrations and state real feature limits. No application code is authorized by this document update. There is no school-connection workstream.
 
 Acceptance means tested behavior works on the target system, not that a folder exists or a build succeeds. See [ROADMAP.md](ROADMAP.md) for stages and estimates.
 
