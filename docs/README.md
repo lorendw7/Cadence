@@ -2,7 +2,7 @@
 
 Cadence is a general-purpose local planner for work, study and daily life. Finish the free desktop edition first: Windows, then macOS/Linux validation. Web, Android and iOS remain later directions. Continue MIT open-source development. Review cloud sync and optional ads after store launch. External academic systems remain excluded. The latest decision is [ADR-010](adr/010-open-multiplatform-free-first.md).
 
-All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
+Repository guides use plain English. The user-requested Chinese QREC rehearsal translation is the single documentation exception. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 
 The current app is an in-memory task exercise, not the planned full product. [LEARNING.md](LEARNING.md) owns current progress and manual acceptance status. Lesson notes keep their historical test counts.
 
@@ -15,6 +15,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | See planned desktop features and current limits | [Desktop feature baseline](PRODUCT.md#first-useful-local-product) |
 | Review the design and delivery order | [Desktop design priorities](REDESIGN.md#desktop-design-priorities), [roadmap](ROADMAP.md) |
 | Find files or checks | [Repository map](REPOSITORY.md), [tools](../tools/README.md), [workflow](PROJECT_WORKFLOW.md) |
+| Prepare the QREC introduction and questions | [English rehearsal guide](QREC_PITCH.md), [Chinese translation](QREC_PITCH.zh-CN.md); application practice, not a product-scope change |
 
 ## Product and interface
 
