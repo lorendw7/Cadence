@@ -60,7 +60,7 @@ Never report an unrun check as passed. Unit tests do not prove recovery, platfor
 | Saving, migration, backup | Failed writes preserve data; recovery works; private backups differ from sharing |
 | Import and sharing | Untrusted input limits, accurate preview, field allowlist |
 | Initial Web planner | Fictional demos, explicit saving, strict JSON checks, failed storage, clearing, script injection |
-| School connection or backend | Permission, authorization, sessions, minimal data, expiry, user isolation |
+| Separately approved future service | Authorization, sessions, minimal data, expiry and user isolation; no service work in the desktop milestone |
 
 See [SECURITY.md](SECURITY.md). Work without networking does not need a backend or account dependency.
 
@@ -72,6 +72,6 @@ All documents use plain English. Keep paths stable, place requirements in their 
 
 ## From lessons to useful software
 
-Follow the current [roadmap](ROADMAP.md): establish reliable local tasks, then personal planning, backup/recovery, a representative pilot, and wider desktop delivery. Test with people using the app for work, study, and daily life. Course tools, Web, sync, and school integrations are separate extensions.
+Follow the current [roadmap](ROADMAP.md): establish reliable local tasks, then personal planning, backup/recovery, a representative pilot, and wider desktop delivery. Test with people using the app for work, study, and daily life. Course tools and Web are later work. Sync waits for review after store launch. School integrations remain excluded.
 
 Demonstrate completed behavior with fictional data in a real window. Check whole user scenarios at each stage. Revise estimates when needed; lesson counts never replace product acceptance.

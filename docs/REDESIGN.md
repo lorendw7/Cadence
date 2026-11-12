@@ -2,7 +2,7 @@
 
 Current first-release limits are in [ADR-008](adr/008-small-free-local-product.md): one workspace, explicit Save, memory-only unsaved forms, ordinary SQLite and private unencrypted JSON backups. Detailed course rules below are later reference material, not first-release work.
 
-Updated: 2026-11-11. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [project README](../README.md) and [learning log](LEARNING.md). The product keeps the selected shadcn_ui direction under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
+Updated: 2026-11-12. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [learning log](LEARNING.md). The product keeps the selected shadcn_ui direction under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
 
 ## Purpose and scope
 
@@ -36,6 +36,8 @@ Use voluntary trials with people who plan different work, home and study routine
 
 ## Pages and interaction
 
+The [desktop baseline](PRODUCT.md#first-useful-local-product) defines the required features. The decisions below keep that baseline focused. They are specifications for future lessons, not new application behavior.
+
 The accepted paper-and-ink layout uses **Today / Week / Tasks** in a light sidebar, with Settings at the bottom. Add Courses and Weekly Review as optional later entries from Week; neither is required for core planning. On wide windows, Today combines a left task list with a larger right daily timeline; Week prioritizes a seven-day calendar and a collapsible task tray; Tasks uses a focused list. Full editors open in an overlay on selection. Narrow windows collapse navigation and stack content. See [the layout specification](UI_ARCHITECTURE.md#pages-and-navigation) for interactions, references and staged delivery.
 
 A global New action offers the entry types that have been implemented. The core product creates a personal plan or task without first navigating elsewhere. Add Course only with that optional feature. A simple task needs only a title; date and notes are optional. Course links appear only when course support exists. Completion uses a checkbox; selecting the title opens editing once the editor exists.
@@ -54,6 +56,30 @@ This table lists functional pages, not extra main-navigation items. Calculate re
 Place entries by actual time. Optional course-period labels are an extra guide; personal plans work at any time without a period table. Show overlapping entries beside one another with separate open actions. Use text/icons as well as color. Explain deletion scope and offer an available undo; clear and backup restore require their own confirmation.
 
 Plan Japanese, English and Chinese together as each feature is added. The website defaults to Japanese with manual language selection. The app may initially follow the system language and offer a settings override.
+
+### Desktop design priorities
+
+| Area | First desktop design | Deferred choice |
+|---|---|---|
+| Navigation | Today, Week and Tasks; Settings stays secondary; show only working destinations | Courses and Weekly Review |
+| Visual hierarchy | White canvas, wine selection and primary actions, graphite text, fine rules and clear dates; preserve the independent C mark | Additional category colors and dark mode |
+| Task entry | A title is enough; notes and deadlines live in the editor; completion stays a separate checkbox | Rich text, subtasks and advanced search |
+| Plan entry | Explicit start/end or all-day dates; a bounded weekly repeat is optional; show whole-series scope | Drag creation, single-occurrence changes and other repeat patterns |
+| Editing | Open one focused editor on demand, with Save and Cancel; return focus to the opening control | A permanent details column and persistent drafts |
+| Feedback | Empty guidance, field errors, saving/failure and temporary-session labels near the relevant work | Decorative summary cards and activity feeds |
+| Settings | Language; storage mode and location; backup/restore and clear; version/help | Account, sync, ads and appearance controls without working options |
+
+On wide windows, keep Today's task list and timeline side by side. Stack them in a narrow window. Tasks keeps a focused content width; Week uses the available width. Do not apply the task-list width limit to the calendar. Avoid fixed control heights that clip translated labels or large text.
+
+For the first desktop Week layout, use a bounded horizontal calendar scroll area when seven readable day columns cannot fit. Keep the week toolbar and a visible scroll cue available. A separate day view can follow if real-window trials show that it is needed; implementing both layouts is not a first-release requirement. All-day entries and timed entries must keep their date columns aligned.
+
+Keep core actions usable without drag, hover or a custom shortcut. Use ordinary focus traversal and each control's standard keyboard activation. A changed editor must follow the same Save, Discard or Cancel flow when closing by pointer or keyboard. Resizing must not discard the editor, selected date or input. See [editing rules](EDITING.md).
+
+The practice counter belongs to the learning exercise. Remove it in a learner-owned product lesson before a public desktop trial. Keep it working until that lesson; a documentation change does not authorize silently removing teaching behavior.
+
+### One complete desktop scenario
+
+Use fictional data to review the design: choose local saving, add a report due Friday, add a Thursday writing session and an all-day appointment, then check Today and Week. Complete the report, edit the appointment, restart, export a private backup, preview a restore and clear local data. Repeat the relevant flow in temporary mode and confirm that a restart retains no temporary records. The [roadmap](ROADMAP.md) owns acceptance and required failure checks; this scenario is not evidence that they passed.
 
 ## Personal plans
 

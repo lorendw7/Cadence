@@ -10,6 +10,8 @@ The app has in-memory task addition, validation, completion, deletion and one-le
 
 ## Working order
 
+Use the [desktop feature baseline](PRODUCT.md#first-useful-local-product) to decide what belongs in this milestone. Keep feature scope there and acceptance gates here. The sequence is task editing and saving, plan/date rules, Today/Week, backup/recovery, Windows trial, then native desktop validation. Optional features must not delay that sequence.
+
 Keep the accepted desktop theme, layout and shadcn_ui lessons. Then build saving and explicit editing, personal plans, Today/Week and recovery. Complete the Windows flow, resolve trial problems and validate macOS/Linux. Stages A-D define the desktop delivery. Stages E-F are deferred reference; review them after the desktop edition is dependable. Do not add browser/mobile experiments, tester recruitment, billing, ads or services to the current milestone.
 
 ## A — Reliable local tasks
@@ -17,6 +19,7 @@ Keep the accepted desktop theme, layout and shadcn_ui lessons. Then build saving
 - [ ] Offer Save on this device or Temporary use before reading saved data.
 - [ ] Add one small drift/SQLite store and a memory mode; allow only one writer process.
 - [ ] Add explicit task editing and confirmed saves. Keep input on failure and prevent duplicate submissions.
+- [ ] Add optional task notes and date-only or exact-time deadlines. Keep undated tasks valid and define deadline boundaries before Today uses them.
 - [ ] Keep unsaved forms in memory; closing changed input offers Save, Discard or Cancel.
 - [ ] Verify offline restart recovery, failed writes, damaged data and mode preference errors.
 - [ ] Make switching mode a clear session change. Use export/restore for transfer; no live merge wizard.
@@ -27,6 +30,7 @@ Acceptance: saved tasks survive restart; temporary startup does not open an old 
 ## B — Personal plans, Today and Week
 
 - [ ] Keep Today / Week / Tasks with Settings; expose only working destinations.
+- [ ] Add language and storage controls in Settings; keep backup, restore and clear in the same data area as stage C arrives.
 - [ ] Add one-off timed and all-day plans with optional location and notes.
 - [ ] Use one workspace timezone, initially the system timezone; test date boundaries, overnight plans and daylight-saving gaps.
 - [ ] Derive lists, counts, overlaps and views from the same confirmed data and date rules.
@@ -43,6 +47,7 @@ Acceptance: record a meeting, an all-day plan and a task without a school or acc
 - [ ] Preserve a verified recovery copy before local restore/migration; use a transaction and keep original data on failure.
 - [ ] Exclude credentials, screenshots and unsaved forms from backup. Clear app-managed recovery copies with local data.
 - [ ] Test real release packages, offline use, upgrade/recovery, keyboard use, input methods, large text and each offered language.
+- [ ] Remove the teaching counter in a learner-owned lesson; provide the app version and a working help/support route without placeholder destinations.
 - [ ] Run a small trial covering work, home and study. Record observed problems and unsupported cases.
 - [ ] Publish a complete Windows bundle with checksums, known limits, manual update instructions and a support route.
 

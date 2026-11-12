@@ -12,7 +12,8 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 |---|---|
 | Run the checkout | [Setup](SETUP.md) |
 | Continue learning | [Learning guide](LEARNING.md), [curriculum](CURRICULUM.md), [Dart guide](DART_GUIDE.md) |
-| Understand the product | [Product scope](PRODUCT.md), [product design](REDESIGN.md), [roadmap](ROADMAP.md) |
+| See planned desktop features and current limits | [Desktop feature baseline](PRODUCT.md#first-useful-local-product) |
+| Review the design and delivery order | [Desktop design priorities](REDESIGN.md#desktop-design-priorities), [roadmap](ROADMAP.md) |
 | Find files or checks | [Repository map](REPOSITORY.md), [tools](../tools/README.md), [workflow](PROJECT_WORKFLOW.md) |
 
 ## Product and interface
