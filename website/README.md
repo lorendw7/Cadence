@@ -1,6 +1,6 @@
 # Cadence website
 
-A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses warm white, graphite and a small burgundy accent, with Cadence's independent C mark. Wide margins, serif headings and fine rules keep the journal style. No school identity, university affiliation or particular occupation defines the audience.
+A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses pure white (#FFFFFF), graphite and a small burgundy accent, with Cadence's independent C mark. Wide margins, serif headings and fine rules keep the journal style. No school identity, university affiliation or particular occupation defines the audience.
 
 The product is in development. The current desktop learning app has basic in-memory tasks. The website uses fictional Today, Week and Tasks views to show the intended direction; it is not a working planner. Calls to action open the preview, product design or roadmap. Do not add download or released-feature claims without a verified release.
 
@@ -43,7 +43,7 @@ Language selection uses `?lang=` first, then a saved explicit choice, then Japan
 
 Test preview tabs with clicks, arrow keys and Home/End, including visible focus. Task completion changes the count in Today and Tasks. The counter handles zero, one and multiple unfinished tasks. A language change keeps the temporary checkbox state. Reset restores the sample tasks without changing the selected view. Reloading also restores the sample. The preview never saves tasks.
 
-Week shows all seven days, Monday through Sunday. Today and Week share the same fictional Thursday: focus time at 09:00, a project catch-up at 13:00 and reading at 17:00. Saturday has time with a friend; Sunday has a slow morning. The grid keeps readable columns at a minimum width of 680 px and scrolls inside its panel when needed, without widening the page. The local illustration uses responsive WebP sources and a PNG fallback, with explicit dimensions and lazy loading.
+Week shows all seven days, Monday through Sunday. Today and Week share the same fictional Thursday: focus time at 09:00, a project catch-up at 13:00 and reading at 17:00. Saturday has time with a friend; Sunday has a slow morning. The grid keeps readable columns at a minimum width of 680 px and scrolls inside its panel when needed, without widening the page. The local illustration uses responsive WebP sources and a PNG fallback, with explicit dimensions and eager loading for the hero image.
 
 ## Data and claims
 
@@ -74,3 +74,13 @@ The home and privacy pages share a quieter palette and more space between sectio
 Browser checks covered all three languages on the home page at 320, 390, 600, 601, 850, 851, 1100, 1101 and 1440 px. No page or header overflow was found. Privacy pages were checked in all three languages at 390 and 1280 px. Task completion, reset, state kept during a language change, arrow-key and Home/End tab navigation, FAQ expansion and language links were checked. The narrow Week view scrolls inside its panel. These checks do not replace a full accessibility audit. JavaScript-disabled behavior was not rechecked in a browser.
 
 The repository, website and artwork checks passed. This update changes the concept website only; it does not release planner features.
+
+## 2026-11-12 white page redesign
+
+This revision replaces the earlier grayscale layout. Pure white page surfaces frame the original color illustration in the hero. The image keeps its original paper texture; it has no grayscale filter. Original artwork and exports are unchanged. The hero image loads eagerly with high priority and responsive WebP sources.
+
+A dedicated wide preview follows the hero. Three short captions explain the views. The repeated principle strip, life section and closing pitch are merged into the remaining content. Japanese, English and Chinese hero and feature text are shorter. The data choices, current progress, FAQ and privacy page still distinguish working behavior from plans.
+
+The structure draws on the concise product introduction on [Things](https://culturedcode.com/things/) and the image-led presentation on [Craft](https://www.craft.do/). Cadence retains its own artwork, serif headings and identity. No third-party assets or services were added.
+
+Checks passed: repository links and scripts, website translations and markup, artwork consistency, and Git whitespace checks. Browser checks confirmed pure white backgrounds and color images. Home layouts in all three languages had no page overflow at 320, 390, 600, 850 and 1028 CSS pixels. Wide desktop layouts were also inspected. Privacy layouts passed in all three languages at 390 and 1440 pixels. Tasks, reset, state across language changes, arrow keys, Home/End, FAQ expansion and the privacy return link worked. The 390 px Week view scrolls inside its panel. A stalled browser tab was replaced to finish the checks. JavaScript-disabled behavior and other browser engines were not rechecked.
