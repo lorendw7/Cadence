@@ -21,8 +21,12 @@ void main() {
           row,
           40,
           scrollable: find.descendant(
-            of: find.byType(ListView),
-            matching: find.byType(Scrollable),
+            of: find.byType(CustomScrollView),
+            matching: find.byElementPredicate(
+              (element) =>
+                  element.widget is Scrollable &&
+                  element.findAncestorWidgetOfExactType<Scrollable>() == null,
+            ),
           ),
         );
         await tester.pumpAndSettle();
@@ -42,7 +46,7 @@ void main() {
       }
 
       expect(find.text('暂无任务，添加一条吧'), findsOneWidget);
-      expect(find.byType(ListView), findsNothing);
+      expect(find.byType(SliverList), findsNothing);
       expect(find.byType(TaskRow), findsNothing);
       await tester.tap(find.widgetWithText(ShadButton, '添加任务'));
       await tester.pumpAndSettle();

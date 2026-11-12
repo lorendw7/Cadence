@@ -1,8 +1,14 @@
 # Learning Cadence
 
-Updated: 2026-11-11. Lessons 1–10 are implemented and accepted. Lessons 11–13 are implemented, with their remaining actual-window checks listed below. Lesson 13 adds a themed and responsive task surface with Shad input, buttons, checkboxes and a labelled delete action. Formatting and analysis pass, all 27 active tests pass, and the Windows debug build succeeds. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
+Updated: 2026-11-12. Lessons 1–10 are implemented and accepted. Lessons 11–14 are implemented, with their remaining actual-window checks listed below. Lesson 15 is in progress. Formatting and analysis pass, all 30 active tests pass, and the Windows debug build passes for the current scrolling step. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
 
 The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title-validation, lesson 11–12 theme and keyboard confirmation, and lesson 13 responsive and keyboard confirmation are still pending. Windows debug builds pass after symbolic-link support was enabled.
+
+In lesson 14, the learner renamed TodayPage and its State to TasksPage, changed the heading to Tasks, and moved the task surface into a local taskContent variable. A Row now gives the task surface the remaining width. A 160-pixel sidebar appears at widths of at least 640 logical pixels. It has a workspace label and a selected ListTile for Tasks. This marks the current page; there is no page-switching action. Task data, input and undo still belong to the same State. Tests distinguish the page heading from the sidebar label and task rows from navigation rows. All 28 tests pass, including checks of the selected marker and resizing across 640 and 639 pixels while preserving tasks, draft input and pending undo. The Windows debug build passes. Actual-window appearance, resizing and keyboard confirmation remain pending. Lesson 15 will address wider text, narrow windows and focus.
+
+Lesson 15's first step is implemented: the counter and undo buttons use Wrap with 8-pixel horizontal and row gaps. A regression checks a single row at 800 x 700 and wrapping at 200 x 700, then exercises increment, reset and pending undo after resizing. All 29 tests pass. This is a targeted layout check, not a supported minimum-window claim. No new native build or actual-window check was run for this step. Short windows, 200% text scaling and keyboard focus still need checks.
+
+A separate temporary probe at 350 x 280 found a 30-pixel bottom overflow. The learner began the scrolling exercise and requested direct repair. The assistant moved taskContent out of the input builder into the page build method, kept taskHeader limited to the form, and replaced the inner Expanded and ListView with a CustomScrollView, SliverToBoxAdapter, SliverList and empty-state SliverFillRemaining. Task callbacks remain intact. The header and tasks now scroll together. Tests target the outer page scroll area separately from the input's own scroll area. A new active regression covers the previously failing size, reachable form and task controls, retained draft input, the empty state, undo and addition. All 30 tests and the Windows debug build pass. Actual-window confirmation, 200% text scaling and keyboard checks remain pending.
 
 ## Who does what
 
@@ -68,6 +74,8 @@ Language support, keyboard access, protection, and tests apply throughout. Cours
 | 10 | [Deletion](../test/task_delete_widget_test.dart) and [undo](../test/task_undo_delete_widget_test.dart) |
 | 11 and 12 | Existing regressions run under both theme layers; counter and rebuild checks locate the migrated ShadButton |
 | 13 | Task-surface regressions use Shad controls; [input checks](../test/task_title_input_widget_test.dart) verify wide, compact and stacked quick-entry layouts while retaining input |
+| 14 | [Shell resize check](../test/desktop_shell_widget_test.dart) covers sidebar visibility, the selected Tasks marker and retained tasks, draft input and pending undo across resizing |
+| 15, in progress | [Action wrapping](../test/practice_counter_widget_test.dart) and [short-window scrolling](../test/task_scroll_widget_test.dart) cover reachable controls, draft retention, empty state, undo and addition |
 
 Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Lesson 13 brought the total to 27 with an explicit resize check. The suite covers deleting the last task, adding again, equal titles, separate delete/toggle callbacks, restoring the original object, position and state, and preserving input while quick entry changes layout. Older notes keep historical test counts.
 
@@ -77,4 +85,4 @@ The earlier course-heavy plan estimated 64 lessons for a Windows pilot and 80–
 
 These totals start at lesson 1 and are teaching estimates, not release promises. The old 80–140 hour estimate covered a smaller scope and no longer applies. Estimate implementation, trials, and maintenance separately. Estimate school coordination only if an optional connection is pursued; approval time is not coding time. Review the plan about every eight lessons.
 
-Next: complete the remaining actual-window checks for [lesson 11](lessons/11-theme.md), [lesson 12](lessons/12-shadcn-foundation.md) and [lesson 13](lessons/13-task-surface.md), while keeping [lesson 9](lessons/09-validation.md)'s title-validation confirmation open. Then begin lesson 14's desktop shell. Lesson 10's actual-window deletion/undo flow is confirmed.
+Next: confirm the scrolling step in an actual window, then continue lesson 15 with 200% text scaling and keyboard focus. Keep lesson 14's actual-window checks and the remaining checks for [lesson 11](lessons/11-theme.md), [lesson 12](lessons/12-shadcn-foundation.md) and [lesson 13](lessons/13-task-surface.md) open, along with [lesson 9](lessons/09-validation.md)'s title-validation confirmation. Lesson 10's actual-window deletion/undo flow is confirmed.

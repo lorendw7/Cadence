@@ -33,8 +33,8 @@ void main() {
         expect(tester.widget<ShadInput>(input).controller!.text, enteredText);
         expect(
           tester
-              .widget<ListView>(find.byType(ListView))
-              .childrenDelegate
+              .widget<SliverList>(find.byType(SliverList))
+              .delegate
               .estimatedChildCount,
           2,
         );
@@ -48,8 +48,8 @@ void main() {
       expect(tester.widget<ShadInput>(input).controller!.text, isEmpty);
       expect(
         tester
-            .widget<ListView>(find.byType(ListView))
-            .childrenDelegate
+            .widget<SliverList>(find.byType(SliverList))
+            .delegate
             .estimatedChildCount,
         3,
       );
@@ -61,8 +61,12 @@ void main() {
         newRow,
         40,
         scrollable: find.descendant(
-          of: find.byType(ListView),
-          matching: find.byType(Scrollable),
+          of: find.byType(CustomScrollView),
+          matching: find.byElementPredicate(
+            (element) =>
+                element.widget is Scrollable &&
+                element.findAncestorWidgetOfExactType<Scrollable>() == null,
+          ),
         ),
       );
       await tester.pumpAndSettle();

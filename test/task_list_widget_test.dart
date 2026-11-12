@@ -9,7 +9,7 @@ Finder completionCheckbox(Finder row) =>
 
 void main() {
   for (final size in [const Size(800, 600), const Size(400, 320)]) {
-    testWidgets('Today exposes both tasks at $size without layout errors', (
+    testWidgets('Tasks exposes both tasks at $size without layout errors', (
       WidgetTester tester,
     ) async {
       await tester.binding.setSurfaceSize(size);
@@ -17,7 +17,13 @@ void main() {
       await tester.pumpWidget(const CadenceApp());
 
       expect(find.text('Cadence'), findsOneWidget);
-      expect(find.text('今天'), findsOneWidget);
+      final heading = find.byElementPredicate(
+        (element) =>
+            element.widget is Text &&
+            (element.widget as Text).data == '任务' &&
+            element.findAncestorWidgetOfExactType<ListTile>() == null,
+      );
+      expect(heading, findsOneWidget);
       final reportRow = find.widgetWithText(ListTile, '提交课程报告');
       final reviewRow = find.widgetWithText(ListTile, '复习线性代数');
       expect(reportRow, findsOneWidget);
@@ -27,15 +33,19 @@ void main() {
         findsOneWidget,
       );
 
-      // ListView.builder may not build off-screen rows until scrolling.
+      // SliverList.builder may not build off-screen rows until scrolling.
       // Verify that the second task is reachable, rather than requiring both
       // rows to exist simultaneously in a small viewport.
       await tester.scrollUntilVisible(
         reviewRow,
         40,
         scrollable: find.descendant(
-          of: find.byType(ListView),
-          matching: find.byType(Scrollable),
+          of: find.byType(CustomScrollView),
+          matching: find.byElementPredicate(
+            (element) =>
+                element.widget is Scrollable &&
+                element.findAncestorWidgetOfExactType<Scrollable>() == null,
+          ),
         ),
       );
       await tester.pumpAndSettle();
