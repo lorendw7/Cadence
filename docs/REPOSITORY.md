@@ -22,7 +22,7 @@ Updated: 2026-11-11. Keep paths stable so lesson links and platform projects con
 
 ## Documentation rules
 
-Use plain English in repository guides. The user-requested [Chinese QREC rehearsal translation](QREC_PITCH.zh-CN.md) is the single exception. Keep product translations separate. The durable rule is in [AGENTS.md](../AGENTS.md).
+Use plain English in all documentation, including future updates. Keep product translations separate. The durable rule is in [AGENTS.md](../AGENTS.md).
 
 Use [the documentation index](README.md) to find the main owner of each topic. Write current requirements there and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
 

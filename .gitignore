@@ -20,6 +20,9 @@ android/key.properties
 *.iml
 
 # Personal assistant settings and local credentials
+.private/
+/docs/QREC_PITCH.md
+/docs/QREC_PITCH.zh-CN.md
 .claude/settings.local.json
 .env
 .env.*
