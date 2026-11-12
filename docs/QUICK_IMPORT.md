@@ -1,5 +1,7 @@
 # Optional screenshot and table import
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Updated: 2026-11-11. Status: **accepted design direction, not implemented**. Use RapidOCR for local screenshot text recognition and optional cloud AI with the user's own API key. Exact versions, models, packaging and supported providers still need checks. No import package or service is installed by this design update.
 
 Build direct editing, the explicit local-saving or temporary-use choice, and private recovery first. See [PRODUCT.md](PRODUCT.md), [EDITING.md](EDITING.md) and [ROADMAP.md](ROADMAP.md). The learner writes core features in small lessons. This design does not change the current lesson.

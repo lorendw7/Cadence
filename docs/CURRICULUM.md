@@ -1,5 +1,7 @@
 # Curriculum and estimates
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Updated: 2026-11-12. Lessons 1–10 are accepted. Lessons 11–14 are implemented, and lesson 15 has wrapping actions and a shared scrolling area for the form and tasks. Analysis, all 30 tests and a Windows debug build pass. Actual-window confirmation, 200% text scaling and keyboard checks remain open. See [current progress](LEARNING.md) for the remaining checks from earlier lessons.
 
 The learner writes core features. Each lesson includes about 20–45 minutes of explanation and guidance; coding, debugging, and review take extra time. Explain Dart and Flutter even when the learner knows another language.

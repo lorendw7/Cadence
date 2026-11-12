@@ -1,5 +1,7 @@
 # Optional multi-client sync
 
+> Historical reference only (2026-11-12). [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and sync from the current plan. The material below is retained for history, not as active requirements or implementation tasks.
+
 Scope update (2026-11-11): [ADR-008](adr/008-small-free-local-product.md) parks this study. Web and synchronization are considered only for a specific school connection that needs them. This is not a general cloud-sync backlog; reuse only the parts justified by that connection. No backend, queue or account implementation is authorized by this reference.
 
 Updated: 2026-11-11. Status: an optional later proposal, not implemented. Read [ADR-006](adr/006-optional-multi-client-sync.md) with [ADR-007](adr/007-general-purpose-local-planner.md), which makes Cadence a general-purpose local planner. The offline core needs no account or service. Sync needs a separate decision on identity, hosting and operation. School permission applies only if a school identity service or school data is included. Continue local desktop lessons without adding a backend or sync tables now.

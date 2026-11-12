@@ -1,5 +1,7 @@
 # Local data model
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Updated: 2026-11-11. Proposal under [ADR-008](adr/008-small-free-local-product.md), not implemented. Add tables with learner-written features. Use ordinary drift/SQLite for one local workspace after the user chooses saving. Temporary use stays in memory.
 
 ## Core tables and later extensions

@@ -22,10 +22,10 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" href="assets/icon-v2.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/site.css?v=20261112-white">
-<script src="assets/content.js?v=20261112-white" defer></script>
-<script src="assets/lang.js?v=20261111-local-free" defer></script>
-<script src="assets/preview.js?v=20261111-local-free" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=20261112-focus2">
+<script src="assets/content.js?v=20261112-focus2" defer></script>
+<script src="assets/lang.js?v=20261112-focus2" defer></script>
+<script src="assets/preview.js?v=20261112-focus2" defer></script>
 </head>
 <body data-page="home">
 <a class="skip-link" href="#main">本文へ / Skip to content / 跳至正文</a>
@@ -39,31 +39,17 @@
 <main id="main">
   <section class="hero page-width">
     <div class="hero-copy">
-      <p data-i18n="hero.kicker" class="eyebrow">ローカル・無料・シンプル — 開発中</p>
-      <h1><span data-i18n="hero.line1">一日の余白を、</span><br><em data-i18n="hero.line2">自分のリズムで。</em></h1>
-      <p data-i18n="hero.lead" class="hero-lead">仕事、学び、暮らしに。自分のパソコンで使う、無料のシンプルな手帳を開発中です。アカウントなしで、一日の予定を見渡せるように。</p>
-      <div class="hero-actions"><a class="button button-wine" href="#preview"><span data-i18n="hero.open">デザインを試す</span><span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/lorendw7/Cadence/blob/main/docs/ROADMAP.md"><span data-i18n="hero.explore">開発計画を読む</span><span aria-hidden="true">↓</span></a></div>
+      <p data-i18n="hero.kicker" class="eyebrow">自分の時間のために · 開発中</p>
+      <h1><span data-i18n="hero.line1">予定を整えて、</span><br><em data-i18n="hero.line2">毎日に、余白を。</em></h1>
+      <p data-i18n="hero.lead" class="hero-lead">仕事も、学びも、ひと休みも。今日・週間・タスクをひとつにつなぐ、シンプルなデスクトップ手帳をつくっています。</p>
+      <div class="hero-actions"><a class="button button-wine" href="#preview"><span data-i18n="hero.open">画面を試してみる</span><span aria-hidden="true">↗</span></a><a class="text-link" href="#progress"><span data-i18n="hero.explore">開発の歩みを見る</span><span aria-hidden="true">↓</span></a></div>
+      <ul class="hero-promises"><li data-i18n="strip.1.title">自分の端末で</li><li data-i18n="strip.2.title">無料のローカル版を計画</li><li data-i18n="strip.3.title">アカウント不要の設計</li></ul>
       <p data-i18n="hero.note" class="hero-note">開発中 · 製品版は未公開 · 画面は架空のデータです</p>
     </div>
-      <div class="hero-art" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="assets/journal-editorial-480.webp 480w, assets/journal-editorial-960.webp 960w, assets/journal-editorial-1536.webp 1536w" sizes="(max-width: 850px) calc(100vw - 48px), 560px">
-          <img class="journal-editorial" src="assets/journal-editorial.png" width="1536" height="1024" alt="" loading="eager" fetchpriority="high" decoding="async">
-        </picture>
-        <ul class="notebook-topics">
-          <li data-i18n="use.tag1">仕事・集中</li>
-          <li data-i18n="use.tag2">学び・練習</li>
-          <li data-i18n="use.tag3">用事・約束</li>
-          <li data-i18n="use.tag4">休息・自分の時間</li>
-        </ul>
-      </div>
-  </section>
-  <section class="essentials page-width" id="essentials">
-    <div class="section-intro"><p data-i18n="features.kicker" class="eyebrow">01 / THE EVERYDAY ESSENTIALS</p><h2 data-i18n="features.title">今日から、一週間を見渡す。</h2><p data-i18n="features.intro" class="section-lead">架空の予定で「今日・週間・タスク」を試せます。学習用アプリは基本タスク操作のみ。予定表示、編集、保存は計画中です。</p></div>
     <figure id="preview" class="planner-figure" aria-describedby="preview-caption">
-      <div class="figure-top"><span data-i18n="preview.label" class="micro">A WEEK, IN YOUR OWN RHYTHM</span></div>
+      <div class="figure-top"><span data-i18n="preview.label" class="micro">CADENCE / INTERACTIVE CONCEPT</span></div>
       <div class="planner">
-        <div class="planner-top"><div><p data-i18n="preview.date" class="planner-date">11月12日・木曜日</p><p data-i18n="preview.sample" class="sample-label">架空のサンプル</p></div><img src="assets/icon-v2.svg" alt="" width="27" height="27"></div>
+        <div class="planner-top"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><div><p data-i18n="preview.date" class="planner-date">11月12日・木曜日</p><p data-i18n="preview.sample" class="sample-label">架空のサンプル</p></div><img src="assets/icon-v2.svg" alt="" width="27" height="27"></div>
         <div class="preview-tabs" role="tablist" aria-label="表示の切り替え" data-i18n-aria="preview.tabs" hidden>
           <button type="button" role="tab" id="tab-today" aria-controls="panel-today" aria-selected="true" data-view="today"><img src="assets/icons/today.svg" width="16" height="16" alt=""><span data-i18n="preview.today">今日</span></button>
           <button type="button" role="tab" id="tab-week" aria-controls="panel-week" aria-selected="false" tabindex="-1" data-view="week"><img src="assets/icons/week.svg" width="16" height="16" alt=""><span data-i18n="preview.week">週間</span></button>
@@ -111,12 +97,30 @@
       <noscript><p class="preview-noscript">JavaScript が無効のため、「今日」の静止例を表示しています。</p></noscript>
       <p class="sr-only" id="demo-status" role="status" aria-live="polite"></p>
     </figure>
+  </section>
+  <section class="essentials page-width" id="essentials">
+    <div class="section-intro"><p data-i18n="features.kicker" class="eyebrow">01 / LESS TO MANAGE</p><h2 data-i18n="features.title">必要なことだけ、心地よく。</h2><p data-i18n="features.intro" class="section-lead">今日を決める。一週間を見渡す。ひとつ終える。迷わず使える、三つのビューを目指しています。</p></div>
+
     <div class="editorial-rows">
       <article class="editorial-row"><h3><span data-i18n="features.today.title">今日に、集中する。</span></h3><p data-i18n="features.today.text">予定と未完了のタスクを、時間順に見渡す設計です。</p><span class="row-symbol" aria-hidden="true"><img src="assets/icons/today.svg" width="28" height="28" alt="" loading="lazy"></span></article>
       <article class="editorial-row"><h3><span data-i18n="features.week.title">一週間を、見渡す。</span></h3><p data-i18n="features.week.text">仕事、学び、個人の予定を一週間に。編集と毎週の繰り返しは計画中です。</p><span class="row-symbol" aria-hidden="true"><img src="assets/icons/week.svg" width="28" height="28" alt="" loading="lazy"></span></article>
       <article class="editorial-row"><h3><span data-i18n="features.tasks.title">やることを、ひとつずつ。</span></h3><p data-i18n="features.tasks.text">追加・完了・削除・直前の削除の取り消しに対応。メモリー内のみで、編集と保存は未実装です。</p><span class="row-symbol" aria-hidden="true"><img src="assets/icons/tasks.svg" width="28" height="28" alt="" loading="lazy"></span></article>
     </div>
   </section>
+<section class="life-section page-width">
+      <div class="life-art">
+        <picture>
+          <source type="image/webp" srcset="assets/journal-editorial-480.webp 480w, assets/journal-editorial-960.webp 960w, assets/journal-editorial-1536.webp 1536w" sizes="(max-width: 850px) calc(100vw - 40px), 520px">
+          <img class="journal-editorial" src="assets/journal-editorial.png" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+        </picture>
+        <ul class="notebook-topics">
+          <li data-i18n="use.tag1">仕事・集中</li>
+          <li data-i18n="use.tag2">学び・練習</li>
+          <li data-i18n="use.tag3">用事・約束</li>
+          <li data-i18n="use.tag4">休息・自分の時間</li>
+        </ul>
+      </div>
+<div class="life-copy"><p class="eyebrow" data-i18n="use.kicker">WORK, LEARN, LIVE</p><h2 data-i18n="use.title">どんな一日にも、自分のリズムを。</h2><p class="section-lead" data-i18n="use.text">決まった働き方や所属を前提にしない、日々のための時間管理。仕事の日も、学ぶ日も、ゆっくり過ごす日も、ひとつの手帳で見渡せるように。</p></div></section>
   <section class="data-section page-width" id="your-data">
     <div class="data-intro"><p data-i18n="data.kicker" class="eyebrow">02 / LOCAL BY CHOICE</p><h2 data-i18n="data.title">予定は手元に。残し方は自由に。</h2><p data-i18n="data.intro" class="section-lead">未実装の設計です。初回に「この端末に保存」か「一時的に使う」を選びます。基本のローカル利用に、アカウントやクラウドは必要ありません。</p><a class="text-link" href="privacy.html?lang=ja" data-language-link><span data-i18n="data.link">データの扱いを詳しく読む</span><span aria-hidden="true">↗</span></a></div>
     <ol class="data-steps"><li><span class="step-index">1</span><div><h3 data-i18n="data.step1.title">最初に、残し方を選ぶ</h3><p data-i18n="data.step1.text">端末内保存と一時利用のどちらも、アカウントなしで使える設計です。保存を選ぶ前に、個人の日程をディスクへ書き込みません。</p></div></li>
@@ -129,15 +133,15 @@
       <ol class="progress-stages">
         <li class="stage-current"><p class="stage-label"><span class="stage-dot" aria-hidden="true"></span><span data-i18n="scope.now.label">実装済み · 学習用アプリ</span></p><h3 data-i18n="scope.now.title">タスクの基本操作</h3><p data-i18n="scope.now.text">デスクトップの学習用アプリでは、追加・完了・削除・直前の削除の取り消しが動きます。データはメモリー内だけで、終了すると失われます。</p></li>
         <li><p class="stage-label"><span class="stage-dot" aria-hidden="true"></span><span data-i18n="scope.next.label">計画中 · 最初のローカル版</span></p><h3 data-i18n="scope.next.title">毎日の予定と、端末内保存</h3><p data-i18n="scope.next.text">まず Windows で、明示的な保存、個人の予定、今日・週間表示、基本の毎週繰り返し、バックアップを実装します。macOS と Linux の公開は各環境での検証後です。</p></li>
-        <li><p class="stage-label"><span class="stage-dot" aria-hidden="true"></span><span data-i18n="scope.later.label">その後 · 任意の補助機能</span></p><h3 data-i18n="scope.later.title">入力の手間を、少し軽く</h3><p data-i18n="scope.later.text">スクリーンショットや表から、修正できる下書きを作る計画です。任意の AI は自分の API キーを使い、費用がかかる場合があります。学校接続は別の拡張で、Web や同期はその接続に必要な場合だけ検討します。</p></li>
+        <li><p class="stage-label"><span class="stage-dot" aria-hidden="true"></span><span data-i18n="scope.later.label">その後 · 使いやすさを磨く</span></p><h3 data-i18n="scope.later.title">増やす前に、整える。</h3><p data-i18n="scope.later.text">キーボード操作、読みやすさ、バックアップからの復元を実際に確かめます。外部の教務システム接続は現在の計画から外し、ひとつのローカル手帳に集中します。</p></li>
       </ol>
       <p data-i18n="scope.note" class="scope-note">ここは構想を紹介するサイトで、ブラウザー版の手帳ではありません。ダウンロードできる製品版はまだなく、学習用アプリに保存機能はありません。</p>
     </div>
   </section>
-  <section class="faq page-width"><div><h2 data-i18n="faq.title">使い始める前に。</h2></div><div><details><summary><span data-i18n="faq.q1">無料で使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a1">はい。ローカル版は無料で、アカウントや定額契約なしで使える方針です。製品版はまだ公開していません。任意のクラウド AI は自分の API キーを使い、提供元から料金が発生する場合があります。基本の利用に AI は不要です。</p></details>
+  <section class="faq page-width"><div><h2 data-i18n="faq.title">使い始める前に。</h2></div><div><details><summary><span data-i18n="faq.q1">無料で使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a1">ローカル版は無料で、アカウントや定額契約なしで使える方針です。現在は開発中で、ダウンロードできる製品版はまだありません。</p></details>
     <details><summary><span data-i18n="faq.q2">このプレビューに入力した内容は残りますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a2">残りません。表示切替とチェック操作は、架空のデータを使ったデザイン例です。ここでの操作を保存する機能はありません。将来の端末内保存や JSON バックアップは未実装です。</p></details>
-    <details><summary><span data-i18n="faq.q3">入力したデータは送信されますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a3">このサイトに個人の予定の入力・アップロード機能はありません。ページの表示には GitHub Pages への通信があります。開発中のローカル版は送信なしで使う設計です。任意の AI を使う場合だけ、内容と送信先を確認してから送る計画です。</p></details>
-    <details><summary><span data-i18n="faq.q4">オフラインでも使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a4">基本のタスク、予定、端末内保存はオフラインで使える設計です。予定表示や保存はまだ未実装です。Web や同期は学校接続に必要な場合だけ検討し、ローカル利用の条件にはしません。</p></details></div></section>
+    <details><summary><span data-i18n="faq.q3">入力したデータは送信されますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a3">このサイトに個人の予定を入力・アップロードする機能はありません。ページの表示には GitHub Pages への通信があります。ローカル版は予定を外部へ送信せずに使う設計です。外部の教務システムには接続しません。</p></details>
+    <details><summary><span data-i18n="faq.q4">オフラインでも使えますか？</span><span class="faq-plus" aria-hidden="true">+</span></summary><p data-i18n="faq.a4">基本のタスク、予定、端末内保存はオフラインで使える設計です。予定表示と保存はまだ未実装です。Web 版やクラウド同期は現在の開発計画に含めません。</p></details></div></section>
 </main>
 <footer class="site-footer page-width"><div><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><p data-i18n="footer.tagline" class="footer-tagline">仕事にも、学びにも、自分の時間にも。</p></div><div class="footer-right"><div class="footer-links"><a href="privacy.html?lang=ja" data-language-link><span data-i18n="footer.privacy">データとプライバシー</span></a><a href="https://github.com/lorendw7/Cadence/blob/main/docs/REDESIGN.md"><span data-i18n="footer.design">製品設計</span></a><a href="https://github.com/lorendw7/Cadence">GitHub ↗</a></div><p data-i18n="footer.independent" class="independent-note">自分の端末から始める、独立した時間管理プロジェクト。</p><p class="copyright">© 2026 Cadence · MIT</p></div></footer>
 </body>

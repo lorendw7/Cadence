@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FFFFFF">
 <title>データとプライバシー — Cadence</title>
-<meta name="description" content="現在の Cadence 紹介サイトの動作と、開発中の端末内保存・一時利用・将来の任意接続について。">
+<meta name="description" content="現在の Cadence 紹介サイトの動作と、開発中の端末内保存・一時利用について。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="データとプライバシー — Cadence">
-<meta property="og:description" content="現在の Cadence 紹介サイトの動作と、開発中の端末内保存・一時利用・将来の任意接続について。">
+<meta property="og:description" content="現在の Cadence 紹介サイトの動作と、開発中の端末内保存・一時利用について。">
 <meta property="og:url" content="https://lorendw7.github.io/Cadence/privacy.html">
 <link rel="canonical" href="https://lorendw7.github.io/Cadence/privacy.html">
 <link rel="alternate" hreflang="ja" href="https://lorendw7.github.io/Cadence/privacy.html?lang=ja">
@@ -17,22 +17,22 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" href="assets/icon-v2.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/site.css?v=20261112-white">
-<script src="assets/content.js?v=20261112-white" defer></script>
-<script src="assets/lang.js?v=20261111-local-free" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=20261112-focus2">
+<script src="assets/content.js?v=20261112-focus2" defer></script>
+<script src="assets/lang.js?v=20261112-focus2" defer></script>
 
 </head>
 <body data-page="privacy">
 <a class="skip-link" href="#main">本文へ / Skip to content / 跳至正文</a>
 <header class="site-header"><nav class="nav-shell" aria-label="Cadence"><a class="brand" href="index.html" data-language-link><img src="assets/icon-v2.svg" width="32" height="32" alt=""><span>Cadence</span></a><div class="nav-end"><div class="languages" role="group" hidden aria-label="表示言語" data-i18n-aria="lang.label"><button type="button" data-set="ja" aria-pressed="true">日本語</button><button type="button" data-set="en" aria-pressed="false">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div><a class="nav-app" href="index.html?lang=ja#preview" data-language-link><span data-i18n="nav.open">デザインを見る</span><span aria-hidden="true">↗</span></a></div></nav></header>
 <main id="main" class="privacy-page page-width">
-  <div class="privacy-header"><p data-i18n="privacy.kicker" class="eyebrow">DATA &amp; PRIVACY</p><h1 data-i18n="privacy.title">データを、どう扱うか。</h1><p data-i18n="privacy.intro" class="section-lead">現在の紹介サイトの動作と、開発中のローカルな時間管理ツールの設計を分けて説明します。学習用アプリのタスクはメモリー内のみで、日程管理や保存機能はまだ実装されていません。</p><p data-i18n="privacy.date" class="document-date">最終更新：2026年11月11日</p></div>
+  <div class="privacy-header"><p data-i18n="privacy.kicker" class="eyebrow">DATA &amp; PRIVACY</p><h1 data-i18n="privacy.title">データを、どう扱うか。</h1><p data-i18n="privacy.intro" class="section-lead">現在の紹介サイトの動作と、開発中のローカルな時間管理ツールの設計を分けて説明します。学習用アプリのタスクはメモリー内のみで、日程管理や保存機能はまだ実装されていません。</p><p data-i18n="privacy.date" class="document-date">最終更新：2026年11月12日</p></div>
   <div class="privacy-body"><section><h2 data-i18n="privacy.1.title">01 — 現在の紹介サイト</h2><p data-i18n="privacy.1.text">表示言語の選択だけを cadence-lang というキーでブラウザーの localStorage に保存します。架空のプレビューの操作結果は保存しません。個人の日程、タスクやアカウントを入力・アップロードする機能はありません。</p></section>
     <section><h2 data-i18n="privacy.2.title">02 — 初回に保存方法を選ぶ：設計</h2><p data-i18n="privacy.2.text">デスクトップ版では、初回に「この端末に保存」か「一時的に使う」を明示的に選ぶ設計です。どちらもアカウントは不要です。一時利用はメモリー内だけで、終了すると失われます。保存を選ぶ前に、予定・タスク・草稿を永続保存しません。これらの保存選択は未実装です。</p></section>
     <section><h2 data-i18n="privacy.3.title">03 — 端末内のデータ：設計</h2><p data-i18n="privacy.3.text">初版は、保存が完了した予定やタスクを端末内に置き、オフラインで使う計画です。端末内ファイルは暗号化しません。未保存の入力はメモリー内のみで、異常終了すると失われる場合があります。一時利用の内容は終了で失われます。これらの保存機能は未実装です。</p></section>
     <section><h2 data-i18n="privacy.4.title">04 — バックアップと削除：設計</h2><p data-i18n="privacy.4.text">JSON の書き出し、読み込み前の確認、明示的な削除を計画しています。JSON は個人の予定やタスクを含む平文のバックアップで、公開共有用ではありません。アプリ内データの削除で、書き出したファイルや他の人に渡したコピーは消えません。これらは未実装です。</p></section>
     <section><h2 data-i18n="privacy.5.title">05 — 通信と外部サービス</h2><p data-i18n="privacy.5.text">現在のサイトは GitHub Pages で配信し、ホスティング側で IP アドレスなどの基本的なリクエスト情報が記録される場合があります。外部の解析、広告、リモートフォントは使っていません。将来のローカルアプリは予定やタスクを送信せずに使える設計です。</p></section>
-    <section><h2 data-i18n="privacy.6.title">06 — 任意の AI と学校接続：計画</h2><p data-i18n="privacy.6.text">将来の AI 補助は自分の API キーを使い、提供元の料金が発生する場合があります。ローカル取り込みに AI は不要です。毎回、送信先と選んだ文字・画像を確認してから送る設計です。キーはメモリー内に置き、明示的に選んだ場合だけ OS の認証情報ストアに保存し、予定のバックアップには含めません。送信した内容には提供元の保存規則が適用されます。Web や同期は、許可された学校接続に必要な場合だけ検討します。これらの接続はすべて未実装です。</p></section>
+    <section><h2 data-i18n="privacy.6.title">06 — 接続を増やさない方針</h2><p data-i18n="privacy.6.text">外部の教務システムへの接続、学校ログイン、時間割の自動取得は現在の計画から外しました。Web 版やクラウド同期も開発対象に含めません。任意の AI 補助は別の将来研究であり、現在のサイトに送信機能はありません。再検討する場合も、送信先・内容・料金・保存規則を確認できる設計を先に定めます。</p></section>
     <section><h2 data-i18n="privacy.7.title">07 — 問題を報告するとき</h2><p data-i18n="privacy.7.text">公開の GitHub Issue に個人の予定、パスワード、認証情報や個人データのファイルを添付しないでください。ブラウザーや OS、再現手順など、問題の説明に必要な情報だけを共有してください。</p></section>
     <p class="privacy-actions"><a class="text-link" href="index.html?lang=ja" data-language-link><span aria-hidden="true">←</span><span data-i18n="footer.back">ホームに戻る</span></a><a class="text-link" href="https://github.com/lorendw7/Cadence">GitHub ↗</a></p>
   </div>

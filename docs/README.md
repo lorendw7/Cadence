@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a general-purpose local planner for work, study, and daily life. Desktop is the core; school connections are optional. Web and sync are considered only when such a connection needs them. The current release scope is in [ADR-008](adr/008-small-free-local-product.md).
+Cadence is a general-purpose local planner for work, study, and daily life. Desktop is the core. External academic systems, Web delivery and cloud sync are outside the current plan. The current release scope is in [ADR-009](adr/009-local-focus-without-school-connections.md).
 
 All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 
@@ -38,7 +38,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | [Data model](DATABASE.md) | Planned records and invariants |
 | [Security](SECURITY.md) | Data boundaries, threats, and acceptance |
 | [Data protection](DATA_PROTECTION.md) | Local file privacy, recovery, optional API keys and deferred encryption |
-| [Optional sync](SYNC.md) | Parked study; use only if a school connection needs synchronization |
+| [Historical sync study](SYNC.md) | Retained reference; outside the current plan |
 | [Assisted import](QUICK_IMPORT.md) | Local screenshot and table drafts; optional personal API keys; review effort and accuracy checks |
 | [Quality](QUALITY.md) | Required behavior, file, UI, and platform checks |
 | [Release](RELEASE.md) | Staged delivery, recovery, support, and release evidence |
@@ -46,13 +46,13 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 
 ## Optional education work
 
-These documents describe possible extensions. They are not prerequisites for local planning or general release.
+Academic-calendar rules are possible local extensions. School integration and demonstration documents are historical references only under ADR-009; they are not active delivery tasks.
 
 | Document | Purpose |
 |---|---|
 | [Academic calendar](HOLIDAYS.md) | Teaching weeks, holidays, and changed classes |
-| [School integration](UNIVERSITY_INTEGRATION.md) | Optional interfaces, permissions, and connection lifecycle |
-| [School demonstration](SCHOOL_DEMO.md) | An optional explanation for school staff |
+| [School integration](UNIVERSITY_INTEGRATION.md) | Historical source and permission study; removed from scope |
+| [School demonstration](SCHOOL_DEMO.md) | Historical discussion brief; no active school workstream |
 
 ## Decisions
 
@@ -67,7 +67,8 @@ Read the status at the top of each record. Older records explain past choices; t
 | [ADR-005](adr/005-local-offline-and-school-gated-web.md) | Local/offline design and the former school-gated Web policy |
 | [ADR-006](adr/006-optional-multi-client-sync.md) | Proposed optional sync |
 | [ADR-007](adr/007-general-purpose-local-planner.md) | General-purpose local product |
-| [ADR-008](adr/008-small-free-local-product.md) | Smaller free local release and school-only Web/sync scope |
+| [ADR-008](adr/008-small-free-local-product.md) | Smaller free local release; school exception superseded by ADR-009 |
+| [ADR-009](adr/009-local-focus-without-school-connections.md) | Local focus; external academic systems removed from scope |
 
 ## Lesson records
 

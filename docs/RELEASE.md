@@ -1,5 +1,7 @@
 # Release plan
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Release scope follows [ADR-008](adr/008-small-free-local-product.md): a free Windows local app first. Saved drafts, encryption and extra UI frameworks are not release gates. Keep the selected shadcn_ui direction. Web and sync sections apply only if a school connection needs those capabilities.
 
 Updated: 2026-11-11. [ADR-007](adr/007-general-purpose-local-planner.md) defines Cadence as a general-purpose local time planner. The desktop core works offline without an account. On first use, users choose Save on this device or Temporary use before saved planning data is opened. School adapters are optional; Web and sync are considered only if a selected connection needs them.

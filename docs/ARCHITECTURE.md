@@ -15,7 +15,6 @@ Introduce one drift/SQLite adapter when persistent saving is taught. Keep one wr
 | Today and Week | Shared confirmed records and pure date/repeat functions |
 | Backup and import | One validated format, preview and batch commit |
 | Screenshot import | A bounded local OCR worker and editable candidates |
-| Approved school connection | An adapter for a known source contract, only if selected |
 
 ## Dependencies after persistence is introduced
 
@@ -57,10 +56,10 @@ The [application contract](APPLICATION.md) defines mode changes and failed write
 
 Windows is the first release target. Linux/macOS follow native file, storage, input and package checks. Keep existing runners and artwork, but do not add mobile work. The static GitHub Pages site stays a concept site. Do not create a second site or a Web planner as part of the local release.
 
-## Optional Web extension, not implemented
+## External services: outside scope
 
-Web and sync are considered only for a concrete school connection that needs them. A read-only local adapter or user-exported file is the simpler starting point. Earlier browser and sync designs are reference material, not a delivery track or a reason to add remote fields now.
+[ADR-009](adr/009-local-focus-without-school-connections.md) removes school connections, Web delivery and sync from the active plan. Earlier browser and connection designs are historical reference, not a reason to add remote fields, adapters or services.
 
 ## Optional university integration
 
-[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) defines a document-only source contract: read a permitted snapshot, map it to candidates, review changes, then commit through the same local writer. The adapter never owns the planner's database. Keep school permissions, credentials and failures separate from local planning. Add a Web surface, backend or synchronization protocol only when the selected school's actual interface requires it.
+[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) retains historical source research. It is not an implementation contract. Manual entry and any later user-chosen local import use the same validated local writer.

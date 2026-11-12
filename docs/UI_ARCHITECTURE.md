@@ -1,6 +1,6 @@
 # UI components and page design
 
-Updated: 2026-11-12. Status: accepted design; the learning app has a task surface and a basic desktop shell with a selected Tasks marker. The form and task list share one scrolling area. Today, Week and page switching remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; Web and sync are considered only for a school connection that needs them. General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
+Updated: 2026-11-12. Status: accepted design; the learning app has a task surface and a basic desktop shell with a selected Tasks marker. The form and task list share one scrolling area. Today, Week and page switching remain planned. [ADR-007](adr/007-general-purpose-local-planner.md) defines a general local planner centered on personal plans and tasks. The product keeps Flutter shadcn_ui and a shared theme under [ADR-008](adr/008-small-free-local-product.md). Desktop is primary; courses are later local work; external academic systems, Web delivery and sync are outside the current plan under [ADR-009](adr/009-local-focus-without-school-connections.md). General product release requires no school permission. No mobile app is planned. See the [project README](../README.md) and [learning log](LEARNING.md) for current in-memory task behavior and acceptance. The website presents concepts.
 
 ## Library and teaching boundaries
 
@@ -106,7 +106,7 @@ Do not use a green icon as the only proof of saving. Announce meaningful status 
 
 ## Optional Web data flow
 
-No Web planner or connection dashboard belongs in core navigation. If a school integration needs a Web surface, define its actual task first. Explain source access and uploads separately from local saving. Do not show login or sync controls until that connection exists and passes acceptance.
+No Web planner, school login or connection dashboard belongs in the current plan. External academic-system connections and sync are removed from scope. Keep navigation focused on local planning; historical connection documents do not authorize new controls or code.
 
 ## Implementation and acceptance
 
