@@ -8,6 +8,13 @@
   var status = document.getElementById("demo-status");
   var reset = document.getElementById("reset-preview");
   var lastStatusKey = null;
+  var compact = window.matchMedia('(max-width: 600px)');
+
+  function updateOrientation() {
+    tabs.setAttribute('aria-orientation', compact.matches ? 'horizontal' : 'vertical');
+  }
+  compact.addEventListener('change', updateOrientation);
+  updateOrientation();
 
   function selectTab(button, focus) {
     buttons.forEach(function (item) {
@@ -36,6 +43,8 @@
       var next;
       if (event.key === "ArrowRight") next = (index + 1) % buttons.length;
       if (event.key === "ArrowLeft") next = (index - 1 + buttons.length) % buttons.length;
+      if (!compact.matches && event.key === "ArrowDown") next = (index + 1) % buttons.length;
+      if (!compact.matches && event.key === "ArrowUp") next = (index - 1 + buttons.length) % buttons.length;
       if (event.key === "Home") next = 0;
       if (event.key === "End") next = buttons.length - 1;
       if (next !== undefined) {

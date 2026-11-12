@@ -1,8 +1,8 @@
 # Product scope
 
-Updated: 2026-11-11. Cadence is a **general-purpose local time planner** for personal life, work, study and other daily commitments. Personal plans, tasks, Today and Week are the core. Courses are optional. No account, school identity, semester or organization is required. [ADR-007](adr/007-general-purpose-local-planner.md) records this direction and replaces the earlier university-centered scope and school gate for general Web deployment.
+Updated: 2026-11-12. Cadence is a **general-purpose local time planner** for personal life, work, study and other daily commitments. Personal plans, tasks, Today and Week are the core. Courses are optional. No account, school identity, semester or organization is required. [ADR-007](adr/007-general-purpose-local-planner.md) records this direction and replaces the earlier university-centered scope and school gate for general Web deployment.
 
-[ADR-008](adr/008-small-free-local-product.md) narrows the first release and replaces earlier default choices for UI, drafts and encryption. Web/sync work is considered only when a school connection needs it.
+[ADR-008](adr/008-small-free-local-product.md) narrows the first release and replaces earlier default choices for UI, drafts and encryption. [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic-system connections from the current plan. Web and cloud sync are also outside the development scope.
 
 ## Current state
 
@@ -29,9 +29,9 @@ On first use, explain **Save on this device** and **Temporary use**. Until the u
 
 ## Platforms and visual direction
 
-Desktop is primary: Windows first, then Linux and macOS after each passes native acceptance. No Android/iOS product is planned; Android is legacy scaffolding. Web and synchronization are considered only for a school connection that needs them. There is no general Web planner or personal cloud-sync delivery track.
+Desktop is primary: Windows first, then Linux and macOS after each passes native acceptance. No Android/iOS product is planned; Android is legacy scaffolding. External academic systems, school login, Web delivery and cloud synchronization are outside the current plan. There is no general Web planner or personal cloud-sync delivery track.
 
-Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working controls, without extra wrapper layers. Use a quiet paper-and-ink interface with the existing independent C mark, muted wine `#7C394B`, warm paper `#F6F5F1` and sage `#6F877C`. Everyday examples should include work and personal life as well as study. The brand has no university affiliation. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [DESIGN.md](DESIGN.md).
+Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working controls, without extra wrapper layers. Use a quiet paper-and-ink interface with the existing independent C mark, muted wine `#7C394B`, pure white `#FFFFFF` and graphite text. Paper and sage remain within the artwork. Everyday examples should include work and personal life as well as study. The brand has no university affiliation. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) and [DESIGN.md](DESIGN.md).
 
 ## Optional later work
 
@@ -40,16 +40,15 @@ Keep Flutter shadcn_ui and a shared theme. Introduce it gradually with working c
 | Courses | Start only with the teaching-week and period rules needed by actual samples; single-class changes and filtered sharing can follow separately |
 | Review and reminders | Local planned-time review and opt-in native reminders with tested platform limits; not actual-time tracking |
 | Assisted import | Local CSV/paste and screenshot drafts using RapidOCR; optional cloud AI with personal API keys and multiple provider profiles; review before saving; see [QUICK_IMPORT.md](QUICK_IMPORT.md) |
-| School Web or sync | Consider only if a specific school connection requires it; prefer local read-only import; earlier Web/sync studies are reference material |
-| External connections | Only supported, authorized sources; each connection has its own data-access and retention rules |
+| External academic systems, Web and sync | Removed from the current plan; historical studies are not implementation tasks |
 
-School connections use a documented source boundary that produces editable import candidates. Define actual interfaces only from a permitted source. Do not add a backend, account system or sync queue to local planning. School access, cloud retention and local saving remain separate decisions. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+Optional work follows a usable local release. Do not add a backend, account system, school adapter or sync queue. Choose one extension only for a measured user need.
 
-## Connections and independence
+## Removed connections and independence
 
-General development and release do not need university approval. School authentication, timetable reads, local retention and exports still require the relevant permission when a school connection is pursued. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md) are optional reference material, not the main delivery path.
+School authentication, automatic timetable retrieval and external academic-system adapters are removed from the active scope. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md) are historical references only. Ordinary study entries remain possible as personal plans. General development and release need no university approval.
 
-Do not collect school passwords, scrape without permission or imply institutional endorsement. A declined or unavailable connection must leave the independent local planner useful.
+Do not collect school passwords, build source adapters or imply institutional endorsement. Reconsider an external connection only after a new explicit product decision.
 
 ## First-release limits
 

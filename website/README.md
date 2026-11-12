@@ -1,6 +1,6 @@
 # Cadence website
 
-A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses pure white (#FFFFFF), graphite and a small burgundy accent, with Cadence's independent C mark. Wide margins, serif headings and fine rules keep the journal style. No school identity, university affiliation or particular occupation defines the audience.
+A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses pure white (#FFFFFF), graphite and a burgundy accent, with Cadence's independent C mark. A product preview leads the page; serif accents, fine rules and the original color artwork retain the journal identity. No school identity, university affiliation or particular occupation defines the audience.
 
 The product is in development. The current desktop learning app has basic in-memory tasks. The website uses fictional Today, Week and Tasks views to show the intended direction; it is not a working planner. Calls to action open the preview, product design or roadmap. Do not add download or released-feature claims without a verified release.
 
@@ -8,7 +8,7 @@ The product is in development. The current desktop learning app has basic in-mem
 
 A free, simple local app comes first. Windows is the first release target. macOS and Linux follow checks on each native system. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
 
-Web and synchronization are considered only when a school connection needs them, under [ADR-008](../docs/adr/008-small-free-local-product.md). There is no general Web planner or personal cloud-sync delivery track. General product publication does not require school permission. Authorization applies only to an optional connection to a school, workplace or other external provider. See [ADR-007](../docs/adr/007-general-purpose-local-planner.md) and [the product design](../docs/REDESIGN.md).
+[ADR-009](../docs/adr/009-local-focus-without-school-connections.md) removes external academic systems, school login and automatic timetable retrieval from the current plan. Web delivery and cloud sync are also out of scope. General product publication does not require school permission. See [ADR-007](../docs/adr/007-general-purpose-local-planner.md) and [the product design](../docs/REDESIGN.md).
 
 ## Files
 
@@ -43,11 +43,11 @@ Language selection uses `?lang=` first, then a saved explicit choice, then Japan
 
 Test preview tabs with clicks, arrow keys and Home/End, including visible focus. Task completion changes the count in Today and Tasks. The counter handles zero, one and multiple unfinished tasks. A language change keeps the temporary checkbox state. Reset restores the sample tasks without changing the selected view. Reloading also restores the sample. The preview never saves tasks.
 
-Week shows all seven days, Monday through Sunday. Today and Week share the same fictional Thursday: focus time at 09:00, a project catch-up at 13:00 and reading at 17:00. Saturday has time with a friend; Sunday has a slow morning. The grid keeps readable columns at a minimum width of 680 px and scrolls inside its panel when needed, without widening the page. The local illustration uses responsive WebP sources and a PNG fallback, with explicit dimensions and eager loading for the hero image.
+Week shows all seven days, Monday through Sunday. Today and Week share the same fictional Thursday: focus time at 09:00, a project catch-up at 13:00 and reading at 17:00. Saturday has time with a friend; Sunday has a slow morning. The grid keeps readable columns at a minimum width of 680 px and scrolls inside its panel when needed, without widening the page. The local illustration uses responsive WebP sources and a PNG fallback, with explicit dimensions and lazy loading below the product preview.
 
 ## Data and claims
 
-The current website stores only a language preference. It has no personal planner input, upload, authentication or synchronization. GitHub Pages still processes page requests. The privacy page must distinguish those actual behaviors from the future application's first-use choice, local saving, temporary mode, private JSON backups and optional connections.
+The current website stores only a language preference. It has no personal planner input, upload, authentication or synchronization. GitHub Pages still processes page requests. The privacy page must distinguish those actual behaviors from the future application's first-use choice, local saving, temporary mode, private JSON backups and the current boundary excluding external academic systems.
 
 The first local release uses explicit Save and Cancel. Unsaved forms stay in memory and can be lost on a crash. Local files and private JSON backups are not encrypted. Optional AI help uses a personal API key and may incur provider charges. It is not required for local use. Show the destination and selected content before each send. Keys never enter planner backups. Local saving does not automatically provide a backup. Temporary use must not leave persistent drafts or automatic backups. JSON exports contain private information, and deleting app data cannot remove exported files or copies shared elsewhere. Keep these claims aligned with the implementation as each feature is added.
 
@@ -84,3 +84,15 @@ A dedicated wide preview follows the hero. Three short captions explain the view
 The structure draws on the concise product introduction on [Things](https://culturedcode.com/things/) and the image-led presentation on [Craft](https://www.craft.do/). Cadence retains its own artwork, serif headings and identity. No third-party assets or services were added.
 
 Checks passed: repository links and scripts, website translations and markup, artwork consistency, and Git whitespace checks. Browser checks confirmed pure white backgrounds and color images. Home layouts in all three languages had no page overflow at 320, 390, 600, 850 and 1028 CSS pixels. Wide desktop layouts were also inspected. Privacy layouts passed in all three languages at 390 and 1440 pixels. Tasks, reset, state across language changes, arrow keys, Home/End, FAQ expansion and the privacy return link worked. The 390 px Week view scrolls inside its panel. A stalled browser tab was replaced to finish the checks. JavaScript-disabled behavior and other browser engines were not rechecked.
+
+## 2026-11-12 product preview and local focus
+
+This revision leads with a centered introduction and an interactive desktop concept. The preview uses a vertical tab list above 600 px and a horizontal tab list at smaller widths. Its orientation is exposed to assistive technology; Up/Down works in the vertical layout, with Left/Right and Home/End retained. The original color editorial image now sits below the feature explanation and loads lazily. Original artwork and exports are unchanged.
+
+Wine remains the primary accent on a pure white page. Pale wine, sage and ochre distinguish fictional schedule blocks. Short entrance, tab and hover transitions add feedback; reduced-motion styles remove the motion. The design draws on the direct product presentation of [Todoist](https://www.todoist.com/) and [Things](https://culturedcode.com/things/) while keeping Cadence's identity. No external library, font, tracking script or animation service was added.
+
+The three translations and privacy page reflect [ADR-009](../docs/adr/009-local-focus-without-school-connections.md). External academic systems, school login, automatic timetable retrieval, Web delivery and sync are outside the current plan. The roadmap prioritizes local tasks, personal plans, saving and recovery, followed by usability. The preview remains fictional and does not save edits. This update changes the website and documentation only, not Flutter code.
+
+Browser checks covered the three languages at 320, 390, 600, 601, 850, 1100 and 1440 CSS pixels without page-wide horizontal overflow. Privacy pages passed at 390 and 1440 pixels in all three languages. Checks covered vertical and horizontal tab navigation, Home/End, task completion, state kept during language changes, reset, FAQ expansion and the privacy return link. Week scrolls within a 333 px panel at a 390 px viewport. The original illustration loaded in color. One closed preview tab was replaced to complete inspection.
+
+Repository, website and artwork checks passed. JavaScript-disabled rendering and reduced-motion behavior were inspected in source, not rechecked with browser settings. Screen-reader announcements and other browser engines remain unverified. These are website checks, not product release acceptance.

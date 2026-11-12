@@ -1,5 +1,7 @@
 # Security and data protection
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Scope update: [ADR-008](adr/008-small-free-local-product.md) keeps the first release local, with no saved editor drafts or application-level encryption. Web/service requirements below are conditional on a school connection that needs them, not a general product backlog.
 
 Updated: 2026-11-11. These are requirements for the planned local desktop core and optional Web, sync and school extensions, not completed security checks. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current direction: a general-purpose offline planner without accounts, with an explicit first-use choice between local saving and temporary use. School permission applies only to a school's interfaces and data; ordinary desktop and Web use do not depend on it.

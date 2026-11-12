@@ -6,7 +6,7 @@
 
 <br clear="left">
 
-Cadence is being designed around three views: **Today, Week, and Tasks**. The desktop app should work offline without an account. At first use, people will choose whether to save on their device or use a temporary session. School connections, including Kyushu University, are optional extensions.
+Cadence is being designed around three views: **Today, Week, and Tasks**. The desktop app should work offline without an account. At first use, people will choose whether to save on their device or use a temporary session. External academic-system connections, school login and automatic timetable retrieval are outside the current plan.
 
 **Current status:** the learning app supports task input, validation, addition, completion, deletion, and undo of the latest deletion. Data stays in memory. Lessons 1–10 are accepted. Lessons 11–13 add the paper-and-wine theme, shadcn_ui root integration and a responsive Shad task surface. Analysis, all 27 tests and the Windows debug build pass. Actual-window theme, responsive-layout and keyboard confirmation remain pending. Persistence and the full planner are not implemented. See [learning progress](docs/LEARNING.md) for automated and manual checks.
 
@@ -20,9 +20,9 @@ Cadence is being designed around three views: **Today, Week, and Tasks**. The de
 - Make local saving, temporary use, backup, recovery, and deletion clear.
 - Support Japanese, English, and Chinese, keyboard use, and readable layouts.
 
-These are design goals. The first useful release should prove a small local planning flow before adding advanced features. Course rules and school imports belong to an optional education extension. Web and synchronization are considered only when a school connection needs them. There is no general Web or personal cloud-sync delivery track.
+These are design goals. The first useful release should prove a small local planning flow before adding advanced features. Course-specific rules are possible local work later. External academic-system connections, Web delivery and cloud sync have been removed from the current plan. Prioritize everyday usability and recovery before extensions.
 
-General product releases do not depend on a school. Any school connection needs permission for that specific interface and data. Cadence is independent and has no university endorsement. The current direction is recorded in [ADR-007](docs/adr/007-general-purpose-local-planner.md).
+General product releases do not depend on a school. Historical school-connection notes do not authorize integration work. Cadence is independent and has no university endorsement. The latest scope decision is [ADR-009](docs/adr/009-local-focus-without-school-connections.md).
 
 ## Learn by building
 
@@ -47,7 +47,7 @@ The product UI uses Flutter shadcn_ui, introduced one used control at a time. In
 
 ## Artwork and website
 
-The quiet journal style uses warm paper, muted wine, sage, and graphite. The v2 library has 56 interface icons, 10 state illustrations, an editorial image, patterns, platform icons, and a sharing card. Responsive WebP exports reduce website image size while preserving the original artwork.
+The quiet journal style uses pure white, muted wine and graphite, with paper and sage kept inside the original color artwork. The v2 library has 56 interface icons, 10 state illustrations, an editorial image, patterns, platform icons, and a sharing card. Responsive WebP exports reduce website image size while preserving the original artwork.
 
 The catalogue groups assets by use and offers local search, family filters, size samples, and downloads. Current artwork and retained originals are clearly marked. Both preview sheets are generated from the artwork sources, and the checker detects stale previews. The [catalogue browser check](assets/README.md#catalogue-browser-check) records verified interactions, widths, and remaining limits.
 

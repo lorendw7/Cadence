@@ -1,5 +1,7 @@
 # Setup
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Cadence is a local desktop planner for Windows, Linux, and macOS. These commands run the current learning app. A runner or successful build does not prove runtime support; check each platform on its native host. Android is legacy scaffolding, and mobile apps are outside scope. Web is considered only for a school connection that needs it and is not an implemented target; see [ROADMAP.md](ROADMAP.md).
 
 ## Toolchain

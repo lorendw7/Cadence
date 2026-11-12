@@ -2,7 +2,7 @@
 
 Updated: 2026-11-11. Cadence is a general-purpose local time planner with a **quiet journal** visual style. Work, study and personal life share the same planning space. Courses are an optional kind of commitment. [ADR-007](adr/007-general-purpose-local-planner.md) sets the current scope. Cadence has its own identity and does not imply endorsement by a school or other institution.
 
-The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. The core is an offline desktop app without accounts. Web and sync are considered only for a school connection that needs them; mobile apps are excluded.
+The product UI uses Flutter shadcn_ui under [ADR-008](adr/008-small-free-local-product.md). Preserve the journal style and integrate the selected controls gradually without extra wrapper layers. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) defines component responsibilities. The core is an offline desktop app without accounts. External academic systems, school login, Web delivery and sync are outside the current plan under [ADR-009](adr/009-local-focus-without-school-connections.md); mobile apps are excluded.
 
 ## Palette
 
@@ -67,7 +67,7 @@ On first use, offer **Save on this device** and **Temporary use** before opening
 
 The same choice applies if a browser client is later built. Show truthful write results and backup/clearing guidance. Private JSON backup is separate from filtered sharing. Import preview explains replacement scope. No account, backend or cloud-saved state is implied; optional sync needs a separate opt-in.
 
-All demos use fictional entries. School connections, including a possible Kyushu University adapter, are optional extensions whose permissions cover their interfaces and data only. See [SECURITY.md](SECURITY.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
+All demos use fictional entries. External academic-system connections, including Kyushu adapters, are removed from the current scope. The school research remains historical reference only. See [SECURITY.md](SECURITY.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
 
 ## Language, access and motion
 

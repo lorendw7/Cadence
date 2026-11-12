@@ -1,5 +1,7 @@
 # Quality and acceptance
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Scope update: [ADR-008](adr/008-small-free-local-product.md) defines the first-release gates. Web/service checks below apply only if a school connection needs those parts. They are not tasks for a general Web or personal sync product.
 
 [ADR-007](adr/007-general-purpose-local-planner.md) defines the current scope: a general-purpose local offline planner without accounts. First use offers Save on this device and Temporary use before reading saved planning data. School adapters are optional; Web and sync are considered only if a selected connection needs them. School permission applies only to the relevant school interfaces and data, not general desktop or Web delivery.

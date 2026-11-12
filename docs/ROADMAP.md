@@ -1,6 +1,8 @@
 # Roadmap
 
-Updated: 2026-11-11. [ADR-008](adr/008-small-free-local-product.md) sets a small free local release. Tasks, personal plans, Today and Week come first. The learner writes the core one lesson at a time. This is a plan, not shipped behavior.
+Updated: 2026-11-12. [ADR-008](adr/008-small-free-local-product.md) sets a small free local release. Tasks, personal plans, Today and Week come first. The learner writes the core one lesson at a time. This is a plan, not shipped behavior.
+
+Current scope: [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic-system connections. There is no school login, automatic timetable retrieval, Web planner or cloud-sync milestone. Prioritize usability and recovery before extension work.
 
 ## Repository baseline
 
@@ -73,11 +75,9 @@ Acceptance: cloud help reduces review effort on measured samples, produces only 
 
 Select one small improvement from real trial feedback: course-week rules, running-app reminders, simple review totals, another desktop platform or a proven UI need. Define its acceptance before adding models or packages. Advanced repeat exceptions, saved drafts, encryption, custom categories and background reminders are not first-release gates.
 
-## School connections: only if needed
+## External academic systems: removed from scope
 
-Keep the source boundary as a document contract in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md): authorized read → normalized candidates → review → local commit. No empty interface code is required now.
-
-Web and synchronization work starts only if a selected school connection needs it. A file export or local read adapter may be sufficient. Define the exact Web surface or update direction, permission, conflict behavior, retention and operating cost before adopting any part of [SYNC.md](SYNC.md). There is no general Web client or personal cloud-sync backlog. The local app and existing concept site do not wait for school permission.
+Do not schedule school login, timetable retrieval, source adapters, Web delivery or synchronization. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and [SYNC.md](SYNC.md) remain historical studies. They are not a backlog. A future reconsideration needs a new product decision.
 
 ## Maintenance and estimates
 

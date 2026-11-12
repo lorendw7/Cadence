@@ -1,5 +1,7 @@
 # Optional university connection reference
 
+> Historical reference only (2026-11-12). [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and sync from the current plan. The material below is retained for history, not as active requirements or implementation tasks.
+
 Updated: 2026-11-11. Design and consultation preparation only. No school permission, supervisor commitment or usable timetable interface has been confirmed. This document describes an optional connection for the [general planning product](PRODUCT.md); Cadence is not an official university service.
 
 The general local planner does not require school permission for publication or use. Web/sync work is now considered only if a school connection needs it; this scope choice does not give schools control over the independent local release. [ADR-007](adr/007-general-purpose-local-planner.md) replaces the earlier school-gated Web direction. This document retains Kyushu University research only as an optional integration reference, not a product audience or release requirement. Authentication, school-data reading, retention and export each need permission for that connection. Preview-and-save flows below apply only when the user chooses saving and retention is permitted. Temporary viewing must not write to a database, persistent draft or automatic backup.

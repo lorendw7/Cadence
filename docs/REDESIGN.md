@@ -10,7 +10,7 @@ Cadence is a local time planner for everyday work, personal life, study and othe
 
 Target Windows, Linux and macOS. Complete a usable Windows flow first, validate each other platform on its native host, and distribute tested packages through GitHub Releases. No Android/iOS product is planned; the Android project is legacy scaffolding.
 
-Web and synchronization are considered only when a school connection needs them. Neither is a general local-product delivery track. General local-product development and release require no school approval. School or other third-party connections still need their own permissions. The UI uses Flutter shadcn_ui, with muted wine #7C394B, warm paper #F6F5F1 and sage #6F877C; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+[ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic-system connections, school login, automatic timetable retrieval, Web delivery and sync from the active plan. General local-product development and release require no school approval. The UI uses Flutter shadcn_ui, with muted wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 Core desktop planning needs no account, backend or runtime network connection. Once installed, it can use chosen local data offline. A download and any optional network service have separate delivery needs. Do not require login, connection setup or a semester wizard before the first task or plan.
 
@@ -125,7 +125,7 @@ Holidays are reference markers. University calendars and public holidays differ;
 
 This section adds course-specific sharing to the private recovery flow. Do not require it for the first general local planner.
 
-Files from classmates, templates and future approved school sources all need validation, preview and confirmation. A file is a snapshot, not a subscription. Approved school refresh shows source, age and changes; it preserves private notes and local edits until conflicts are resolved. Failed or incomplete responses do not mean cancellation or deletion.
+User-chosen local files and templates need validation, preview and confirmation. A file is a snapshot, not a subscription. No school-source refresh or automatic retrieval is planned.
 
 Timetable sharing and full backup have separate actions and formats:
 
@@ -146,7 +146,7 @@ Do not promise that uninstall removes desktop data. Offer the data location and 
 
 ## Optional browser-local version
 
-There is no general Web planner delivery track. Keep the existing static concept site. Consider a Web surface only when a concrete school connection needs one. Do not assume this means a full browser planner, cloud database or bidirectional sync. Define scope and permission from that school's interface first; see [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+Keep the existing static concept site. Web delivery, cloud databases, synchronization and external school interfaces are outside the current plan. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) is historical reference only.
 
 ## Technology and implementation limits
 
@@ -158,7 +158,7 @@ Optional desktop reminders may run while the process is active; the first Web ca
 
 Treat locations, private plans and backups as sensitive. Minimize fields, validate untrusted input, isolate credentials where used, redact diagnostics and test deletion/recovery. A later backend needs object-level authorization, session security and cross-user isolation. These are requirements, not implemented safeguards; see [SECURITY.md](SECURITY.md). Architecture and data constraints are in [ARCHITECTURE.md](ARCHITECTURE.md) and [DATABASE.md](DATABASE.md).
 
-School connections are optional adapters. Authentication, timetable reads, retention and exports need their relevant permissions under [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md). A declined connection never blocks general product development, release or independent local use.
+External academic-system adapters and school authentication are removed from scope. Do not implement them from the historical [connection study](UNIVERSITY_INTEGRATION.md).
 
 ## Delivery and acceptance
 
@@ -166,9 +166,9 @@ School connections are optional adapters. Authentication, timetable reads, reten
 2. Add personal timed/all-day plans, shared Today/Week, bounded repeats, task deadlines and overlap warnings without semester setup.
 3. Complete private export/import, tested recovery, migrations, accessible three-language controls and clear storage explanations.
 4. Run a Windows trial across different daily routines, then validate Linux/macOS on native hosts. Publish only tested packages with support and upgrade/recovery guidance.
-5. Select local extensions from trial feedback. Consider Web or synchronization only for a school connection that needs them; estimate and validate that connection separately.
+5. Select local extensions from trial feedback. Do not add external academic systems, Web delivery or synchronization to this plan.
 
-The learner continues desktop work; Web is not a required lesson or release milestone. Use fictional data in demonstrations and state real feature limits. School discussions apply only to an optional school connection and do not gate the independent product.
+The learner continues desktop work; Web is not a required lesson or release milestone. Use fictional data in demonstrations and state real feature limits. There is no school-connection workstream.
 
 Acceptance means tested behavior works on the target system, not that a folder exists or a build succeeds. See [ROADMAP.md](ROADMAP.md) for stages and estimates.
 

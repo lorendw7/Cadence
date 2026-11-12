@@ -1,5 +1,7 @@
 # Repository map and maintenance
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Updated: 2026-11-11. Keep paths stable so lesson links and platform projects continue to work. [LEARNING.md](LEARNING.md) owns current progress; [CURRICULUM.md](CURRICULUM.md) owns teaching estimates. Older lesson counts are historical.
 
 ## Ownership

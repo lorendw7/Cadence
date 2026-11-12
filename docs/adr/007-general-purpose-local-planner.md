@@ -1,5 +1,7 @@
 # ADR-007: A general-purpose local planner
 
+Scope update (2026-11-12): [ADR-009](009-local-focus-without-school-connections.md) supersedes the school-connection exception below. External academic systems, Web and sync are outside the active plan. Other local-product decisions remain.
+
 Later decision: [ADR-008](008-small-free-local-product.md) keeps shadcn_ui and narrows the first release to explicit saves, memory-only unsaved forms and ordinary local storage. Earlier saved-draft, encryption and broad Web/sync requirements below are historical where they conflict. Web/sync is now considered only for a school connection that needs it.
 
 **Status:** Accepted product direction; implementation remains staged and learner-led.

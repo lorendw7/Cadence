@@ -1,5 +1,7 @@
 # Application contracts
 
+Scope update (2026-11-12): [ADR-009](adr/009-local-focus-without-school-connections.md) removes external academic systems, school login, timetable retrieval, Web delivery and cloud sync from the current plan. Any connection or browser-app proposals below are historical reference, not active requirements. Local planning, recovery and usability remain the priorities.
+
 Updated: 2026-11-11. Planned behavior under [ADR-008](adr/008-small-free-local-product.md), not implemented. Start with one desktop workspace and one writer. These contracts protect local data without requiring the earlier draft-recovery, multi-tab or sync machinery.
 
 ## Contract introduction and ownership
