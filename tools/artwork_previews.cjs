@@ -77,7 +77,7 @@ async function previewArtwork(root) {
   const asset = (...parts) => path.join(root, 'assets', ...parts);
   const icons = (await files(root, 'icons', '.svg')).filter(name => name !== 'sprite.svg');
   const states = await files(root, 'illustrations', '.svg');
-  const stateOrder = ['empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
+  const stateOrder = ['empty-tasks-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
   const orderedStates = [...states].sort((a, b) => stateOrder.indexOf(a.slice(0, -4)) - stateOrder.indexOf(b.slice(0, -4)));
   const compact = sheet();
   compact.text(64, 65, 'CADENCE / ARTWORK LIBRARY / 02', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
@@ -97,11 +97,12 @@ async function previewArtwork(root) {
   compact.text(64, 542, `${icons.length} interface icons / 24 px grid / 1.75 px strokes`, 15, '#666761');
   compact.image(asset('illustrations', 'journal-editorial.png'), 826, 202, 550, 367);
   compact.text(64, 602, 'STATES / QUIET GUIDANCE', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
-  orderedStates.forEach((name, i) => compact.card(asset('illustrations', name), 64 + (i % 5) * 266, 628 + Math.floor(i / 5) * 190, 248, 174, name.slice(0, -4)));
-  compact.rule(1022);
-  compact.text(64, 1060, 'SVG sources / PNG, ICO, ICNS and WebP exports / Generated from the current library', 14, '#666761');
-  compact.text(64, 1087, 'Project-owned vectors under MIT. Editorial image provenance: assets/ART_PROMPTS.md.', 13, '#666761');
-  await compact.render(asset('preview.png'), 1120);
+  orderedStates.forEach((name, i) => compact.card(asset('illustrations', name), 64 + (i % 6) * 222, 628 + Math.floor(i / 6) * 190, 202, 174, name.slice(0, -4), {nativeSize: name === 'empty-tasks-compact.svg'}));
+  const statesBottom = 628 + Math.ceil(orderedStates.length / 6) * 190;
+  compact.rule(statesBottom + 14);
+  compact.text(64, statesBottom + 52, 'SVG sources / PNG, ICO, ICNS and WebP exports / Generated from the current library', 14, '#666761');
+  compact.text(64, statesBottom + 79, 'Project-owned vectors under MIT. Editorial image provenance: assets/ART_PROMPTS.md.', 13, '#666761');
+  await compact.render(asset('preview.png'), statesBottom + 112);
 
   const library = sheet();
   library.text(64, 65, 'CADENCE / ARTWORK LIBRARY / 02', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
@@ -123,7 +124,7 @@ async function previewArtwork(root) {
   const toEntries = (folder, names) => names.map(name => ({file: asset(folder, name), name, label: name.replace(/\.(svg|png)$/, '')}));
   drawSection('Brand', 'Use the C mark and its rhythm dot together. Paper marks need a dark surface.', toEntries('brand', brandFiles.filter(name => !originals.has(name))), 4, 212, entry => ({inverse: entry.name.includes('paper') && !entry.name.includes('icon')}));
   drawSection('Interface icons', `${icons.length} symbols at 24 px. Controls still need text labels and generous hit areas.`, toEntries('icons', icons), 8, 116, () => ({nativeSize: true}));
-  drawSection('Empty states and feedback', 'Decorative illustrations accompany a plain explanation and a relevant next action.', toEntries('illustrations', orderedStates), 5, 205);
+  drawSection('Empty states and feedback', 'Decorative illustrations accompany a plain explanation and a relevant next action.', toEntries('illustrations', orderedStates), 5, 205, entry => ({nativeSize: entry.name === 'empty-tasks-compact.svg'}));
   drawSection('Paper patterns', 'Repeated 32 px tiles. Keep text, forms and timelines on plain surfaces.', toEntries('patterns', await files(root, 'patterns', '.svg')), 3, 180, () => ({tile: true}));
   drawSection('Editorial artwork and sharing', 'The editorial master is preserved. The sharing card identifies the project as in development.', [
     {file: asset('illustrations', 'journal-editorial.png'), label: 'journal-editorial / original PNG'},

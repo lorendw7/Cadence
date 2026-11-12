@@ -153,6 +153,16 @@ def states():
         decor = '<path d="M43 202h234" stroke="#DDDCD5"/><circle cx="58" cy="66" r="3" fill="#6F877C"/>'
         write(ART / 'illustrations' / (name + '.svg'), svg(f'<g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{body}{decor}</g>', 320, 240, name))
 
+    # A small white-canvas alternative. Blank boxes mean no tasks, not completion.
+    compact = ('<rect x="28" y="8" width="40" height="52" rx="4" fill="#FFFFFF" stroke="#87838A"/>'
+               '<path d="M38 8v7h20V8" stroke="#7C394B"/>'
+               '<rect x="37" y="25" width="6" height="6" rx="1.5" stroke="#7C394B"/>'
+               '<rect x="37" y="40" width="6" height="6" rx="1.5" stroke="#87838A"/>'
+               '<path d="M49 28h10m-10 15h10M22 65h52" stroke="#E8E8EB"/>')
+    write(ART / 'illustrations/empty-tasks-compact.svg', svg(
+        f'<g fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">{compact}</g>',
+        96, 72, 'Empty task list'))
+
 
 def patterns():
     for name, body in {
@@ -185,4 +195,4 @@ if __name__ == '__main__':
     patterns()
     social()
     catalogue()
-    print(f'Built brand family, {len(ICONS)} icons, 10 states, 3 patterns, social card and catalogue.')
+    print(f'Built brand family, {len(ICONS)} icons, 11 states, 3 patterns, social card and catalogue.')

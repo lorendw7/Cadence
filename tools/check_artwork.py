@@ -88,7 +88,7 @@ for entry in manifest['files']:
             f'Missing or invalid artwork role: {name}')
     require(entry.get('status') in {'current', 'retained'},
             f'Missing or invalid artwork status: {name}')
-    require(entry.get('previewSurface') in {'paper', 'ink'},
+    require(entry.get('previewSurface') in {'paper', 'ink', 'white'},
             f'Missing or invalid preview surface: {name}')
     for key in ['use', 'group']:
         require(isinstance(entry.get(key), str) and bool(entry[key].strip()),

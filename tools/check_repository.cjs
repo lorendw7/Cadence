@@ -82,7 +82,7 @@ for (const file of files) {
       checkLink(file, match[1]);
     }
   }
-  if (/^(website\/.*\.js|tools\/.*\.cjs)$/.test(file)) {
+  if (/^((?:website|assets)\/.*\.js|tools\/.*\.cjs)$/.test(file)) {
     try {
       execFileSync(process.execPath, ['--check', full], {stdio: 'pipe'});
     } catch (error) {

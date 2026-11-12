@@ -1,14 +1,16 @@
 # Cadence artwork library
 
-Updated: 2026-11-11. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers the desktop identity, navigation, editing, data controls, empty states and concept website; some assets prepare for optional later extensions. Browse the [catalogue](catalog.html), [visual overview](preview.png) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
+Updated: 2026-11-12. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers the desktop identity, navigation, editing, data controls, empty states and concept website; some assets prepare for optional later extensions. Browse the [catalogue](catalog.html), [visual overview](preview.png), [Tasks design handoff](ui/README.md) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
 
 ## Visual direction
 
 Keep the original C mark and its rhythm dot. Use muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C` and ink `#2F3033`. Interface icons use a 24 × 24 grid with 1.75-unit round strokes. Sparse illustrations support guidance and empty states. Keep text, forms and timelines on plain surfaces.
 
-The same visual family serves work, home plans and study. Course and semester symbols remain available for optional course tools; they are not required navigation or setup. The core is local and offline without an account, with an explicit saving choice. Web, sync and school adapters are separate later work under [ADR-007](../docs/adr/007-general-purpose-local-planner.md). No new artwork is needed for this change of audience.
+For the application, use the approved white canvas `#FFFFFF`, wine accent and neutral rules. Paper and sage remain editorial artwork colors. The catalogue shows these palettes separately and marks seven sources for the current Tasks design study. The [study](ui/task-study.html) compares wide and compact layouts, four sample states and three sample languages. It is local design documentation, not a second hosted website or implemented Flutter UI.
 
-Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4E` for green text on warm paper. Exact color-pair measurements and usage are in [the design system](../docs/DESIGN.md#color-pairs).
+The same visual family serves work, home plans and study. Course and semester symbols remain available for optional course tools; they are not required navigation or setup. The planned core is local and offline without an account, with an explicit saving choice. The current learning app keeps tasks in memory. [ADR-010](../docs/adr/010-open-multiplatform-free-first.md) targets desktop first, with Web and mobile later. Sync and optional ads wait for review after store launch. School adapters remain excluded.
+
+Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4E` for green text on warm paper. White-canvas color-pair measurements and usage are in [the design system](../docs/DESIGN.md#color-pairs).
 
 ## Contents
 
@@ -16,7 +18,8 @@ Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4
 |---|---|---|
 | `brand/` | Main, paper and dark icons; single-color marks; two lockups; retained original SVGs | Brand, launcher, title bar and website |
 | `icons/` | 56 SVGs and one sprite | Navigation, categories, editing, files, settings and feedback |
-| `illustrations/` | Ten 320 × 240 SVG states and a 1536 × 1024 editorial PNG | Empty views, completion, search, import, save failure and recovery |
+| `illustrations/` | Ten 320 × 240 SVG states, one 96 × 72 compact task state and a 1536 × 1024 editorial PNG | Empty views, completion, search, import, save failure and recovery |
+| `ui/` | Editable local HTML/CSS/JavaScript study and English handoff | Task UI design, sample states, spacing and artwork selection; no app implementation |
 | `patterns/` | Three seamless 32 × 32 SVG tiles | Decorative dots, grid and ruled paper |
 | `platform/png/` | 16–1024 px PNG exports | Desktop icons and future Web resources |
 | `platform/` | Multi-size ICO and 128–1024 px ICNS | Windows and macOS packaging |
@@ -28,11 +31,13 @@ The built-in image generator produced the editorial illustration; its original P
 
 The [catalogue](catalog.html) groups icons by purpose. Search by name or use, or choose a family. Each card shows its intended use, dimensions, format and file size. Icon samples appear at 20, 24 and 32 px. Platform PNGs are ordered by pixel size. Original brand files remain at their existing paths in a separate retained section. The sprite, ICO and ICNS files also have download cards.
 
+The Tasks starter links clear active filters and reveal the chosen source. The matching card carries an application-use note. These links reuse original paths rather than copying artwork into another bundle. Icons preview on white; inverse marks keep their dark preview. The small empty-list note uses the white-canvas palette and remains separate from the larger paper illustration.
+
 Search and filters run locally without storage. With JavaScript disabled, all cards and downloads remain available. `catalog.css` and `catalog.js` are editable catalogue files; `tools/artwork_catalog.py` supplies the shared descriptions and generates the HTML and manifest. Do not edit the generated HTML by hand.
 
 Choose state illustrations by meaning. `empty-week` contains no sample event. `import-preview` uses a magnifier for pending review, not a success check. `no-review` contains no measured statistics. `all-done` remains separate from an empty task list. These are prepared assets, not implemented application behavior.
 
-The manifest records each asset's role, current or retained status, group, use, dimensions where available, and preview surface. Exports name their source. The [overview](preview.png) and [full contact sheet](preview-library.png) are generated from the library by `tools/artwork_previews.cjs`. They are not browser screenshots. Their input and output hashes in the manifest let the checker detect stale previews. A hash is a fingerprint of a file's bytes.
+The manifest records each asset's role, current or retained status, group, use, dimensions where available, and preview surface. `palette` describes editorial colors; `appPalette` records application colors. Selected sources include `appUse` guidance. Exports name their source. The [overview](preview.png) and [full contact sheet](preview-library.png) are generated from the library by `tools/artwork_previews.cjs`. They are not browser screenshots. Their input and output hashes in the manifest let the checker detect stale previews. A hash is a fingerprint of a file's bytes.
 
 ## Website delivery
 
@@ -54,15 +59,15 @@ The manifest separates editable artwork from `webExports`, which record source, 
 - The homepage and privacy page use the v2 identity and browser icons. The homepage uses local editorial artwork, feature icons and the sharing card.
 - Windows `Runner.rc` references `cadence-v2.ico`; macOS `Contents.json` references v2 PNGs. Original files remain available. System icon caches and installed packages need native platform checks.
 - Linux SVG and PNG assets are ready. A later installer must place them in the icon theme and reference them from its desktop entry. No installer was added.
-- Flutter page theming remains a learner exercise. No SVG package or unused asset bundle is installed. Native launcher resources do not require a Flutter asset declaration.
-- Android is legacy scaffolding, not a product target. The 180 px touch icon supports browser bookmarks, not a mobile application.
+- The learner owns Flutter page theming and asset integration. The current UI uses Material and shadcn_ui controls; this artwork pass adds no Flutter SVG package or asset bundle. Native launcher resources do not require a Flutter asset declaration.
+- Android scaffolding is not a verified mobile release. Android and iOS are later targets under ADR-010. The 180 px touch icon supports browser bookmarks, not a mobile application.
 
 ## Usage
 
 1. Show interface icons at 20 or 24 px. Give controls at least 40–44 px hit areas. Graphic size and hit area are separate.
 2. When visible text names a control, use `alt=""` for its decorative image. Give icon-only buttons localized names. Never use color alone for completion, conflict or errors.
 3. Standalone icon SVGs default to ink. Sprite instances use their host `color`; inline copies can override the root color. An external `<img>` does not inherit surrounding text color.
-4. Show state illustrations around 160–240 px wide, next to real text and an action. The artwork contains no language-specific text. `all-done` means completion, not an empty list with no tasks.
+4. Show large state illustrations around 160–240 px wide, next to real text and an action. Use `empty-tasks-compact` at 96 × 72 px for the white task surface. The artwork contains no language-specific text. `all-done` means completion, not an empty list with no tasks.
 5. Faint illustration lines are decorative. Do not reuse them as required control boundaries or error indicators. `save-error` still needs a text explanation and retry action.
 6. Dark and inverse brand variants do not imply a finished dark theme. Check each actual theme surface separately.
 7. Keep the C mark and dot together. Minimum icon size is 16 px; show lockups at least 160 px wide. Preserve aspect ratio and clear space.
@@ -100,6 +105,8 @@ From the repository root, `python -m http.server 8000 --bind 127.0.0.1` serves t
 The 2026-11-11 library organization pass visually checked both generated sheets and passed the artwork, website and repository checks. Deliberately altered data also confirmed that the checker rejects a changed sprite stroke, a stale preview fingerprint and a missing catalogue card. Those checks did not change the repository files. The browser check below completed on a local server. This artwork work did not run Flutter checks or native platform builds.
 
 ### Catalogue browser check
+
+The 2026-11-12 design handoff pass checked all 97 cards at 320, 390, 640, 641, 900, 901 and 1440 px with no page-wide horizontal overflow. Combined search and family filtering found the compact empty state; an unmatched query showed zero results. Starter shortcuts reset both filters, revealed the source and focused its download link. A focus loss caused by the default anchor jump was fixed and checked again. Reset restored all cards and focused search; Tab then reached Family and Reset in order. The downloaded compact SVG matched its source SHA-256 fingerprint. No browser warnings or errors were recorded. The regenerated overview was visually reviewed. See the separate [Tasks study results](ui/README.md#browser-review-on-2026-11-12). These checks do not replace the untested cases listed below.
 
 Checked on 2026-11-11 in the in-app browser, using the current generated catalogue and a local HTTP server.
 

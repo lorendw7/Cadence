@@ -31,6 +31,18 @@
     filter();
     search.focus();
   });
+  document.querySelectorAll('.starter a[href^="#asset-"]').forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      search.value = '';
+      family.value = 'all';
+      filter();
+      const card = document.getElementById(link.hash.slice(1));
+      history.pushState(null, '', link.hash);
+      card.scrollIntoView({block: 'start'});
+      card.querySelector('a[download]').focus({preventScroll: true});
+    });
+  });
   document.getElementById('filters').hidden = false;
   filter();
 })();

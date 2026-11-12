@@ -28,6 +28,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | [Statistics](STATISTICS.md) | Local planned-time and task calculations |
 | [Notifications](NOTIFICATIONS.md) | Later local reminders and platform checks |
 | [Artwork](../assets/README.md) | Sources, searchable catalogue, state guidance, generated previews, and exports |
+| [Tasks design handoff](../assets/ui/README.md) | Local wide/compact study, sample states, color roles and a small artwork set; not Flutter implementation |
 | [Image provenance](../assets/ART_PROMPTS.md) | Source and prompt for the editorial illustration |
 | [Website](../website/README.md) | Static concept site, translations, and publication |
 
