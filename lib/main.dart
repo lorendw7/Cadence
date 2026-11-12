@@ -3,7 +3,20 @@ import 'package:cadence/domain/coursework/planner_task.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 const Color cadenceWine = Color(0xFF7C394B);
-const Color cadencePaper = Color(0xFFF6F5F1);
+const Color cadenceWineWash = Color(0xFFF5EEF0);
+const Color cadencePaper = Color(0xFFFFFFFF);
+const Color cadenceSurface = Color(0xFFFAFAFA);
+const Color cadenceInk = Color(0xFF2F3033);
+const Color cadenceMuted = Color(0xFF6B6B70);
+const Color cadenceRule = Color(0xFFE8E8EB);
+const Color cadenceInputBoundary = Color(0xFF87838A);
+const cadenceFontFallback = [
+  'Microsoft YaHei',
+  'PingFang SC',
+  'Hiragino Sans',
+  'Noto Sans CJK SC',
+  'Noto Sans CJK JP',
+];
 
 void main() {
   runApp(const CadenceApp());
@@ -17,9 +30,22 @@ class CadenceApp extends StatelessWidget {
     return ShadApp.custom(
       theme: ShadThemeData(
         brightness: Brightness.light,
+        textTheme: ShadTextTheme(
+          family: 'Segoe UI',
+        ).apply(fontFamilyFallback: cadenceFontFallback),
         colorScheme: const ShadZincColorScheme.light(
           background: cadencePaper,
+          foreground: cadenceInk,
           primary: cadenceWine,
+          primaryForeground: cadencePaper,
+          secondary: cadenceSurface,
+          secondaryForeground: cadenceInk,
+          muted: cadenceSurface,
+          mutedForeground: cadenceMuted,
+          accent: cadenceWineWash,
+          accentForeground: cadenceInk,
+          border: cadenceRule,
+          input: cadenceInputBoundary,
           ring: cadenceWine,
         ),
       ),
@@ -28,8 +54,39 @@ class CadenceApp extends StatelessWidget {
           title: 'Cadence',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: cadenceWine),
+            fontFamily: 'Segoe UI',
+            fontFamilyFallback: cadenceFontFallback,
+            colorScheme: ColorScheme.fromSeed(seedColor: cadenceWine).copyWith(
+              primary: cadenceWine,
+              onPrimary: cadencePaper,
+              surface: cadencePaper,
+              onSurface: cadenceInk,
+              onSurfaceVariant: cadenceMuted,
+              outline: cadenceInputBoundary,
+              outlineVariant: cadenceRule,
+              surfaceTint: Colors.transparent,
+            ),
             scaffoldBackgroundColor: cadencePaper,
+            dividerTheme: const DividerThemeData(
+              color: cadenceRule,
+              thickness: 1,
+              space: 1,
+            ),
+            appBarTheme: const AppBarTheme(
+              backgroundColor: cadencePaper,
+              foregroundColor: cadenceInk,
+              surfaceTintColor: Colors.transparent,
+              elevation: 0,
+              scrolledUnderElevation: 0,
+              titleSpacing: 24,
+              titleTextStyle: TextStyle(
+                color: cadenceInk,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Segoe UI',
+                letterSpacing: -0.5,
+              ),
+            ),
           ),
           localizationsDelegates: const [GlobalShadLocalizations.delegate],
           builder: (context, child) {
@@ -50,7 +107,6 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
-  int practiceCount = 0;
   int nextTaskNumber = 1;
   PlannerTask? lastDeletedTask;
   int lastDeletedIndex = 0;
@@ -109,87 +165,83 @@ class _TasksPageState extends State<TasksPage> {
     final theme = ShadTheme.of(context);
     final taskHeader = Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text('任务', style: theme.textTheme.h2),
+        Text(
+          '任务',
+          style: theme.textTheme.h2.copyWith(
+            color: cadenceInk,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        Text('练习次数：$practiceCount'),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  practiceCount = 0;
-                });
-              },
-              child: const Text('归零'),
-            ),
-            ShadButton(
-              onPressed: () {
-                setState(() {
-                  practiceCount += 1;
-                });
-              },
-              child: const Text('加1'),
-            ),
-            ShadButton.outline(
-              onPressed: lastDeletedTask == null ? null : undoDelete,
-              child: const Text('撤销删除'),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final titleInput = Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ShadInput(
-                    controller: titleController,
-                    placeholder: const Text('任务标题'),
+        const SizedBox(height: 24),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final titleInput = Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ShadInput(
+                  controller: titleController,
+                  placeholder: const Text('任务标题'),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 14,
                   ),
-                  if (titleError != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        titleError!,
-                        style: TextStyle(color: theme.colorScheme.destructive),
-                      ),
+                ),
+                if (titleError != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      titleError!,
+                      style: TextStyle(color: theme.colorScheme.destructive),
                     ),
-                ],
-              );
+                  ),
+              ],
+            );
 
-              final addButton = ShadButton(
-                onPressed: addTask,
-                child: const Text('添加任务'),
-              );
+            final addButton = ShadButton(
+              height: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+              onPressed: addTask,
+              child: const Text('添加任务', style: TextStyle(height: 1.5)),
+            );
 
-              if (constraints.maxWidth < 360) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [titleInput, const SizedBox(height: 8), addButton],
-                );
-              }
-
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: titleInput),
-                  const SizedBox(width: 8),
-                  addButton,
-                ],
+            if (constraints.maxWidth < 360) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [titleInput, const SizedBox(height: 12), addButton],
               );
-            },
-          ),
+            }
+
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: titleInput),
+                const SizedBox(width: 12),
+                addButton,
+              ],
+            );
+          },
         ),
+        const SizedBox(height: 24),
+        const Divider(),
+      ],
+    );
+
+    final taskFooter = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const SizedBox(height: 24),
+        ShadButton.ghost(
+          height: 0,
+          foregroundColor: cadenceWine,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          onPressed: lastDeletedTask == null ? null : undoDelete,
+          child: const Text('撤销删除'),
+        ),
+        const SizedBox(height: 32),
       ],
     );
 
@@ -197,9 +249,11 @@ class _TasksPageState extends State<TasksPage> {
       slivers: [
         SliverToBoxAdapter(child: taskHeader),
         if (tasks.isEmpty)
-          const SliverFillRemaining(
-            hasScrollBody: false,
-            child: Center(child: Text('暂无任务，添加一条吧')),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 48),
+              child: Text('暂无任务，添加一条吧'),
+            ),
           )
         else
           SliverList.builder(
@@ -230,36 +284,80 @@ class _TasksPageState extends State<TasksPage> {
               );
             },
           ),
+        SliverToBoxAdapter(child: taskFooter),
       ],
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Cadence')),
+      appBar: AppBar(
+        title: const Text('Cadence'),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(),
+        ),
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Row(
             children: [
               if (constraints.maxWidth >= 640)
-                SizedBox(
-                  width: 160,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
+                Container(
+                  width: 184,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: cadencePaper,
+                    border: Border(right: BorderSide(color: cadenceRule)),
+                  ),
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 32,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text('工作区', style: theme.textTheme.muted),
                         const SizedBox(height: 12),
-                        ListTile(
-                          leading: const Icon(Icons.task_alt),
-                          title: const Text('任务'),
-                          selected: true,
-                          selectedColor: theme.colorScheme.primary,
+                        Material(
+                          color: Colors.transparent,
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 4,
+                            ),
+                            minLeadingWidth: 20,
+                            horizontalTitleGap: 12,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            leading: const Icon(Icons.task_alt, size: 20),
+                            title: const Text('任务'),
+                            selected: true,
+                            selectedTileColor: cadenceWineWash,
+                            selectedColor: theme.colorScheme.primary,
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-              Expanded(child: taskContent),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 840),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        constraints.maxWidth >= 720 ? 32 : 16,
+                        constraints.maxWidth >= 720 ? 32 : 24,
+                        constraints.maxWidth >= 720 ? 32 : 16,
+                        0,
+                      ),
+                      child: taskContent,
+                    ),
+                  ),
+                ),
+              ),
             ],
           );
         },
@@ -283,32 +381,39 @@ class TaskRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      leading: ShadCheckbox(
-        value: task.isCompleted,
-        onChanged: onCompletionChanged,
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(color: cadenceRule)),
       ),
-      title: Text(
-        task.title,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: task.isCompleted
-            ? theme.textTheme.muted.copyWith(
-                decoration: TextDecoration.lineThrough,
-              )
-            : theme.textTheme.p,
-      ),
-      subtitle: Text(
-        task.isCompleted ? '已完成' : '未完成',
-        style: theme.textTheme.muted,
-      ),
-      trailing: Tooltip(
-        message: '删除任务',
-        child: ShadIconButton.ghost(
-          onPressed: onDelete,
-          foregroundColor: theme.colorScheme.destructive,
-          icon: const Icon(Icons.delete_outline),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
+        minLeadingWidth: 24,
+        horizontalTitleGap: 16,
+        leading: ShadCheckbox(
+          value: task.isCompleted,
+          onChanged: onCompletionChanged,
+        ),
+        title: Text(
+          task.title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: task.isCompleted
+              ? theme.textTheme.muted.copyWith(
+                  decoration: TextDecoration.lineThrough,
+                )
+              : theme.textTheme.p,
+        ),
+        subtitle: Text(
+          task.isCompleted ? '已完成' : '未完成',
+          style: theme.textTheme.muted,
+        ),
+        trailing: Tooltip(
+          message: '删除任务',
+          child: ShadIconButton.ghost(
+            onPressed: onDelete,
+            foregroundColor: cadenceMuted,
+            icon: const Icon(Icons.delete_outline, size: 20),
+          ),
         ),
       ),
     );

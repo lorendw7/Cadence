@@ -35,7 +35,7 @@ Hot reload does not rerun main or initState for an existing state. Some changes,
 
 ## Acceptance
 
-The [counter test](../../test/practice_counter_widget_test.dart) checks zero, three increments, reset, and another increment. The two task rows and their states stay unchanged, with no Flutter exception.
+At this lesson's acceptance, the counter test checked zero, three increments, reset, and another increment. The two task rows and their states stayed unchanged, with no Flutter exception. Lesson 16 later retired the counter. The same [test path](../../test/practice_counter_widget_test.dart) now checks that the retired buttons are absent and that undo remains usable after resizing.
 
 Formatting and analysis passed; all ten tests passed at this stage. This proves that in-memory state can update the UI. It does not prove task editing, persistence, offline recovery, or sync.
 

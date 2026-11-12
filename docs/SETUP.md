@@ -35,7 +35,7 @@ flutter run -d linux
 flutter run -d macos
 ```
 
-The current learning app starts with two sample tasks. You can add validated titles, toggle completion, delete tasks and undo the latest deletion once. Empty lists show a prompt; the practice counter has increment and reset buttons. Tasks, input and the undo record are in memory; restarting restores the initial samples. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter. See [learning progress](LEARNING.md) for automated and manual acceptance details.
+The current learning app starts with two sample tasks. You can add validated titles, toggle completion, delete tasks and undo the latest deletion once. Empty lists show a prompt. Lesson 16 removes the practice counter and its increment/reset controls. Tasks, input and the undo record are in memory; restarting restores the initial samples. Press **r** for hot reload, **R** for hot restart and **q** to quit in the terminal running Flutter. See [learning progress](LEARNING.md) for automated and manual acceptance details.
 
 Do not run `flutter create` for normal setup: the desktop runners are already checked in. Keep platform identities stable once releases have user data. The learner introduces shadcn_ui gradually while preserving working controls. Add Web and mobile work through their free-edition lessons, not during documentation maintenance. No alternate core implementation is provided by the assistant.
 
