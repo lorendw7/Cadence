@@ -1,8 +1,8 @@
 # ADR-007: A general-purpose local planner
 
-Scope update (2026-11-12): [ADR-009](009-local-focus-without-school-connections.md) supersedes the school-connection exception below. External academic systems, Web and sync are outside the active plan. Other local-product decisions remain.
+Scope update (2026-11-13): [ADR-013](013-local-planner-and-conditional-academic-access.md) retains general time management, direct editing on Windows first and Android next. Screenshots are optional and unscheduled. School-access feasibility is deferred beyond the current milestone. ADR-010 retains all platform targets; ADR-011 selects later optional personal sync.
 
-Later decision: [ADR-008](008-small-free-local-product.md) keeps shadcn_ui and narrows the first release to explicit saves, memory-only unsaved forms and ordinary local storage. Earlier saved-draft, encryption and broad Web/sync requirements below are historical where they conflict. Web/sync is now considered only for a school connection that needs it.
+Later decisions keep shadcn_ui, explicit saving choices, in-memory unsaved forms and ordinary local storage. ADR-013 retains basic occurrence correction in the local flow and makes import conditional. Earlier school-dependent services, mobile exclusions, saved-draft and encryption requirements below are historical where they conflict.
 
 **Status:** Accepted product direction; implementation remains staged and learner-led.
 **Date:** 2026-11-11

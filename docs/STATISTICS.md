@@ -1,6 +1,6 @@
 # Local weekly review
 
-Updated: 2026-11-11. Planned desktop review, not implemented. This is a later addition to the general local planner, not a requirement for first use. See [ADR-007](adr/007-general-purpose-local-planner.md).
+Updated: 2026-11-13. Planned local review, not implemented. This remains an optional addition after the useful planning flow under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). Tasks, deadlines, personal plans, Today/Week and recovery come first. Android follows the Windows flow without waiting for every macOS/Linux release; review does not delay that phone stage.
 
 ## Entry and scope
 
@@ -11,9 +11,9 @@ The first version is not a timer. A two-hour plan means two planned hours, not t
 ## Calculation rules
 
 - A week is the half-open interval from Monday 00:00 to the next Monday 00:00 in the display time zone. Compare two adjacent complete calendar-week ranges. Make clear that a range may include future plans; do not compare partial actual progress with a whole week of planned time.
-- Use the same expanded occurrences as the week view. Exclude cancelled occurrences and count a moved occurrence once at its new time. Expand only the requested range. Apply the same rule to course occurrences if that optional extension is active.
+- Use the same expanded occurrences as the week view. Exclude cancelled occurrences and count a moved occurrence once at its new time. Expand only the requested range. Apply the same rule to imported class occurrences, including their accepted single-occurrence corrections.
 - Clip cross-week events to the query range and split cross-day events by local calendar date. Calculate minutes from actual instants; a daylight-saving transition day need not have 24 hours.
-- Each plan category sums its valid events. Overlaps may count more than once in category totals. Label them as summed event duration. A course category appears only if the course extension is in use; the basic review must work without it.
+- Each plan category sums its valid events. Overlaps may count more than once in category totals. Label them as summed event duration. A class category appears only when the person has class records; the review must work equally for work and personal plans without a timetable.
 - Occupied schedule duration merges overlapping intervals before counting and shows the daily distribution. Do not treat the sum of category totals as unique occupied time. All-day entries and task deadline points do not contribute hours; show their counts separately.
 - Accumulate minutes and format once at the end, without rounding each event first. Empty data shows zero and an entry action, never invented example statistics.
 - Prefer differences in minutes or task counts over percentage growth. If the previous week is zero, show that there were no records instead of calculating a percentage.
@@ -29,6 +29,6 @@ Example: a work plan from 09:00–10:00 and a personal plan from 09:30–10:30 e
 
 ## Acceptance and estimate
 
-The review must work and recalculate offline in both local-saving and temporary modes, without creating persistent review records in temporary mode. Plan edits and reversed task completion must update it. Cover empty data, adjacent and overlapping intervals, day/week boundaries, moved and cancelled occurrences, all-day entries, zero-baseline comparisons and task completion reversal. Include optional course cases only when that extension is implemented. Use a fixed clock so tests do not change with the run date.
+The review must work and recalculate offline in both local-saving and temporary modes, without creating persistent review records in temporary mode. Plan edits and reversed task completion must update it. Cover empty data, adjacent and overlapping intervals, day/week boundaries, moved and cancelled occurrences, all-day entries, zero-baseline comparisons and task completion reversal. Include imported classes and minimal occurrence corrections whenever those records exist. Add advanced teaching-week cases only for supported input rules. Use a fixed clock so tests do not change with the run date.
 
-The earlier estimate is 6–10 development hours for the basic review, using pure Dart aggregation and simple Flutter bars. Do not add a chart service for the first version. See [ROADMAP.md](ROADMAP.md) and [LEARNING.md](LEARNING.md) for staged estimates and lessons.
+The historical estimate is 6–10 development hours for the basic review, using pure Dart aggregation and simple Flutter bars. Do not add a chart service for the first version. See [ROADMAP.md](ROADMAP.md) and [LEARNING.md](LEARNING.md) for staged estimates and lessons.

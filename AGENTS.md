@@ -11,18 +11,19 @@
 
 ## Learning and implementation
 
-- The learner writes new core application features. Explain one small lesson at a time; review the learner's code and provide relevant tests.
+- The learner writes learning-critical core code: data rules, state changes, async failure decisions, and the first representative Dart and Flutter implementations. Explain one small lesson at a time; review the learner's code and provide relevant tests. Core practice includes widgets, layout, callbacks and lifecycle, not only business functions.
 - Keep `lib/main.dart` as the teaching entry. Do not implement future lessons, add unused packages, or create empty architecture layers.
-- The assistant may maintain delegated documentation, artwork, the website, repository checks, and behavior-preserving cleanup.
+- Under the learner's standing delegation, the assistant may complete supporting work for the current lesson: repeated wiring and components, visual polish, translation wiring, test setup and broader regressions, build checks, documentation, artwork, the website, and behavior-preserving cleanup. State the learner-owned code and support boundary before editing; no repeated permission is needed for that supporting work.
+- A new business rule, state owner, lifecycle decision or save/failure contract is learning-critical even when it appears inside supporting code. Keep it in the learner's small exercise unless explicitly delegated. Do not turn the exercise into isolated blanks or count assistant-written code as independent mastery. See `docs/CURRICULUM.md` for the division of work and Dart/Flutter practice.
 - Current progress belongs in `docs/LEARNING.md`. Lesson notes keep their historical results. Product scope belongs in `docs/PRODUCT.md` and release gates in `docs/ROADMAP.md`.
 
 ## Design and delivery
 
 - Preserve the independent academic-journal identity and existing GitHub Pages website. Do not create a second hosted site.
-- Cadence is a general-purpose local planner for work, study, and daily life. Target desktop, Web, Android and iOS under ADR-010. Finish the free desktop edition first: Windows, then native macOS/Linux validation. Web, Android and iOS remain later directions, outside the current delivery milestone. Cloud sync and optional ads are deferred until review after store launch. External academic systems and school login remain excluded.
+- Cadence is a local time-management and planning app for work, study, and daily life. Under ADR-013, keep tasks, deadlines, personal plans, Today and Week central. Build useful direct editors on Windows, then adapt and validate Android without waiting for all macOS/Linux releases. Screenshot import is optional, unscheduled work only if a real need appears; it is not a release gate. CSV/table import is also deferred. Keep one shared Flutter codebase; iOS, macOS/Linux and Web need separate platform acceptance. Cloud sync and optional ads remain deferred until review after store launch. School connection research, application preparation and implementation are deferred extensions, outside the current delivery milestone. Real access remains conditional on school authorization and a documented data route; no school passwords or scraping.
 - Cadence has one free feature set for everyone. There is no paid tier, subscription, paid expansion or paid priority. Any future cloud service uses the same published quota rules for everyone. Ads are the only possible future revenue model in this plan and do not unlock features or extra capacity.
 - Keep the core usable without school identity or network access. At first use, let the user choose local saving or a temporary session. Do not imply that planned saving already works.
-- The public website is a concept presentation. General product releases do not need school permission. School-connection research is historical reference only. Do not revive those integrations without a new explicit product decision.
+- The public website is a concept presentation. General product releases do not need school permission. ADR-013 keeps school connection research and implementation as deferred extensions. Do not describe preparation as a submitted application, approved access or implemented integration. Authentication permission and timetable-data permission are separate. A school connection must not block the independent local release.
 - Read `assets/README.md` before regenerating artwork. Keep editable sources, exports, and the manifest in sync.
 - Continue open-source development under the existing MIT license. Do not implement new app features, accounts, billing, ads or cloud infrastructure as documentation work.
 - Preserve unrelated work. Inspect the Git diff before committing and never force-push the main branch.

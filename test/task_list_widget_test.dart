@@ -65,11 +65,12 @@ void main() {
     });
   }
 
-  testWidgets('TaskRow reports completion and delete separately', (
+  testWidgets('TaskRow reports completion delete and copy separately', (
     WidgetTester tester,
   ) async {
     final completionValues = <bool>[];
     var deleteCount = 0;
+    var copyCount = 0;
     final task = PlannerTask(id: 'callback-task', title: '回调练习');
 
     await tester.pumpWidget(
@@ -83,6 +84,9 @@ void main() {
             onDelete: () {
               deleteCount += 1;
             },
+            onCopy: () {
+              copyCount += 1;
+            },
           ),
         ),
       ),
@@ -90,16 +94,26 @@ void main() {
 
     expect(completionValues, isEmpty);
     expect(deleteCount, 0);
+    expect(copyCount, 0);
     await tester.tap(find.text('回调练习'));
     await tester.pump();
     expect(completionValues, isEmpty);
+    expect(copyCount, 0);
     await tester.tap(find.byType(ShadCheckbox));
     await tester.pump();
     expect(completionValues, [true]);
     expect(deleteCount, 0);
+    expect(copyCount, 0);
+    await tester.tap(find.byTooltip('复制任务标题'));
+    await tester.pump();
+    expect(copyCount, 1);
+    expect(deleteCount, 0);
+    expect(completionValues, [true]);
+    expect(task.isCompleted, isFalse);
     await tester.tap(find.byTooltip('删除任务'));
     await tester.pump();
     expect(deleteCount, 1);
+    expect(copyCount, 1);
     expect(completionValues, [true]);
     expect(tester.takeException(), isNull);
   });

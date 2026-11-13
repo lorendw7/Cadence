@@ -1,6 +1,6 @@
 # ADR-001: A local application layer and one schedule projection
 
-**Status:** Accepted for local application boundaries; implementation is incremental. [ADR-007](007-general-purpose-local-planner.md) defines the current general-purpose local product and optional extensions. Earlier university/audience assumptions below are historical. The learner remains the core implementation author.
+**Status:** Accepted local application boundaries; implementation remains incremental. [ADR-013](013-local-planner-and-conditional-academic-access.md) now sets direct general planning on Windows first, Android next, optional unscheduled screenshots and deferred school-access extension. Earlier audience and delivery assumptions below are historical. The learner remains the core implementation author.
 **Date:** 2026-11-09
 **Deciders:** Cadence maintainer; the learner remains the author of application code.
 

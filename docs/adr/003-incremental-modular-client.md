@@ -1,6 +1,6 @@
 # ADR-003: Build one modular client through working features
 
-**Status:** Accepted for incremental desktop architecture. [ADR-007](007-general-purpose-local-planner.md) now defines a general local core with optional courses. [ADR-008](008-small-free-local-product.md) limits Web and sync work to school connections that need them. The shadcn_ui choice from ADR-004 remains; earlier audience and platform commitments below are historical. The learner continues to implement core stages.
+**Status:** Accepted incremental shared-client architecture. [ADR-013](013-local-planner-and-conditional-academic-access.md) now sets direct general planning on Windows first, Android next, optional unscheduled screenshots and deferred school-access extension. shadcn_ui and learner-owned implementation remain; earlier scope and platform limits below are historical.
 **Date:** 2026-11-10
 **Deciders:** Cadence maintainer; the learner continues to implement application code.
 **Related:** [ADR-001](001-local-application-boundaries.md), [ADR-002](002-university-wide-product.md), [architecture](../ARCHITECTURE.md), [UI architecture](../UI_ARCHITECTURE.md), [project workflow](../PROJECT_WORKFLOW.md).

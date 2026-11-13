@@ -1,8 +1,8 @@
 # ADR-008: Keep the free local product small
 
-Scope update (2026-11-12): [ADR-009](009-local-focus-without-school-connections.md) supersedes the school-connection exception below. External academic systems, Web and sync are outside the active plan. Other local-product decisions remain.
+Scope update (2026-11-13): [ADR-013](013-local-planner-and-conditional-academic-access.md) now sets direct general planning and basic occurrence corrections on Windows first, Android next, optional unscheduled screenshots and deferred school-access extension. All platform targets remain. Explicit saves, local privacy and small learner-owned increments remain. Conflicting deferrals and school-dependent service assumptions below are historical.
 
-**Status:** Accepted design direction; not implemented.
+**Status:** Accepted for the small local core; scope limits are partly superseded as described above. This is a design decision, not implemented behavior.
 **Date:** 2026-11-11
 **Deciders:** The maintainer requested a simpler free local product and limited Web/sync work to school connections that need it.
 

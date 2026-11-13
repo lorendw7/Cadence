@@ -1,32 +1,35 @@
 # Repository map and maintenance
 
-Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Finish the free desktop edition first; Web and mobile remain later directions. All users receive the same free functions, with no paid tier or paid capacity. Cloud sync and optional ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
+This map explains where work belongs. [PRODUCT.md](PRODUCT.md) owns product scope, [ROADMAP.md](ROADMAP.md) owns delivery gates and [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) records the current Windows-first, Android-next direction. School-access work and imports remain deferred; they do not create folders or implementation tasks during repository maintenance.
 
-Updated: 2026-11-11. Keep paths stable so lesson links and platform projects continue to work. [LEARNING.md](LEARNING.md) owns current progress; [CURRICULUM.md](CURRICULUM.md) owns teaching estimates. Older lesson counts are historical.
+Updated: 2026-11-13. Keep paths stable so lesson links and platform projects continue to work. [LEARNING.md](LEARNING.md) owns current progress; [CURRICULUM.md](CURRICULUM.md) owns the skill plan, division of work and learning evidence. Older lesson counts are historical.
 
 ## Ownership
 
 | Directory | Contents and rules |
 |---|---|
-| lib/ | Learner-written Flutter entry and task model; no empty future layers |
+| lib/ | Application code: learner-owned lesson core and delegated support; keep the Flutter entry and avoid empty future layers |
 | test/ | Active coverage run by flutter test |
 | [lessons/](../lessons/README.md) | Historical templates; do not overwrite current tests |
 | docs/lessons/ | Lesson explanations and acceptance records |
 | docs/ and docs/adr/ | Requirements, plans, and decisions; plans are not implemented features |
 | [assets/](../assets/README.md) | Artwork sources, exports, searchable catalogue, generated preview sheets, and manifest |
+| [assets/ui/](../assets/ui/PLANNER_STUDY.md) | Editable local UI studies; fictional data and design checks, separate from Flutter acceptance |
 | [website/](../website/README.md) | Three-language static concept site |
 | [tools/](../tools/README.md) | Generators and read-only checks |
 | windows/, linux/, macos/ | Desktop projects; compilation alone does not prove runtime support |
-| android/ | Legacy scaffolding, with no mobile release commitment |
+| android/ | Existing scaffolding for the next phone validation stage after the Windows flow; not accepted mobile support |
 | .github/workflows/ | Repository checks, Flutter checks/builds, and Pages deployment |
 
 ## Documentation rules
 
 Use plain English in all documentation, including future updates. Keep product translations separate. The durable rule is in [AGENTS.md](../AGENTS.md).
 
-Use [the documentation index](README.md) to find the main owner of each topic. Write current requirements there and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
+Use [document ownership](README.md#document-ownership) to find the main owner of each topic. Product scope, user flows, visual rules and interaction details have separate owners. Write a requirement once and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
 
-The general-purpose local direction is in [ADR-007](adr/007-general-purpose-local-planner.md). School-connection material remains historical. [ADR-010](adr/010-open-multiplatform-free-first.md) defines the free-first desktop, Web, Android and iOS direction.
+Keep paths stable. Organize the reading order through the index rather than moving linked documents into new folders. A design study belongs in `assets/ui/`, with its limitations and review results beside it. The [planner study](../assets/ui/planner-study.html) is a local design artifact; only `website/` is deployed by the existing Pages workflow.
+
+Historical school research remains reference material. Research, applications and integration are all deferred under ADR-013. No source access or connection is approved. Keep private applications, pitches and raw correspondence outside this public repository.
 
 ## Routine checks
 
@@ -57,6 +60,6 @@ Keep the preview source fingerprints in `assets/manifest.json`. Only a new previ
 
 ## Current limits
 
-The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, the full planner, backups and reminders remain future work. The selected product UI is shadcn_ui; Web and mobile are planned free-edition targets; sync waits for review after store launch. The asset library and concept website do not change those limits.
+The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, reviewed import, the full planner, backups and reminders remain future work. The selected product UI is shadcn_ui. The adopted sequence is a complete Windows planning flow, then Android; other native clients and Web need separate acceptance. Sync and ads wait for review after store launch. The asset library and concept website do not change those limits.
 
 Record only checks actually run in the change summary. Do not keep a growing list of old validation totals in this document.

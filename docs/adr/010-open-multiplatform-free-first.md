@@ -1,8 +1,12 @@
 # ADR-010: Open source, multiple platforms, free edition first
 
-**Status:** Accepted product direction; not implemented or released.
+**Status:** Accepted free-access and platform direction; delivery order partly superseded by [ADR-013](013-local-planner-and-conditional-academic-access.md). Not implemented or released.
 **Date:** 2026-11-12
 **Deciders:** The maintainer requested continued open-source development and multiple platforms, then prioritized the free desktop edition. All users get the same functions. Paid expansion and membership tiers are excluded; advertising is only a possible future revenue source.
+
+**Later selection (2026-11-13):** [ADR-011](011-optional-sync-service.md) selects Node.js, TypeScript, Fastify, PostgreSQL and Google login for the later optional sync service, with a JPY 2,500 monthly planning budget. It replaces the undecided technical choices below. That service selection did not change the then-current delivery order. The later product decision below now owns the sequence; free access and deferred service implementation remain.
+
+**Later product decision (2026-11-13):** ADR-013 keeps general planning and phone access, with direct Windows editing first and Android next. Screenshot import is optional, unscheduled work. School-access research is separate and conditional. This supersedes the desktop-completion prerequisite below; the free feature set, all platform targets and post-store personal-service review remain.
 
 ## Decision
 
