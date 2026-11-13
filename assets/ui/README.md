@@ -1,5 +1,7 @@
 # Tasks interface study
 
+For the current three-page product proposal, open the [planner study](planner-study.html) and its [review guide](PLANNER_STUDY.md). This earlier Tasks study remains a historical handoff for the learning exercise.
+
 Updated: 2026-11-12. This is a design handoff for the existing in-memory task exercise. Open the [local study](task-study.html) and the [artwork catalogue](../catalog.html). It follows the wine-and-white direction in the [design system](../../docs/DESIGN.md).
 
 The learner writes the Flutter UI. This handoff does not change `lib/main.dart`, declare an asset bundle, install a package or implement another lesson. The sample language controls belong to the design viewer, not the application. [Learning progress](../../docs/LEARNING.md) owns implemented behavior and pending native checks.

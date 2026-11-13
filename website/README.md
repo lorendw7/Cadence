@@ -6,9 +6,9 @@ The product is in development. The current desktop learning app has basic in-mem
 
 ## Product direction
 
-A free, simple local app comes first. Windows is the first release target. macOS and Linux follow checks on each native system. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
+Cadence remains a free local time planner for work, study and daily life. Tasks, deadlines, personal plans, Today and Week are central. Useful direct editing comes first, and phone access makes the plan easier to use. Screenshot recognition is optional work only if demonstrated need justifies it. Build the complete local Windows flow first, then validate Android without waiting for every macOS/Linux release. Design compact views from the start; iOS follows host/device readiness and Web is later. Other desktop releases still require native checks. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
 
-[ADR-009](../docs/adr/009-local-focus-without-school-connections.md) removes external academic systems, school login and automatic timetable retrieval from the current plan. Web delivery and cloud sync are also out of scope. General product publication does not require school permission. See [ADR-007](../docs/adr/007-general-purpose-local-planner.md) and [the product design](../docs/REDESIGN.md).
+[ADR-013](../docs/adr/013-local-planner-and-conditional-academic-access.md) prioritizes direct task, plan and repeat editing, with Windows first and Android next. Minimal time/room corrections, cancellation and restoration of one occurrence belong to the useful flow. Screenshot and CSV/table import do not block that delivery. Academic-system access is a deferred extension, with no current research, application or integration work scheduled. Cloud sync and optional ads remain for review after store launch. General product publication does not require school permission. The existing GitHub Pages site remains the concept presentation, separate from any future Web planner. See [the product design](../docs/REDESIGN.md).
 
 ## Files
 
@@ -47,9 +47,9 @@ Week shows all seven days, Monday through Sunday. Today and Week share the same 
 
 ## Data and claims
 
-The current website stores only a language preference. It has no personal planner input, upload, authentication or synchronization. GitHub Pages still processes page requests. The privacy page must distinguish those actual behaviors from the future application's first-use choice, local saving, temporary mode, private JSON backups and the current boundary excluding external academic systems.
+The current website stores only a language preference. It has no personal planner input, upload, authentication or synchronization. GitHub Pages still processes page requests. The privacy page must distinguish those actual behaviors from the future application's first-use choice, local saving, temporary mode, private JSON backups and the absence of any implemented or approved academic connection.
 
-The first local release uses explicit Save and Cancel. Unsaved forms stay in memory and can be lost on a crash. Local files and private JSON backups are not encrypted. Optional AI help uses a personal API key and may incur provider charges. It is not required for local use. Show the destination and selected content before each send. Keys never enter planner backups. Local saving does not automatically provide a backup. Temporary use must not leave persistent drafts or automatic backups. JSON exports contain private information, and deleting app data cannot remove exported files or copies shared elsewhere. Keep these claims aligned with the implementation as each feature is added.
+The first local release uses explicit Save and Cancel. Unsaved forms stay in memory and can be lost on a crash. Local files and private JSON backups are not encrypted. If an optional import is later included, show an editable review, uncertainty and possible duplicates, then save the confirmed records together. Screenshot recognition has no scheduled release gate. Any later cloud AI help needs separate consent and cost review; it is not required for local use. Show the destination and selected content before sending. Keys must never enter planner backups. Local saving does not automatically provide a backup. Temporary use must not leave persistent drafts or automatic backups. JSON exports contain private information, and deleting app data cannot remove exported files or copies shared elsewhere. Keep these claims aligned with implemented behavior.
 
 ## Checks and publication
 
@@ -61,13 +61,17 @@ Run this from the repository root. It checks translation keys and placeholders, 
 
 [pages.yml](../.github/workflows/pages.yml) publishes `website/` from the main branch or manual dispatch. Keep the three translations and privacy text aligned before publication. The full artwork catalogue remains in the repository.
 
-## 2026-11-11 design update
+## Historical revisions
+
+The dated entries below describe earlier revisions and checks. They do not override the current product direction above.
+
+### 2026-11-11 design update
 
 The site now leads with local, free and simple use. The progress section separates working memory-only tasks, the planned first local release and optional import help. Screenshot and table import remain plans. AI help is optional and uses the user's own API key. Web and sync are considered only when a school connection needs them. The existing journal style, artwork, three languages and preview controls are unchanged.
 
 Browser checks on this copy covered all three languages on the home and privacy pages, language links between pages, task completion and reset, state kept during a language change, and arrow-key tab switching. Desktop home views and a 390 px narrow view were inspected. The narrow Chinese home and Japanese privacy page had no page-wide horizontal overflow. This is a focused check, not a full browser or accessibility audit. JavaScript-disabled behavior and Home/End keyboard handling were not rechecked in this pass.
 
-## 2026-11-12 visual simplification
+### 2026-11-12 visual simplification
 
 The home and privacy pages share a quieter palette and more space between sections. The home page uses a 1120 px content limit; privacy text uses a 720 px reading width. The header scrolls with the page. Colored section bands, colored sample events, the stacked preview shadow and large decorative marks were removed. The illustration and small feature icons appear in grayscale through CSS; their original files are unchanged. Translations, product claims and preview behavior are unchanged.
 
@@ -75,7 +79,7 @@ Browser checks covered all three languages on the home page at 320, 390, 600, 60
 
 The repository, website and artwork checks passed. This update changes the concept website only; it does not release planner features.
 
-## 2026-11-12 white page redesign
+### 2026-11-12 white page redesign
 
 This revision replaces the earlier grayscale layout. Pure white page surfaces frame the original color illustration in the hero. The image keeps its original paper texture; it has no grayscale filter. Original artwork and exports are unchanged. The hero image loads eagerly with high priority and responsive WebP sources.
 
@@ -85,7 +89,7 @@ The structure draws on the concise product introduction on [Things](https://cult
 
 Checks passed: repository links and scripts, website translations and markup, artwork consistency, and Git whitespace checks. Browser checks confirmed pure white backgrounds and color images. Home layouts in all three languages had no page overflow at 320, 390, 600, 850 and 1028 CSS pixels. Wide desktop layouts were also inspected. Privacy layouts passed in all three languages at 390 and 1440 pixels. Tasks, reset, state across language changes, arrow keys, Home/End, FAQ expansion and the privacy return link worked. The 390 px Week view scrolls inside its panel. A stalled browser tab was replaced to finish the checks. JavaScript-disabled behavior and other browser engines were not rechecked.
 
-## 2026-11-12 product preview and local focus
+### 2026-11-12 product preview and local focus
 
 This revision leads with a centered introduction and an interactive desktop concept. The preview uses a vertical tab list above 600 px and a horizontal tab list at smaller widths. Its orientation is exposed to assistive technology; Up/Down works in the vertical layout, with Left/Right and Home/End retained. The original color editorial image now sits below the feature explanation and loads lazily. Original artwork and exports are unchanged.
 

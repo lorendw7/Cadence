@@ -21,6 +21,8 @@ Also check that Tasks starter shortcuts clear filters, reveal the matching card 
 
 Do not run generators as generic cleanup. The outputs are versioned design files. Flutter checks and native builds are in [SETUP.md](../docs/SETUP.md).
 
+The [planner study](../assets/ui/PLANNER_STUDY.md) has separate editable HTML, CSS and JavaScript. Open Preview settings to select a language, frame, scenario and sample text size. After changing it, review Today, Week and Tasks in all three sample languages, compact and wide layouts, and at 200% sample text. Check settings dismissal, day selection, task-tray scroll retention, editor dismissal and return focus, overlap visibility and the save-failure sample. Its drawn checkboxes and read-only editors are design examples, not application behavior. Record results in its handoff, separately from the earlier Tasks study.
+
 Source checks cannot prove browser behavior, accessibility, remote-link availability, or release readiness. The documentation script check catches leftover Chinese/Japanese text in Markdown; a human review still needs to check that the English is clear and correct.
 
 The [repository workflow](../.github/workflows/repository.yml) runs the three read-only tools. The [Pages workflow](../.github/workflows/pages.yml) requires them before deployment.

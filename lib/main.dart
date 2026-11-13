@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cadence/domain/coursework/planner_task.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:flutter/services.dart';
 
 const Color cadenceWine = Color(0xFF7C394B);
 const Color cadenceWineWash = Color(0xFFF5EEF0);
@@ -137,6 +138,16 @@ class _TasksPageState extends State<TasksPage> {
       tasks.insert(lastDeletedIndex, taskToRestore);
       lastDeletedTask = null;
     });
+  }
+
+  Future<bool> copyTaskTitle(PlannerTask task) async {
+    try {
+      await Clipboard.setData(ClipboardData(text: task.title));
+    } catch (_) {
+      return false;
+    }
+
+    return true;
   }
 
   void addTask() {
@@ -281,6 +292,17 @@ class _TasksPageState extends State<TasksPage> {
                     lastDeletedTask = tasks.removeAt(deletedIndex);
                   });
                 },
+                onCopy: () async {
+                  final copied = await copyTaskTitle(task);
+
+                  if (!context.mounted) {
+                    return;
+                  }
+                  final message = copied ? '已复制任务标题' : '复制失败，请重试';
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(message)));
+                },
               );
             },
           ),
@@ -372,11 +394,13 @@ class TaskRow extends StatelessWidget {
     required this.task,
     required this.onCompletionChanged,
     required this.onDelete,
+    required this.onCopy,
   });
 
   final PlannerTask task;
   final ValueChanged<bool> onCompletionChanged;
   final VoidCallback onDelete;
+  final VoidCallback onCopy;
 
   @override
   Widget build(BuildContext context) {
@@ -407,13 +431,26 @@ class TaskRow extends StatelessWidget {
           task.isCompleted ? '已完成' : '未完成',
           style: theme.textTheme.muted,
         ),
-        trailing: Tooltip(
-          message: '删除任务',
-          child: ShadIconButton.ghost(
-            onPressed: onDelete,
-            foregroundColor: cadenceMuted,
-            icon: const Icon(Icons.delete_outline, size: 20),
-          ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Tooltip(
+              message: '删除任务',
+              child: ShadIconButton.ghost(
+                onPressed: onDelete,
+                foregroundColor: cadenceMuted,
+                icon: const Icon(Icons.delete_outline, size: 20),
+              ),
+            ),
+            Tooltip(
+              message: '复制任务标题',
+              child: ShadIconButton.ghost(
+                onPressed: onCopy,
+                foregroundColor: cadenceMuted,
+                icon: const Icon(Icons.copy, size: 20),
+              ),
+            ),
+          ],
         ),
       ),
     );

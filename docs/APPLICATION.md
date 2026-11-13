@@ -1,8 +1,8 @@
 # Application contracts
 
-Scope update (2026-11-12): [ADR-010](adr/010-open-multiplatform-free-first.md) targets desktop, Web, Android and iOS under the existing MIT license. Finish the free desktop edition first; Web and mobile remain later directions. All users receive the same free functions, with no paid tier or paid capacity. Cloud sync and optional ads are for review after store launch. External academic systems remain excluded. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) take precedence over older platform exclusions and school-gated proposals below.
+Scope update (2026-11-13): [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps tasks, deadlines, personal plans, Today and Week central. Build useful direct editors and reliable local saving on Windows, then validate Android without waiting for all macOS/Linux releases. Other platforms need separate acceptance. Screenshot import is optional work only if demonstrated demand justifies it; it has no scheduled release gate. CSV/table import remains deferred. Academic-system access is a deferred, unscheduled extension. Research, application preparation and integration are outside the current delivery milestone. Local release does not wait for school approval. Everyone receives the same free functions. Cloud sync and optional ads remain for review after store launch. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates.
 
-Updated: 2026-11-11. Planned behavior under [ADR-008](adr/008-small-free-local-product.md), not implemented. Start with one desktop workspace and one writer. These contracts protect local data without requiring the earlier draft-recovery, multi-tab or sync machinery.
+Updated: 2026-11-13. Planned behavior under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md), not implemented. Keep one local workspace and one writer, first on Windows and then on Android. These contracts protect local data without requiring persistent draft recovery, multi-tab or sync machinery. [ADR-011](adr/011-optional-sync-service.md) selects the later service design, not an additional first-launch requirement.
 
 ## Contract introduction and ownership
 
@@ -26,7 +26,9 @@ Clear stops writes, invalidates callbacks and removes the app's planning data an
 
 Today and Week use the same confirmed records and bounded date calculations. Counts and lists capture the same current time. Refresh at relevant deadlines, midnight, resume and confirmed changes; see [TODAY.md](TODAY.md). A task deadline does not occupy a calendar interval.
 
-A query carries its viewed range and request identity. Discard old results after navigation or a new session. The first version uses one workspace timezone and no occurrence overrides. Consistent reads and a runtime change counter are sufficient; no persistent global generation table is required.
+Show fixed imported commitments and personal plans together, with available intervals inside a clearly stated day range. Reserving work time uses the normal plan editor with explicit start/end and Save. The result is independent of task completion and deadline. Moving a work plan does not reschedule its task. General tasks and plans need no course, semester or imported timetable.
+
+A query carries its viewed range and request identity. Discard old results after navigation or a new session. Use one workspace timezone. Apply supported occurrence corrections before grouping or counting records. A moved occurrence appears once in its new range and not in its old slot; a cancelled occurrence does not count as an active commitment. Consistent reads and a runtime change counter are sufficient; no persistent global generation table is required.
 
 ## Commands: validate, transact, then notify
 
@@ -34,9 +36,17 @@ Validate field lengths, IDs, dates and repeats before writing. Use transactions 
 
 Keep only one active editor for a record. If it was removed or changed while open, preserve input and request review. Record revisions may be added when actual concurrent editing needs them; a revision system is not a prerequisite for a single task screen.
 
+For a timetable correction, choose This occurrence or Whole series before preview. One occurrence may change time or room, be cancelled, or be restored. Keep its original occurrence key after a move. Preview the affected date and resulting time/room before Save. Series edits with existing exceptions require a reviewed reconciliation; never silently detach or erase the exceptions. These are local edits, not an academic update feed.
+
+Any later approved import route produces a memory-only draft, not confirmed planner data. Show uncertain or unsupported date rules and possible duplicates. Let the person correct or exclude candidates before committing only the confirmed batch once. Repeated import does not authorize replacement. Full replacement has the separate restore contract below.
+
+Build useful manual editing, saving and date rules first. Screenshot recognition is an optional later route only if user need justifies it; it does not block the local product or phone work. CSV/table input remains deferred. Internal fictional drafts may teach review without a parser. An official academic API or calendar feed would need confirmed access terms and a separately accepted implementation scope before it can produce real candidates.
+
+In local-saving mode, add the selected batch in one database transaction. In temporary mode, add it to a copy of the existing confirmed in-memory records, then swap that complete snapshot once. Preserve all pre-existing records in both modes. Failed confirmation changes no planning data and retains the editable draft; cancellation invalidates pending extraction and preview callbacks.
+
 ## Draft ordering
 
-The first release has no persistent editor drafts. Unsaved input stays in one editor session. Closing a changed editor offers Save, Discard or Cancel. Save failure leaves the editor open. Closing the app warns about unsaved input where the OS allows; a crash can still lose it. Explain that limit. Import previews also stay in memory and never imply a saved schedule.
+The first release has no persistent editor drafts. Unsaved input stays in one editor session. Closing a changed editor offers Save, Discard or Cancel. Save failure leaves the editor open. Closing the app warns about unsaved input where the OS allows; a crash or mobile process termination can still lose it. Explain that limit. Import previews also stay in memory and never imply a saved schedule. Resuming a suspended app must not silently commit an old preview.
 
 ## Startup and exclusive restore
 
@@ -54,11 +64,21 @@ For restore: validate the file and references → preview replacement → finish
 - A second writer is refused; process-crash release is tested on the supported OS.
 - Interrupted clearing is reported and retried before reading saved data.
 - Date boundaries, repeats and Today counts agree across the views.
+- A corrected occurrence appears once; changing its room or time leaves the rest of the series intact.
+- Cancel and restore affect the selected occurrence only; series edits with exceptions require a fresh preview.
+- For a separately included import route, only the reviewed batch is saved; duplicates and unsupported rules stay visible before commit.
+- Android Back, suspension and process termination preserve confirmed records and cannot replay a stale import or correction.
 
 These are planned checks, not current test results.
 
 ## Later feature contracts
 
-Reminders, single-occurrence changes, saved drafts and advanced course rules each need their own small lesson and acceptance. Do not add their storage or scheduling machinery beforehand.
+Reminders, saved drafts and advanced course rules each need their own small lesson and acceptance. The bounded occurrence corrections above belong to the timetable flow; they do not authorize a general recurrence editor or automatic source updates. Do not add unused storage or scheduling machinery beforehand.
 
-School source access is excluded. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and the older [sync study](SYNC.md) remain historical references. The free Web and mobile clients share local task/plan contracts and validate their own storage and lifecycle behavior. Personal cloud sync is deferred until review after store launch.
+[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) retains reference guidance for a deferred extension. No academic connection is approved or implemented. Do not add school credentials, adapters or source tables during local lessons. A future approved read-only source needs its own data contract; it cannot silently overwrite private edits. The older [sync study](SYNC.md) remains historical. Local clients share task/plan contracts and validate their own storage and lifecycle behavior.
+
+The accepted future personal sync design uses Node.js, TypeScript, Fastify and PostgreSQL with optional Google sign-in. Implementation remains subject to review after store launch. It copies the user's own planning records between devices; it does not fetch institutional course changes. Keep the local contracts above independent of accounts and server availability.
+
+[CLOUD_SYNC.md](CLOUD_SYNC.md#sync-behavior) owns the later protocol contract: bounded incremental records, expected versions, repeat-safe writes, explicit conflicts and deletions. Do not add these mechanisms to the current single-writer lesson. When sync is implemented, distinguish a confirmed local save from a pending remote update and require a separate sync opt-in after sign-in.
+
+Bind each pending operation and callback to the confirmed account and workspace. Before switching accounts, resolve pending work or allow the user to cancel the switch. Local clear must not issue cloud deletion. Local restore must pause sync and enter reviewed recovery, rather than replaying a backup as remote bulk deletion. Follow the [service transition rules](CLOUD_SYNC.md#logout-switching-clear-and-restore) and test isolation, stale callbacks and recovery before a pilot.

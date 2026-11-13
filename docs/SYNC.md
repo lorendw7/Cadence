@@ -1,6 +1,6 @@
 # Optional multi-client sync
 
-> Historical reference only. [ADR-010](adr/010-open-multiplatform-free-first.md) now targets a free local edition on desktop, Web, Android and iOS. Cloud sync and income are for review after store launch. School connections stay excluded. The proposals below do not authorize implementation or override the current [roadmap](ROADMAP.md).
+> Historical reference only. [ADR-011](adr/011-optional-sync-service.md) selects the later Node.js, TypeScript, Fastify and PostgreSQL service with Google login and a JPY 2,500 monthly planning budget. Read [CLOUD_SYNC.md](CLOUD_SYNC.md) for the current design. Implementation and launch remain deferred under the [roadmap](ROADMAP.md). The school, mobile and identity assumptions below are historical; they do not override the selected design or authorize school connections. [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) separately permits conditional academic-access research and application preparation; it grants no real access.
 
 Scope update (2026-11-11): [ADR-008](adr/008-small-free-local-product.md) parks this study. Web and synchronization are considered only for a specific school connection that needs them. This is not a general cloud-sync backlog; reuse only the parts justified by that connection. No backend, queue or account implementation is authorized by this reference.
 

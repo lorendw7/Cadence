@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadence · Planner design study</title>
+  <link rel="stylesheet" href="planner-study.css">
+  <script src="planner-study.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#screen">Skip to planner study</a>
+  <noscript><p>This study needs JavaScript. Read the <a href="PLANNER_STUDY.md">English design handoff</a> for the screen and state specifications.</p></noscript>
+  <div id="screen" class="screen" tabindex="-1" data-frame="fluid">
+    <div id="app" lang="zh-Hans"></div>
+  </div>
+  <dialog id="preview-settings" aria-labelledby="preview-settings-title">
+    <div class="settings-content">
+      <header class="settings-head">
+        <div><p class="eyebrow">CADENCE / PRODUCT STUDY / 02</p><h2 id="preview-settings-title" data-settings-copy="previewSettings">Preview settings</h2></div>
+        <button data-settings-close data-settings-copy="close">Close</button>
+      </header>
+      <p class="settings-intro" data-settings-copy="settingsIntro">Adjust the design sample. These controls are not application settings.</p>
+      <div class="review-tools">
+        <label><span data-settings-copy="frameLabel">Frame</span><select id="frame"><option value="fluid" data-settings-copy="fitWindow">Fit window</option><option value="compact" data-settings-copy="compactFrame">Phone · 390 px</option></select></label>
+        <label><span data-settings-copy="languageLabel">Sample language</span><select id="language"><option value="zh">中文</option><option value="ja">日本語</option><option value="en">English</option></select></label>
+        <label><span data-settings-copy="scenarioLabel">Scenario</span><select id="scenario"><option value="normal" data-settings-copy="normalScenario">A planned Friday</option><option value="empty" data-settings-copy="emptyScenario">Starting empty</option><option value="conflict" data-settings-copy="conflictScenario">Overlapping commitments</option><option value="error" data-settings-copy="errorCaption">Save failure</option></select></label>
+        <label><span data-settings-copy="textLabel">Sample text</span><select id="scale"><option value="1">100%</option><option value="2">200%</option></select></label>
+      </div>
+      <section class="settings-about" aria-labelledby="preview-about-title">
+        <h3 id="preview-about-title" data-settings-copy="aboutPreview">About this preview</h3>
+        <p data-settings-copy="previewLimits">Fictional data, fixed at 13 Nov 2026, 09:30 (Asia/Tokyo). No records are saved. Editors are read-only.</p>
+        <p data-settings-copy="implementationLimit">The Flutter learning app still has in-memory tasks only. Task completion and data operations are not implemented in this study.</p>
+        <nav aria-label="Design resources"><a href="PLANNER_STUDY.md" data-settings-copy="reviewGuide">Review guide</a><a href="../../docs/COMPETITIVE_REVIEW.md" data-settings-copy="designReferences">Design references</a><a href="../../docs/PRODUCT.md" data-settings-copy="productScope">Product scope</a></nav>
+      </section>
+    </div>
+  </dialog>
+  <dialog id="editor" aria-labelledby="editor-title"><div id="editor-content"></div></dialog>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+</body>
+</html>

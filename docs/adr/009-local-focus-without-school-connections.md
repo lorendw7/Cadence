@@ -1,6 +1,6 @@
 # ADR-009: Focus on local use and remove school connections
 
-**Status:** Partially superseded by [ADR-010](010-open-multiplatform-free-first.md). School connections stay excluded. The earlier Web/mobile scope limits below are historical. Complete the free edition before reviewing cloud services and income. Not an implemented feature.
+**Status:** Partly superseded by [ADR-013](013-local-planner-and-conditional-academic-access.md), which now defers school-access feasibility and application preparation. Actual access remains conditional on permission and an interface. Direct Windows planning comes first, Android next; screenshots are optional. ADR-010 retains all platforms and ADR-011 later personal sync. General local release remains independent; the no-research rule below is historical.
 **Date:** 2026-11-12
 **Deciders:** The maintainer requested a more usable, easier-to-maintain planner and removed external academic systems from the current plan.
 

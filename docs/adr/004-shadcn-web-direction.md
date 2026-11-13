@@ -1,8 +1,8 @@
 # ADR-004: shadcn_ui and a student/teacher planner for desktop and Web
 
-Later decision: [ADR-008](008-small-free-local-product.md) keeps shadcn_ui and narrows the first release to explicit saves, memory-only unsaved forms and ordinary local storage. Earlier saved-draft, encryption and broad Web/sync requirements below are historical where they conflict. Web/sync is now considered only for a school connection that needs it.
+Later decisions: [ADR-008](008-small-free-local-product.md) retains shadcn_ui, explicit saves, memory-only unsaved forms and ordinary local storage. [ADR-013](013-local-planner-and-conditional-academic-access.md) now sets direct planning on Windows first, Android next, optional screenshots and deferred school-access extension. ADR-011 retains the later personal-sync design. Conflicting delivery requirements below are historical.
 
-**Status:** Partially superseded by [ADR-007](007-general-purpose-local-planner.md). The selected shadcn_ui library and independent palette remain. The student-first audience and committed Web delivery are historical; the current product is a general desktop-first local planner. Web and sync are considered only when a school connection needs them.
+**Status:** Partially superseded by [ADR-007](007-general-purpose-local-planner.md), ADR-009 and ADR-010. The selected shadcn_ui library and independent palette remain. The student-first audience, school-dependent Web work and earlier delivery commitments are historical. The current product is a general local planner with a free desktop edition first.
 **Date:** 2026-11-10
 **Supersedes:** ADR-002's Kyushu-student-only audience and Web-candidate status, and the earlier Material-only product UI recommendation.
 

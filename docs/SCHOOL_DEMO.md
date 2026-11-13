@@ -1,33 +1,44 @@
-# Optional school demonstration reference
+# School consultation and demonstration guide
 
-> Historical reference only. [ADR-010](adr/010-open-multiplatform-free-first.md) now targets a free local edition on desktop, Web, Android and iOS. Cloud sync and income are for review after store launch. School connections stay excluded. The proposals below do not authorize implementation or override the current [roadmap](ROADMAP.md).
+Updated: 2026-11-13. Status: deferred reference only under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). School research and application preparation are outside the current milestone. The guide below applies only if the extension is selected later. No consultation, application or message is sent by this document. No school endorsement, academic interface or access permission is established.
 
-Updated: 2026-11-11. Reusable reference for a possible school audience, not the product's main positioning. Nothing in this document has been sent to anyone. Cadence is a general local time planner for work, learning and everyday life, without a required account or affiliation. It has no school endorsement or academic-system access permission. See [ADR-007](adr/007-general-purpose-local-planner.md).
+Cadence is a local time-management and planning app for work, study and daily life. Direct tasks, deadlines, personal plans, Today and Week remain central. Build Windows first, then validate Android. A school discussion is a separate way to learn whether an official read-only timetable source can be offered. It must not delay the independent local release. Screenshot recognition is optional only if later need justifies it.
 
-The current desktop learning app supports validated task addition, completion, deletion and undo of the latest deletion in memory. Lessons 1–10 are accepted, lessons 11–13 are implemented, and all 27 tests pass. The learner confirmed deletion and undo in an actual window; title validation, theme, responsive-layout and keyboard checks remain open. Scheduling, local saving and a working Web planner are not implemented. The website uses fictional examples to present the intended design.
+[LEARNING.md](LEARNING.md) owns current implementation, automated checks and pending manual acceptance. The task exercise and concept website must be labelled separately from the planned product. Do not repeat old test counts here.
 
 ## Before a full scheduling demonstration
 
-Verify manual scheduling and tasks, the first-use choice between Save on this device and Temporary use, and core operation without a network connection. JSON preview, cancellation, import, export, failure and data clearing must pass the relevant acceptance checks. The privacy explanation must match the running code. These conditions are not yet met.
+Show only implemented and accepted behavior. A full planner demonstration needs direct editing, date rules, the saving/temporary choice, restart recovery and private backup/restore to pass their relevant checks. Explain offline behavior and failure limits truthfully. These conditions are not established by this document.
 
-For now, label the task exercise as the current learning app and the website as a concept preview. Do not describe the designed screens as completed features. General product publication does not need school permission. A future school-system connection would need its own authorization; consultation or a demonstration does not grant it.
+Before that milestone, use the current task exercise and clearly marked static or interactive concept views. Use fictional names, classes, rooms, deadlines and personal appointments. A connection concept may show a fictional source response entering an editable review; label it simulated. No real school login, credentials, records or source calls are needed.
 
 ## A future three-minute demonstration
 
-Use this English script after the described features have been implemented and tested. Product language support remains Japanese, English and Chinese. For any other audience, replace the final school-specific questions with that audience's needs; the core demonstration stays the same.
+This stable section describes a possible demonstration sequence, not a pitch script or a claim that the features work. Personal applications, speech scripts and correspondence stay outside this public repository.
 
-**Introduction:** Cadence is a local time planner for anyone organizing work, learning and daily life. It brings plans and tasks together without requiring an account, school identity or online service. This is an independent project. The purpose of the demonstration is to learn about real planning needs.
+| Step | Show when implemented | What to learn |
+|---|---|---|
+| Choose saving | Save on this device or Temporary use, with clear persistence limits | Whether the choices are understandable |
+| Plan ordinary work | Enter a task deadline and an independent work session; move the session without changing its deadline | Whether the general planning loop is useful |
+| Read commitments | Today and Week with fictional classes, meetings and personal plans | Whether times, locations and available intervals are clear |
+| Correct a change | Change one occurrence's room or time, cancel and restore it | Whether scope and results are understandable |
+| Recover | Restart saved data and restore a private backup after a truthful preview | Whether recovery is usable without developer help |
+| Discuss a source | A labelled simulated read-only source and review draft, if useful | Whether an official source could reduce entry effort |
 
-**Walkthrough:** Start with the explicit choice between Save on this device and Temporary use. Use fictional data to open Today and Week. Add focus time, a meeting or a personal appointment, give a weekly repeat an end date, and edit or delete a plan. Add and complete a task. Show the same core actions while offline. Switch among Japanese, English and Chinese. Explain which data lasts after closing and demonstrate backup and recovery only where they have passed acceptance. Ordinary planning requires no course or semester setup.
+Product language support remains Japanese, English and Chinese. Check each claimed target, language and accessibility behavior. A desktop concept does not establish phone acceptance.
 
-**Scope:** The core is local plans, tasks and a readable week. Courses, academic calendars and timetable imports are optional extensions. Web and synchronization are considered only when the school connection needs them; they are not conditions for local use. Do not imply that a school pilot, cloud account or browser app is necessary to use the desktop planner.
+## Consultation topics
 
-**Data handling:** The intended first-use choice decides whether personal planner data is saved on the device or remains only in memory. Temporary data is lost when the app closes and must leave no persistent drafts or automatic backups. Local saving works offline, but does not by itself provide encryption or a separate backup. Use a clean demonstration device and fictional data. Private JSON exports contain plans and tasks; deleting app data cannot retract exported or shared files. Verify every statement against the implementation before presenting it as a working capability.
+Keep the first discussion bounded. Ask whether a supported read-only API or official calendar feed exists, who owns it and whether an independent student project can apply. Establish the permitted data, users, authentication route, retention, update frequency and contact for changes. Ask for documentation or fictional samples before private records. Do not assume approval, a particular interface or a decision date.
 
-**School connection example:** Start with a permitted file or read-only local adapter that produces an editable preview. Consider Web or synchronization only if the actual school interface needs it. Explain any browser/server data flow, retention and operating cost separately. None of these connection features is implemented.
+A login method alone does not establish timetable access. A teacher's advice, a student's consent or attendance at a demonstration does not grant system permission. Do not ask users to give Cadence their school password, bypass access controls or scrape authenticated pages.
 
-**Feedback for this school audience:** Ask about planning needs in work, learning and daily life, language and accessibility, a few voluntary pilot users, and fictional or properly anonymized examples. If a course extension would help, ask which academic rules matter. Only if an official connection is requested, ask for the relevant contact and discuss data formats, access permission and maintenance responsibilities separately.
+Use [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) for conditional access gates and known source gaps. The proposed first connection, if separately approved, is read-only. A captured snapshot and a tested live refresh are different capabilities. No grades, attendance, registration changes or school write-back are part of the proposed scope.
 
 ## Local use and optional integration
 
-General local use and publication require no school membership or school approval. Attendance at a demonstration, a teacher's advice and a student's agreement to try the app do not grant authentication or API access. A school connection must be authorized under [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md), without becoming a dependency for the general planner or for people who do not use that connection.
+General local use and publication require no school membership or permission. A delayed or rejected access request must leave direct editing and local release useful. Screenshot recognition is not an automatic fallback commitment.
+
+Personal Google-login sync remains a different future service under [CLOUD_SYNC.md](CLOUD_SYNC.md), deferred until review after store launch. Google sign-in grants no academic access. Its JPY 2,500 monthly planning budget does not establish the cost of an institutional connection or hosted proxy.
+
+Keep any personal application draft, institutional replies, participant information and private source samples outside this public repository. Document only appropriate public requirements and confirmed non-sensitive facts. No outreach, submission, credential registration or integration implementation is authorized by this guide.

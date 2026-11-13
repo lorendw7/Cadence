@@ -1,8 +1,19 @@
 # Today: the home page and daily tasks
 
-Updated: 2026-11-11. Planned behavior for the general local planner. Today is the default start page, without an account requirement or a full-screen statistics dashboard. Implement it after the task model and persistence lessons; the current teaching app remains a basic in-memory task list. Work, learning, household and personal tasks use the same rules; see [ADR-007](adr/007-general-purpose-local-planner.md).
+Updated: 2026-11-13. Planned behavior for the general time planner under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). Today is the default start page, without an account or a full-screen statistics dashboard. Build it in the Windows flow after storage and shared date rules; design the phone layout now and validate Android next. The current teaching app remains an in-memory task exercise. Work, study, home and personal commitments use the same views.
 
-Show the local date and the number of tasks due today above a checkable list. The count must not require opening a statistics page. Below the tasks, show plans in time order and identify the next item. Course occurrences join this list only when the optional course feature is in use.
+On a phone, show the local date and a compact current/next commitment with its start/end time and optional room/location. Follow it with the day's agenda and accessible task groups; keep the due-today count visible without opening another page. Imported classes, work sessions and appointments have equal status. If no timetable is used, Today remains a complete personal planner. Wide windows retain tasks beside the daily timeline.
+
+The planning loop is to inspect commitments and available intervals, choose work, reserve an explicit personal plan, then adjust it as the day changes. A task's deadline remains separate from its work plan. Do not turn a deadline into a timed block or claim that reserved time measures actual work.
+
+## Commitments and available time
+
+- Show timed entries in actual time order and all-day items in a separate area. Keep visible gaps between timed commitments, without claiming that an unrecorded interval is certainly free.
+- An entry is current during `[start, end)`. Show overlapping current entries as separate choices. The next entry starts after now; a completed time interval does not remain next.
+- Apply individual corrections before choosing current/next items. A moved occurrence appears once at its replacement time; a cancelled occurrence does not occupy the agenda. Keep its original date and current correction accessible for restore; a full edit-history system is not required.
+- Keep title, time and room/location readable with large text. Missing location uses clear empty text rather than a guessed room. Do not require color, hover or a wide calendar to understand an entry.
+- Keep New task, New plan and access to Week reachable. Empty guidance offers New task and New plan. Show an Import action only when a supported route is actually included. Ordinary planning requires no school identity or semester.
+- Opening an imported occurrence offers its details and the supported one-occurrence time/room correction, cancellation and restore. Use [HOLIDAYS.md](HOLIDAYS.md) for identity and scope rules.
 
 ## Counting and grouping
 
@@ -26,4 +37,6 @@ An application left open overnight must change its day, and one left open during
 
 ## Acceptance
 
-Cover an empty list, completion and reversal, undated and future tasks, date-only deadlines, midnight, foreground recovery and save failure. With a fake clock, leave Today idle across an exact deadline and verify that the task moves groups and both counts change once. Check rescheduling after a deadline edit, removal after completion/deletion, late timers after sleep and clock changes. Confirm that every visible count matches its list. These requirements do not expand the first lesson's three-field task exercise.
+Cover an empty list, completion and reversal, undated and future tasks, date-only deadlines, midnight, foreground recovery and save failure. With a fake clock, leave Today idle across an exact deadline and verify that the task moves groups and both counts change once. Check rescheduling after a deadline edit, removal after completion/deletion, late timers after sleep and clock changes. Confirm that every count matches its list.
+
+Check current/next commitments at exact start and end times, overlaps, a moved class and a cancellation. A time or room correction must agree with Week and survive a confirmed save/restart. Check time/room readability and reachable task actions on Android with long translated text, 200% scaling, screen-reader navigation and the on-screen keyboard. Verify that moving a personal work plan leaves the related task deadline unchanged. These are future acceptance requirements, not passed checks or additions to the current lesson.

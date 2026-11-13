@@ -1,10 +1,12 @@
-# Optional university connection reference
+# Conditional university connection study
 
-> Historical reference only. [ADR-010](adr/010-open-multiplatform-free-first.md) now targets a free local edition on desktop, Web, Android and iOS. Cloud sync and income are for review after store launch. School connections stay excluded. The proposals below do not authorize implementation or override the current [roadmap](ROADMAP.md).
+> Deferred extension reference under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). No application has been submitted by this documentation work. School access, a usable interface and a responsible school contact remain unconfirmed. The independent local release does not wait for this study.
 
-Updated: 2026-11-11. Design and consultation preparation only. No school permission, supervisor commitment or usable timetable interface has been confirmed. This document describes an optional connection for the [general planning product](PRODUCT.md); Cadence is not an official university service.
+Updated: 2026-11-13. School research, application preparation and implementation are all deferred. The guidance below applies only if a later scope decision selects this extension; it creates no current tasks. No school permission, supervisor commitment or usable timetable interface has been confirmed. This document describes an optional connection for the [general planning product](PRODUCT.md); Cadence is not an official university service.
 
-The general local planner does not require school permission for publication or use. Web/sync work is now considered only if a school connection needs it; this scope choice does not give schools control over the independent local release. [ADR-007](adr/007-general-purpose-local-planner.md) replaces the earlier school-gated Web direction. This document retains Kyushu University research only as an optional integration reference, not a product audience or release requirement. Authentication, school-data reading, retention and export each need permission for that connection. Preview-and-save flows below apply only when the user chooses saving and retention is permitted. Temporary viewing must not write to a database, persistent draft or automatic backup.
+The general local planner does not require school permission for publication or use. This study uses Kyushu University because the repository's earlier research concerns that school; a different institution requires its own review. School authentication, timetable reading, retention and export need separate confirmation. Temporary viewing must not write to a database, persistent draft or automatic backup.
+
+Direct editing, Today, Week, tasks and recovery remain the delivery priority. Screenshot recognition is optional and unscheduled, even if the school route is unavailable. Personal Google sync under ADR-011 is a separate later service; its JPY 2,500 monthly plan does not authorize or price a school connection.
 
 ## Purpose and scope
 
@@ -16,13 +18,13 @@ Independent manual planning does not require school identity or system access ap
 | Read-only import of the user's own timetable | Data-owner permission, an available API or export format, and allowed fields | Preview before importing necessary course, date, time and room data |
 | Checking timetable changes | Reading frequency, change semantics and operating responsibilities | Show changes for review, their source and the last successful check |
 
-Successful authentication is not permission to read timetable data. If the school offers users a timetable file that can be exported without an application login, consider adapting that file first. No specific export feature or format has been confirmed. Without an approved data route, continue local manual work and introduce JSON operations only after their own implementation and acceptance. Fixed-template CSV and paste are later desktop plans and are outside the initial Web scope. The Web planner is not implemented.
+Successful authentication is not permission to read timetable data. Ask whether the school offers an official read-only API or a personal calendar feed, such as iCalendar/ICS, and whether Cadence may use it. A user-authorized official file is another possible route if it actually exists. No API, feed or export format has been confirmed. Do not ask users to make CSV files or assume that a downloadable page permits automated access. Without an approved route, continue the local planner.
 
 ## Documented source boundary
 
-[ADR-008](adr/008-small-free-local-product.md) limits Web and synchronization work to a school connection that needs them. This section describes a future interface, not new code, a promised school API or permission to call one.
+This section describes a conditional interface, not new code, a promised school API or permission to call one. The school's actual data contract determines the design. Independent Web and personal-sync plans are not restricted to a school use case.
 
-Prefer the smallest route: a user-exported file, then a read-only local adapter if needed. A login alone does not require a Web planner or full synchronization. Keep passwords on the school's approved authentication surface.
+Prefer the smallest approved read-only route. A direct client may be enough for an authorized feed or API; do not create a server without a protocol requirement. Keep passwords on the school's approved authentication surface. A private calendar-feed URL may itself be a credential and must stay out of logs, exports and public issues.
 
 | Operation | Input | Output and limits |
 |---|---|---|
@@ -32,20 +34,20 @@ Prefer the smallest route: a user-exported file, then a read-only local adapter 
 | Apply reviewed batch | Confirmed preview and current local state | One validated local transaction; failure preserves existing records |
 | Disconnect | The selected connection | Stop access and clear its credentials; do not delete unrelated local plans |
 
-Keep this mapping at the application boundary. Source adapters cannot write the database, choose a storage mode or overwrite local edits. Reuse the screenshot/table review flow where its fields fit. Preserve source identity when available; names alone are not reliable keys. An incomplete or failed snapshot is not an instruction to delete courses. Recheck permission before storing or exporting source data.
+Keep this mapping at the application boundary. Source adapters cannot write the database, choose a storage mode or overwrite local edits. Use reviewed candidate records where an approved source needs them; no screenshot or table parser is a prerequisite. Preserve source identity when available; names alone are not reliable keys. An incomplete or failed snapshot is not an instruction to delete courses. Recheck permission before storing or exporting source data.
 
-Only when the source requires a Web surface or service should its design begin. Record why a local adapter is insufficient, what data leaves the device, who operates and pays for it, and how it can be disabled. Keep the existing concept site separate from private data.
+Only when the approved school protocol requires an intermediary should that connector service be designed. Record why a local adapter is insufficient, what data leaves the device, who operates and pays for it, and how it can be disabled. Keep the existing concept site separate from private data.
 
 Start updates with user-requested read and review. If synchronization is actually needed, specify its direction and source of truth. A school-to-local refresh is not two-way sync of personal tasks. Do not upload independent local data by default. Use only the relevant parts of [SYNC.md](SYNC.md); accounts, server workspaces, queues and conflict protocols are not automatically required. No connection may block independent offline use or general product release.
 
 ## Previously reviewed school materials
 
-The project notes record a review of these public materials on 2026-11-10. The English summary below preserves that research; it is not a fresh verification of current school requirements. Confirm the current terms with the school before applying.
+The two official documents below were reopened and checked on 2026-11-13. The published authentication terms are marked last revised on 2022-11-28. Confirm their application to this student project with the responsible school office; a public document does not establish project eligibility.
 
-- The university-wide authentication service terms, marked last revised on 2022-11-28, describe an internal staff administrator or approved contact in Article 3, system eligibility in Article 6, an application at least one month in advance and permission in Article 7, and departmental administration and submission procedures in Articles 12–13. Articles 9 and 11 address annual renewal, not storing passwords and operating duties. See the [official terms](https://web.sso.kyushu-u.ac.jp/documents/rules/ninsyou_youkou.pdf).
+- The university-wide authentication terms require a qualifying university staff administrator or contact, define system eligibility, and require an application at least one month before the desired start. The application goes through the relevant departmental administration. This is an authentication process, not a published timetable API agreement. See Articles 3, 6–7 and 12–13 of the [official terms](https://web.sso.kyushu-u.ac.jp/documents/rules/ninsyou_youkou.pdf).
 - Page 1 of the 2026 student portal guide describes Campusmate-J and warns about third-party timetable applications collecting account passwords. It does not grant permission for automatic access. See the [official guide](https://www.kyushu-u.ac.jp/f/65028/tebiki_2026.pdf).
 
-The review did not confirm a public developer timetable API, student-project eligibility, fees, approval time or readable fields. A requirement to apply a month in advance is not a promise of approval within one month.
+The reviewed public material did not establish a developer timetable API, project eligibility, fees, approval time or permitted fields. This is an evidence gap, not proof that no private interface exists. A requirement to apply a month in advance is not a promise of approval within one month.
 
 ## Supervisor and school roles
 
@@ -59,7 +61,7 @@ Ask a current Kyushu University supervisor to help identify project eligibility,
 | School authentication team | Confirm eligibility, authentication methods, application requirements and permission conditions |
 | Academic-system team or data owner | Confirm access to the user's own timetable, format, limits, field meanings and support |
 
-These are proposed roles. The school's response determines the actual people and approval process. Consultation can run alongside the local prototype. Integration testing must wait until its scope is clear and authorized.
+These are proposed roles. The school's response determines the actual people and approval process. Consultation is not scheduled alongside the current local prototype. Integration testing must wait until its scope is clear and authorized.
 
 ## Consultation materials and questions
 
@@ -74,9 +76,30 @@ Prepare a one-page explanation and a demonstration with fictional data. Describe
 5. What are the request limits, session lifetime, change-notice arrangements, support contacts and conditions for stopping access?
 6. What requirements apply to renewal, fees, operating records, incidents and changes of maintainer?
 
+## Scope to propose first
+
+Request the smallest useful connection: one user's course title, date or week rule, start/end time and room for one bounded term. Ask for stable source IDs and last-change information if available. Begin with a user-requested read and review, without background polling or automatic notifications.
+
+| Available route after consultation | Next step | Release effect |
+|---|---|---|
+| Official permitted calendar feed or export | Check field coverage, private-link handling and refresh semantics; estimate a bounded adapter | Local release remains independent |
+| Documented API with approved authentication and test access | Map own-user scope, review/save behavior, retention and failures before a limited pilot | Add the conditional integration effort in ROADMAP |
+| School login only, without data permission or interface | Clarify data access separately; do not scrape the portal | No connected-release date |
+| No eligible contact, no approved route or no response | Keep the consultation open only if useful; continue direct planning | No delay to local release and no automatic OCR project |
+
+Do not promise live changes merely because an API or feed exists. Completeness, cancellation meaning, refresh limits and permitted background behavior need agreement. A school may require a server or named operator; re-estimate its development and recurring cost separately before committing.
+
+## Prototype and release timing
+
+The [roadmap estimate](ROADMAP.md#maintenance-and-estimates) uses the maintainer's 10-15 hours per week. A fictional-data local demonstrator can be prepared before school access. It must label unavailable storage, recovery or connection behavior.
+
+School response time is unknown. After authorization, a documented interface and test access, the roadmap gives a conditional connected-prototype estimate and a separate production-integration allowance. Those hours are additional to local product work. The current schedule allocates no time to consultation or integration.
+
+A connected release needs both the local product gates and the school's relevant test/production permission. A local release needs only its own gates. Keep application drafts, named contacts, credentials and responses private. Nothing in this document is a submitted request.
+
 ## User flow
 
-The basic product entry should offer manual planning and file operations only as they become implemented and accepted, without requiring school credentials. Do not present future paste/import work as already available. Show a usable school connection only when its method is authorized and tested; do not offer a fake login while access is unavailable.
+The basic product entry should offer direct planning and recovery only as they become implemented and accepted, without requiring school credentials. Do not present conditional import work as already available. Show a usable school connection only when its method is authorized and tested; do not offer a fake login while access is unavailable.
 
 The planned connection flow is: explain reading scope and storage → user chooses to connect → school-approved authentication → read permitted data → flag unsupported or missing fields → preview semester mapping, duplicates and conflicts → user confirms → commit in the selected storage mode. The authorized interface determines protocols and callbacks; do not assume OAuth, SAML or a middle server is available.
 

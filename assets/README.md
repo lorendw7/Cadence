@@ -2,6 +2,8 @@
 
 Updated: 2026-11-12. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers the desktop identity, navigation, editing, data controls, empty states and concept website; some assets prepare for optional later extensions. Browse the [catalogue](catalog.html), [visual overview](preview.png), [Tasks design handoff](ui/README.md) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
 
+The [planner study](ui/planner-study.html) extends the local design work to Today, Week and Tasks. Its [review guide](ui/PLANNER_STUDY.md) separates preview interactions from planned application behavior. It reuses the existing artwork without new exports.
+
 ## Visual direction
 
 Keep the original C mark and its rhythm dot. Use muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C` and ink `#2F3033`. Interface icons use a 24 × 24 grid with 1.75-unit round strokes. Sparse illustrations support guidance and empty states. Keep text, forms and timelines on plain surfaces.
@@ -19,7 +21,7 @@ Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4
 | `brand/` | Main, paper and dark icons; single-color marks; two lockups; retained original SVGs | Brand, launcher, title bar and website |
 | `icons/` | 56 SVGs and one sprite | Navigation, categories, editing, files, settings and feedback |
 | `illustrations/` | Ten 320 × 240 SVG states, one 96 × 72 compact task state and a 1536 × 1024 editorial PNG | Empty views, completion, search, import, save failure and recovery |
-| `ui/` | Editable local HTML/CSS/JavaScript study and English handoff | Task UI design, sample states, spacing and artwork selection; no app implementation |
+| `ui/` | Editable local HTML/CSS/JavaScript studies and English handoffs | Historical Tasks exercise and future three-page planner; no app implementation |
 | `patterns/` | Three seamless 32 × 32 SVG tiles | Decorative dots, grid and ruled paper |
 | `platform/png/` | 16–1024 px PNG exports | Desktop icons and future Web resources |
 | `platform/` | Multi-size ICO and 128–1024 px ICNS | Windows and macOS packaging |
