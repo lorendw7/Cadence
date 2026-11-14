@@ -1,6 +1,10 @@
 # Learning Cadence
 
-This log owns current learning progress, implementation evidence and pending acceptance. The [core learning plan](CURRICULUM.md) owns teaching order and mastery checks. [PRODUCT.md](PRODUCT.md) and [ROADMAP.md](ROADMAP.md) own scope and delivery under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md).
+This log owns current learning progress, implementation evidence and pending acceptance. The [core learning plan](CURRICULUM.md) owns teaching order and mastery checks. [PRODUCT.md](PRODUCT.md) and [ROADMAP.md](ROADMAP.md) own scope and delivery under [ADR-015](adr/015-android-self-use-first.md). The accepted 2026-11-15 route prioritizes an ad-free Android self-use build after safe shared saving and recovery. Windows remains the development host. This decision completes no lesson or native check.
+
+Support work on 2026-11-15 prepared the [complete desktop proposal](DESKTOP_V1.md), [sales targets](STEAM_SALES_PLAN.md) and [focus media studies](../assets/focus-pack/README.md). The pack contains 12 synthetic music drafts, three cues, editable scores and prepared artwork. Its [measurement report](../assets/focus-pack/validation.json) records asset checks separately from application acceptance. No Flutter feature, package or lesson implementation was added. Listening, browser playback and native integration still need review.
+
+An earlier scope pass on the same date selected reuse of these assets without recharging fal. That desktop candidate keeps one task-linked countdown, compact mode, local review and the existing scene; mixing, extra scenes and wallpaper controls are deferred. [Its delivery slices](DESKTOP_V1.md#delivery-slices-and-evidence) remain a later desktop reference. The subsequent Android-first decision moves phone self-use ahead of that package and Steam preparation. Neither documentation pass changes the pending lesson 17 acceptance below.
 
 Updated: 2026-11-13 after the learner confirmed actual-window copy feedback. Lessons 1–10 are implemented and accepted. Lessons 11–14 are implemented, with their remaining actual-window checks listed below. Lesson 15's remaining actual-window checks are deferred at the learner's request; they are not accepted. Lesson 16's code cleanup and concept review are complete. Counter removal and application color alignment were explicitly delegated. Lesson 17 now includes a clipboard caller, corrected action-row layout and guarded visible feedback. Saving is not implemented. The temporary text-scale override is absent. The current run passes all 39 tests. The leftover debug print has been removed. The Windows debug build also passes with the clipboard change. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
 
@@ -69,7 +73,9 @@ SQLite/drift belongs to the upcoming persistence stage. Riverpod remains conditi
 
 ## Current delivery priority
 
-Continue lesson 17, then build reliable local saving and recovery through learner-owned steps. The [roadmap](ROADMAP.md) keeps the useful Windows planner first and Android validation next. Core planning remains local and free; import, school connections, cloud sync and ads stay deferred. The teaching revision does not change product scope, implement a feature or close pending checks.
+Continue lesson 17, then build reliable local saving and recovery through learner-owned steps. Under [ADR-015](adr/015-android-self-use-first.md), Android is the first self-use target. A fictional-data launch check can establish device setup before storage is ready. Real tasks wait for phone acceptance of local/temporary mode, confirmed writes, restart and backup recovery. Extend the accepted task slice with direct planning, Today and selected-day Week. After planning self-use, add the bounded [Android focus stage](ROADMAP.md#h--android-focus-self-use): one task-linked countdown, a manual break and a small local session list. A complete Windows release, media player or Steam listing is not required first.
+
+The maintainer has an Android phone and is willing to use the app daily; no external trial users are available. Start a two-week private use log once the safe local slice exists. Self-use can reveal defects and personal value, but not independent demand or revenue. The first build is ad-free. Android focus needs its own learner-owned timer, saving and lifecycle checks; no background guarantee exists. Desktop focus and purchase research are later work. School login authorization, application preparation and integration stay deferred. Ads wait for a useful mobile release and an ad-free usage baseline. Store-mandated testing remains separate. This route update implements no feature and closes no pending check.
 
 ## Learning order
 
@@ -169,3 +175,11 @@ The learner reported testing the copy action and seeing its feedback in the actu
 ### Pre-push checks on 2026-11-13
 
 After the actual-window feedback report, formatting, strict analysis of lib and test, all 39 Flutter tests, the Windows debug build, and repository, website, artwork and diff checks passed. The direct installed Dart executable and Flutter tools snapshot were used because the PATH wrapper had previously stalled. The SDK cache required write access. No Android, iOS, macOS or Linux build ran. Browser checks remain the earlier design-study results, not a new run. Native paste and earlier unconfirmed manual checks remain open.
+
+### Android environment support on 2026-11-15
+
+The maintainer requested computer setup and an APK, with no phone test in this session. The assistant installed the command-line Android SDK on C:, configured the existing JDK 21 and Flutter SDK, and completed the SDK license setup. [SETUP.md](SETUP.md#android-environment-observed-on-2026-11-15) records the installed versions and repeatable steps. Android Studio and emulator images were not installed. The Gradle wrapper still uses version 9.1.0; its download now uses the smaller binary distribution without Gradle source files and documentation.
+
+Flutter doctor reported no issues. Strict Flutter analysis, all 39 tests and the Android debug APK build passed. APK signature verification also passed. The generated file is `build/app/outputs/flutter-apk/app-debug.apk`. It contains ARM64, ARMv7 and x86-64 libraries, with minimum API 24 and target API 36. The build emitted an SDK XML schema warning but completed successfully.
+
+This was toolchain and build support. No learner-owned Dart code, state rules or dependencies changed. Lesson 17 native paste and earlier manual checks remain open. Tasks still live only in memory. Phone layout, Back, keyboard, clipboard, process termination and future storage recovery remain untested on Android. A debug APK is not a released or accepted self-use product.

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "focus-start",
+  "title": "Focus Start",
+  "kind": "cue",
+  "bpm": 60,
+  "meter": [
+    4,
+    4
+  ],
+  "duration_beats": 1,
+  "tail_seconds": 2,
+  "seed": 42,
+  "seamless_loop": false,
+  "notes": [
+    {
+      "beat": 0.0,
+      "duration": 0.3,
+      "pitch": 72,
+      "velocity": 42,
+      "instrument": "bell",
+      "pan": 0
+    },
+    {
+      "beat": 0.32,
+      "duration": 0.3,
+      "pitch": 76,
+      "velocity": 42,
+      "instrument": "bell",
+      "pan": 0
+    }
+  ]
+}

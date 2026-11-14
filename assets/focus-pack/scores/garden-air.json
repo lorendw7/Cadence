@@ -1,0 +1,1293 @@
+{
+  "version": 1,
+  "id": "garden-air",
+  "title": "Garden Air",
+  "kind": "music",
+  "bpm": 64,
+  "meter": [
+    4,
+    4
+  ],
+  "key": "F major",
+  "bars": 32,
+  "duration_beats": 128,
+  "tail_seconds": 4,
+  "seed": 26111504,
+  "lead": "flute",
+  "status": "synthetic_arrangement_draft",
+  "seamless_loop": false,
+  "notes": [
+    {
+      "beat": 0,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 0,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 0,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 0.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 2.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 4,
+      "duration": 3.85,
+      "pitch": 38,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 4,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 4,
+      "duration": 3.85,
+      "pitch": 50,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 4.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 6.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 8,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 8,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 8,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 8.15,
+      "duration": 1.45,
+      "pitch": 70,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 10.15,
+      "duration": 1.2,
+      "pitch": 74,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 12,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 12,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 12,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 12.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 14.15,
+      "duration": 1.2,
+      "pitch": 67,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 16,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 16,
+      "duration": 3.85,
+      "pitch": 52,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 16,
+      "duration": 3.85,
+      "pitch": 57,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 16.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 18.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 20,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 20,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 20,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 20.15,
+      "duration": 1.45,
+      "pitch": 74,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 22.15,
+      "duration": 1.2,
+      "pitch": 70,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 24,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 24,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 24,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 24.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 26.15,
+      "duration": 1.2,
+      "pitch": 76,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 28,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 28,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 28,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 33,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 28.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 50,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 30.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 32,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 32,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 32,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 32.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 34.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 36,
+      "duration": 3.85,
+      "pitch": 38,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 36,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 36,
+      "duration": 3.85,
+      "pitch": 50,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 36.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 38.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 40,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 40,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 40,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 40.15,
+      "duration": 1.45,
+      "pitch": 70,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 42.15,
+      "duration": 1.2,
+      "pitch": 74,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 44,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 44,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 44,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 44.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 46.15,
+      "duration": 1.2,
+      "pitch": 67,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 48,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 48,
+      "duration": 3.85,
+      "pitch": 52,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 48,
+      "duration": 3.85,
+      "pitch": 57,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 48.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 50.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 52,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 52,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 52,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 52.15,
+      "duration": 1.45,
+      "pitch": 74,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 54.15,
+      "duration": 1.2,
+      "pitch": 70,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 56,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 56,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 56,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 56.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 58.15,
+      "duration": 1.2,
+      "pitch": 76,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 60,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 60,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 60,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 28,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 60.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 45,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 62.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 40,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 64,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 64,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 64,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 64.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 66.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 68,
+      "duration": 3.85,
+      "pitch": 38,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 68,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 68,
+      "duration": 3.85,
+      "pitch": 50,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 68.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 70.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 72,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 72,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 72,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 72.15,
+      "duration": 1.45,
+      "pitch": 82,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 74.15,
+      "duration": 1.2,
+      "pitch": 86,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 76,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 76,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 76,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 76.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 78.15,
+      "duration": 1.2,
+      "pitch": 67,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 80,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 80,
+      "duration": 3.85,
+      "pitch": 52,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 80,
+      "duration": 3.85,
+      "pitch": 57,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 80.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 82.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 84,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 84,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 84,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 84.15,
+      "duration": 1.45,
+      "pitch": 86,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 86.15,
+      "duration": 1.2,
+      "pitch": 82,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 88,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 88,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 88,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 88.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 90.15,
+      "duration": 1.2,
+      "pitch": 76,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 92,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 92,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 92,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 35,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 92.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 52,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 94.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 96,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 96,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 96,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 96.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 98.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 100,
+      "duration": 3.85,
+      "pitch": 38,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 100,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 100,
+      "duration": 3.85,
+      "pitch": 50,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 100.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 102.15,
+      "duration": 1.2,
+      "pitch": 65,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 104,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 104,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 104,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 104.15,
+      "duration": 1.45,
+      "pitch": 70,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 106.15,
+      "duration": 1.2,
+      "pitch": 74,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 108,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 108,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 108,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 108.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 110.15,
+      "duration": 1.2,
+      "pitch": 67,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 112,
+      "duration": 3.85,
+      "pitch": 45,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 112,
+      "duration": 3.85,
+      "pitch": 52,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 112,
+      "duration": 3.85,
+      "pitch": 57,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 112.15,
+      "duration": 1.45,
+      "pitch": 69,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 114.15,
+      "duration": 1.2,
+      "pitch": 72,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 116,
+      "duration": 3.85,
+      "pitch": 46,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 116,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 116,
+      "duration": 3.85,
+      "pitch": 58,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 116.15,
+      "duration": 1.45,
+      "pitch": 74,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 118.15,
+      "duration": 1.2,
+      "pitch": 70,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 120,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 120,
+      "duration": 3.85,
+      "pitch": 55,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 120,
+      "duration": 3.85,
+      "pitch": 60,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 120.15,
+      "duration": 1.45,
+      "pitch": 72,
+      "velocity": 47,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 122.15,
+      "duration": 1.2,
+      "pitch": 76,
+      "velocity": 42,
+      "instrument": "flute",
+      "pan": 0.1
+    },
+    {
+      "beat": 124,
+      "duration": 3.85,
+      "pitch": 41,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": -0.4
+    },
+    {
+      "beat": 124,
+      "duration": 3.85,
+      "pitch": 48,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.05
+    },
+    {
+      "beat": 124,
+      "duration": 3.85,
+      "pitch": 53,
+      "velocity": 30,
+      "instrument": "strings",
+      "pan": 0.4
+    },
+    {
+      "beat": 124.2,
+      "duration": 3.5,
+      "pitch": 65,
+      "velocity": 48,
+      "instrument": "flute",
+      "pan": 0.1
+    }
+  ]
+}

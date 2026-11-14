@@ -385,7 +385,7 @@ function eventButton(key, short = false) {
   return `<button class="event ${key === 'meeting' ? 'next-event' : ''}" data-editor="${key}" aria-label="${esc(t(item.title))}, ${dateLabel(item.date)}, ${item.start}–${item.end}, ${esc(t(item.place))}"><b>${esc(t(item.title))}</b><small>${item.start}–${item.end}${short ? '' : ` · ${esc(t(item.place))}`}</small></button>`;
 }
 function empty() {
-  return `<div class="empty"><img src="../illustrations/empty-tasks-compact.svg" alt=""><h3>${esc(t('emptyTitle'))}</h3><p>${esc(t('emptyText'))}</p><div class="page-actions">${action('newTask','newTask','primary')}${action('newPlan','newPlan')}</div></div>`;
+  return `<div class="empty"><img src="../illustrations/empty-${page}-compact.svg" width="96" height="72" alt=""><h3>${esc(t('emptyTitle'))}</h3><p>${esc(t('emptyText'))}</p><div class="page-actions">${action('newTask','newTask','primary')}${action('newPlan','newPlan')}</div></div>`;
 }
 function gap(index, start, end) {
   return `<div class="open-interval"><div><span class="gap-range">${timeLabel(start)}–${timeLabel(end)}</span><span class="gap-duration">${duration(end - start)} · ${esc(t('free'))}</span></div>${action('reserve',`gap:${index+9}:${start}:${end}`,'text-button')}</div>`;

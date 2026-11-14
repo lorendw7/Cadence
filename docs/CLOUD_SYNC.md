@@ -1,6 +1,6 @@
 # Optional cloud sync design
 
-Updated: 2026-11-13. Status: accepted future design under [ADR-011](adr/011-optional-sync-service.md); not implemented, purchased or released. The current app keeps tasks in memory. [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) now prioritizes a shared local time-management and direct-editing flow, first working on Windows and then validated on Android. Cloud implementation still follows the post-store service gate in [ROADMAP.md](ROADMAP.md). The learner writes core features in small lessons.
+Updated: 2026-11-15. Status: accepted future design under [ADR-011](adr/011-optional-sync-service.md); not implemented, purchased or released. The current app keeps tasks in memory. [ADR-015](adr/015-android-self-use-first.md) prioritizes shared local saving and recovery, Android planning self-use, then bounded local focus. Windows remains the development host. Neither a complete Windows release nor desktop media and Steam work is a phone prerequisite. Planning and focus work locally without this service. Cloud implementation still follows the separate service gate in [ROADMAP.md](ROADMAP.md). The learner writes core features in small lessons.
 
 ## Purpose and boundary
 
@@ -95,6 +95,6 @@ Before a pilot, verify all of the following:
 - Account switching, clear and local restore cannot leak data, erase cloud records silently or revive deleted data.
 - Backups are stored away from the live server; restore works on a clean system. State the tested recovery limits.
 - The client remains useful locally during service failure. Before a planned shutdown, provide notice and export; define the deletion schedule.
-- The real monthly charge, provider terms and common service limits fit the approved operating plan. No advertising revenue is assumed before a supported channel produces measured results.
+- The real monthly charge, provider terms and common service limits fit the approved operating plan. No advertising revenue is assumed before a supported mobile channel produces measured results. Desktop and Web ads are excluded under ADR-014. One-time desktop sales do not promise permanent cloud hosting.
 
 Sync is not a backup: it can propagate a mistaken change. Maintain separate recovery copies and explain their scope. No uptime, encryption or response-time guarantee is made by this design.

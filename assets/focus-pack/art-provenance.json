@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "date": "2026-11-15",
+  "file": "art/quiet-room.png",
+  "provider": "Built-in image generation tool",
+  "model": "Not reported by tool",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "transform": "Unmodified original PNG",
+  "status": "Decorative concept; not integrated",
+  "prompt": "Use case: illustration-story. Asset type: a project-bound decorative focus scene for Cadence, a quiet offline desktop planner, and the visual cover for its small original instrumental collection. Create a landscape 1536 by 1024 editorial illustration. Scene: an unoccupied small reading-and-music corner in gentle morning light, a modest upright piano against the far wall, a wooden desk with one open blank notebook and a graphite pencil, a single ginkgo sprig in a simple ceramic vase, a window looking onto abstract soft green foliage. Instruments are realistically shaped but illustrated with restraint. Composition: generous calm negative space in the upper left, carefully balanced clear silhouettes, no crowded objects. Style: sophisticated Japanese editorial print, graphite contours, restrained gouache planes, tactile warm paper, soft natural shading, no shiny 3D. Palette: warm paper #F6F5F1, muted wine #7C394B on a small fabric accent, sage #6F877C, graphite #2F3033. This is decorative art, not a UI screenshot. Absolutely no lettering, numerals, logos, fake writing, watermarks, people or university insignia. Keep the image quiet enough to accompany long work sessions."
+}

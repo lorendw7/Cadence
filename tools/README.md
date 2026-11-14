@@ -7,9 +7,12 @@ Run these commands from the repository root. They are development helpers, not F
 | node tools/check_repository.cjs | Check documentation language scripts, local file links and anchors, and project JavaScript syntax | Node and Git; read-only |
 | node tools/check_website.cjs | Check translations, placeholders, metadata, markup bindings, IDs, ARIA, local assets, preview contracts, and JavaScript syntax | Node built-ins; read-only |
 | python tools/check_artwork.py | Check SVG structure, icon/sprite agreement, catalogue coverage, preview freshness, manifest sizes, image budgets, and platform/site copies | Python standard library; read-only |
+| python tools/build_focus_pack.py | Render 12 synthetic music studies and three cues from editable note sources; export MIDI, FLAC, OGG, MP3, covers and a local listening catalogue | Python with NumPy/SciPy and FFmpeg; writes only the focus pack; no network calls or application dependencies |
+| python tools/check_focus_pack.py --report assets/focus-pack/validation.json | Check focus-pack source hashes, local links, audio decoding, durations, channels and measured levels | Python standard library, FFmpeg and FFprobe; writes only the requested measurement report; omit --report for read-only use |
 | python tools/build_artwork.py | Build SVG sources, catalogue, and initial manifest using artwork_catalog.py | Python standard library; writes artwork outputs |
 | node tools/export_artwork.cjs | Export PNG/ICO/ICNS/WebP, build preview sheets, and sync platform/site assets | Node with sharp; writes outputs; run the Python generator again to refresh the manifest |
 | node tools/export_artwork.cjs --previews-only | Rebuild the overview and full contact sheet from existing artwork | Node with sharp; writes both previews and their source fingerprints in the manifest |
+| node tools/export_artwork.cjs --store-only | Export the prepared Google Play listing icon and refresh both contact sheets | Node with sharp; run the Python generator before and after export; does not alter native launcher resources |
 
 Follow the [artwork regeneration order](../assets/README.md#regeneration). The website uses 480/960/1536 px WebP exports with a PNG fallback. Keep the original image and generation inputs.
 
@@ -25,4 +28,4 @@ The [planner study](../assets/ui/PLANNER_STUDY.md) has separate editable HTML, C
 
 Source checks cannot prove browser behavior, accessibility, remote-link availability, or release readiness. The documentation script check catches leftover Chinese/Japanese text in Markdown; a human review still needs to check that the English is clear and correct.
 
-The [repository workflow](../.github/workflows/repository.yml) runs the three read-only tools. The [Pages workflow](../.github/workflows/pages.yml) requires them before deployment.
+The [repository workflow](../.github/workflows/repository.yml) runs the three read-only tools. The retained [Pages workflow](../.github/workflows/pages.yml) requires them before deployment, but it is disabled in GitHub while the site is offline.

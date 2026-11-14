@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "date": "2026-11-15",
+  "status": "not_started_balance_exhausted",
+  "provider": "fal",
+  "endpoint": "fal-ai/stable-audio-25/text-to-audio",
+  "tracks": [
+    {
+      "id": "morning-margins",
+      "title": "Morning Margins",
+      "instrument": "Solo piano",
+      "prompt": "Instrumental solo acoustic piano, intimate felt-piano tone, slow 68 BPM, gentle C major and A minor harmony, a simple original lyrical four-note motif with spacious pauses, low-register broken chords and delicate upper melody, understated Japanese editorial reading-room mood without imitating any artist. Natural piano resonance, warm close recording, restrained dynamics, steady calm flow for focused study. A complete miniature with a quiet introduction, subtle middle variation and softly resolved final chord followed by decay. No voice, no singing, no speech, no choir, no drums, no other instruments, no sound effects. 120 seconds."
+    },
+    {
+      "id": "lamplight-pages",
+      "title": "Lamplight Pages",
+      "instrument": "Solo piano",
+      "prompt": "Instrumental solo upright acoustic piano nocturne, warm soft hammers, slow 60 BPM in gentle 3/4 meter, D major with B minor shades, sparse flowing left-hand arpeggios and a modest original melody, reflective evening reading mood, consonant harmony, patient rests, no dramatic climax. Soft natural room ambience, quiet consistent dynamics. Complete two-minute miniature, opening motif returns near the end, final chord resolves gently with a long natural decay. No voice, no singing, no speech, no choir, no drums, no other instruments, no sound effects. 120 seconds."
+    },
+    {
+      "id": "cedar-strings",
+      "title": "Cedar Strings",
+      "instrument": "Nylon-string guitar",
+      "prompt": "Instrumental solo classical nylon-string acoustic guitar, gentle fingerpicking at 72 BPM, warm cedar resonance, G major and E minor colors, original modest melodic phrase interwoven with arpeggios, delicate finger articulation without loud fret squeaks. Cozy afternoon desk atmosphere, sparse and calm, no virtuosic flourishes, no big build, softly even dynamics. Complete two-minute miniature with a clear beginning, small harmonic variation and gentle resolved ending with natural sustain. No vocals, no speech, no humming, no percussion, no piano, no electric guitar, no background noises. 120 seconds."
+    },
+    {
+      "id": "garden-air",
+      "title": "Garden Air",
+      "instrument": "Flute and chamber strings",
+      "prompt": "Instrumental small acoustic chamber ensemble: soft lyrical transverse flute with muted viola and cello, warm slow sustained strings and spacious short original flute phrases, 64 BPM, F major with soft D minor shading, gentle garden morning mood, intimate natural recording, restrained breath sounds, smooth legato. Calm background for reading, low density and even quiet dynamics, no dramatic orchestral rise. Complete two-minute miniature with a gentle introduction, subtle middle variation and a peaceful resolved ending with natural decay. No vocals, no speech, no choir, no drums, no brass, no electronic pads, no effects. 120 seconds."
+    }
+  ],
+  "requests": [
+    {
+      "index": 0,
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "decision_id": "2386da01-4714-4384-a102-c70648081f70",
+      "submission_key": "cadence-focus-20261115-a-0",
+      "input": {
+        "prompt": "Instrumental solo acoustic piano, intimate felt-piano tone, slow 68 BPM, gentle C major and A minor harmony, a simple original lyrical four-note motif with spacious pauses, low-register broken chords and delicate upper melody, understated Japanese editorial reading-room mood without imitating any artist. Natural piano resonance, warm close recording, restrained dynamics, steady calm flow for focused study. A complete miniature with a quiet introduction, subtle middle variation and softly resolved final chord followed by decay. No voice, no singing, no speech, no choir, no drums, no other instruments, no sound effects. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111501
+      }
+    },
+    {
+      "index": 1,
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "decision_id": "2386da01-4714-4384-a102-c70648081f70",
+      "submission_key": "cadence-focus-20261115-a-1",
+      "input": {
+        "prompt": "Instrumental solo upright acoustic piano nocturne, warm soft hammers, slow 60 BPM in gentle 3/4 meter, D major with B minor shades, sparse flowing left-hand arpeggios and a modest original melody, reflective evening reading mood, consonant harmony, patient rests, no dramatic climax. Soft natural room ambience, quiet consistent dynamics. Complete two-minute miniature, opening motif returns near the end, final chord resolves gently with a long natural decay. No voice, no singing, no speech, no choir, no drums, no other instruments, no sound effects. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111502
+      }
+    },
+    {
+      "index": 2,
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "decision_id": "2386da01-4714-4384-a102-c70648081f70",
+      "submission_key": "cadence-focus-20261115-a-2",
+      "input": {
+        "prompt": "Instrumental solo classical nylon-string acoustic guitar, gentle fingerpicking at 72 BPM, warm cedar resonance, G major and E minor colors, original modest melodic phrase interwoven with arpeggios, delicate finger articulation without loud fret squeaks. Cozy afternoon desk atmosphere, sparse and calm, no virtuosic flourishes, no big build, softly even dynamics. Complete two-minute miniature with a clear beginning, small harmonic variation and gentle resolved ending with natural sustain. No vocals, no speech, no humming, no percussion, no piano, no electric guitar, no background noises. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111503
+      }
+    },
+    {
+      "index": 3,
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "decision_id": "2386da01-4714-4384-a102-c70648081f70",
+      "submission_key": "cadence-focus-20261115-a-3",
+      "input": {
+        "prompt": "Instrumental small acoustic chamber ensemble: soft lyrical transverse flute with muted viola and cello, warm slow sustained strings and spacious short original flute phrases, 64 BPM, F major with soft D minor shading, gentle garden morning mood, intimate natural recording, restrained breath sounds, smooth legato. Calm background for reading, low density and even quiet dynamics, no dramatic orchestral rise. Complete two-minute miniature with a gentle introduction, subtle middle variation and a peaceful resolved ending with natural decay. No vocals, no speech, no choir, no drums, no brass, no electronic pads, no effects. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111504
+      }
+    }
+  ],
+  "additionalPreparedRequests": [
+    {
+      "id": "rain-on-paper",
+      "title": "Rain on Paper",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: gentle solo acoustic piano, F major, sparse flowing phrases at 66 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111505
+      }
+    },
+    {
+      "id": "first-snow",
+      "title": "First Snow",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: soft solo felt piano, C major, slow 3/4 meter at 58 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111506
+      }
+    },
+    {
+      "id": "warm-window",
+      "title": "Warm Window",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: solo nylon-string guitar, A major, light fingerpicking at 76 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111507
+      }
+    },
+    {
+      "id": "linen-harp",
+      "title": "Linen Harp",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: solo acoustic concert harp, D major, restrained arpeggios at 70 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111508
+      }
+    },
+    {
+      "id": "amber-keys",
+      "title": "Amber Keys",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: warm electric piano, G major, gentle 3/4 meter at 64 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111509
+      }
+    },
+    {
+      "id": "woodland-steps",
+      "title": "Woodland Steps",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: soft marimba, F major, spacious wooden tones at 78 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111510
+      }
+    },
+    {
+      "id": "dusk-chamber",
+      "title": "Dusk Chamber",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: muted chamber strings with cello melody, G major, legato at 62 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111511
+      }
+    },
+    {
+      "id": "silver-orbit",
+      "title": "Silver Orbit",
+      "status": "not_submitted",
+      "endpoint_id": "fal-ai/stable-audio-25/text-to-audio",
+      "input": {
+        "prompt": "Original calm instrumental miniature: gentle celesta, G major, sparse bell-like notes at 72 BPM. A small complete piece for focused reading, quiet consistent dynamics, a modest melody, subtle middle variation, gently resolved ending with natural decay. No artist imitation, vocals, speech, choir, drums or dramatic climax. 120 seconds.",
+        "seconds_total": 120,
+        "num_inference_steps": 8,
+        "seed": 26111512
+      }
+    }
+  ],
+  "localAudioSource": "Separate synthetic arrangements from tools/build_focus_pack.py; no fal audio exists."
+}

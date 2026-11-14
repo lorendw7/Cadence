@@ -102,3 +102,9 @@ The maintainer then asked to move the review toolbar into settings. The final pa
 Changing language in settings kept Week and the selected Thursday. Escape returned focus to the visible settings button. Selecting Save failure closed settings before opening the editor; only the editor was modal and focus stayed inside it. Closing that editor returned focus to settings. No browser warnings or errors were recorded. New task optional details start collapsed and expose the no-deadline explanation when opened. Empty Week has no task-tray toggle with a missing target.
 
 The repository, website and artwork source checks are required separately. These browser checks still do not establish native behavior, user-study success, real saving or accessibility acceptance. The untested limits listed above remain.
+
+### Compact empty-state artwork on 2026-11-13
+
+Today, Week and Tasks now use their own 96 x 72 empty-state SVG. The image remains decorative beside the existing localized explanation and actions. Explicit image dimensions reserve its layout space. No editor, saving or task behavior changed.
+
+The in-app browser checked 36 empty-state combinations across three pages, three languages, 100%/200% sample text and 390/1440 px viewports. No page-wide horizontal overflow was found. Sources matched each page. Immediate image probes sometimes preceded loading; the later Japanese compact Week probe confirmed the image had loaded. Browser screenshot capture timed out; visual review covered the generated artwork overview, not new page screenshots. Native appearance, full browser zoom and assistive technology remain unverified. See the [artwork review](../README.md#compact-artwork-review-on-2026-11-13).

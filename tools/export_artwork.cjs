@@ -4,6 +4,11 @@ const path = require('node:path');
 const sharp = require('sharp');
 const {previewArtwork} = require('./artwork_previews.cjs');
 const root = path.resolve(__dirname, '..');
+async function storeIcon() {
+  await sharp(path.join(root, 'assets/brand/cadence-icon-store.svg'))
+    .resize(512, 512).toColourspace('srgb').ensureAlpha().withIccProfile('srgb')
+    .png().toFile(path.join(root, 'assets/platform/google-play-512.png'));
+}
 async function png(source, destination, size) {
   await fs.mkdir(path.dirname(destination), {recursive: true});
   await sharp(source, {density: 192}).resize(size, size).png().toFile(destination);
@@ -19,6 +24,12 @@ async function editorial() {
   await fs.copyFile(source, path.join(root, 'website/assets/journal-editorial.png'));
 }
 async function main() {
+  if (process.argv.includes('--store-only')) {
+    await storeIcon();
+    await previewArtwork(root);
+    console.log('Exported the Google Play listing icon and refreshed artwork previews.');
+    return;
+  }
   if (process.argv.includes('--previews-only')) {
     await previewArtwork(root);
     console.log('Exported the artwork overview and complete library contact sheet.');
@@ -29,6 +40,7 @@ async function main() {
     console.log('Exported responsive WebP artwork and synchronized the PNG fallback.');
     return;
   }
+  await storeIcon();
   const source = path.join(root, 'assets/brand/cadence-icon-v2.svg');
   for (const size of [16, 24, 32, 48, 64, 128, 180, 192, 256, 512, 1024]) {
     await png(source, path.join(root, `assets/platform/png/cadence-${size}.png`), size);

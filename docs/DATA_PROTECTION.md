@@ -1,6 +1,6 @@
 # Local data protection
 
-Scope update (2026-11-13): [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps tasks, deadlines, personal plans, Today and Week central. Build useful direct editors and reliable local saving on Windows, then validate Android without waiting for all macOS/Linux releases. Other platforms need separate acceptance. Screenshot import is optional work only if demonstrated demand justifies it; it has no scheduled release gate. CSV/table import remains deferred. Academic-system access is a deferred, unscheduled extension. Research, application preparation and integration are outside the current delivery milestone. Local release does not wait for school approval. Everyone receives the same free functions. Cloud sync and optional ads remain for review after store launch. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates.
+Scope update (2026-11-15): [ADR-015](adr/015-android-self-use-first.md) sets the current route: shared local saving and recovery, Android planning self-use, bounded Android focus, then a useful ad-free mobile release. Windows remains the development host. Desktop focus presentation, media, Steam and a mobile ad pilot are separate later decisions; none blocks the first phone planning build. Desktop, Web and the concept site stay ad-free. School authorization, requests, connections, imports and cloud sync remain deferred. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates. These are planned contracts, not implemented behavior.
 
 Updated: 2026-11-13. Planned behavior under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md), not implemented. The first local planning flow aims to protect against accidental loss and unintended upload. It is not an encrypted vault. The accepted future sync design in [ADR-011](adr/011-optional-sync-service.md) does not change account-free startup or make import depend on a server.
 
@@ -10,6 +10,8 @@ Use ordinary SQLite through the selected local adapter. Keep one store in the ap
 
 Offer Save on this device and Temporary use before reading saved planning data. Temporary mode does not open the old database or write business data, draft files or automatic backups. Unsaved forms stay in memory in both modes. A crash may lose them; confirmed writes have separate recovery checks.
 
+The first Android checks use fictional data. Personal self-use starts only after this storage choice, confirmed saving, failed-write handling and native backup recovery pass. Start with the accepted task slice, then extend the same checks to plans and corrections when they are included. A complete desktop package and external testers are not prerequisites for these owner-device checks.
+
 Use transactions, database constraints, parameter binding and tested migrations. Preserve input on failed writes. Validate and preview a backup before replacement, keep a verified recovery copy in local mode and preserve the old dataset on failure. Do not hide a damaged database by creating an empty one.
 
 ## Private backups
@@ -17,6 +19,8 @@ Use transactions, database constraints, parameter binding and tested migrations.
 The first backup is a versioned, unencrypted JSON file containing supported records, occurrence corrections and settings. Label it Private backup, not Secure backup. Show its contents and destination. Export is user-initiated and does not upload. Exclude raw import files, source screenshots, API keys, unsaved forms and operational settings. A mobile file or share destination may be outside Cadence's control; explain the chosen destination before export.
 
 Test round trips, unsupported versions, corrupt files, missing references, resource limits, failed replacement and migration recovery. App-managed recovery copies belong to the clear-data scope. User-exported copies and OS backups cannot be recalled by the app. Do not promise physical disk erasure.
+
+When [Android focus](ROADMAP.md#h--android-focus-self-use) introduces session records, extend accepted local saving, export, restore and clear checks to those records in the same lesson. Temporary sessions must not create automatic recoverable copies. Keep incomplete or uncertain timing explicit; recovery cannot invent elapsed time while the process was absent. This work follows the safe planning trial and adds no background-service guarantee.
 
 Reviewed import adds confirmed candidates; it is not a full-backup restore. A parser or OCR engine must not replace the workspace directly. Keep source content and draft rows private, bound their size, and discard stale results after clear, restore or session changes. Test file-picker cancellation, interrupted review and temporary-file cleanup on each supported platform. An occurrence correction or cancellation must preserve the rest of the series and survive local recovery.
 

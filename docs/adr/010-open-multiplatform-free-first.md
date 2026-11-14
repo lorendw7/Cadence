@@ -1,5 +1,7 @@
 # ADR-010: Open source, multiple platforms, free edition first
 
+Later decision (2026-11-15): [ADR-014](014-desktop-focus-and-mobile-ads.md) adds desktop focus, mobile-only ads and a desktop purchase experiment. It selects private development with visibility still pending and leaves MIT unchanged. Conflicting free-only, public-development and advertising assumptions below are historical. Other local and school-access boundaries remain.
+
 **Status:** Accepted free-access and platform direction; delivery order partly superseded by [ADR-013](013-local-planner-and-conditional-academic-access.md). Not implemented or released.
 **Date:** 2026-11-12
 **Deciders:** The maintainer requested continued open-source development and multiple platforms, then prioritized the free desktop edition. All users get the same functions. Paid expansion and membership tiers are excluded; advertising is only a possible future revenue source.

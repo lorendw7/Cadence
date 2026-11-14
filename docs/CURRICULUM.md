@@ -1,6 +1,6 @@
 # Core learning plan
 
-Updated: 2026-11-13. This is a teaching plan, not a record of completed lessons. [LEARNING.md](LEARNING.md) owns current progress and evidence. [PRODUCT.md](PRODUCT.md) owns product scope; [ROADMAP.md](ROADMAP.md) owns release gates and delivery estimates.
+Updated: 2026-11-15. This is a teaching plan, not a record of completed lessons. [LEARNING.md](LEARNING.md) owns current progress and evidence. [PRODUCT.md](PRODUCT.md) owns product scope; [ROADMAP.md](ROADMAP.md) owns release gates and delivery estimates.
 
 ## Goal
 
@@ -8,7 +8,13 @@ Learn to build, explain, debug and maintain a small reliable application. Cadenc
 
 Continue from lesson 17. Do not restart completed lessons or replace the working app. Keep lib/main.dart as the teaching entry. The learner writes learning-critical core code; the assistant completes the supporting work defined below. A library is introduced when a real lesson needs it.
 
+Under [ADR-015](adr/015-android-self-use-first.md), Android is the first self-use target and Windows remains the development host. Build safe shared saving and recovery first, then extend phone use with task editing, Today and selected-day Week. A complete Windows release, desktop focus package and Steam submission are not prerequisites. The first self-use build has no ads.
+
+After reliable planning and its self-use check, teach the bounded [Android focus stage](ROADMAP.md#h--android-focus-self-use): one task-linked countdown, manual break and a small local session list. Start, pause, resume, end, clock/lifecycle handling and session-save failures remain learner-owned decisions. No phone background or closed-app alarm guarantee is implied. The desktop focus package from [ADR-014](adr/014-desktop-focus-and-mobile-ads.md), music and Steam work remain later. Advertising stays outside the learning milestone until a useful mobile release and an ad-free usage baseline exist.
+
 The revised main track is provisionally numbered through lesson 44. Lesson 17 is in progress; lessons 18-44 have not started. See the [numbered lesson plan](#numbered-lesson-plan) for the sequence. A number identifies a teaching topic, not a completed feature or a single conversation.
+
+Use the [weekly first-version plan](WEEKLY_PLAN.md) to fit those topics and later focus work into a 10-15-hour weekly budget. It maps dependencies, learner practice, assistant support and acceptance without changing lesson numbers. Its week labels are work slots, not learning results or a fixed pace requirement.
 
 ## What matters most
 
@@ -123,7 +129,7 @@ Ready to continue when the learner can make a small change, explain why a bounda
 
 ### 5. Deliver a complete, usable local flow
 
-Complete the Windows flow and its recovery checks, then adapt and validate Android under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). Share rules while checking each platform's files, lifecycle and input behavior. Other platforms keep separate acceptance.
+Validate the shared flow on the maintainer's Android phone under [ADR-015](adr/015-android-self-use-first.md). Windows remains a useful development and regression host. Check Android files, Back, keyboard, process termination and recovery as the relevant lesson adds that behavior. Do not defer all phone checks until a complete desktop product exists. Other platforms keep separate acceptance.
 
 Use a whole scenario: record a deadline, reserve work before it, adjust a commitment, restart and recover records. Check keyboard access, readable large text and the product languages as each control appears. Explain privacy through concrete data locations and minimal logging.
 
@@ -131,7 +137,7 @@ Ready for a stage review when the learner can reproduce a defect, locate its cau
 
 ## Numbered lesson plan
 
-Planning revision: 2026-11-13. Keep lessons 1-16 and their historical results. The main learning track now has a provisional endpoint at lesson 44. Lessons 17-44 contain 28 topics still to finish: lesson 17 has started and 27 topics have not. This is a planning choice, not a measured effort estimate.
+Planning revision: 2026-11-15. Keep lessons 1-16 and their historical results. The main learning track keeps its provisional endpoint at lesson 44. Lessons 17-44 contain 28 topics still to finish: lesson 17 has started and 27 topics have not. Android checks now accompany the relevant topics instead of following a full Windows release. This is a planning choice, not a measured effort estimate.
 
 Each topic can take several 20-45 minute teaching exchanges, with additional practice as needed. Split a topic into small steps without renumbering completed history. Revisit future scope after lesson 21 and after restart recovery in lesson 26. Extend the plan if understanding or working behavior needs more practice.
 
@@ -166,6 +172,8 @@ The assistant handles required adapter setup, generated code, platform paths, ro
 
 Use fictional or disposable test records through this block. Migrations use controlled fixtures with a recovery copy. Private-data trials wait for actual backup, restore and clear checks. Extend and retest the backup format when later lessons add deadlines, plans, repeats or corrections.
 
+Android setup and a launch check may use the existing fictional task exercise when scheduled. That check is not storage acceptance. After lessons 24-31 establish local/temporary choice, confirmed saves and recovery on the phone, a small task-only self-use slice can begin. Record its limited scope; it is not the complete planner. No external tester count is required for the maintainer's local use.
+
 ### Lessons 32-38: editors, models and algorithms
 
 | Lesson | Topic | Learner-owned practice |
@@ -185,15 +193,21 @@ The assistant expands reviewed patterns into similar controls and handles visual
 | Lesson | Topic | Learner-owned practice |
 |---|---|---|
 | 39 | Today | Derive a daily view from confirmed records and an explicit date |
-| 40 | Week | Implement a representative day-selection and shared-state interaction |
+| 40 | Week | Implement a representative phone day-selection and shared-state interaction |
 | 41 | Bounded repeats | Generate occurrences within a stated date range |
 | 42 | Single-occurrence changes | Preserve identity while changing, cancelling or restoring one occurrence |
-| 43 | Responsive and accessible Flutter | Diagnose and fix one real constraint, focus or large-text problem per step |
+| 43 | Responsive and accessible Flutter | Consolidate Android touch, keyboard, Back and large-text checks; diagnose one real layout or focus problem per step |
 | 44 | Independent change and review | Complete a bounded variation, diagnose a failure, verify it and explain the whole flow |
 
 Testing, useful refactoring, Git review, keyboard access and readable text apply from the start. Lessons 43-44 consolidate them; earlier defects and pending checks do not wait automatically until then. The assistant completes agreed repetition, regression runs, build preparation and documents. The learner still traces at least one complete user action.
 
-Lesson 44 is a learning review point. It does not guarantee a complete Windows release, platform acceptance or a fixed number of study hours. The [roadmap](ROADMAP.md) still owns all delivery gates. Android teaching follows the working Windows flow and will receive its own numbered plan when scheduled. Other platforms and deferred services are outside this provisional 44-topic track.
+Lesson 44 is a learning review point. It does not guarantee an Android release, platform acceptance or a fixed number of study hours. The [roadmap](ROADMAP.md) still owns all delivery gates. Android layout and native behavior are taught with their relevant task, storage and planning lessons. Split a new lifecycle decision into a small learner-owned step rather than treating it as routine platform wiring. Do not renumber completed history. Desktop focus, other platform releases and deferred services remain outside this provisional 44-topic track.
+
+### Android focus after the planning review
+
+The next bounded block follows accepted planning and self-use, before broad release or desktop media work. Keep the existing 18-44 numbers stable; assign further lesson numbers only when that block is prepared. The roadmap's H stage defines delivery order, not the completion of a numbered lesson.
+
+Teach one timer transition at a time: choose a task and start, pause/resume, end, then explicitly start a break. Next define confirmed session recording and Android interruption/restart behavior. Retain input or an honest unsaved record after a failed write, prevent duplicate records, and never complete the task automatically. Check screen locking, backgrounding and process termination on the phone; do not promise elapsed credit for unknown time or dependable background alarms. A music player is not needed for this lesson block.
 
 ## The next small lessons
 
@@ -254,7 +268,7 @@ Keep advanced language features, isolate-based parallel work, streams and broad 
 
 Riverpod is conditional on real shared-state difficulty. shadcn_ui remains the chosen UI library, but migrating more components is not a learning objective by itself. Teach SQL and reliability before focusing on drift convenience APIs.
 
-Cloud services, authentication, sync, ads, OCR and school connections remain outside the current learning milestone. Do not add backend dependencies or parallel technology tracks. Basic local privacy, failure handling and backup remain core work. Platform expansion follows the roadmap.
+Cloud services, authentication, sync, ads, OCR and school connections remain outside the current learning milestone. School authorization research, application preparation and login integration are all deferred. Do not add backend dependencies or parallel technology tracks. Basic local privacy, failure handling and backup remain core work. Platform expansion follows the roadmap.
 
 ## Earlier lessons and estimates
 

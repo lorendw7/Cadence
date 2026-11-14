@@ -46,6 +46,19 @@
       "height": 512
     },
     {
+      "path": "assets/brand/cadence-icon-store.svg",
+      "bytes": 399,
+      "type": "svg",
+      "category": "brand",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Brand",
+      "use": "Prepared Google Play listing icon. Full square; no baked-in mask or shadow. Not an Android launcher icon.",
+      "width": 512,
+      "height": 512
+    },
+    {
       "path": "assets/brand/cadence-icon-v2.svg",
       "bytes": 386,
       "type": "svg",
@@ -291,6 +304,19 @@
       "previewSurface": "white",
       "group": "Preferences and feedback",
       "use": "Flag overlapping items.",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "path": "assets/icons/copy.svg",
+      "bytes": 337,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Editing and navigation",
+      "use": "Copy a title. Do not use as a saved-data indicator.",
       "width": 24,
       "height": 24
     },
@@ -766,7 +792,7 @@
     },
     {
       "path": "assets/icons/sprite.svg",
-      "bytes": 13000,
+      "bytes": 13230,
       "type": "svg",
       "category": "icons",
       "role": "sprite",
@@ -935,6 +961,19 @@
       "height": 240
     },
     {
+      "path": "assets/illustrations/empty-today-compact.svg",
+      "bytes": 526,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Small daily empty state on white. The clock is decorative, not a current-time display.",
+      "width": 96,
+      "height": 72
+    },
+    {
       "path": "assets/illustrations/empty-today.svg",
       "bytes": 580,
       "type": "svg",
@@ -946,6 +985,19 @@
       "use": "No plans today. Offer a local action to add one.",
       "width": 320,
       "height": 240
+    },
+    {
+      "path": "assets/illustrations/empty-week-compact.svg",
+      "bytes": 525,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Small weekly empty state on white. All seven columns remain empty.",
+      "width": 96,
+      "height": 72
     },
     {
       "path": "assets/illustrations/empty-week.svg",
@@ -1037,6 +1089,19 @@
       "use": "Review a backup before replacing any data.",
       "width": 320,
       "height": 240
+    },
+    {
+      "path": "assets/illustrations/save-error-compact.svg",
+      "bytes": 563,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Small save-failure state on white. Pair with an error message and retry; no data-loss claim.",
+      "width": 96,
+      "height": 72
     },
     {
       "path": "assets/illustrations/save-error.svg",
@@ -1140,6 +1205,21 @@
       "group": "Platform icons",
       "source": "assets/brand/cadence-icon-v2.svg",
       "use": "Launcher or browser export. Native package acceptance is a separate check."
+    },
+    {
+      "path": "assets/platform/google-play-512.png",
+      "bytes": 15601,
+      "type": "png",
+      "category": "platform",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "paper",
+      "group": "Platform icons",
+      "source": "assets/brand/cadence-icon-store.svg",
+      "use": "Prepared 512 px Google Play listing PNG. Store review and Android launcher integration remain separate.",
+      "maxBytes": 1048576,
+      "width": 512,
+      "height": 512
     },
     {
       "path": "assets/platform/png/cadence-1024.png",
@@ -1341,6 +1421,14 @@
       "transform": "copy"
     }
   ],
+  "assetPacks": [
+    {
+      "path": "assets/focus-pack/manifest.json",
+      "catalogue": "assets/focus-pack/index.html",
+      "status": "prepared-not-integrated",
+      "guide": "assets/focus-pack/README.md"
+    }
+  ],
   "previews": {
     "inputs": [
       {
@@ -1350,6 +1438,10 @@
       {
         "path": "assets/brand/cadence-icon-paper.svg",
         "sha256": "ca321b7c3d2ae5dacc2a43cca8845ed30bbde02d4be094ad00d633493ed5653c"
+      },
+      {
+        "path": "assets/brand/cadence-icon-store.svg",
+        "sha256": "6727df4ac6f3c64527db4fde88a8006dec634740f0b370d09fe36492a727c863"
       },
       {
         "path": "assets/brand/cadence-icon-v2.svg",
@@ -1426,6 +1518,10 @@
       {
         "path": "assets/icons/conflict.svg",
         "sha256": "b7e0c35760f2365daeb6fbeb228e097a18555d7cf6a5570cf96a965591800516"
+      },
+      {
+        "path": "assets/icons/copy.svg",
+        "sha256": "7decdcd14e7a7eb75cc788bb078a3ab47f1140d532163dc2abb6bf29648d31b6"
       },
       {
         "path": "assets/icons/course.svg",
@@ -1620,8 +1716,16 @@
         "sha256": "20719e6dbbf42b900d4c966e7baabc0863b26cb7d054cacdf8013f9a238f1c3e"
       },
       {
+        "path": "assets/illustrations/empty-today-compact.svg",
+        "sha256": "9cd363875ac6e5fe06efd372d971b342a521d6b4730a3512570f48a33b24a562"
+      },
+      {
         "path": "assets/illustrations/empty-today.svg",
         "sha256": "b729e3f0a833f804c86b92ed0ec3361cab0f357be77c9ed4fb661380bd3f6e9c"
+      },
+      {
+        "path": "assets/illustrations/empty-week-compact.svg",
+        "sha256": "89399704b3a4f5065e8e6f6ff001cfce40d7c78be3fd75abf09680512a6f4fee"
       },
       {
         "path": "assets/illustrations/empty-week.svg",
@@ -1652,6 +1756,10 @@
         "sha256": "fc34fc346830ba655c993d354a977cccd44adf83c3895c83c577e90b18ad0826"
       },
       {
+        "path": "assets/illustrations/save-error-compact.svg",
+        "sha256": "84cfb48b9d7dc97b44a0a2a6b7b42d00a83e1382b6aef1e0a0b6910573866843"
+      },
+      {
         "path": "assets/illustrations/save-error.svg",
         "sha256": "56fd8a5904143f9630609aebedcb8139beb76405bfb9bda42a90e96eb10c9a23"
       },
@@ -1666,6 +1774,10 @@
       {
         "path": "assets/patterns/journal-rules.svg",
         "sha256": "b3890f9ef911f0b8a3c39efc673a85d9ccf6ac297be9d8c93cb7cc787dde9f34"
+      },
+      {
+        "path": "assets/platform/google-play-512.png",
+        "sha256": "edc5df7acb943ff13bb9a663ec9676aa12779a2e9d2e67a3b0c0b966e48438fa"
       },
       {
         "path": "assets/platform/png/cadence-1024.png",
@@ -1717,27 +1829,27 @@
       },
       {
         "path": "tools/artwork_previews.cjs",
-        "sha256": "897ad883dc3722d3ab10f7e981e6cdaad6b628e978f1d3709ecd6cfa4103ccbf"
+        "sha256": "911f7e758e49d4c010119acd84011c15831e8803a5755c92dbd97272a810cc89"
       },
       {
         "path": "tools/export_artwork.cjs",
-        "sha256": "816506ed6ca45412408640cc39ce0a56eaa3dbba83b8af0b4f85a2290c4f2bce"
+        "sha256": "5157e2468ebb527f7b51f1354f379a75467054db927e57a88b3234fbc82d6089"
       }
     ],
     "files": [
       {
         "path": "assets/preview.png",
         "width": 1440,
-        "height": 1120,
-        "bytes": 448534,
-        "sha256": "9db4fa0592912c3b53da76571148ca1ee1d6fddaa59b4fb97b11597a71a18d4e"
+        "height": 1310,
+        "bytes": 463761,
+        "sha256": "42c9ab6ddfd41033eb60e568b5a932a7d3c4e67b295377da8c5df61a83fb6036"
       },
       {
         "path": "assets/preview-library.png",
         "width": 1440,
-        "height": 4259,
-        "bytes": 594509,
-        "sha256": "7ea3ae1cebff44d55fa30cf471aae7ead1b3aaf983645ad42e70900403c52f41"
+        "height": 4951,
+        "bytes": 652897,
+        "sha256": "8ef5584bafecb0cd20316029bb4f0b9800dcd34048e450a406b96b41b1433d6a"
       }
     ]
   }

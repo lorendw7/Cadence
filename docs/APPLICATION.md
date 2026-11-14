@@ -1,8 +1,8 @@
 # Application contracts
 
-Scope update (2026-11-13): [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps tasks, deadlines, personal plans, Today and Week central. Build useful direct editors and reliable local saving on Windows, then validate Android without waiting for all macOS/Linux releases. Other platforms need separate acceptance. Screenshot import is optional work only if demonstrated demand justifies it; it has no scheduled release gate. CSV/table import remains deferred. Academic-system access is a deferred, unscheduled extension. Research, application preparation and integration are outside the current delivery milestone. Local release does not wait for school approval. Everyone receives the same free functions. Cloud sync and optional ads remain for review after store launch. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates.
+Scope update (2026-11-15): [ADR-015](adr/015-android-self-use-first.md) sets the current route: shared local saving and recovery, Android planning self-use, bounded Android focus, then a useful ad-free mobile release. Windows remains the development host. Desktop focus presentation, media, Steam and a mobile ad pilot are separate later decisions; none blocks the first phone planning build. Desktop, Web and the concept site stay ad-free. School authorization, requests, connections, imports and cloud sync remain deferred. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates. These are planned contracts, not implemented behavior.
 
-Updated: 2026-11-13. Planned behavior under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md), not implemented. Keep one local workspace and one writer, first on Windows and then on Android. These contracts protect local data without requiring persistent draft recovery, multi-tab or sync machinery. [ADR-011](adr/011-optional-sync-service.md) selects the later service design, not an additional first-launch requirement.
+Updated: 2026-11-15. Planned behavior under [ADR-015](adr/015-android-self-use-first.md), not implemented. Keep one local workspace and one writer in the shared Flutter code. Windows remains the teaching host; Android is the first self-use target. These contracts protect local data without requiring persistent draft recovery, multi-tab or sync machinery. [ADR-011](adr/011-optional-sync-service.md) selects the later service design, not an additional first-launch requirement.
 
 ## Contract introduction and ownership
 
@@ -70,6 +70,12 @@ For restore: validate the file and references → preview replacement → finish
 - Android Back, suspension and process termination preserve confirmed records and cannot replay a stale import or correction.
 
 These are planned checks, not current test results.
+
+## Android focus contract
+
+After safe planning self-use, [stage H](ROADMAP.md#h--android-focus-self-use) adds one task-linked countdown, explicit pause/resume/end, a manually started break and local session records. This is planned work. The learner must first define state ownership, elapsed-time measurement, screen lock, app backgrounding, process loss, restart, duplicate callbacks and save failures in a small lesson. Do not assume the desktop lifecycle contract applies unchanged to Android.
+
+Timer completion must not complete a task or change its deadline. Recorded timer time is not proof of attention. Local and temporary modes keep their existing retention boundaries; unknown or interrupted time must not be silently counted. Confirm a record write before showing it as saved and retain a retryable result on failure. Do not promise background operation, closed-app alarms or add services and notifications before the native contract and acceptance justify them.
 
 ## Later feature contracts
 

@@ -1,0 +1,707 @@
+{
+  "version": 1,
+  "status": "prepared_not_integrated",
+  "renderer": {
+    "path": "../../tools/build_focus_pack.py",
+    "sha256": "ff34f1056ff30df61f9832ce54a611c4e0ac5bd25107b3e2416d0e20f777d608"
+  },
+  "tracks": [
+    {
+      "id": "morning-margins",
+      "title": "Morning Margins",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 116.94115646258503,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/morning-margins.json",
+      "midi": "scores/morning-margins.mid",
+      "master": "masters/morning-margins.flac",
+      "runtime": "audio/morning-margins.ogg",
+      "preview": "previews/morning-margins.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "lamplight-pages",
+      "title": "Lamplight Pages",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 100.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/lamplight-pages.json",
+      "midi": "scores/lamplight-pages.mid",
+      "master": "masters/lamplight-pages.flac",
+      "runtime": "audio/lamplight-pages.ogg",
+      "preview": "previews/lamplight-pages.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "cedar-strings",
+      "title": "Cedar Strings",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 110.66666666666667,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/cedar-strings.json",
+      "midi": "scores/cedar-strings.mid",
+      "master": "masters/cedar-strings.flac",
+      "runtime": "audio/cedar-strings.ogg",
+      "preview": "previews/cedar-strings.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "garden-air",
+      "title": "Garden Air",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 124.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/garden-air.json",
+      "midi": "scores/garden-air.mid",
+      "master": "masters/garden-air.flac",
+      "runtime": "audio/garden-air.ogg",
+      "preview": "previews/garden-air.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "rain-on-paper",
+      "title": "Rain on Paper",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 120.36362811791383,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/rain-on-paper.json",
+      "midi": "scores/rain-on-paper.mid",
+      "master": "masters/rain-on-paper.flac",
+      "runtime": "audio/rain-on-paper.ogg",
+      "preview": "previews/rain-on-paper.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "first-snow",
+      "title": "First Snow",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 103.31034013605442,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/first-snow.json",
+      "midi": "scores/first-snow.mid",
+      "master": "masters/first-snow.flac",
+      "runtime": "audio/first-snow.ogg",
+      "preview": "previews/first-snow.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "warm-window",
+      "title": "Warm Window",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 105.05263038548753,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/warm-window.json",
+      "midi": "scores/warm-window.mid",
+      "master": "masters/warm-window.flac",
+      "runtime": "audio/warm-window.ogg",
+      "preview": "previews/warm-window.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "linen-harp",
+      "title": "Linen Harp",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 113.71428571428571,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/linen-harp.json",
+      "midi": "scores/linen-harp.mid",
+      "master": "masters/linen-harp.flac",
+      "runtime": "audio/linen-harp.ogg",
+      "preview": "previews/linen-harp.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "amber-keys",
+      "title": "Amber Keys",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 94.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/amber-keys.json",
+      "midi": "scores/amber-keys.mid",
+      "master": "masters/amber-keys.flac",
+      "runtime": "audio/amber-keys.ogg",
+      "preview": "previews/amber-keys.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "woodland-steps",
+      "title": "Woodland Steps",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 102.46151927437641,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/woodland-steps.json",
+      "midi": "scores/woodland-steps.mid",
+      "master": "masters/woodland-steps.flac",
+      "runtime": "audio/woodland-steps.ogg",
+      "preview": "previews/woodland-steps.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "dusk-chamber",
+      "title": "Dusk Chamber",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 127.87095238095237,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/dusk-chamber.json",
+      "midi": "scores/dusk-chamber.mid",
+      "master": "masters/dusk-chamber.flac",
+      "runtime": "audio/dusk-chamber.ogg",
+      "preview": "previews/dusk-chamber.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "silver-orbit",
+      "title": "Silver Orbit",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 110.66666666666667,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -22,
+      "source": "scores/silver-orbit.json",
+      "midi": "scores/silver-orbit.mid",
+      "master": "masters/silver-orbit.flac",
+      "runtime": "audio/silver-orbit.ogg",
+      "preview": "previews/silver-orbit.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "focus-start",
+      "title": "Focus Start",
+      "kind": "cue",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 3.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -28,
+      "source": "scores/focus-start.json",
+      "midi": "scores/focus-start.mid",
+      "master": "masters/focus-start.flac",
+      "runtime": "audio/focus-start.ogg",
+      "preview": "previews/focus-start.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "focus-complete",
+      "title": "Focus Complete",
+      "kind": "cue",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 3.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -28,
+      "source": "scores/focus-complete.json",
+      "midi": "scores/focus-complete.mid",
+      "master": "masters/focus-complete.flac",
+      "runtime": "audio/focus-complete.ogg",
+      "preview": "previews/focus-complete.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "break-end",
+      "title": "Break End",
+      "kind": "cue",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 3.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -28,
+      "source": "scores/break-end.json",
+      "midi": "scores/break-end.mid",
+      "master": "masters/break-end.flac",
+      "runtime": "audio/break-end.ogg",
+      "preview": "previews/break-end.mp3",
+      "humanListeningReview": "pending"
+    }
+  ],
+  "files": [
+    {
+      "path": "scores/amber-keys.json",
+      "bytes": 43124,
+      "sha256": "4b8fa70d1cd660c6064acecc9ccf965a036fce18bb2ad8a4e0011923a5e78b52"
+    },
+    {
+      "path": "scores/amber-keys.mid",
+      "bytes": 2448,
+      "sha256": "00ab0bfe624b815d8fba0a00456ea3cdcadc9c86f06cf1cc2fa75d182f5c803a"
+    },
+    {
+      "path": "scores/break-end.json",
+      "bytes": 645,
+      "sha256": "21e11d89e911d6a64f8db70c02707a068cf2cd7757e53ce81d1581b1d72ab970"
+    },
+    {
+      "path": "scores/break-end.mid",
+      "bytes": 71,
+      "sha256": "39e4ed909ffbda638caf3de5c1f41e805844ce48e239c2813934671d7c73e4f3"
+    },
+    {
+      "path": "scores/cedar-strings.json",
+      "bytes": 54623,
+      "sha256": "ff86ae3c0bdecfe0d70d815653a776649886e03f50e54fc6a7641a7b715cace2"
+    },
+    {
+      "path": "scores/cedar-strings.mid",
+      "bytes": 3255,
+      "sha256": "4d3ac711647584b9ab0fe7253375a76272a3996840679f15da7a8b94cb99a1b8"
+    },
+    {
+      "path": "scores/dusk-chamber.json",
+      "bytes": 23476,
+      "sha256": "7f406f98677c8b566666069a5f655ce4b8e5f963cc60e3901d592f346e78577f"
+    },
+    {
+      "path": "scores/dusk-chamber.mid",
+      "bytes": 1441,
+      "sha256": "8893b8684d053ec7de712f2331ebdcc08fc080750c352924147bff2f20b5faa1"
+    },
+    {
+      "path": "scores/first-snow.json",
+      "bytes": 40622,
+      "sha256": "caa4052c704f1444ff8075152ddf11b6173f3c32de6c67dc5696cdc454abff73"
+    },
+    {
+      "path": "scores/first-snow.mid",
+      "bytes": 2448,
+      "sha256": "b85f173f04acf12592027ea550534428f3db36e203883078911de7b5b6084d51"
+    },
+    {
+      "path": "scores/focus-complete.json",
+      "bytes": 655,
+      "sha256": "652ec68f1abbac9f7a33faf98fbc828020ed1f414c9fd9281ff7fb9522a38982"
+    },
+    {
+      "path": "scores/focus-complete.mid",
+      "bytes": 71,
+      "sha256": "e8056ff5b8e6788e578618117a21c2deb6cca30833c38e7e05df1f503cd48c5e"
+    },
+    {
+      "path": "scores/focus-start.json",
+      "bytes": 509,
+      "sha256": "9506ccdd14b9420c41a8a54ce11d4a99b1fea4320a9304df914c2f8f0f2c66bd"
+    },
+    {
+      "path": "scores/focus-start.mid",
+      "bytes": 62,
+      "sha256": "484f85f7e6b7f4adfbf15a674b7b6e490d4c02cef2a35db791064b8958b59870"
+    },
+    {
+      "path": "scores/garden-air.json",
+      "bytes": 23344,
+      "sha256": "a359d49c4b24cc7b4580dec72081cac946e99db7d1773e9d1558aae70a5598c7"
+    },
+    {
+      "path": "scores/garden-air.mid",
+      "bytes": 1444,
+      "sha256": "35ec204b63c61a2ab35a7fa8963f5985dac486548b1f6788fff11875241fc087"
+    },
+    {
+      "path": "scores/lamplight-pages.json",
+      "bytes": 40632,
+      "sha256": "7e484307bddbb194576aa41f0659dd6f80edaa057f99480f9ea247260ca48b26"
+    },
+    {
+      "path": "scores/lamplight-pages.mid",
+      "bytes": 2448,
+      "sha256": "f30ef58c4e590b617ec118a67d332f4341d4c10689a33d4040c76eef2cd675fd"
+    },
+    {
+      "path": "scores/linen-harp.json",
+      "bytes": 53875,
+      "sha256": "2e0c3a358b7399038f46806cb91e9c0133741da3c4f8ebd55cb22079453142a4"
+    },
+    {
+      "path": "scores/linen-harp.mid",
+      "bytes": 3254,
+      "sha256": "503b969eec827bf2686e96f1511094f547fbb07cafb813d0811b8c634d046c71"
+    },
+    {
+      "path": "scores/morning-margins.json",
+      "bytes": 54256,
+      "sha256": "a387f37a6ab49eebfedc2146381371c4c3afb8c0122f6172c92128c4736648f0"
+    },
+    {
+      "path": "scores/morning-margins.mid",
+      "bytes": 3254,
+      "sha256": "5c0610a725610ac1af1055c2502393c380c0e49ad1ebbd4a61607cd46c23dc83"
+    },
+    {
+      "path": "scores/rain-on-paper.json",
+      "bytes": 54252,
+      "sha256": "5addf4e88d49378879547119d6908cc5f7a80ce15ff7611854f839def755d991"
+    },
+    {
+      "path": "scores/rain-on-paper.mid",
+      "bytes": 3254,
+      "sha256": "f3c46167fc4cfaa3cc90d28acc9e2e2666c6acbad2942c5262c721d3c7be8c17"
+    },
+    {
+      "path": "scores/silver-orbit.json",
+      "bytes": 54992,
+      "sha256": "600096553822e97a9ebebaeb283337b2bad816a50e14864d4c131b225a5b6938"
+    },
+    {
+      "path": "scores/silver-orbit.mid",
+      "bytes": 3254,
+      "sha256": "f6b83567dc824f9cb5dbfa85757ee553a26daff9912fad1b16e2731fc39c1454"
+    },
+    {
+      "path": "scores/warm-window.json",
+      "bytes": 54619,
+      "sha256": "05313e5b55c3b2d1fd268fd46756cc715c72bcc5d6633ff30cac3618ae9ea6b8"
+    },
+    {
+      "path": "scores/warm-window.mid",
+      "bytes": 3255,
+      "sha256": "0af6f376243d3ebbd9810a30ff886ae98405c57dec5d2a44c4fee874ff970c18"
+    },
+    {
+      "path": "scores/woodland-steps.json",
+      "bytes": 54996,
+      "sha256": "b6cd53bf41f9aa1e4dbe2f3de2b11e94b605123464df5539b85543a1797ffd74"
+    },
+    {
+      "path": "scores/woodland-steps.mid",
+      "bytes": 3254,
+      "sha256": "2f3d36f263b66bd39b60995f6b9af31f76e1316f2af5d8c8f645982129f8da4c"
+    },
+    {
+      "path": "masters/amber-keys.flac",
+      "bytes": 3920470,
+      "sha256": "042d3cfdab2dd3849d8626a4abe07615d8cacc29c4aa0151c0ab968aae0db3f5"
+    },
+    {
+      "path": "masters/break-end.flac",
+      "bytes": 55741,
+      "sha256": "89a119e707d2db8194ce92c11e2b1a0206a7463168d8f528539a458b6ed1750a"
+    },
+    {
+      "path": "masters/cedar-strings.flac",
+      "bytes": 4072775,
+      "sha256": "e0208f7cb71b08d113be6e77a3c1d2b482aae8bdf09234510d32df89a5a65d4b"
+    },
+    {
+      "path": "masters/dusk-chamber.flac",
+      "bytes": 4548213,
+      "sha256": "a6c0c1f0635a42082cf4c598f6ad85ab71a0059ef912ce9979bb4c9a746a0cb3"
+    },
+    {
+      "path": "masters/first-snow.flac",
+      "bytes": 4120380,
+      "sha256": "87cbd1d6c6bad27272457f828ad5cf6b83cd459e00bd468d45cae237fa69c448"
+    },
+    {
+      "path": "masters/focus-complete.flac",
+      "bytes": 58298,
+      "sha256": "9450f960c0638355a23b03f926d766d4e2042b919482687ba2fb752914c9a29a"
+    },
+    {
+      "path": "masters/focus-start.flac",
+      "bytes": 52915,
+      "sha256": "1341b7e15991dbe149d133df45407be608a0fb9f2104bd84ad7875a2ccea8588"
+    },
+    {
+      "path": "masters/garden-air.flac",
+      "bytes": 4867033,
+      "sha256": "e3ddcad59ad9ef58cd8ef7cf8107af24d60d6059f052a001e866c15358e773ec"
+    },
+    {
+      "path": "masters/lamplight-pages.flac",
+      "bytes": 4141550,
+      "sha256": "5c7fa8e6c3a988a0f9c69cbf3ec4ab9a7526c18b6cc43dc9d84f68201f05b3a9"
+    },
+    {
+      "path": "masters/linen-harp.flac",
+      "bytes": 4795514,
+      "sha256": "5ae66a18591336504c73e6be31317477b6a18d4206f94fffb2059ad2c14a9791"
+    },
+    {
+      "path": "masters/morning-margins.flac",
+      "bytes": 5135057,
+      "sha256": "0086aebe763661380efd34397fa3fd08bf8a6fe0bf8c57554dbd7d0cd011e943"
+    },
+    {
+      "path": "masters/rain-on-paper.flac",
+      "bytes": 5382688,
+      "sha256": "f10694b5535d3c2f501f099860ff7e239b171916a4f510242c8a674ef1b577a8"
+    },
+    {
+      "path": "masters/silver-orbit.flac",
+      "bytes": 5721942,
+      "sha256": "a169f9f1c8984a9c835321d2c042ebfe5a3db24f2555ef3d3c499759b0ce2500"
+    },
+    {
+      "path": "masters/warm-window.flac",
+      "bytes": 3959442,
+      "sha256": "a1abf5187f33ad8ea1db278175cb8eb53939b5c1c419a0f2d766019cc91a430d"
+    },
+    {
+      "path": "masters/woodland-steps.flac",
+      "bytes": 3220445,
+      "sha256": "aa44a0ce04b2d0d61b714f441f2b311a0020be44b34c52ab36dbab2f616a471d"
+    },
+    {
+      "path": "audio/amber-keys.ogg",
+      "bytes": 808842,
+      "sha256": "ba579264db55fdd01fc353688358de70a6b421f044686a667ffcc9cb6642a444"
+    },
+    {
+      "path": "audio/break-end.ogg",
+      "bytes": 28164,
+      "sha256": "b40537f98839c1136cae84ef9b594ff6c414f8d8a059541e7c1179ee983567bc"
+    },
+    {
+      "path": "audio/cedar-strings.ogg",
+      "bytes": 850657,
+      "sha256": "4ef89195855967368e9890995410cd776279e10a29b2f87dc92e972729ec6618"
+    },
+    {
+      "path": "audio/dusk-chamber.ogg",
+      "bytes": 915102,
+      "sha256": "2bc9adaa14a25d04493f7adf517e6c7bb3cfeaed72841aa6c512557293c2581f"
+    },
+    {
+      "path": "audio/first-snow.ogg",
+      "bytes": 881504,
+      "sha256": "f096da0d3b2d7fa650e49e59aa48b9305d7c448a43e6fe25fee35cf7cb06219b"
+    },
+    {
+      "path": "audio/focus-complete.ogg",
+      "bytes": 28002,
+      "sha256": "9b825caceff52c142097248f1d331c6ef6ed1df1631692a224b283973bb856ac"
+    },
+    {
+      "path": "audio/focus-start.ogg",
+      "bytes": 27060,
+      "sha256": "6128eae202ae85aa95b1749a6b7ff5f45009f71440a1d4511ba38f014f206dcb"
+    },
+    {
+      "path": "audio/garden-air.ogg",
+      "bytes": 1240389,
+      "sha256": "8a20d0f94feb79af5e048e45188e7f73b1d1c290544a737f332f7de317274bdc"
+    },
+    {
+      "path": "audio/lamplight-pages.ogg",
+      "bytes": 882898,
+      "sha256": "4389bae029954140e2872e110c85b2cb0f0bbfe928476c31db0dd1491021a8cd"
+    },
+    {
+      "path": "audio/linen-harp.ogg",
+      "bytes": 983630,
+      "sha256": "841e2c937f0406ac4730896ef9bf71169f2f53193f5efd255b4e789762f684f0"
+    },
+    {
+      "path": "audio/morning-margins.ogg",
+      "bytes": 1035755,
+      "sha256": "4728ce83ce294fd8ce7b272d5df409530dbf6e33d568629fbe99baa5886cff16"
+    },
+    {
+      "path": "audio/rain-on-paper.ogg",
+      "bytes": 1114855,
+      "sha256": "cd44da2edd8de95eac0dd7c9c0c15a4b50bd000035510324ae6195d5f22a5cd3"
+    },
+    {
+      "path": "audio/silver-orbit.ogg",
+      "bytes": 1055162,
+      "sha256": "a7a3684be6f134858d93c6536e3b49f0f18dd90a9623b187647e964a65404b8a"
+    },
+    {
+      "path": "audio/warm-window.ogg",
+      "bytes": 834017,
+      "sha256": "c4d6635c4350dc2854d4a846cc98e9fdfc91f892f35dc70161cac22cb122c909"
+    },
+    {
+      "path": "audio/woodland-steps.ogg",
+      "bytes": 732221,
+      "sha256": "f171d63513047d5fa16683ec4fad734b616b5e5653bc9127de1f4262ebca2286"
+    },
+    {
+      "path": "previews/amber-keys.mp3",
+      "bytes": 1881383,
+      "sha256": "99faed10cc3dbacbb7b527389d21b0ac5e9dbc687a6d87d658706e755dd35f48"
+    },
+    {
+      "path": "previews/break-end.mp3",
+      "bytes": 61171,
+      "sha256": "4f325c152f2c77b68bb1ac96ad3aab51e725b9512734ca4af798a847ffe7cfd1"
+    },
+    {
+      "path": "previews/cedar-strings.mp3",
+      "bytes": 2214706,
+      "sha256": "54bef3bba0895fe507f71ffd17ced7f03ef5f9a6e3ad37a6ee9445166682f133"
+    },
+    {
+      "path": "previews/dusk-chamber.mp3",
+      "bytes": 2559000,
+      "sha256": "3f5f1c74fe5bbd160ea43d0eb53fc5783370a9936c327de6a9b5c9c261ed01b1"
+    },
+    {
+      "path": "previews/first-snow.mp3",
+      "bytes": 2067375,
+      "sha256": "67fc774da1c8b2047c9612065916997a1af4a9dcd8d0edce95b08ee2576cc88b"
+    },
+    {
+      "path": "previews/focus-complete.mp3",
+      "bytes": 61171,
+      "sha256": "97ef5b8674735cedcbbc13ef1bcb3b13d53577a93f0589110a9d9461b62a8bb6"
+    },
+    {
+      "path": "previews/focus-start.mp3",
+      "bytes": 61171,
+      "sha256": "df0c9f8d25382198f9caba047e8861d3aa63732e07f3e9dcb23b670ff22e54b9"
+    },
+    {
+      "path": "previews/garden-air.mp3",
+      "bytes": 2481155,
+      "sha256": "679975a735f5a98049b781dcef33157100e13be50c4bf8498a5b3bcc57b991d6"
+    },
+    {
+      "path": "previews/lamplight-pages.mp3",
+      "bytes": 2001547,
+      "sha256": "aae9bcd9efb0cc535527851640c603f9baa2a86da2678e6ad679cdba7d23ea65"
+    },
+    {
+      "path": "previews/linen-harp.mp3",
+      "bytes": 2275832,
+      "sha256": "49ffb67846c9fab61dcfdc8ea3a448bd2db59f817b61ac62aad67247387896bc"
+    },
+    {
+      "path": "previews/morning-margins.mp3",
+      "bytes": 2340094,
+      "sha256": "c1cc9f9c8300c8ec0cc4ce701877ea43e2d154f4df38bfd767c6a42eba9a09f4"
+    },
+    {
+      "path": "previews/rain-on-paper.mp3",
+      "bytes": 2408534,
+      "sha256": "47a2e01bfe05fbd18986d1bfd730eb479a4b25aa5415fd20687b00b22ad06f20"
+    },
+    {
+      "path": "previews/silver-orbit.mp3",
+      "bytes": 2214706,
+      "sha256": "8e1beacf4b5a1cd1c33e943ebcd3e1439c1634a6f6b674175e52918ccb9364b8"
+    },
+    {
+      "path": "previews/warm-window.mp3",
+      "bytes": 2102379,
+      "sha256": "86038a1d63f8c84681d557c2477d887b01460a2e54fab86d087836a5f9748e3e"
+    },
+    {
+      "path": "previews/woodland-steps.mp3",
+      "bytes": 2050657,
+      "sha256": "0f26be86561f8009cf192185973db756e40f073bf8962391cf41f48891456619"
+    },
+    {
+      "path": "art/amber-keys.svg",
+      "bytes": 1585,
+      "sha256": "c4b1eded63cf53a25383a847f796dc1336945dca7437a2c59ea56ccba1d1ec36"
+    },
+    {
+      "path": "art/cedar-strings.svg",
+      "bytes": 1591,
+      "sha256": "2d7f0152e58e406ce29a88b231730b00836c06d88703bf646920b85ad8c63c82"
+    },
+    {
+      "path": "art/dusk-chamber.svg",
+      "bytes": 1589,
+      "sha256": "1ad913fa52fcfa92c3c1d9148e1689176feccad0fd83bedf63224e395f6aa8a4"
+    },
+    {
+      "path": "art/first-snow.svg",
+      "bytes": 1585,
+      "sha256": "ebcc7db1bb1eb8c06442fbaa3620d692983dd4c2c9905ca05187f5b1cf3038fa"
+    },
+    {
+      "path": "art/garden-air.svg",
+      "bytes": 1585,
+      "sha256": "9725f70470a770f59767b983b388eb531cda7b710c47179d81da0b6628b65204"
+    },
+    {
+      "path": "art/lamplight-pages.svg",
+      "bytes": 1595,
+      "sha256": "a52fc1adeb17afb01b1d697a310dbb555f1633cdfa8d5f61d11d94b10563a17a"
+    },
+    {
+      "path": "art/linen-harp.svg",
+      "bytes": 1585,
+      "sha256": "bdfefc7700f07eff649c3709363c0ceb5cd2fb28cf64d6c0ffd68e349d6bdf60"
+    },
+    {
+      "path": "art/morning-margins.svg",
+      "bytes": 1595,
+      "sha256": "7cdb2fd0d2f006bb4e345752c60fc7f1003b060df424e369d7eff0d7bffcb7c0"
+    },
+    {
+      "path": "art/quiet-room.png",
+      "bytes": 2734926,
+      "sha256": "99a2d2854fef9d608fa317967900061b12805cbfa14d70fb7f531fa82b1efa93"
+    },
+    {
+      "path": "art/rain-on-paper.svg",
+      "bytes": 1591,
+      "sha256": "794963c4c4f9baf8b0447a181c085836d20a6203145c018a06c03197d4f6e011"
+    },
+    {
+      "path": "art/silver-orbit.svg",
+      "bytes": 1589,
+      "sha256": "f589ed86bed830f6ef3cf173883bd7aeb85a70de893d27fe42c996a3d4072572"
+    },
+    {
+      "path": "art/warm-window.svg",
+      "bytes": 1587,
+      "sha256": "618648ed1212995b3a89b0e5370223235e9be840228a83f530ff8c642475f252"
+    },
+    {
+      "path": "art/woodland-steps.svg",
+      "bytes": 1593,
+      "sha256": "f8ce1f036f75d1761ce75aa0c13c0751dc916829c02b3e53d939bfcecc25ee26"
+    }
+  ]
+}

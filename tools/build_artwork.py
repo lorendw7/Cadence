@@ -57,6 +57,7 @@ ICONS = {
     'all-day': CAL + path('M7 15h10m-10 0 2-2m-2 2 2 2m8-2-2-2m2 2-2 2'),
     'add': path('M12 4v16M4 12h16'),
     'edit': path('m4 16 12-12 4 4L8 20H4zm10-10 4 4'),
+    'copy': rect(8, 8, 13, 13) + path('M16 8V3H3v13h5'),
     'delete': path('M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7'),
     'check': path('m4 12 5 5L20 6'),
     'close': path('m5 5 14 14M19 5 5 19'),
@@ -106,6 +107,10 @@ def mark(color):
 
 
 def brand():
+    # Store artwork is a full square. Google Play supplies the mask and shadow.
+    write(ART / 'brand/cadence-icon-store.svg', svg(
+        f'<rect width="512" height="512" fill="{WINE}"/>' + mark(PAPER),
+        512, 512, 'Cadence store icon'))
     for name, bg, fg in [('cadence-icon-v2', WINE, PAPER), ('cadence-icon-paper', PAPER, WINE), ('cadence-icon-dark', INK, PAPER)]:
         write(ART / 'brand' / (name + '.svg'), svg(f'<rect width="512" height="512" rx="112" fill="{bg}"/>' + mark(fg), 512, 512, 'Cadence'))
     for name, color in [('cadence-mark-wine', WINE), ('cadence-mark-paper', PAPER), ('cadence-mark-ink', INK)]:
@@ -163,6 +168,27 @@ def states():
         f'<g fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">{compact}</g>',
         96, 72, 'Empty task list'))
 
+    # Compact white-canvas states share the task illustration's scale and stroke.
+    calendar = ('<rect x="20" y="14" width="56" height="46" rx="4" fill="#FFFFFF" stroke="#87838A"/>'
+                '<path d="M20 26h56M33 9v10m30-10v10" stroke="#7C394B"/>')
+    compact_states = {
+        'empty-today-compact': (calendar
+            + '<circle cx="48" cy="43" r="10" fill="#F5EEF0" stroke="#7C394B"/>'
+              '<path d="M48 37v6l4 3" stroke="#7C394B"/>', 'No plans today'),
+        'empty-week-compact': (calendar
+            + '<path d="M28 31v24m8-24v24m8-24v24m8-24v24m8-24v24m8-24v24M25 39h46m-46 8h46" stroke="#E8E8EB"/>', 'No plans this week'),
+        'save-error-compact': (
+            '<path d="M53 8H27a3 3 0 0 0-3 3v46a3 3 0 0 0 3 3h32a3 3 0 0 0 3-3V17z" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M53 8v10h9M33 28h19m-19 9h14m-14 9h11" stroke="#87838A"/>'
+            '<path d="m70 34 16 27H54z" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="M70 43v8m0 5v.1" stroke="#7C394B"/>', 'Changes not saved'),
+    }
+    for name, (body, title) in compact_states.items():
+        body += '<path d="M18 66h60" stroke="#E8E8EB"/>'
+        write(ART / 'illustrations' / (name + '.svg'), svg(
+            f'<g fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">{body}</g>',
+            96, 72, title))
+
 
 def patterns():
     for name, body in {
@@ -195,4 +221,4 @@ if __name__ == '__main__':
     patterns()
     social()
     catalogue()
-    print(f'Built brand family, {len(ICONS)} icons, 11 states, 3 patterns, social card and catalogue.')
+    print(f'Built brand family, {len(ICONS)} icons, 14 states, 3 patterns, social card and catalogue.')

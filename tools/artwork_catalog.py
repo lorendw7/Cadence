@@ -24,6 +24,7 @@ ICON_GROUPS = {
     },
     'Editing and navigation': {
         'add': 'Create an item.', 'edit': 'Edit an item.', 'delete': 'Delete an item.',
+        'copy': 'Copy a title. Do not use as a saved-data indicator.',
         'check': 'Mark completion.', 'close': 'Close a view.', 'undo': 'Undo the last action.',
         'chevron-left': 'Move to the previous period.', 'chevron-right': 'Move to the next period.',
         'chevron-down': 'Expand a section.', 'arrow-up-right': 'Follow a destination link.',
@@ -52,6 +53,9 @@ STATE_USES = {
     'empty-week': 'No plans this week. Show no sample commitments.',
     'empty-tasks': 'No tasks yet. Invite the first task.',
     'empty-tasks-compact': 'Small empty-list note for a white task surface. Pair with an instruction; no completion check.',
+    'empty-today-compact': 'Small daily empty state on white. The clock is decorative, not a current-time display.',
+    'empty-week-compact': 'Small weekly empty state on white. All seven columns remain empty.',
+    'save-error-compact': 'Small save-failure state on white. Pair with an error message and retry; no data-loss claim.',
     'all-done': 'Existing tasks are complete. Do not use for a list with no tasks.',
     'no-results': 'No search matches. Offer to change or clear the query.',
     'import-preview': 'Review a draft import. Nothing has been accepted or saved yet.',
@@ -90,6 +94,8 @@ def metadata(file, root):
                         else 'Use the current Cadence identity. Keep the C and rhythm dot together.')
         if name in ['cadence-mark-paper', 'cadence-lockup-paper']:
             entry['previewSurface'] = 'ink'
+        if name == 'cadence-icon-store':
+            entry.update(use='Prepared Google Play listing icon. Full square; no baked-in mask or shadow. Not an Android launcher icon.')
         if name in ['cadence-icon', 'cadence-mark']:
             entry.update(status='retained', group='Retained originals',
                          use='Historical source. Use the current v2 family for new work.')
@@ -106,6 +112,8 @@ def metadata(file, root):
                          use='Decorative still life. Original image; not an application screenshot.')
         else:
             entry.update(group='Empty states and feedback', use=STATE_USES[name])
+            if name.endswith('-compact'):
+                entry['previewSurface'] = 'white'
     elif category == 'patterns':
         entry.update(group='Paper patterns', use='Repeat as faint decoration. Keep forms and text on plain surfaces.')
     elif category == 'social':
@@ -116,6 +124,10 @@ def metadata(file, root):
         entry.update(role='export', group='Platform icons',
                      source='assets/brand/cadence-icon-v2.svg',
                      use='Launcher or browser export. Native package acceptance is a separate check.')
+        if name == 'google-play-512':
+            source = 'assets/brand/cadence-icon-store.svg'
+            entry.update(source=source, maxBytes=1024 * 1024,
+                         use='Prepared 512 px Google Play listing PNG. Store review and Android launcher integration remain separate.')
     if file.suffix == '.svg' and entry['role'] != 'sprite':
         tree = ET.fromstring(file.read_bytes())
         entry.update(width=int(tree.attrib['width']), height=int(tree.attrib['height']))
@@ -203,6 +215,7 @@ def build(root, palette, write):
   <nav class="resources" aria-label="Library resources">
     <a href="README.md">Usage guide</a><a href="ui/task-study.html">Tasks design study</a><a href="preview.png">Visual overview</a>
     <a href="preview-library.png">Full contact sheet</a><a href="manifest.json">File manifest</a>
+    <a href="focus-pack/index.html">Music and focus artwork</a>
   </nav>
 </header>
 <aside class="starter" aria-label="Tasks starter set">
@@ -246,6 +259,10 @@ Independent project. No institutional affiliation. Retained originals keep their
     previous = json.loads((art / 'manifest.json').read_text(encoding='utf-8')) if (art / 'manifest.json').exists() else {}
     manifest = {'version': 2, 'palette': palette, 'appPalette': APP_PALETTE, 'iconGrid': 24, 'iconStroke': 1.75,
                 'files': files, 'webExports': web_exports}
+    manifest['assetPacks'] = [{'path': 'assets/focus-pack/manifest.json',
+                              'catalogue': 'assets/focus-pack/index.html',
+                              'status': 'prepared-not-integrated',
+                              'guide': 'assets/focus-pack/README.md'}]
     # Only the raster exporter can attest to which sources produced the previews.
     if 'previews' in previous:
         manifest['previews'] = previous['previews']

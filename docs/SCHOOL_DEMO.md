@@ -2,7 +2,7 @@
 
 Updated: 2026-11-13. Status: deferred reference only under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). School research and application preparation are outside the current milestone. The guide below applies only if the extension is selected later. No consultation, application or message is sent by this document. No school endorsement, academic interface or access permission is established.
 
-Cadence is a local time-management and planning app for work, study and daily life. Direct tasks, deadlines, personal plans, Today and Week remain central. Build Windows first, then validate Android. A school discussion is a separate way to learn whether an official read-only timetable source can be offered. It must not delay the independent local release. Screenshot recognition is optional only if later need justifies it.
+Cadence is a local time-management and planning app for work, study and daily life. Direct tasks, deadlines, personal plans, Today and Week remain central. Use Windows as the development host and Android as the first self-use target under ADR-015. School authorization and application work remain postponed. A school discussion is a separate way to learn whether an official read-only timetable source can be offered. It must not delay the independent local release. Screenshot recognition is optional only if later need justifies it.
 
 [LEARNING.md](LEARNING.md) owns current implementation, automated checks and pending manual acceptance. The task exercise and concept website must be labelled separately from the planned product. Do not repeat old test counts here.
 
@@ -14,7 +14,7 @@ Before that milestone, use the current task exercise and clearly marked static o
 
 ## A future three-minute demonstration
 
-This stable section describes a possible demonstration sequence, not a pitch script or a claim that the features work. Personal applications, speech scripts and correspondence stay outside this public repository.
+This stable section describes a possible demonstration sequence, not a pitch script or a claim that the features work. Personal applications, speech scripts and correspondence stay outside this product repository.
 
 | Step | Show when implemented | What to learn |
 |---|---|---|
@@ -41,4 +41,4 @@ General local use and publication require no school membership or permission. A 
 
 Personal Google-login sync remains a different future service under [CLOUD_SYNC.md](CLOUD_SYNC.md), deferred until review after store launch. Google sign-in grants no academic access. Its JPY 2,500 monthly planning budget does not establish the cost of an institutional connection or hosted proxy.
 
-Keep any personal application draft, institutional replies, participant information and private source samples outside this public repository. Document only appropriate public requirements and confirmed non-sensitive facts. No outreach, submission, credential registration or integration implementation is authorized by this guide.
+Keep any personal application draft, institutional replies, participant information and private source samples outside this product repository. Document only appropriate public requirements and confirmed non-sensitive facts. No outreach, submission, credential registration or integration implementation is authorized by this guide.

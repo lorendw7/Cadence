@@ -1,6 +1,6 @@
 # Local notifications
 
-Updated: 2026-11-13. Planned optional local extension, not implemented. First complete the Windows task, deadline, personal-plan, Today/Week and recovery flow under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md), then validate Android. Reminders do not delay that phone stage or require all macOS/Linux releases to finish. Academic access remains a deferred extension, with no approved integration.
+Updated: 2026-11-15. Planned optional local extension, not implemented. [ADR-015](adr/015-android-self-use-first.md) puts Android planning and bounded focus before later reminders. [Roadmap I1](ROADMAP.md#i--later-android-competitive-improvements) is an evidence-selected option after the useful public release, not a first-version requirement. Windows remains the development host and a separate later notification target. Academic access remains a deferred extension, with no approved integration.
 
 ## Reminder content
 
@@ -28,4 +28,6 @@ Android notification permission, lifecycle and background behavior need native c
 
 Automated checks cover trigger times, cancellation, repeated startup, time changes, completed-task exclusion, permission denial and delivery failure. On each supported platform, test the actual release package while minimized, after restart and sleep, on notification click, and with denied permission and Do Not Disturb. A successful build is not notification acceptance.
 
-The earlier estimate for reminders while running is 8–14 development hours. Reliable background or post-exit delivery needs separate platform feasibility work; the provisional extra estimate is 12–24 hours, outside the base estimate. These are planning estimates, not completed support or delivery promises.
+The current Android-only I1 allowance is **35-70 additional base hours**, with reserve applied in the [roadmap estimate](ROADMAP.md#estimate-for-later-competitive-improvements). It covers learner-owned rules, opt-in controls, permission/failure handling and the stated Android delivery checks. Re-estimate after native feasibility work; unsupported background cases must remain explicit. No server, other operating system or guaranteed closed-app alarm is included.
+
+The earlier 8-14 hours for reminders while running and 12-24 extra hours for background feasibility are historical estimates. Do not add them to I1 or present them as a verified cross-platform delivery budget. All these figures are planning assumptions, not completed support or delivery promises.

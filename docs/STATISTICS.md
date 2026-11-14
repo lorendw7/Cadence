@@ -1,6 +1,6 @@
 # Local weekly review
 
-Updated: 2026-11-13. Planned local review, not implemented. This remains an optional addition after the useful planning flow under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). Tasks, deadlines, personal plans, Today/Week and recovery come first. Android follows the Windows flow without waiting for every macOS/Linux release; review does not delay that phone stage.
+Updated: 2026-11-13. Planned local review, not implemented. This remains an optional addition after the useful planning flow under [ADR-013](adr/013-local-planner-and-conditional-academic-access.md). Tasks, deadlines, personal plans, Today/Week and recovery come first. Android self-use is first under ADR-015; this optional weekly summary does not delay planning or the bounded task-linked focus stage. Its planned-time totals remain separate from timer records.
 
 ## Entry and scope
 

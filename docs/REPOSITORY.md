@@ -1,6 +1,10 @@
 # Repository map and maintenance
 
-This map explains where work belongs. [PRODUCT.md](PRODUCT.md) owns product scope, [ROADMAP.md](ROADMAP.md) owns delivery gates and [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) records the current Windows-first, Android-next direction. School-access work and imports remain deferred; they do not create folders or implementation tasks during repository maintenance.
+## Repository visibility and website status
+
+On 2026-11-15, the maintainer authorized private development and allowed Pages to go offline. The GitHub API confirmed that lorendw7/Cadence is private. Unauthenticated requests to the repository and former Pages URL returned HTTP 404. Website source and the deployment workflow remain in this checkout. Future server deployment is deferred; no hosting was purchased or configured. MIT and existing notices remain unchanged. This change does not recall existing public copies.
+
+This map explains where work belongs. [PRODUCT.md](PRODUCT.md) owns product scope, [ROADMAP.md](ROADMAP.md) owns delivery gates and [ADR-015](adr/015-android-self-use-first.md) records Android self-use first, with Windows as the development host. School-access work and imports remain deferred; they do not create folders or implementation tasks during repository maintenance.
 
 Updated: 2026-11-13. Keep paths stable so lesson links and platform projects continue to work. [LEARNING.md](LEARNING.md) owns current progress; [CURRICULUM.md](CURRICULUM.md) owns the skill plan, division of work and learning evidence. Older lesson counts are historical.
 
@@ -18,7 +22,7 @@ Updated: 2026-11-13. Keep paths stable so lesson links and platform projects con
 | [website/](../website/README.md) | Three-language static concept site |
 | [tools/](../tools/README.md) | Generators and read-only checks |
 | windows/, linux/, macos/ | Desktop projects; compilation alone does not prove runtime support |
-| android/ | Existing scaffolding for the next phone validation stage after the Windows flow; not accepted mobile support |
+| android/ | Existing scaffolding for the first self-use target; native Android acceptance remains pending |
 | .github/workflows/ | Repository checks, Flutter checks/builds, and Pages deployment |
 
 ## Documentation rules
@@ -27,9 +31,11 @@ Use plain English in all documentation, including future updates. Keep product t
 
 Use [document ownership](README.md#document-ownership) to find the main owner of each topic. Product scope, user flows, visual rules and interaction details have separate owners. Write a requirement once and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
 
-Keep paths stable. Organize the reading order through the index rather than moving linked documents into new folders. A design study belongs in `assets/ui/`, with its limitations and review results beside it. The [planner study](../assets/ui/planner-study.html) is a local design artifact; only `website/` is deployed by the existing Pages workflow.
+The [weekly first-version plan](WEEKLY_PLAN.md) owns proposed weekly work slots, dependencies and acceptance. It links to the roadmap for scope, the curriculum for learner ownership and LEARNING for actual progress. Keep scheduling separate from completed lesson records.
 
-Historical school research remains reference material. Research, applications and integration are all deferred under ADR-013. No source access or connection is approved. Keep private applications, pitches and raw correspondence outside this public repository.
+Keep paths stable. Organize the reading order through the index rather than moving linked documents into new folders. A design study belongs in `assets/ui/`, with its limitations and review results beside it. The [planner study](../assets/ui/planner-study.html) is a local design artifact. The retained Pages workflow targets only `website/`; it is disabled in GitHub while the site is offline.
+
+Historical school research remains reference material. Research, applications and integration are all deferred under ADR-013. No source access or connection is approved. Keep private applications, pitches and raw correspondence outside this product repository.
 
 ## Routine checks
 
@@ -44,7 +50,7 @@ flutter test --no-pub
 
 Run flutter pub get after a fresh checkout or dependency change. Use [SETUP.md](SETUP.md) for native builds. Website source checks do not replace browser layout and interaction checks. Artifact checks do not prove a release package is safe or ready.
 
-Repository checks run in CI. Pages runs them before publishing. CI uses standard Node/Python tools for these checks; image generation is not part of deployment.
+Repository checks run in CI. The retained Pages workflow requires them before publishing. Its disabled state was verified on 2026-11-15; do not re-enable it as repository cleanup. CI uses standard Node/Python tools for these checks; image generation is not part of deployment.
 
 ## Keep source and generated files distinct
 
@@ -60,6 +66,6 @@ Keep the preview source fingerprints in `assets/manifest.json`. Only a new previ
 
 ## Current limits
 
-The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, reviewed import, the full planner, backups and reminders remain future work. The selected product UI is shadcn_ui. The adopted sequence is a complete Windows planning flow, then Android; other native clients and Web need separate acceptance. Sync and ads wait for review after store launch. The asset library and concept website do not change those limits.
+The application has an in-memory task flow. Restarting loses tasks and the undo record. Persistence, reviewed import, the full planner, backups and reminders remain future work. The selected product UI is shadcn_ui. The adopted sequence is safe shared tasks, Android planning self-use, then bounded phone focus; other native clients and Web need separate acceptance. Sync and ads wait for review after store launch. The asset library and concept website do not change those limits.
 
 Record only checks actually run in the change summary. Do not keep a growing list of old validation totals in this document.

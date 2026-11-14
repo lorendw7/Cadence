@@ -1,10 +1,10 @@
 # Project workflow
 
-Scope update (2026-11-13): [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps tasks, deadlines, personal plans, Today and Week central. Build useful direct editors and reliable local saving on Windows, then validate Android without waiting for all macOS/Linux releases. Other platforms need separate acceptance. Screenshot import is optional work only if demonstrated demand justifies it; it has no scheduled release gate. CSV/table import remains deferred. Academic-system access is a deferred, unscheduled extension. Research, application preparation and integration are outside the current delivery milestone. Local release does not wait for school approval. Everyone receives the same free functions. Cloud sync and optional ads remain for review after store launch. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates.
+Scope update (2026-11-15): [ADR-015](adr/015-android-self-use-first.md) makes Android the first self-use target, with Windows as the development host. Safe shared saving and recovery precede real personal data. Tasks, Today and selected-day Week come before the later desktop focus package and Steam work. The first Android build is ad-free; mobile ads wait for a useful release and an ad-free usage baseline. Desktop, Web and the concept site stay ad-free. School access, imports and cloud sync remain later work. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates. This update implements no feature or platform acceptance.
 
 Updated: 2026-11-13. These are working rules. Examples below are not existing issues, branches, pull requests, or releases.
 
-Cadence is a local time planner for work, study and daily life. Tasks, deadlines, personal plans and Today/Week stay central. Useful direct editing and compact phone access support that flow. Screenshot recognition is optional only if needed; academic-access research is deferred. Continue the current lesson, complete the local Windows flow, then validate Android without waiting for all macOS/Linux releases. iOS depends on host/device readiness and Web is later. Cloud sync and optional ads wait for review after store launch. Academic access remains a deferred extension, with no approved integration. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md) and [roadmap](ROADMAP.md).
+Cadence is a local time planner for work, study and daily life. Tasks, deadlines, personal plans and Today/Week stay central. Continue the current lesson, build reliable shared storage and recovery, then extend Android self-use with direct editing and readable phone views. After planning self-use, add the bounded Android task-linked focus flow. Keep Windows as a development host without requiring a complete desktop release first. iOS, other desktop releases and Web are later. Screenshot recognition is optional only if needed. School authorization research, application preparation, login integration and cloud sync remain deferred. Optional mobile ads wait for a useful release and an ad-free usage baseline. See [learning progress](LEARNING.md), [curriculum](CURRICULUM.md) and [roadmap](ROADMAP.md).
 
 ## Ownership and size
 
@@ -13,6 +13,8 @@ The learner writes the code that teaches the current core concept and makes prod
 The user's delegation covers this supporting work once the lesson boundary is stated; no repeated permission is needed for it. It does not authorize future lessons, unused dependencies or architecture for future work. Introduce a needed dependency only with its active lesson. Preserve the learner's attempt and explain supporting changes. Do not weaken tests or reduce the learner's work to filling blanks in an otherwise completed feature.
 
 A task describes an observable result, such as adding a task to the session list. It may take several lessons. Close it only after its acceptance conditions pass. Work on one feature task at a time; record unrelated ideas for later. Keep blocking fixes separate when useful. Small wording changes do not need a large process.
+
+The [weekly plan](WEEKLY_PLAN.md#weekly-review-and-rescheduling) supplies the first-version work slots and review record. Use its learner/support boundary before each small step. Carry unfinished acceptance into the next week; do not start a dependent feature just because the calendar moved on.
 
 Use the [curriculum](CURRICULUM.md) for skill goals. Keep one small goal and one new concept per teaching step:
 
@@ -78,7 +80,7 @@ Never report an unrun check as passed. Unit tests do not prove recovery, platfor
 | Filtered sharing, when included | Field allowlist, accurate preview and no private backup content |
 | Android adaptation | Shared behavior plus native file, storage, lifecycle, touch and recovery evidence |
 | Initial Web planner | Fictional demos, explicit saving, strict JSON checks, failed storage, clearing, script injection |
-| Separately approved future service | Authorization, sessions, minimal data, expiry and user isolation; no service work in the desktop milestone |
+| Separately approved future service | Authorization, sessions, minimal data, expiry and user isolation; no service work in the Android self-use milestone |
 
 See [SECURITY.md](SECURITY.md). Work without networking does not need a backend or account dependency.
 
@@ -90,6 +92,6 @@ All documents use plain English. Keep paths stable, place requirements in their 
 
 ## From lessons to useful software
 
-Follow the current [product priorities](PRODUCT.md) and [roadmap](ROADMAP.md): reliable storage and recovery first; then tasks, deadlines, personal planning, Today/Week and minimal occurrence corrections in one Windows flow; then Android and other platform checks. Review, reminders and advanced rules are separate additions. Test work, study and personal routines rather than treating the timetable survey as proof of all use cases. Sync and ads wait for review after store launch. Academic access remains a deferred extension, with no approved integration.
+Follow the current [product priorities](PRODUCT.md) and [roadmap](ROADMAP.md): reliable shared storage and recovery first; then useful task editing, direct planning, Today and selected-day Week on Android. After the planning self-use check, complete [Android focus self-use](ROADMAP.md#h--android-focus-self-use) with one task-linked countdown, manual break and small local session list. Add native checks with each slice; a timer never completes a task automatically. Desktop focus, media polish, Steam and other platform releases follow later decisions. The maintainer can start safe local self-use without an external trial cohort, but self-use does not prove market demand or replace store testing rules. Broader review, reminders and advanced rules are separate additions. Test work, study and personal routines rather than treating the timetable survey as proof of all use cases. Sync stays deferred; ads wait for a useful mobile release and an ad-free usage baseline. School authorization, application preparation and login integration remain deferred, with no approved access.
 
 Demonstrate completed behavior with fictional data in a real window. Check whole user scenarios at each stage. Revise estimates when needed; lesson counts never replace product acceptance.

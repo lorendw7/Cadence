@@ -1,6 +1,6 @@
 # Architecture
 
-Updated: 2026-11-13. Status: planned, not implemented. [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps time management central, develops direct editing first and retains phone viewing. Screenshot import is optional only if needed; academic access is a deferred extension. Build the first working flow on Windows, then validate Android. Other platform targets remain under ADR-010. [ADR-011](adr/011-optional-sync-service.md) selects a later optional sync service. Preserve the small local structure under ADR-008. Current code and acceptance belong in [LEARNING.md](LEARNING.md). The learner writes features through lib/main.dart; this document creates no code layers.
+Updated: 2026-11-13. Status: planned, not implemented. [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps time management central, develops direct editing first and retains phone viewing. Screenshot import is optional only if needed; academic access is a deferred extension. Under [ADR-015](adr/015-android-self-use-first.md), use Windows as the development host and Android as the first self-use target. Other platform targets remain under ADR-010. [ADR-011](adr/011-optional-sync-service.md) selects a later optional sync service. Preserve the small local structure under ADR-008. Current code and acceptance belong in [LEARNING.md](LEARNING.md). The learner writes features through lib/main.dart; this document creates no code layers.
 
 ## Selected structure and when it grows
 
@@ -62,7 +62,7 @@ If screenshots are later selected, local text recognition and layout parsing nee
 
 ## Platform boundary
 
-Use the existing Windows teaching host for the first working direct-editing, local-data and Today/Week flow. Android compact layout and native validation follow without requiring complete macOS/Linux releases. Schedule iOS when the host and devices are available; Web and other desktop release checks remain later work. This is one Flutter product, not separate desktop and phone implementations.
+Use Windows as the teaching host and validate Android during each safe task, planning and focus slice. A complete Windows release is not a prerequisite. Schedule iOS when the host and devices are available; Web and other desktop release checks remain later work. This is one Flutter product, not separate desktop and phone implementations.
 
 Share models, date calculations, validation and reviewed-import operations. Storage, file pickers, lifecycle, touch/keyboard behavior and any OCR engine need native acceptance. A shared codebase does not prove those integrations work on another OS. Keep existing runners; add a missing target or adapter only with working feature code in its lesson. The GitHub Pages concept site remains separate from any Web app. See [FREE_EDITION.md](FREE_EDITION.md).
 

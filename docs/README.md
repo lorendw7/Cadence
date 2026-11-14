@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a local planner for work, study and daily life. The delivery order is a useful Windows flow, then Android validation. [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) owns the current direction. Screenshot import and school-access work are deferred. Cloud sync and possible ads wait for review after store launch.
+Cadence is a local planner and planned focus tool for work, study and daily life. [ADR-015](adr/015-android-self-use-first.md) owns the current route: safe shared data, Android planning self-use, then a bounded Android focus timer. Windows remains the development host. Desktop media, Steam, mobile ads, school access and cloud sync are later work. Desktop and Web stay ad-free. No revenue is guaranteed. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged.
 
 All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 
@@ -12,15 +12,28 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 |---|---|
 | Run the checkout | [Setup](SETUP.md) |
 | Continue the next small lesson | [Current progress](LEARNING.md), [core skills and practice](CURRICULUM.md), [Dart reference](DART_GUIDE.md) |
+| Plan 10-15 hours of first-version work per week | [Weekly goals, dependencies and work split](WEEKLY_PLAN.md), [hour ledger](WEEKLY_PLAN.md#hour-ledger-and-milestones), [weekly review](WEEKLY_PLAN.md#weekly-review-and-rescheduling) |
 | Find the current lesson and future numbers | [Current checkpoint](LEARNING.md#current-learning-checkpoint), [numbered lesson plan](CURRICULUM.md#numbered-lesson-plan) |
 | Share the lesson workload | [Division of work](CURRICULUM.md#division-of-work), [Dart and Flutter practice](CURRICULUM.md#dart-and-flutter-practice), [workflow](PROJECT_WORKFLOW.md) |
 | See priorities and current limits | [Feature priorities](PRODUCT.md#feature-priorities), [local product baseline](PRODUCT.md#first-useful-local-product) |
+| Plan competitive quality and the next development slice | [Android competitive goal](PRODUCT.md#competitive-goal-for-android), [official comparison](COMPETITIVE_REVIEW.md#android-competitive-benchmark), [work packages](ROADMAP.md#work-packages-and-review-points), [measurable checks](VALIDATION.md#android-workflow-benchmark) |
+| Separate first-version requirements from later competitive work | [First public version](ROADMAP.md#first-public-version-and-later-competitive-quality), [later Android improvements](ROADMAP.md#i--later-android-competitive-improvements), [support and services](ROADMAP.md#service-readiness-and-continuing-maintenance) |
+| Estimate stage hours and continuing capacity | [First-version hours](ROADMAP.md#working-estimate-at-10-15-hours-per-week), [later competitive allowance](ROADMAP.md#estimate-for-later-competitive-improvements), [conditional platforms and sync](ROADMAP.md#conditional-estimates-for-broader-scope) |
 | Review the product and UI | [Product design](REDESIGN.md), [local planner preview](../assets/ui/planner-study.html), [preview guide](../assets/ui/PLANNER_STUDY.md) |
-| Review delivery order | [Desktop design priorities](REDESIGN.md#desktop-design-priorities), [roadmap](ROADMAP.md) |
+| Review delivery order | [Android priorities](REDESIGN.md#android-self-use-priorities), [roadmap](ROADMAP.md), [accepted decision](adr/015-android-self-use-first.md) |
+| Review phone layouts and quality targets | [Screen composition](UI_ARCHITECTURE.md#android-screen-composition), [Android quality acceptance](UI_ARCHITECTURE.md#android-quality-acceptance) |
+| Review the refined Today, Tasks and Week design without code | [Shared view rules](UI_ARCHITECTURE.md#shared-rules-for-the-three-views), [Today details](UI_ARCHITECTURE.md#today-reading-order-and-actions), [Task list and capture](UI_ARCHITECTURE.md#task-list-and-capture-details), [Week selection](UI_ARCHITECTURE.md#week-selection-and-planning-context), [complete walkthrough](REDESIGN.md#three-view-planning-walkthrough), [reference mapping](COMPETITIVE_REVIEW.md#three-view-reference-mapping) |
+| Review later desktop scope and cost controls | [Deferred desktop candidate](DESKTOP_V1.md), [sales scenarios](STEAM_SALES_PLAN.md), [prepared media](../assets/focus-pack/README.md) |
+| Review the first buyer, shorter focus flow and recovery of working time | [Buyer hypothesis](PRODUCT.md#first-buyer-to-test), [interaction review](REDESIGN.md#planning-to-focus-design-review), [full-cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time) |
+| Start without testers and understand Android-first delivery | [Zero-user path](VALIDATION.md#start-without-external-testers), [accepted Android scope](PRODUCT.md#accepted-android-self-use-scope), [revenue and store comparison](STEAM_SALES_PLAN.md#android-first-and-advertising) |
 | Check remaining effort and iOS requirements | [Working delivery estimate](ROADMAP.md#maintenance-and-estimates), [Mac and iPhone validation](SETUP.md#ios-development-and-validation) |
+| Test desktop pricing and purchase demand | [Purchase validation](VALIDATION.md#desktop-demand-and-purchase-test), [affordable offer](VALIDATION.md#affordable-desktop-offer), [market evidence](COMPETITIVE_REVIEW.md#desktop-focus-market-evidence) |
 | Turn research into product decisions | [Validation guide](VALIDATION.md), [product decisions](PRODUCT.md#design-decisions-at-a-glance) |
 | Understand the research behind the direction | [Survey findings](SURVEY_FINDINGS.md), [design comparison and selection](DESIGN_OPTIONS.md), [competitor workflows](COMPETITIVE_REVIEW.md) |
 | Review future advertising on each platform | [Platform advertising study](FREE_EDITION.md#advertising-by-platform), [cost and revenue evidence](VALIDATION.md#later-service-and-advertising-decision) |
+| Design ads around useful phone routines | [Android return use](REDESIGN.md#android-return-use-and-optional-review), [placement and request limits](FREE_EDITION.md#review-screen-ad-proposal), [pilot economics and stop rules](VALIDATION.md#review-screen-ad-pilot) |
+| Estimate mobile ads against development and maintenance costs | [Frequency and reach scenarios](VALIDATION.md#review-screen-ad-pilot), [24-month cost recovery and required DAU](VALIDATION.md#android-ad-cost-recovery), [revenue improvements to test](FREE_EDITION.md#improve-revenue-without-adding-protected-placements) |
+| Prepare a first Google Play release | [Current gaps and account-to-release steps](RELEASE.md#google-play-preparation-from-the-current-checkout), [later AdMob verification](RELEASE.md#admob-after-the-useful-public-release) |
 | Review possible academic access | [Connection study](UNIVERSITY_INTEGRATION.md), [conditional schedule](ROADMAP.md#conditional-connection-estimate) |
 | Review the selected later backend and budget | [Optional cloud sync](CLOUD_SYNC.md), [ADR-011](adr/011-optional-sync-service.md), [break-even assumptions](VALIDATION.md#illustrative-monthly-operating-model) |
 | Find files or checks | [Repository map](REPOSITORY.md), [tools](../tools/README.md), [workflow](PROJECT_WORKFLOW.md) |
@@ -33,6 +46,7 @@ Read the current product in this order: scope, user flow, visual rules, interact
 |---|---|---|
 | What works in the checkout? | [Learning progress](LEARNING.md) | Current implementation, checks run and manual checks still pending |
 | What should the learner understand and practise? | [Curriculum](CURRICULUM.md) | Skill sequence, division of work and evidence of understanding; passing tests alone is not mastery |
+| What fits in a development week? | [Weekly first-version plan](WEEKLY_PLAN.md) | Proposed work slots, dependencies and ownership; progress stays in LEARNING and release gates in ROADMAP |
 | What belongs in the product? | [Product scope](PRODUCT.md) | Accepted scope, priorities and exclusions |
 | How does a person complete a planning routine? | [Product design](REDESIGN.md) | Planned flows and behavior boundaries |
 | How should it look? | [Design system](DESIGN.md) | Palette, typography, spacing and visual hierarchy |
@@ -48,13 +62,16 @@ Research findings and historical lessons provide context. They do not override c
 | Document | Purpose |
 |---|---|
 | [Product scope](PRODUCT.md) | Audience, useful local baseline, priorities and exclusions |
+| [Desktop release candidate](DESKTOP_V1.md) | Bounded later Windows offer; not an Android prerequisite |
+| [Desktop sales and cost recovery](STEAM_SALES_PLAN.md) | Full-cost recovery, unvalidated volume scenarios, price research and stop rules |
 | [Product design](REDESIGN.md) | Complete planning routines and the relationship between tasks, plans and timetables |
 | [Roadmap](ROADMAP.md) | Delivery stages, release gates and estimates |
+| [Weekly first-version plan](WEEKLY_PLAN.md) | A 10-15-hour weekly schedule with learner practice, assistant support, dependencies and acceptance |
 | [Product validation](VALIDATION.md) | Evidence rules for questionnaires, user trials and later service funding decisions |
 | [Survey findings](SURVEY_FINDINGS.md) | Anonymous counts from the six-question timetable study and limits of the sample |
 | [Design options](DESIGN_OPTIONS.md) | Research alternatives and selection history; current direct-editing scope follows ADR-013 |
 | [Competitive review](COMPETITIVE_REVIEW.md) | Official planner workflows and bounded adaptations to test |
-| [Free edition](FREE_EDITION.md) | Platform behavior, free core, store testing and future advertising integrations |
+| [Access and platform policy](FREE_EDITION.md) | Desktop purchase hypothesis, mobile core, platform differences and mobile-only advertising |
 | [Design system](DESIGN.md) | Colors, type, layout, and accessible artwork use |
 | [UI architecture](UI_ARCHITECTURE.md) | Component choice, navigation, responsive layout, and UI stages |
 | [Today](TODAY.md) | Daily grouping, task counts, and clock updates |
@@ -110,8 +127,10 @@ Read the status at the top of each record. Older records explain past choices; t
 | [ADR-009](adr/009-local-focus-without-school-connections.md) | Historical removal of school connections; later extension deferred under ADR-013 |
 | [ADR-010](adr/010-open-multiplatform-free-first.md) | Open source, all target platforms and free edition first |
 | [ADR-011](adr/011-optional-sync-service.md) | Selected optional Google identity and Node.js/PostgreSQL service; implementation deferred |
-| [ADR-012](adr/012-import-first-phone-planner.md) | General planning and Windows-to-phone order retained; mandatory screenshot import superseded |
+| [ADR-012](adr/012-import-first-phone-planner.md) | Historical import and Windows-to-phone order; later decisions keep direct planning and Android self-use first |
 | [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) | Local editing first; screenshots and all academic-access work deferred |
+| [ADR-014](adr/014-desktop-focus-and-mobile-ads.md) | Desktop focus, mobile-only ads, private-development direction and a desktop purchase experiment |
+| [ADR-015](adr/015-android-self-use-first.md) | Accepted Android planning and focus self-use first; desktop package and ads later |
 
 ## Lesson records
 

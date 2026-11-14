@@ -32,7 +32,7 @@ function sheet() {
     images.push({file, x, y, width, height, ...options});
   }
   function card(file, x, y, width, height, label, options = {}) {
-    rect(x, y, width, height, options.inverse ? INK : '#FDFCF9');
+    rect(x, y, width, height, options.inverse ? INK : options.white ? '#FFFFFF' : '#FDFCF9');
     const sampleHeight = height - 46;
     image(file, x + 18, y + 16, width - 36, sampleHeight - 26, options);
     text(x + 14, y + height - 17, label, 13, options.inverse ? PAPER : INK);
@@ -77,7 +77,7 @@ async function previewArtwork(root) {
   const asset = (...parts) => path.join(root, 'assets', ...parts);
   const icons = (await files(root, 'icons', '.svg')).filter(name => name !== 'sprite.svg');
   const states = await files(root, 'illustrations', '.svg');
-  const stateOrder = ['empty-tasks-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
+  const stateOrder = ['empty-tasks-compact', 'empty-today-compact', 'empty-week-compact', 'save-error-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
   const orderedStates = [...states].sort((a, b) => stateOrder.indexOf(a.slice(0, -4)) - stateOrder.indexOf(b.slice(0, -4)));
   const compact = sheet();
   compact.text(64, 65, 'CADENCE / ARTWORK LIBRARY / 02', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
@@ -88,7 +88,7 @@ async function previewArtwork(root) {
   compact.text(64, 249, 'An independent identity for a quiet local planner.', 17);
   compact.text(64, 278, 'Prepared artwork. Product features remain in development.', 15, '#666761');
   [WINE, PAPER, '#6F877C', INK, RULE].forEach((color, i) => compact.rect(64 + i * 72, 310, 60, 26, color, 2));
-  ['today', 'week', 'tasks', 'work', 'personal', 'study', 'meeting', 'clock', 'add', 'edit', 'search', 'import', 'export', 'settings', 'warning', 'success'].forEach((name, i) => {
+  ['today', 'week', 'tasks', 'work', 'personal', 'study', 'meeting', 'clock', 'add', 'edit', 'copy', 'search', 'undo', 'settings', 'warning', 'success'].forEach((name, i) => {
     const x = 64 + (i % 8) * 80;
     const y = 366 + Math.floor(i / 8) * 74;
     compact.rect(x, y, 64, 58);
@@ -97,7 +97,7 @@ async function previewArtwork(root) {
   compact.text(64, 542, `${icons.length} interface icons / 24 px grid / 1.75 px strokes`, 15, '#666761');
   compact.image(asset('illustrations', 'journal-editorial.png'), 826, 202, 550, 367);
   compact.text(64, 602, 'STATES / QUIET GUIDANCE', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
-  orderedStates.forEach((name, i) => compact.card(asset('illustrations', name), 64 + (i % 6) * 222, 628 + Math.floor(i / 6) * 190, 202, 174, name.slice(0, -4), {nativeSize: name === 'empty-tasks-compact.svg'}));
+  orderedStates.forEach((name, i) => compact.card(asset('illustrations', name), 64 + (i % 6) * 222, 628 + Math.floor(i / 6) * 190, 202, 174, name.slice(0, -4), {nativeSize: name.endsWith('-compact.svg'), white: name.endsWith('-compact.svg')}));
   const statesBottom = 628 + Math.ceil(orderedStates.length / 6) * 190;
   compact.rule(statesBottom + 14);
   compact.text(64, statesBottom + 52, 'SVG sources / PNG, ICO, ICNS and WebP exports / Generated from the current library', 14, '#666761');
@@ -124,13 +124,16 @@ async function previewArtwork(root) {
   const toEntries = (folder, names) => names.map(name => ({file: asset(folder, name), name, label: name.replace(/\.(svg|png)$/, '')}));
   drawSection('Brand', 'Use the C mark and its rhythm dot together. Paper marks need a dark surface.', toEntries('brand', brandFiles.filter(name => !originals.has(name))), 4, 212, entry => ({inverse: entry.name.includes('paper') && !entry.name.includes('icon')}));
   drawSection('Interface icons', `${icons.length} symbols at 24 px. Controls still need text labels and generous hit areas.`, toEntries('icons', icons), 8, 116, () => ({nativeSize: true}));
-  drawSection('Empty states and feedback', 'Decorative illustrations accompany a plain explanation and a relevant next action.', toEntries('illustrations', orderedStates), 5, 205, entry => ({nativeSize: entry.name === 'empty-tasks-compact.svg'}));
+  drawSection('Empty states and feedback', 'Decorative illustrations accompany a plain explanation and a relevant next action.', toEntries('illustrations', orderedStates), 5, 205, entry => ({nativeSize: entry.name.endsWith('-compact.svg'), white: entry.name.endsWith('-compact.svg')}));
   drawSection('Paper patterns', 'Repeated 32 px tiles. Keep text, forms and timelines on plain surfaces.', toEntries('patterns', await files(root, 'patterns', '.svg')), 3, 180, () => ({tile: true}));
   drawSection('Editorial artwork and sharing', 'The editorial master is preserved. The sharing card identifies the project as in development.', [
     {file: asset('illustrations', 'journal-editorial.png'), label: 'journal-editorial / original PNG'},
     {file: asset('social', 'social-card.svg'), label: 'social-card / editable SVG'},
   ], 2, 300);
   drawSection('Platform exports', 'Ordered by pixel size. Smaller images appear at their native size; large ones fit the sample.', toEntries('platform/png', await files(root, 'platform/png', '.png')), 6, 190, () => ({nativeSize: true}));
+  drawSection('Google Play listing', 'Prepared 512 px square. Google supplies the mask and shadow. Not a launcher or a release claim.', [
+    {file: asset('platform', 'google-play-512.png'), label: 'google-play-512 / PNG'},
+  ], 4, 212);
   drawSection('Retained originals', 'Historical project identity. Use the current brand variants above for new work.', toEntries('brand', brandFiles.filter(name => originals.has(name))), 4, 190);
   library.rule(y - 13);
   library.text(64, y + 22, 'Project-owned vectors / MIT project license / Editorial provenance in assets/ART_PROMPTS.md', 14, '#666761');

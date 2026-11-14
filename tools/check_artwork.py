@@ -119,7 +119,8 @@ require({'tools/artwork_previews.cjs', 'tools/export_artwork.cjs'}
         <= {entry['path'] for entry in preview_inputs},
         'Preview inputs must include both export scripts')
 expected_preview_sources = {'assets/illustrations/journal-editorial.png',
-                            'assets/social/social-card.svg'}
+                            'assets/social/social-card.svg',
+                            'assets/platform/google-play-512.png'}
 for pattern in ['brand/*.svg', 'icons/*.svg', 'illustrations/*.svg',
                 'patterns/*.svg', 'platform/png/*.png']:
     expected_preview_sources.update(file.relative_to(ROOT).as_posix()
@@ -212,6 +213,14 @@ except ET.ParseError as error:
 for file in (ROOT / 'assets/platform/png').glob('cadence-*.png'):
     size = int(file.stem.split('-')[-1])
     require(dimensions(file.read_bytes()) == (size, size), f'Wrong platform size: {file.name}')
+
+store_png = ROOT / 'assets/platform/google-play-512.png'
+require(store_png.is_file(), 'Missing Google Play listing icon export')
+if store_png.is_file():
+    data = store_png.read_bytes()
+    require(dimensions(data) == (512, 512), 'Google Play listing icon must be 512 x 512')
+    require(data[24:26] == bytes([8, 6]), 'Google Play listing icon must be 32-bit RGBA PNG')
+    require(len(data) <= 1024 * 1024, 'Google Play listing icon exceeds 1 MB')
 
 for source, target in [
     ('assets/brand/cadence-icon-v2.svg', 'website/assets/icon-v2.svg'),

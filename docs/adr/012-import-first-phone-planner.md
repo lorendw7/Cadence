@@ -1,6 +1,6 @@
 # ADR-012: Easier import and phone access for a shared time planner
 
-**Status:** Partly superseded by [ADR-013](013-local-planner-and-conditional-academic-access.md). General planning, Windows first and Android next remain. Screenshot import is now optional and unscheduled; school access is deferred. The original decision below records the prior scope, not current release requirements.
+**Status:** Partly superseded by [ADR-013](013-local-planner-and-conditional-academic-access.md) and [ADR-015](015-android-self-use-first.md). Direct general planning remains. Android self-use is now first; Windows remains the development host. Screenshot import and school access are deferred. The original decision below records prior scope and order, not current release requirements.
 **Date:** 2026-11-13
 **Decider:** The maintainer adopted options B and C, retained desktop development first, and confirmed that time management and general planning remain central.
 

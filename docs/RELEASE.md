@@ -1,14 +1,38 @@
 # Release plan
 
-Scope update (2026-11-13): [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) keeps tasks, deadlines, personal plans, Today and Week central. Build useful direct editors and reliable local saving on Windows, then validate Android without waiting for all macOS/Linux releases. Other platforms need separate acceptance. Screenshot import is optional work only if demonstrated demand justifies it; it has no scheduled release gate. CSV/table import remains deferred. Academic-system access is a deferred, unscheduled extension. Research, application preparation and integration are outside the current delivery milestone. Local release does not wait for school approval. Everyone receives the same free functions. Cloud sync and optional ads remain for review after store launch. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates.
+Scope update (2026-11-15): [ADR-015](adr/015-android-self-use-first.md) sets the current route: shared local saving and recovery, Android planning self-use, bounded Android focus, then a useful ad-free mobile release. Windows remains the development host. Desktop focus presentation, media, Steam and a mobile ad pilot are separate later decisions; none blocks the first phone planning build. Desktop, Web and the concept site stay ad-free. School authorization, requests, connections, imports and cloud sync remain deferred. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates. These are planned contracts, not implemented behavior.
 
-Release scope follows [ADR-013](adr/013-local-planner-and-conditional-academic-access.md): first build the useful local time-management flow on Windows, with direct editing and recovery, then validate compact Android use. Personal plans, dated tasks, Today/Week and available time are core, without course setup. Other platform targets remain under ADR-010. Complete macOS/Linux releases are not a prerequisite for Android validation. Keep the selected shadcn_ui direction. [ADR-011](adr/011-optional-sync-service.md) accepts the future sync design. Cloud sync and optional ads are not gates for the local release; review their implementation after store launch.
+Release scope follows [ADR-015](adr/015-android-self-use-first.md): shared reliable saving and recovery, Android planning self-use, bounded Android focus, then a useful ad-free mobile release. The safe planning trial does not wait for focus. Windows stays the development host; desktop compact mode, media and Steam preparation are later work. Personal plans, dated tasks, Today/Week and available time remain core, without course setup. Other platform targets retain separate acceptance. Keep the selected shadcn_ui direction. [ADR-011](adr/011-optional-sync-service.md) accepts the future sync design. Cloud sync and optional ads do not block the local release; each needs its later evidence gate.
 
-Updated: 2026-11-13. The free core needs no account, payment or ad view. First use offers Save on this device or Temporary use. Each platform requires runtime, recovery, accessibility and actual package checks; an uploaded build does not prove readiness. [FREE_EDITION.md](FREE_EDITION.md) defines common and platform behavior.
+Updated: 2026-11-15. Local runtime needs no Cadence account, subscription or ad view. A possible desktop purchase has separate acquisition terms; its price and paid release are undecided. First use offers Save on this device or Temporary use. Each platform requires runtime, recovery, accessibility and actual package checks; an uploaded build does not prove readiness. [FREE_EDITION.md](FREE_EDITION.md) defines common and platform behavior.
 
 School permission is not a gate for the independent local release. Academic access is a separate conditional track: feasibility, confirmed permission and interface terms, implementation, then limited real-data acceptance. Application preparation is not approval. Use fictional or properly permitted samples and preserve retention/sharing limits.
 
 The learning app currently supports validated task addition, completion toggling, empty-list feedback, deletion and one-level undo in memory. See the [project README](../README.md) and [learning log](LEARNING.md) for acceptance. Persistence and the full planner are not implemented. shadcn_ui remains the selected UI direction. The website presents concepts; there is no released planning MVP or institutional endorsement.
+
+## Google Play preparation from the current checkout
+
+Reviewed on 2026-11-15. The maintainer reports having no Play developer account. The connected GitHub API confirms private repository visibility. Private source and public app distribution are separate; MIT and third-party notices remain unchanged. This plan does not register an account, create signing credentials, purchase hosting or submit a build.
+
+Current gaps are concrete: the app is an in-memory exercise; phone recovery is not accepted; android/app/build.gradle.kts still signs release builds with the debug configuration; the application ID is dev.cadence.cadence and needs a final publisher decision; and the former Pages privacy URL is offline. The existing website privacy page describes the concept site, not a future app with an ad SDK. No production-ready signed bundle or approved listing is established.
+
+Follow this order when each gate is ready:
+
+1. Complete A-D and H in [ROADMAP.md](ROADMAP.md), including real-device recovery and the ad-free planning/focus trial. Keep fictional data until safe saving exists. Finish unresolved learning checks in their own lessons.
+2. Choose the correct developer account type. If publishing as an individual, prepare the personal-account route. Google currently requires an owner aged at least 18, a one-time USD 25 registration fee, identity verification and Android-device verification for personal accounts. The owner supplies legal identity, payment and agreements outside Git. See [registration](https://support.google.com/googleplay/android-developer/answer/6112435?hl=en). No account fee was paid in this task.
+3. Confirm a permanent application ID before the first upload. Prepare an upload key and Play App Signing, replace debug release signing, and keep key material/passwords out of Git. Build a release Android App Bundle with flutter build appbundle --release only after signing is configured. Test the installed bundle through Play's internal track, including updates. See [Flutter release preparation](https://docs.flutter.dev/deployment/android).
+4. Recheck the submission date's SDK requirement. The official page checked today requires API 36 or higher for new phone apps and updates from 2026-08-31. The local setup records target API 36, but verify the delivered bundle rather than a source variable. Also inspect native libraries and test [16 KB page compatibility](https://developer.android.com/guide/practices/page-sizes). A debug APK or current target SDK does not close either runtime check. See [target API rules](https://support.google.com/googleplay/android-developer/answer/11926878?hl=en-en).
+5. Prepare truthful screenshots, descriptions, support contact, content rating, audience, ads declaration and Data safety answers for the actual distributed version. Publish an app-specific privacy policy at an active public URL and expose it in the app. It must work without login and cannot be replaced by a private repository link or the offline concept page. See [review preparation](https://support.google.com/googleplay/android-developer/answer/9859455?hl=En). Hosting is a separate unresolved delivery step; preserve the existing website source for it.
+6. For a new personal account, plan a closed test with at least 12 testers continuously opted in for at least 14 days before applying for production access. Keep real feedback and fixes. The elapsed period does not automatically grant approval. No external testers are currently available, so recruitment is an open public-release dependency; private self-use can continue. See [personal-account testing](https://support.google.com/googleplay/android-developer/answer/14151465?hl=en-FO).
+7. Apply for production access, complete review and release the accepted ad-free build. Check the delivered package, crash reports, support and upgrade recovery. Keep a route to halt rollout and ship a safe update; never restore an older database blindly after a schema change.
+
+### AdMob after the useful public release
+
+Use [the bounded ad design](FREE_EDITION.md#review-screen-ad-proposal) and [pilot evidence](VALIDATION.md#review-screen-ad-pilot). Start with official test ads during development. Review the actual SDK's collection, permissions, UMP and audience requirements before adding it; an SDK changes the privacy assessment even if planner records stay local. Update privacy, Data safety and the store ads declaration for the ad-enabled version.
+
+AdMob can be prepared for an unpublished app, but full serving requires the relevant published store listing, linked app and readiness approval. An unpublished local APK is not revenue-ready. A private GitHub repository is different from a private Google Play app; the latter cannot be linked as a public AdMob store app. See [app setup](https://support.google.com/admob/answer/9989980) and [readiness](https://support.google.com/admob/answer/10564477?hl=en).
+
+New AdMob apps require app-ads.txt ownership verification before full serving. Use the real account's authorized-seller snippet at the public developer site's root, link that site in the store listing, and verify the exact crawler URL shown in AdMob. Do not publish a made-up publisher ID. The offline Pages URL cannot serve this purpose. See [verification](https://support.google.com/admob/answer/14538460?hl=en-CN) and [site setup](https://support.google.com/admob/answer/9363762?hl=en). Resolve account, payment, verification and regional requirements in the actual console; no income is assumed before approval and measured use.
 
 ## Artwork readiness
 
@@ -16,8 +40,10 @@ The [v2 artwork library](../assets/README.md) provides Windows ICO, macOS PNG/IC
 
 ## Before the first trial
 
-- Finish the included milestone in [ROADMAP.md](ROADMAP.md), with its actual acceptance checks. Windows is the first working flow; Android validation follows. Do not require a school account or sync for either.
-- Test the complete routine: directly enter fixed commitments, inspect Today/Week and available time, add a task deadline, reserve an independent work plan and adjust it without changing the deadline.
+- Finish the included slice in [ROADMAP.md](ROADMAP.md), with its actual acceptance checks. Android is the first self-use target; no complete Windows release, desktop focus or Steam gate is required. The core needs no school account, sync or advertising.
+- Before using real tasks, verify local/temporary choice, confirmed saves, failed writes, offline restart and backup recovery on the Android device. Earlier launch checks use fictional data.
+- As planning slices arrive, test the complete routine: directly enter commitments, inspect Today/Week, add a task deadline, reserve an independent work plan and adjust it without changing the deadline. Do not describe a task-only build as the complete planner.
+- In the following Android focus stage, test the task-linked countdown, pause/resume/end, manual break and local session recovery under the accepted mobile lifecycle contract. Timer completion must not complete a task. Do not promise background timing or closed-app alarms without explicit native acceptance.
 - Screenshot import is optional only if needed and does not block release. CSV/table parsing remains deferred until real user exports justify it. Do not advertise an absent import route.
 - For any later included import route, test source-to-preview accuracy, uncertainty, duplicates, atomic confirmation and the actual target platform. A school source also needs its separate access and data-use gates.
 - Before broader timetable use, test one-occurrence room/time changes, cancellation and restoration, including a move across days. Confirm that the original slot is suppressed and the rest of the series stays intact.
@@ -26,7 +52,7 @@ The [v2 artwork library](../assets/README.md) provides Windows ICO, macOS PNG/IC
 - Explain saving choices, known limits, supported import/backup versions and the data-folder location. Verify temporary use does not read or modify an existing saved workspace.
 - For included reminders, test the actual package identity/format, denied permission, cancellation and click-through. Do not promise delivery after app exit without native tests.
 - Provide fictional work, study and personal examples with a short setup guide. No login or school connection is needed for core planning.
-- Include people with different planning routines, languages and accessibility needs in the pilot. Record tested and untested cases.
+- Begin with the maintainer's two-week Android self-use check because no external testers are available. Record defects and tested and untested cases. Include people with different routines, languages and accessibility needs when available. Self-use is not independent demand evidence and does not replace store requirements.
 
 ## Build and package
 
@@ -37,12 +63,13 @@ Use the pinned Flutter SDK and a supported build host for each target. Desktop b
 | Platform | Initial package | Required checks |
 |---|---|---|
 | Windows | Complete release bundle in ZIP; installer may follow | Include DLL/data files, run on a clean machine, verify selected saving mode and restart recovery |
-| Android | Signed application package for device testing; store bundle when ready | Real-device import/file access, Back, text scaling, offline restart, process termination, corrections, export/restore and store-distributed build |
+| Steam on Windows | Same complete desktop package through Steam depots, if accepted | Non-game category approval, truthful offer, clean install/update, offline behavior, recovery, focus lifecycle and no advertising |
+| Android | Debug APK for initial owner-device checks; signed distribution package and store bundle when ready | Native file access, Back, text scaling, offline restart, process termination and export/restore; corrections/import only when included; separately validate the distributed build |
 | iOS | Signed device/TestFlight build when host and devices are available | Files/share destinations, safe areas, VoiceOver, background/resume, restart, recovery and the actual distributed build |
 | Linux | Complete bundle for the tested distribution/architecture | Document runtime libraries; verify file dialogs, desktop session behavior and storage |
 | macOS | App bundle in an appropriate archive/DMG | Test declared architectures; plan Developer ID signing and notarization for convenient distribution |
 
-These are package plans, not existing automated release artifacts. Recheck current signing/distribution requirements when packaging starts. Never ask users to disable OS security globally. Publish only validated targets and state support gaps. Android scaffolding does not prove readiness, and a Windows test does not validate phone file handling or OCR. Schedule iOS around available hosts and devices; macOS/Linux and Web releases do not block the Windows-to-Android sequence.
+These are package plans, not existing automated release artifacts. Recheck current signing/distribution requirements when packaging starts. Never ask users to disable OS security globally. Publish only validated targets and state support gaps. Android scaffolding does not prove readiness, and a Windows test does not validate phone file handling or OCR. Schedule iOS around available hosts and devices. A public desktop release is not an Android self-use prerequisite.
 
 ## Publish a version
 
@@ -52,6 +79,8 @@ These are package plans, not existing automated release artifacts. Recheck curre
 4. Tag the release and describe implemented features, supported systems, limitations and upgrade steps.
 5. Add website download links only after the files exist.
 6. Before wider rollout, confirm onboarding, support ownership, privacy information and a way to withdraw a faulty release. State the approval status and tested interface version of any included external connector.
+
+Before a commercial release, decide the exact offer and price, review licensing/notices and update any obsolete permanent-free claims on the existing website in all three languages. Preserve MIT unless separately changed. No paid launch is approved by this plan.
 
 Publishing binaries/tags is separate from source commits. The existing Pages workflow may publish concept-site changes on main.
 
@@ -81,8 +110,8 @@ Publish consent, retention, deletion, service limits and support ownership. Have
 
 ## Optional school adapters
 
-[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) defines conditional feasibility and application preparation. No adapter, school login or official interface is approved. A connection release would require confirmed scope and permission, an offered read-only interface, reviewed data handling, failure/revocation behavior and a limited pilot. It must not delay the independent local release. Do not use school-password collection or authenticated scraping as a substitute.
+[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) retains a deferred extension, including feasibility research and application preparation. No adapter, school login or official interface is approved. A connection release would require confirmed scope and permission, an offered read-only interface, reviewed data handling, failure/revocation behavior and a limited pilot. It must not delay the independent local release. Do not use school-password collection or authenticated scraping as a substitute.
 
 ## Mobile release evidence
 
-For Android and iOS, follow the current [roadmap](ROADMAP.md) and [platform testing rules](FREE_EDITION.md#delivery-and-testing). Recruit testers when the working build is ready, retain feedback and fixes, prepare truthful metadata and validate the store-distributed build. Do not wait for all desktop platforms to complete before Android validation. The maintainer handles identity, agreements, fees and signing credentials. No recruitment, store purchase or submission occurs as part of this documentation change.
+For Android and iOS, follow the current [roadmap](ROADMAP.md) and [platform testing rules](FREE_EDITION.md#delivery-and-testing). Android self-use may begin on the owner's device after native data-safety acceptance, before a store account or external trial cohort. This does not authorize public distribution or establish store approval. For a public release, meet the applicable store testing rules, retain feedback and fixes, prepare truthful metadata and validate the distributed build. The maintainer handles identity, agreements, fees and signing credentials. No recruitment, store purchase or submission occurs as part of this documentation change.

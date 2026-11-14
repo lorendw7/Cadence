@@ -1,5 +1,7 @@
 # ADR-013: Local planner first and conditional academic access
 
+Later decisions (2026-11-15): [ADR-014](014-desktop-focus-and-mobile-ads.md) retains mobile-only ad limits, a later desktop purchase hypothesis and private development with visibility pending; MIT is unchanged. [ADR-015](015-android-self-use-first.md) now puts Android planning and focus self-use before the desktop package. Conflicting Windows-first, free-only and public-development assumptions below are historical. Local safety and deferred school-access boundaries remain.
+
 **Status:** Accepted local delivery priorities; school access and screenshots are deferred extensions.
 **Date:** 2026-11-13
 **Decider:** The maintainer asked to explore applying for academic-system access and to build screenshot import only if it becomes necessary.

@@ -10,7 +10,9 @@ Cadence is being designed around **Today, Week, and Tasks**. See the next commit
 
 **Current status:** the learning app supports task input, validation, addition, completion, deletion, undo of the latest deletion, and task-title copying with visible feedback. Data stays in memory. Persistence and the full planner are not implemented. The [learning log](docs/LEARNING.md) owns current lesson progress, automated results and pending actual-window checks. Design documents and successful builds do not establish release readiness.
 
-[Website](https://lorendw7.github.io/Cadence/) · [Product](docs/PRODUCT.md) · [UI preview](assets/ui/planner-study.html) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md)
+[Website source](website/README.md) · [Product](docs/PRODUCT.md) · [UI preview](assets/ui/planner-study.html) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md)
+
+For the next development steps, use the [weekly first-version plan](docs/WEEKLY_PLAN.md). It divides a 10-15-hour weekly budget into learner-owned practice, assistant support and acceptance checks. The plan does not mark future features or lessons complete.
 
 ## Product direction
 
@@ -22,11 +24,11 @@ Cadence is being designed around **Today, Week, and Tasks**. See the next commit
 
 The first useful product includes direct task, plan and timetable editing, bounded repeats, single-occurrence corrections, local saving and safe recovery. First use will offer **Save on this device** or **Temporary use**. Japanese, English and Chinese, keyboard access and readable compact layouts are planned throughout. These flows still need implementation and acceptance. See [scope and priorities](docs/PRODUCT.md) and the [product design](docs/REDESIGN.md).
 
-Build the complete Windows flow first, then adapt and validate Android without waiting for every desktop release. iOS, macOS/Linux and Web have separate acceptance gates. [ADR-013](docs/adr/013-local-planner-and-conditional-academic-access.md) sets this order; the [roadmap](docs/ROADMAP.md) owns release gates and estimates.
+Build the ad-free Android self-use edition first under [ADR-015](docs/adr/015-android-self-use-first.md), using Windows as the development host. Start with safe shared tasks and recovery, then direct plans, Today and Week, then a task-linked countdown with manual breaks and local records. Test each slice on the phone. The [bounded desktop candidate](docs/DESKTOP_V1.md), music integration and Steam work are later choices. No external trial cohort or complete Windows release is needed to continue self-use; public distribution has its own gates. The [roadmap](docs/ROADMAP.md) owns order, checks and provisional estimates.
 
-Screenshot recognition, CSV/table import and all school-access work are deferred. A local release does not need school permission. No application, permission, connection or automatic school update is confirmed. Cloud sync and possible ads wait for review after store launch. The [product scope](docs/PRODUCT.md#optional-later-work) keeps these extensions separate from current delivery.
+Screenshot recognition, CSV/table import and all school-access work are deferred. A local release does not need school permission. No application, permission, connection or automatic school update is confirmed. Cloud sync needs a separate later review. Desktop, Web and the website remain ad-free; only mobile ads may be tested after a useful mobile release. The [product scope](docs/PRODUCT.md#optional-later-work) keeps these extensions separate from current delivery.
 
-Everyone receives the same free feature set. There is no paid tier, subscription, expansion or priority. Any future cloud quota applies equally to everyone. Ads are the only possible future revenue model and do not unlock features or capacity. See the [free-edition design](docs/FREE_EDITION.md).
+The self-use edition has no ads and assumes no income. A later one-time desktop purchase and mobile-only ad pilot remain hypotheses, not approved prices or guaranteed revenue. No subscription, paid priority or ad-based feature unlock is planned. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. LICENSE remains MIT. See the [access and platform policy](docs/FREE_EDITION.md).
 
 ## Review the product and UI
 
@@ -57,7 +59,7 @@ The product UI uses Flutter shadcn_ui, introduced one used control at a time. [p
 
 ## Artwork and website
 
-The quiet journal style uses pure white, muted wine and graphite. Paper and sage stay inside the original color artwork. Preserve the independent C mark and existing GitHub Pages site.
+The quiet journal style uses pure white, muted wine and graphite. Paper and sage stay inside the original color artwork. Preserve the independent C mark and website source. The Pages site is offline; future server deployment is deferred.
 
 The catalogue groups artwork by use and offers search, filters, size samples and downloads. The [artwork guide](assets/README.md) owns source/export rules and browser-check records.
 

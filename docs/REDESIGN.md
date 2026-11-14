@@ -2,7 +2,7 @@
 
 The limits in [ADR-008](adr/008-small-free-local-product.md) still apply: one workspace, explicit Save, memory-only unsaved forms, ordinary SQLite and private unencrypted JSON backups. [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) refines the earlier import direction: deliver direct general planning and phone access, defer academic-access research and implementation, and add screenshot import only if later need justifies it. Minimum recurring-entry corrections remain in the baseline; advanced course rules remain conditional.
 
-Updated: 2026-11-13. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md). The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [learning log](LEARNING.md). The product keeps the selected shadcn_ui direction under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
+Updated: 2026-11-15. Status: staged product plan under [ADR-007](adr/007-general-purpose-local-planner.md), with Android self-use first under [ADR-015](adr/015-android-self-use-first.md). The bounded desktop focus offer from ADR-014 is later work. The teaching app supports in-memory task input, validation, addition, completion, empty-list feedback, deletion and single-level undo. Saving and schedule views are not implemented. Current acceptance and pending manual checks live in the [learning log](LEARNING.md). The product keeps the selected shadcn_ui direction under [ADR-008](adr/008-small-free-local-product.md). The website shows concepts.
 
 ## Purpose and scope
 
@@ -10,19 +10,19 @@ Cadence is a local time planner for everyday work, personal life, study and othe
 
 The core loop is to enter commitments, inspect available intervals, choose work and reserve an explicit plan, use Today, then adjust plans without changing task deadlines. General time management and phone viewing guide the first useful product. Any later timetable import joins the same loop after review.
 
-Keep desktop, Web, Android and iOS as targets under [ADR-010](adr/010-open-multiplatform-free-first.md). Build the manual editor, local saving and Today/Week on Windows. Design phone views now, then validate Android without waiting for complete macOS/Linux releases, screenshots or school approval. Validate iOS when a native host and devices are available. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) own platform gates. Existing platform folders do not prove support.
+Keep desktop, Web, Android and iOS as targets under [ADR-010](adr/010-open-multiplatform-free-first.md). Use Windows as the development host and retain desktop regressions. Build shared saving and recovery, then validate direct editing and Today/Week on the Android self-use target. A complete Windows release, desktop focus, music and Steam are not prerequisites. Validate iOS when a native host and devices are available. The [free-edition design](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md) own platform gates. Existing platform folders do not prove support.
 
-An official read-only academic API or calendar feed is a deferred option under [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md), including feasibility research. Availability and permission are not established; no school login, scraping or connection implementation is approved. Direct in-app editing is the delivery baseline. Users do not need to create a table or supply a screenshot. Cloud sync and optional ads remain for review after store launch. Continue MIT open-source development. Keep Flutter shadcn_ui, wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+An official read-only academic API or calendar feed is a deferred option under [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md), including feasibility research. Availability and permission are not established; no school login, scraping or connection implementation is approved. Direct in-app editing is the delivery baseline. Users do not need to create a table or supply a screenshot. Cloud sync and optional ads remain for review after store launch. Follow ADR-014 for private-development status and desktop purchase validation; LICENSE remains MIT. Desktop and Web stay ad-free; only mobile may pilot ads later. The desktop focus stage follows the Android self-use milestone and has separate lifecycle checks. The first Android trial is ad-free; a later mobile ad pilot needs a useful mobile release and an ad-free usage baseline. Keep Flutter shadcn_ui, wine #7C394B, pure white #FFFFFF and graphite text; see [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 Core planning needs no account, backend or runtime network connection. Any later academic retrieval is an optional network action; saved permitted snapshots must remain useful when disconnected. Do not require login, connection setup or a semester wizard before the first task or personal plan. Screenshot recognition has a separate conditional design and does not add a first-release dependency.
 
 Personal plans have their own editing and repeats. Tasks may have deadlines, but a deadline does not reserve a calendar interval. Imported timetable entries join the same views without owning general task onboarding. Ask for a term range or period table only when the selected input needs it.
 
-Excluded from the first local release: required accounts, live collaboration, automatic cloud sync, advertising, billing, habits, payroll and focus tracking. External calendar or academic retrieval needs separate approval, scope and acceptance; it is not a local release gate. Screenshot recognition is optional and unscheduled under [QUICK_IMPORT.md](QUICK_IMPORT.md). CSV/table import is deferred unless useful real export files justify it. Cloud AI is not a dependency. School-password collection, academic scraping and enrollment/grade operations remain excluded. [CLOUD_SYNC.md](CLOUD_SYNC.md) defines the accepted later personal-sync design; its implementation remains deferred.
+Excluded from the first planning baseline (before the bounded Android focus phase in [ROADMAP.md](ROADMAP.md)): required accounts, live collaboration, automatic cloud sync, advertising, billing, habits, payroll and focus tracking. The next Android phase adds only the accepted task-linked countdown and modest local session history after reliable planning and initial self-use. The later desktop package remains separate. External calendar or academic retrieval needs separate approval, scope and acceptance; it is not a local release gate. Screenshot recognition is optional and unscheduled under [QUICK_IMPORT.md](QUICK_IMPORT.md). CSV/table import is deferred unless useful real export files justify it. Cloud AI is not a dependency. School-password collection, academic scraping and enrollment/grade operations remain excluded. [CLOUD_SYNC.md](CLOUD_SYNC.md) defines the accepted later personal-sync design; its implementation remains deferred.
 
 ## Direction after the timetable survey
 
-The user selected easier timetable setup and phone viewing in [ADR-012](adr/012-import-first-phone-planner.md), informed by the small [timetable survey](SURVEY_FINDINGS.md). The latest [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) makes direct planning the delivery baseline and screenshots optional. [DESIGN_OPTIONS.md](DESIGN_OPTIONS.md) keeps the alternatives and tradeoffs. Conditional academic-access research does not approve a connection or prove broad demand.
+The user selected easier timetable setup and phone viewing in [ADR-012](adr/012-import-first-phone-planner.md), informed by the small [timetable survey](SURVEY_FINDINGS.md). [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) made direct planning the baseline and screenshots optional. [ADR-015](adr/015-android-self-use-first.md) now puts Android self-use first because the maintainer has a phone for daily use. This does not turn the timetable survey into Android or purchase evidence. [DESIGN_OPTIONS.md](DESIGN_OPTIONS.md) keeps the alternatives and tradeoffs. Conditional academic-access research does not approve a connection or prove broad demand.
 
 Prioritize a complete flow: choose storage, directly enter fixed commitments, inspect Today/Week, then reserve time for a task and adjust it as needed. Repeated classes need individual corrections whether entered manually or imported later. On a phone, put the current or next commitment with time and optional room/location above the agenda; it may concern study, work or home. Keep title-only task capture and independent personal plans. Compare the planning loop with a person's current method; the [competitor review](COMPETITIVE_REVIEW.md) supplies references, not demand evidence. An optional future input route must reduce total setup effort after review and correction.
 
@@ -34,7 +34,7 @@ Explicit export is a separate action. Switching back to temporary use must expla
 
 ## Representative use and wider release
 
-Use voluntary trials with people who plan different work, home and study routines, including people using assistive technology. Record what was actually tested. One developer's routine does not establish broad usability.
+Start with the maintainer's Android self-use because no external testers are available. Once shared saving and recovery are accepted, use ordinary tasks and plans for two weeks and record friction privately. Before that gate, use fictional data. Add voluntary external trials when people are available, including people using assistive technology. Record what was actually tested. One developer's routine does not establish broad usability, demand or advertising income.
 
 - Test meetings, appointments, errands, personal projects and study plans without creating a semester or account.
 - Locations are optional plain text. Automatic travel-time calculation is not a first-stage claim.
@@ -44,11 +44,11 @@ Use voluntary trials with people who plan different work, home and study routine
 
 ## Pages and interaction
 
-The [local product baseline](PRODUCT.md#first-useful-local-product) defines the required features. Windows is the first implementation host; phone design shapes the shared flow now. These are specifications for future lessons, not new application behavior.
+The [local product baseline](PRODUCT.md#first-useful-local-product) defines the required features. Windows remains the development host; Android is the first self-use target. Use title-first capture, readable Today and a selected-day Week agenda on the phone. These are specifications for future lessons, not new application behavior.
 
-Keep **Today / Week / Tasks** as the main destinations. Show Import only after a route is implemented and accepted; no placeholder is needed. Phones use compact navigation, a readable daily agenda and a selected-day list within Week. Wide windows retain the light sidebar, two-column Today and seven-day calendar with a collapsible task tray. Settings stays secondary. Course management and Weekly Review do not need extra main tabs. See [the layout specification](UI_ARCHITECTURE.md#pages-and-navigation).
+Keep **Today / Tasks / Week** in fixed left-to-right order in the Android bottom navigation. The existing desktop study can retain its earlier Today / Week / Tasks sidebar order; this changes layout, not record ownership. Show Import only after a route is implemented and accepted; no placeholder is needed. Phones use compact navigation, a readable daily agenda and a selected-day list within Week. Wide windows retain the light sidebar, two-column Today and seven-day calendar with a collapsible task tray. Settings stays secondary. Course management and Weekly Review do not need extra main tabs. See [the layout specification](UI_ARCHITECTURE.md#pages-and-navigation).
 
-A global New action offers only implemented entry types, named Task and Plan. A simple task needs only a title; date and notes are optional. If Import is added later, keep direct entry available. Course-specific context appears only when needed by a timetable. Completion uses a checkbox; selecting the title opens editing once the editor exists.
+On Android, Today and Tasks offer New task above the bottom navigation; Week offers New plan for the selected day and a secondary Task action. A global New menu on wide windows offers only implemented entry types, named Task and Plan. A simple task needs only a title; date and notes are optional. If Import is added later, keep direct entry available. Course-specific context appears only when needed by a timetable. Completion uses a checkbox; selecting the title opens editing once the editor exists.
 
 | Page | Main content | First-use guidance |
 |------|--------------|--------------------|
@@ -84,9 +84,94 @@ The [official-product comparison](COMPETITIVE_REVIEW.md) informs the next design
 
 For manual planning, opening a plan from a task may copy its title into an unsaved form. The person still chooses and confirms the interval. Keep the deadline visible as context where available. The resulting task and plan remain independent: moving or deleting the plan does not edit or complete the task. Automatic links, scheduling suggestions and drag scheduling stay deferred.
 
+### Three-view planning walkthrough
+
+Written design revision: 2026-11-15. This pass refines Today, Tasks and Week without changing app or prototype code. The [reference mapping](COMPETITIVE_REVIEW.md#three-view-reference-mapping) records the official observations. The [screen rules](UI_ARCHITECTURE.md#shared-rules-for-the-three-views) own layout, controls and return behavior. Existing HTML samples cover only the interactions listed in their handoff; they do not demonstrate all the new written states below.
+
+Use this fixed fictional example when comparing designs: Thursday, 12 November 2026, 09:30 in Asia/Tokyo. A Design review is scheduled for 10:00-11:00 in Meeting room B. The existing task Send the report has a deadline of Friday, 13 November at 17:00. The person adds Choose a weekend book during the capture step below. These are design fixtures, not records to insert into the application.
+
+| Step | Person's intent and action | Expected screen and meaning |
+|---|---|---|
+| 1. Check the morning | Open Today and find the next commitment | See Design review, 10:00-11:00 and Meeting room B without opening details. The report's future deadline is in Tasks, not counted as due today. |
+| 2. Capture a thought | Use New task to record Choose a weekend book with only a title | A confirmed result identifies No date. Today keeps its current context and offers a route to the task. No deadline or work interval is inferred. |
+| 3. Inspect the obligation | Open Tasks and inspect Send the report | Read the full Friday deadline. Opening details does not change completion or create a calendar block. |
+| 4. Find room for work | Open Week, select Thursday, then open its task tray | Keep Thursday's agenda visible and the report's Friday deadline available as context. The tray does not claim to know which tasks are already scheduled. |
+| 5. Reserve an interval | Choose Create work plan for the report and set Thursday 13:00-14:00 | Review the title, date and interval before saving. After confirmation, Week shows a separate plan. The task remains incomplete and due Friday at 17:00. |
+| 6. Adjust the day | Open that plan and change it to 13:30-14:30 | Today and Week show the new interval after confirmation. The task deadline is unchanged. Returning preserves the selected Thursday and the browsing context. |
+| 7. Review a failure | Repeat the time edit with a simulated failed save | The editor keeps the proposed values and a retry path. The confirmed plan keeps its old time. Back uses the existing changed-form choices. This is a review state, not proof of working recovery. |
+| 8. Finish the obligation | Mark the report complete explicitly in Tasks | Relevant task groups and counts agree. The reserved plan remains a plan; it is not deleted or converted into measured work. Reopen remains available from Completed. |
+
+For the failure branch, start again from the confirmed 13:00-14:00 plan before attempting 13:30-14:30. Keep the two times visibly distinct in the review. Test local-saving and temporary wording separately: Saved on this device and Kept for this session have different promises under [EDITING.md](EDITING.md).
+
+The later focus phase may add a recorded timer duration to this example. That duration stays separate from both the report deadline and the reserved interval. This design pass adds no focus page or extra navigation destination.
+
+#### Review the design without writing code
+
+Make three low-detail screen sketches from this example, then show the editor and its return state. Use paper or a design tool. Start with content order, control labels and results; apply the existing white, graphite and wine style after the flow is understandable. Reuse the same fixture across drafts so changed sample data does not hide a design problem.
+
+| Review prompt | Evidence to note | Initial target, still unverified |
+|---|---|---|
+| Find the next commitment on Today | Correct title, time and location; hesitation or extra navigation | Correct answer within five seconds at ordinary text size |
+| Record an undated thought | Required fields, actions, help needed and ability to find it again | Title-only capture within ten seconds in an interactive version; a paper review can only check the steps |
+| Reserve work time from Week | Selected date, copied context and explicit confirmation | No mistaken date, accidental duplicate or belief that the deadline moved |
+| Move the work plan | Person explains the changed interval and unchanged deadline | Correct explanation without coaching |
+| Recover from a failed save | Person identifies the retained draft and original confirmed record | A clear retry or cancel path without re-entering the title |
+
+Add variants for an empty day with existing tasks, an empty selected day in a busy week, no open tasks but completed records, overlapping commitments, a long translated title and 200% text. Every variant needs a useful next action and a clear return path. Keep large-text checks separate from ordinary-size timing targets.
+
+Record findings as Observed, Proposed change and Still untested. Until another person can review it, the maintainer can walk through the sketches and record uncertainty, but this is self-review rather than a usability study. No paid tester, store account or recruitment work is needed for this documentation step. Native storage, Back, keyboard and lifecycle acceptance remain separate future checks. Core rules and representative Flutter implementations remain learner-owned.
+
+### Android self-use priorities
+
+The first target is a safe daily planning routine on the maintainer's phone. These priorities guide the learner's small implementations; they do not implement new application behavior.
+
+The concrete [phone composition](UI_ARCHITECTURE.md#android-screen-composition) uses a stable Today / Tasks / Week bottom bar. Today and Tasks keep New task within thumb reach above that bar; Week starts a plan for the selected day. Settings stays secondary. Editors and the later focus screen are routes from these pages, not extra permanent tabs. Keep one clear primary action in each context.
+
+| Priority | Phone design | Acceptance question |
+|---|---|---|
+| Data safety first | Explain local saving versus temporary use, keep explicit Save and show confirmed or failed writes | Can the person restart and recover confirmed records without mistaking an unfinished form for saved data? |
+| Fast capture | Require only a task title; reveal optional deadline and notes without a project or category setup | Can the person record a task with the on-screen keyboard and find it again? |
+| Today | Show the current date, next commitment, readable agenda and separate due/overdue/undated task groups | Can the person find the next action and its time or place without opening multiple screens? |
+| Week | Use a date selector and selected-day agenda; keep all-day plans separate and tasks reachable | Can the person reserve an explicit interval without changing a task deadline? |
+| Native editing | Keep Save/Cancel above the keyboard and follow the dirty-form contract on Android Back | Can the person cancel, return or recover after interruption without losing confirmed work? |
+| Daily use | Retain the independent journal style, readable text and three product languages; keep ads and focus media absent | Does the phone routine remain usable offline and at large text sizes? |
+
+Use the same fictional task to review the full phone journey: choose local or temporary use, record a title, add an optional deadline, reserve a separate plan in Week, and return to Today. Then inspect a failed save with the draft still present. In the later focus phase, open Start focus from that task and review its recorded duration without changing completion. Review empty screens as carefully as populated ones; never invent a commitment or success state to fill space.
+
+The quality target is a coherent daily tool: consistent spacing and action emphasis, dates that agree across pages, clear storage state, readable translated text and predictable return paths. Apply the [Android quality checks](UI_ARCHITECTURE.md#android-quality-acceptance) for touch size, 200% text, TalkBack, keyboard, Back, failure states and measured response time. None of those checks passes because a mockup looks polished. The first representative widgets, state changes and lifecycle decisions remain learner-owned.
+
+### Android focus after the first planning trial
+
+Roadmap stage H is the next planned Android phase after reliable planning and initial self-use. Keep **Today / Tasks / Week** as the fixed Android bottom navigation. Expose Start focus on the chosen task only when implemented. Carry the task title into one countdown; do not ask for another title, a daily pin or a reserved time block.
+
+Provide explicit start, pause, resume and end actions, plus a manually started break. Show a modest local session list with the task label, recorded timer duration and truthful save status. Finishing a countdown does not complete a task or move its deadline. Recorded duration is not proof of attention. Temporary mode keeps its existing retention limits.
+
+The learner must define and test screen lock, background/foreground transitions, interruption, process death, clock changes, duplicate callbacks and save failure. Do not promise closed-app alarms or uninterrupted background counting without native acceptance. The initial phone phase needs no desktop compact window, daily pins, music player, scene or school connection. Keep ads outside active focus and all core editing. This scope does not delay the first safe planning trial or implement a timer in the current lesson.
+
+### Android return use and optional review
+
+Design proposal, 2026-11-15. Improve the accepted routine before adding modules. The [competitive goal](PRODUCT.md#competitive-goal-for-android) is a dependable local planner with short actions and readable dates. A journal-style screen and a timer are not evidence of an advantage by themselves.
+
+| Moment | Proposed interaction | Evidence to seek |
+|---|---|---|
+| A thought arrives | A visible title-first capture action in Tasks; optional details stay secondary | Save the sample title without choosing a category or date |
+| The person checks the day | Today leads with the next commitment, time and location, then due work | Identify the next action without opening each row |
+| A deadline needs work time | Week keeps the selected date, recorded gaps and task context available | Reserve a separate plan without changing the deadline; record repeated-entry friction |
+| A plan changes | The editor states whether the change affects one occurrence or the series | Correct one time or room without changing other dates or losing context |
+| Work begins | Start focus from the existing task, with no required plan or extra title | Reach the countdown in at most two actions using the default duration |
+| The person wants to review | An optional recent-session view shows task labels, times, duration and interrupted/unsaved states | Understand what was recorded without confusing timer time with proven attention |
+
+Keep Today, Tasks and Week as the phone's main destinations. Reach recent sessions from the focus surface and a secondary menu. Do not add a fourth advertising or statistics tab. Review must remain useful without ads. Do not open it automatically after a task save or timer completion, and do not add a badge, streak or notification to increase ad visits.
+
+The initial self-use and public core remain ad-free. A later review-screen pilot follows [the placement proposal](FREE_EDITION.md#review-screen-ad-proposal). Compare one separate slot after brief useful record context and before detailed history with the original end-of-review slot. Keep return controls available and away from the creative. Do not place ads between individual records or style them as tasks, recommendations or messages from Cadence. The same daily routine must remain available when the person never opens review. More natural review visits are a usefulness hypothesis, not a reason to route users through this screen.
+
+Measure the [existing workflow targets](VALIDATION.md#android-workflow-benchmark) and repeated outside-tool workarounds. Prioritize a needed reminder, search or widget through the existing later-gap review. Broader themes, music, automation and cloud sync do not enter the Android baseline through this design proposal.
+
 ### Desktop design priorities
 
-| Area | First desktop design | Deferred choice |
+Retain this wide-layout specification for later desktop acceptance. It does not gate the Android self-use milestone.
+
+| Area | Later desktop design | Deferred choice |
 |---|---|---|
 | Navigation | Today, Week and Tasks; show only working destinations | Optional import routes, extra course-management pages and Weekly Review |
 | Visual hierarchy | White canvas, wine selection and primary actions, graphite text, fine rules and clear dates; preserve the independent C mark | Additional category colors and dark mode |
@@ -103,6 +188,23 @@ For desktop Week, use one shared hour ruler and bounded horizontal scrolling whe
 Keep core actions usable without drag, hover or a custom shortcut. Use ordinary focus traversal and each control's standard keyboard activation. A changed editor must follow the same Save, Discard or Cancel flow when closing by pointer or keyboard. Resizing must not discard the editor, selected date or input. See [editing rules](EDITING.md).
 
 Lesson 16 removed the practice counter under the learner's explicit delegation. Preserve the task and undo behavior recorded in [LEARNING.md](LEARNING.md). That cleanup does not mean saving, navigation or the full planner is implemented.
+
+### Planning-to-focus design review
+
+This review retains the later [bounded desktop candidate](DESKTOP_V1.md). Android uses the smaller focus scope described above after its first planning self-use milestone. The desktop additions are not phone prerequisites or current teaching-app behavior. The existing planner study covers planning only. A separate fictional focus demonstration cannot establish a working timer or saved records.
+
+| Surface | Proposed change | Check with a person |
+|---|---|---|
+| Today | Keep the date, next commitment and due groups readable. Put Start focus beside the chosen task; reserve strong emphasis for that action. Daily pins are optional. | Start on an existing task without visiting Week, Settings or a pin editor. |
+| Week | Keep the task tray and explicit plan editor. Opening from a task may copy its title into the draft; confirm the interval separately. | Move a work block and explain why its task deadline and completion did not change. |
+| Focus | Keep the same task title and a clear countdown. Put duration choices nearby, with music secondary and silence fully usable. | Begin without entering a second title or choosing a track. |
+| Compact mode | Keep current task, time, pause/end and mute in the same window. Retain a visible return to the planner. | Identify the task while working in another app, then return without a second timer. |
+| Review | Show this session first, then the small local history. Label recorded timer time separately from planned time. Keep task completion an independent action. | Explain that a finished timer does not prove attention or finish the task. |
+| Saving feedback | Keep the selected storage mode and confirmed/failed save status near the affected record. Never cover an error with artwork or a success animation. | Tell whether a session is saved, pending or temporary, and find the recovery action. |
+
+The shortest path is **choose a task -> Start focus -> compact view if useful -> review**. Reserving time, pinning, music and a break are optional branches. Preserve the journal typography, white canvas, wine actions and readable panels. Keep the existing room illustration on the focus surface; do not let it displace task controls. No extra navigation destination, onboarding ritual, productivity score or content purchase is needed.
+
+Use the same fictional task in each view. As proposed usability checks, seek a first focus start within one minute of opening the prepared task list, and no repeated title entry, unintended task completion or lost deadline context. Include an undated, unpinned task. These are test criteria, not measured gains. Timer, storage and lifecycle rules remain learner-owned lessons; a mockup does not close their release gates.
 
 ### One complete desktop scenario
 
@@ -216,12 +318,12 @@ Academic access is a conditional [feasibility study](UNIVERSITY_INTEGRATION.md),
 ## Delivery and acceptance
 
 1. Follow [LEARNING.md](LEARNING.md) one small learner-written feature at a time. Establish local/temporary choice, confirmed saving, restart recovery, failed-save input retention, private backup and clearing. Review phone concepts during local work. Academic-access feasibility is deferred.
-2. Build the first working Windows flow around direct in-app editing: bounded weekly entries, Today/Week and individual time/room/cancellation corrections. General tasks, deadlines, available-time inspection and explicit personal plans are equally required. Do not require a CSV file, screenshot parser or semester setup.
-3. Trial the manual planner, repair important failures and prepare its tested Windows release. School approval and screenshot support are not release gates. A separate mock academic-source prototype must use clearly labelled fictional data; a connected pilot needs documented permission, a real interface and separate acceptance.
-4. Adapt the shared local flow to Android, testing phone readability, touch, safe areas, file access, local saving, restart and recovery on a native target. Do not wait for complete macOS/Linux releases. Validate iOS when the necessary host and devices are available.
-5. Validate retained desktop targets and later Web separately. Publish only tested platforms with recovery and support guidance. Review cloud sync and optional ads only after store launch. Reconsider screenshots only if observed unmet entry effort justifies the separate work.
+2. Build the shared direct-editing flow and validate it on Android: tasks and optional deadlines, personal plans, Today and a selected-day Week agenda. Add bounded repeats and their corrections through the relevant lessons. Do not require a CSV file, screenshot parser or semester setup.
+3. Use the safe Android build daily for two weeks, record friction and repair important failures. No external test group is available; maintainer use is not independent demand evidence. School approval, screenshot support and a complete Windows release are not prerequisites.
+4. Test phone readability, touch, Back, safe areas, file access, local saving, process termination, restart and recovery on the actual Android device. Before public release, complete platform quality and applicable store testing requirements; self-use cannot replace them.
+5. After reliable planning and initial Android self-use, add the bounded Android focus phase described above. Then assess public release and only later an optional ad pilot. Revisit desktop focus and purchase work separately. Validate retained desktop targets, iOS and later Web separately. Ads remain absent from the first trial and may be reviewed only after a useful mobile release and an ad-free usage baseline. Cloud sync and screenshots keep separate later gates.
 
-The learner continues Windows lessons and builds the shared flow in small steps. Phone design can proceed during desktop work; academic-access research remains deferred. Use fictional or permitted anonymized data and state real limits. No application code, external application submission or school connection is authorized by this document update.
+The learner continues the current lesson on the Windows development host and builds the shared flow in small steps for Android self-use. Desktop regressions remain useful; academic-access research remains deferred. Use fictional or permitted anonymized data and state real limits. No application code, external application submission or school connection is authorized by this document update.
 
 Acceptance means tested behavior works on the target system, not that a folder exists or a build succeeds. See [ROADMAP.md](ROADMAP.md) for stages and estimates.
 

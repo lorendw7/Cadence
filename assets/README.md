@@ -1,8 +1,10 @@
 # Cadence artwork library
 
-Updated: 2026-11-12. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers the desktop identity, navigation, editing, data controls, empty states and concept website; some assets prepare for optional later extensions. Browse the [catalogue](catalog.html), [visual overview](preview.png), [Tasks design handoff](ui/README.md) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
+Updated: 2026-11-13. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers desktop identity, navigation, editing, data controls, compact empty states, a prepared Google Play listing icon and the concept website. Some assets prepare for optional later extensions. Browse the [catalogue](catalog.html), [visual overview](preview.png), [Tasks design handoff](ui/README.md) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
 
-The [planner study](ui/planner-study.html) extends the local design work to Today, Week and Tasks. Its [review guide](ui/PLANNER_STUDY.md) separates preview interactions from planned application behavior. It reuses the existing artwork without new exports.
+The [planner study](ui/planner-study.html) extends the local design work to Today, Week and Tasks. Its [review guide](ui/PLANNER_STUDY.md) separates preview interactions from planned application behavior. Each empty page now uses its matching compact illustration.
+
+The [focus media pack](focus-pack/README.md) adds 12 synthetic instrumental studies, three cues, editable scores, 12 vector covers and one room illustration. Use its [local listening catalogue](focus-pack/index.html) and separate [manifest](focus-pack/manifest.json). It is prepared content, not an implemented player or a complete scene library. Human listening and distribution checks remain pending.
 
 ## Visual direction
 
@@ -10,7 +12,7 @@ Keep the original C mark and its rhythm dot. Use muted wine `#7C394B`, warm pape
 
 For the application, use the approved white canvas `#FFFFFF`, wine accent and neutral rules. Paper and sage remain editorial artwork colors. The catalogue shows these palettes separately and marks seven sources for the current Tasks design study. The [study](ui/task-study.html) compares wide and compact layouts, four sample states and three sample languages. It is local design documentation, not a second hosted website or implemented Flutter UI.
 
-The same visual family serves work, home plans and study. Course and semester symbols remain available for optional course tools; they are not required navigation or setup. The planned core is local and offline without an account, with an explicit saving choice. The current learning app keeps tasks in memory. [ADR-010](../docs/adr/010-open-multiplatform-free-first.md) targets desktop first, with Web and mobile later. Sync and optional ads wait for review after store launch. School adapters remain excluded.
+The same visual family serves work, home plans and study. Course and semester symbols remain available for optional course tools; they are not required navigation or setup. The planned core is local and offline without an account, with an explicit saving choice. The current learning app keeps tasks in memory. [ADR-013](../docs/adr/013-local-planner-and-conditional-academic-access.md) prioritizes Windows and then Android validation. Other platforms need separate acceptance. Sync and optional ads wait for review after store launch. School access remains a deferred extension.
 
 Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4E` for green text on warm paper. White-canvas color-pair measurements and usage are in [the design system](../docs/DESIGN.md#color-pairs).
 
@@ -19,15 +21,16 @@ Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4
 | Directory | Contents | Intended use |
 |---|---|---|
 | `brand/` | Main, paper and dark icons; single-color marks; two lockups; retained original SVGs | Brand, launcher, title bar and website |
-| `icons/` | 56 SVGs and one sprite | Navigation, categories, editing, files, settings and feedback |
-| `illustrations/` | Ten 320 × 240 SVG states, one 96 × 72 compact task state and a 1536 × 1024 editorial PNG | Empty views, completion, search, import, save failure and recovery |
+| `icons/` | 57 SVGs and one sprite | Navigation, categories, editing, copying, files, settings and feedback |
+| `illustrations/` | Ten 320 × 240 SVG states, four 96 × 72 compact states and a 1536 × 1024 editorial PNG | Empty views, completion, search, import, save failure and recovery |
 | `ui/` | Editable local HTML/CSS/JavaScript studies and English handoffs | Historical Tasks exercise and future three-page planner; no app implementation |
 | `patterns/` | Three seamless 32 × 32 SVG tiles | Decorative dots, grid and ruled paper |
 | `platform/png/` | 16–1024 px PNG exports | Desktop icons and future Web resources |
-| `platform/` | Multi-size ICO and 128–1024 px ICNS | Windows and macOS packaging |
+| `platform/` | Multi-size ICO, 128–1024 px ICNS and a separate 512 px store PNG | Windows/macOS packaging and prepared Google Play listing artwork |
 | `social/` | 1200 × 630 SVG and PNG | Link preview, marked in development |
+| `focus-pack/` | Music sources, local audio exports, covers, one room illustration and a separate manifest | Prepared desktop focus media; not integrated into Flutter |
 
-The built-in image generator produced the editorial illustration; its original PNG is preserved. See [the prompt and provenance](ART_PROMPTS.md). All other artwork comes from project-owned SVG source under the repository's MIT license. No third-party icon pack, font pack or university identity was added.
+The built-in image generator produced the editorial illustration; its original PNG is preserved. See [the prompt and provenance](ART_PROMPTS.md). The separate focus room has its own [provenance record](focus-pack/art-provenance.json). Other visual artwork comes from project-owned SVG source under the repository's MIT license. No third-party icon pack, font pack or university identity was added. Audio sources and review limits are documented within the focus pack.
 
 ## Find and choose artwork
 
@@ -62,7 +65,13 @@ The manifest separates editable artwork from `webExports`, which record source, 
 - Windows `Runner.rc` references `cadence-v2.ico`; macOS `Contents.json` references v2 PNGs. Original files remain available. System icon caches and installed packages need native platform checks.
 - Linux SVG and PNG assets are ready. A later installer must place them in the icon theme and reference them from its desktop entry. No installer was added.
 - The learner owns Flutter page theming and asset integration. The current UI uses Material and shadcn_ui controls; this artwork pass adds no Flutter SVG package or asset bundle. Native launcher resources do not require a Flutter asset declaration.
-- Android scaffolding is not a verified mobile release. Android and iOS are later targets under ADR-010. The 180 px touch icon supports browser bookmarks, not a mobile application.
+- Android scaffolding is not a verified mobile release. Android validation follows the Windows flow under ADR-013. The prepared store icon does not change Android launcher resources. The 180 px touch icon supports browser bookmarks, not a mobile application.
+
+## Compact states and store artwork
+
+The [Today](illustrations/empty-today-compact.svg), [Week](illustrations/empty-week-compact.svg), [Tasks](illustrations/empty-tasks-compact.svg) and [save failure](illustrations/save-error-compact.svg) states share a 96 × 72 grid, 1.75-unit strokes and white-canvas colors. Show them at their intended size next to real text. The empty week has seven blank columns. The clock is a symbol, not a live time. The failure state needs a message and retry action; it does not imply lost data or working persistence. The [copy icon](icons/copy.svg) uses the existing 24-unit grid and is included in the sprite. Flutter still uses its learner-written Material copy button.
+
+The [store SVG](brand/cadence-icon-store.svg) preserves the C mark and rhythm dot on a full wine square. Its [512 px PNG](platform/google-play-512.png) has 8-bit RGBA channels and an sRGB profile. It has no baked-in corner mask or outer shadow. This follows the [Google Play icon specification](https://developer.android.com/distribute/google-play/resources/icon-design-specifications), checked on 2026-11-13. This is prepared listing artwork, not an adaptive launcher icon, app screenshot or proof of store acceptance. Existing desktop and website icon files keep their stable paths and geometry.
 
 ## Usage
 
@@ -96,6 +105,8 @@ python tools/build_artwork.py
 python tools/check_artwork.py
 ```
 
+When the store icon changes, use `node tools/export_artwork.cjs --store-only` in place of the previews-only command. This exports the store PNG and both contact sheets. Run the Python generator before and after it. Full regeneration also includes the store icon.
+
 The preview step refreshes both sheets and records the exact source files used. The Python generator preserves that record; it cannot mark an old preview as current. If an exported icon, sharing card or website image changed, use the full regeneration sequence instead.
 
 From the repository root, `python -m http.server 8000 --bind 127.0.0.1` serves the local catalogue at `/assets/catalog.html` and the concept site at `/website/`. Publish only `website/`, as the existing Pages workflow does.
@@ -127,3 +138,9 @@ This check fixed three issues: clipped family labels at medium widths, category 
 This was a focused catalogue check. JavaScript-disabled browsing, 200% browser zoom, screen-reader announcements and other browser engines were not checked in this pass.
 
 The original v2 review checked SVGs, PNG transparency, ICO frames, ICNS structure, the catalogue and both website pages in Japanese, English and Chinese at 1440 and 390 px. A Windows debug build succeeded. macOS and Linux runtime icon acceptance remains pending. Recheck changed assets and the exact website revision before publication; those earlier results do not validate later edits.
+
+### Compact artwork review on 2026-11-13
+
+Added the copy icon, three compact state sources and a separate store icon source/export. The catalogue contains 103 cards. Sources, sprite, manifest and both contact sheets were regenerated together. The overview and 512 px store PNG were visually inspected. The store export is 512 x 512, 32-bit RGBA and below 1 MB; it uses an sRGB profile. The artwork checker now enforces its size, channel format and byte budget.
+
+In the in-app browser, searching compact found four cards without page-wide overflow at 390, 640, 900 and 1440 px. Searching google-play found its one PNG card. The planner study passed 36 empty-layout checks: Today, Week and Tasks in Chinese, Japanese and English, at 100%/200% sample text and 390/1440 px. Each page referenced its matching illustration. Some immediate image probes ran before loading completed; a later settled probe confirmed the Japanese compact Week image loaded at 96 px. Browser warning/error logs were empty. Browser screenshot capture timed out, so this pass does not claim new screenshot-based page inspection. Native Android appearance and store acceptance remain untested. No Flutter code or dependencies changed, and no Flutter suite or native build ran for this artwork-only pass.
