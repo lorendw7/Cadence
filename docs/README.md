@@ -79,6 +79,7 @@ Research findings and historical lessons provide context. They do not override c
 | [Statistics](STATISTICS.md) | Local planned-time and task calculations |
 | [Notifications](NOTIFICATIONS.md) | Later local reminders and platform checks |
 | [Artwork](../assets/README.md) | Sources, searchable catalogue, state guidance, generated previews, and exports |
+| [Android artwork handoff](../assets/ANDROID_ARTWORK.md) | Planning, recovery and later countdown symbols; compact states, sizes and acceptance limits |
 | [Tasks design handoff](../assets/ui/README.md) | Local wide/compact study, sample states, color roles and a small artwork set; not Flutter implementation |
 | [Planner design handoff](../assets/ui/PLANNER_STUDY.md) | Today, Week, Tasks and focused editing in a local fictional-data preview |
 | [Image provenance](../assets/ART_PROMPTS.md) | Source and prompt for the editorial illustration |

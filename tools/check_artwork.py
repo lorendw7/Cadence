@@ -112,9 +112,9 @@ require(set(catalogue.assets) == {entry['path'] for entry in manifest['files']},
 previews = manifest.get('previews', {})
 preview_inputs = previews.get('inputs', [])
 preview_files = previews.get('files', [])
-expected_previews = {'assets/preview.png', 'assets/preview-library.png'}
+expected_previews = {'assets/preview.png', 'assets/preview-library.png', 'assets/preview-android.png'}
 require({entry['path'] for entry in preview_files} == expected_previews,
-        'Manifest must list both generated artwork previews')
+        'Manifest must list all three generated artwork previews')
 require({'tools/artwork_previews.cjs', 'tools/export_artwork.cjs'}
         <= {entry['path'] for entry in preview_inputs},
         'Preview inputs must include both export scripts')

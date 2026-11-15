@@ -77,7 +77,7 @@ async function previewArtwork(root) {
   const asset = (...parts) => path.join(root, 'assets', ...parts);
   const icons = (await files(root, 'icons', '.svg')).filter(name => name !== 'sprite.svg');
   const states = await files(root, 'illustrations', '.svg');
-  const stateOrder = ['empty-tasks-compact', 'empty-today-compact', 'empty-week-compact', 'save-error-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
+  const stateOrder = ['empty-tasks-compact', 'empty-today-compact', 'empty-week-compact', 'all-done-compact', 'local-save-compact', 'temporary-use-compact', 'backup-review-compact', 'load-error-compact', 'save-error-compact', 'plan-overlap-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
   const orderedStates = [...states].sort((a, b) => stateOrder.indexOf(a.slice(0, -4)) - stateOrder.indexOf(b.slice(0, -4)));
   const compact = sheet();
   compact.text(64, 65, 'CADENCE / ARTWORK LIBRARY / 02', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
@@ -140,6 +140,48 @@ async function previewArtwork(root) {
   library.text(64, y + 49, 'Generated from current sources. For usage, search and download links, open assets/catalog.html.', 14, '#666761');
   await library.render(asset('preview-library.png'), y + 82);
 
+  const android = sheet();
+  android.text(64, 65, 'CADENCE / ANDROID ARTWORK / 01', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
+  android.text(64, 126, 'Small cues. Clear choices.', 48, INK, 'Georgia, serif');
+  android.text(64, 168, 'Prepared vectors for local planning and a later task-linked countdown. No application feature is implied.', 17, '#666761');
+  android.rule(202);
+  const iconRow = (names, top, width) => names.forEach((name, i) => {
+    const x = 64 + i * (width + 18);
+    android.rect(x, top, width, 138, '#FFFFFF');
+    [20, 24, 32].forEach((size, j) => {
+      const center = x + width * (j + 1) / 4;
+      android.image(asset('icons', `${name}.svg`), Math.round(center - size / 2), top + 27, size, size, {nativeSize: false});
+      android.text(center - 11, top + 82, `${size}`, 12, '#6B6B70');
+    });
+    android.text(x + 16, top + 116, name, 13);
+  });
+  android.heading(251, '01 / Planning and recovery', 'At 20, 24 and 32 px. The phone control target remains at least 48 px.');
+  iconRow(['phone', 'time-block', 'move-plan', 'cancel-occurrence'], 302, 314);
+  android.heading(493, '02 / Focus, by choice', 'Start, pause, end, take a manual break and review local records. No media player is required.');
+  iconRow(['focus-timer', 'play', 'pause', 'stop', 'break', 'history'], 544, 203);
+  android.heading(735, '03 / Small states, explicit meaning', '96 x 72 px artwork. Pair it with localized text and the relevant real action.');
+  [
+    ['local-save-compact', 'On this device', 'A saving choice.', 'No cloud or backup promise.'],
+    ['temporary-use-compact', 'This session', 'Explain loss on close.', 'No hidden saved copy.'],
+    ['backup-review-compact', 'Review first', 'Inspect the selected file.', 'Replacement needs confirmation.'],
+    ['load-error-compact', 'Could not open', 'Retain existing records.', 'Offer retry and recovery.'],
+    ['all-done-compact', 'Included tasks done', 'Name the completed set.', 'An empty list is different.'],
+    ['plan-overlap-compact', 'Shared time', 'Keep both plan rows visible.', 'No automatic rearrangement.'],
+  ].forEach(([name, title, line1, line2], i) => {
+    const x = 64 + (i % 3) * 443;
+    const top = 786 + Math.floor(i / 3) * 206;
+    android.rect(x, top, 426, 188, '#FFFFFF');
+    android.image(asset('illustrations', `${name}.svg`), x + 20, top + 32, 96, 72, {nativeSize: true});
+    android.text(x + 136, top + 49, title, 21, INK, 'Georgia, serif');
+    android.text(x + 136, top + 79, line1, 14, '#6B6B70');
+    android.text(x + 136, top + 102, line2, 14, '#6B6B70');
+    android.text(x + 20, top + 162, name, 13, WINE);
+  });
+  android.rule(1222);
+  android.text(64, 1254, 'Editable SVG sources / existing Cadence palette / no text inside the state illustrations.', 15, '#666761');
+  android.text(64, 1280, 'See assets/ANDROID_ARTWORK.md for scope, usage and native acceptance still needed.', 14, '#666761');
+  await android.render(asset('preview-android.png'), 1312);
+
   // Preserve a receipt so the checker can detect stale source files or sheets.
   // The SVG builder preserves this receipt; only a successful export replaces it.
   const relative = file => path.relative(root, file).split(path.sep).join('/');
@@ -148,10 +190,11 @@ async function previewArtwork(root) {
     'tools/artwork_previews.cjs', 'tools/export_artwork.cjs',
     ...compact.sources.map(item => relative(item.file)),
     ...library.sources.map(item => relative(item.file)),
+    ...android.sources.map(item => relative(item.file)),
   ])].sort();
   const receipt = {
     inputs: await Promise.all(inputs.map(async file => ({path: file, sha256: sha256(await fs.readFile(path.join(root, file)))}))),
-    files: await Promise.all(['assets/preview.png', 'assets/preview-library.png'].map(async file => {
+    files: await Promise.all(['assets/preview.png', 'assets/preview-library.png', 'assets/preview-android.png'].map(async file => {
       const data = await fs.readFile(path.join(root, file));
       const {width, height} = await sharp(data).metadata();
       return {path: file, width, height, bytes: data.length, sha256: sha256(data)};

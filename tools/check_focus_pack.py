@@ -1,10 +1,12 @@
 """Check prepared media. This does not replace a human listening review."""
 
 import argparse
+from array import array
 from datetime import datetime, timezone
 import hashlib
 from html.parser import HTMLParser
 import json
+import math
 from pathlib import Path
 import re
 import subprocess
@@ -62,6 +64,17 @@ def measure(path):
             'integratedLufs': float(level['input_i']), 'truePeakDbfs': float(level['input_tp'])}
 
 
+def edge_peak(path, start):
+    """Measure decoded samples, including lossy encodings, at a file boundary."""
+    result = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(start), '-i', str(path),
+                             '-t', '0.05', '-f', 'f32le', '-c:a', 'pcm_f32le', '-'],
+                            capture_output=True, check=True)
+    samples = array('f', result.stdout)
+    require(bool(samples), f'No edge samples: {path.name}')
+    peak = max(abs(value) for value in samples)
+    return round(20 * math.log10(max(peak, 0.000001)), 2)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--report', type=Path)
@@ -82,11 +95,11 @@ def main():
             require(not re.search(r'<script|onload=|javascript:', target.read_text(encoding='utf-8'), re.I), 'Unsafe cover')
     actual = {p.relative_to(PACK).as_posix() for d in ['scores', 'audio', 'masters', 'previews', 'art'] for p in (PACK / d).glob('*') if p.is_file()}
     require(listed == actual, 'Manifest must cover every source and export in the media folders')
-    require(len([t for t in manifest['tracks'] if t['kind'] == 'music']) == 12, 'Expected 12 music pieces')
+    require(len([t for t in manifest['tracks'] if t['kind'] == 'music']) == 16, 'Expected 16 music pieces')
     require(len([t for t in manifest['tracks'] if t['kind'] == 'cue']) == 3, 'Expected three cues')
     page = LocalPage()
     page.feed((PACK / 'index.html').read_text(encoding='utf-8'))
-    require(page.players == 15, 'Every audio item needs a player')
+    require(page.players == len(manifest['tracks']), 'Every audio item needs a player')
     measurements = []
     melodies = set()
     for track in manifest['tracks']:
@@ -108,10 +121,15 @@ def main():
             require(abs(measured['durationSeconds'] - track['durationSeconds']) < 0.15, f'Duration mismatch: {path.name}')
             require(measured['truePeakDbfs'] <= -2.0, f'Insufficient peak headroom: {path.name}')
             require(abs(measured['integratedLufs'] - track['targetLufs']) <= 2.5, f'Loudness outside target range: {path.name}')
+            if score.get('collection') == 'Slow Pages':
+                measured['openingPeakDbfs'] = edge_peak(path, 0)
+                measured['endingPeakDbfs'] = edge_peak(path, measured['durationSeconds'] - 0.05)
+                require(measured['openingPeakDbfs'] <= -40 and measured['endingPeakDbfs'] <= -40,
+                        f'A sparse study needs quiet file boundaries: {path.name}')
             measurements.append({'id': track['id'], 'variant': variant, 'path': track[variant], 'sha256': digest(path), **measured})
         print(f'Checked {track["id"]}', flush=True)
     report = {'checkedAtUtc': datetime.now(timezone.utc).isoformat(), 'status': 'automated_checks_passed',
-              'scope': 'Hashes, local links, score bounds, audio decoding, duration, format, measured loudness and true peaks.',
+              'scope': 'Hashes, local links, score bounds, audio decoding, duration, format, loudness and true peaks; decoded 50 ms edge peaks for Slow Pages.',
               'humanListeningReview': 'pending', 'browserPlaybackReview': 'pending',
               'applicationIntegration': 'not_implemented', 'filesChecked': len(listed),
               'musicMinutes': sum(t['durationSeconds'] for t in manifest['tracks'] if t['kind'] == 'music') / 60,
@@ -120,8 +138,8 @@ def main():
     if args.report:
         target = args.report.resolve()
         require(target.is_relative_to(PACK), 'A measurement report must stay inside the focus pack')
-        target.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
-    print(f'Passed: {len(listed)} source/export files, 15 players and 45 decoded audio files. Music: {report["musicMinutes"]:.1f} minutes.', flush=True)
+        target.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
+    print(f'Passed: {len(listed)} source/export files, {page.players} players and {len(measurements)} decoded audio files. Music: {report["musicMinutes"]:.1f} minutes.', flush=True)
 
 
 if __name__ == '__main__':

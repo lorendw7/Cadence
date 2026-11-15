@@ -12,6 +12,17 @@ ICON_GROUPS = {
         'tasks': 'Open the task list.', 'clock': 'Show a time or duration.',
         'deadline': 'Show a task deadline.', 'repeat': 'Show a repeating item.',
         'all-day': 'Mark an all-day item.', 'review': 'Open a weekly review.',
+        'time-block': 'Label reserved work time. This is separate from a task deadline.',
+        'move-plan': 'Change one plan time through an editor. No automatic rearrangement.',
+        'cancel-occurrence': 'Cancel one repeat occurrence. Pair with visible scope text.',
+    },
+    'Focus controls': {
+        'focus-timer': 'Open the later task-linked countdown. Not the deadline icon.',
+        'play': 'Start or resume focus only after an explicit choice.',
+        'pause': 'Pause focus; preserve the task and current session.',
+        'stop': 'End focus. Never mark the task complete without a separate action.',
+        'break': 'Start a manual break. Do not imply an automatic cycle.',
+        'history': 'Open local session records. These are timer records, not verified attention.',
     },
     'Everyday categories': {
         'work': 'Label work plans.', 'personal': 'Label personal plans.',
@@ -37,6 +48,7 @@ ICON_GROUPS = {
         'export': 'Write a chosen export.', 'backup': 'Create a private backup.',
         'restore': 'Restore a backup after review.', 'file-json': 'Label a JSON data file.',
         'device': 'Label saving on this device.', 'memory': 'Label temporary session use.',
+        'phone': 'Label this phone in Android storage guidance. Not a confirmed-save badge.',
         'data': 'Open data controls.', 'offline': 'Describe offline use.',
     },
     'Preferences and feedback': {
@@ -56,6 +68,12 @@ STATE_USES = {
     'empty-today-compact': 'Small daily empty state on white. The clock is decorative, not a current-time display.',
     'empty-week-compact': 'Small weekly empty state on white. All seven columns remain empty.',
     'save-error-compact': 'Small save-failure state on white. Pair with an error message and retry; no data-loss claim.',
+    'local-save-compact': 'First-use option to save on this device. No cloud, encryption or completed-save claim.',
+    'temporary-use-compact': 'First-use temporary session option. Explain that records are lost on close; not a countdown.',
+    'backup-review-compact': 'Review a selected backup before replacement. The magnifier does not mean accepted or restored.',
+    'load-error-compact': 'Saved records could not be opened. Keep this distinct from an empty workspace and offer recovery.',
+    'all-done-compact': 'All tasks in the named set are complete. Not an empty list or proof that every plan is finished.',
+    'plan-overlap-compact': 'Optional detail artwork for overlapping plans. Keep both actual titles and intervals visible.',
     'all-done': 'Existing tasks are complete. Do not use for a list with no tasks.',
     'no-results': 'No search matches. Offer to change or clear the query.',
     'import-preview': 'Review a draft import. Nothing has been accepted or saved yet.',
@@ -182,7 +200,9 @@ def build(root, palette, write):
         section_id = f'group-{index}'
         options.append(f'<option value="{section_id}">{group}</option>')
         note = ('<p class="section-note">Prepared symbols for optional course tools. These do not define the core planner.</p>'
-                if group == 'Optional course tools' else '')
+                if group == 'Optional course tools' else
+                '<p class="section-note">Prepared for the later bounded countdown. No timer or player is implemented by these files.</p>'
+                if group == 'Focus controls' else '')
         sections.append(f'<section id="{section_id}" data-group="{escape(group, quote=True)}"><h2>{group} <span>{len(entries)}</span></h2>{note}'
                         '<div class="grid">' + ''.join(card(entry) for entry in entries) + '</div></section>')
     swatches = ''.join(f'<span><i style="background:{color}"></i>{name.capitalize()} <code>{color}</code></span>'
@@ -216,6 +236,7 @@ def build(root, palette, write):
     <a href="README.md">Usage guide</a><a href="ui/task-study.html">Tasks design study</a><a href="preview.png">Visual overview</a>
     <a href="preview-library.png">Full contact sheet</a><a href="manifest.json">File manifest</a>
     <a href="focus-pack/index.html">Music and focus artwork</a>
+    <a href="ANDROID_ARTWORK.md">Android artwork guide</a><a href="preview-android.png">Android contact sheet</a>
   </nav>
 </header>
 <aside class="starter" aria-label="Tasks starter set">
@@ -226,7 +247,7 @@ def build(root, palette, write):
 </aside>
 <aside class="guidance" aria-label="Choosing artwork">
   <p><strong>Choose by meaning.</strong> Empty lists, completed tasks, pending review and errors have different artwork. Pair each with real text and a useful action.</p>
-  <p><strong>Check the actual size.</strong> Icons below appear at 20, 24 and 32 px. Use a 40–44 px control area. Pale lines and patterns are decoration.</p>
+  <p><strong>Check the actual size.</strong> Icons below appear at 20, 24 and 32 px. Use at least a 48 px control area on Android. Pale lines and patterns are decoration.</p>
 </aside>
 <div class="filters" id="filters" hidden>
   <div><label for="search">Find artwork</label><input id="search" type="search" placeholder="Try save, work or review" autocomplete="off"></div>

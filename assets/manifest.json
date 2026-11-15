@@ -217,6 +217,32 @@
       "height": 24
     },
     {
+      "path": "assets/icons/break.svg",
+      "bytes": 361,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Focus controls",
+      "use": "Start a manual break. Do not imply an automatic cycle.",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "path": "assets/icons/cancel-occurrence.svg",
+      "bytes": 399,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Planning",
+      "use": "Cancel one repeat occurrence. Pair with visible scope text.",
+      "width": 24,
+      "height": 24
+    },
+    {
       "path": "assets/icons/check.svg",
       "bytes": 290,
       "type": "svg",
@@ -478,6 +504,19 @@
       "height": 24
     },
     {
+      "path": "assets/icons/focus-timer.svg",
+      "bytes": 344,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Focus controls",
+      "use": "Open the later task-linked countdown. Not the deadline icon.",
+      "width": 24,
+      "height": 24
+    },
+    {
       "path": "assets/icons/help.svg",
       "bytes": 343,
       "type": "svg",
@@ -487,6 +526,19 @@
       "previewSurface": "white",
       "group": "Preferences and feedback",
       "use": "Open help.",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "path": "assets/icons/history.svg",
+      "bytes": 318,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Focus controls",
+      "use": "Open local session records. These are timer records, not verified attention.",
       "width": 24,
       "height": 24
     },
@@ -635,6 +687,19 @@
       "height": 24
     },
     {
+      "path": "assets/icons/move-plan.svg",
+      "bytes": 387,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Planning",
+      "use": "Change one plan time through an editor. No automatic rearrangement.",
+      "width": 24,
+      "height": 24
+    },
+    {
       "path": "assets/icons/notification.svg",
       "bytes": 330,
       "type": "svg",
@@ -661,6 +726,19 @@
       "height": 24
     },
     {
+      "path": "assets/icons/pause.svg",
+      "bytes": 361,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Focus controls",
+      "use": "Pause focus; preserve the task and current session.",
+      "width": 24,
+      "height": 24
+    },
+    {
       "path": "assets/icons/personal.svg",
       "bytes": 337,
       "type": "svg",
@@ -670,6 +748,32 @@
       "previewSurface": "white",
       "group": "Everyday categories",
       "use": "Label personal plans.",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "path": "assets/icons/phone.svg",
+      "bytes": 342,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Files and storage",
+      "use": "Label this phone in Android storage guidance. Not a confirmed-save badge.",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "path": "assets/icons/play.svg",
+      "bytes": 289,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Focus controls",
+      "use": "Start or resume focus only after an explicit choice.",
       "width": 24,
       "height": 24
     },
@@ -792,7 +896,7 @@
     },
     {
       "path": "assets/icons/sprite.svg",
-      "bytes": 13230,
+      "bytes": 15640,
       "type": "svg",
       "category": "icons",
       "role": "sprite",
@@ -800,6 +904,19 @@
       "previewSurface": "paper",
       "group": "Sprite",
       "use": "All interface symbols. Use a symbol ID and a named host control."
+    },
+    {
+      "path": "assets/icons/stop.svg",
+      "bytes": 311,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Focus controls",
+      "use": "End focus. Never mark the task complete without a separate action.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/study.svg",
@@ -853,6 +970,19 @@
       "width": 24,
       "height": 24,
       "appUse": "Current Tasks marker; use wine on a wine wash."
+    },
+    {
+      "path": "assets/icons/time-block.svg",
+      "bytes": 405,
+      "type": "svg",
+      "category": "icons",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Planning",
+      "use": "Label reserved work time. This is separate from a task deadline.",
+      "width": 24,
+      "height": 24
     },
     {
       "path": "assets/icons/today.svg",
@@ -921,6 +1051,19 @@
       "height": 24
     },
     {
+      "path": "assets/illustrations/all-done-compact.svg",
+      "bytes": 530,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "All tasks in the named set are complete. Not an empty list or proof that every plan is finished.",
+      "width": 96,
+      "height": 72
+    },
+    {
       "path": "assets/illustrations/all-done.svg",
       "bytes": 667,
       "type": "svg",
@@ -932,6 +1075,19 @@
       "use": "Existing tasks are complete. Do not use for a list with no tasks.",
       "width": 320,
       "height": 240
+    },
+    {
+      "path": "assets/illustrations/backup-review-compact.svg",
+      "bytes": 648,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Review a selected backup before replacement. The magnifier does not mean accepted or restored.",
+      "width": 96,
+      "height": 72
     },
     {
       "path": "assets/illustrations/empty-tasks-compact.svg",
@@ -1039,6 +1195,32 @@
       "height": 1024
     },
     {
+      "path": "assets/illustrations/load-error-compact.svg",
+      "bytes": 553,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Saved records could not be opened. Keep this distinct from an empty workspace and offer recovery.",
+      "width": 96,
+      "height": 72
+    },
+    {
+      "path": "assets/illustrations/local-save-compact.svg",
+      "bytes": 562,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "First-use option to save on this device. No cloud, encryption or completed-save claim.",
+      "width": 96,
+      "height": 72
+    },
+    {
       "path": "assets/illustrations/no-courses.svg",
       "bytes": 614,
       "type": "svg",
@@ -1078,6 +1260,19 @@
       "height": 240
     },
     {
+      "path": "assets/illustrations/plan-overlap-compact.svg",
+      "bytes": 625,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Optional detail artwork for overlapping plans. Keep both actual titles and intervals visible.",
+      "width": 96,
+      "height": 72
+    },
+    {
       "path": "assets/illustrations/restore-backup.svg",
       "bytes": 553,
       "type": "svg",
@@ -1115,6 +1310,19 @@
       "use": "Saving failed. Explain the error and offer retry with real text.",
       "width": 320,
       "height": 240
+    },
+    {
+      "path": "assets/illustrations/temporary-use-compact.svg",
+      "bytes": 579,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "First-use temporary session option. Explain that records are lost on close; not a countdown.",
+      "width": 96,
+      "height": 72
     },
     {
       "path": "assets/patterns/journal-dots.svg",
@@ -1492,6 +1700,14 @@
         "sha256": "123b2cac69953c265848de9238e9595bb874c3ba9189c9e814500c6ead7614bb"
       },
       {
+        "path": "assets/icons/break.svg",
+        "sha256": "f26bf17aa30a94379af05df3a1276423d298e55fb30cbf100126b02b0e59fcf3"
+      },
+      {
+        "path": "assets/icons/cancel-occurrence.svg",
+        "sha256": "54f854166ff775214969f5fd211441d7dd1de51be4185e052389e4900471d703"
+      },
+      {
         "path": "assets/icons/check.svg",
         "sha256": "4235fe2e1ebb5435c3df0d2cab9a545db3fcad8795b2fd783d4e514f7c78d8d2"
       },
@@ -1572,8 +1788,16 @@
         "sha256": "dd05ef03869cac3873312d2b363bd20606280cfff415d9f2f24530f19bb5649c"
       },
       {
+        "path": "assets/icons/focus-timer.svg",
+        "sha256": "4f2970307733f617ff8c4301d5b56d0e2fbd8513461e887d85fd94daf9a7cec3"
+      },
+      {
         "path": "assets/icons/help.svg",
         "sha256": "ff2d505a60a32a55a3f7aa2d5f5adaea5bab88e2ea9b5639b01821b803a982e0"
+      },
+      {
+        "path": "assets/icons/history.svg",
+        "sha256": "f6d48b14d5b709cfab8ad7d790180948a7f54c9139614a433c62d8aac69241ef"
       },
       {
         "path": "assets/icons/import.svg",
@@ -1620,6 +1844,10 @@
         "sha256": "ae766c558d98e6f579d3f93c07b7461d3dd04787416434ee3ee8bd000a6c8518"
       },
       {
+        "path": "assets/icons/move-plan.svg",
+        "sha256": "03139491be436b56766c085305be506cdd28733275e6a4798935b5dd812718db"
+      },
+      {
         "path": "assets/icons/notification.svg",
         "sha256": "b97b24ab259d73b8dcf49e91d9c86777e6957187d6ea314548ca01cfe443b028"
       },
@@ -1628,8 +1856,20 @@
         "sha256": "19e9405eec59c042b1fc02fed715adb7f1dd5e1cc85a79d6d07be16df81c5219"
       },
       {
+        "path": "assets/icons/pause.svg",
+        "sha256": "5cae6123c6e011905099e842a722e20bfd710ee1397698a4febfd7b786ac19b7"
+      },
+      {
         "path": "assets/icons/personal.svg",
         "sha256": "6b1d270cd363804684a47211a2a2165505ccfb3850cb9ad4d7989d4dfda41ed9"
+      },
+      {
+        "path": "assets/icons/phone.svg",
+        "sha256": "8b602d00bf6cc7c24c2cfca217bb8b7938a29c835be9d0673e0b427421813e34"
+      },
+      {
+        "path": "assets/icons/play.svg",
+        "sha256": "13f512d06aef1043c5e9abcc9382011538d7e4357fd99da4761f94c8a989027c"
       },
       {
         "path": "assets/icons/refresh.svg",
@@ -1668,6 +1908,10 @@
         "sha256": "9bf1d5d3c98edb0215c841b159bf2aad2b22d4d1b31ae7c580878cb71fd743f7"
       },
       {
+        "path": "assets/icons/stop.svg",
+        "sha256": "a3664d91b6e003dbe2a4da85fc0989b6560fcdc557735cbf52d0110d3457a2a3"
+      },
+      {
         "path": "assets/icons/study.svg",
         "sha256": "a6387bb1471412118409e0462cf13b5e4258d11f1f939b16e8b5f600053616cf"
       },
@@ -1682,6 +1926,10 @@
       {
         "path": "assets/icons/tasks.svg",
         "sha256": "834fb1e338d3225a1c3bda7d495952ec01682ea9c25551beba9343ee03c36700"
+      },
+      {
+        "path": "assets/icons/time-block.svg",
+        "sha256": "bbd827286dd5d3502127fc2517c895868bf4e77927318e0e2729c42869ba5c81"
       },
       {
         "path": "assets/icons/today.svg",
@@ -1704,8 +1952,16 @@
         "sha256": "c59c6538323fbad71e60dad1d4bbf64c4dee9be50f435a9af39725094e502792"
       },
       {
+        "path": "assets/illustrations/all-done-compact.svg",
+        "sha256": "5d7d2f7f6d69f7dc8a480d0417c70f1684d9a58023b9e73b6589683d21bced51"
+      },
+      {
         "path": "assets/illustrations/all-done.svg",
         "sha256": "75b900adac3a33f4e0ce71c441d67a508200344db665a7b4d26741d893cbc8f1"
+      },
+      {
+        "path": "assets/illustrations/backup-review-compact.svg",
+        "sha256": "cbc0567f78a809588315e201e8f54f348c640e46b96d565b1dc2d60c64ced64d"
       },
       {
         "path": "assets/illustrations/empty-tasks-compact.svg",
@@ -1740,6 +1996,14 @@
         "sha256": "507ce3aa1041709ff6833750c5f296787d9c6beb48c13f645d0c9318b89ddaa9"
       },
       {
+        "path": "assets/illustrations/load-error-compact.svg",
+        "sha256": "d723317657073df01d0c710b1df5590c572a313251cc9800cdf978819f44d8d9"
+      },
+      {
+        "path": "assets/illustrations/local-save-compact.svg",
+        "sha256": "6a8c51d58d58ce9988810c96d5cb759892fd6a3ca13ce055ed8e4d9fa38d7fb8"
+      },
+      {
         "path": "assets/illustrations/no-courses.svg",
         "sha256": "a858dbe2ae3cc881dbbfe7d33b180f2f94c5fcf8d58574dbaa5dfcf7bfe4cd14"
       },
@@ -1752,6 +2016,10 @@
         "sha256": "243f30e44c21cb6a412121d8ee6b14fb2c2c57e250d8c9ed1bdc0929c3656601"
       },
       {
+        "path": "assets/illustrations/plan-overlap-compact.svg",
+        "sha256": "d2ae3b80c3608bbaa7f776da4fb3e1f9a83afaa9eb3a0bf98a7a95c8cf3d6c64"
+      },
+      {
         "path": "assets/illustrations/restore-backup.svg",
         "sha256": "fc34fc346830ba655c993d354a977cccd44adf83c3895c83c577e90b18ad0826"
       },
@@ -1762,6 +2030,10 @@
       {
         "path": "assets/illustrations/save-error.svg",
         "sha256": "56fd8a5904143f9630609aebedcb8139beb76405bfb9bda42a90e96eb10c9a23"
+      },
+      {
+        "path": "assets/illustrations/temporary-use-compact.svg",
+        "sha256": "1648dca08f423e7b330f95ee717a0f6bca0f6587ed176b64b08764fbedb8e027"
       },
       {
         "path": "assets/patterns/journal-dots.svg",
@@ -1829,27 +2101,34 @@
       },
       {
         "path": "tools/artwork_previews.cjs",
-        "sha256": "911f7e758e49d4c010119acd84011c15831e8803a5755c92dbd97272a810cc89"
+        "sha256": "b9af73148febfebbb85f6ba034d7672bbb2a6ce2973973aace5953d75830e243"
       },
       {
         "path": "tools/export_artwork.cjs",
-        "sha256": "5157e2468ebb527f7b51f1354f379a75467054db927e57a88b3234fbc82d6089"
+        "sha256": "5bb4e239682921caa97dbe5e6242869ee3b8c857f6d09bde9fe9fc7e543b8ff5"
       }
     ],
     "files": [
       {
         "path": "assets/preview.png",
         "width": 1440,
-        "height": 1310,
-        "bytes": 463761,
-        "sha256": "42c9ab6ddfd41033eb60e568b5a932a7d3c4e67b295377da8c5df61a83fb6036"
+        "height": 1500,
+        "bytes": 484763,
+        "sha256": "382e4055c9023584bdc1c553985f8658fe7fde1b3c7a8488dccc4e97c57a0a6d"
       },
       {
         "path": "assets/preview-library.png",
         "width": 1440,
-        "height": 4951,
-        "bytes": 652897,
-        "sha256": "8ef5584bafecb0cd20316029bb4f0b9800dcd34048e450a406b96b41b1433d6a"
+        "height": 5308,
+        "bytes": 686922,
+        "sha256": "a13e338b508bd576db16f929a24c8fda2f95d91e60058a9fc4fbf0f51e99c916"
+      },
+      {
+        "path": "assets/preview-android.png",
+        "width": 1440,
+        "height": 1312,
+        "bytes": 177563,
+        "sha256": "3564132ffea4b33770f31153047d0cd67a633211b31ab45d5e0548dd43fe52e1"
       }
     ]
   }

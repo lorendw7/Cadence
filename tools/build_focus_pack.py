@@ -31,15 +31,82 @@ SPECS = [
     ('woodland-steps', 'Woodland Steps', 78, 4, 'marimba', 'F major'),
     ('dusk-chamber', 'Dusk Chamber', 62, 4, 'strings', 'G major'),
     ('silver-orbit', 'Silver Orbit', 72, 4, 'celesta', 'G major'),
+    ('still-water', 'Still Water', 56, 4, 'piano', 'C major'),
+    ('quiet-current', 'Quiet Current', 58, 4, 'electric_piano', 'D major'),
+    ('paper-lantern', 'Paper Lantern', 60, 4, 'harp', 'F major'),
+    ('after-rain', 'After Rain', 62, 4, 'guitar', 'G major'),
 ]
 
 
 def write_json(path, value):
-    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n', encoding='utf-8', newline='\n')
+
+
+def compose_sparse(index, spec):
+    """Four separate, sparse 48-bar sketches with space between short phrases."""
+    ident, title, bpm, meter, lead, key = spec
+    chords, motifs = [
+        ([[48, 55, 64], [45, 52, 60], [41, 48, 57], [43, 50, 59],
+          [40, 47, 55], [41, 48, 57], [43, 50, 59], [48, 55, 64]],
+         [[76, 74, 67], [72, 76], [69, 72, 65], [71, 74],
+          [67, 71, 64], [69, 65], [74, 71, 67], [72, 67]]),
+        ([[50, 57, 66], [47, 54, 62], [43, 50, 59], [45, 52, 61],
+          [54, 61, 69], [43, 50, 59], [45, 52, 61], [50, 57, 66]],
+         [[69, 74], [71, 66, 62], [67, 71], [73, 69, 64],
+          [69, 73], [71, 67, 62], [76, 73], [74, 69, 66]]),
+        ([[41, 48, 57], [38, 45, 53], [46, 53, 62], [48, 55, 64],
+          [45, 52, 60], [46, 53, 62], [48, 55, 64], [41, 48, 57]],
+         [[69, 72, 77], [65, 69], [70, 74, 77], [72, 67],
+          [69, 64, 72], [70, 65], [67, 72, 76], [77, 72]]),
+        ([[43, 50, 59], [40, 47, 55], [48, 55, 64], [50, 57, 66],
+          [45, 52, 60], [48, 55, 64], [50, 57, 66], [43, 50, 59]],
+         [[67, 62], [64, 67, 71], [72, 67], [69, 66, 62],
+          [64, 69], [67, 64, 72], [66, 69, 74], [71, 67]]),
+    ][index - 12]
+    notes = []
+
+    def add(beat, duration, pitch, velocity, pan):
+        notes.append({'beat': round(beat, 4), 'duration': duration, 'pitch': pitch,
+                      'velocity': velocity, 'instrument': lead, 'pan': pan})
+
+    # Six eight-bar phrases. Each two-bar unit leaves the end of its second
+    # bar free of new attacks. The last tonic gets a long, unhurried tail.
+    for bar in range(48):
+        phrase, within = divmod(bar, 8)
+        degree = (bar // 2) % 8
+        chord = chords[degree]
+        start = bar * meter
+        level = [0, -3, 1, -2, 0, -4][phrase]
+        if bar == 47:
+            for j, pitch in enumerate(chords[0]):
+                add(start + j * 0.08, 3.8, pitch, 34 + j, -0.12 + j * 0.12)
+            add(start + 0.6, 3.2, [72, 74, 77, 67][index - 12], 42, 0.1)
+            continue
+        if bar % 2 == 0:
+            add(start, 2.8, chord[0], 31 + level, -0.18)
+            add(start + 1.5, 2.2, chord[1], 29 + level, -0.08)
+            add(start + 2.5, 2.2, chord[2], 27 + level, 0.08)
+            melody = motifs[(degree + (2 if phrase == 3 else 0)) % 8]
+            # The middle phrase changes the order, not merely the instrument.
+            if phrase == 2:
+                melody = list(reversed(melody))
+            for j, pitch in enumerate(melody):
+                add(start + 0.75 + j * 1.5, 1.8, pitch, 43 + level - j, 0.18)
+        elif within not in (3, 7):
+            add(start + 0.5, 2.6, chord[2], 30 + level, 0.05)
+    return {'version': 1, 'id': ident, 'title': title, 'kind': 'music', 'bpm': bpm,
+            'meter': [meter, 4], 'key': key, 'bars': 48, 'duration_beats': 192,
+            'tail_seconds': 8, 'seed': 26111501 + index, 'lead': lead,
+            'collection': 'Slow Pages', 'target_lufs': -24,
+            'mastering': 'constant_gain', 'fade_in_seconds': 1.5, 'fade_out_seconds': 3,
+            'status': 'synthetic_arrangement_draft', 'seamless_loop': False,
+            'notes': sorted(notes, key=lambda n: (n['beat'], n['pitch']))}
 
 
 def compose(index, spec):
     """Write four distinct 32-bar studies with A/A'/B/A'' phrase structure."""
+    if index >= 12:
+        return compose_sparse(index, spec)
     ident, title, bpm, meter, lead, key = spec
     template = [0, 1, 2, 3, 0, 1, 2, 0, 1, 2, 3, 0][index]
     transpose = [0, 0, 0, 0, 5, -2, 2, 2, 5, -2, 2, 7][index]
@@ -198,8 +265,9 @@ def render(score):
         n = int(delay * RATE)
         output[n:] += dry[:-n, ::-1] * level
     output = sosfilt(butter(2, 35, 'highpass', fs=RATE, output='sos'), output, axis=0).astype(np.float32)
-    fade = int(min(1.6, duration / 5) * RATE)
-    output[:int(RATE * 0.025)] *= np.linspace(0, 1, int(RATE * 0.025))[:, None]
+    fade = int(min(score.get('fade_out_seconds', 1.6), duration / 5) * RATE)
+    opening = int(min(score.get('fade_in_seconds', 0.025), duration / 5) * RATE)
+    output[:opening] *= np.linspace(0, 1, opening)[:, None]
     output[-fade:] *= np.linspace(1, 0, fade)[:, None]
     output *= 0.6 / max(0.001, float(np.max(np.abs(output))))
     return output
@@ -273,12 +341,12 @@ def gallery(records):
 <title>Cadence / Sound studies</title><style>
 :root{color-scheme:light;--ink:#2F3033;--wine:#7C394B;--paper:#F6F5F1}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:40px 24px 72px}a{color:var(--wine);text-underline-offset:4px}a:focus-visible,button:focus-visible,audio:focus-visible{outline:3px solid var(--wine);outline-offset:4px}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:clamp(36px,6vw,64px);font-weight:normal;margin:12px 0 20px}h2{margin-top:52px;font-size:30px}h3{font-size:24px;margin:8px 0 20px}.label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#5c4b50}.intro{max-width:680px}.hero{width:100%;max-height:500px;object-fit:cover;margin-top:24px;border:1px solid #d9d5ce}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:24px}article{border:1px solid #d9d5ce;background:#fff;min-width:0}article img{display:block;width:100%;height:auto}.card-body{padding:20px}audio{width:100%;display:block;min-width:0}.links{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:0}.links a{display:inline-flex;align-items:center;min-height:44px}button{font:inherit;padding:10px 20px;background:var(--wine);border:0;color:white;cursor:pointer;border-radius:4px}.notice{border-left:3px solid var(--wine);padding:12px 20px;background:#eeeae5}footer{margin-top:48px;border-top:1px solid #d9d5ce;padding-top:24px}
 </style></head><body><main><p class="label">Cadence / prepared media / 2026-11-15</p><h1>A quiet place to begin.</h1>
-<p class="intro">Twelve instrumental arrangements for a small offline focus space. These are synthetic sound studies with editable notes, not live recordings or implemented app features.</p>
+<p class="intro">Sixteen instrumental arrangements for a small offline focus space, including four longer, sparse Slow Pages sketches. These are synthetic sound studies with editable notes, not live recordings or implemented app features.</p>
 <p><a href="README.md">Source and review notes</a> · <a href="../../docs/DESKTOP_V1.md">Desktop proposal</a> · <a href="../../docs/STEAM_SALES_PLAN.md">Sales targets</a> · <a href="../catalog.html">Artwork library</a></p>
 <img class="hero" src="art/quiet-room.png" alt="An illustrated piano and writing desk beside a garden window." width="1536" height="1024">
 <p class="notice">Sound is off until you press Play. Tracks have natural ending tails; seamless loops are not certified. Human listening review is pending. All playback files are local.</p>
 <button type="button" id="stop">Stop all audio</button>'''
-    for name, indexes in [('Paper Piano', [0, 1, 4, 5]), ('Wood and Air', [2, 6, 7, 3]), ('Evening Notes', [8, 9, 10, 11]), ('Optional soft cues', [12, 13, 14])]:
+    for name, indexes in [('Slow Pages', [12, 13, 14, 15]), ('Paper Piano', [0, 1, 4, 5]), ('Wood and Air', [2, 6, 7, 3]), ('Evening Notes', [8, 9, 10, 11]), ('Optional soft cues', [16, 17, 18])]:
         page += f'<h2>{name}</h2><div class="grid">' + ''.join(cards[i] for i in indexes) + '</div>'
     page += f'<footer>{len([r for r in records if r["kind"] == "music"])} pieces / {total / 60:.1f} minutes of distinct music. Three separate cues. No remote fonts, player services or advertising. <a href="manifest.json">File manifest</a>.</footer>'
     page += '''</main><script>
@@ -286,7 +354,7 @@ const players = Array.from(document.querySelectorAll('audio'));
 players.forEach(player => player.addEventListener('play', () => players.forEach(other => { if (other !== player) other.pause(); })));
 document.querySelector('#stop').addEventListener('click', () => players.forEach(player => { player.pause(); player.currentTime = 0; }));
 </script></body></html>'''
-    (PACK / 'index.html').write_text(page + '\n', encoding='utf-8')
+    (PACK / 'index.html').write_text(page + '\n', encoding='utf-8', newline='\n')
 
 
 def main():
@@ -317,12 +385,12 @@ def main():
         with tempfile.TemporaryDirectory(prefix='cadence-audio-') as directory:
             raw = Path(directory) / 'render.f32'
             sound.astype('<f4').tofile(raw)
-            target = -22 if score['kind'] == 'music' else -28
+            target = score.get('target_lufs', -22 if score['kind'] == 'music' else -28)
             audio_input = ['-f', 'f32le', '-ar', str(RATE), '-ac', '2', '-i', str(raw)]
             level_filter = f'loudnorm=I={target}:TP=-3:LRA=11'
-            if score['kind'] == 'cue':
-                # Short cues need constant-gain normalization. Dynamic loudnorm
-                # over a three-second clip can miss its integrated target.
+            if score['kind'] == 'cue' or score.get('mastering') == 'constant_gain':
+                # Constant gain retains pauses in sparse music. It also avoids
+                # a short cue missing its target under dynamic normalization.
                 scan = subprocess.run(['ffmpeg', '-hide_banner', '-nostats'] + audio_input +
                                       ['-af', 'loudnorm=print_format=json', '-f', 'null', '-'],
                                       capture_output=True, text=True, check=True)
@@ -337,7 +405,7 @@ def main():
         command(['-i', str(master), '-c:a', 'libvorbis', '-q:a', '4', str(runtime)])
         command(['-i', str(master), '-c:a', 'libmp3lame', '-b:a', '160k', str(preview)])
         if score['kind'] == 'music':
-            (PACK / 'art' / (ident + '.svg')).write_text(cover(i, score), encoding='utf-8')
+            (PACK / 'art' / (ident + '.svg')).write_text(cover(i, score), encoding='utf-8', newline='\n')
         records.append({'id': ident, 'title': score['title'], 'kind': score['kind'],
                         'status': 'synthetic_arrangement_draft', 'durationSeconds': len(sound) / RATE,
                         'sampleRate': RATE, 'channels': 2, 'seamlessLoop': False,

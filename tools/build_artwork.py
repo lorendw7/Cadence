@@ -55,6 +55,15 @@ ICONS = {
     'repeat': path('m17 2 4 4-4 4M21 6H7a4 4 0 0 0-4 4m4 12-4-4 4-4M3 18h14a4 4 0 0 0 4-4'),
     'semester': CAL + path('M7 14h10m-10 4h6'),
     'all-day': CAL + path('M7 15h10m-10 0 2-2m-2 2 2 2m8-2-2-2m2 2-2 2'),
+    'time-block': CAL + rect(7, 13, 10, 5, 1),
+    'move-plan': CAL + path('M7 15h10m-3-3 3 3-3 3'),
+    'cancel-occurrence': CAL + path('m9 13 6 6m0-6-6 6'),
+    'focus-timer': path('M6 3h12M6 21h12M8 3v4l8 10v4M16 3v4L8 17v4M9 6h6m-5 12h4'),
+    'play': path('m8 4 12 8-12 8z'),
+    'pause': rect(6, 4, 4, 16, 1) + rect(14, 4, 4, 16, 1),
+    'stop': rect(5, 5, 14, 14, 2),
+    'break': path('M4 9h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 10h2a3 3 0 0 1 0 6h-2M7 3v3m5-3v3M3 22h16'),
+    'history': path('M5 6a8 8 0 1 1-1 10M3 3v5h5M12 7v5l4 2'),
     'add': path('M12 4v16M4 12h16'),
     'edit': path('m4 16 12-12 4 4L8 20H4zm10-10 4 4'),
     'copy': rect(8, 8, 13, 13) + path('M16 8V3H3v13h5'),
@@ -77,6 +86,7 @@ ICONS = {
     'backup': path('M3 8h18v13H3zM2 3h20v5H2zm7 10h6'),
     'file-json': FILE + path('M9 12H8v3l-1 1 1 1v2h1m6-7h1v3l1 1-1 1v2h-1'),
     'device': rect(2, 3, 20, 14) + path('M8 22h8m-4-5v5'),
+    'phone': rect(6, 2, 12, 20, 2.5) + path('M10 5h4m-3 14h2'),
     'memory': rect(6, 6, 12, 12) + path('M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4') + rect(9, 9, 6, 6, 0),
     'data': path('M3 6c0-5 18-5 18 0s-18 5-18 0v12c0 5 18 5 18 0V6M3 12c0 5 18 5 18 0'),
     'settings': path('M3 6h5m4 0h9M3 12h11m4 0h3M3 18h3m4 0h11') + circle(10, 6, 2) + circle(16, 12, 2) + circle(8, 18, 2),
@@ -182,6 +192,37 @@ def states():
             '<path d="M53 8v10h9M33 28h19m-19 9h14m-14 9h11" stroke="#87838A"/>'
             '<path d="m70 34 16 27H54z" fill="#F5EEF0" stroke="#7C394B"/>'
             '<path d="M70 43v8m0 5v.1" stroke="#7C394B"/>', 'Changes not saved'),
+        'local-save-compact': (
+            '<rect x="31" y="7" width="34" height="54" rx="6" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M43 12h10m-9 44h8" stroke="#7C394B"/>'
+            '<rect x="39" y="23" width="18" height="22" rx="2" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="M44 30h8m-8 7h6" stroke="#7C394B"/>', 'Save on this device option'),
+        'temporary-use-compact': (
+            '<rect x="35" y="10" width="36" height="42" rx="4" stroke="#87838A" stroke-dasharray="3 4"/>'
+            '<rect x="25" y="20" width="36" height="40" rx="4" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M35 31h16m-16 9h12m-12 9h16" stroke="#7C394B"/>'
+            '<circle cx="75" cy="58" r="2" fill="#7C394B"/>', 'Temporary session option'),
+        'backup-review-compact': (
+            '<rect x="25" y="9" width="35" height="43" rx="3" fill="#FFFFFF" stroke="#87838A"/>'
+            '<rect x="18" y="17" width="35" height="43" rx="3" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M27 29h17m-17 9h13m-13 9h9" stroke="#87838A"/>'
+            '<circle cx="63" cy="40" r="12" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="m72 49 10 10" stroke="#7C394B"/>', 'Review a backup before replacement'),
+        'load-error-compact': (
+            '<rect x="26" y="7" width="34" height="54" rx="6" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M38 12h10m-9 44h8" stroke="#87838A"/>'
+            '<path d="m67 30 18 30H49z" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="M67 40v8m0 6v.1" stroke="#7C394B"/>', 'Saved records could not be opened'),
+        'all-done-compact': (
+            '<circle cx="48" cy="34" r="22" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="m38 34 7 7 14-15" stroke="#7C394B" stroke-width="2"/>'
+            '<path d="M22 57v-9m0 4c-6 0-7-5-7-5 6 0 7 5 7 5m0 4c6-1 8-6 8-6-6 0-8 6-8 6" stroke="#87838A"/>', 'Included tasks are complete'),
+        'plan-overlap-compact': (
+            '<rect x="19" y="12" width="37" height="31" rx="4" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M27 21h20m-20 8h10" stroke="#87838A"/>'
+            '<rect x="41" y="31" width="37" height="31" rx="4" fill="#FFFFFF" stroke="#7C394B"/>'
+            '<path d="M41 31h15v12H41z" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="M62 42h8m-21 11h21" stroke="#7C394B"/>', 'Two plans share some time'),
     }
     for name, (body, title) in compact_states.items():
         body += '<path d="M18 66h60" stroke="#E8E8EB"/>'
@@ -221,4 +262,4 @@ if __name__ == '__main__':
     patterns()
     social()
     catalogue()
-    print(f'Built brand family, {len(ICONS)} icons, 14 states, 3 patterns, social card and catalogue.')
+    print(f'Built brand family, {len(ICONS)} icons, 20 states, 3 patterns, social card and catalogue.')

@@ -3,7 +3,7 @@
   "status": "prepared_not_integrated",
   "renderer": {
     "path": "../../tools/build_focus_pack.py",
-    "sha256": "ff34f1056ff30df61f9832ce54a611c4e0ac5bd25107b3e2416d0e20f777d608"
+    "sha256": "aa402c5b809e301ae73fa000b447279072f4a2c8c0e982950bca5fd5fa39bd09"
   },
   "tracks": [
     {
@@ -211,6 +211,74 @@
       "humanListeningReview": "pending"
     },
     {
+      "id": "still-water",
+      "title": "Still Water",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 213.71428571428572,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -24,
+      "source": "scores/still-water.json",
+      "midi": "scores/still-water.mid",
+      "master": "masters/still-water.flac",
+      "runtime": "audio/still-water.ogg",
+      "preview": "previews/still-water.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "quiet-current",
+      "title": "Quiet Current",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 206.62068027210884,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -24,
+      "source": "scores/quiet-current.json",
+      "midi": "scores/quiet-current.mid",
+      "master": "masters/quiet-current.flac",
+      "runtime": "audio/quiet-current.ogg",
+      "preview": "previews/quiet-current.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "paper-lantern",
+      "title": "Paper Lantern",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 200.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -24,
+      "source": "scores/paper-lantern.json",
+      "midi": "scores/paper-lantern.mid",
+      "master": "masters/paper-lantern.flac",
+      "runtime": "audio/paper-lantern.ogg",
+      "preview": "previews/paper-lantern.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
+      "id": "after-rain",
+      "title": "After Rain",
+      "kind": "music",
+      "status": "synthetic_arrangement_draft",
+      "durationSeconds": 193.80643990929704,
+      "sampleRate": 44100,
+      "channels": 2,
+      "seamlessLoop": false,
+      "targetLufs": -24,
+      "source": "scores/after-rain.json",
+      "midi": "scores/after-rain.mid",
+      "master": "masters/after-rain.flac",
+      "runtime": "audio/after-rain.ogg",
+      "preview": "previews/after-rain.mp3",
+      "humanListeningReview": "pending"
+    },
+    {
       "id": "focus-start",
       "title": "Focus Start",
       "kind": "cue",
@@ -263,6 +331,16 @@
     }
   ],
   "files": [
+    {
+      "path": "scores/after-rain.json",
+      "bytes": 22052,
+      "sha256": "1e38c4740fee3b5180eeb169d821b3da66b7838290ed320a53f67c16081572c8"
+    },
+    {
+      "path": "scores/after-rain.mid",
+      "bytes": 1420,
+      "sha256": "c7e93909cc3e4cdd0a2235324234ffe1daf0d9f2e17ef8fd4de3b12958382de7"
+    },
     {
       "path": "scores/amber-keys.json",
       "bytes": 43124,
@@ -374,6 +452,26 @@
       "sha256": "5c0610a725610ac1af1055c2502393c380c0e49ad1ebbd4a61607cd46c23dc83"
     },
     {
+      "path": "scores/paper-lantern.json",
+      "bytes": 21759,
+      "sha256": "a327cf0279f484ec6643c1a8618bb74ab7a0dd27aaba44488aeb71fac4b581e7"
+    },
+    {
+      "path": "scores/paper-lantern.mid",
+      "bytes": 1420,
+      "sha256": "cd8ca39cb812afeb9c55a8114b6caad8838fb29fa472abe3f818f6a1bc5cc6cd"
+    },
+    {
+      "path": "scores/quiet-current.json",
+      "bytes": 23251,
+      "sha256": "1965aff3cef66e9b69c6fa0d2036f013d24296e04e0ef75ecdc53976393ae218"
+    },
+    {
+      "path": "scores/quiet-current.mid",
+      "bytes": 1419,
+      "sha256": "71f76b2fdae4f84757ac6bef6f5723ec968cf9e6c4f171593f1a011c7350f57e"
+    },
+    {
       "path": "scores/rain-on-paper.json",
       "bytes": 54252,
       "sha256": "5addf4e88d49378879547119d6908cc5f7a80ce15ff7611854f839def755d991"
@@ -394,6 +492,16 @@
       "sha256": "f6b83567dc824f9cb5dbfa85757ee553a26daff9912fad1b16e2731fc39c1454"
     },
     {
+      "path": "scores/still-water.json",
+      "bytes": 21904,
+      "sha256": "28a979e16614d621622cd250e6da43d1ad27245df013b6878ebe817445a2cc15"
+    },
+    {
+      "path": "scores/still-water.mid",
+      "bytes": 1420,
+      "sha256": "cba6ff50663ecaa30c8b30a9bcd89a58b212681e23c43246ee91fc162b824187"
+    },
+    {
       "path": "scores/warm-window.json",
       "bytes": 54619,
       "sha256": "05313e5b55c3b2d1fd268fd46756cc715c72bcc5d6633ff30cac3618ae9ea6b8"
@@ -412,6 +520,11 @@
       "path": "scores/woodland-steps.mid",
       "bytes": 3254,
       "sha256": "2f3d36f263b66bd39b60995f6b9af31f76e1316f2af5d8c8f645982129f8da4c"
+    },
+    {
+      "path": "masters/after-rain.flac",
+      "bytes": 5528715,
+      "sha256": "f7d3ef01d916b347671978350b2ab6498d96596b6e5c897602edf539e64bd913"
     },
     {
       "path": "masters/amber-keys.flac",
@@ -469,6 +582,16 @@
       "sha256": "0086aebe763661380efd34397fa3fd08bf8a6fe0bf8c57554dbd7d0cd011e943"
     },
     {
+      "path": "masters/paper-lantern.flac",
+      "bytes": 5761670,
+      "sha256": "2402db6c8fc44722acac97f86762d99b1a355e239e23bfae6b156740c43e5906"
+    },
+    {
+      "path": "masters/quiet-current.flac",
+      "bytes": 5656323,
+      "sha256": "63db6bd37ba507f41b1ed8295d58f669a924e11d9cd30c1e43e229b288e4a450"
+    },
+    {
       "path": "masters/rain-on-paper.flac",
       "bytes": 5382688,
       "sha256": "f10694b5535d3c2f501f099860ff7e239b171916a4f510242c8a674ef1b577a8"
@@ -477,6 +600,11 @@
       "path": "masters/silver-orbit.flac",
       "bytes": 5721942,
       "sha256": "a169f9f1c8984a9c835321d2c042ebfe5a3db24f2555ef3d3c499759b0ce2500"
+    },
+    {
+      "path": "masters/still-water.flac",
+      "bytes": 6089276,
+      "sha256": "13038f174bb0e6405587fa3c1f9fabc2aa56ae0bd0b2f3be6df3d221282a5464"
     },
     {
       "path": "masters/warm-window.flac",
@@ -489,79 +617,104 @@
       "sha256": "aa44a0ce04b2d0d61b714f441f2b311a0020be44b34c52ab36dbab2f616a471d"
     },
     {
+      "path": "audio/after-rain.ogg",
+      "bytes": 1493726,
+      "sha256": "eaa6dc6a92204d51d421af2ba7f79356549154950fbb60197c59f19ee873e8a7"
+    },
+    {
       "path": "audio/amber-keys.ogg",
       "bytes": 808842,
-      "sha256": "ba579264db55fdd01fc353688358de70a6b421f044686a667ffcc9cb6642a444"
+      "sha256": "08dacaa7b5a78246ac82f80f36111abc3e6b87b4524c239544fc9900636be60d"
     },
     {
       "path": "audio/break-end.ogg",
       "bytes": 28164,
-      "sha256": "b40537f98839c1136cae84ef9b594ff6c414f8d8a059541e7c1179ee983567bc"
+      "sha256": "4b1009d0b53e5ea10ffb6b6482c080377c61ad9effe0c91376726b1ef000667e"
     },
     {
       "path": "audio/cedar-strings.ogg",
       "bytes": 850657,
-      "sha256": "4ef89195855967368e9890995410cd776279e10a29b2f87dc92e972729ec6618"
+      "sha256": "302a5893754a49c2c020b6d531af5d16d4006cb20767b5f087d14c1b9288ea65"
     },
     {
       "path": "audio/dusk-chamber.ogg",
       "bytes": 915102,
-      "sha256": "2bc9adaa14a25d04493f7adf517e6c7bb3cfeaed72841aa6c512557293c2581f"
+      "sha256": "9398074e58e5835ba6701390c062b4f3cb1045ceb4bb62343bfe15ba9a767444"
     },
     {
       "path": "audio/first-snow.ogg",
       "bytes": 881504,
-      "sha256": "f096da0d3b2d7fa650e49e59aa48b9305d7c448a43e6fe25fee35cf7cb06219b"
+      "sha256": "25685a224615cbed011bd7daefc321b33d26913b5324b871b5767654cf0f8d39"
     },
     {
       "path": "audio/focus-complete.ogg",
       "bytes": 28002,
-      "sha256": "9b825caceff52c142097248f1d331c6ef6ed1df1631692a224b283973bb856ac"
+      "sha256": "0106cb1ee4166abf1942812c7da00da390d76818bde20e1f882207ea073034fc"
     },
     {
       "path": "audio/focus-start.ogg",
       "bytes": 27060,
-      "sha256": "6128eae202ae85aa95b1749a6b7ff5f45009f71440a1d4511ba38f014f206dcb"
+      "sha256": "db346d04937ed4a35d8b8a2d563ea2a54dabb432644966d8264c5f38ce0085f7"
     },
     {
       "path": "audio/garden-air.ogg",
       "bytes": 1240389,
-      "sha256": "8a20d0f94feb79af5e048e45188e7f73b1d1c290544a737f332f7de317274bdc"
+      "sha256": "65e5b49a55a172d0612cc8d4e5f6d4780f5ac7a2bc6dc42c35d440a0f154a109"
     },
     {
       "path": "audio/lamplight-pages.ogg",
       "bytes": 882898,
-      "sha256": "4389bae029954140e2872e110c85b2cb0f0bbfe928476c31db0dd1491021a8cd"
+      "sha256": "10666ff42c5e4525cf84c6a6d2ddacacde777f594a0f480e3b8e782a9a50aa02"
     },
     {
       "path": "audio/linen-harp.ogg",
       "bytes": 983630,
-      "sha256": "841e2c937f0406ac4730896ef9bf71169f2f53193f5efd255b4e789762f684f0"
+      "sha256": "24d852eb53d81dffe39b716144412cff4c29c8f815ee4fa2f0d703da17d228c4"
     },
     {
       "path": "audio/morning-margins.ogg",
       "bytes": 1035755,
-      "sha256": "4728ce83ce294fd8ce7b272d5df409530dbf6e33d568629fbe99baa5886cff16"
+      "sha256": "77155d463f1d7d2820d1f719219114de27cb9b132b71a89239f1cb81d095c299"
+    },
+    {
+      "path": "audio/paper-lantern.ogg",
+      "bytes": 1532578,
+      "sha256": "960a47f2ce15c65de0495bb838279a96397d1515812a6c07159dcaadaa148898"
+    },
+    {
+      "path": "audio/quiet-current.ogg",
+      "bytes": 1557897,
+      "sha256": "8f38305ce463be2e30d320c3e802bdd95ac123081996265959e57cd91c8a7667"
     },
     {
       "path": "audio/rain-on-paper.ogg",
       "bytes": 1114855,
-      "sha256": "cd44da2edd8de95eac0dd7c9c0c15a4b50bd000035510324ae6195d5f22a5cd3"
+      "sha256": "11260c63cd8befb8e6bbbac7213c76ff2c4eba0c54fa04ac5795553246c8392c"
     },
     {
       "path": "audio/silver-orbit.ogg",
       "bytes": 1055162,
-      "sha256": "a7a3684be6f134858d93c6536e3b49f0f18dd90a9623b187647e964a65404b8a"
+      "sha256": "07e9a60dcd44c11adf3dc16c5e2ed3fc37a73ab5889204c8e16d78ece6159e12"
+    },
+    {
+      "path": "audio/still-water.ogg",
+      "bytes": 1660318,
+      "sha256": "7c714296e9e0b843a3a0418fabdbfa0caeda723a81c58fac8e2295d6267073c2"
     },
     {
       "path": "audio/warm-window.ogg",
       "bytes": 834017,
-      "sha256": "c4d6635c4350dc2854d4a846cc98e9fdfc91f892f35dc70161cac22cb122c909"
+      "sha256": "ea93c81b05d7f9801df010095f27452c77493c160deed8a84d365247cabb63de"
     },
     {
       "path": "audio/woodland-steps.ogg",
       "bytes": 732221,
-      "sha256": "f171d63513047d5fa16683ec4fad734b616b5e5653bc9127de1f4262ebca2286"
+      "sha256": "3506464c9454f9aa3630d762e1ae708c9697e87e48f22fbe757ad83e01031855"
+    },
+    {
+      "path": "previews/after-rain.mp3",
+      "bytes": 3877661,
+      "sha256": "b210096fa1b73f9b23d417537b0a85a65a60809ae1ebd708dd9f8cad66212f08"
     },
     {
       "path": "previews/amber-keys.mp3",
@@ -619,6 +772,16 @@
       "sha256": "c1cc9f9c8300c8ec0cc4ce701877ea43e2d154f4df38bfd767c6a42eba9a09f4"
     },
     {
+      "path": "previews/paper-lantern.mp3",
+      "bytes": 4001481,
+      "sha256": "2eb38409ce750c3273092c52ffe02fb8d09c8f5534fcd7548e8f5e26dc120931"
+    },
+    {
+      "path": "previews/quiet-current.mp3",
+      "bytes": 4133661,
+      "sha256": "69c5df930a362781aa00c9196360286795e2ebe4edf6fb904e1774a943f1053a"
+    },
+    {
       "path": "previews/rain-on-paper.mp3",
       "bytes": 2408534,
       "sha256": "47a2e01bfe05fbd18986d1bfd730eb479a4b25aa5415fd20687b00b22ad06f20"
@@ -629,6 +792,11 @@
       "sha256": "8e1beacf4b5a1cd1c33e943ebcd3e1439c1634a6f6b674175e52918ccb9364b8"
     },
     {
+      "path": "previews/still-water.mp3",
+      "bytes": 4275767,
+      "sha256": "48ed4f6f982fd429f1793d8be9cd3255af36d359fa04fe4962f5f441b43d22b7"
+    },
+    {
       "path": "previews/warm-window.mp3",
       "bytes": 2102379,
       "sha256": "86038a1d63f8c84681d557c2477d887b01460a2e54fab86d087836a5f9748e3e"
@@ -637,6 +805,11 @@
       "path": "previews/woodland-steps.mp3",
       "bytes": 2050657,
       "sha256": "0f26be86561f8009cf192185973db756e40f073bf8962391cf41f48891456619"
+    },
+    {
+      "path": "art/after-rain.svg",
+      "bytes": 1585,
+      "sha256": "34700c5ede622d22f9c513c931b34d9c6db1acd9ecf503857c1355a6d6616d12"
     },
     {
       "path": "art/amber-keys.svg",
@@ -679,6 +852,16 @@
       "sha256": "7cdb2fd0d2f006bb4e345752c60fc7f1003b060df424e369d7eff0d7bffcb7c0"
     },
     {
+      "path": "art/paper-lantern.svg",
+      "bytes": 1591,
+      "sha256": "3373629eb151d59b40bf255b0c475c23ed0d5a94270ba8c7a64a228615db7146"
+    },
+    {
+      "path": "art/quiet-current.svg",
+      "bytes": 1591,
+      "sha256": "4b4cb8cf1854f9432baa8652e5169c064df14e7c74ecc0951e4ada6c68563c91"
+    },
+    {
       "path": "art/quiet-room.png",
       "bytes": 2734926,
       "sha256": "99a2d2854fef9d608fa317967900061b12805cbfa14d70fb7f531fa82b1efa93"
@@ -692,6 +875,11 @@
       "path": "art/silver-orbit.svg",
       "bytes": 1589,
       "sha256": "f589ed86bed830f6ef3cf173883bd7aeb85a70de893d27fe42c996a3d4072572"
+    },
+    {
+      "path": "art/still-water.svg",
+      "bytes": 1587,
+      "sha256": "4caa1b5568cfc741a12c254aee028fb8f09df30277af0ab412e029e9f3ed0009"
     },
     {
       "path": "art/warm-window.svg",
