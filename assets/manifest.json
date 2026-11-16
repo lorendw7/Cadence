@@ -1234,6 +1234,19 @@
       "height": 240
     },
     {
+      "path": "assets/illustrations/no-deadlines-compact.svg",
+      "bytes": 593,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "No tasks due on the named date. Other tasks and commitments may remain; not all done.",
+      "width": 96,
+      "height": 72
+    },
+    {
       "path": "assets/illustrations/no-results.svg",
       "bytes": 538,
       "type": "svg",
@@ -1321,6 +1334,32 @@
       "previewSurface": "white",
       "group": "Empty states and feedback",
       "use": "First-use temporary session option. Explain that records are lost on close; not a countdown.",
+      "width": 96,
+      "height": 72
+    },
+    {
+      "path": "assets/illustrations/unplanned-time-compact.svg",
+      "bytes": 609,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "No plan recorded in a bounded interval. This is not verified availability or a scheduling suggestion.",
+      "width": 96,
+      "height": 72
+    },
+    {
+      "path": "assets/illustrations/unsaved-draft-compact.svg",
+      "bytes": 567,
+      "type": "svg",
+      "category": "illustrations",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Empty states and feedback",
+      "use": "Changes remain in an open draft. Not a save failure or recovered draft; pair with explicit choices.",
       "width": 96,
       "height": 72
     },
@@ -1582,6 +1621,33 @@
       "use": "Launcher or browser export. Native package acceptance is a separate check.",
       "width": 64,
       "height": 64
+    },
+    {
+      "path": "assets/ui/android-daily-flow.png",
+      "bytes": 232013,
+      "type": "png",
+      "category": "ui",
+      "role": "export",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Android design studies",
+      "use": "Static Today, Tasks and Week design with fictional records. Not a running app or a store screenshot.",
+      "source": "assets/ui/android-daily-flow.svg",
+      "width": 1360,
+      "height": 1440
+    },
+    {
+      "path": "assets/ui/android-daily-flow.svg",
+      "bytes": 25125,
+      "type": "svg",
+      "category": "ui",
+      "role": "source",
+      "status": "current",
+      "previewSurface": "white",
+      "group": "Android design studies",
+      "use": "Static Today, Tasks and Week design with fictional records. Not a running app or a store screenshot.",
+      "width": 1360,
+      "height": 1440
     }
   ],
   "webExports": [
@@ -2008,6 +2074,10 @@
         "sha256": "a858dbe2ae3cc881dbbfe7d33b180f2f94c5fcf8d58574dbaa5dfcf7bfe4cd14"
       },
       {
+        "path": "assets/illustrations/no-deadlines-compact.svg",
+        "sha256": "d90af1a4e55d5d52b364eaec3a844d3fc03b4855e967f778aac570b5a0058d86"
+      },
+      {
         "path": "assets/illustrations/no-results.svg",
         "sha256": "f6cfb1a7e46aec8e3c72bddcea7038184bd9575dbd4748ab3b29559770989619"
       },
@@ -2034,6 +2104,14 @@
       {
         "path": "assets/illustrations/temporary-use-compact.svg",
         "sha256": "1648dca08f423e7b330f95ee717a0f6bca0f6587ed176b64b08764fbedb8e027"
+      },
+      {
+        "path": "assets/illustrations/unplanned-time-compact.svg",
+        "sha256": "9a84d9a3ded7baff0a535a3f2e41df1c360ff1d20bf61412f2b2dca701831e45"
+      },
+      {
+        "path": "assets/illustrations/unsaved-draft-compact.svg",
+        "sha256": "2bd6eb7e5639e1ef1ef0f46ba500da42f7dda7a738ae7bdd5ee9a77a9ff4a63f"
       },
       {
         "path": "assets/patterns/journal-dots.svg",
@@ -2100,12 +2178,20 @@
         "sha256": "4059b5f0692c026bbfa215291239a0afde83f56fa815f30bae3947dae305c561"
       },
       {
+        "path": "assets/ui/android-daily-flow.svg",
+        "sha256": "da5db2577bf8cfe4642160502a79623307f03068034204a4702a22f9afb822ad"
+      },
+      {
+        "path": "tools/android_design_art.py",
+        "sha256": "094be98d3d8d8894b6ea710ba9d5083543c9f481f0a6b1314c9cdee4457dd3ec"
+      },
+      {
         "path": "tools/artwork_previews.cjs",
-        "sha256": "b9af73148febfebbb85f6ba034d7672bbb2a6ce2973973aace5953d75830e243"
+        "sha256": "7fdddc9fe0b85df53bbe2783e2bbf1573746a48ca6d01ea983cc1cd8d7673d2b"
       },
       {
         "path": "tools/export_artwork.cjs",
-        "sha256": "5bb4e239682921caa97dbe5e6242869ee3b8c857f6d09bde9fe9fc7e543b8ff5"
+        "sha256": "9dcc31b5c1044713ed866a852a969fa8100ed2722cf4c3e9b0b9ef4366e693b2"
       }
     ],
     "files": [
@@ -2113,22 +2199,29 @@
         "path": "assets/preview.png",
         "width": 1440,
         "height": 1500,
-        "bytes": 484763,
-        "sha256": "382e4055c9023584bdc1c553985f8658fe7fde1b3c7a8488dccc4e97c57a0a6d"
+        "bytes": 489829,
+        "sha256": "00fe978456609ae21c562a40f828124e2cb6e945c5f7436e4bef85ed47436ed9"
       },
       {
         "path": "assets/preview-library.png",
         "width": 1440,
-        "height": 5308,
-        "bytes": 686922,
-        "sha256": "a13e338b508bd576db16f929a24c8fda2f95d91e60058a9fc4fbf0f51e99c916"
+        "height": 7017,
+        "bytes": 958391,
+        "sha256": "0519a66f89082b4650f16f6d395983cbc381d3a74053deee071964b8ed4dd66e"
       },
       {
         "path": "assets/preview-android.png",
         "width": 1440,
-        "height": 1312,
-        "bytes": 177563,
-        "sha256": "3564132ffea4b33770f31153047d0cd67a633211b31ab45d5e0548dd43fe52e1"
+        "height": 1518,
+        "bytes": 206267,
+        "sha256": "b85b16cf71671236a81d78481cc6e98dc64592c79fa2fc5d48f06835cf6ed7df"
+      },
+      {
+        "path": "assets/ui/android-daily-flow.png",
+        "width": 1360,
+        "height": 1440,
+        "bytes": 232013,
+        "sha256": "406952064be9d856ce445ff10c10267a61971b7c9be81e972393e4dcc51d7d80"
       }
     ]
   }

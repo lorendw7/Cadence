@@ -32,6 +32,8 @@ Build competitiveness through three concrete qualities:
 
 The target is comparable quality in this bounded routine, followed by a measured reason to choose Cadence. It is not full feature parity, proven demand or a revenue forecast. [VALIDATION.md](VALIDATION.md#android-workflow-benchmark) defines proposed measurements. [ROADMAP.md](ROADMAP.md#work-packages-and-review-points) keeps implementation and release acceptance separate.
 
+The [Android daily-use specification](ANDROID_EXPERIENCE.md) maps these qualities to Today, Tasks and Week, with a consistent fictional design board, recovery states and support preparation. It refines the accepted scope without adding features or claiming user demand.
+
 ### First buyer to test
 
 This is the later desktop purchase hypothesis, not the current delivery audience. The first user is the maintainer on their Android phone. Test quick capture, daily lookup, plan changes and recovery through self-use; do not treat that use as independent demand. Desktop purchase research resumes only when that separate stage is selected.
@@ -195,7 +197,7 @@ Android-first does not mean ads-first. Keep the first self-use build ad-free. Af
 
 This heading is retained for existing links. Under ADR-015, the Android self-use core has no ads or charge. Later mobile ads and a one-time desktop purchase remain models to validate, not decided revenue or released offers. No subscription, paid capacity, paid priority or ad-based unlock is planned. All desktop packages, the concept site and the future Web planner stay ad-free.
 
-Private development is selected. The remote visibility change remains pending because the existing GitHub Pages site must survive it. Keep the current [MIT license](../LICENSE) and notices unchanged. Private development does not retract copies already distributed under MIT. A future license decision is separate from the purchase experiment.
+Private development is selected. The repository was verified private on 2026-11-15, and Pages is offline with its source retained for later deployment. Keep the current [MIT license](../LICENSE) and notices unchanged. Private development does not retract copies already distributed under MIT. A future license decision is separate from the purchase experiment.
 
 Local use and recovery need no Cadence account or network. If a paid desktop release is adopted, store acquisition and licensing terms must be stated separately from offline runtime behavior. [FREE_EDITION.md](FREE_EDITION.md) owns the access policy. [ADR-011](adr/011-optional-sync-service.md) retains the later JPY 2,500 monthly service planning budget; neither desktop sales nor mobile ads guarantee it can be funded.
 

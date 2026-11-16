@@ -112,16 +112,17 @@ require(set(catalogue.assets) == {entry['path'] for entry in manifest['files']},
 previews = manifest.get('previews', {})
 preview_inputs = previews.get('inputs', [])
 preview_files = previews.get('files', [])
-expected_previews = {'assets/preview.png', 'assets/preview-library.png', 'assets/preview-android.png'}
+expected_previews = {'assets/preview.png', 'assets/preview-library.png', 'assets/preview-android.png',
+                     'assets/ui/android-daily-flow.png'}
 require({entry['path'] for entry in preview_files} == expected_previews,
-        'Manifest must list all three generated artwork previews')
+        'Manifest must list the three contact sheets and the Android design export')
 require({'tools/artwork_previews.cjs', 'tools/export_artwork.cjs'}
         <= {entry['path'] for entry in preview_inputs},
         'Preview inputs must include both export scripts')
 expected_preview_sources = {'assets/illustrations/journal-editorial.png',
                             'assets/social/social-card.svg',
                             'assets/platform/google-play-512.png'}
-for pattern in ['brand/*.svg', 'icons/*.svg', 'illustrations/*.svg',
+for pattern in ['brand/*.svg', 'icons/*.svg', 'illustrations/*.svg', 'ui/*.svg',
                 'patterns/*.svg', 'platform/png/*.png']:
     expected_preview_sources.update(file.relative_to(ROOT).as_posix()
                                     for file in (ROOT / 'assets').glob(pattern)
@@ -148,9 +149,9 @@ for entries, label in [(preview_inputs, 'input'), (preview_files, 'output')]:
             except (ValueError, struct.error) as error:
                 errors.append(f'{name}: {error}')
 
-for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform']:
+for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform', 'ui']:
     for file in (ROOT / 'assets' / folder).rglob('*'):
-        if file.is_file():
+        if file.is_file() and (folder != 'ui' or file.suffix in {'.svg', '.png'}):
             require(file.relative_to(ROOT).as_posix() in tracked, f'Unlisted artwork: {file.name}')
 
 for width in [480, 960, 1536]:

@@ -74,6 +74,9 @@ STATE_USES = {
     'load-error-compact': 'Saved records could not be opened. Keep this distinct from an empty workspace and offer recovery.',
     'all-done-compact': 'All tasks in the named set are complete. Not an empty list or proof that every plan is finished.',
     'plan-overlap-compact': 'Optional detail artwork for overlapping plans. Keep both actual titles and intervals visible.',
+    'no-deadlines-compact': 'No tasks due on the named date. Other tasks and commitments may remain; not all done.',
+    'unplanned-time-compact': 'No plan recorded in a bounded interval. This is not verified availability or a scheduling suggestion.',
+    'unsaved-draft-compact': 'Changes remain in an open draft. Not a save failure or recovered draft; pair with explicit choices.',
     'all-done': 'Existing tasks are complete. Do not use for a list with no tasks.',
     'no-results': 'No search matches. Offer to change or clear the query.',
     'import-preview': 'Review a draft import. Nothing has been accepted or saved yet.',
@@ -94,7 +97,7 @@ TASKS_STARTER = {
     'assets/icons/memory.svg': 'Session-only notice; never imply local saving.',
     'assets/illustrations/empty-tasks-compact.svg': 'Small empty state, next to real text.',
 }
-GROUP_ORDER = ['Brand', *ICON_GROUPS, 'Empty states and feedback',
+GROUP_ORDER = ['Brand', *ICON_GROUPS, 'Empty states and feedback', 'Android design studies',
                'Paper patterns', 'Sharing card', 'Editorial artwork',
                'Platform icons', 'Sprite', 'Retained originals']
 
@@ -132,6 +135,11 @@ def metadata(file, root):
             entry.update(group='Empty states and feedback', use=STATE_USES[name])
             if name.endswith('-compact'):
                 entry['previewSurface'] = 'white'
+    elif category == 'ui':
+        entry.update(group='Android design studies', previewSurface='white',
+                     use='Static Today, Tasks and Week design with fictional records. Not a running app or a store screenshot.')
+        if file.suffix == '.png':
+            entry.update(role='export', source='assets/ui/android-daily-flow.svg')
     elif category == 'patterns':
         entry.update(group='Paper patterns', use='Repeat as faint decoration. Keep forms and text on plain surfaces.')
     elif category == 'social':
@@ -191,6 +199,8 @@ def build(root, palette, write):
     files = [metadata(file, root)
              for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform']
              for file in sorted((art / folder).rglob('*')) if file.is_file()]
+    files.extend(metadata(file, root) for file in sorted((art / 'ui').glob('*'))
+                 if file.suffix in {'.svg', '.png'})
     sections = []
     options = []
     for index, group in enumerate(GROUP_ORDER):

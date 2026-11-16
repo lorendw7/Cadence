@@ -75,9 +75,10 @@ async function files(root, folder, suffix) {
 
 async function previewArtwork(root) {
   const asset = (...parts) => path.join(root, 'assets', ...parts);
+  await sharp(asset('ui', 'android-daily-flow.svg')).png().toFile(asset('ui', 'android-daily-flow.png'));
   const icons = (await files(root, 'icons', '.svg')).filter(name => name !== 'sprite.svg');
   const states = await files(root, 'illustrations', '.svg');
-  const stateOrder = ['empty-tasks-compact', 'empty-today-compact', 'empty-week-compact', 'all-done-compact', 'local-save-compact', 'temporary-use-compact', 'backup-review-compact', 'load-error-compact', 'save-error-compact', 'plan-overlap-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
+  const stateOrder = ['empty-tasks-compact', 'empty-today-compact', 'empty-week-compact', 'no-deadlines-compact', 'unplanned-time-compact', 'unsaved-draft-compact', 'all-done-compact', 'local-save-compact', 'temporary-use-compact', 'backup-review-compact', 'load-error-compact', 'save-error-compact', 'plan-overlap-compact', 'empty-today', 'empty-week', 'empty-tasks', 'all-done', 'no-results', 'import-preview', 'save-error', 'restore-backup', 'no-review', 'no-courses'];
   const orderedStates = [...states].sort((a, b) => stateOrder.indexOf(a.slice(0, -4)) - stateOrder.indexOf(b.slice(0, -4)));
   const compact = sheet();
   compact.text(64, 65, 'CADENCE / ARTWORK LIBRARY / 02', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
@@ -125,6 +126,9 @@ async function previewArtwork(root) {
   drawSection('Brand', 'Use the C mark and its rhythm dot together. Paper marks need a dark surface.', toEntries('brand', brandFiles.filter(name => !originals.has(name))), 4, 212, entry => ({inverse: entry.name.includes('paper') && !entry.name.includes('icon')}));
   drawSection('Interface icons', `${icons.length} symbols at 24 px. Controls still need text labels and generous hit areas.`, toEntries('icons', icons), 8, 116, () => ({nativeSize: true}));
   drawSection('Empty states and feedback', 'Decorative illustrations accompany a plain explanation and a relevant next action.', toEntries('illustrations', orderedStates), 5, 205, entry => ({nativeSize: entry.name.endsWith('-compact.svg'), white: entry.name.endsWith('-compact.svg')}));
+  drawSection('Android daily use', 'Static design study with fictional data. Not implemented screens or store screenshots.', [
+    {file: asset('ui', 'android-daily-flow.svg'), label: 'android-daily-flow / editable SVG and PNG export'},
+  ], 1, 1370, () => ({white: true}));
   drawSection('Paper patterns', 'Repeated 32 px tiles. Keep text, forms and timelines on plain surfaces.', toEntries('patterns', await files(root, 'patterns', '.svg')), 3, 180, () => ({tile: true}));
   drawSection('Editorial artwork and sharing', 'The editorial master is preserved. The sharing card identifies the project as in development.', [
     {file: asset('illustrations', 'journal-editorial.png'), label: 'journal-editorial / original PNG'},
@@ -141,7 +145,7 @@ async function previewArtwork(root) {
   await library.render(asset('preview-library.png'), y + 82);
 
   const android = sheet();
-  android.text(64, 65, 'CADENCE / ANDROID ARTWORK / 01', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
+  android.text(64, 65, 'CADENCE / ANDROID ARTWORK / 02', 12, WINE, 'Arial, sans-serif', 'letter-spacing="3"');
   android.text(64, 126, 'Small cues. Clear choices.', 48, INK, 'Georgia, serif');
   android.text(64, 168, 'Prepared vectors for local planning and a later task-linked countdown. No application feature is implied.', 17, '#666761');
   android.rule(202);
@@ -167,6 +171,9 @@ async function previewArtwork(root) {
     ['load-error-compact', 'Could not open', 'Retain existing records.', 'Offer retry and recovery.'],
     ['all-done-compact', 'Included tasks done', 'Name the completed set.', 'An empty list is different.'],
     ['plan-overlap-compact', 'Shared time', 'Keep both plan rows visible.', 'No automatic rearrangement.'],
+    ['no-deadlines-compact', 'Nothing due', 'Name the date or set.', 'Other work may remain.'],
+    ['unplanned-time-compact', 'No plan recorded', 'A gap in these records.', 'Not verified availability.'],
+    ['unsaved-draft-compact', 'Open draft', 'Changes are not saved.', 'No recovery promise.'],
   ].forEach(([name, title, line1, line2], i) => {
     const x = 64 + (i % 3) * 443;
     const top = 786 + Math.floor(i / 3) * 206;
@@ -177,24 +184,24 @@ async function previewArtwork(root) {
     android.text(x + 136, top + 102, line2, 14, '#6B6B70');
     android.text(x + 20, top + 162, name, 13, WINE);
   });
-  android.rule(1222);
-  android.text(64, 1254, 'Editable SVG sources / existing Cadence palette / no text inside the state illustrations.', 15, '#666761');
-  android.text(64, 1280, 'See assets/ANDROID_ARTWORK.md for scope, usage and native acceptance still needed.', 14, '#666761');
-  await android.render(asset('preview-android.png'), 1312);
+  android.rule(1428);
+  android.text(64, 1460, 'Editable SVG sources / existing Cadence palette / no text inside the state illustrations.', 15, '#666761');
+  android.text(64, 1486, 'See assets/ANDROID_ARTWORK.md and assets/ui/android-daily-flow.png for the design handoff.', 14, '#666761');
+  await android.render(asset('preview-android.png'), 1518);
 
   // Preserve a receipt so the checker can detect stale source files or sheets.
   // The SVG builder preserves this receipt; only a successful export replaces it.
   const relative = file => path.relative(root, file).split(path.sep).join('/');
   const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
   const inputs = [...new Set([
-    'tools/artwork_previews.cjs', 'tools/export_artwork.cjs',
+    'tools/artwork_previews.cjs', 'tools/export_artwork.cjs', 'tools/android_design_art.py',
     ...compact.sources.map(item => relative(item.file)),
     ...library.sources.map(item => relative(item.file)),
     ...android.sources.map(item => relative(item.file)),
   ])].sort();
   const receipt = {
     inputs: await Promise.all(inputs.map(async file => ({path: file, sha256: sha256(await fs.readFile(path.join(root, file)))}))),
-    files: await Promise.all(['assets/preview.png', 'assets/preview-library.png', 'assets/preview-android.png'].map(async file => {
+    files: await Promise.all(['assets/preview.png', 'assets/preview-library.png', 'assets/preview-android.png', 'assets/ui/android-daily-flow.png'].map(async file => {
       const data = await fs.readFile(path.join(root, file));
       const {width, height} = await sharp(data).metadata();
       return {path: file, width, height, bytes: data.length, sha256: sha256(data)};

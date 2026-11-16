@@ -123,6 +123,8 @@ Record findings as Observed, Proposed change and Still untested. Until another p
 
 ### Android self-use priorities
 
+The [Android daily-use specification](ANDROID_EXPERIENCE.md) adds a static three-screen reference, concrete state wording and a review matrix. It uses the existing behavior owners and delivery gates. Its artwork is a design reference, not implemented Android screens.
+
 The first target is a safe daily planning routine on the maintainer's phone. These priorities guide the learner's small implementations; they do not implement new application behavior.
 
 The concrete [phone composition](UI_ARCHITECTURE.md#android-screen-composition) uses a stable Today / Tasks / Week bottom bar. Today and Tasks keep New task within thumb reach above that bar; Week starts a plan for the selected day. Settings stays secondary. Editors and the later focus screen are routes from these pages, not extra permanent tabs. Keep one clear primary action in each context.

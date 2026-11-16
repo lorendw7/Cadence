@@ -32,7 +32,7 @@ async function main() {
   }
   if (process.argv.includes('--previews-only')) {
     await previewArtwork(root);
-    console.log('Exported the artwork overview, full library and Android contact sheets.');
+    console.log('Exported the three artwork contact sheets and Android daily-use design board.');
     return;
   }
   if (process.argv.includes('--editorial-only')) {

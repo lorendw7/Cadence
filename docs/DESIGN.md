@@ -112,6 +112,8 @@ Empty states teach the next local action. Core planning has no login requirement
 
 ### Responsive design review
 
+The [Android daily-use board](../assets/ui/android-daily-flow.png) applies the white-and-wine system to a consistent Today, Tasks and Week fixture. Its [specification](ANDROID_EXPERIENCE.md) explains content hierarchy, state artwork and what still needs native review. Fixed drawing dimensions do not set application heights or replace large-text layouts.
+
 The [local planner study](../assets/ui/planner-study.html) explores Today, Week and Tasks using fictional data. Read its [handoff and limits](../assets/ui/PLANNER_STUDY.md) before treating an interaction as application behavior. It extends the product design beyond the earlier teaching-exercise study; it does not replace that historical record. The [competitive review](COMPETITIVE_REVIEW.md) records the official references behind simpler capture, visible gaps and tasks beside a calendar. These are bounded design choices to test, not a reason to copy another product's branding or feature set.
 
 | Layout | Keep visible | Adaptation to review |

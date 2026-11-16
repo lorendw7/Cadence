@@ -5,6 +5,7 @@ Raster exports: node tools/export_artwork.cjs (requires sharp).
 The editorial PNG is generated separately; this script never modifies it.
 """
 from pathlib import Path
+from android_design_art import build_android_study
 
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'assets'
@@ -223,6 +224,21 @@ def states():
             '<rect x="41" y="31" width="37" height="31" rx="4" fill="#FFFFFF" stroke="#7C394B"/>'
             '<path d="M41 31h15v12H41z" fill="#F5EEF0" stroke="#7C394B"/>'
             '<path d="M62 42h8m-21 11h21" stroke="#7C394B"/>', 'Two plans share some time'),
+        'no-deadlines-compact': (
+            calendar
+            + '<path d="M30 37h36m-36 10h24" stroke="#E8E8EB"/>'
+              '<circle cx="73" cy="53" r="11" fill="#FFFFFF" stroke="#87838A"/>'
+              '<path d="M68 53h10" stroke="#7C394B"/>', 'No tasks due on this date'),
+        'unplanned-time-compact': (
+            '<path d="M23 11v48m-4-48h8m-8 48h8" stroke="#87838A"/>'
+            '<rect x="34" y="11" width="40" height="11" rx="2" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<rect x="34" y="49" width="40" height="11" rx="2" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M40 29h28v13H40z" stroke="#87838A" stroke-dasharray="2 3"/>', 'No plan recorded in this interval'),
+        'unsaved-draft-compact': (
+            '<rect x="25" y="9" width="38" height="50" rx="4" fill="#FFFFFF" stroke="#87838A"/>'
+            '<path d="M35 23h18m-18 9h13m-13 9h9" stroke="#87838A"/>'
+            '<path d="m51 49 20-20 8 8-20 20-11 3z" fill="#F5EEF0" stroke="#7C394B"/>'
+            '<path d="m66 34 8 8m-23 7 8 8" stroke="#7C394B"/>', 'Draft changes are not saved'),
     }
     for name, (body, title) in compact_states.items():
         body += '<path d="M18 66h60" stroke="#E8E8EB"/>'
@@ -261,5 +277,6 @@ if __name__ == '__main__':
     states()
     patterns()
     social()
+    build_android_study(ART, write, ICONS)
     catalogue()
-    print(f'Built brand family, {len(ICONS)} icons, 20 states, 3 patterns, social card and catalogue.')
+    print(f'Built brand family, {len(ICONS)} icons, 23 states, 3 patterns, Android study, social card and catalogue.')

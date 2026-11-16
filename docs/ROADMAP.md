@@ -54,6 +54,8 @@ Prepare a fictional-data demonstration of local planning. Keep [school-access qu
 
 ## Work packages and review points
 
+Use the [Android daily-use review matrix](ANDROID_EXPERIENCE.md#review-and-delivery-mapping) during A-D and F. It connects the prepared screen artwork to existing checks and adds no stage, scope or hours. Static design review cannot close a native gate.
+
 This breaks the accepted route into reviewable outcomes. It adds no platform, feature stage or hours to the [working estimate](#working-estimate-at-10-15-hours-per-week). The current lesson comes first; the lesson ranges are dependencies, not promises that every numbered lesson takes one session.
 
 | Order | Existing work and learning link | Demonstration required before widening scope |

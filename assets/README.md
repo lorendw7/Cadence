@@ -1,8 +1,10 @@
 # Cadence artwork library
 
-Updated: 2026-11-15. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers identity, navigation, editing, data controls, compact states, a prepared Google Play listing icon and the concept website. Some assets prepare for later work. Browse the [catalogue](catalog.html), [visual overview](preview.png), [Android artwork handoff](ANDROID_ARTWORK.md), [Tasks design handoff](ui/README.md) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
+Updated: 2026-11-16. Version 2 supports Cadence's general-purpose local planner and its quiet-journal visual style. The library covers identity, navigation, editing, data controls, compact states, a prepared Google Play listing icon and the concept website. Some assets prepare for later work. Browse the [catalogue](catalog.html), [visual overview](preview.png), [Android artwork handoff](ANDROID_ARTWORK.md), [Tasks design handoff](ui/README.md) or [file manifest](manifest.json). Prepared artwork does not mean a planned feature is implemented.
 
 The [planner study](ui/planner-study.html) extends the local design work to Today, Week and Tasks. Its [review guide](ui/PLANNER_STUDY.md) separates preview interactions from planned application behavior. Each empty page now uses its matching compact illustration.
+
+The [Android daily-use board](ui/android-daily-flow.png) is a separate static design with Today, Tasks and Week using the same fictional records. The [specification](../docs/ANDROID_EXPERIENCE.md) and [editable SVG](ui/android-daily-flow.svg) explain its purpose and limits. It adds three small state illustrations while preserving existing UI studies and translations.
 
 The [focus media pack](focus-pack/README.md) contains 16 synthetic instrumental studies, three cues, editable scores, 16 vector covers and one room illustration. Four Slow Pages additions use sparse phrases and a quieter target level. Use its [local listening catalogue](focus-pack/index.html) and separate [manifest](focus-pack/manifest.json). It is prepared content, not an implemented player or a complete scene library. Human listening and distribution checks remain pending.
 
@@ -22,8 +24,8 @@ Sage is a decorative accent, not a normal body-text color. Use dark sage `#415A4
 |---|---|---|
 | `brand/` | Main, paper and dark icons; single-color marks; two lockups; retained original SVGs | Brand, launcher, title bar and website |
 | `icons/` | 67 SVGs and one sprite | Navigation, planning, editing, files, feedback and later countdown controls |
-| `illustrations/` | Ten 320 × 240 SVG states, ten 96 × 72 compact states and a 1536 × 1024 editorial PNG | Empty views, completion, storage choices, review, failures and recovery |
-| `ui/` | Editable local HTML/CSS/JavaScript studies and English handoffs | Historical Tasks exercise and future three-page planner; no app implementation |
+| `illustrations/` | Ten 320 × 240 SVG states, thirteen 96 × 72 compact states and a 1536 × 1024 editorial PNG | Empty views, completion, storage choices, review, drafts, failures and recovery |
+| `ui/` | Editable local HTML/CSS/JavaScript studies, a 1360 × 1440 Android SVG/PNG board and English handoffs | Historical Tasks exercise and future three-page planner; no app implementation |
 | `patterns/` | Three seamless 32 × 32 SVG tiles | Decorative dots, grid and ruled paper |
 | `platform/png/` | 16–1024 px PNG exports | Desktop icons and future Web resources |
 | `platform/` | Multi-size ICO, 128–1024 px ICNS and a separate 512 px store PNG | Windows/macOS packaging and prepared Google Play listing artwork |
@@ -43,6 +45,8 @@ Search and filters run locally without storage. With JavaScript disabled, all ca
 Choose state illustrations by meaning. `empty-week` contains no sample event. `import-preview` uses a magnifier for pending review, not a success check. `no-review` contains no measured statistics. `all-done` remains separate from an empty task list. These are prepared assets, not implemented application behavior.
 
 The manifest records each asset's role, current or retained status, group, use, dimensions where available, and preview surface. `palette` describes editorial colors; `appPalette` records application colors. Selected sources include `appUse` guidance. Exports name their source. The [overview](preview.png), [full contact sheet](preview-library.png) and [Android contact sheet](preview-android.png) are generated from the library by `tools/artwork_previews.cjs`. They are not browser screenshots. Their input and output hashes in the manifest let the checker detect stale previews. A hash is a fingerprint of a file's bytes.
+
+The Android daily-use SVG and PNG are also catalogued. The export step renders the SVG and records the PNG fingerprint alongside the three contact sheets. The checker covers both study files, so a changed drawing cannot silently retain an old PNG preview.
 
 ## Website delivery
 
@@ -105,9 +109,9 @@ python tools/build_artwork.py
 python tools/check_artwork.py
 ```
 
-When the store icon changes, use `node tools/export_artwork.cjs --store-only` in place of the previews-only command. This exports the store PNG and all three preview sheets. Run the Python generator before and after it. Full regeneration also includes the store icon.
+When the store icon changes, use `node tools/export_artwork.cjs --store-only` in place of the previews-only command. This exports the store PNG, all three preview sheets and the Android daily-use PNG. Run the Python generator before and after it. Full regeneration also includes the store icon.
 
-The preview step refreshes all three sheets and records the exact source files used. The Python generator preserves that record; it cannot mark an old preview as current. If an exported icon, sharing card or website image changed, use the full regeneration sequence instead.
+The preview step refreshes all three sheets and the daily-use PNG, then records the exact source files used. The Python generator preserves that record; it cannot mark an old preview as current. The daily-use drawing is authored in `tools/android_design_art.py` and called by the main builder. If an exported icon, sharing card or website image changed, use the full regeneration sequence instead.
 
 From the repository root, `python -m http.server 8000 --bind 127.0.0.1` serves the local catalogue at `/assets/catalog.html` and the concept site at `/website/`. The retained Pages workflow targets only `website/` and remains disabled while the site is offline.
 
@@ -152,3 +156,13 @@ Added ten icons and six compact state illustrations, bringing the library to 67 
 In the in-app browser, the ten compact cards had no page-wide horizontal overflow at 390, 640, 641, 900, 901 and 1440 px. The Focus controls filter returned six cards; combining it with pause returned one; an unmatched query returned zero. Reset restored all 119 cards and focused Search. The Tasks starter shortcut revealed its card and focused the download link. Native phone rendering, screen-reader output, 200% browser zoom and new download-file checks remain untested in this pass.
 
 The music pack gained four Slow Pages pieces with editable scores, MIDI, FLAC, OGG, MP3 and matching SVG covers. Its [guide](focus-pack/README.md#expansion-checks-on-2026-11-15) records the separate audio and short browser playback checks. The original room and editorial PNGs were retained. No paid generation, Flutter dependency or application integration was added. Artwork, website and repository checks passed; Flutter tests and native builds were not run for this asset-only work.
+
+### Android daily-use design review on 2026-11-16
+
+Added three 96 x 72 state illustrations: no deadlines on the named date, no plan recorded in an interval, and an unsaved draft. Added a 1360 x 1440 static Today, Tasks and Week board with an editable SVG and PNG export. The library now contains 67 icons, 23 state illustrations and 124 catalogue cards. The artwork checker covers 130 SVGs and 129 manifest entries, including website copies. The three contact sheets and design-board PNG have current source and output fingerprints.
+
+The daily-use board, overview and Android contact sheet were visually inspected. The board uses one fictional date and record set; its deadline and reserved interval remain distinct. This is an ordinary-size English reference, not a responsive native implementation or store screenshot. Existing interactive studies, translations, music and original raster masters were retained.
+
+The in-app browser showed both Android design-study cards without page-wide horizontal overflow at 320, 390, 640, 641, 900, 901 and 1440 px. Combined family and mixed-case search returned both cards. An unmatched query showed zero results and the empty message. Reset restored 124 cards and focused Search; Tab reached Family and Reset in order. Searching compact returned 13 cards. The Tasks shortcut cleared filters, revealed its source and focused its download link. Captured browser warning and error logs were empty.
+
+The headless browser could not start in the local sandbox; the checks above used the in-app browser instead. The browser download-event check timed out, so this pass does not claim a downloaded-file fingerprint check. Native phone behavior, TalkBack, 200% text, other browser engines and JavaScript-disabled browsing remain untested. Source, manifest, website and documentation checks passed. No Flutter tests, native builds or audio checks were run because this pass changes only design documentation, artwork and authoring tools.

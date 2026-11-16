@@ -29,6 +29,8 @@ For a trial observation, record the build, platform, task and assistance needed.
 
 ## Android workflow benchmark
 
+The [Android daily-use design](ANDROID_EXPERIENCE.md#one-consistent-design-fixture) supplies a static three-view fixture and [review cases](ANDROID_EXPERIENCE.md#review-and-delivery-mapping). Use it to discuss meanings and content order before a build exists. Record that work as design review; a drawing cannot establish capture speed, persistence or repeat use.
+
 Proposed on 2026-11-15; no measurements have run. The purpose is to judge [the bounded competitive goal](PRODUCT.md#competitive-goal-for-android), not rank whole products. Test only implemented behavior. A concept walkthrough can test understanding, but cannot pass saving, recovery or timer acceptance.
 
 Use the same fictional task, report deadline, appointment and weekly class in each comparison. Record phone model, Android version, build, language, text size, storage mode and data size. Use a profile or release build for performance observations. Compare against the person's current method; include a competitor only if they can complete that same routine in its tested platform and plan. Record unavailable features instead of inventing equivalent results.

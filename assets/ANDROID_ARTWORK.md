@@ -2,6 +2,8 @@
 
 Prepared: 2026-11-15. These are editable assets, not implemented controls or accepted phone behavior. [ADR-015](../docs/adr/015-android-self-use-first.md) keeps safe planning before the bounded focus countdown. The learner owns the first Flutter integration and all data, state and lifecycle decisions.
 
+Expanded: 2026-11-16. The [daily-use design board](ui/android-daily-flow.png) shows three proposed phone views and three new compact states. Its [specification](../docs/ANDROID_EXPERIENCE.md) links them to existing planning and validation work. No new app feature or paid generation was added.
+
 Use the [Android contact sheet](preview-android.png) to compare sizes and meanings. Find individual files in the [catalogue](catalog.html). The [main artwork guide](README.md) owns generation, colors and provenance. Existing asset paths and the C mark stay unchanged.
 
 ## Planning and recovery icons
@@ -51,6 +53,22 @@ Do not add these pictures to every list row, form or snackbar. Use one small sta
 
 ## Delivery and review
 
-The icon sprite, catalogue, manifest, overview, full contact sheet and Android contact sheet are generated together. Use the previews-only sequence in [the artwork guide](README.md#regeneration). No Flutter SVG package or asset declaration is added by this handoff.
+### Daily-use additions
+
+| Source | Intended meaning | Required surrounding content |
+|---|---|---|
+| [no-deadlines-compact](illustrations/no-deadlines-compact.svg) | No tasks are due on the named date | Name that date and keep other task groups and real plans available; do not use an all-done message |
+| [unplanned-time-compact](illustrations/unplanned-time-compact.svg) | No plan is recorded within a bounded interval | Give its actual date, start, end and duration; no verified availability or automatic suggestion is implied |
+| [unsaved-draft-compact](illustrations/unsaved-draft-compact.svg) | An editor contains unconfirmed changes | Offer the existing explicit choices; this is not a write failure, saved copy or recovered draft |
+
+These sources use the same 96 x 72 grid, strokes and colors as the earlier compact states. Use the gap illustration in explanatory detail only; ordinary agenda gaps need compact text and an action, not repeated pictures. Keep draft artwork out of small error messages when it would displace the correction or retry control.
+
+The [daily-use SVG](ui/android-daily-flow.svg) and [PNG export](ui/android-daily-flow.png) are 1360 x 1440. The board has English reference copy and three fictional 390 x 824 phone frames. It embeds vector geometry without external image or font requests. Editing [the authoring helper](../tools/android_design_art.py), then running the regular generation sequence, keeps its fixture and exports reproducible. Existing Japanese and Chinese UI studies remain separate and unchanged.
+
+Do not crop away the design-status label and present these frames as app screenshots. This drawing does not implement controls, scrolling, saving, keyboard behavior or responsive layouts. The [design board review cases](../docs/ANDROID_EXPERIENCE.md#review-and-delivery-mapping) identify the native checks still needed.
+
+### Generation and acceptance
+
+The icon sprite, catalogue, manifest, overview, full contact sheet, Android contact sheet and daily-use PNG are generated together. Use the previews-only sequence in [the artwork guide](README.md#regeneration). No Flutter SVG package or asset declaration is added by this handoff.
 
 Native checks still need the learner's implemented UI: actual fonts, 200% text, TalkBack names, keyboard and Back behavior, target sizes, real saves and failures, and focus interruptions. File validation and a visual contact-sheet review cannot pass those checks.

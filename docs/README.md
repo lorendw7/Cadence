@@ -22,6 +22,7 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | Review the product and UI | [Product design](REDESIGN.md), [local planner preview](../assets/ui/planner-study.html), [preview guide](../assets/ui/PLANNER_STUDY.md) |
 | Review delivery order | [Android priorities](REDESIGN.md#android-self-use-priorities), [roadmap](ROADMAP.md), [accepted decision](adr/015-android-self-use-first.md) |
 | Review phone layouts and quality targets | [Screen composition](UI_ARCHITECTURE.md#android-screen-composition), [Android quality acceptance](UI_ARCHITECTURE.md#android-quality-acceptance) |
+| Review Android competitiveness and the matching artwork | [Daily-use specification](ANDROID_EXPERIENCE.md), [static three-screen board](../assets/ui/android-daily-flow.png), [artwork handoff](../assets/ANDROID_ARTWORK.md) |
 | Review the refined Today, Tasks and Week design without code | [Shared view rules](UI_ARCHITECTURE.md#shared-rules-for-the-three-views), [Today details](UI_ARCHITECTURE.md#today-reading-order-and-actions), [Task list and capture](UI_ARCHITECTURE.md#task-list-and-capture-details), [Week selection](UI_ARCHITECTURE.md#week-selection-and-planning-context), [complete walkthrough](REDESIGN.md#three-view-planning-walkthrough), [reference mapping](COMPETITIVE_REVIEW.md#three-view-reference-mapping) |
 | Review later desktop scope and cost controls | [Deferred desktop candidate](DESKTOP_V1.md), [sales scenarios](STEAM_SALES_PLAN.md), [prepared media](../assets/focus-pack/README.md) |
 | Review the first buyer, shorter focus flow and recovery of working time | [Buyer hypothesis](PRODUCT.md#first-buyer-to-test), [interaction review](REDESIGN.md#planning-to-focus-design-review), [full-cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time) |
@@ -52,6 +53,7 @@ Read the current product in this order: scope, user flow, visual rules, interact
 | How should it look? | [Design system](DESIGN.md) | Palette, typography, spacing and visual hierarchy |
 | How do pages and controls behave? | [UI architecture](UI_ARCHITECTURE.md) | Navigation, responsive layouts, editors and feedback |
 | What can reviewers inspect? | [Planner study](../assets/ui/PLANNER_STUDY.md) | Fictional design preview and its own check limits |
+| How do Android design improvements connect to evidence? | [Android daily-use design](ANDROID_EXPERIENCE.md) | Audience hypothesis, consistent static fixture, review cases and existing stage mapping; not a new behavior owner |
 | What must pass before delivery? | [Roadmap](ROADMAP.md) | Stage gates; plans and builds are not releases |
 | Why was a choice made? | [Decision records](#decisions) | Accepted, superseded and deferred decisions |
 
@@ -65,6 +67,7 @@ Research findings and historical lessons provide context. They do not override c
 | [Desktop release candidate](DESKTOP_V1.md) | Bounded later Windows offer; not an Android prerequisite |
 | [Desktop sales and cost recovery](STEAM_SALES_PLAN.md) | Full-cost recovery, unvalidated volume scenarios, price research and stop rules |
 | [Product design](REDESIGN.md) | Complete planning routines and the relationship between tasks, plans and timetables |
+| [Android daily-use design](ANDROID_EXPERIENCE.md) | Bounded competitive priorities, a matching three-screen board, state distinctions and review criteria |
 | [Roadmap](ROADMAP.md) | Delivery stages, release gates and estimates |
 | [Weekly first-version plan](WEEKLY_PLAN.md) | A 10-15-hour weekly schedule with learner practice, assistant support, dependencies and acceptance |
 | [Product validation](VALIDATION.md) | Evidence rules for questionnaires, user trials and later service funding decisions |
