@@ -4,11 +4,13 @@ Updated: 2026-11-15. Status: bounded later Windows candidate under [ADR-015](adr
 
 If the desktop stage is selected later, its first Windows offer combines the useful planner with a small focus space. Reuse the accepted shared timer rules from Android and validate Windows behavior separately. The maintainer chose existing tools and media, with no fal top-up or paid generation. Compact mode, a scene and the accepted music selection are desktop additions; they do not block Android self-use.
 
+The [focus design study](../assets/ui/FOCUS_STUDY.md) gives shared design work a Windows expanded and compact reference. It compares a plain panel and two renderings of the same room with the same fictional timer states. Steam consideration is paused. Native implementation remains in the later desktop stage.
+
 ## The reason to buy
 
 Choose what matters today, reserve time in the week, settle into a quiet workspace and keep a readable record of the session. One purchase would include the accepted desktop package and its bundled content. Price and Steam eligibility remain undecided. No account, advertisement, subscription, content unlock or network call is needed during the planned core routine.
 
-The useful difference to test is planning that leads directly into focus. Music and attractive scenes support that routine. A large song count alone is not a durable advantage over free music players. See [sales targets and experiments](STEAM_SALES_PLAN.md).
+The useful difference to test is planning that leads directly into focus. Someone who already uses a calendar, a task list and a timer should be able to take a real deadline through one routine with less repeated entry. Test that with the [silent workflow trial](VALIDATION.md#compare-the-silent-workflow) before spending time on presentation. The [Steam comparison](COMPETITIVE_REVIEW.md#steam-focus-products-to-compare) includes both paid and free alternatives.
 
 The paid-value hypothesis has four parts: see a real deadline beside available time; start focus on the chosen task without entering its name again; keep a small readable timer beside other work; return to useful local records with a calm, consistent presentation. Offline use, recovery and no advertising strengthen this package. They do not alone prove that someone will buy it.
 
@@ -26,7 +28,7 @@ Use one short promise for a demonstration: **Plan today's work, focus on the cho
 
 The scene or player can fail without losing the task or blocking Save. Wallpaper integration is later work.
 
-Steps 3 and 4 describe a direct action and optional planning tools, not a mandatory wizard. For the first demonstration, use title capture -> Start focus -> compact view -> review. Show Week separately when the person needs to reserve time. [The interaction review](REDESIGN.md#planning-to-focus-design-review) defines the proposed hierarchy and its checks.
+Start focus directly from a task. Use Week when the person needs to reserve time. Follow the [report demonstration](REDESIGN.md#planning-to-focus-design-review) to show the deadline, work block and timer record without adding setup steps to the focus action.
 
 ## Screens and included behavior
 
@@ -138,7 +140,7 @@ Steam acquisition, updates and initial platform setup can require a network. Do 
 
 | Order | Deliverable | Evidence before the next step |
 |---|---|---|
-| 0 | Close the current lesson checkpoint and confirm the first-release list | Lesson 17's native paste check remains pending; then continue the existing async/persistence learning sequence |
+| 0 | Continue the async and persistence lessons and confirm the first-release list | Lesson 17's Windows paste check passed. Follow the [current learning checkpoint](LEARNING.md#current-learning-checkpoint). |
 | 1 | Reliable task editing, local/temporary choice, confirmed saves and basic export/restore | Restart retains saved tasks; failed saves retain input; temporary use leaves old data unopened |
 | 2 | Today/Week, direct plans and bounded recurrence with occurrence corrections | The report/appointment/class example stays consistent; backup includes the new records; maintainer walkthroughs pass, with independent use recorded separately when available |
 | 3 | Task-linked countdown, manual break and accepted session records | Sleep, exit/restart, duplicate callbacks and failed record writes do not invent time or complete a task |

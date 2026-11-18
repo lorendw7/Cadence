@@ -1,20 +1,18 @@
 # Learning Cadence
 
-This log owns current learning progress, implementation evidence and pending acceptance. The [core learning plan](CURRICULUM.md) owns teaching order and mastery checks. [PRODUCT.md](PRODUCT.md) and [ROADMAP.md](ROADMAP.md) own scope and delivery under [ADR-015](adr/015-android-self-use-first.md). The accepted 2026-11-15 route prioritizes an ad-free Android self-use build after safe shared saving and recovery. Windows remains the development host. This decision completes no lesson or native check.
-
-Support work on 2026-11-15 prepared the [complete desktop proposal](DESKTOP_V1.md), [sales targets](STEAM_SALES_PLAN.md) and [focus media studies](../assets/focus-pack/README.md). The initial pack contained 12 synthetic music drafts, three cues, editable scores and prepared artwork. A later asset-only expansion added four Slow Pages pieces and [Android artwork](../assets/ANDROID_ARTWORK.md). Its [measurement report](../assets/focus-pack/validation.json) records asset checks separately from application acceptance. Short browser playback checks are recorded in the pack guide. No Flutter feature, package or lesson implementation was added. Full listening and native integration still need review. Lesson 17 remains unchanged.
-
-An earlier scope pass on the same date selected reuse of these assets without recharging fal. That desktop candidate keeps one task-linked countdown, compact mode, local review and the existing scene; mixing, extra scenes and wallpaper controls are deferred. [Its delivery slices](DESKTOP_V1.md#delivery-slices-and-evidence) remain a later desktop reference. The subsequent Android-first decision moves phone self-use ahead of that package and Steam preparation. Neither documentation pass changes the pending lesson 17 acceptance below.
-
-Updated: 2026-11-13 after the learner confirmed actual-window copy feedback. Lessons 1–10 are implemented and accepted. Lessons 11–14 are implemented, with their remaining actual-window checks listed below. Lesson 15's remaining actual-window checks are deferred at the learner's request; they are not accepted. Lesson 16's code cleanup and concept review are complete. Counter removal and application color alignment were explicitly delegated. Lesson 17 now includes a clipboard caller, corrected action-row layout and guarded visible feedback. Saving is not implemented. The temporary text-scale override is absent. The current run passes all 39 tests. The leftover debug print has been removed. The Windows debug build also passes with the clipboard change. The app reads and validates titles, adds tasks, toggles completion, shows an empty list, deletes tasks, and undoes the latest deletion once. Data stays in memory.
-
-The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title-validation, lesson 11–12 theme and keyboard confirmation, and lesson 13 responsive and keyboard confirmation are still pending. Windows debug builds pass after symbolic-link support was enabled.
-
 ## Current learning checkpoint
 
-**Current lesson: 17, native paste confirmation pending.** The learner implemented visible copy feedback with a context.mounted guard after await and correctly explained why the guard follows the wait. The learner also confirmed seeing feedback after copying in the actual window. The last run passed all 39 tests, including success, failure and late completion. The assistant removed the remaining debug print. Pasting the copied title into another application remains unconfirmed. The revised [numbered plan](CURRICULUM.md#numbered-lesson-plan) provisionally runs through lesson 44. Lessons 18-44 have not started.
+**Start lesson 18 by writing one function.** Predict what happens to cleanup after an early return from `catch`. Then write `tryReadTitle` so both reads release the reader once and report the correct result. The reader and both runs are ready. [Lesson 18 exercise](lessons/18-async-cleanup.md)
 
-The [lesson 17 exercise](lessons/17-await-errors.md) has an assistant-provided fake operation and driver. The learner wrote showTitle's await/catch body. Starting and Finished messages from the original exercise are still missing. The real-code variation now includes the learner's clipboard operation, button, layout, callback and visible feedback. The lifecycle explanation is confirmed. Persistence remains unimplemented.
+The learner confirmed on 2026-11-18 that the title pasted into Notepad exactly matched the selected Cadence task. This completes the Windows copy check for lesson 17. [Lesson 17 record](lessons/17-await-errors.md#windows-paste-check-on-2026-11-18)
+
+## Evidence behind this checkpoint
+
+The app validates task titles, adds tasks, copies their titles and toggles completion. It can delete a task and undo the latest deletion once. Data stays in memory. At the last recorded check, all 39 tests passed and the Windows debug build succeeded. The clipboard tests cover success, failure and a result that arrives after the page closes. [Clipboard tests](../test/task_copy_widget_test.dart)
+
+The learner wrote the console caller, the first Flutter copy action and its guarded feedback. The console exercise still lacks its original start and end messages. The app has no persistent storage. The [lesson notes](lessons/17-await-errors.md) keep the sequence of attempts and reviews. The [curriculum](CURRICULUM.md#numbered-lesson-plan) owns the teaching order.
+
+The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title validation, theme, keyboard and responsive layout checks remain open where listed below. The [short study week](WEEKLY_PLAN.md#short-study-week) helps plan personal practice.
 
 | Lesson range | Recorded status |
 |---|---|
@@ -22,8 +20,9 @@ The [lesson 17 exercise](lessons/17-await-errors.md) has an assistant-provided f
 | 11-14 | Implemented; remaining actual-window checks are open |
 | 15 | Layout work exists; remaining actual-window checks were deferred, not accepted |
 | 16 | Code cleanup and concept review complete; this did not close earlier native checks |
-| 17 | Clipboard caller, layout and feedback pass automated checks; lifecycle explanation and actual-window feedback confirmed; native paste pending |
-| 18-44 | Planned topics, not started |
+| 17 | Copy practice accepted on Windows. The learner explained the lifetime guard and confirmed feedback and exact pasted text. The console start and end messages are still absent. |
+| 18 | Starter prepared. The learner's caller and explanation are pending. |
+| 19-44 | Planned topics |
 
 | Ability | Recorded evidence | Next evidence to seek |
 |---|---|---|
@@ -32,8 +31,6 @@ The [lesson 17 exercise](lessons/17-await-errors.md) has an assistant-provided f
 | Async reasoning | Correct Future-order prediction; learner-written await/catch handles both console outcomes and clipboard results; post-await guard explained | Explain a failure path and apply cleanup in the next small lesson |
 | Debugging and tests | Application regressions exist; some repairs and tests were assistant-assisted | Learner explains one failure, chooses an edge case and writes a small assertion |
 | Native usability | Some actual-window flows confirmed; the checks listed above and below remain open | Complete each deferred check when resumed; do not infer a pass from automated tests |
-
-Next: paste the copied title into another application and compare it with the selected task title. Actual-window feedback is confirmed. The learner correctly explained that a context valid before await can become invalid while waiting. The guard checks the lifetime of the builder's list context, not membership of a task in the data. Finally and broader lifecycle teaching remain later steps.
 
 Record understanding, independent practice, automated checks and actual-window checks separately. A missing independent exercise is a learning gap, not a reason to erase an accepted feature. Use the [lesson method and evidence rules](CURRICULUM.md) for future entries.
 
@@ -73,7 +70,9 @@ SQLite/drift belongs to the upcoming persistence stage. Riverpod remains conditi
 
 ## Current delivery priority
 
-Continue lesson 17, then build reliable local saving and recovery through learner-owned steps. Under [ADR-015](adr/015-android-self-use-first.md), Android is the first self-use target. A fictional-data launch check can establish device setup before storage is ready. Real tasks wait for phone acceptance of local/temporary mode, confirmed writes, restart and backup recovery. Extend the accepted task slice with direct planning, Today and selected-day Week. After planning self-use, add the bounded [Android focus stage](ROADMAP.md#h--android-focus-self-use): one task-linked countdown, a manual break and a small local session list. A complete Windows release, media player or Steam listing is not required first.
+Support work on 2026-11-15 prepared the [desktop proposal](DESKTOP_V1.md), [sales targets](STEAM_SALES_PLAN.md) and [focus media studies](../assets/focus-pack/README.md). The initial pack contained 12 synthetic music drafts, three cues, editable scores and artwork. A later asset pass added four Slow Pages pieces and [Android artwork](../assets/ANDROID_ARTWORK.md). The [measurement report](../assets/focus-pack/validation.json) and pack guide record asset and short playback checks. Full listening and native integration still need review. The desktop proposal reuses prepared assets with no fal top-up. Its [delivery slices](DESKTOP_V1.md#delivery-slices-and-evidence) follow Android self-use.
+
+Continue the async lessons, then build reliable local saving and recovery through learner-owned steps. Under [ADR-015](adr/015-android-self-use-first.md), Android is the first self-use target. A fictional-data launch check can establish device setup before storage is ready. Real tasks wait for phone acceptance of local/temporary mode, confirmed writes, restart and backup recovery. Extend the accepted task slice with direct planning, Today and selected-day Week. After planning self-use, add the bounded [Android focus stage](ROADMAP.md#h--android-focus-self-use): one task-linked countdown, a manual break and a small local session list. A complete Windows release, media player or Steam listing is not required first.
 
 The maintainer has an Android phone and is willing to use the app daily; no external trial users are available. Start a two-week private use log once the safe local slice exists. Self-use can reveal defects and personal value, but not independent demand or revenue. The first build is ad-free. Android focus needs its own learner-owned timer, saving and lifecycle checks; no background guarantee exists. Desktop focus and purchase research are later work. School login authorization, application preparation and integration stay deferred. Ads wait for a useful mobile release and an ad-free usage baseline. Store-mandated testing remains separate. This route update implements no feature and closes no pending check.
 
@@ -116,7 +115,7 @@ The learner correctly explained controller lifetime across builds, TaskRow's upd
 
 In lesson 17, the learner correctly predicted the Future example's output: A and B appear first, then C after the delayed Future completes. The one-second delay is a teaching example, not a saving operation. No application code changed for this step.
 
-Next: continue lesson 17 with errors from a Future and handling them with try/catch around await. No persistence code, storage package or saving indicator has been added. Keep lesson 14's actual-window checks and the remaining checks for [lesson 11](lessons/11-theme.md), [lesson 12](lessons/12-shadcn-foundation.md) and [lesson 13](lessons/13-task-surface.md) open, along with [lesson 9](lessons/09-validation.md)'s title-validation confirmation. Lesson 10's actual-window deletion/undo flow is confirmed.
+At that point, the next exercise was handling a failed Future with try/catch around await. Keep lesson 14's actual-window checks and the remaining checks for [lesson 11](lessons/11-theme.md), [lesson 12](lessons/12-shadcn-foundation.md) and [lesson 13](lessons/13-task-surface.md) open, along with [lesson 9](lessons/09-validation.md)'s title-validation confirmation. Lesson 10's actual-window deletion/undo flow is confirmed.
 
 ### Teaching-plan revision on 2026-11-13
 

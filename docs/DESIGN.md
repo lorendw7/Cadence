@@ -137,6 +137,24 @@ Keep editable artwork separate from delivery exports. Preserve the editorial PNG
 
 Keep the same white-and-wine identity and three main destinations across desktop, phones and later Web. Share Flutter models, validation and planning rules. The first Android self-use flow includes storage, tasks, deadlines, personal plans, Today/Week, the accepted correction rules and recovery. Windows remains the development host and regression target; a complete Windows package is not a prerequisite. Adapt layout to available space, touch, keyboard and text scaling. Preserve readable dates and visible actions; do not squeeze a desktop calendar onto a phone. [FREE_EDITION.md](FREE_EDITION.md) defines platform checks and local-data limits. No subscriptions, paid capacity or feature tiers are planned. The first Android core is free and ad-free; a later desktop purchase remains a separate hypothesis. The optional Google-login sync stack is selected in [ADR-011](adr/011-optional-sync-service.md), with implementation and ads deferred until review after store launch. Do not add service controls to the current local design.
 
+### Artwork on Android and Windows
+
+Reviewed on 2026-11-18. Both platforms use the same C mark, wine actions, white surfaces, ink text, fine rules and outline icons. Keep date, deadline, work block and timer labels consistent. Use warm paper, sage, wood and soft light within illustration. The amount of illustration depends on what the person is doing.
+
+| Surface | Artwork and composition | First thing to read |
+|---|---|---|
+| Android Today, Tasks and Week | White single-column pages. Use a small line illustration for a relevant empty, recovery or error state. Keep the seven date choices above a selected-day agenda in Week. | The next time and place in Today, the task and its deadline in Tasks, or the selected date and its plans in Week. |
+| Android focus | Use a plain timer page with a large time readout and a small symbolic icon where useful. Keep the task, status and touch controls in view at large text sizes. | Task title, remaining time and the next action. |
+| Windows planner | Use the same quiet journal palette with a sidebar, wider Today layout and seven-day grid. Keep planners and editors on plain surfaces. | Date range, planned intervals and the task being edited. |
+| Windows expanded focus | Offer the existing static room beside a solid control panel when space allows. Let the warm scene set the mood while the timer and text stay on the panel. Offer a plain view with the same controls. | Existing task title, remaining time, pause and end. Keep the image visually secondary to these controls. |
+| Windows compact focus | Use a plain, compact version of the same window. Keep task, time, pause, end, mute and return readable beside another app. | The task and remaining time. |
+
+Use the [Android design board](../assets/ui/android-daily-flow.png) and [compact state artwork](../assets/ANDROID_ARTWORK.md) as phone references. The compact source canvas is 96 x 72. Check the drawn asset with real text and give priority to the message and action on short screens. For desktop expanded focus, use [Quiet Room](../assets/focus-pack/art/quiet-room.png) as the single scene candidate. Its warm paper grain, wood, notebook and window light already fit the journal identity. The [desktop release candidate](DESKTOP_V1.md) owns scene and playback scope.
+
+Review both layouts with the [same report task](REDESIGN.md#from-deadline-to-focus). On Android, check that next time and location stay easy to find with long labels and 200% text. In Windows focus, compare the illustrated and plain views. Verify that the countdown and actions stay readable with the image shown, when the window shrinks and when the image is absent. These are design checks for later builds. The board and room illustration are prepared references.
+
+Use the [focus design study](../assets/ui/FOCUS_STUDY.md) to compare a running timer, a paused timer, a confirmed record and an interruption. The Android, expanded Windows and compact Windows previews share the same task, state and action labels. The Windows scene selector compares the original and refined renderings of Quiet Room. The two supporting line illustrations use the same treatment across layouts.
+
 ## Privacy in the interface
 
 On first use, offer **Save on this device** and **Temporary use** before opening any saved planning data. Explain that local saving keeps records on this device, while temporary use keeps them in the current session and loses them on close. Do not infer a saving choice from app launch or sign-in. Label the active mode and explain any later switch, including whether an existing saved copy is kept or cleared.

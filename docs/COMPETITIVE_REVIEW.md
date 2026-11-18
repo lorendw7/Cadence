@@ -142,3 +142,29 @@ Checked on 2026-11-15 through official Steam pages. These are store-page observa
 | [Virtual Cottage](https://store.steampowered.com/app/1369320/Virtual_Cottage/) | Free base product with a focus atmosphere and separately offered music DLC; about 7,400 English reviews and 97% positive | Strong free alternative; interest in a timer does not by itself establish willingness to buy Cadence |
 
 The inference to test is a practical Windows niche: tasks, deadlines, time blocks and focus in one quiet local workflow. Wallpaper controls remain outside the first offer. Avoid assuming that a lower price alone beats established free products. Do not infer sales with a review multiplier or treat a competitor's visible success as Cadence's revenue forecast. Use [purchase validation](VALIDATION.md#desktop-demand-and-purchase-test) before expanding.
+
+### Steam focus products to compare
+
+Official store pages checked on 2026-11-18. The comparison describes the features presented on those pages. The Japanese prices below are listed base prices from the fetched pages and can change. Hands-on trials remain open.
+
+| Product | Offer shown on Steam | Question for Cadence |
+|---|---|---|
+| [Cozy Time](https://store.steampowered.com/app/2054740/Cozy_Time/) | Paid base app at JPY 350. To-do list, Pomodoro, music and a calendar that shows daily, weekly and monthly focus records. | Can people clearly tell when work is due, when they plan to do it and how much timer time they recorded? Test this before refining history charts. |
+| [Chill Pulse](https://store.steampowered.com/app/2826180/Chill_Pulse/) | Paid base app with a JPY 580 list price. Pomodoro, to-do lists and varied focus scenes with ambient sound. | Does starting a timer from an existing deadline task save effort for someone who already uses several tools? |
+| [Spirit City: Lofi Sessions](https://store.steampowered.com/app/2113850/Spirit_City_Lofi_Sessions/) | Paid base app and optional DLC. Timer, to-do list, habits, journal, music and unlockable cosmetics and creatures. | Does the plain Cadence workflow earn repeat use before adding any media? Keep the prepared scene optional and test it after the silent routine. |
+| [On Track](https://store.steampowered.com/app/2836290/) | Free base app with a timer and to-do list in a changing train scene. It offers a separate supporter add-on. | Why would a person pay for Cadence when task capture and a timer are available for free? Ask about repeated planning work and recovery needs. |
+
+These listings establish examples of paid and free focus products. They leave demand for Cadence and its Steam eligibility open. Compare against the participant's current setup too, such as a calendar, simple to-do list and phone timer. [The revised workflow](REDESIGN.md#from-deadline-to-focus) defines what to test. [Steam onboarding](https://partner.steamgames.com/doc/gettingstarted/onboarding) defines the separate category question.
+
+### Visual references for the focus screen
+
+Style descriptions are based on official store descriptions, store tags and available studio material. The live Steam galleries did not load during review. These notes describe broad visual approaches from the accessible sources.
+
+| Product | Visual approach | Design idea to test |
+|---|---|---|
+| Cozy Time | Hand-drawn 2D cartoon style with a quiet setting and selectable weather. [Steam listing](https://store.steampowered.com/app/2054740/Cozy_Time/) | A calm base scene can carry the mood alongside simple controls. |
+| Chill Pulse | Pixel art uses contrasting settings, including a cyberpunk city, an ancient landscape and a modern cabin. [Steam listing](https://store.steampowered.com/app/2826180/Chill_Pulse/) | Give the desktop focus scene a recognizable light and palette. |
+| Spirit City: Lofi Sessions | Cozy stylized rooms with an avatar and collectible creatures. Decor, lighting and idle animations help users set a mood. [Studio press kit](https://mooncubegames.com/home/spirit-city-lofi-sessions-press-kit/) | Treat the Windows focus view as a place a person can settle into. Keep Cadence's room static and its controls on a readable panel. |
+| On Track | Stylized 3D train interior with changing scenery outside the window. [Steam listing](https://store.steampowered.com/app/2836290/On_Track/) | One clear setting can communicate the character of a focus product. |
+
+Cadence can test an optional illustrated focus view alongside a plain planner. Its existing room and Android state illustrations already support the distinct surfaces described in the [design system](DESIGN.md#artwork-on-android-and-windows).

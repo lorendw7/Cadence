@@ -1,8 +1,10 @@
 # Android daily-use design
 
-Updated: 2026-11-16. This is a design specification and review brief. It adds no application behavior. Saving and the complete planning flow remain unimplemented; [LEARNING.md](LEARNING.md) owns current evidence. [PRODUCT.md](PRODUCT.md) owns scope, [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) owns control behavior, and [ROADMAP.md](ROADMAP.md) owns delivery gates.
+Updated 2026-11-18. This is the design for the planned Android experience. Saving and the complete planning flow remain unimplemented. [Current app evidence](LEARNING.md), [product scope](PRODUCT.md), [control behavior](UI_ARCHITECTURE.md) and [delivery gates](ROADMAP.md) each have a separate owner.
 
 The [static design board](../assets/ui/android-daily-flow.png) shows Today, Tasks and Week with the same fictional records. Its [SVG](../assets/ui/android-daily-flow.svg) is editable. It is not a screenshot from an Android build or material ready for a store listing. The earlier [interactive planner study](../assets/ui/PLANNER_STUDY.md) retains its own fixture and limits.
+
+The [focus design study](../assets/ui/FOCUS_STUDY.md) extends the report fixture to later countdown and timer-record states. It compares the compact phone layout with the Windows designs and preserves the same task, state meanings and controls that apply to each platform.
 
 ## The reason to try Cadence
 
@@ -54,6 +56,21 @@ Keep Open and Completed separate. In Open, retain the existing Overdue, Due toda
 Each task needs separate completion, title/details and actions targets. The board draws small symbols, but each real target must have enough space. A long title wraps and increases the row height. The actions menu can expose Delete and Create work plan without requiring swipe or hover. Existing latest-delete undo remains available.
 
 After capture, identify the result and retain the originating page. Do not give an undated task a Today deadline to make it appear in the daily list. Any newly entered task must be discoverable in Tasks. Keep a failed draft and the last confirmed list distinct.
+
+#### Capture a title from a filtered list
+
+Todoist Quick Add starts in the task name field and lets a person reveal a description. Cadence can use that short entry path. Keep words that sound like dates in the title. For example, entering `Ask about Friday` should leave Deadline empty until the person chooses one. [Todoist Quick Add](https://www.todoist.com/help/todoist/features/use-task-quick-add-in-todoist-va4Lhpzz)
+
+Use the board's three open tasks and zero completed tasks. In the planned local-saving mode, open Completed and choose New task. Enter `Ask about Friday` while the keyboard is open. The following design lets the person tell a failed attempt from a successful addition that falls outside their filter.
+
+| Moment | What the person sees or can do | What to check |
+|---|---|---|
+| Entry | Title has focus. Save is reachable with the keyboard open. Deadline and notes stay under the details control. | The words remain intact. The person can submit without opening details or dismissing the keyboard. |
+| Slow write | The editor stays open with a saving status beside the primary action. | A second press cannot submit another copy. Open still has three confirmed tasks. |
+| Failed write | A message beside the action explains that saving failed. Retry is reachable with the full title still in the field. | No retyping, no success message and no change to either list. |
+| Retry succeeds | Return to Completed. Show the local save result and offer **View task**. The empty Completed list still describes its own filter. | Open now has four tasks. View task reaches the new task with its full title and no deadline. |
+
+For the native review, try the same path with TalkBack, Android's screen reader. The user should hear the error, reach Retry, then find the added task even if they miss the success message. The normal route through Open and No date stays available. Use the existing timed benchmark for an ordinary successful capture. Keep the failed-write rehearsal separate so a fast attempt cannot mask lost input. [Android workflow benchmark](VALIDATION.md#android-workflow-benchmark)
 
 ### Week: make the chosen date unmistakable
 

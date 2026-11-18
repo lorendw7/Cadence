@@ -82,6 +82,8 @@ The reference provider has a minimum contract term; review the actual region, pr
 
 Track storage, queries, traffic, backups and support time. Review actual cost against the budget monthly. Use transparent admission and common quota rules to keep the pilot bounded. If cost cannot stay within the agreed budget, pause new admissions or end the pilot with export and local-use guidance. Do not silently delete records, force ads or promise unlimited hosting. An alert does not enforce a hard spending cap.
 
+On 2026-11-18, the maintainer selected the optional sync phase as the first planned live Android ad pilot. Apply collected mobile publisher receipts to cloud operating costs first. Before launch, agree how much cash can cover the dated pilot, backups and shutdown even if receipts are zero or delayed. Keep sign-in, sync and common quota rules independent of ad consent and ad delivery. [The cost coverage model](VALIDATION.md#cloud-cost-coverage-with-the-review-banner) uses the existing review placement.
+
 ## Capacity and delivery gates
 
 There is no verified supported-user count. Use **1,000 daily active sync users as the first load-test target**, not as a release claim. With the unmeasured assumptions of 100 HTTP requests per user per day and a peak 20 times the full-day average, that is 100,000 requests per day, about 1.16 requests per second on average and 23 at the assumed peak. Request size, records per batch, retained history and backups can change the actual load.

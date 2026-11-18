@@ -2,7 +2,9 @@
 
 ## Current standalone exercise
 
-[Lesson 17: await and errors](../docs/lessons/17-await-errors.md) uses a [console exercise](17_async_errors/await_errors.dart). The assistant provides the fake operation and driver; the learner writes showTitle. It does not change the Flutter app, whose entry remains lib/main.dart, and it is not an active flutter test file.
+[Lesson 18](../docs/lessons/18-async-cleanup.md) uses the [cleanup exercise](18_async_cleanup/async_cleanup.dart). The assistant supplies the reader and driver. The learner writes `tryReadTitle`. Run the exercise with Dart from the repository root.
+
+The reader reuses the fake operation from the [lesson 17 console exercise](17_async_errors/await_errors.dart). Both exercises run separately from the Flutter app and its tests. [Lesson 17 record](../docs/lessons/17-await-errors.md)
 
 ## Historical templates
 

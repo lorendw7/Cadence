@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadence focus design study</title>
+  <link rel="icon" href="../brand/cadence-icon-v2.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="focus-study.css">
+  <script src="focus-study.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="intro">
+      <div class="brand">
+        <img src="../brand/cadence-icon-v2.svg" alt="" width="28" height="28">
+        Cadence
+      </div>
+      <h1 data-copy="title">Focus design study</h1>
+      <p data-copy="intro">Compare the same fictional task on Android and Windows. Controls inside the previews are examples.</p>
+    </header>
+
+    <form class="review">
+      <label>
+        <span data-copy="state">Session state</span>
+        <select id="state">
+          <option value="running" data-copy="running">Running</option>
+          <option value="paused" data-copy="paused">Paused</option>
+          <option value="recorded" data-copy="recorded">Record saved</option>
+          <option value="interrupted" data-copy="interrupted">Interrupted</option>
+        </select>
+      </label>
+      <label>
+        <span data-copy="room">Windows scene</span>
+        <select id="room">
+          <option value="study" data-copy="refined">Refined room</option>
+          <option value="original" data-copy="original">Original room</option>
+          <option value="plain" data-copy="plain">Plain</option>
+        </select>
+      </label>
+      <label>
+        <span data-copy="scale">Sample text</span>
+        <select id="scale">
+          <option value="normal">100%</option>
+          <option value="large">200%</option>
+        </select>
+      </label>
+      <label>
+        <span data-copy="lang">Preview language</span>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="ja" lang="ja">日本語</option>
+          <option value="zh-Hans" lang="zh-Hans">简体中文</option>
+        </select>
+      </label>
+    </form>
+
+    <noscript><p>Enable JavaScript to change the fictional review samples.</p></noscript>
+    <div class="samples" id="samples" data-scale="normal" data-state="running">
+      <section class="phone-example" aria-labelledby="phone">
+        <h2 id="phone" data-copy="android">Android</h2>
+        <div class="window phone" data-preview>
+          <div class="window-bar"><span data-copy="return">‹ Return to task</span><span data-copy="focus">Focus</span></div>
+          <div data-panel></div>
+        </div>
+      </section>
+
+      <section class="desktop-example" aria-labelledby="windows">
+        <h2 id="windows" data-copy="windows">Windows · Expanded</h2>
+        <div class="window desktop" data-preview data-room="study">
+          <div class="window-bar"><span data-copy="return">‹ Return to task</span><span data-copy="compact">Compact view</span></div>
+          <div class="desktop-body">
+            <figure class="scene"><img id="scene" src="focus-art/quiet-room-study.png" alt="" width="1536" height="1024"></figure>
+            <div data-panel></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="compact-example" aria-labelledby="compact">
+        <h2 id="compact" data-copy="windowsCompact">Windows · Compact</h2>
+        <div class="window compact" data-preview>
+          <div class="window-bar"><span data-copy="focus">Focus</span><span data-copy="return">‹ Return to task</span></div>
+          <div data-panel></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <template id="panel">
+    <div class="panel">
+      <header class="task">
+        <p class="context" data-copy="current">Current task</p>
+        <h3 data-copy="task">Send the report</h3>
+        <p class="deadline" data-copy="due">Due Fri, 13 Nov · 17:00</p>
+      </header>
+      <div class="readout">
+        <img class="state-art" alt="" width="96" height="72" hidden>
+        <div class="measure">
+          <span class="clock" dir="ltr">18:42</span>
+          <span class="measure-label" data-copy="remaining">Remaining</span>
+        </div>
+      </div>
+      <p class="state-label"><span class="state-dot"></span><span data-field="label"></span></p>
+      <p class="detail" data-field="detail"></p>
+      <div class="actions">
+        <span class="example-action primary" data-field="primary"></span>
+        <span class="example-action secondary" data-field="secondary"></span>
+        <span class="example-action mute" data-copy="mute">Mute</span>
+      </div>
+    </div>
+  </template>
+</body>
+</html>

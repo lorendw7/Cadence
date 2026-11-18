@@ -57,6 +57,27 @@ Decisions after each review:
 - Review a [later competitive gap](PRODUCT.md#competitive-gaps-to-review-later) when the private log shows the same costly workaround on at least three separate days, or a serious missed commitment needs investigation. This is a proposed prioritization rule, not automatic scope approval.
 - Claim a measured benefit only for the people, builds and routines actually compared. If Cadence provides no useful improvement, narrow the target or revise the flow before expanding spending or features.
 
+### Compare one routine
+
+Use the [report example](REDESIGN.md#from-deadline-to-focus) and the [existing timing and recovery checks](#android-workflow-benchmark). Start with the shortest slice that works on the phone. Log any missing step and compare that step once it exists. This study is a product improvement tool. The roadmap still owns the safety and release gates.
+
+1. Give the same job to the maintainer in Cadence and in their current setup. For planning, start on a ready screen with the same fictional appointments and report deadline. Ask them to find the next commitment, reserve work time and move the work block. When the timer is ready, also start focus and identify what was recorded. Use a similar example with changed dates on a second attempt to reduce memory effects.
+2. Note the first point of friction, any wrong dates, repeated entry, tool switches and requests for help. Ask the person to say which date changed and which record was saved. Keep the existing speed targets as usability checks. Record failed cases separately.
+3. Select one change from the evidence. If the setup repeats, improve the draft and its return path. If dates are confused, clarify the labels and placement. If a confirmed record is lost, fix recovery before spending time on speed. Verify the same scenario after the change and record the result in the existing log.
+
+Use the same fixture across Android and Windows for shared rules. Check Android Back and files, Windows keyboard and window resizing, and each target's interruption behavior on that target. Reuse automated cases for shared logic. Self-use supports design decisions. External demand remains open until independently tested.
+
+At the quality review, use the following standards for the included routine:
+
+| Area | Standard to demonstrate |
+|---|---|
+| Correctness | No false saved result, wrong selected date, unexpected deadline change or loss of a confirmed record in the tested routine. |
+| Usability | The person can finish the same job without help. Task capture and Today lookup meet their existing internal targets. Date or plan edits preserve enough context to continue. |
+| Comparison | Record actions, elapsed time and errors for the same included job in the person's other tools. Describe a gain only where the results show one. If another tool omits a step, report that difference. |
+| Native quality | Core operations remain reachable with large text and the appropriate input method. The exact installed build passes recovery on the tested platform. |
+
+Treat this as a comparison of the chosen routine. Device coverage, feature breadth and market demand require their own evidence.
+
 ## Desktop demand and purchase test
 
 The bounded later desktop candidate is in [DESKTOP_V1.md](DESKTOP_V1.md); it does not gate Android self-use. This section retains conditional commercial study checkpoints. [STEAM_SALES_PLAN.md](STEAM_SALES_PLAN.md) owns cost scenarios. Ten independent retained purchases is a later commercial learning milestone, not a condition for developing the phone planner. Larger sales numbers remain unvalidated. No sample below establishes a population conversion rate.
@@ -83,11 +104,19 @@ The studies below are conditional research plans for when participants are avail
 6. Seek ten independent retained purchases after known refunds before expanding commercial scope. Record acquisition source, actual receipts and support minutes, including help given to refunded buyers. Friends buying to help are different evidence from customers buying for use. Later refunds can revise the count. This milestone does not establish lifetime cost recovery.
 7. If people cannot understand the concept, revise its hierarchy. If they do not return, repair or narrow the routine. If they return but do not buy, study the offer, alternatives and price. If support consumes proceeds, fix maintenance cost before paid acquisition or commercial platform expansion. Android validation remains allowed in its existing sequence; do not count the same hours twice.
 
+### Compare the silent workflow
+
+Use this comparison within the early Windows trial once a safe build exists. Give the participant the same goal in Cadence and in the tools they normally use. Use fictional tasks with equivalent dates, so they do not need to disclose real records. Alternate which setup goes first when possible. Start with the [report workflow](REDESIGN.md#from-deadline-to-focus), then ask for a quick focus start on an undated task. Use Cadence's plain view with sound off.
+
+Record whether the participant can find the deadline, place and move a work block, start focus without retyping the title, and find the session record. Count navigation between apps, repeated entry, wrong dates and requests for help. Ask which approach they would use for their next deadline and why. Record recurring use in the existing two-week trial. A quicker first attempt alone does not establish demand.
+
+Use the observed failure to choose the next change. If time meanings are confused, repair the labels and placement. If people keep switching tools, ask which missing step drives the switch. If they prefer only the scene, keep its appeal as a separate finding. Use the same report routine when later testing the complete offer with music and the room.
+
 ### Affordable desktop offer
 
 Sell a complete bounded local workflow: tasks/deadlines, readable Today/Week, direct time blocks, a task-linked countdown, compact mode, local session review and safe backup. Keep the academic-journal identity. The demo must show the task context continuing from planning through focus and review. Wallpaper Engine is deferred and must not appear as a first-release feature. Do not promise generic compatibility, verified attention tracking or automatic task completion.
 
-The first offer reuses the existing static room image and accepted tracks from the 12-piece synthetic study pack under [DESKTOP_V1.md](DESKTOP_V1.md). Daily pins and title search support the routine. Ambient mixing, extra themes/scenes, count-up and saved profiles are deferred. No fal recharge or new paid generation is scheduled. Prepared files are not proof of sound quality or app readiness; test the combined routine and listening comfort.
+The first offer reuses the existing static room image and accepted tracks from the 16-piece synthetic study pack under [DESKTOP_V1.md](DESKTOP_V1.md). Daily pins and title search support the routine. Ambient mixing, extra themes and scenes, count-up and saved profiles are deferred. Check listening comfort and the combined routine in the working package.
 
 Use low recurring costs to support a low price: no required server, accounts, licensed music catalogue, 3D world, pet economy, school API or cloud AI in the first offer. Do not promise unlimited future content or permanent cloud hosting for a small one-time payment. Do not cut recovery, accessibility or honest support to lower the sticker price.
 
@@ -98,7 +127,7 @@ A lower price is useful only if it improves total contribution after costs. If c
 ### Steam presentation and acquisition
 
 - Use the opening image and short description to explain one job: plan today's work and enter a focus session. Do not lead with a long feature list or conditional school access.
-- Open a short video with the same task: select it, start focus directly, switch to compact mode, then review. Show a deadline and optional Week reservation as context, not prerequisites. Make the benefit visible within about 30 seconds. Use fictional data and label every concept-only scene.
+- Use the [30-second report demonstration](REDESIGN.md#planning-to-focus-design-review). Keep the same task visible from deadline to focus and confirmed session record.
 - Let a trial or demo reach useful behavior within about five minutes where the channel supports it. Do not delay value or encourage idle running to exhaust refund eligibility. [Steam's refund policy](https://store.steampowered.com/steam_refunds/) includes software applications; follow actual terms and local requirements.
 - Reuse the existing website and localized Japanese/English/Chinese store material. Test small, relevant communities or creator demonstrations with permission. Do not send messages, pay for placement or publish from this plan. Track source-specific visits and outcomes using allowed aggregate reporting, not private planner content.
 - Keep artwork and music rights reviewable. Do not advertise Wallpaper Engine support in the first offer; if introduced later, state its ownership requirements and avoid implying an official partnership.
@@ -199,6 +228,19 @@ For a separate sensitivity case, allow just 0.5 support hours per month for ever
 Use average active users during the recovery period. Reaching 30,972 DAU only in month 24 does not meet the fixed-cost example. A roughly linear rise from zero would need about twice that ending audience to obtain the same period average. Additional past hours, longer development, user loss and paid acquisition increase the requirement. Do not count a future audience or estimated ad balance as money available to fund development.
 
 Before increasing investment, replace reach, request frequency, eCPM and support cost with observed values. If contribution per active user is weak or negative, improve the useful routine and operating cost before pursuing more installs. A low-distraction ad model may cover modest cash expenses yet fail to repay development time.
+
+### Cloud cost coverage with the review banner
+
+The 2026-11-18 plan pairs the first live Android ad pilot with optional personal sync. Use the [existing review-screen assumptions](#review-screen-ad-pilot). At an assumed publisher eCPM of JPY 150, the one-request example returns JPY 0.486 per average Android daily active user (DAU) per month. The combined example returns JPY 1.1664. DAU is the average daily active Android audience, including people who do not open review. The combined example depends on more voluntary review visits and qualifying second requests.
+
+| Monthly cash to cover | One-request example | Combined example |
+|---|---:|---:|
+| JPY 2,500 for the personal sync budget | 5,145 average Android DAU | 2,144 average Android DAU |
+| JPY 3,500 if JPY 1,000 of separate app cash costs also applies | 7,202 average Android DAU | 3,001 average Android DAU |
+
+Divide the monthly cash target by publisher revenue per average DAU and round up. At 1,000 DAU the one-request example covers JPY 486 of JPY 2,500, leaving JPY 2,014 per month to fund. These are planning examples before support time, development and tax. The combined example is a sensitivity test. Start planning with the more cautious case and replace both rates with measured results when available.
+
+Agree on a pilot budget that survives zero receipts, payment delays and an orderly export and shutdown. Prefer cash actually received when deciding what to spend. Apply receipts to recurring cloud costs first. Track any remaining contribution against other cash and development time separately. If the pilot falls short, hold admission or reconsider the service budget under [the sync plan](CLOUD_SYNC.md#deployment-and-operating-budget). Preserve local use, common quotas and the same ad placement limits.
 
 ### Illustrative monthly operating model
 

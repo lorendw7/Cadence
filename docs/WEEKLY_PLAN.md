@@ -1,14 +1,14 @@
 # Weekly plan for the first Android version
 
-Prepared: 2026-11-15. Status: a proposed work schedule, not completed lessons or a release date. This document adds no application code. [ROADMAP.md](ROADMAP.md#first-public-version-and-later-competitive-quality) owns scope and release gates. [CURRICULUM.md](CURRICULUM.md#division-of-work) owns the teaching boundary. [LEARNING.md](LEARNING.md#current-learning-checkpoint) remains the only current progress record.
+Prepared on 2026-11-15 and revised on 2026-11-18. This is a proposed work schedule. [ROADMAP.md](ROADMAP.md#first-public-version-and-later-competitive-quality) owns scope and release gates. [CURRICULUM.md](CURRICULUM.md#division-of-work) owns the teaching boundary. [LEARNING.md](LEARNING.md#current-learning-checkpoint) records actual progress.
 
 ## Starting point and weekly capacity
 
-Start from lesson 17 and the existing in-memory task app. Native paste confirmation is pending. Saving, plans, Today, Week and focus are not implemented. An Android debug APK exists, but device launch, storage and lifecycle acceptance must be recorded separately. Do not repeat accepted lessons or rebuild finished tooling without a reason.
+Start from lesson 18 and the existing in-memory task app. The learner confirmed an exact Windows paste in lesson 17. Saving, plans, Today, Week and focus are planned. An Android debug APK exists. Device launch, storage and lifecycle acceptance still need their own results.
 
-Use **25 reference weeks at 13 hours each** as one working scenario within the available 10-15 hours per week. Each reference week has **10 planned hours and 3 reserve hours**. The total is **250 base hours plus 75 reserve hours, or 325 hours**. Reserve is 30% of base effort and is already included; do not add another 30% to this schedule.
+Use **25 reference weeks at 13 hours each** as the existing project scenario. Each reference week has **10 planned hours and 3 reserve hours**. The total is **250 base hours plus 75 reserve hours, or 325 hours**. This estimates delivery effort across the whole project. Use the short study week below for the learner's own schedule.
 
-Week numbers are relative work slots, not calendar commitments. Week 1 starts when the maintainer resumes this work. At 10 hours per week, 325 hours takes about 33 working weeks; at 15 hours, about 22. Dependencies, the two full weeks of planning self-use and external waiting still apply. Do not compress those observation periods just to match an hours calculation. The roadmap's broader first-version range of 215-364 hours remains the uncertainty range; this is one allocation inside it.
+Week numbers are reference work slots. Week 1 starts when the maintainer resumes this work. A combined pace of 10 project hours per week would take about 33 working weeks. A pace of 15 would take about 22. Calendar time depends on the actual split of work, dependencies, two weeks of planning self-use and outside waits. The roadmap's broader first-version range of 215-364 hours remains the uncertainty range.
 
 | Use of a reference week | Planned hours | What counts |
 |---|---:|---|
@@ -18,7 +18,22 @@ Week numbers are relative work slots, not calendar commitments. Week 1 starts wh
 | Record evidence and prepare the next step | 1 | Actual hours, result, unresolved checks, meaningful diff and next dependency |
 | Reserve | 3 | Debugging, repeated practice, device trouble or missed acceptance; not extra feature scope |
 
-This split is a guide, not a requirement to stop useful practice at a fixed minute. Count the maintainer's learning, review and verification time in the same weekly budget. Assistant support does not create another full developer's capacity. A tool running unattended is not an extra hour of learner practice. In a 10-hour week, carry work forward rather than deleting its tests or reserve. In a 15-hour week, use spare capacity for the current slice's evidence before advancing.
+The table is a project reference allocation. Log time spent on learner work and assistant-supported work separately. Unattended tool time is separate from hands-on practice. Carry work forward when a dependency or check needs more time.
+
+## Short study week
+
+Try this for the next two weeks of work. Use one current [working path](CURRICULUM.md#study-through-real-features) and one new idea at a time. Treat the ranges as planning aids.
+
+| Learner time | Work |
+|---|---|
+| 60-90 minutes | Predict the outcome, then write one complete small function, widget or rule. |
+| 60-90 minutes | Try one changed input or failure, diagnose the result and explain how the behavior follows from the code. |
+| 30-45 minutes | Trace the part you changed and explain the result. The assistant brings the relevant diff and records the next dependency. |
+| Up to 45 minutes when needed | Perform a native check that needs the owner's phone or actual window. |
+
+The full example uses **2.5 to 3.75 hours of regular hands-on time**, plus a native check when needed. Split the blocks into short sessions. With only 20 minutes, open the current checkpoint, predict one outcome and do the smallest pending check or core edit. Leave a partly understood case open for next time. When one change already demonstrates a familiar skill, the assistant can carry that pattern through the other controls.
+
+The assistant prepares the next example and its expected behavior, handles test setup, repeated wiring and checks, and leaves one short review summary. The learner explains or changes the representative code and makes the important decisions. After two study weeks and again after the first confirmed save and recovery, compare the actual hands-on time and learning evidence. Recover the time spent on repeated setup first. The 325-hour scenario remains a delivery estimate until the project has measured evidence for a revision.
 
 ## Ownership and dependency rules
 
@@ -36,7 +51,7 @@ Each row budgets 10 base hours plus 3 reserve hours. Stage splits allocate those
 
 | Week and base allocation | Goal and dependency | Learner implements or confirms | Assistant can help with | Observable acceptance |
 |---|---|---|---|---|
-| 01: A 7 + D 3 | Finish the current checkpoint; introduce cleanup. Depends on the existing lesson 17 code. | Paste a copied title into another app and compare it. Write the small finally exercise from lesson 18 and explain both paths. Operate the phone for the fictional launch check. | Prepare success/failure examples; troubleshoot the existing debug install; record actual device and remaining manual checks. | Exact pasted text is confirmed. Cleanup runs after success and failure without false success. Record phone launch as passed or blocked, separately from saving. |
+| 01: A 7 + D 3 | Learn cleanup after an awaited operation. Builds on the confirmed Windows clipboard check. | Write the small finally exercise and explain both paths. Operate the phone for the fictional launch check. | Provide the exercise driver and verify the caller. Help with the existing debug install and record the phone result. | Cleanup runs once after each outcome and the caller reports the correct result. Record the phone launch outcome and device. |
 | 02: A 8 + D 2 | Make pending and late results understandable. Depends on week 01's async explanation. Lessons 19-21. | Write a failure assertion, pending/success/error transitions and the first lifetime guard in a fictional operation. Explain its State/controller owner. | Supply a controllable fake, broader duplicate/late-result cases and repeated feedback wiring. | Repeated taps do not start duplicate work; a late result cannot update a disposed owner. No fake operation is labelled real saving. |
 | 03: A 10 | Introduce durable task identity and the saving choice. Depends on week 02. Lessons 22-24. | Map one task, define a bounded SQL table/query, and decide whether a saved workspace may be opened. | Set up only the now-needed storage adapter, generated bindings and fixtures under the learner's contract. | A task ID survives a controlled round trip. Temporary startup does not open an existing private database. The learner explains the stored fields. |
 | 04: A 8 + D 2 | Save and reload one task. Depends on week 03. Lessons 25-26. | Write the first confirmed-write caller and loading states; distinguish empty data from failed loading. | Extend reviewed mappings and error fixtures; prepare phone restart and write-failure checks. | A confirmed added task survives phone restart. Failed writing retains input and old data; failed loading is not shown as an empty list. |

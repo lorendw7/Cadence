@@ -70,9 +70,20 @@ TextEditingController holds input text. Store it in State so rebuilds reuse it. 
 
 trim returns a new string without leading and trailing whitespace. It does not edit the field. Keep failed input, show an error, and return from the outer submission callback before creating a task.
 
-## Async work, later
+## Reading an async callback
 
-Future<T> represents one result or error that may arrive later. async/await lets code wait without blocking the event loop. Stream<T> can deliver a sequence of values or errors; it is not a Future that repeatedly completes.
+Find `copyTaskTitle` and its `onCopy` caller in the [teaching entry](../lib/main.dart). Read the function that copies the title first, then read the callback that shows the result.
+
+| Code in the copy action | What to read it as |
+|---|---|
+| `Future<bool>` | The caller will eventually get a yes or no if the function completes normally. In this function a caught clipboard error produces false. |
+| `await Clipboard.setData(...)` | Wait here for the clipboard operation. Flutter can keep handling other events. A reported error takes execution to the catch block. |
+| `final copied = await copyTaskTitle(task)` | The callback waits for the answer before choosing the message. |
+| `context.mounted` | This tells the callback whether its place in the widget tree still exists. A page can close during the wait. Check before using that context to show feedback. |
+
+If the wrong message appears, first check the value of `copied`. If that value is correct, look at the message choice. For a result that arrives after the page closes, trace the early return. The test controls when the clipboard call finishes so these paths can be checked separately. [Copy tests](../test/task_copy_widget_test.dart) and [Flutter context lifetime](https://api.flutter.dev/flutter/widgets/BuildContext/mounted.html)
+
+A `Future<T>` completes once with a value or an error. For an ongoing sequence of events, Dart also has `Stream<T>`. One clipboard write needs one completion.
 
 Introduce shared-state and database libraries only when the lessons need them. drift is planned for saving. Riverpod is optional if ordinary Flutter state sharing becomes hard to maintain. Their generated APIs and commands must be checked against the version introduced at that time.
 

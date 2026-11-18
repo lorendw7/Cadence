@@ -1,6 +1,8 @@
 # Lesson 17: await and errors
 
-Status: prepared and reviewed on 2026-11-13. The learner implemented the console caller, clipboard action and guarded SnackBar feedback. Automated behavior checks pass, and the learner correctly explained the post-await lifetime check. The learner confirmed seeing feedback after copying in the actual window. Pasting the exact title into another application remains unconfirmed. The original console start/end messages remain absent. Current progress belongs in [LEARNING.md](../LEARNING.md).
+To resume, open the [current checkpoint](../LEARNING.md#current-learning-checkpoint). For a syntax reminder, use the [guided reading of the copy callback](../DART_GUIDE.md#reading-an-async-callback).
+
+This note keeps the original exercise and its reviews on 2026-11-13. The learner implemented the console caller, clipboard action and guarded SnackBar feedback, explained the lifetime check and confirmed seeing the message in the actual window. The original console start and end messages remained absent.
 
 ## Goal
 
@@ -34,9 +36,7 @@ From the repository root:
 dart lessons/17_async_errors/await_errors.dart
 ```
 
-Before the learner completes showTitle, the driver prints only its two scenario labels. That is preparation evidence, not lesson completion.
-
-Preparation checks on 2026-11-13: formatting, targeted analysis and the unfinished driver passed using the installed Dart 3.12.2 executable at D:/Software/Flutter/flutter/bin/cache/dart-sdk/bin/dart.exe. The PATH dart wrapper produced no output and was stopped in this session. Repository documentation and diff checks passed. The learner's caller has not been tested because it is still empty; no Flutter tests or native builds ran.
+During preparation on 2026-11-13, the empty caller produced only the driver's two scenario labels. Formatting, targeted analysis and the unfinished driver passed with Dart 3.12.2 at D:/Software/Flutter/flutter/bin/cache/dart-sdk/bin/dart.exe. The PATH wrapper produced no output and was stopped. Repository documentation and diff checks passed. Flutter tests and native builds were outside that preparation run. Later, the [caller review](../LEARNING.md#lesson-17-caller-review-on-2026-11-13) recorded the learner's actual output.
 
 ## Review
 
@@ -73,3 +73,7 @@ References: [BuildContext.mounted](https://api.flutter.dev/flutter/widgets/Build
 The learner's messages and post-await guard are correct. The assistant removed the remaining debug print and updated tests to assert the visible SnackBar. All 39 tests pass, including six clipboard cases covering both outcomes, pending work, page removal and deletion of one task while waiting. Existing task behavior still passes its regressions. No native paste, actual-window visual inspection or new Windows build was performed.
 
 Correction to the earlier explanation: the itemBuilder context belongs to the SliverList element, not each built row. Deleting one row does not necessarily unmount that context. The mounted guard prevents use of a removed context; it does not test whether a task still exists or cancel a copy already in progress. The initial row-removal test assumed otherwise and was corrected after inspecting the installed Flutter source. Whole-page removal correctly suppresses feedback.
+
+### Windows paste check on 2026-11-18
+
+The learner copied a task title from the Windows app, pasted it into Notepad and reported an exact match. This completes the Windows clipboard check. The earlier console exercise keeps its recorded output. [Current progress](../LEARNING.md#current-learning-checkpoint)

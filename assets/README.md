@@ -8,6 +8,8 @@ The [Android daily-use board](ui/android-daily-flow.png) is a separate static de
 
 The [focus media pack](focus-pack/README.md) contains 16 synthetic instrumental studies, three cues, editable scores, 16 vector covers and one room illustration. Four Slow Pages additions use sparse phrases and a quieter target level. Use its [local listening catalogue](focus-pack/index.html) and separate [manifest](focus-pack/manifest.json). It is prepared content, not an implemented player or a complete scene library. Human listening and distribution checks remain pending.
 
+The [focus design study](ui/FOCUS_STUDY.md) compares Android, expanded Windows and compact Windows with the same sample. Its separate [study art manifest](ui/focus-art/manifest.json) holds the refined rendering of Quiet Room and two compact timer-record illustrations. The study keeps the existing runtime candidates in their original locations.
+
 ## Visual direction
 
 Keep the original C mark and its rhythm dot. Use muted wine `#7C394B`, warm paper `#F6F5F1`, sage `#6F877C` and ink `#2F3033`. Interface icons use a 24 × 24 grid with 1.75-unit round strokes. Sparse illustrations support guidance and empty states. Keep text, forms and timelines on plain surfaces.

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 72" width="96" height="72" role="img" aria-label="Timer record saved">
+  <g fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="22" y="9" width="48" height="50" rx="5" fill="#FFFFFF" stroke="#87838A"/>
+    <path d="M29 9v50m8-36h25M37 33h19M37 43h11" stroke="#87838A"/>
+    <circle cx="70" cy="50" r="13" fill="#F5EEF0" stroke="#7C394B"/>
+    <path d="m65 50 3 3 6-6" stroke="#7C394B"/>
+    <path d="M18 66h60" stroke="#E8E8EB"/>
+  </g>
+</svg>

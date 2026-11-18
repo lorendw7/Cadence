@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f5f1;
+  --ink: #2f3033;
+  --muted: #6b6b70;
+  --wine: #7c394b;
+  --wash: #f5eef0;
+  --rule: #e8e8eb;
+  --edge: #d4cfd2;
+  font: 100%/1.5 system-ui, "Yu Gothic", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100% - 2rem, 77rem); margin: 0 auto; padding: 2.25rem 0 3.5rem; }
+img { display: block; max-width: 100%; }
+p, h1, h2, h3, figure { margin: 0; }
+
+.intro { margin-bottom: 1.3rem; }
+.brand { display: flex; gap: .65rem; align-items: center; color: var(--wine); font: 1.35rem Georgia, serif; }
+h1 { margin: .65rem 0 .3rem; font: 400 clamp(1.85rem, 4vw, 3.15rem)/1.15 Georgia, "Yu Mincho", "SimSun", serif; }
+.intro p { color: var(--muted); }
+
+.review {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.15rem;
+  padding: .9rem 0 1.1rem;
+  border-block: 1px solid var(--edge);
+  margin-bottom: 1.2rem;
+}
+.review label { display: grid; min-width: 0; gap: .25rem; font-size: .8125rem; font-weight: 600; }
+select {
+  padding: .35rem .7rem;
+  max-width: 100%;
+  min-height: 2.6rem;
+  min-width: 7rem;
+  border: 1px solid #87838a;
+  border-radius: .4rem;
+  font: inherit;
+  background: white;
+  color: var(--ink);
+}
+select:focus-visible { outline: 2px solid var(--wine); outline-offset: 3px; }
+
+.samples { display: grid; grid-template-columns: minmax(15rem, .75fr) minmax(0, 2fr); gap: 1.15rem; }
+.samples > section { min-width: 0; }
+.samples h2 { font-size: .875rem; margin-bottom: .55rem; font-weight: 650; }
+.phone-example { grid-row: span 2; }
+.window { min-width: 0; background: #fff; border: 1px solid var(--edge); border-radius: .8rem; overflow: hidden; }
+.window-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .35rem .7rem;
+  min-height: 2.75rem;
+  padding: .55rem .95rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: .8125rem;
+  color: var(--muted);
+}
+.window-bar span:first-child { color: var(--wine); }
+.desktop-body { display: grid; grid-template-columns: minmax(0, 1.47fr) minmax(14rem, 1fr); }
+.scene { position: relative; min-height: 100%; background: #e5d5bf; }
+.scene img { position: absolute; width: 100%; height: 100%; inset: 0; object-fit: cover; object-position: 57% 50%; }
+.desktop[data-room="plain"] .desktop-body { grid-template-columns: minmax(0, 24rem); justify-content: center; }
+.desktop[data-room="plain"] .scene { display: none; }
+
+.panel {
+  --panel-scale: 1;
+  display: grid;
+  justify-items: center;
+  gap: .6em;
+  padding: 1.15em 1.25em 1.35em;
+  text-align: center;
+  font-size: calc(.9375rem * var(--panel-scale));
+  overflow-wrap: anywhere;
+}
+.samples[data-scale="large"] .panel { --panel-scale: 2; }
+.context { color: var(--wine); font-size: .8em; font-weight: 650; }
+.task h3 { font-size: 1.18em; line-height: 1.25; margin: .22em 0; }
+.deadline, .detail { color: var(--muted); font-size: .85em; }
+.readout {
+  min-width: 0;
+  min-height: 7.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .65em;
+  margin-top: .3em;
+}
+.measure {
+  display: grid;
+  place-content: center;
+  min-width: clamp(5.3rem, 8.25em, 9.5rem);
+  aspect-ratio: 1;
+  padding: .4em;
+  border: 2px solid var(--wash);
+  border-top-color: var(--wine);
+  border-radius: 50%;
+}
+.clock { font-size: 2.45em; font-weight: 540; font-variant-numeric: tabular-nums; letter-spacing: -.04em; line-height: 1.1; white-space: nowrap; }
+.measure-label { color: var(--muted); font-size: .72em; }
+.state-label { display: flex; gap: .42em; align-items: center; color: var(--wine); font-size: .85em; font-weight: 650; }
+.state-dot { border: 1px solid currentColor; width: .45em; height: .45em; border-radius: 50%; flex: none; }
+.samples[data-state="running"] .state-dot { background: var(--wine); }
+.samples:is([data-state="recorded"], [data-state="interrupted"]) .measure {
+  aspect-ratio: auto;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+.state-art { width: 4.65rem; height: auto; }
+[hidden] { display: none !important; }
+.detail { max-width: 30ch; min-height: 2.7em; }
+.actions { display: flex; flex-wrap: wrap; gap: .4em; justify-content: center; }
+.example-action { display: inline-flex; align-items: center; min-height: 3rem; padding: .4em .85em; border: 1px solid var(--edge); border-radius: .4rem; font-size: .9em; }
+.primary { background: var(--wine); border-color: var(--wine); color: white; }
+.mute { display: none; }
+
+.phone .panel { min-height: 30rem; align-content: center; padding-block: 1.75em; }
+.phone .measure { min-width: clamp(7rem, 10em, 10rem); }
+.compact { max-width: 30rem; }
+.compact .panel {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: start;
+  text-align: start;
+  gap: .5em 1em;
+  padding: .85em 1em;
+}
+.compact :is(.context, .deadline, .detail, .state-art) { display: none !important; }
+.compact .readout { grid-column: 2; grid-row: 1 / span 2; min-height: auto; margin: 0; }
+.compact .measure { aspect-ratio: auto; border: 0; padding: 0; min-width: 0; text-align: end; }
+.compact .clock { font-size: 2em; }
+.compact .state-label { grid-column: 1; }
+.compact .actions { grid-column: 1 / -1; justify-content: flex-start; }
+.compact .example-action { min-height: 2.25rem; }
+.compact .mute { display: inline-flex; }
+
+@media (max-width: 60rem) {
+  .desktop-body { grid-template-columns: minmax(0, 1fr); }
+  .scene { min-height: 0; aspect-ratio: 3 / 2; }
+  .desktop[data-room="plain"] .desktop-body { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 42rem) {
+  main { padding-top: 1.3rem; }
+  .samples { grid-template-columns: minmax(0, 1fr); }
+  .phone-example { grid-row: auto; }
+  .phone { max-width: 25rem; }
+  .phone .panel { min-height: 0; padding: 1.4em .85em; }
+}
+@media (max-width: 23rem) {
+  .samples[data-scale="large"] .compact .panel { grid-template-columns: minmax(0, 1fr); }
+  .samples[data-scale="large"] .compact .readout { grid-column: 1; grid-row: auto; }
+  .samples[data-scale="large"] .compact .measure { text-align: start; }
+}

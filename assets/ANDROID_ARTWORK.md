@@ -53,6 +53,8 @@ Do not add these pictures to every list row, form or snackbar. Use one small sta
 
 ## Delivery and review
 
+The [focus design study](ui/FOCUS_STUDY.md) pairs the existing countdown icons with two compact study illustrations. [Record saved](ui/focus-art/recorded.svg) appears beside a confirmed timer record. [Interrupted](ui/focus-art/interrupted.svg) goes beside the last confirmed duration and a plain explanation of unknown time. The originals and fingerprints are tracked in the separate [study manifest](ui/focus-art/manifest.json).
+
 ### Daily-use additions
 
 | Source | Intended meaning | Required surrounding content |

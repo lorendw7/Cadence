@@ -2,6 +2,8 @@
 
 Hosting status (2026-11-15): the repository is now private and the former Pages URL returns HTTP 404. The maintainer approved this downtime. The Pages workflow is disabled in GitHub so a main-branch push does not attempt deployment. Keep website source and workflow files for later review. No replacement hosting is configured. The Pages instructions below describe the retained workflow, not a currently available public site.
 
+Publication decision (2026-11-18). Keep the main site offline until Cadence is usable on Android under the [planning acceptance gate](../docs/ROADMAP.md#d--android-phone-validation). Revisit publication after the maintainer can plan ordinary work on the phone, keep confirmed records after a restart and restore a backup. The website stays a separate release. A download link needs an accepted package that readers can actually install.
+
 Planning update (2026-11-15): [ADR-015](../docs/adr/015-android-self-use-first.md) selects Android self-use first with ads deferred. ADR-014 retains the later desktop purchase hypothesis and excludes desktop/Web/site ads. Current public copy is still a concept presentation. Review any permanent all-platform-free or public-source promises in all three languages before a commercial offer is approved. This planning update does not publish site changes or change the existing Pages deployment.
 
 A static Japanese, English and Chinese introduction to Cadence, a general-purpose local time planner for work, learning and everyday life. The design uses pure white (#FFFFFF), graphite and a burgundy accent, with Cadence's independent C mark. A product preview leads the page; serif accents, fine rules and the original color artwork retain the journal identity. No school identity, university affiliation or particular occupation defines the audience.
@@ -12,7 +14,7 @@ The product is in development. The current desktop learning app has basic in-mem
 
 Cadence remains a local time planner for work, study and daily life. Tasks, deadlines, personal plans, Today and Week are central. Useful direct editing comes first, and phone access makes the plan easier to use. Screenshot recognition is optional work only if demonstrated need justifies it. Use Windows as the development host, then validate shared saving/recovery and the direct planning flow on Android as the first self-use target. A complete Windows release, desktop focus package and Steam preparation are not prerequisites. Keep the phone trial free and ad-free. After reliable planning and initial self-use, the next Android phase adds a task-linked countdown and modest local session history; it does not require desktop compact mode, pins, scenes or music. Public-release review and any ad pilot follow that phase. iOS follows host/device readiness and Web is later. Other desktop releases still require native checks. The planned first-use flow explicitly offers Save on this device or Temporary use. Both choices require no account. Scheduling, tasks and chosen local saving must work offline. Before a saving choice, do not persist personal planner data. Temporary content is lost when the app closes; local saving is separate from a backup. These features are requirements, not delivered website behavior.
 
-[ADR-015](../docs/adr/015-android-self-use-first.md) prioritizes Android self-use after shared data safety. ADR-013 retains direct task, plan and repeat editing and the deferred-school boundary. Minimal time/room corrections, cancellation and restoration of one occurrence belong to the useful flow. Screenshot and CSV/table import do not block that delivery. Academic-system access is a deferred extension, with no current research, application or integration work scheduled. Cloud sync remains a separate later decision. Optional mobile ads need a useful mobile release and an ad-free usage baseline. General product publication does not require school permission. The existing GitHub Pages site remains the concept presentation, separate from any future Web planner. See [the product design](../docs/REDESIGN.md).
+[ADR-015](../docs/adr/015-android-self-use-first.md) prioritizes Android self-use after shared data safety. ADR-013 retains direct task, plan and repeat editing and the deferred-school boundary. Minimal time and room corrections, cancellation and restoration of one occurrence belong to the useful flow. Screenshot and CSV import remain deferred. The later optional cloud sync phase pairs with the Android review-banner pilot. The retained static site and the future Web planner have separate purposes. See [the product design](../docs/REDESIGN.md).
 
 ## Files
 
@@ -31,7 +33,7 @@ Cadence remains a local time planner for work, study and daily life. Tasks, dead
 | `assets/social-card.png` | 1200 × 630 sharing card marked in development |
 | Browser icon files | Favicon and bookmark icons |
 
-Editable masters, generation scripts and the catalogue are in [the artwork library](../assets/README.md). The website needs no build step, remote font, third-party script, analytics or runtime service. GitHub Pages remains its host; do not register a second Site.
+Editable masters, generation scripts and the catalogue are in [the artwork library](../assets/README.md). The website needs no build step, remote font, third-party script, analytics or runtime service. The current source is ready for local preview.
 
 ## Local preview
 
@@ -51,7 +53,7 @@ Week shows all seven days, Monday through Sunday. Today and Week share the same 
 
 ## Data and claims
 
-The current website stores only a language preference. It has no personal planner input, upload, authentication or synchronization. GitHub Pages still processes page requests. The privacy page must distinguish those actual behaviors from the future application's first-use choice, local saving, temporary mode, private JSON backups and the absence of any implemented or approved academic connection.
+The website code stores only a language preference. It accepts fictional preview interactions. Review the chosen host's request logging and privacy terms before publication. Explain the website's behavior separately from the application's storage and account behavior. The retained privacy text describes the earlier GitHub Pages host.
 
 The first local release uses explicit Save and Cancel. Unsaved forms stay in memory and can be lost on a crash. Local files and private JSON backups are not encrypted. If an optional import is later included, show an editable review, uncertainty and possible duplicates, then save the confirmed records together. Screenshot recognition has no scheduled release gate. Any later cloud AI help needs separate consent and cost review; it is not required for local use. Show the destination and selected content before sending. Keys must never enter planner backups. Local saving does not automatically provide a backup. Temporary use must not leave persistent drafts or automatic backups. JSON exports contain private information, and deleting app data cannot remove exported files or copies shared elsewhere. Keep these claims aligned with implemented behavior.
 
@@ -63,7 +65,23 @@ node tools/check_website.cjs
 
 Run this from the repository root. It checks translation keys and placeholders, HTML bindings and metadata, IDs and ARIA references, links, responsive assets and JavaScript syntax. It does not replace browser checks of layout, focus, language changes and task interaction.
 
-[pages.yml](../.github/workflows/pages.yml) publishes `website/` from the main branch or manual dispatch. Keep the three translations and privacy text aligned before publication. The full artwork catalogue remains in the repository.
+The retained [Pages workflow](../.github/workflows/pages.yml) defines publication of `website/` through GitHub Pages. It remains disabled. Keep the three translations and privacy text aligned before a new deployment.
+
+## Hosting when the app is usable
+
+### Publish the static site first
+
+1. Confirm the usable Android build and the scope of the public site. Before publishing, replace the old Pages canonical and share URLs with the selected public hostname. Links to the private GitHub repository or its documents need an approved public destination or a short public summary in the site. Keep Japanese, English and Chinese copy aligned. Update website privacy text for the chosen host. The [app privacy policy](../docs/RELEASE.md#google-play-preparation-from-the-current-checkout) is a separate document. If Play preparation needs its public URL sooner, review that narrow publication separately from the homepage.
+2. For a site-only launch, consider managed static hosting. Cloudflare Pages Direct Upload is one option. Prepare a local folder with the approved public HTML and assets from `website/`, with `index.html` at the root. Keep the README, private documents and Git files outside the upload. Select the intended public hostname before starting. For a custom subdomain, add the domain in Pages first, then add the DNS record with the current DNS provider if needed. See [Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/) and [custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/).
+3. Run the [repository checks](../tools/README.md) and review the website locally. After the approved deployment, verify HTTPS, homepage, privacy and support links, the three language variants, narrow and wide layouts, and the social preview. Verify download links with the actual public package. Save the deployed commit and last working site folder for rollback.
+
+### Rent a server for a service when required
+
+A virtual private server (VPS) is a rented Linux machine. For the later sync pilot, the maintainer can select a region, a monthly plan and a supported Linux image. Review the total charge, contract term, domain renewal and separate backup cost before ordering. Sakura's official 2 GB Linux monthly plans checked on 2026-11-18 list JPY 1,738 for Ishikari and JPY 1,958 for Tokyo. The [cloud budget](../docs/CLOUD_SYNC.md#deployment-and-operating-budget) uses JPY 2,500 per month as a planning allowance. See [Sakura prices](https://vps.sakura.ad.jp/specification/).
+
+If the later deployment uses one VPS, serve the public site and API from separate hostnames, such as `www.example.com` and `api.example.com`. A maintained HTTPS proxy such as Caddy can serve static files and pass API requests to a local process. Use a separate deploy account with key-based access, restrict administrative access, keep PostgreSQL private and keep secrets out of the public site and Git. Test the service with fictional records, monitor it and restore an off-server backup before a real sync pilot. See [Caddy HTTPS](https://caddyserver.com/docs/automatic-https) and [the sync acceptance checks](../docs/CLOUD_SYNC.md#capacity-and-delivery-gates).
+
+The current plan is local preparation only. When a deployment is selected, use one practice release to learn how files move from the repository to the public hostname. Keep a short deployment check and a tested rollback path for repeat releases.
 
 ## Historical revisions
 

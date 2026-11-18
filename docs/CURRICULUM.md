@@ -1,20 +1,20 @@
 # Core learning plan
 
-Updated: 2026-11-15. This is a teaching plan, not a record of completed lessons. [LEARNING.md](LEARNING.md) owns current progress and evidence. [PRODUCT.md](PRODUCT.md) owns product scope; [ROADMAP.md](ROADMAP.md) owns release gates and delivery estimates.
+Updated: 2026-11-18. This is a teaching plan. [LEARNING.md](LEARNING.md) records completed work and open checks. [PRODUCT.md](PRODUCT.md) owns product scope. [ROADMAP.md](ROADMAP.md) owns release gates and delivery estimates.
 
 ## Goal
 
 Learn to build, explain, debug and maintain a small reliable application. Cadence gives these skills a concrete purpose. Dart and Flutter are the current tools. The lasting knowledge is how to model data, trace execution, control state, handle failure and prove behavior.
 
-Continue from lesson 17. Do not restart completed lessons or replace the working app. Keep lib/main.dart as the teaching entry. The learner writes learning-critical core code; the assistant completes the supporting work defined below. A library is introduced when a real lesson needs it.
+Continue from the [current checkpoint](LEARNING.md#current-learning-checkpoint). Keep lib/main.dart as the teaching entry. The learner writes the first implementations and core rules. The assistant takes on the supporting work described below. Introduce a library when a lesson needs it.
 
 Under [ADR-015](adr/015-android-self-use-first.md), Android is the first self-use target and Windows remains the development host. Build safe shared saving and recovery first, then extend phone use with task editing, Today and selected-day Week. A complete Windows release, desktop focus package and Steam submission are not prerequisites. The first self-use build has no ads.
 
 After reliable planning and its self-use check, teach the bounded [Android focus stage](ROADMAP.md#h--android-focus-self-use): one task-linked countdown, manual break and a small local session list. Start, pause, resume, end, clock/lifecycle handling and session-save failures remain learner-owned decisions. No phone background or closed-app alarm guarantee is implied. The desktop focus package from [ADR-014](adr/014-desktop-focus-and-mobile-ads.md), music and Steam work remain later. Advertising stays outside the learning milestone until a useful mobile release and an ad-free usage baseline exist.
 
-The revised main track is provisionally numbered through lesson 44. Lesson 17 is in progress; lessons 18-44 have not started. See the [numbered lesson plan](#numbered-lesson-plan) for the sequence. A number identifies a teaching topic, not a completed feature or a single conversation.
+The main track is provisionally numbered through lesson 44. Each number identifies one teaching topic. [Numbered lesson plan](#numbered-lesson-plan)
 
-Use the [weekly first-version plan](WEEKLY_PLAN.md) to fit those topics and later focus work into a 10-15-hour weekly budget. It maps dependencies, learner practice, assistant support and acceptance without changing lesson numbers. Its week labels are work slots, not learning results or a fixed pace requirement.
+Use the [short study week](WEEKLY_PLAN.md#short-study-week) for personal practice. The weekly plan also retains the wider project estimate and dependencies. Lesson numbers stay stable.
 
 ## What matters most
 
@@ -82,13 +82,32 @@ The [Dart language guide](https://dart.dev/language) and [Flutter learning pathw
 
 In particular, do not delegate all Flutter UI to the assistant. The learner needs representative layout, interaction and lifecycle work, as well as pure Dart logic. Existing assisted layout repairs remain assisted work until an independent variation provides evidence.
 
+## Study through real features
+
+Group the numbered topics into working paths through Cadence. Use one small exercise at a time inside each path. Reuse the same task, such as [Send the report](REDESIGN.md#from-deadline-to-focus), from the in-memory app through local saving, planning and focus. Prepare a short changed example to check whether the learner can apply the idea elsewhere.
+
+| Working path | Transferable ideas | First representative work by the learner | Support the assistant can take over |
+|---|---|---|---|
+| Lessons 17-21. One operation can succeed, fail or return late. | Async results, cleanup, state ownership and Flutter lifetime | Reuse one fake operation. First practise cleanup on both outcomes, then add a failure assertion, a pending guard and one late-result check in separate steps. | Set up the fake, expected outcomes and broad tests. Apply the reviewed feedback pattern to similar controls. |
+| Lessons 22-26. A saved task survives restart. | Stable identity, SQL constraints, local and temporary isolation, confirmed writes | Define the first task row and query. Write the first save-to-feedback path with an input retained on failure. Trace it on restart. | Set up the adapter and test database. Handle generated code, platform paths and repeat the confirmed pattern where it applies. |
+| Lessons 27-31. A backup can safely replace records. | Transactions, schema changes, format versions and irreversible data decisions | Write one rollback path, one simple migration for an older fixture and the first validation and replacement decision. Explain what survives a failed restore or cancelled clear. | Prepare old, invalid and cancelled fixtures. Handle file-picker wiring and repeat the reviewed mappings. |
+| Lessons 32-40. See a deadline, reserve time and find the work again. | Dart time and interval models, sorting and merging, Flutter forms, callbacks and shared view state | Write the first draft editor, one overlap or gap calculation, and the first selected-day interaction. Explain the inputs and output of the Today and Week views. | Extend similar fields, layouts and translations. Run boundary, scrolling and large-text regressions. |
+| Lessons 41-44. Change one repeat and keep the rest intact. | Stable occurrence identity, responsive layout, debugging and evidence | Write one bounded repeat rule and one individual correction. Diagnose one real layout or focus issue and make a small independent change. | Extend compatible backups, screen variations and repeat cases. Prepare replayable phone checks and summarize defects. |
+| Later H. Start focus and keep an honest record. | State transitions, elapsed time, lifecycle and retry without duplicate records | Write the first task-to-timer interaction. Decide pause, interruption and saving behavior in small steps. Test one boundary with a controlled clock. | Provide the clock and test setup, repeated presentation and native regression support. |
+
+For a new idea, the learner writes a complete function or representative widget and predicts an outcome before running it. A familiar idea can be checked with a short explanation or a changed input. When that check is clear, move on and delegate repeated assembly. If it exposes a gap, practise only the missing idea. A new business rule, state owner, save decision or lifecycle transition needs a learner-owned step wherever it appears.
+
+At each working path review, use one independent change and one useful failure or boundary check. The assistant records the evidence in [LEARNING.md](LEARNING.md) and summarizes the important diff. The learner reviews why the change works and confirms native behavior that needs the owner's device. Design review, automated checks, independent understanding and native results stay distinct.
+
+For example, carry the same failed task entry through the saving lessons. In lesson 25 the learner decides when the new task becomes confirmed and what happens to the typed title after a failed write. The assistant can reuse that case for tests. When the filtered Tasks view arrives, use the same title to check what the person sees after retry. Each step adds one question to the same example. [Android capture walkthrough](ANDROID_EXPERIENCE.md#capture-a-title-from-a-filtered-list)
+
 ## Working sequence
 
 Each stage contains small lessons. Move on using demonstrated understanding and behavior, not a fixed lesson total. Debugging, tests, Git and reading official documentation begin now and continue in every stage.
 
 ### 1. Continue async reasoning
 
-Start with the unfinished part of lesson 17: one Future that completes with an error. Explain try/catch around await. Compare calling an operation, awaiting it and handling its failure. Introduce finally in a later small step as cleanup, not evidence of success.
+Build on the awaited error path and clipboard lifetime guard from lesson 17. In lesson 18, use `finally` to release a reader on both outcomes while preserving the result of the read. [Lesson 18 exercise](lessons/18-async-cleanup.md)
 
 Then reason about explicit idle, pending, success and failure states. Keep draft input separate from confirmed data. Explain why a second action or a result arriving after a screen closes needs a rule. A state transition is a change from one named state to another after an event.
 
@@ -137,16 +156,16 @@ Ready for a stage review when the learner can reproduce a defect, locate its cau
 
 ## Numbered lesson plan
 
-Planning revision: 2026-11-15. Keep lessons 1-16 and their historical results. The main learning track keeps its provisional endpoint at lesson 44. Lessons 17-44 contain 28 topics still to finish: lesson 17 has started and 27 topics have not. Android checks now accompany the relevant topics instead of following a full Windows release. This is a planning choice, not a measured effort estimate.
+Keep earlier lesson numbers and their recorded results. Android checks accompany the relevant topics in the sequence. [Current progress](LEARNING.md#current-learning-checkpoint)
 
-Each topic can take several 20-45 minute teaching exchanges, with additional practice as needed. Split a topic into small steps without renumbering completed history. Revisit future scope after lesson 21 and after restart recovery in lesson 26. Extend the plan if understanding or working behavior needs more practice.
+Treat the numbers as a map of the ideas to cover. Teach them in the [working paths](#study-through-real-features), with a new small exercise when it adds evidence. Split a difficult topic without renumbering history. Revisit the workload after lesson 21 and after restart recovery in lesson 26.
 
 ### Lessons 17-21: async work and Flutter state
 
 | Lesson | Topic | Learner-owned practice |
 |---|---|---|
-| 17, in progress | Future results and awaited errors | Write the caller with await and catch; predict success and failure |
-| 18 | Cleanup with finally | Explain and implement cleanup on both paths without reporting false success |
+| 17 | Future results and awaited errors | Write the caller with await and catch; predict success and failure |
+| [18](lessons/18-async-cleanup.md) | Cleanup with finally | Release one reader on either outcome and return the result of the read |
 | 19 | Asynchronous tests and diagnosis | Write a failure assertion and trace one mismatch |
 | 20 | Pending, successful and failed operations | Write a small state transition and prevent a duplicate action |
 | 21 | Flutter context and asynchronous lifetime | Handle a late result and explain the relevant State/controller lifetime |
@@ -211,26 +230,20 @@ Teach one timer transition at a time: choose a task and start, pause/resume, end
 
 ## The next small lessons
 
-The immediate task is still lesson 17. See [the current checkpoint](LEARNING.md#current-learning-checkpoint) for the reviewed console caller and the next real-code variation. The preparation sequence below describes the original exercise, not its current acceptance status.
+Write one complete caller that releases a reader after an awaited read. The assistant supplies the reader and runs both outcomes. [Lesson 18 exercise](lessons/18-async-cleanup.md)
 
-The assistant prepares a tiny runnable example with a fake operation that can succeed or fail. The learner writes the complete calling function, placing await, the success result and catch. First explain any missing await syntax, predict and run both paths, then change one input and explain the result. This example neither saves data nor changes the app.
-
-Finish that small exercise before lesson 18 introduces finally. Lesson 19 then introduces the asynchronous assertion syntax. Do not bundle these with a database, an editor or a state library.
+Lesson 19 reuses the failing case to teach one asynchronous assertion.
 
 ## How a lesson works
 
-Aim for 20-45 minutes of guided work. Practice and debugging can take longer. A numbered lesson may need several exchanges. Begin with a short brief: the goal, the learner's function or widget, the assistant's supporting work, and one observable check. Do not assign a whole screen or subsystem just to teach one concept.
+Use the [current checkpoint](LEARNING.md#current-learning-checkpoint) as the only required reading to resume. The assistant brings the relevant code and test to the lesson. Aim for 20-45 minutes for one new idea. A native check on familiar code can take a single action.
 
-1. Recall one earlier idea from memory. Use the answer to choose what needs explanation.
-2. State one observable goal and explain one new concept with a small example.
-3. Predict a result or failure before running the example.
-4. Let the learner write the small change. Give a hint, a narrower question or a short separate example if needed.
-5. Compare expectation with behavior. Read the first relevant error, inspect values and trace the path before editing.
-6. Check the behavior, explain the change in plain words and record the next step.
+1. **Predict.** Start with one user action. Ask what will be visible if one input changes. For example, if the clipboard write fails while the task page stays open, what feedback should appear?
+2. **Write or recall.** For a new idea, explain the syntax and let the learner write the first complete function or widget. For a familiar idea, ask the learner to explain the changed outcome from memory. A correct explanation lets the assistant handle the next repetition. If only the syntax is unfamiliar, supply an example from a different problem.
+3. **Trace the first difference.** Compare the prediction with the result. If they differ, follow one value. In the clipboard example, inspect the copy result before inspecting the message. Let the learner correct the step they identified. The assistant handles setup, replay and wider checks.
+4. **Use it again.** At the next natural use of the idea, change one condition and ask for a fresh prediction or edit before giving a hint. When save failures are introduced, for example, ask which title the form should still contain. The new save decision belongs to the learner.
 
-Do not ask the learner to discover unexplained Dart syntax. Do not hand over the complete future feature. If direct repair is explicitly delegated, label it as assistance and return to a small explanation or variation before recording understanding.
-
-Use a different small example later, such as a book or shopping item, to check transfer. It is a short exercise, not a second app or a new language track. Revisit a weak idea in the next session and again in a later feature.
+The assistant leaves one short entry in the existing log covering what the learner did unaided, what help was needed, what the check showed and where to resume. The learner can explain the result aloud or in one sentence. A directly assisted repair stays recorded as assisted until the learner can adapt the idea independently.
 
 ## Evidence of learning
 
@@ -256,7 +269,7 @@ The assistant may keep supplying meaningful regressions. Gradually let the learn
 - **Using AI:** first state the expected behavior and an attempt or uncertainty. Ask for a hint, explanation or review. Read every proposed diff and verify it; compiling code is not enough evidence to accept it.
 - **Product judgment:** write observable acceptance conditions, name failure cases and check that a person can finish the task. Learn UI layout through constraints, hierarchy, feedback and accessibility, not component memorization.
 
-Treat the previously recorded 10-15 hours per week as available time, not a quota. Spend learner time on a small implementation, explanation, one variation and a focused check. The assistant handles the agreed repetition and check execution. Keep saved time available for rest or consolidation rather than automatically assigning more features.
+Use the [short study week](WEEKLY_PLAN.md#short-study-week) to protect learner time. Spend that time on a complete small implementation, a prediction, a useful check and a short review. Reuse evidence from the same work for the relevant lesson topics. The assistant handles the agreed repetition and check execution. Leave spare time for rest or consolidation.
 
 After two lessons, compare time spent learning with time spent on setup and repetition. Adjust the split if setup still dominates or if the learner cannot explain the completed flow. No fixed code percentage or time-saving estimate guarantees understanding.
 
@@ -269,6 +282,8 @@ Keep advanced language features, isolate-based parallel work, streams and broad 
 Riverpod is conditional on real shared-state difficulty. shadcn_ui remains the chosen UI library, but migrating more components is not a learning objective by itself. Teach SQL and reliability before focusing on drift convenience APIs.
 
 Cloud services, authentication, sync, ads, OCR and school connections remain outside the current learning milestone. School authorization research, application preparation and login integration are all deferred. Do not add backend dependencies or parallel technology tracks. Basic local privacy, failure handling and backup remain core work. Platform expansion follows the roadmap.
+
+When the [website publication stage](../website/README.md#hosting-when-the-app-is-usable) is selected, learn one deployment end to end. Explain the public hostname, how it reaches the host, what HTTPS does and which files are public. Check one wrong URL or deployment result and show how to restore the previous known working version. The assistant can prepare the repeatable checks and publication steps. Learn server processes, logs and off-server recovery through a later service exercise when that stage is selected.
 
 ## Earlier lessons and estimates
 

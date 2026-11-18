@@ -65,7 +65,7 @@ The catalogue groups artwork by use and offers search, filters, size samples and
 
 [Visual overview](assets/preview.png) · [Full contact sheet](assets/preview-library.png) · [Catalogue](assets/catalog.html) · [Artwork guide](assets/README.md) · [Design system](docs/DESIGN.md)
 
-The Japanese/English/Chinese website shows fictional concepts. It is not a working planner or a download page. GitHub Pages publishes only the website directory.
+The Japanese/English/Chinese website shows fictional concepts. It is not a working planner or a download page. The Pages site is offline. The retained Pages workflow is disabled; it would publish only the website directory.
 
 ## Repository
 
@@ -78,8 +78,8 @@ The Japanese/English/Chinese website shows fictional concepts. It is not a worki
 | website/ | Static concept website |
 | tools/ | Generators and read-only checks |
 | windows/, linux/, macos/ | Desktop runners |
-| android/ | Existing scaffolding; Android release acceptance is future work |
-| .github/workflows/ | Checks, desktop builds, and website delivery |
+| android/ | Runner for the first self-use target. A debug APK built on 2026-11-15; phone testing and release acceptance are still pending |
+| .github/workflows/ | Checks, desktop builds, and the disabled Pages workflow. No workflow builds Android yet |
 
 See [the repository map](docs/REPOSITORY.md) and [maintenance tools](tools/README.md).
 

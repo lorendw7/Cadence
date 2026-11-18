@@ -149,6 +149,37 @@ for entries, label in [(preview_inputs, 'input'), (preview_files, 'output')]:
             except (ValueError, struct.error) as error:
                 errors.append(f'{name}: {error}')
 
+for pack in manifest.get('assetPacks', []):
+    if pack['status'] != 'design-study':
+        continue
+    pack_manifest = ROOT / pack['path']
+    contents = json.loads(pack_manifest.read_text(encoding='utf-8'))
+    for entry in contents['files']:
+        file = (pack_manifest.parent / entry['path']).resolve()
+        if not file.is_relative_to(pack_manifest.parent):
+            errors.append(f'Study artwork outside its pack: {entry["path"]}')
+            continue
+        name = file.relative_to(ROOT).as_posix()
+        require(name not in tracked, f'Duplicate manifest path: {name}')
+        tracked.add(name)
+        if not file.is_file():
+            errors.append(f'Missing study artwork: {name}')
+            continue
+        data = file.read_bytes()
+        require(len(data) == entry['bytes'], f'Stale study artwork size: {name}')
+        require(hashlib.sha256(data).hexdigest() == entry['sha256'],
+                f'Stale study artwork fingerprint: {name}')
+        try:
+            measure = svg_dimensions if file.suffix == '.svg' else dimensions
+            require(measure(data) == tuple(entry['dimensions']), f'Wrong study dimensions: {name}')
+        except (ValueError, KeyError, ET.ParseError, struct.error) as error:
+            errors.append(f'{name}: {error}')
+        if 'reference' in entry:
+            reference = (pack_manifest.parent / entry['reference']).resolve()
+            require(reference.is_relative_to(ROOT / 'assets') and reference.is_file()
+                    and hashlib.sha256(reference.read_bytes()).hexdigest() == entry['referenceSha256'],
+                    f'Missing or changed study reference: {name}')
+
 for folder in ['brand', 'icons', 'illustrations', 'patterns', 'social', 'platform', 'ui']:
     for file in (ROOT / 'assets' / folder).rglob('*'):
         if file.is_file() and (folder != 'ui' or file.suffix in {'.svg', '.png'}):

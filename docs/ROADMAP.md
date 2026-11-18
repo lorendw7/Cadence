@@ -1,6 +1,6 @@
 # Roadmap
 
-Updated: 2026-11-15. [ADR-015](adr/015-android-self-use-first.md) selects Android self-use first: reliable time management, then a bounded task-linked focus timer. Windows remains the development host. Desktop focus presentation, media and Steam work are deferred. Ads may be evaluated only after a useful mobile release and an ad-free usage baseline. School authorization, applications and integration remain postponed. This is a plan, not shipped behavior.
+Updated: 2026-11-18. [ADR-015](adr/015-android-self-use-first.md) selects Android self-use first. Build reliable time management, then a bounded task-linked timer. Windows remains the development host and shares the design work. Desktop focus implementation and media remain later work. Steam consideration is paused. A later optional cloud sync phase pairs with the Android review-banner pilot after a useful ad-free release. School access remains postponed. All of these are planned stages.
 
 ## Repository baseline
 
@@ -10,7 +10,7 @@ The app has in-memory task addition, validation, completion, deletion and latest
 
 Accepted on 2026-11-15: the maintainer has an Android phone, will use it daily and has no external testers. Android is the first self-use target. A complete Windows product, desktop timer layout, media pack or Steam listing is not a prerequisite. The next step remains the current learning checkpoint; future core code stays learner-owned.
 
-**Current lesson -> fictional Android device check -> safe local tasks and native recovery -> direct plans, Today and Week -> corrections and planning self-use -> Android task-linked countdown and focus self-use -> useful ad-free mobile release -> separately reviewed ads or desktop commercial work.**
+**Current lesson -> fictional Android device check -> safe local tasks and native recovery -> direct plans, Today and Week -> corrections and planning self-use -> Android task-linked countdown and focus self-use -> useful ad-free mobile release -> optional cloud and Android ad pilot if ready.**
 
 Stages A-C build shared planning rules. Native checks in D accompany each slice instead of waiting for a complete desktop edition. H adds phone focus after the planning trial. F handles public distribution. I describes later Android quality candidates. I, G, C1/C2 and E remain later choices, not parallel active projects. Stage letters and older link anchors stay stable; their alphabetical order is not the delivery order.
 
@@ -69,7 +69,7 @@ This breaks the accepted route into reviewable outcomes. It adds no platform, fe
 
 At each 20-hour review, record hours used, the demonstrated outcome, unresolved defects and the next single slice. Keep one learning-critical change active at a time. The assistant may complete delegated wiring, visual work, regression setup and documentation around reviewed patterns. State transitions, new save rules and first representative Flutter implementations remain learner-owned.
 
-The [weekly first-version plan](WEEKLY_PLAN.md) turns these dependencies into 25 reference work slots at 13 hours each: 250 base hours and 75 reserve hours. It lists each week's learner-owned implementation, assistant support and observable acceptance. At 10-15 hours per week, carry unfinished work forward instead of skipping a gate. It does not start future lessons or replace the current progress record.
+The [weekly first-version plan](WEEKLY_PLAN.md) retains 25 reference project slots with 250 base hours and 75 reserve hours. The learner follows the [short study week](WEEKLY_PLAN.md#short-study-week), with one active core exercise and delegated support. Compare actual hands-on time and project progress after the first two study weeks and after the first safe save and recovery. Keep this estimate until measured evidence supports a change. Carry unfinished acceptance checks forward.
 
 Apply [the Android workflow benchmark](VALIDATION.md#android-workflow-benchmark) only to implemented slices. Before F, review any failed quality check and describe unsupported capabilities honestly. External comparison studies remain unrun until participants and the relevant builds are available; they are not a new gate for self-use. [Later competitive gaps](PRODUCT.md#competitive-gaps-to-review-later) do not silently enter this work queue.
 
@@ -148,6 +148,8 @@ This is the next active phase after reliable planning and the first self-use che
 
 Acceptance: select a task, focus, pause/end, start a break manually and find an honest local record without duplicate time, automatic task completion or changed deadlines. Check native interruptions separately from ordinary use. Desktop timer work later reuses these rules but does not inherit Android acceptance automatically.
 
+Use the [shared focus design study](../assets/ui/FOCUS_STUDY.md) to review labels and layout before writing controls for this stage. The design examples use fixed values. Native behavior remains a learner-owned exercise.
+
 ## F — Free Android and iOS store releases
 
 Prepare Android public distribution after planning and focus native acceptance. Local installation and self-use do not require a store listing or recruited cohort. Public stores may impose separate testing requirements. iOS remains a later target; it is not part of this Android release. Documentation work does not purchase accounts or submit builds.
@@ -161,6 +163,18 @@ Prepare Android public distribution after planning and focus native acceptance. 
 - [ ] Test install, update, offline restart and recovery from the distributed build.
 
 Follow [the Google Play preparation steps](RELEASE.md#google-play-preparation-from-the-current-checkout) and [official release references](FREE_EDITION.md#delivery-and-testing). The maintainer has no developer account; new-personal-account testing, release signing and a public app privacy URL remain open. Store approval and working distributed behavior are both needed. Store waiting time is separate from development effort.
+
+Keep the main website offline until the Android planning acceptance in A-D is demonstrated. Then review public copy and actual package availability with the maintainer. [Website publication](../website/README.md#hosting-when-the-app-is-usable) and any separately required app privacy URL have their own timing.
+
+### Commercial checkpoints
+
+Use these checkpoints within the existing stages. Stage F covers the first public Android release as a free, ad-free download. Each later commercial route has its own evidence and costs.
+
+| When | Check | Decision |
+|---|---|---|
+| During Android planning and focus self-use | Record the native recovery results. Identify a feasible tester pool and a public location for the app privacy policy before budgeting store enrollment. | Keep using the private build when the public requirements are still open. |
+| After F, before the cloud and ad pilot | Check real sync demand, ad-free return use and voluntary review visits. Review the service budget, privacy and support. | Start only when both sets of checks pass and a bounded budget can cover a zero-receipt pilot. Use the [cost model](VALIDATION.md#cloud-cost-coverage-with-the-review-banner). |
+| During shared design work | Compare the same focus states on Android and Windows. Keep the small phone view and desktop compact view readable without a scene. | Use the [focus design study](../assets/ui/FOCUS_STUDY.md) for layout review. Desktop implementation and distribution decisions remain later work. |
 
 ## I — Later Android competitive improvements
 
@@ -179,7 +193,7 @@ Review comparable quality through capture, daily lookup, independent deadline/pl
 
 ## G — Mobile-only advertising pilot
 
-Start only after the mobile core has shipped, works without ads and shows repeat use. Android comes first; an iOS pilot needs its own acceptance. Ads are a possible second income source, not the budget for first development.
+Start the first live Android pilot in the optional cloud sync phase, after the ad-free public release shows repeat use and the service passes its own checks. The aim is to help pay ongoing service costs. An iOS pilot needs separate acceptance.
 
 - [ ] Review provider/store eligibility, intended audience, regional consent and age-related requirements. Use official test ad IDs in development.
 - [ ] Start with one labelled, non-interrupting candidate placement on an optional review screen. Do not add ads to focus, Today/Week planning controls, task rows, editors, save/restore, launch, notifications or widgets.
@@ -214,14 +228,14 @@ Acceptance: start from a task without retyping its name, pause or finish, and re
 - [ ] Show today's and the last seven calendar days' recorded focus totals and a task-labelled session list. Keep planned time, break time and uncertain time separate.
 - [ ] Measure CPU, memory and responsiveness beside another real work app. Record reference hardware and evidence before claiming low overhead.
 
-Acceptance: choose important work, focus in compact mode and find the saved session without losing the task context. No detached window, tray service, global shortcut or dashboard is required.
+Acceptance: choose important work, focus in compact mode and find the saved session without losing the task context. Use the [report workflow](REDESIGN.md#from-deadline-to-focus) to check that people can distinguish the deadline, planned interval and recorded timer time. No detached window, tray service, global shortcut or dashboard is required.
 
 ### C1.3 — Existing content and the complete trial
 
-Before polishing the full track selection, use the [zero-user self-use path](VALIDATION.md#start-without-external-testers) on the safe silent routine completed in C1.1-C1.2. Run the external study when participants are available and mark it unrun otherwise. Use existing assets only. Repair blocked task-to-focus use before more content work. This is a research checkpoint; complete-package quality checks still apply.
+Before polishing the full track selection, use the [zero-user self-use path](VALIDATION.md#start-without-external-testers) on the safe silent routine completed in C1.1-C1.2. Run the [comparison against current tools](VALIDATION.md#compare-the-silent-workflow) when participants are available and mark it unrun otherwise. Use existing assets only. Repair blocked task-to-focus use before more content work. Complete-package quality checks still apply.
 
 - [ ] Start with one accepted track in one local player. Add selection, previous/next, volume, sequential play and repeat through the same path.
-- [ ] Audition the 12 prepared pieces and aim to select 8-12 with useful instrument variety. Listening quality decides acceptance; review the offer if the set is smaller. Publish only the final accepted count and duration. No paid generation or paid quota filling is scheduled.
+- [ ] Audition the 16 prepared pieces and aim to select 8-12 with useful instrument variety. Listening quality decides acceptance. Review the offer if the set is smaller. Publish only the final accepted count and duration.
 - [ ] Reuse the existing static room image, cover vectors and palette; offer a plain background. No new scene, animation or ambient mixer is required.
 - [ ] Test silent startup, separate cue mute, device loss, decoding errors, non-overlapping fades and recovery with playback active.
 - [ ] Complete listening, repeat-tail, visual, source-rights and current store-disclosure reviews. An automated media check does not close these gates.
@@ -231,11 +245,13 @@ Acceptance: users can plan, focus, pause, listen and review without data loss or
 
 ## C2 — Desktop offer and Steam gate
 
+Paused on 2026-11-18. The checklist is retained for a later decision. Shared Windows design and ad-free desktop behavior can still be reviewed without doing store preparation.
+
 A one-time purchase is the preferred model to test, not an approved price. The maintainer must decide the actual offer and price before sales. No payment, account enrollment, outreach or store submission is performed by this plan.
 
 - [ ] Confirm Steam's acceptance of the actual non-game product category. Do not label a planner as a game merely to bypass that gate.
 - [ ] Define the included Windows features, supported versions, known limits, update/support scope and refund terms. Do not promise perpetual cloud hosting or unlimited future content.
-- [ ] Use fictional data for a short demonstration: select a task, start focus directly, switch to compact mode and review. Show its deadline and optional Week reservation without making either a prerequisite. Demonstrate useful behavior in the opening 30 seconds. Do not advertise deferred wallpaper controls.
+- [ ] Use the [30-second report demonstration](REDESIGN.md#planning-to-focus-design-review) to show the working offer with fictional data. Review descriptions against the included build before preparing store materials.
 - [ ] Prepare accurate store images and a bounded trial/demo if supported by the selected channel. Price research must show a real offer, not only ask whether someone likes the idea.
 - [ ] Check distribution rights, third-party notices, signing, complete runtime packaging, clean install, offline behavior, upgrades, uninstall/data retention and recovery.
 - [ ] Keep all desktop channels free of ads, ad SDKs, sponsor cards and ad unlocks. Inspect the delivered build, not just hidden UI controls.
@@ -263,7 +279,7 @@ The selected future personal service remains Google login with Node.js, TypeScri
 
 Before a sync pilot, verify repeated cross-device need, session and ownership controls, retries, conflicts, deletion, restore, off-host backups, common quotas and an export/shutdown plan. Follow [CLOUD_SYNC.md](CLOUD_SYNC.md). Personal sync does not discover school timetable changes or grant school-data access.
 
-Review mobile-only advertising separately under stage G for platform support, user impact, privacy and actual publisher revenue. Count no revenue before a working channel exists. Separate monthly cost coverage from recovery of past spending. Any future personal service keeps common published quotas. Desktop purchase does not buy extra cloud capacity.
+Plan the optional sync pilot and the first live Android review-banner pilot for the same release phase. Verify each system separately. Reconcile actual ad receipts with recurring cloud costs, support time and the [pilot budget](VALIDATION.md#cloud-cost-coverage-with-the-review-banner). Work with a zero-receipt budget until cash arrives. Keep public quotas uniform and preserve sync and local behavior when ads are declined or disabled. If costs exceed the agreed budget, pause expansion and follow the service export and shutdown plan.
 
 A school-required intermediary would be a separate integration and operating decision. It does not silently move general personal sync into the first release or fit within the same JPY 2,500 budget without review.
 
@@ -320,7 +336,7 @@ Re-estimate from working code, preserve historical lessons and count shared work
 
 ### Working estimate at 10-15 hours per week
 
-Planning date: 2026-11-15. These are provisional remaining-effort ranges for a learner, not measured velocity or release dates. Re-estimate after the first safe Android task slice and every 20 working hours. Native toolchain findings can change the ranges. Two weeks of self-use is an observation period after a usable build, not a promise to finish development in two weeks.
+Planning date: 2026-11-15. These are provisional project-effort ranges for the supported learning approach. The durations below use the original 10-15 hours of project work per week. The [short study week](WEEKLY_PLAN.md#short-study-week) sets a separate, smaller planning target for the learner. Re-estimate after the first safe Android task slice and every 20 working hours. Two weeks of self-use is an observation period after a usable build.
 
 | Stage | Incremental base hours | Boundary |
 |---|---:|---|
@@ -365,7 +381,7 @@ These are rough additional base-hour ranges after reusable planning/focus rules 
 |---|---:|---|
 | G. One mobile ad pilot | 20-40 | One accepted placement, consent/failure checks and pilot measurement after useful ad-free use. Provider eligibility, waiting, revenue and spending remain separate. |
 | C1. Bounded Windows focus/media package | 80-140 | Reuse H's timer rules and accepted existing assets; add desktop controls, player, compact mode and Windows package/lifecycle acceptance. No new paid media, mixing or wallpaper feature. |
-| C2. Desktop distribution/offer preparation | 15-30 | After C1, review channel eligibility, package updates, listing/help and offer validation. Fees, review waits and sales outcomes are excluded. |
+| C2. Desktop distribution/offer preparation | 15-30 | Paused. Retain the range as a reference for any later channel decision. Fees, review waits and sales outcomes are excluded. |
 | E. iOS local edition | 60-120 | Reuse accepted shared code; add iPhone storage, keyboard, VoiceOver, lifecycle, files, signing and distribution checks. A suitable Mac and device must be available; hardware and waiting are excluded. |
 | E. macOS or Linux local edition | 60-120 per target | One named operating system, native packaging, files, input, lifecycle, updates and recovery. Neither target inherits Windows acceptance. Media beyond shared support is separately scoped. |
 | E. Browser-local planner | 80-160 | One stated browser support matrix, local storage/eviction, offline/reload, tab ownership, updates and private-data separation. No sync server or duplicate concept site. |

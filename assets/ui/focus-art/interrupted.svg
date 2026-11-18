@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 72" width="96" height="72" role="img" aria-label="Timer session interrupted">
+  <g fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="22" y="9" width="48" height="50" rx="5" fill="#FFFFFF" stroke="#87838A"/>
+    <path d="M29 9v50m8-36h25M37 33h19M37 43h9" stroke="#87838A"/>
+    <path d="M45 43h10" stroke="#87838A" stroke-dasharray="1 3"/>
+    <circle cx="70" cy="50" r="13" fill="#F5EEF0" stroke="#7C394B"/>
+    <path d="M70 45v5m0 4v.2" stroke="#7C394B"/>
+    <path d="M18 66h60" stroke="#E8E8EB"/>
+  </g>
+</svg>

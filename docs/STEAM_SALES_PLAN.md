@@ -1,6 +1,8 @@
 # Desktop sales and cost recovery
 
-Updated: 2026-11-15. This is a commercial review of the [complete desktop candidate](DESKTOP_V1.md). The maintainer wants to recover cash and development time. There are no verified Cadence paid sales, Steam wishlists or acquisition conversions in this plan. Price remains undecided. Sales scenarios are arithmetic examples, not demand evidence or spending authority.
+Steam consideration was paused on 2026-11-18. Keep these figures and channel notes as reference. The active revenue plan is to evaluate the existing [Android review banner alongside optional personal sync](VALIDATION.md#cloud-cost-coverage-with-the-review-banner).
+
+Updated: 2026-11-18. This is a commercial review of the [complete desktop candidate](DESKTOP_V1.md) and the later Android ad option. The maintainer wants to recover cash and development time. Cadence has no verified paid sales, Steam wishlists, ad receipts or acquisition conversions. Price remains undecided. The scenarios use hypothetical inputs.
 
 Current delivery follows [ADR-015](adr/015-android-self-use-first.md): ad-free Android planning self-use, then bounded phone focus. This sales plan is a later commercial reference, not the active build order. The bounded future desktop offer reuses existing assets; media integration, compact mode and Steam preparation are deferred. No fal top-up, paid generation or other spending is authorized by these scenarios.
 
@@ -126,7 +128,7 @@ For the 1,000-unit scenario, retained sales equal `wishlist purchasers + other r
 
 Likewise, 1,000 retained purchases at a hypothetical 2%-5% qualified store-visit conversion need 20,000-50,000 visits. That is a traffic requirement, not evidence the traffic is available. Replace it with observed cohort data. Do not add wishlist and store-visit estimates for the same visitors.
 
-Before eligibility and a real build, use the existing concept site for clearly labelled demonstrations. After eligibility, direct interested people to the store page. Prepare a 30-second routine video, readable screenshots and a playable demo. Demonstrate a deadline, time block, compact focus timer and offline music. Music-only clips may attract listeners who never need the planner, so measure those audiences separately.
+Before eligibility and a real build, use the existing concept site for clearly labelled demonstrations. After eligibility, direct interested people to the store page. Use the [30-second report demonstration](REDESIGN.md#planning-to-focus-design-review) for the core offer, with readable screenshots and a runnable demo where supported. Show optional music separately when it adds useful context. Track interest in the workflow and in the media separately.
 
 Use Chinese, Japanese and English materials already supported by the product direction. Choose two reachable communities or channels first rather than trying every channel. Prepare material for the maintainer to share; this plan does not authorize messages to creators or communities. Do not buy reviews, reward positive reviews or describe generated scenes as implemented gameplay.
 
@@ -152,6 +154,20 @@ Official sources checked on 2026-11-15:
 - [AdMob payment thresholds](https://support.google.com/admob/answer/2772208?hl=en) list JPY 8,000 for payment in a JPY reporting account. Estimated revenue and cash received differ; use the actual account's currency and payment status.
 
 Accepted direction: Android planning self-use first, bounded phone focus next, and ads only after a useful mobile release and an ad-free usage baseline. Preserve the shared Flutter codebase and existing site. The [active estimate](ROADMAP.md#maintenance-and-estimates) excludes desktop media and Steam. Evaluate full-cost recovery from measured receipts; neither ads nor later desktop purchases are guaranteed income.
+
+## Compare cost recovery
+
+Treat Play as the Android release route. Decide whether to add advertising from actual use of the free release. Treat Steam as a possible store for a one-time Windows purchase. Its fit and the value of the offer need separate evidence.
+
+| Measure | Android ads | Windows one-time purchase |
+|---|---|---|
+| Income event | One valid displayed ad. At 1,000 average daily active users (DAU), the one-request example brings in JPY 486 per month before costs. The combined two-request example gives about JPY 1,166. | One sale kept after refunds. At a hypothetical JPY 1,200 list price, the example leaves JPY 396 per sale after estimated store deductions, discounts, variable cash and buyer support. |
+| Cover the example cost of running the channel | At the combined rate, about 858 average DAU covers JPY 1,000 in monthly cash. About 11,146 covers that cash plus fixed maintenance time. Both figures exclude variable support. | Include release, support and maintenance time in the fixed and per-sale assumptions. If buyers need 15 minutes of support on average, the example contribution falls from JPY 396 to JPY 171. |
+| Recover the example development and release cost | At the combined rate and the example's fixed costs, about 30,972 average DAU over 24 months. The same monthly target needs 74,332 average DAU at the one-request example rate. Both figures exclude variable support. | At JPY 396 contribution per sale, 1,440 retained sales recover the example JPY 570,000. That averages 60 per month over 24 months if the budget covers that period. |
+
+The Android examples assume JPY 150 in publisher revenue per thousand recorded impressions. Use the [mobile assumptions](VALIDATION.md#android-ad-cost-recovery) and [desktop assumptions](#recover-cash-and-working-time) to recalculate. The columns have different cost inputs. If both routes proceed, count shared development time and expenses once in the project total. Use actual settlements for cash planning. For a JPY AdMob account, the listed payment threshold is JPY 8,000. See [AdMob payment thresholds](https://support.google.com/admob/answer/2772208?hl=en).
+
+At the next commercial decision, price the additional work for each route. For Android, measure voluntary review visits where permitted and use the one-request case first. Treat missing usage data as inconclusive. Expand only if measured income covers the extra work and planner use remains healthy. For Windows, check Steam eligibility, then measure repeat use and interest in the actual offer. Use retained purchases and support time to decide whether to expand after launch. Keep learning and private use valuable even when both revenue models remain unproven. See [commercial checkpoints](ROADMAP.md#commercial-checkpoints).
 
 ## Launch and stop rules
 

@@ -246,6 +246,7 @@ def build(root, palette, write):
     <a href="README.md">Usage guide</a><a href="ui/task-study.html">Tasks design study</a><a href="preview.png">Visual overview</a>
     <a href="preview-library.png">Full contact sheet</a><a href="manifest.json">File manifest</a>
     <a href="focus-pack/index.html">Music and focus artwork</a>
+    <a href="ui/focus-study.html">Shared focus design study</a>
     <a href="ANDROID_ARTWORK.md">Android artwork guide</a><a href="preview-android.png">Android contact sheet</a>
   </nav>
 </header>
@@ -290,10 +291,16 @@ Independent project. No institutional affiliation. Retained originals keep their
     previous = json.loads((art / 'manifest.json').read_text(encoding='utf-8')) if (art / 'manifest.json').exists() else {}
     manifest = {'version': 2, 'palette': palette, 'appPalette': APP_PALETTE, 'iconGrid': 24, 'iconStroke': 1.75,
                 'files': files, 'webExports': web_exports}
-    manifest['assetPacks'] = [{'path': 'assets/focus-pack/manifest.json',
-                              'catalogue': 'assets/focus-pack/index.html',
-                              'status': 'prepared-not-integrated',
-                              'guide': 'assets/focus-pack/README.md'}]
+    manifest['assetPacks'] = [
+        {'path': 'assets/focus-pack/manifest.json',
+         'catalogue': 'assets/focus-pack/index.html',
+         'status': 'prepared-not-integrated',
+         'guide': 'assets/focus-pack/README.md'},
+        {'path': 'assets/ui/focus-art/manifest.json',
+         'catalogue': 'assets/ui/focus-study.html',
+         'status': 'design-study',
+         'guide': 'assets/ui/FOCUS_STUDY.md'},
+    ]
     # Only the raster exporter can attest to which sources produced the previews.
     if 'previews' in previous:
         manifest['previews'] = previous['previews']

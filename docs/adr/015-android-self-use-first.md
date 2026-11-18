@@ -2,6 +2,8 @@
 
 Visibility amendment (2026-11-15): the maintainer subsequently authorized the repository change. GitHub now reports the repository as private. Pages is offline with approval, and website source is retained for later server deployment. MIT remains unchanged. The original decision below did not itself authorize this later action.
 
+Commercial amendment (2026-11-18). The maintainer paused Steam consideration and kept Android and Windows design work in one Flutter project. The first public Android release remains free and ad-free. Any first live Android ad pilot now belongs to the same later release phase as optional personal cloud sync, to help cover operating costs. The two systems keep separate technical and privacy checks. Use of sync, common quotas and local planning stays independent of ad consent, views and delivery. This updates the timing in decisions 7, 9 and 10 below. [ROADMAP.md](../ROADMAP.md#after-store-launch--review-services-and-income) owns the joint gate. No service, account enrollment, hosting or spending was approved.
+
 **Status:** Accepted delivery decision. No mobile feature, test result or release is established by this document.
 **Date:** 2026-11-15
 **Decider:** The maintainer explicitly selected an Android self-use edition first, with advertising deferred.

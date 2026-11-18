@@ -54,7 +54,7 @@ The maintainer can install an Android self-use build on their own device before 
 
 ## Review only after store launch
 
-Mobile advertising follows a useful mobile release and an ad-free usage baseline. Cloud sync has a separate demand, budget and security gate; it is not a prerequisite for ads. Do not add an ad SDK, login screen, quota meter or backend during the current lesson.
+Mobile advertising follows a useful ad-free release and a usage baseline. The first live Android ad pilot is planned for the optional cloud sync phase so receipts can help pay for service operation. Cloud demand, funding and security checks and ad privacy and layout checks each need to pass. The service must remain usable when an ad is declined, unavailable or disabled. The current lesson stays on the local planner.
 
 Before a pilot, record scope, cost limit, duration, privacy choices and a way to stop it while keeping local use intact. No future advertising income is counted as money already available. [VALIDATION.md](VALIDATION.md#later-service-and-advertising-decision) owns the cost model.
 
@@ -81,7 +81,7 @@ Do not send private task titles, notes, plans, school identity or focus history 
 
 ### Review-screen ad proposal
 
-Revised on 2026-11-15 after the maintainer requested better placement, frequency and cost recovery. This remains a later Android pilot design, not implemented behavior or approval for live serving. The first self-use and public core remain ad-free. Keep the existing mobile-only policy and one optional review placement. Compare position first, then a two-request daily ceiling; a ceiling is not an expected impression count.
+Revised on 2026-11-15 after the maintainer requested better placement, frequency and cost recovery. The first self-use build and public core remain ad-free. The 2026-11-18 decision schedules the later ad pilot with optional cloud sync. Keep one Android banner placement in the optional recent-session review. Compare position first at a one-request daily ceiling, then consider up to two requests under the rules below. The ceiling does not predict impressions.
 
 | Format | Decision for the first pilot | Reason |
 |---|---|---|
@@ -131,6 +131,36 @@ Use the same aggregate reporting period, format and audience when comparing publ
 Count only recorded, eligible mobile impressions and actual publisher income. Desktop, Web and site ad income is zero in this plan. Downloads, desktop DAU and screen-open time are not mobile ad impressions. Count SDK, support, consent work and user loss alongside any receipts. Separate recorded revenue from cash payouts and initial costs from recurring costs.
 
 Desktop purchases are a separate income hypothesis. Count net retained receipts after refunds and applicable channel deductions. Do not count a sale again as ad income or assume it funds unlimited hosting. See [purchase validation](VALIDATION.md#desktop-demand-and-purchase-test).
+
+## Windows and Web advertising options
+
+Reviewed on 2026-11-18. These options answer how Cadence could expand advertising beyond Android. The current delivery policy keeps Windows, Web and the concept site ad-free. Consider a policy change for a later cloud phase after each client and placement is usable. The existing Android review-banner plan remains the first pilot.
+
+| Surface | Candidate if selected | Checks before use |
+|---|---|---|
+| Native Windows | Sell a fixed-term sponsorship directly. Show one clearly labelled sponsor card at the end of the optional recent-session review. Render the logo, short text and approved link as native controls. | Review the sponsor and creative. Use a bundled or first-party image and open the link in the system browser after a click. Keep it clear of timer controls and private record details. If distributing through Microsoft Store, check its current advertising policy. |
+| Web in a regular browser | Start with one manually placed AdSense unit on a public page with useful original content, such as a planning guide. | Verify ownership, gain site approval and handle applicable consent and privacy notices. Use the approved site's ads.txt instructions. Check that the ad is clear and scrolls normally. |
+| Private Flutter Web planner | If ads must appear inside the planner, evaluate the same direct sponsor card as Windows. Keep third-party ad scripts outside the planner's origin. | Keep local and synced records, cookies, sign-in details and task context out of sponsor requests. Inspect the actual requests, opt-out behavior and offline fallback. |
+
+The [Google Mobile Ads Flutter plugin](https://developers.google.com/admob/flutter/quick-start) supports Android and iOS. Google's [AdSense placement policy](https://support.google.com/adsense/answer/1346295?hl=en) restricts ads in software and limits embedded use to approved technology. A Windows WebView is therefore outside this proposal. See [Microsoft Store advertising rules](https://learn.microsoft.com/en-us/windows/apps/publish/store-policies-and-code-of-conduct) for that distribution route.
+
+Use different web origins for a public ad-supported content site and the private planner. An origin is the combination of protocol, host and port. Two paths on the same host share an origin, so paths alone do not isolate browser storage. Keep auth cookies and session data scoped to the planner. The offline concept site remains a separate design reference. Recheck policy for thin or empty pages before choosing web inventory. See [browser storage isolation](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy), [AdSense site review](https://support.google.com/adsense/answer/12131223), [ads.txt](https://support.google.com/adsense/answer/7679060) and [Google consent requirements](https://support.google.com/adsense/answer/13554116).
+
+Keep scheduling, countdowns, backup, recovery and common cloud quotas independent of all advertising. Use the same review layout where it fits, with separate delivery and measures for each platform. Count Android publisher receipts, approved Web page income and fixed sponsor receipts separately. Estimate Web income as page views divided by 1,000 times page RPM, the estimated revenue per thousand page views. Deduct the extra hosting, consent and sponsor support cost before treating any amount as cloud funding. Keep unmeasured Windows and Web income at zero in the cloud budget. See [AdSense page RPM](https://support.google.com/adsense/answer/112030) and [cloud cost coverage](VALIDATION.md#cloud-cost-coverage-with-the-review-banner).
+
+### Third-party ad networks
+
+Reviewed on 2026-11-18 for publishing ads and earning revenue. A network may supply advertisers when no direct sponsor is available. Publisher approval, a supported build, the right ad format and paid demand all affect whether an ad is delivered. Cadence uses a [Flutter Win32 runner](https://docs.flutter.dev/platform-integration/windows/building).
+
+| Network | Public evidence | Fit for the current idea |
+|---|---|---|
+| Theaimart ADX | The provider advertises image banners for Flutter and labels its Flutter SDK experimental. The published Dart package names Windows. [Provider availability](https://adx.theaimart.co/docs/availability), [Dart package](https://pub.dev/packages/theaimart_adx) | A possible sandbox test if the provider confirms this signed Windows utility and review banner. Paid demand and payout for Cadence remain unverified. |
+| Pubfinity and AdsJumbo | Pubfinity lists ads for Windows UWP apps. AdsJumbo documents a desktop SDK for WinForms and WPF. [Pubfinity](https://pubfinity.com/monetize/), [AdsJumbo desktop SDK](https://adsjumbo.com/monetize-desktop-apps) | Ask each provider whether it supports the existing Flutter Win32 build and a quiet banner. Their public guides do not establish that integration. |
+| Liftoff Monetize (Vungle) | Its Windows v7 SDK supports native Win32. Windows v7 serves interstitial and rewarded ads only. [Windows desktop SDK](https://support.vungle.com/hc/en-us/articles/45026606409371-Integrate-Vungle-SDK-for-Win32-WinUI-3-WinForms-or-WPF) | The ad formats fall outside the review-banner design. |
+| Media.net or Journey by Mediavine | Both review publisher websites. Journey requires running its Grow tool for at least 30 days. [Media.net site eligibility](https://www.media.net/legal/), [Journey](https://www.journeymv.com/) | Possible alternatives to AdSense for public content pages when the site meets the network's terms. |
+| Unity LevelPlay | Its Flutter SDK supports Android and iOS. It can route banner requests to eligible networks. [Flutter integration](https://docs.unity.com/en-us/grow/levelplay/sdk/flutter/plugin-integration), [banners](https://docs.unity.com/en-us/grow/levelplay/sdk/flutter/banner-integration) | A later Android comparison against the existing AdMob banner. The extra components add testing and consent work. |
+
+Without a sponsor or confirmed network fit, Windows shows the normal recent-session review and contributes zero ad revenue to the budget. Before any later Windows trial, confirm eligibility for a signed Flutter utility, banner-only delivery, privacy controls, demand in target regions and payout eligibility. Use test ads to check the actual package. Keep any integration separate from planner and sync data. No provider has been selected for Windows or Web.
 
 ## Open source
 

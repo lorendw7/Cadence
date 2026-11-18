@@ -1701,6 +1701,12 @@
       "catalogue": "assets/focus-pack/index.html",
       "status": "prepared-not-integrated",
       "guide": "assets/focus-pack/README.md"
+    },
+    {
+      "path": "assets/ui/focus-art/manifest.json",
+      "catalogue": "assets/ui/focus-study.html",
+      "status": "design-study",
+      "guide": "assets/ui/FOCUS_STUDY.md"
     }
   ],
   "previews": {

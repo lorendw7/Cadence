@@ -1,8 +1,8 @@
 # Product scope
 
-Updated: 2026-11-15. Cadence is a **local time-management and planning app for work, study and daily life**. Tasks, deadlines, personal plans, Today and Week are central. Direct editing is the first delivery route. Optional approved timetable access could later reduce setup work. Clear phone views make the same information easier to use during the day.
+Updated: 2026-11-18. Cadence is a **local time-management and planning app for work, study and daily life**. Tasks, deadlines, personal plans, Today and Week are central. Direct editing is the first delivery route. Optional approved timetable access could later reduce setup work. Clear phone views make the same information easier to use during the day.
 
-[ADR-015](adr/015-android-self-use-first.md) makes the ad-free Android self-use edition the first delivery target. Windows remains the development host. Shared saving and recovery come first, followed by direct planning and native phone checks in small slices. Desktop focus, music integration and the Steam purchase experiment are later work. Desktop and Web stay ad-free. School access, screenshots and cloud services remain separate later work.
+[ADR-015](adr/015-android-self-use-first.md) makes the ad-free Android self-use edition the first delivery target. Windows remains the development host. Shared saving and recovery come first, followed by direct planning and native phone checks in small slices. Continue desktop design in the shared Flutter project. Desktop focus and music integration remain later implementation work, and Steam consideration is paused. Desktop and Web stay ad-free. School access and screenshot import remain deferred.
 
 ## Current state
 
@@ -34,13 +34,36 @@ The target is comparable quality in this bounded routine, followed by a measured
 
 The [Android daily-use specification](ANDROID_EXPERIENCE.md) maps these qualities to Today, Tasks and Week, with a consistent fictional design board, recovery states and support preparation. It refines the accepted scope without adding features or claiming user demand.
 
+### Improve one daily routine first
+
+Start with people who regularly have a deadline and need to find time around existing commitments. They can test a real job in Cadence without changing how they organize everything else. Structured already presents a visual day timeline, and TickTick offers multiple planning views and a Pomodoro. Cadence should test whether its local report workflow reduces repeated entry or makes decisions easier. See [Structured](https://structured.app/) and [TickTick features](https://ticktick.com/features).
+
+| Decision to improve | Use the existing scope this way | Evidence to look for |
+|---|---|---|
+| Can I trust this change? | Keep the draft available on a failed save. Use the same confirmed records in Tasks, Today and Week. Start with the safe task-only slice. | The last saved values and identity survive restart and recovery. The result is clear even when a write fails. |
+| When can I work on this? | Keep the deadline in the task. Let the person choose a gap from Week and fill that date and interval into a separate draft. Keep the agenda and task context available. | The user can reserve and then move the interval without re-entering its date or changing the deadline. |
+| How do I get started now? | Once focus exists, start with the existing title from a visible task. Use the same session and labels in the phone view and the later Windows view. | The default countdown needs at most two actions, and the person can distinguish timer time from scheduled time. |
+
+Assess the flow on an actual Android build using the [same scenario and comparison rules](VALIDATION.md#compare-one-routine). Pick the single point where people most often need help, switch tools or enter the same details again. Repair it and repeat the same check. Follow the [later feature review](#competitive-gaps-to-review-later) when a separate feature is warranted.
+
+### Product offer by platform
+
+Test one routine across both platforms. Capture a report deadline in Tasks, find time to work on it in Week, and use Today to see what comes next. Once focus is available, start one interval from the existing task and find its record after the break. Moving a work block leaves the task deadline in place. Finishing a timer records the interval and leaves task completion to the user.
+
+| Audience | Benefit to demonstrate | Evidence before expanding |
+|---|---|---|
+| Android users who enter their own deadlines and appointments | Find the next commitment, give work a place in the week and recover plans on the phone offline | Correct lookup and planning, reliable recovery, then voluntary repeat use of the ad-free release |
+| Windows users who switch between a planner and a timer | Start from the existing task, keep the compact timer visible while working and find the saved session afterward | Repeat use of the silent routine, then willingness to buy the working desktop package |
+
+Keep the journal style and use the same task, date, backup and timer rules in Flutter. Test phone and Windows behavior separately. Music and the room illustration support the later Windows offer. Planning and focus work in silence. Use the [report workflow](REDESIGN.md#from-deadline-to-focus) to review both designs. The [release path](ROADMAP.md#commercial-checkpoints) ties each offer to evidence and a store decision.
+
 ### First buyer to test
 
 This is the later desktop purchase hypothesis, not the current delivery audience. The first user is the maintainer on their Android phone. Test quick capture, daily lookup, plan changes and recovery through self-use; do not treat that use as independent demand. Desktop purchase research resumes only when that separate stage is selected.
 
 The first commercial research group is narrower than the product's general uses: people who do substantial writing, coding or exam preparation on Windows, have real deadlines, and repeatedly switch between a task list, calendar and timer. Recruit for that recent behavior, not for liking music or being a student. The earlier timetable survey does not validate this buyer. Phone-first users who need automatic course changes are a different group.
 
-For that later offer, test this benefit: **Choose an existing task, start work without copying its title, and return to a clear local record.** A deadline, calendar block, daily pin and music choice are optional. They must not become prerequisites for starting focus. Today, Week and Tasks remain central. This hypothesis does not add a timer or desktop package to the first Android self-use scope.
+For that later offer, test this benefit: **See when work is due, choose when to do it, and start focus from the same task.** A deadline, calendar block, daily pin and music choice are optional. Keep the direct focus action available when the person already knows what to do. Compare with the person's current tools during the [silent workflow trial](VALIDATION.md#compare-the-silent-workflow).
 
 The maintainer's recovery objective includes development time as well as cash. [The full-cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time) therefore governs commercial reviews. A small cash surplus does not mean the project has paid for the work. Price, purchases and channel acceptance remain unproven.
 
@@ -75,7 +98,7 @@ The maintainer adopted easier setup and phone access, while retaining general ti
 | What is developed first? | Safe shared tasks, then direct plans, Today and Week for Android self-use | Native saving, date rules, recovery and an installable self-use build |
 | When does phone work start? | Fictional device checks early; safe task use after persistence/recovery, then planning slices | No complete Windows package, desktop focus or Steam prerequisite |
 | Why would it need a server? | Later optional personal sync; a school connector only if an approved protocol requires one | Separate costs, data permissions and operating duties for each service |
-| How is access funded? | No revenue assumed for self-use; mobile ads and desktop purchase remain separate later experiments | Actual use, full costs and measured receipts before commercial expansion |
+| How is access funded? | No revenue assumed for self-use. Pair a later Android review banner with optional cloud sync to help pay recurring costs. | Measure receipts and full costs before expanding the service. Sync access and quotas stay independent of ads. |
 
 ## Feature priorities
 
@@ -91,12 +114,12 @@ P0 protects real private data. P1 delivers the Android self-use planner. P2 adds
 | P2 | One Android task-linked countdown, manual breaks and small local session history | Help start work after reliable planning; validate native interruptions and saving before broader release |
 | P2 | Android public packaging, update/recovery, support, privacy and applicable store testing | Separate private installation from a public release |
 | P3 | Desktop countdown, compact mode, pins, timer review and accepted existing media | Retain the bounded later Windows offer without blocking Android |
-| P3 | Steam eligibility and a desktop purchase offer | Establish channel fit and purchase evidence when selected; no final price |
+| Parked | Steam eligibility and a desktop purchase offer | Retain the study for a later maintainer decision. |
 | P3 | iOS, macOS/Linux and Web with suitable hosts and devices | Reuse shared rules while testing each target separately |
 | Later extension | School research, application and read-only timetable access, only if selected later | No current milestone, application task or release dependency |
 | P3 | Opt-in local reminders, task title search and a next-plan widget | Evidence-selected Android improvements in roadmap I; none blocks the first local release |
 | P3 | Optional screenshot import, review summaries and advanced scheduling | Add only from observed need; no scheduled screenshot milestone |
-| P3 | Google personal sync and mobile-only ads, with separate reviews after useful releases | Do not depend on future revenue to fund a server |
+| P3 | Optional personal sync and one Android review-banner pilot in the same later phase | Pass the separate technical checks and fund the pilot safely before counting receipts. |
 
 Build useful direct editors first. Screenshot recognition and CSV/table import are not first-release requirements or prerequisites for phone support. Reconsider either only if actual users need it. School research and application preparation are deferred alongside integration. Revisit them only when a later scope decision selects the extension. Do not automatically replace a delayed school connection with an OCR project.
 
@@ -127,7 +150,7 @@ On first use, explain Save on this device and Temporary use. Temporary mode does
 
 Deferred under ADR-015. This is the later Windows candidate, not a dependency of Android self-use or the first public mobile planner. No desktop compact-window, player, scene or Steam work is scheduled in the active Android milestone. The bounded phone timer is a separate active phase after planning.
 
-The [first-release candidate](DESKTOP_V1.md) follows the maintainer's cost-control decision: reuse existing tools and assets, with no fal top-up or paid generation. Keep one configurable focus/break countdown, compact mode in the same window, up to three daily pins, title search, local session review, one static illustrated surface and a plain option. Audition the 12 existing music drafts and ship only accepted tracks through one local player. Aim to select 8-12, but let listening quality and the actual offer decide the final count; no purchase is justified by a numerical quota. The [sales plan](STEAM_SALES_PLAN.md) defines the evidence needed before expanding spending.
+The [first-release candidate](DESKTOP_V1.md) follows the maintainer's decision to reuse existing tools and assets. Keep one configurable focus/break countdown, compact mode in the same window, up to three daily pins, title search, local session review, one static illustrated surface and a plain option. Audition the 16 existing music drafts. Aim to select 8-12 tracks for one local player. Let listening quality and the actual offer decide the final count. The [sales plan](STEAM_SALES_PLAN.md) defines the evidence needed before expanding spending.
 
 Count-up, automatic cycles, named profiles, checklists, ambient mixing, extra scenes/themes, animation and Wallpaper Engine work are deferred. The purchase hypothesis is a smooth planning-to-focus routine with reliable local data and a calm presentation. Do not expand the content catalogue while that routine is unproven. [Prepared media](../assets/focus-pack/README.md) remains separate from implemented playback.
 
@@ -191,7 +214,7 @@ Start with quick task capture, a readable Today agenda and a selected-day Week v
 
 After the planning self-use check, [Android focus](ROADMAP.md#h--android-focus-self-use) adds one countdown, explicit pause/resume/end, manually started breaks and a small task-labelled local history. No music, desktop window mode, streak, score or automatic cycle is needed. Timer completion does not complete a task. Define backgrounding, screen lock, process death, unknown time and failed writes before implementation. Keep focus as a secondary route from a task rather than a fourth main tab.
 
-Android-first does not mean ads-first. Keep the first self-use build ad-free. After a useful mobile release and an ad-free usage baseline, consider the single optional review-screen placement in [FREE_EDITION.md](FREE_EDITION.md#placement-and-data-boundaries). Ads stay outside task rows, Today/Week controls, capture, editing and active focus; ad failure or refusal must not block planning. No rewarded unlocks, required account or server is added. [The comparison](STEAM_SALES_PLAN.md#android-first-and-advertising) separates reach, revenue and store requirements. Actual order remains owned by [ROADMAP.md](ROADMAP.md).
+Keep self-use and the first public Android release ad-free. After a useful release and an ad-free usage baseline, pair the optional cloud sync pilot with the [existing Android review banner](FREE_EDITION.md#review-screen-ad-proposal) to help pay operating costs. Ads stay out of task rows, Today, Week, editing and active focus. Local planning needs no account. A person who declines ads keeps the same sync access and limits as other users. The [cost model](VALIDATION.md#cloud-cost-coverage-with-the-review-banner) and [joint release gate](ROADMAP.md#after-store-launch--review-services-and-income) define the planned review.
 
 ## Free edition and open source
 

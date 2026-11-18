@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "date": "2026-11-18",
+  "use": "Design study only",
+  "files": [
+    {
+      "path": "quiet-room-study.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "role": "Alternative rendering of the same room",
+      "bytes": 2535634,
+      "sha256": "a19466d89618d3f9d7922525413a7cc1509a0295f7b6c978acaa850fccaedbc5",
+      "reference": "../../focus-pack/art/quiet-room.png",
+      "referenceSha256": "99a2d2854fef9d608fa317967900061b12805cbfa14d70fb7f531fa82b1efa93",
+      "generation": "Built-in image generation tool with the original room as edit target",
+      "prompt": "Use case: lighting-weather. Asset type: a landscape 3:2 editorial illustration polish study for the optional expanded desktop focus view of Cadence. The attached PNG is the EDIT TARGET. Render the same quiet, unoccupied reading and music corner again, preserving the original viewpoint and approximate object placement. Keep the open blank notebook and graphite pencil on the foreground wooden desk, ginkgo sprig in the ceramic vase at left, upright piano with a muted wine cloth at rear right, sage seat, garden window, and quiet wall above the desk. Preserve the recognizable room and simple composition. Refine the hand-painted gouache and graphite illustration with clean silhouettes, more readable midtones, subtle paper grain, and softer daylight coming from the right. Keep the page, piano keys, legs, window frame, and furniture perspective believable. Use warm ivory paper, soft walnut, restrained sage, ink and one muted wine accent, with a gentle color separation between the notebook, desk, and piano. Preserve calm negative space and make the notebook and piano readable when the scene is reduced to a small wide panel. Keep this original Cadence editorial print style. No figures, characters, extra props, decorative clutter, exaggerated bloom, game assets, UI, writing, letters, marks, borders, or watermarks. This is a clean full-bleed illustration of the same room, with no interface drawn into the picture."
+    },
+    {
+      "path": "recorded.svg",
+      "dimensions": [
+        96,
+        72
+      ],
+      "role": "Editable line illustration for a confirmed timer record",
+      "bytes": 541,
+      "sha256": "26cd3d25130c23c80c3d169e964b0d944c37b2062eac0ddbc1b9d8596f484a78"
+    },
+    {
+      "path": "interrupted.svg",
+      "dimensions": [
+        96,
+        72
+      ],
+      "role": "Editable line illustration for an interrupted timer record",
+      "bytes": 614,
+      "sha256": "50548435f468edc3e5c839f6afbaa281e8dfb3c284cfb18d4208322aed69a920"
+    }
+  ]
+}

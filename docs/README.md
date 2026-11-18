@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a local planner and planned focus tool for work, study and daily life. [ADR-015](adr/015-android-self-use-first.md) owns the current route: safe shared data, Android planning self-use, then a bounded Android focus timer. Windows remains the development host. Desktop media, Steam, mobile ads, school access and cloud sync are later work. Desktop and Web stay ad-free. No revenue is guaranteed. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged.
+Cadence is a local planner and planned focus tool for work, study and daily life. [ADR-015](adr/015-android-self-use-first.md) owns the current route: safe shared data, Android planning self-use, then a bounded Android focus timer. Windows remains the development host and shares the design work. A later optional cloud sync phase pairs with the Android review-banner pilot. Desktop and Web stay ad-free. Steam consideration is paused. School access remains deferred. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged.
 
 All documentation uses plain English. Product translations remain Japanese, English, and Chinese. [AGENTS.md](../AGENTS.md) records this rule for future work.
 
@@ -11,18 +11,24 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | Need | Read |
 |---|---|
 | Run the checkout | [Setup](SETUP.md) |
-| Continue the next small lesson | [Current progress](LEARNING.md), [core skills and practice](CURRICULUM.md), [Dart reference](DART_GUIDE.md) |
-| Plan 10-15 hours of first-version work per week | [Weekly goals, dependencies and work split](WEEKLY_PLAN.md), [hour ledger](WEEKLY_PLAN.md#hour-ledger-and-milestones), [weekly review](WEEKLY_PLAN.md#weekly-review-and-rescheduling) |
+| Resume studying now | [Current checkpoint and the one action to take](LEARNING.md#current-learning-checkpoint) |
+| Teach one idea with less repeated work | [Lesson method](CURRICULUM.md#how-a-lesson-works), [next small lesson brief](CURRICULUM.md#the-next-small-lessons) |
+| Plan a shorter study week | [Hands-on schedule](WEEKLY_PLAN.md#short-study-week), [working paths](CURRICULUM.md#study-through-real-features), [project hour ledger](WEEKLY_PLAN.md#hour-ledger-and-milestones) |
 | Find the current lesson and future numbers | [Current checkpoint](LEARNING.md#current-learning-checkpoint), [numbered lesson plan](CURRICULUM.md#numbered-lesson-plan) |
 | Share the lesson workload | [Division of work](CURRICULUM.md#division-of-work), [Dart and Flutter practice](CURRICULUM.md#dart-and-flutter-practice), [workflow](PROJECT_WORKFLOW.md) |
 | See priorities and current limits | [Feature priorities](PRODUCT.md#feature-priorities), [local product baseline](PRODUCT.md#first-useful-local-product) |
-| Plan competitive quality and the next development slice | [Android competitive goal](PRODUCT.md#competitive-goal-for-android), [official comparison](COMPETITIVE_REVIEW.md#android-competitive-benchmark), [work packages](ROADMAP.md#work-packages-and-review-points), [measurable checks](VALIDATION.md#android-workflow-benchmark) |
+| Improve the workflow using measured friction | [Priority design choices](PRODUCT.md#improve-one-daily-routine-first), [official comparison](COMPETITIVE_REVIEW.md#android-competitive-benchmark), [paired workflow check](VALIDATION.md#compare-one-routine), [work packages](ROADMAP.md#work-packages-and-review-points) |
 | Separate first-version requirements from later competitive work | [First public version](ROADMAP.md#first-public-version-and-later-competitive-quality), [later Android improvements](ROADMAP.md#i--later-android-competitive-improvements), [support and services](ROADMAP.md#service-readiness-and-continuing-maintenance) |
 | Estimate stage hours and continuing capacity | [First-version hours](ROADMAP.md#working-estimate-at-10-15-hours-per-week), [later competitive allowance](ROADMAP.md#estimate-for-later-competitive-improvements), [conditional platforms and sync](ROADMAP.md#conditional-estimates-for-broader-scope) |
 | Review the product and UI | [Product design](REDESIGN.md), [local planner preview](../assets/ui/planner-study.html), [preview guide](../assets/ui/PLANNER_STUDY.md) |
+| Publish the website after the app is usable | [Local preview, publication gate and later hosting](../website/README.md#hosting-when-the-app-is-usable) |
+| Review the redesigned deadline-to-focus routine | [Report workflow](REDESIGN.md#from-deadline-to-focus), [Steam focus comparisons](COMPETITIVE_REVIEW.md#steam-focus-products-to-compare), [silent Windows trial](VALIDATION.md#compare-the-silent-workflow) |
 | Review delivery order | [Android priorities](REDESIGN.md#android-self-use-priorities), [roadmap](ROADMAP.md), [accepted decision](adr/015-android-self-use-first.md) |
 | Review phone layouts and quality targets | [Screen composition](UI_ARCHITECTURE.md#android-screen-composition), [Android quality acceptance](UI_ARCHITECTURE.md#android-quality-acceptance) |
+| Compare artwork on Android and Windows | [Platform artwork rules](DESIGN.md#artwork-on-android-and-windows), [focus screen references](COMPETITIVE_REVIEW.md#visual-references-for-the-focus-screen) |
+| Review focus states on both platforms | [Focus design study](../assets/ui/FOCUS_STUDY.md), [local preview](../assets/ui/focus-study.html) |
 | Review Android competitiveness and the matching artwork | [Daily-use specification](ANDROID_EXPERIENCE.md), [static three-screen board](../assets/ui/android-daily-flow.png), [artwork handoff](../assets/ANDROID_ARTWORK.md) |
+| Review quick entry, failed saving and retry | [Android capture walkthrough](ANDROID_EXPERIENCE.md#capture-a-title-from-a-filtered-list) |
 | Review the refined Today, Tasks and Week design without code | [Shared view rules](UI_ARCHITECTURE.md#shared-rules-for-the-three-views), [Today details](UI_ARCHITECTURE.md#today-reading-order-and-actions), [Task list and capture](UI_ARCHITECTURE.md#task-list-and-capture-details), [Week selection](UI_ARCHITECTURE.md#week-selection-and-planning-context), [complete walkthrough](REDESIGN.md#three-view-planning-walkthrough), [reference mapping](COMPETITIVE_REVIEW.md#three-view-reference-mapping) |
 | Review later desktop scope and cost controls | [Deferred desktop candidate](DESKTOP_V1.md), [sales scenarios](STEAM_SALES_PLAN.md), [prepared media](../assets/focus-pack/README.md) |
 | Review the first buyer, shorter focus flow and recovery of working time | [Buyer hypothesis](PRODUCT.md#first-buyer-to-test), [interaction review](REDESIGN.md#planning-to-focus-design-review), [full-cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time) |
@@ -35,6 +41,8 @@ The current app is an in-memory task exercise, not the planned full product. [LE
 | Design ads around useful phone routines | [Android return use](REDESIGN.md#android-return-use-and-optional-review), [placement and request limits](FREE_EDITION.md#review-screen-ad-proposal), [pilot economics and stop rules](VALIDATION.md#review-screen-ad-pilot) |
 | Estimate mobile ads against development and maintenance costs | [Frequency and reach scenarios](VALIDATION.md#review-screen-ad-pilot), [24-month cost recovery and required DAU](VALIDATION.md#android-ad-cost-recovery), [revenue improvements to test](FREE_EDITION.md#improve-revenue-without-adding-protected-placements) |
 | Prepare a first Google Play release | [Current gaps and account-to-release steps](RELEASE.md#google-play-preparation-from-the-current-checkout), [later AdMob verification](RELEASE.md#admob-after-the-useful-public-release) |
+| Assess cloud costs and mobile ads | [Joint release gate](ROADMAP.md#after-store-launch--review-services-and-income), [cloud budget and Android audience needed](VALIDATION.md#cloud-cost-coverage-with-the-review-banner) |
+| Compare possible Windows and Web ad routes | [Advertising study](FREE_EDITION.md#windows-and-web-advertising-options) |
 | Review possible academic access | [Connection study](UNIVERSITY_INTEGRATION.md), [conditional schedule](ROADMAP.md#conditional-connection-estimate) |
 | Review the selected later backend and budget | [Optional cloud sync](CLOUD_SYNC.md), [ADR-011](adr/011-optional-sync-service.md), [break-even assumptions](VALIDATION.md#illustrative-monthly-operating-model) |
 | Find files or checks | [Repository map](REPOSITORY.md), [tools](../tools/README.md), [workflow](PROJECT_WORKFLOW.md) |
@@ -153,6 +161,7 @@ Read the status at the top of each record. Older records explain past choices; t
 | [11](lessons/11-theme.md) | Shared Material theme; automated checks passed, visual confirmation pending |
 | [12](lessons/12-shadcn-foundation.md) | shadcn_ui root integration and first ShadButton; actual-window checks pending |
 | [13](lessons/13-task-surface.md) | Responsive Shad task surface; automated checks passed, actual-window checks pending |
-| [17](lessons/17-await-errors.md) | Clipboard action and feedback reviewed; lifecycle explanation and actual-window feedback confirmed; native paste pending |
+| [17](lessons/17-await-errors.md) | Awaited errors and clipboard feedback. Exact Windows paste confirmed. |
+| [18](lessons/18-async-cleanup.md) | Cleanup with finally. Starter ready for the learner. |
 
 [Historical templates](../lessons/README.md) are separate from active tests. Keep paths stable, update this index for new guides, and link to the main requirement instead of copying it into several documents.
