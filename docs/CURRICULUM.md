@@ -51,7 +51,7 @@ Aim for 30-60 minutes. One topic may take one to three sessions. Use the [curren
 
 The assistant then adds wider tests, finishes agreed repetition and writes one short entry in [LEARNING.md](LEARNING.md). The entry says what the learner did alone, what help was needed and what the checks showed.
 
-Each unit also closes old work. At the start of a unit, do one open manual check from [LEARNING.md](LEARNING.md), such as the lesson 9 title check or the lesson 15 keyboard check. A check that is not done stays open.
+Manual checks are recorded one by one. Lesson 32 repeats the earlier behavior checks on the phone and on Windows, using the [checklist](LEARNING.md#manual-check-decision-on-2026-11-18). A check that is not done stays open.
 
 ## Working sequence
 

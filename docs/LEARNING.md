@@ -12,13 +12,13 @@ The app validates task titles, adds tasks, copies their titles and toggles compl
 
 The learner wrote the console caller, the first Flutter copy action and its guarded feedback. The console exercise still lacks its original start and end messages. The app has no persistent storage. The [lesson notes](lessons/17-await-errors.md) keep the sequence of attempts and reviews. The [curriculum](CURRICULUM.md#numbered-lesson-plan) owns the teaching order.
 
-The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title validation, theme, keyboard and responsive layout checks remain open where listed below.
+The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. On 2026-11-18 the learner reported running the manual checks and being satisfied with the result. The report did not list each check. The [entry below](#manual-check-decision-on-2026-11-18) records how each group is now treated.
 
 | Lesson range | Recorded status |
 |---|---|
-| 1-10 | Implemented and recorded as accepted; lesson 9's manual title-validation confirmation remains listed as pending |
-| 11-14 | Implemented; remaining actual-window checks are open |
-| 15 | Layout work exists; remaining actual-window checks were deferred, not accepted |
+| 1-10 | Implemented and recorded as accepted. Lesson 9's title validation is covered by the learner's general report on 2026-11-18 and will be repeated on the phone in lesson 32 |
+| 11-14 | Implemented. Desktop appearance checks for lessons 11-13 are retired without a recorded pass. Lesson 14 keyboard and resize behavior is covered by the general report and repeats in lesson 32 |
+| 15 | Layout work exists. Scrolling, keyboard and 200% text are covered by the general report and repeat in lesson 32 |
 | 16 | Code cleanup and concept review complete; this did not close earlier native checks |
 | 17 | Copy practice accepted on Windows. The learner explained the lifetime guard and confirmed feedback and exact pasted text. The console start and end messages are still absent. |
 | 18 | Starter prepared. The learner's caller and explanation are pending. |
@@ -190,3 +190,25 @@ The learner asked for a whole-project review, then asked the assistant to handle
 Strict analysis, formatting and all 39 tests passed before any change. The assistant then did supporting work only. It removed 16 documents about deferred, paused or superseded work and listed them in the [documentation index](README.md#removed-documents). It corrected the package description, the Android app label and stale README statements. It renamed the retired counter test file to `task_undo_resize_widget_test.dart` without changing the test. It added an Android debug APK job to the Flutter workflow; that job has not run on GitHub yet.
 
 No learner-owned code changed. The review's code findings are now exercises in the [revised plan](CURRICULUM.md#defects-used-as-exercises). The plan keeps lessons 1-18 and renumbers the planned topics as 19-66. From lesson 19 the learner writes at least one test per lesson. No lesson was accepted by this revision. Lesson 18 remains the current step, and all earlier manual checks stay open. No phone check and no native build ran for this update.
+
+### Manual check decision on 2026-11-18
+
+The learner agreed to sort the open manual checks into two groups. The learner then reported running the manual checks and said the result felt good. The report was general. It did not name each check, the window sizes or the device, and no defect was reported.
+
+| Group | Checks | Treatment |
+|---|---|---|
+| Desktop appearance | Lessons 11, 12 and 13: theme colors, Shad controls and the task surface in the actual window | Retired. They are no longer accepted one by one, because lessons 30 and 31 will replace the interface text and the theme. This is not a recorded pass |
+| Behavior | Lesson 9 title validation; lesson 14 sidebar resize and keyboard; lesson 15 short-window scrolling, Tab order and 200% text | Covered by the learner's general report on Windows. Repeat each one on the phone and on Windows in lesson 32 and record the results one by one |
+
+Checklist for lesson 32. Run each item on the phone, then on Windows.
+
+1. Add a task with an empty title. An error appears. Type a title and add again. The task appears.
+2. Add, complete, delete and undo one task.
+3. Copy a title and paste it into another app.
+4. Open the soft keyboard on the phone. The input and the add button stay reachable.
+5. Press Back on the phone. Note what happens.
+6. Set the system text size to the largest value. All buttons and titles stay readable and reachable.
+7. On Windows, move through every control with Tab and Shift+Tab, and activate each with the keyboard.
+8. On Windows, resize the window across the sidebar breakpoint. Tasks and the typed draft stay.
+
+No code changed and no automated check was rerun for this record. Nothing has been checked on a phone yet. Two other points were agreed. Git LFS is not adopted, and the old Pages addresses stay in the website source until a new host is chosen. The repository stays private, and the website stays offline until saved tasks pass phone checks.
