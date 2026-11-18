@@ -31,7 +31,7 @@ Use plain English in all documentation, including future updates. Keep product t
 
 Use [document ownership](README.md#document-ownership) to find the main owner of each topic. Product scope, user flows, visual rules and interaction details have separate owners. Write a requirement once and link from other guides. Keep historical ADRs and lesson records clearly labeled. Do not repeat old progress summaries as current facts.
 
-The [weekly first-version plan](WEEKLY_PLAN.md) owns proposed weekly work slots, dependencies and acceptance. It links to the roadmap for scope, the curriculum for learner ownership and LEARNING for actual progress. Keep scheduling separate from completed lesson records.
+The weekly first-version plan owns proposed weekly work slots, dependencies and acceptance. It links to the roadmap for scope, the curriculum for learner ownership and LEARNING for actual progress. Keep scheduling separate from completed lesson records.
 
 Keep paths stable. Organize the reading order through the index rather than moving linked documents into new folders. A design study belongs in `assets/ui/`, with its limitations and review results beside it. The [planner study](../assets/ui/planner-study.html) is a local design artifact. The retained Pages workflow targets only `website/`; it is disabled in GitHub while the site is offline.
 

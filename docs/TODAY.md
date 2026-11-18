@@ -15,7 +15,7 @@ The 2026-11-15 [Today reading order and actions](UI_ARCHITECTURE.md#today-readin
 - Apply individual corrections before choosing current/next items. A moved occurrence appears once at its replacement time; a cancelled occurrence does not occupy the agenda. Keep its original date and current correction accessible for restore; a full edit-history system is not required.
 - Keep title, time and room/location readable with large text. Missing location uses clear empty text rather than a guessed room. Do not require color, hover or a wide calendar to understand an entry.
 - Keep New task, New plan and access to Week reachable. Empty guidance offers New task and New plan. Show an Import action only when a supported route is actually included. Ordinary planning requires no school identity or semester.
-- Opening an imported occurrence offers its details and the supported one-occurrence time/room correction, cancellation and restore. Use [HOLIDAYS.md](HOLIDAYS.md) for identity and scope rules.
+- Opening an imported occurrence offers its details and the supported one-occurrence time/room correction, cancellation and restore. Use HOLIDAYS.md for identity and scope rules.
 
 ## Counting and grouping
 

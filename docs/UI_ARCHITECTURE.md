@@ -37,7 +37,7 @@ Use `empty-tasks` for an empty list, `all-done` when every task is complete and 
 
 ## Pages and navigation
 
-The selected [design direction](DESIGN_OPTIONS.md) aims to reduce entry effort and support phone viewing while keeping time management central. The core loop is: enter commitments, see available time, choose work and reserve an explicit plan, use Today, then adjust the plan without changing a task's deadline. Any future timetable import joins the same views after review. The small [survey](SURVEY_FINDINGS.md) does not validate every part of this wider loop.
+The selected design direction aims to reduce entry effort and support phone viewing while keeping time management central. The core loop is: enter commitments, see available time, choose work and reserve an explicit plan, use Today, then adjust the plan without changing a task's deadline. Any future timetable import joins the same views after review. The small [survey](SURVEY_FINDINGS.md) does not validate every part of this wider loop.
 
 Retain the desktop layout accepted on 2026-11-11 for later native acceptance: a light sidebar, two-column Today, a wide Week calendar and editors on demand. Use **Today / Tasks / Week** in that fixed order for Android bottom navigation. The earlier desktop study may retain Today / Week / Tasks in its sidebar; both layouts read the same records. Direct in-app entry is the foundation. Do not show a placeholder screenshot or school-connection action in the first product. If an import route is selected and accepted later, make it reachable from Week with clear source and support limits. Users do not need a table or CSV. The first Android flow uses compact navigation and full-width editors. Quick task capture requires only a title; deadlines and notes remain optional. Settings stays secondary. No account or semester is required for tasks or personal plans. Ask for term context only when an enabled input needs it. Website previews may not yet match every planned interaction.
 
@@ -78,7 +78,7 @@ Use distinct labels for Deadline, Planned time and Recorded timer time. Show a d
 
 ### Shared rules for the three views
 
-Design refinement dated 2026-11-15. These are written specifications for future implementation. This pass changes no Flutter code or HTML preview. The [reference mapping](COMPETITIVE_REVIEW.md#three-view-reference-mapping) explains the source ideas. The [shared walkthrough](REDESIGN.md#three-view-planning-walkthrough) gives one example to review across the pages.
+Design refinement dated 2026-11-15. These are written specifications for future implementation. This pass changes no Flutter code or HTML preview. The reference mapping explains the source ideas. The [shared walkthrough](REDESIGN.md#three-view-planning-walkthrough) gives one example to review across the pages.
 
 - Give each phone page one primary creation action: New task in Today and Tasks, New plan in Week. Keep it above the bottom navigation with its own space. Content must scroll clear of both controls and the system gesture area. Secondary actions stay next to the content they affect.
 - Keep the title, date and next useful action ahead of explanations. Use one compact summary, plain list sections and quiet dividers. Reserve wine for selection, the primary action and meaningful emphasis. Completion, overdue and overlap also need words or accessible state. Preserve the [design system](DESIGN.md).
@@ -244,7 +244,7 @@ Record actual startup and interaction timings with repeated runs and the observe
 
 ### Design references
 
-These products inform specific interaction choices. Cadence keeps its own visual identity and feature scope. The dated [competitive review](COMPETITIVE_REVIEW.md) owns verified official-source observations and their limits. The refinements here test simpler capture, readable gaps and planning without leaving the calendar. They do not add automatic scheduling, automatic task/plan changes or mandatory daily review. The bounded task-linked focus session belongs to its separate learner-owned phase. A competitor's interface is not evidence of demand for Cadence or native acceptance.
+These products inform specific interaction choices. Cadence keeps its own visual identity and feature scope. The dated competitive review owns verified official-source observations and their limits. The refinements here test simpler capture, readable gaps and planning without leaving the calendar. They do not add automatic scheduling, automatic task/plan changes or mandatory daily review. The bounded task-linked focus session belongs to its separate learner-owned phase. A competitor's interface is not evidence of demand for Cadence or native acceptance.
 
 | Reference | Useful idea | Cadence decision |
 |---|---|---|
@@ -273,11 +273,11 @@ Do not use a green icon as the only proof of saving. Announce meaningful status 
 
 ## Optional Web data flow
 
-Plan the free Web client with browser-local saving, temporary use, explicit export and tested tab coordination. Phone clients use the same main destinations with compact navigation and accessible editors. [FREE_EDITION.md](FREE_EDITION.md) defines platform acceptance. No login, cloud quota, upgrade or ad controls belong in the first free edition. Keep the concept website separate from private planner storage.
+Plan the free Web client with browser-local saving, temporary use, explicit export and tested tab coordination. Phone clients use the same main destinations with compact navigation and accessible editors. FREE_EDITION.md defines platform acceptance. No login, cloud quota, upgrade or ad controls belong in the first free edition. Keep the concept website separate from private planner storage.
 
-For the later [Google sync design](CLOUD_SYNC.md), keep identity, local saving and remote sync as distinct states. Signing in does not upload a workspace. Show the selected identity and transfer scope before explicit enablement; show pending sync separately from "Saved on this device". Personal sync cannot supply school timetable changes. These controls stay out of the current task exercise.
+For the later Google sync design, keep identity, local saving and remote sync as distinct states. Signing in does not upload a workspace. Show the selected identity and transfer scope before explicit enablement; show pending sync separately from "Saved on this device". Personal sync cannot supply school timetable changes. These controls stay out of the current task exercise.
 
-If academic access is approved later, show the source and the last successful retrieval separately from local save and personal-sync status. A read-only import produces a reviewed snapshot. Do not label it live or up to date without an accepted update mechanism and evidence. No school-password form or unapproved login control belongs in the prototype. See [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md).
+If academic access is approved later, show the source and the last successful retrieval separately from local save and personal-sync status. A read-only import produces a reviewed snapshot. Do not label it live or up to date without an accepted update mechanism and evidence. No school-password form or unapproved login control belongs in the prototype. See UNIVERSITY_INTEGRATION.md.
 
 ## Implementation and acceptance
 

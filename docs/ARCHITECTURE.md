@@ -52,11 +52,11 @@ The [application contract](APPLICATION.md) defines mode changes and failed write
 
 ## Optional import boundary
 
-[QUICK_IMPORT.md](QUICK_IMPORT.md) records conditional import choices. Establish manual in-app editing, saving, date rules and recovery first. Screenshot recognition is unscheduled optional work, selected only if actual users need it. CSV/table import is also deferred until real exported files justify it. Neither is a prerequisite for Windows or Android delivery.
+QUICK_IMPORT.md records conditional import choices. Establish manual in-app editing, saving, date rules and recovery first. Screenshot recognition is unscheduled optional work, selected only if actual users need it. CSV/table import is also deferred until real exported files justify it. Neither is a prerequisite for Windows or Android delivery.
 
 Any later input route must produce editable candidates rather than writing records directly. Review dates, times, rooms, repeat limits and duplicates before one additive batch. Small fictional drafts can test this contract without a parser. Unsupported rules remain visible; no guessed schedule is saved.
 
-An approved read-only academic API or official calendar feed is a separate candidate. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) owns feasibility questions and access gates. No offered interface, school approval, authentication route or live-update capability is established. Research does not authorize an adapter or a hosted proxy.
+An approved read-only academic API or official calendar feed is a separate candidate. UNIVERSITY_INTEGRATION.md owns feasibility questions and access gates. No offered interface, school approval, authentication route or live-update capability is established. Research does not authorize an adapter or a hosted proxy.
 
 If screenshots are later selected, local text recognition and layout parsing need native packaging, correction-effort and source-to-result checks on every supported target. RapidOCR is only an unverified candidate. Keep source images out of backups. Personal-key cloud AI remains optional later help.
 
@@ -64,16 +64,16 @@ If screenshots are later selected, local text recognition and layout parsing nee
 
 Use Windows as the teaching host and validate Android during each safe task, planning and focus slice. A complete Windows release is not a prerequisite. Schedule iOS when the host and devices are available; Web and other desktop release checks remain later work. This is one Flutter product, not separate desktop and phone implementations.
 
-Share models, date calculations, validation and reviewed-import operations. Storage, file pickers, lifecycle, touch/keyboard behavior and any OCR engine need native acceptance. A shared codebase does not prove those integrations work on another OS. Keep existing runners; add a missing target or adapter only with working feature code in its lesson. The GitHub Pages concept site remains separate from any Web app. See [FREE_EDITION.md](FREE_EDITION.md).
+Share models, date calculations, validation and reviewed-import operations. Storage, file pickers, lifecycle, touch/keyboard behavior and any OCR engine need native acceptance. A shared codebase does not prove those integrations work on another OS. Keep existing runners; add a missing target or adapter only with working feature code in its lesson. The GitHub Pages concept site remains separate from any Web app. See FREE_EDITION.md.
 
 ## External services: outside scope
 
 External services remain outside the first local flow. The first free release has no account service, sync queue, billing or advertising. [ADR-011](adr/011-optional-sync-service.md) accepts the later service stack: Node.js with TypeScript and Fastify, PostgreSQL and direct Google login, within a JPY 2,500 monthly planning budget. Implementation and launch remain subject to the post-store review in [ROADMAP.md](ROADMAP.md).
 
-[CLOUD_SYNC.md](CLOUD_SYNC.md) owns the selected service design. It keeps the server database separate from the client's local SQLite store, makes upload an explicit choice and defines ownership, version conflicts, deletion and restore boundaries. One service and database may share the initial small VPS; off-server recovery remains required. Capacity must be measured before a user limit is claimed.
+CLOUD_SYNC.md owns the selected service design. It keeps the server database separate from the client's local SQLite store, makes upload an explicit choice and defines ownership, version conflicts, deletion and restore boundaries. One service and database may share the initial small VPS; off-server recovery remains required. Capacity must be measured before a user limit is claimed.
 
-Google login is optional for sync and is not a school identity integration. Local planning stays usable without an account or service. Academic access remains a deferred extension, with no approved integration. Do not create backend fields, packages or empty service folders during local lessons. The older [sync study](SYNC.md) is historical reference only.
+Google login is optional for sync and is not a school identity integration. Local planning stays usable without an account or service. Academic access remains a deferred extension, with no approved integration. Do not create backend fields, packages or empty service folders during local lessons. The older sync study is historical reference only.
 
 ## Optional university integration
 
-[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) now separates historical source research from deferred application preparation. It is not an implementation contract or proof of access. Direct editing remains complete without that track. Any later approved import uses the validated local writer and clearly distinguishes a captured snapshot from a live source refresh.
+UNIVERSITY_INTEGRATION.md now separates historical source research from deferred application preparation. It is not an implementation contract or proof of access. Direct editing remains complete without that track. Any later approved import uses the validated local writer and clearly distinguishes a captured snapshot from a live source refresh.

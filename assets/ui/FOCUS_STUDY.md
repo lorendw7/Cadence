@@ -22,7 +22,7 @@ In Flutter, share task context, timer and save status wording, and action meanin
 
 ## Finish to compare
 
-Cozy Time presents a quiet hand-drawn environment with simple controls. Cadence can compete on the clarity of one original scene and the care given to its functional views. Use the [official Cozy Time listing](https://store.steampowered.com/app/2054740/Cozy_Time/) and [visual references](../../docs/COMPETITIVE_REVIEW.md#visual-references-for-the-focus-screen) as comparisons.
+Cozy Time presents a quiet hand-drawn environment with simple controls. Cadence can compete on the clarity of one original scene and the care given to its functional views. Use the [official Cozy Time listing](https://store.steampowered.com/app/2054740/Cozy_Time/) and visual references as comparisons.
 
 | Check | Target for the later implemented views |
 |---|---|

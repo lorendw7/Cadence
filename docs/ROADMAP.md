@@ -26,7 +26,7 @@ The survey did not identify a mobile OS. Android fits the current development en
 
 Scope clarification dated 2026-11-15. First version in this section means the first **public Android release**, after A-C, D, H and F. Safe task-only use and the complete planning self-use trial are earlier, smaller milestones. A timer and store listing do not block those trials. This documentation pass authorizes no code, purchase, recruitment or deployment.
 
-The target is comparable quality in a bounded personal planning routine. Use the [official-product comparison](COMPETITIVE_REVIEW.md#three-view-reference-mapping) and [workflow benchmark](VALIDATION.md#android-workflow-benchmark). Feature count, elapsed development time and a passing build do not establish that target. Later candidates must solve observed problems before entering the active queue.
+The target is comparable quality in a bounded personal planning routine. Use the official-product comparison and workflow benchmark. Feature count, elapsed development time and a passing build do not establish that target. Later candidates must solve observed problems before entering the active queue.
 
 | Capability or service | First public Android version | Later boundary or decision |
 |---|---|---|
@@ -46,11 +46,11 @@ Use [PRODUCT.md](PRODUCT.md#feature-priorities) for scope and [the view specific
 
 ## Evidence and planning alongside delivery
 
-The [survey](SURVEY_FINDINGS.md) supports investigating less entry and clear phone viewing. It does not prove adoption of a manual planner. [DESIGN_OPTIONS.md](DESIGN_OPTIONS.md) records the B plus C direction and the latest narrower delivery route.
+The [survey](SURVEY_FINDINGS.md) supports investigating less entry and clear phone viewing. It does not prove adoption of a manual planner. DESIGN_OPTIONS.md records the B plus C direction and the latest narrower delivery route.
 
 Test the direct-editing loop with a class, a report deadline, a reserved work session and a personal appointment. Measure setup effort, lookup, corrections and voluntary return use. Keep raw responses and personal pitch material outside the public repository.
 
-Prepare a fictional-data demonstration of local planning. Keep [school-access questions](UNIVERSITY_INTEGRATION.md) as a later reference. A concept demonstration may show planned behavior, but must label it. No school login, credentials or real school-data access is needed to demonstrate the proposed value.
+Prepare a fictional-data demonstration of local planning. Keep school-access questions as a later reference. A concept demonstration may show planned behavior, but must label it. No school login, credentials or real school-data access is needed to demonstrate the proposed value.
 
 ## Work packages and review points
 
@@ -69,9 +69,9 @@ This breaks the accepted route into reviewable outcomes. It adds no platform, fe
 
 At each 20-hour review, record hours used, the demonstrated outcome, unresolved defects and the next single slice. Keep one learning-critical change active at a time. The assistant may complete delegated wiring, visual work, regression setup and documentation around reviewed patterns. State transitions, new save rules and first representative Flutter implementations remain learner-owned.
 
-The [weekly first-version plan](WEEKLY_PLAN.md) retains 25 reference project slots with 250 base hours and 75 reserve hours. The learner follows the [short study week](WEEKLY_PLAN.md#short-study-week), with one active core exercise and delegated support. Compare actual hands-on time and project progress after the first two study weeks and after the first safe save and recovery. Keep this estimate until measured evidence supports a change. Carry unfinished acceptance checks forward.
+The weekly first-version plan retains 25 reference project slots with 250 base hours and 75 reserve hours. The learner follows the short study week, with one active core exercise and delegated support. Compare actual hands-on time and project progress after the first two study weeks and after the first safe save and recovery. Keep this estimate until measured evidence supports a change. Carry unfinished acceptance checks forward.
 
-Apply [the Android workflow benchmark](VALIDATION.md#android-workflow-benchmark) only to implemented slices. Before F, review any failed quality check and describe unsupported capabilities honestly. External comparison studies remain unrun until participants and the relevant builds are available; they are not a new gate for self-use. [Later competitive gaps](PRODUCT.md#competitive-gaps-to-review-later) do not silently enter this work queue.
+Apply the Android workflow benchmark only to implemented slices. Before F, review any failed quality check and describe unsupported capabilities honestly. External comparison studies remain unrun until participants and the relevant builds are available; they are not a new gate for self-use. [Later competitive gaps](PRODUCT.md#competitive-gaps-to-review-later) do not silently enter this work queue.
 
 ## A — Reliable local tasks
 
@@ -162,7 +162,7 @@ Prepare Android public distribution after planning and focus native acceptance. 
 - [ ] Recruit testers where needed, retain feedback, fix defects and retest.
 - [ ] Test install, update, offline restart and recovery from the distributed build.
 
-Follow [the Google Play preparation steps](RELEASE.md#google-play-preparation-from-the-current-checkout) and [official release references](FREE_EDITION.md#delivery-and-testing). The maintainer has no developer account; new-personal-account testing, release signing and a public app privacy URL remain open. Store approval and working distributed behavior are both needed. Store waiting time is separate from development effort.
+Follow [the Google Play preparation steps](RELEASE.md#google-play-preparation-from-the-current-checkout) and official release references. The maintainer has no developer account; new-personal-account testing, release signing and a public app privacy URL remain open. Store approval and working distributed behavior are both needed. Store waiting time is separate from development effort.
 
 Keep the main website offline until the Android planning acceptance in A-D is demonstrated. Then review public copy and actual package availability with the maintainer. [Website publication](../website/README.md#hosting-when-the-app-is-usable) and any separately required app privacy URL have their own timing.
 
@@ -173,7 +173,7 @@ Use these checkpoints within the existing stages. Stage F covers the first publi
 | When | Check | Decision |
 |---|---|---|
 | During Android planning and focus self-use | Record the native recovery results. Identify a feasible tester pool and a public location for the app privacy policy before budgeting store enrollment. | Keep using the private build when the public requirements are still open. |
-| After F, before the cloud and ad pilot | Check real sync demand, ad-free return use and voluntary review visits. Review the service budget, privacy and support. | Start only when both sets of checks pass and a bounded budget can cover a zero-receipt pilot. Use the [cost model](VALIDATION.md#cloud-cost-coverage-with-the-review-banner). |
+| After F, before the cloud and ad pilot | Check real sync demand, ad-free return use and voluntary review visits. Review the service budget, privacy and support. | Start only when both sets of checks pass and a bounded budget can cover a zero-receipt pilot. Use the cost model. |
 | During shared design work | Compare the same focus states on Android and Windows. Keep the small phone view and desktop compact view readable without a scene. | Use the [focus design study](../assets/ui/FOCUS_STUDY.md) for layout review. Desktop implementation and distribution decisions remain later work. |
 
 ## I — Later Android competitive improvements
@@ -182,7 +182,7 @@ These are estimated options after the first useful release, not additions to the
 
 | Candidate | Incremental base hours | Trigger and bounded deliverable | Acceptance evidence |
 |---|---:|---|---|
-| I1. Opt-in local reminders | 35-70 | People miss recorded commitments. Add chosen reminder times, per-item/global controls and clear permission/delivery status under [NOTIFICATIONS.md](NOTIFICATIONS.md). | Edited/cancelled items do not notify at old times; denial, restart, time changes and supported background cases are checked on Android. State unsupported delivery cases. |
+| I1. Opt-in local reminders | 35-70 | People miss recorded commitments. Add chosen reminder times, per-item/global controls and clear permission/delivery status under NOTIFICATIONS.md. | Edited/cancelled items do not notify at old times; denial, restart, time changes and supported background cases are checked on Android. State unsupported delivery cases. |
 | I2. Task title search | 15-30 | Finding existing work repeatedly requires long scrolling. Search the confirmed task titles with open/completed context and useful empty results. | Selecting a result opens the right record; edits, completion and return preserve a coherent result list. No full-text service or new project hierarchy. |
 | I3. Next-plan home-screen widget | 30-60 | People repeatedly open the app only to check the next plan. Show one next commitment with a clear open action and title-privacy choice. | Check edits, date changes, stale content, device restart and local/temporary mode. Do not leave temporary or cleared records on the home screen. |
 | I4. Repeated-use design refinement | 45-90 | Observe the complete routine across repeated use, then repair costly navigation, entry and reading problems in all three languages. | Record fewer mistaken dates, blocked actions and requests for help against the same fixture. Baseline access and saving defects already block F. |
@@ -202,7 +202,7 @@ Start the first live Android pilot in the optional cloud sync phase, after the a
 - [ ] Test denied consent, offline/no-fill, timeouts, background/resume, accessibility and removal of the pilot. Core functions remain usable in every case.
 - [ ] Compare actual mobile publisher revenue, support cost and return use against the ad-free baseline. Set the trial budget, duration and stop rule before launch; stop for privacy or core-flow defects.
 
-Acceptance: both native/store checks and a tolerable user experience pass. Desktop and Web ad income stays zero. Follow [platform policy](FREE_EDITION.md#advertising-by-platform), [the one-placement proposal](FREE_EDITION.md#review-screen-ad-proposal) and [pilot stop rules](VALIDATION.md#review-screen-ad-pilot); a successful request or download count is not revenue. The proposed frequency limit and example revenue remain untested and do not authorize SDK implementation during the current lesson.
+Acceptance: both native/store checks and a tolerable user experience pass. Desktop and Web ad income stays zero. Follow platform policy, the one-placement proposal and pilot stop rules; a successful request or download count is not revenue. The proposed frequency limit and example revenue remain untested and do not authorize SDK implementation during the current lesson.
 
 <a id="c1--desktop-focus-and-optional-wallpaper-trial"></a>
 
@@ -210,7 +210,7 @@ Acceptance: both native/store checks and a tolerable user experience pass. Deskt
 
 Deferred desktop work after the Android planning and focus self-use stages. Reuse accepted shared timer rules from H instead of building a second timer. Compact mode, desktop media and Windows lifecycle still need separate acceptance. Wallpaper support remains beyond the bounded desktop offer.
 
-The cost-controlled [desktop candidate](DESKTOP_V1.md) specifies a later Windows offer. Its [sales scenarios](STEAM_SALES_PLAN.md) are not forecasts or active spending authority. Re-estimate these subsections after shared Android work. Prepared media is not integrated app behavior.
+The cost-controlled [desktop candidate](DESKTOP_V1.md) specifies a later Windows offer. Its sales scenarios are not forecasts or active spending authority. Re-estimate these subsections after shared Android work. Prepared media is not integrated app behavior.
 
 ### C1.1 — Countdown and confirmed session records
 
@@ -232,14 +232,14 @@ Acceptance: choose important work, focus in compact mode and find the saved sess
 
 ### C1.3 — Existing content and the complete trial
 
-Before polishing the full track selection, use the [zero-user self-use path](VALIDATION.md#start-without-external-testers) on the safe silent routine completed in C1.1-C1.2. Run the [comparison against current tools](VALIDATION.md#compare-the-silent-workflow) when participants are available and mark it unrun otherwise. Use existing assets only. Repair blocked task-to-focus use before more content work. Complete-package quality checks still apply.
+Before polishing the full track selection, use the zero-user self-use path on the safe silent routine completed in C1.1-C1.2. Run the comparison against current tools when participants are available and mark it unrun otherwise. Use existing assets only. Repair blocked task-to-focus use before more content work. Complete-package quality checks still apply.
 
 - [ ] Start with one accepted track in one local player. Add selection, previous/next, volume, sequential play and repeat through the same path.
 - [ ] Audition the 16 prepared pieces and aim to select 8-12 with useful instrument variety. Listening quality decides acceptance. Review the offer if the set is smaller. Publish only the final accepted count and duration.
 - [ ] Reuse the existing static room image, cover vectors and palette; offer a plain background. No new scene, animation or ambient mixer is required.
 - [ ] Test silent startup, separate cue mute, device loss, decoding errors, non-overlapping fades and recovery with playback active.
 - [ ] Complete listening, repeat-tail, visual, source-rights and current store-disclosure reviews. An automated media check does not close these gates.
-- [ ] Complete the maintainer's two-week use check and record external studies as run or unavailable under [VALIDATION.md](VALIDATION.md#desktop-demand-and-purchase-test). Fix core-flow and polish defects before store preparation. Self-use does not establish demand or replace store-mandated testing.
+- [ ] Complete the maintainer's two-week use check and record external studies as run or unavailable under VALIDATION.md. Fix core-flow and polish defects before store preparation. Self-use does not establish demand or replace store-mandated testing.
 
 Acceptance: users can plan, focus, pause, listen and review without data loss or unwanted desktop changes. No ad code or request is present in the desktop package. All planned first-release behavior works without another desktop product or a network after acquisition/setup.
 
@@ -256,8 +256,8 @@ A one-time purchase is the preferred model to test, not an approved price. The m
 - [ ] Check distribution rights, third-party notices, signing, complete runtime packaging, clean install, offline behavior, upgrades, uninstall/data retention and recovery.
 - [ ] Keep all desktop channels free of ads, ad SDKs, sponsor cards and ad unlocks. Inspect the delivered build, not just hidden UI controls.
 - [ ] Budget Steam Direct and all launch costs before enrollment. Recheck current waiting periods and store-review requirements at submission time.
-- [ ] Set the cash ceiling, time review points, contribution assumptions and stop rules from [the loss-control plan](STEAM_SALES_PLAN.md#limit-losses-before-pursuing-volume). Do not fund the build from hoped-for sales or commit the full content budget before the trial gates.
-- [ ] Track visits, demo use, wishlists, actual purchases, refunds and net receipts separately. Apply the purchase test in [VALIDATION.md](VALIDATION.md#desktop-demand-and-purchase-test).
+- [ ] Set the cash ceiling, time review points, contribution assumptions and stop rules from the loss-control plan. Do not fund the build from hoped-for sales or commit the full content budget before the trial gates.
+- [ ] Track visits, demo use, wishlists, actual purchases, refunds and net receipts separately. Apply the purchase test in VALIDATION.md.
 
 Acceptance: a usable package, a truthful offer, channel permission and actual purchase evidence are distinct checks. Revenue is not guaranteed. If Steam declines the category, evaluate a direct Windows distribution offer through the existing website before committing; do not create a second site or purchase another service automatically.
 
@@ -277,9 +277,9 @@ Acceptance: the distributed target passes the local user flow plus its platform 
 
 The selected future personal service remains Google login with Node.js, TypeScript, Fastify and PostgreSQL under [ADR-011](adr/011-optional-sync-service.md), planned at JPY 2,500 per month. Hosting, quotas and launch remain future decisions. Local planning needs no server.
 
-Before a sync pilot, verify repeated cross-device need, session and ownership controls, retries, conflicts, deletion, restore, off-host backups, common quotas and an export/shutdown plan. Follow [CLOUD_SYNC.md](CLOUD_SYNC.md). Personal sync does not discover school timetable changes or grant school-data access.
+Before a sync pilot, verify repeated cross-device need, session and ownership controls, retries, conflicts, deletion, restore, off-host backups, common quotas and an export/shutdown plan. Follow CLOUD_SYNC.md. Personal sync does not discover school timetable changes or grant school-data access.
 
-Plan the optional sync pilot and the first live Android review-banner pilot for the same release phase. Verify each system separately. Reconcile actual ad receipts with recurring cloud costs, support time and the [pilot budget](VALIDATION.md#cloud-cost-coverage-with-the-review-banner). Work with a zero-receipt budget until cash arrives. Keep public quotas uniform and preserve sync and local behavior when ads are declined or disabled. If costs exceed the agreed budget, pause expansion and follow the service export and shutdown plan.
+Plan the optional sync pilot and the first live Android review-banner pilot for the same release phase. Verify each system separately. Reconcile actual ad receipts with recurring cloud costs, support time and the pilot budget. Work with a zero-receipt budget until cash arrives. Keep public quotas uniform and preserve sync and local behavior when ads are declined or disabled. If costs exceed the agreed budget, pause expansion and follow the service export and shutdown plan.
 
 A school-required intermediary would be a separate integration and operating decision. It does not silently move general personal sync into the first release or fit within the same JPY 2,500 budget without review.
 
@@ -287,7 +287,7 @@ A school-required intermediary would be a separate integration and operating dec
 
 Screenshot recognition is optional, unscheduled work. Add it only if actual user needs justify it after comparison with direct editing. A delayed or rejected school application does not automatically trigger OCR work. CSV/table import also waits for a real export-file need.
 
-[QUICK_IMPORT.md](QUICK_IMPORT.md) retains a conditional design. If selected later, require supported samples, bounded files, reviewed uncertainty, date/duplicate checks, cancellation and atomic save. Do not add OCR packages or import architecture before the work is selected.
+QUICK_IMPORT.md retains a conditional design. If selected later, require supported samples, bounded files, reviewed uncertainty, date/duplicate checks, cancellation and atomic save. Do not add OCR packages or import architecture before the work is selected.
 
 ## Optional — Cloud help with personal API keys
 
@@ -303,7 +303,7 @@ Count-up, automatic focus cycles, named profiles, checklists, ambient mixing, ex
 
 ## Conditional academic-system access
 
-[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) is retained as reference for a deferred extension under ADR-013. No research, application or connector work is scheduled now. The steps below apply only if the extension is selected later. No submission, approval or usable interface is confirmed.
+UNIVERSITY_INTEGRATION.md is retained as reference for a deferred extension under ADR-013. No research, application or connector work is scheduled now. The steps below apply only if the extension is selected later. No submission, approval or usable interface is confirmed.
 
 1. Prepare a fictional-data demonstration and a small read-only data request.
 2. Confirm project eligibility, a responsible contact, data owner, available interface and permitted storage.
@@ -328,7 +328,7 @@ A useful product needs support and recovery as well as screens. First-version se
 
 After F, provisionally reserve **8-16 working hours per month** for support, dependency/Android checks, release work and recovery drills. This is a starting capacity assumption for a small local release, not measured demand, a service promise or a ceiling. It excludes feature development and any future cloud operation. A serious defect can consume more; protect user data before adding features. Record actual time and revise the allowance after the first month.
 
-Maintenance uses the same 10-15 weekly hours as development. For example, reserving roughly three hours per week leaves about 7-12 for later feature work. Do not schedule a full development week plus unpaid support on top. The [cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time) keeps its earlier example assumptions until a separate cost update; this roadmap does not claim that revenue covers the new allowance. Future cloud operations need a separate workload and cash budget.
+Maintenance uses the same 10-15 weekly hours as development. For example, reserving roughly three hours per week leaves about 7-12 for later feature work. Do not schedule a full development week plus unpaid support on top. The cost model keeps its earlier example assumptions until a separate cost update; this roadmap does not claim that revenue covers the new allowance. Future cloud operations need a separate workload and cash budget.
 
 ## Maintenance and estimates
 
@@ -336,7 +336,7 @@ Re-estimate from working code, preserve historical lessons and count shared work
 
 ### Working estimate at 10-15 hours per week
 
-Planning date: 2026-11-15. These are provisional project-effort ranges for the supported learning approach. The durations below use the original 10-15 hours of project work per week. The [short study week](WEEKLY_PLAN.md#short-study-week) sets a separate, smaller planning target for the learner. Re-estimate after the first safe Android task slice and every 20 working hours. Two weeks of self-use is an observation period after a usable build.
+Planning date: 2026-11-15. These are provisional project-effort ranges for the supported learning approach. The durations below use the original 10-15 hours of project work per week. The short study week sets a separate, smaller planning target for the learner. Re-estimate after the first safe Android task slice and every 20 working hours. Two weeks of self-use is an observation period after a usable build.
 
 | Stage | Incremental base hours | Boundary |
 |---|---:|---|
@@ -361,7 +361,7 @@ A safe task-only slice can be installed earlier after A and its native recovery 
 
 The old Windows-first estimate of 219-358 hours and the old Windows-plus-Android estimate of 284-488 hours are historical, not the active budget. Desktop focus/media and Steam are excluded here. Re-estimate that later package from the shared code that exists after H; do not add the old countdown estimate again. iOS, complete macOS/Linux/Web releases, school work, imports and cloud sync also remain outside this estimate. Ads are not part of the active total.
 
-With no external testers, use the [zero-user route](VALIDATION.md#start-without-external-testers). Record demand as unknown. The maintainer's goal includes cash and working time: add logged past effort, fixed future maintenance and actual acquisition/support costs to the [full-cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time). No estimate predicts profitability or authorizes new spending.
+With no external testers, use the zero-user route. Record demand as unknown. The maintainer's goal includes cash and working time: add logged past effort, fixed future maintenance and actual acquisition/support costs to the full-cost model. No estimate predicts profitability or authorizes new spending.
 
 ### Estimate for later competitive improvements
 
@@ -385,7 +385,7 @@ These are rough additional base-hour ranges after reusable planning/focus rules 
 | E. iOS local edition | 60-120 | Reuse accepted shared code; add iPhone storage, keyboard, VoiceOver, lifecycle, files, signing and distribution checks. A suitable Mac and device must be available; hardware and waiting are excluded. |
 | E. macOS or Linux local edition | 60-120 per target | One named operating system, native packaging, files, input, lifecycle, updates and recovery. Neither target inherits Windows acceptance. Media beyond shared support is separately scoped. |
 | E. Browser-local planner | 80-160 | One stated browser support matrix, local storage/eviction, offline/reload, tab ownership, updates and private-data separation. No sync server or duplicate concept site. |
-| Optional personal sync pilot | 240-480 | One account provider and the Android client on two devices: explicit enablement, offline queue, conflicts, account isolation, deletion, export, off-host backups, monitoring and failure recovery. Other clients and team sharing are excluded. Follow [CLOUD_SYNC.md](CLOUD_SYNC.md). |
+| Optional personal sync pilot | 240-480 | One account provider and the Android client on two devices: explicit enablement, offline queue, conflicts, account isolation, deletion, export, off-host backups, monitoring and failure recovery. Other clients and team sharing are excluded. Follow CLOUD_SYNC.md. |
 
 The C1-C2 figures are provisional remaining-work allowances after H, replacing no historical completed hours. If title search or another shared feature has already passed I, subtract that shared work at re-estimation. Calendar integrations, screenshot/CSV import, natural-language input, AI planning, team collaboration and advanced recurrence have no bounded delivery estimate yet. Select a concrete user problem, supported input and acceptance scope before assigning hours. School access retains its separate [conditional estimate](#conditional-connection-estimate), including permission and interface dependencies.
 
@@ -395,7 +395,7 @@ Matching an entire mature multi-platform product would therefore be a multi-year
 
 Deferred reference only. These earlier estimates are not part of the active schedule or the QREC eight-week study. Re-estimate if school access is selected as a later extension.
 
-Budget about **8-16 additional hours** for consultation materials, required-field mapping and application preparation. School response and approval time are unknown. The school's published authentication rule asks for an application at least one month before the desired start; it is not an approval-time guarantee. See the verified source and eligibility limits in [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md#previously-reviewed-school-materials).
+Budget about **8-16 additional hours** for consultation materials, required-field mapping and application preparation. School response and approval time are unknown. The school's published authentication rule asks for an application at least one month before the desired start; it is not an approval-time guarantee. See the verified source and eligibility limits in UNIVERSITY_INTEGRATION.md.
 
 For **one documented, authorized read-only API or calendar feed**, after permission, sample data and test access are available:
 

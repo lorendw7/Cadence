@@ -2,7 +2,7 @@
 
 Scope update (2026-11-15): [ADR-015](adr/015-android-self-use-first.md) sets the current route: shared local saving and recovery, Android planning self-use, bounded Android focus, then a useful ad-free mobile release. Windows remains the development host. Desktop focus presentation, media, Steam and a mobile ad pilot are separate later decisions; none blocks the first phone planning build. Desktop, Web and the concept site stay ad-free. School authorization, requests, connections, imports and cloud sync remain deferred. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. MIT remains unchanged. [PRODUCT.md](PRODUCT.md) owns scope and [ROADMAP.md](ROADMAP.md) owns delivery gates. These are planned contracts, not implemented behavior.
 
-The current gates are in [ADR-015](adr/015-android-self-use-first.md), [FREE_EDITION.md](FREE_EDITION.md) and [ROADMAP.md](ROADMAP.md). Safe tasks are the first Android self-use slice; direct plans, Today/Week and minimum occurrence corrections follow their shared rule lessons. Native checks apply to each included slice. A complete Windows release, desktop focus package, Steam work and screenshot import are not phone prerequisites. Cloud services and academic access remain deferred, with no approved integration.
+The current gates are in [ADR-015](adr/015-android-self-use-first.md), FREE_EDITION.md and [ROADMAP.md](ROADMAP.md). Safe tasks are the first Android self-use slice; direct plans, Today/Week and minimum occurrence corrections follow their shared rule lessons. Native checks apply to each included slice. A complete Windows release, desktop focus package, Steam work and screenshot import are not phone prerequisites. Cloud services and academic access remain deferred, with no approved integration.
 
 The free core supports local planning without an account. First use offers Save on this device and Temporary use before reading saved planning data. Academic access is a deferred extension; the local core uses no school connection. Store approval, user acceptance and automated checks are separate evidence.
 
@@ -35,7 +35,7 @@ Review icon readability and illustrations visually; decorative strokes do not pr
 | Conflicts | End equals start, overlapping events, deadlines excluded, and the checked date range honestly disclosed |
 | Today | Counts match lists, overdue items are not duplicated, undated tasks remain available, midnight/resume refresh uses the right date |
 | Week | All seven days are reachable, long events and text remain readable, narrow layout preserves selection and focus |
-| Local review, when included | Empty data, clipped day/week boundaries, overlap removal, completion/undo and zero comparison base; see [STATISTICS.md](STATISTICS.md) |
+| Local review, when included | Empty data, clipped day/week boundaries, overlap removal, completion/undo and zero comparison base; see STATISTICS.md |
 | Backup | Round trip, consistent active database, invalid/future versions and failed restore preserving the original usable copy |
 | Drafts and failed writes | Keep incomplete forms in memory in both modes; test Save/Discard/Cancel, failed-write input retention and truthful status |
 | Application contracts | Consistent snapshots, stale-query/preview rejection, duplicate submission and discarded input not reappearing; see [APPLICATION.md](APPLICATION.md) |
@@ -63,7 +63,7 @@ Academic-access research may establish whether an official read-only API or cale
 
 On each supported platform, check startup, selected saving mode, offline use, restart recovery, file pick/save dialogs, Unicode paths, keyboard navigation, focus, 200% text scaling and narrow windows. Check every shipped theme; dark artwork alone does not establish a dark theme. Check upgrades against existing saved data when persistence is implemented.
 
-Test included OS reminders while running, with denied permissions, rescheduling and resume. Delivery after app exit is a separate feature. An in-app message does not prove OS delivery. See [NOTIFICATIONS.md](NOTIFICATIONS.md).
+Test included OS reminders while running, with denied permissions, rescheduling and resume. Delivery after app exit is a separate feature. An in-app message does not prove OS delivery. See NOTIFICATIONS.md.
 
 ## Android and other native checks
 
@@ -85,7 +85,7 @@ The planned free Web client needs these browser checks, without a school connect
 
 ## Optional service and sync checks
 
-Activate service checks only after a separate post-store-launch decision. Verify account isolation, session expiry, consent, retention, deletion, quotas and bounded requests. For sync, test duplicate/partial snapshots, stale responses, conflicts, deletion and preservation of offline local edits. Service failure must not block local planning or export. Reuse reviewed ideas from [SYNC.md](SYNC.md), not its entire historical design.
+Activate service checks only after a separate post-store-launch decision. Verify account isolation, session expiry, consent, retention, deletion, quotas and bounded requests. For sync, test duplicate/partial snapshots, stale responses, conflicts, deletion and preservation of offline local edits. Service failure must not block local planning or export. Reuse reviewed ideas from SYNC.md, not its entire historical design.
 
 <a id="core-reviewed-import-acceptance"></a>
 
@@ -97,7 +97,7 @@ For every included input route, test editable uncertain fields, unsupported rule
 
 For a future screenshot route, test permitted samples and native targets before claiming a layout is supported. Record corrected fields, missed or extra entries, final date/week errors, resource use and total time. Keep rejected images in the coverage report. OCR text alone is not a confirmed schedule. No measured accuracy, effort saving or OCR-engine compatibility result exists.
 
-For a future approved academic route, verify the offered read-only interface, access terms, permitted fields and refresh behavior. Test stale data, revoked access, source changes and preservation of private edits. A reviewed snapshot does not establish continuous automatic updates. [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) owns the access gates.
+For a future approved academic route, verify the offered read-only interface, access terms, permitted fields and refresh behavior. Test stale data, revoked access, source changes and preservation of private edits. A reviewed snapshot does not establish continuous automatic updates. UNIVERSITY_INTEGRATION.md owns the access gates.
 
 Check no writes before confirmation, atomic failure, duplicates, late results, cancellation, bounded input and temporary-file cleanup. One-occurrence corrections must survive backup/restore. Optional cloud help needs separate consent, key isolation and cost checks. These are future requirements, not passing results.
 
@@ -107,7 +107,7 @@ Check no writes before confirmation, atomic failure, duplicates, late results, c
 
 The local core has no mandatory account, upload or telemetry. Weekly review stays on the device. Filtered sharing uses allowed fields, while private backup is clearly separate. Never ask anyone to post a full backup, credentials or tokens in a public issue.
 
-[UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) retains a deferred extension; feasibility research and application preparation are also outside the current milestone. Do not add academic adapters, school-password collection or scraping to current lessons. A user-provided file, Google login or personal cloud sync does not grant school data access.
+UNIVERSITY_INTEGRATION.md retains a deferred extension; feasibility research and application preparation are also outside the current milestone. Do not add academic adapters, school-password collection or scraping to current lessons. A user-provided file, Google login or personal cloud sync does not grant school data access.
 
 Lesson templates in `lessons/` are not executed by CI or counted as active coverage. Activate a relevant test with the lesson and require it to pass. Never skip or weaken a test to hide unfinished implementation.
 

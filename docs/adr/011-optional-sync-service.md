@@ -22,7 +22,7 @@ Cadence should work locally without an account. A later service may help one per
 - Use bounded incremental sync with record versions, repeat-safe operations and explicit conflict recovery. Signing in does not upload or replace existing data. A cloud failure must leave local work and export usable.
 - Keep one free feature set and the same published service rules for everyone. No payment or ad view grants more functions or capacity. Advertising remains a separate later decision with measured revenue.
 
-The current contract and open implementation decisions belong in [CLOUD_SYNC.md](../CLOUD_SYNC.md). The older [SYNC.md](../SYNC.md) is historical reference, not the selected service specification.
+The current contract and open implementation decisions belong in CLOUD_SYNC.md. The older SYNC.md is historical reference, not the selected service specification.
 
 ## Options considered
 

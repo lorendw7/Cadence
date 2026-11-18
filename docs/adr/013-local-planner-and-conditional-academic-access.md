@@ -41,7 +41,7 @@ The [roadmap](../ROADMAP.md#maintenance-and-estimates) separates demonstrator, l
 
 - [ ] Continue the current lesson and build reliable local saving through learner-owned steps.
 - [ ] Demonstrate a task deadline, weekly class, personal appointment and work session using fictional data.
-- Later only: revisit eligibility, fields, retention and maintenance questions under [UNIVERSITY_INTEGRATION.md](../UNIVERSITY_INTEGRATION.md).
+- Later only: revisit eligibility, fields, retention and maintenance questions under UNIVERSITY_INTEGRATION.md.
 - Later only: keep any school correspondence private and distinguish advice from permission.
 - [ ] Re-estimate local delivery after actual development progress. Estimate school work only if selected later.
 

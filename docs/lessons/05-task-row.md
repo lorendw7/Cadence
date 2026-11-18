@@ -27,7 +27,7 @@ Data flows from parent to child. A user action calls the function supplied by th
 
 ## Acceptance
 
-The [list and callback tests](../../test/task_list_widget_test.dart) kept checks at two window sizes. A standalone TaskRow test verified that building calls the callback zero times and one tap calls it once. The [counter test](../../test/practice_counter_widget_test.dart) still passed.
+The [list and callback tests](../../test/task_list_widget_test.dart) kept checks at two window sizes. A standalone TaskRow test verified that building calls the callback zero times and one tap calls it once. The counter test still passed.
 
 The learner practiced dart format lib/main.dart. Formatting, analysis, and 11 tests passed. Manual logging would have required tapping each row and checking its title in the terminal; that historical check was not confirmed.
 

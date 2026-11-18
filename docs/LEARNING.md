@@ -12,7 +12,7 @@ The app validates task titles, adds tasks, copies their titles and toggles compl
 
 The learner wrote the console caller, the first Flutter copy action and its guarded feedback. The console exercise still lacks its original start and end messages. The app has no persistent storage. The [lesson notes](lessons/17-await-errors.md) keep the sequence of attempts and reviews. The [curriculum](CURRICULUM.md#numbered-lesson-plan) owns the teaching order.
 
-The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title validation, theme, keyboard and responsive layout checks remain open where listed below. The [short study week](WEEKLY_PLAN.md#short-study-week) helps plan personal practice.
+The learner confirmed the empty-list, addition, completion and actual-window deletion/undo flows. Manual title validation, theme, keyboard and responsive layout checks remain open where listed below.
 
 | Lesson range | Recorded status |
 |---|---|
@@ -22,7 +22,7 @@ The learner confirmed the empty-list, addition, completion and actual-window del
 | 16 | Code cleanup and concept review complete; this did not close earlier native checks |
 | 17 | Copy practice accepted on Windows. The learner explained the lifetime guard and confirmed feedback and exact pasted text. The console start and end messages are still absent. |
 | 18 | Starter prepared. The learner's caller and explanation are pending. |
-| 19-44 | Planned topics |
+| 19-66 | Planned topics in the [revised plan](CURRICULUM.md#numbered-lesson-plan) |
 
 | Ability | Recorded evidence | Next evidence to seek |
 |---|---|---|
@@ -70,7 +70,7 @@ SQLite/drift belongs to the upcoming persistence stage. Riverpod remains conditi
 
 ## Current delivery priority
 
-Support work on 2026-11-15 prepared the [desktop proposal](DESKTOP_V1.md), [sales targets](STEAM_SALES_PLAN.md) and [focus media studies](../assets/focus-pack/README.md). The initial pack contained 12 synthetic music drafts, three cues, editable scores and artwork. A later asset pass added four Slow Pages pieces and [Android artwork](../assets/ANDROID_ARTWORK.md). The [measurement report](../assets/focus-pack/validation.json) and pack guide record asset and short playback checks. Full listening and native integration still need review. The desktop proposal reuses prepared assets with no fal top-up. Its [delivery slices](DESKTOP_V1.md#delivery-slices-and-evidence) follow Android self-use.
+Support work on 2026-11-15 prepared the [desktop proposal](DESKTOP_V1.md), sales targets and [focus media studies](../assets/focus-pack/README.md). The initial pack contained 12 synthetic music drafts, three cues, editable scores and artwork. A later asset pass added four Slow Pages pieces and [Android artwork](../assets/ANDROID_ARTWORK.md). The [measurement report](../assets/focus-pack/validation.json) and pack guide record asset and short playback checks. Full listening and native integration still need review. The desktop proposal reuses prepared assets with no fal top-up. Its [delivery slices](DESKTOP_V1.md#delivery-slices-and-evidence) follow Android self-use.
 
 Continue the async lessons, then build reliable local saving and recovery through learner-owned steps. Under [ADR-015](adr/015-android-self-use-first.md), Android is the first self-use target. A fictional-data launch check can establish device setup before storage is ready. Real tasks wait for phone acceptance of local/temporary mode, confirmed writes, restart and backup recovery. Extend the accepted task slice with direct planning, Today and selected-day Week. After planning self-use, add the bounded [Android focus stage](ROADMAP.md#h--android-focus-self-use): one task-linked countdown, a manual break and a small local session list. A complete Windows release, media player or Steam listing is not required first.
 
@@ -78,9 +78,9 @@ The maintainer has an Android phone and is willing to use the app daily; no exte
 
 ## Learning order
 
-Use the [working sequence](CURRICULUM.md#working-sequence): async reasoning, reliable stored data, time models and algorithms, useful code boundaries, then complete native delivery. These are stages, not single lessons. Debugging, tests, Git, documentation reading, accessibility and privacy apply throughout.
+Use the [working sequence](CURRICULUM.md#working-sequence): work that takes time, a stronger task model, structure and the first phone run, reliable local data, time and algorithms, shared state and quality, then Android focus. These are units, not single lessons.
 
-Review existing models and state through short variations rather than repeating completed lessons. The [numbered plan](CURRICULUM.md#numbered-lesson-plan) now gives a provisional 44-topic main track. Its endpoint is a learning review, not a release promise or a fixed count of teaching exchanges. Documents, artwork and website work do not count as core lessons.
+Review existing models and state through short variations rather than repeating completed lessons. The [numbered plan](CURRICULUM.md#numbered-lesson-plan) now gives a provisional main track through lesson 66. Its endpoint is a learning review, not a release promise or a fixed count of teaching exchanges. Documents, artwork and website work do not count as core lessons.
 
 ## Tests and templates
 
@@ -91,7 +91,7 @@ Review existing models and state through short variations rather than repeating 
 | 1 | [Task model](../test/domain/coursework/planner_task_test.dart) |
 | 2 | [Immutable copy](../test/domain/coursework/planner_task_copy_with_test.dart) |
 | 3 and 5 | [List and callbacks](../test/task_list_widget_test.dart), including scrolling at narrow sizes |
-| 4 and 16 | The counter is retired. Its [retained test path](../test/practice_counter_widget_test.dart) checks absent practice buttons and usable undo after resizing. |
+| 4 and 16 | The counter is retired. Its [retained test path](../test/task_undo_resize_widget_test.dart) checks absent practice buttons and usable undo after resizing. |
 | 6 | [Task completion](../test/task_toggle_widget_test.dart) |
 | 7 and 8 | [Input and addition](../test/task_title_input_widget_test.dart): IDs, clearing, rebuilds, and controller disposal |
 | 9 | [Validation](../test/task_title_validation_widget_test.dart) at two sizes |
@@ -99,7 +99,7 @@ Review existing models and state through short variations rather than repeating 
 | 11 and 12 | Existing regressions run under both theme layers; task-action and rebuild checks locate the migrated ShadButton |
 | 13 | Task-surface regressions use Shad controls; [input checks](../test/task_title_input_widget_test.dart) verify wide, compact and stacked quick-entry layouts while retaining input |
 | 14 | [Shell resize check](../test/desktop_shell_widget_test.dart) covers sidebar visibility, the selected Tasks marker and retained tasks, draft input and pending undo across resizing |
-| 15, manual checks deferred | [Narrow-window undo](../test/practice_counter_widget_test.dart), [short-window scrolling](../test/task_scroll_widget_test.dart) and [200% text scaling](../test/task_text_scaling_widget_test.dart) cover reachable controls, draft retention, empty state, undo and addition |
+| 15, manual checks deferred | [Narrow-window undo](../test/task_undo_resize_widget_test.dart), [short-window scrolling](../test/task_scroll_widget_test.dart) and [200% text scaling](../test/task_text_scaling_widget_test.dart) cover reachable controls, draft retention, empty state, undo and addition |
 
 Lesson 9 ended with 19 tests. Lesson 10 brought the total to 26. Lesson 13 brought the total to 27 with an explicit resize check. The suite covers deleting the last task, adding again, equal titles, separate delete/toggle callbacks, restoring the original object, position and state, and preserving input while quick entry changes layout. Older notes keep historical test counts.
 
@@ -182,3 +182,11 @@ The maintainer requested computer setup and an APK, with no phone test in this s
 Flutter doctor reported no issues. Strict Flutter analysis, all 39 tests and the Android debug APK build passed. APK signature verification also passed. The generated file is `build/app/outputs/flutter-apk/app-debug.apk`. It contains ARM64, ARMv7 and x86-64 libraries, with minimum API 24 and target API 36. The build emitted an SDK XML schema warning but completed successfully.
 
 This was toolchain and build support. No learner-owned Dart code, state rules or dependencies changed. Lesson 17 native paste and earlier manual checks remain open. Tasks still live only in memory. Phone layout, Back, keyboard, clipboard, process termination and future storage recovery remain untested on Android. A debug APK is not a released or accepted self-use product.
+
+### Review, document cleanup and plan revision on 2026-11-18
+
+The learner asked for a whole-project review, then asked the assistant to handle the findings, remove documents and revise the teaching plan to teach as much as possible.
+
+Strict analysis, formatting and all 39 tests passed before any change. The assistant then did supporting work only. It removed 16 documents about deferred, paused or superseded work and listed them in the [documentation index](README.md#removed-documents). It corrected the package description, the Android app label and stale README statements. It renamed the retired counter test file to `task_undo_resize_widget_test.dart` without changing the test. It added an Android debug APK job to the Flutter workflow; that job has not run on GitHub yet.
+
+No learner-owned code changed. The review's code findings are now exercises in the [revised plan](CURRICULUM.md#defects-used-as-exercises). The plan keeps lessons 1-18 and renumbers the planned topics as 19-66. From lesson 19 the learner writes at least one test per lesson. No lesson was accepted by this revision. Lesson 18 remains the current step, and all earlier manual checks stay open. No phone check and no native build ran for this update.

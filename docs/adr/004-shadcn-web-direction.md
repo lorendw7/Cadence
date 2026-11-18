@@ -26,4 +26,4 @@ No implementation or functional MVP is implied. At the time of this decision, th
 - Keep the 64/80–100 desktop lesson estimates. A basic no-backend Web extension provisionally adds 8–16 lessons only if desktop behavior is reusable; school integration/backend work remains separate. Estimates do not certify completion.
 - Prepare a fictional-data school demonstration after behavior passes acceptance. School approval is not a prerequisite for independent manual planning; official identity/data access remains separately authorized.
 
-See [PRODUCT.md](../PRODUCT.md), [SECURITY.md](../SECURITY.md), [CURRICULUM.md](../CURRICULUM.md) and [SCHOOL_DEMO.md](../SCHOOL_DEMO.md).
+See [PRODUCT.md](../PRODUCT.md), [SECURITY.md](../SECURITY.md), [CURRICULUM.md](../CURRICULUM.md) and SCHOOL_DEMO.md.

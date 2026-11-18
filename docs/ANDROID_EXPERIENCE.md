@@ -20,7 +20,7 @@ The first user is the maintainer. The first external audience to investigate is 
 | Clear planning | Separate a task deadline from a reserved interval | The person can change a plan without expecting the deadline to move |
 | Calm presentation | White canvas, wine selection, readable lists and modest state artwork | Long titles, large text, contrast and native screen-reader review |
 
-Offline access and a quiet appearance are useful properties to test. Neither alone proves a reason to switch from an existing planner. Ask what specific routine became easier and what still required another tool. Follow the [existing competitor reference mapping](COMPETITIVE_REVIEW.md#three-view-reference-mapping); no competitor-wide feature parity is claimed.
+Offline access and a quiet appearance are useful properties to test. Neither alone proves a reason to switch from an existing planner. Ask what specific routine became easier and what still required another tool. Follow the existing competitor reference mapping; no competitor-wide feature parity is claimed.
 
 ## One consistent design fixture
 
@@ -70,7 +70,7 @@ Use the board's three open tasks and zero completed tasks. In the planned local-
 | Failed write | A message beside the action explains that saving failed. Retry is reachable with the full title still in the field. | No retyping, no success message and no change to either list. |
 | Retry succeeds | Return to Completed. Show the local save result and offer **View task**. The empty Completed list still describes its own filter. | Open now has four tasks. View task reaches the new task with its full title and no deadline. |
 
-For the native review, try the same path with TalkBack, Android's screen reader. The user should hear the error, reach Retry, then find the added task even if they miss the success message. The normal route through Open and No date stays available. Use the existing timed benchmark for an ordinary successful capture. Keep the failed-write rehearsal separate so a fast attempt cannot mask lost input. [Android workflow benchmark](VALIDATION.md#android-workflow-benchmark)
+For the native review, try the same path with TalkBack, Android's screen reader. The user should hear the error, reach Retry, then find the added task even if they miss the success message. The normal route through Open and No date stays available. Use the existing timed benchmark for an ordinary successful capture. Keep the failed-write rehearsal separate so a fast attempt cannot mask lost input. Android workflow benchmark
 
 ### Week: make the chosen date unmistakable
 
@@ -110,7 +110,7 @@ Google Play uses relevance and app quality in discovery. Its [ranking guidance](
 
 ## Review and delivery mapping
 
-The changes refine existing A-D work and F preparation. They add no new feature stage or hours to the [weekly plan](WEEKLY_PLAN.md). If review reveals extra implementation work, record the estimate before selecting it. The learner owns core state, date and failure rules and first representative Flutter layouts. The assistant may prepare artwork, documentation, repeated support work and relevant checks around those lessons.
+The changes refine existing A-D work and F preparation. They add no new feature stage or hours to the weekly plan. If review reveals extra implementation work, record the estimate before selecting it. The learner owns core state, date and failure rules and first representative Flutter layouts. The assistant may prepare artwork, documentation, repeated support work and relevant checks around those lessons.
 
 | Review case | What must be clear | Existing delivery area |
 |---|---|---|
@@ -124,7 +124,7 @@ The changes refine existing A-D work and F preparation. They add no new feature 
 | Large text, long translation and open keyboard | Labels, validation and actions remain usable without clipped content | D |
 | Public demonstration | Only implemented and tested capabilities are represented | F |
 
-Use the existing [workflow benchmark](VALIDATION.md#android-workflow-benchmark): proposed title capture within ten seconds, next-commitment lookup within five seconds, and four of five external participants completing the routine without help when such participants are available. These are internal targets, not observed results or market benchmarks. Static drawings cannot pass timing, saving, Back, TalkBack or retention checks.
+Use the existing workflow benchmark: proposed title capture within ten seconds, next-commitment lookup within five seconds, and four of five external participants completing the routine without help when such participants are available. These are internal targets, not observed results or market benchmarks. Static drawings cannot pass timing, saving, Back, TalkBack or retention checks.
 
 Keep the two-week self-use record separate from external demand. For external follow-up, record invitations, replies, voluntary return use, useful routines and reasons for stopping. Feedback compensation does not establish continued demand. No mandatory analytics service is needed for these early observations.
 

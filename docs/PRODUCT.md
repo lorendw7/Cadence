@@ -20,7 +20,7 @@ A timetable is one input, not the whole product. Work, errands and personal time
 
 ### Competitive goal for Android
 
-Planning recommendation, 2026-11-15. First make the selected local routine dependable enough to use daily. Then test whether it is easier than the person's current method. Matching every feature in a mature planner is outside the Android self-use milestone. [The official-source comparison](COMPETITIVE_REVIEW.md#android-competitive-benchmark) supplies references, not evidence that Cadence has reached their quality.
+Planning recommendation, 2026-11-15. First make the selected local routine dependable enough to use daily. Then test whether it is easier than the person's current method. Matching every feature in a mature planner is outside the Android self-use milestone. The official-source comparison supplies references, not evidence that Cadence has reached their quality.
 
 The first user remains the maintainer. A later audience to test is people who manage deadlines and personal commitments on an Android phone, accept manual entry, and value use without an account or network. People who require automatic school changes, team assignment or device sync are not served by this first scope. Do not count them as satisfied by a polished local interface.
 
@@ -30,7 +30,7 @@ Build competitiveness through three concrete qualities:
 - **A short daily routine.** Capture a title, read Today, reserve a separate work interval in Week, then start focus from an existing task when stage H exists. Keep deadline, planned time and recorded timer time distinct. The baseline has no automatic task-to-plan link; measure the cost of separate entry.
 - **Calm, readable presentation.** Keep the original journal identity, clear dates and locations, three-language controls, large text and reachable phone actions. Use visual polish to improve reading and correction. More scenes or music do not repair a slow or confusing core flow.
 
-The target is comparable quality in this bounded routine, followed by a measured reason to choose Cadence. It is not full feature parity, proven demand or a revenue forecast. [VALIDATION.md](VALIDATION.md#android-workflow-benchmark) defines proposed measurements. [ROADMAP.md](ROADMAP.md#work-packages-and-review-points) keeps implementation and release acceptance separate.
+The target is comparable quality in this bounded routine, followed by a measured reason to choose Cadence. It is not full feature parity, proven demand or a revenue forecast. VALIDATION.md defines proposed measurements. [ROADMAP.md](ROADMAP.md#work-packages-and-review-points) keeps implementation and release acceptance separate.
 
 The [Android daily-use specification](ANDROID_EXPERIENCE.md) maps these qualities to Today, Tasks and Week, with a consistent fictional design board, recovery states and support preparation. It refines the accepted scope without adding features or claiming user demand.
 
@@ -44,7 +44,7 @@ Start with people who regularly have a deadline and need to find time around exi
 | When can I work on this? | Keep the deadline in the task. Let the person choose a gap from Week and fill that date and interval into a separate draft. Keep the agenda and task context available. | The user can reserve and then move the interval without re-entering its date or changing the deadline. |
 | How do I get started now? | Once focus exists, start with the existing title from a visible task. Use the same session and labels in the phone view and the later Windows view. | The default countdown needs at most two actions, and the person can distinguish timer time from scheduled time. |
 
-Assess the flow on an actual Android build using the [same scenario and comparison rules](VALIDATION.md#compare-one-routine). Pick the single point where people most often need help, switch tools or enter the same details again. Repair it and repeat the same check. Follow the [later feature review](#competitive-gaps-to-review-later) when a separate feature is warranted.
+Assess the flow on an actual Android build using the same scenario and comparison rules. Pick the single point where people most often need help, switch tools or enter the same details again. Repair it and repeat the same check. Follow the [later feature review](#competitive-gaps-to-review-later) when a separate feature is warranted.
 
 ### Product offer by platform
 
@@ -63,9 +63,9 @@ This is the later desktop purchase hypothesis, not the current delivery audience
 
 The first commercial research group is narrower than the product's general uses: people who do substantial writing, coding or exam preparation on Windows, have real deadlines, and repeatedly switch between a task list, calendar and timer. Recruit for that recent behavior, not for liking music or being a student. The earlier timetable survey does not validate this buyer. Phone-first users who need automatic course changes are a different group.
 
-For that later offer, test this benefit: **See when work is due, choose when to do it, and start focus from the same task.** A deadline, calendar block, daily pin and music choice are optional. Keep the direct focus action available when the person already knows what to do. Compare with the person's current tools during the [silent workflow trial](VALIDATION.md#compare-the-silent-workflow).
+For that later offer, test this benefit: **See when work is due, choose when to do it, and start focus from the same task.** A deadline, calendar block, daily pin and music choice are optional. Keep the direct focus action available when the person already knows what to do. Compare with the person's current tools during the silent workflow trial.
 
-The maintainer's recovery objective includes development time as well as cash. [The full-cost model](STEAM_SALES_PLAN.md#recover-cash-and-working-time) therefore governs commercial reviews. A small cash surplus does not mean the project has paid for the work. Price, purchases and channel acceptance remain unproven.
+The maintainer's recovery objective includes development time as well as cash. The full-cost model therefore governs commercial reviews. A small cash surplus does not mean the project has paid for the work. Price, purchases and channel acceptance remain unproven.
 
 ## Three views of one plan
 
@@ -87,7 +87,7 @@ The [local planner study](../assets/ui/planner-study.html) makes this proposed h
 
 The [survey](SURVEY_FINDINGS.md) contains ten responses per question. Phone viewing received 7/10 selections. Clearer times and rooms were the largest current pain at 5/10; less entry received 4/10. Only 2/10 explicitly accepted fully manual entry, while 4/10 required semester import. These are separate small-sample totals, not adoption or retention results.
 
-The maintainer adopted easier setup and phone access, while retaining general time management. ADR-015 now selects Android self-use first, with Windows as the development host. That selection comes from the maintainer's available device, not an Android preference measured by the survey. Direct editing remains the delivery route; school access and screenshot import remain deferred. [DESIGN_OPTIONS.md](DESIGN_OPTIONS.md) records the decisions. The survey did not test generic work/life planning or personal cloud sync. The [competitor review](COMPETITIVE_REVIEW.md) supplies workflow ideas, not proof that users will switch.
+The maintainer adopted easier setup and phone access, while retaining general time management. ADR-015 now selects Android self-use first, with Windows as the development host. That selection comes from the maintainer's available device, not an Android preference measured by the survey. Direct editing remains the delivery route; school access and screenshot import remain deferred. DESIGN_OPTIONS.md records the decisions. The survey did not test generic work/life planning or personal cloud sync. The competitor review supplies workflow ideas, not proof that users will switch.
 
 ## Design decisions at a glance
 
@@ -150,7 +150,7 @@ On first use, explain Save on this device and Temporary use. Temporary mode does
 
 Deferred under ADR-015. This is the later Windows candidate, not a dependency of Android self-use or the first public mobile planner. No desktop compact-window, player, scene or Steam work is scheduled in the active Android milestone. The bounded phone timer is a separate active phase after planning.
 
-The [first-release candidate](DESKTOP_V1.md) follows the maintainer's decision to reuse existing tools and assets. Keep one configurable focus/break countdown, compact mode in the same window, up to three daily pins, title search, local session review, one static illustrated surface and a plain option. Audition the 16 existing music drafts. Aim to select 8-12 tracks for one local player. Let listening quality and the actual offer decide the final count. The [sales plan](STEAM_SALES_PLAN.md) defines the evidence needed before expanding spending.
+The [first-release candidate](DESKTOP_V1.md) follows the maintainer's decision to reuse existing tools and assets. Keep one configurable focus/break countdown, compact mode in the same window, up to three daily pins, title search, local session review, one static illustrated surface and a plain option. Audition the 16 existing music drafts. Aim to select 8-12 tracks for one local player. Let listening quality and the actual offer decide the final count. The sales plan defines the evidence needed before expanding spending.
 
 Count-up, automatic cycles, named profiles, checklists, ambient mixing, extra scenes/themes, animation and Wallpaper Engine work are deferred. The purchase hypothesis is a smooth planning-to-focus routine with reliable local data and a calm presentation. Do not expand the content catalogue while that routine is unproven. [Prepared media](../assets/focus-pack/README.md) remains separate from implemented playback.
 
@@ -168,7 +168,7 @@ Use one Flutter codebase. Share models, date rules, validation and application b
 
 Desktop keeps the sidebar, wide Week and focused editors. Phone Today makes the next commitment, time and location easy to read; Tasks and Week remain first-class destinations. A next commitment may be a class, meeting or personal appointment. Keep the journal identity, wine #7C394B, white #FFFFFF and graphite text, with shadcn_ui introduced gradually.
 
-The concept website remains on GitHub Pages. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md), [DESIGN.md](DESIGN.md) and [FREE_EDITION.md](FREE_EDITION.md). No second marketing site is needed.
+The concept website remains on GitHub Pages. See [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md), [DESIGN.md](DESIGN.md) and FREE_EDITION.md. No second marketing site is needed.
 
 ## Optional later work
 
@@ -179,7 +179,7 @@ The concept website remains on GitHub Pages. See [UI_ARCHITECTURE.md](UI_ARCHITE
 | Review and reminders | Local planned-time summaries and opt-in reminders; no inferred actual work or guaranteed closed-app delivery |
 | Advanced course/calendar rules | Broader rotations, holiday helpers and filtered sharing beyond the first supported input |
 | Personal-key cloud AI | Optional assistance; never required for import or used as an automatic fallback |
-| Personal cloud sync | Google login with Node.js, TypeScript, Fastify and PostgreSQL under [CLOUD_SYNC.md](CLOUD_SYNC.md) |
+| Personal cloud sync | Google login with Node.js, TypeScript, Fastify and PostgreSQL under CLOUD_SYNC.md |
 | Advertising | Android/iOS pilot only after mobile release; no desktop/Web ads, forced ads or capacity unlocks |
 
 Drag scheduling, automatic scheduling, linked task/session automation, complex projects, habits, custom categories, a month view, persistent drafts and encrypted storage are not first-release requirements. Explicit task and plan editing comes first.
@@ -190,7 +190,7 @@ These are P3 candidates, not additions to the A-C, D, H and F first-version gate
 
 | Observed problem to seek | Smallest candidate to assess | Acceptance question |
 |---|---|---|
-| A recorded commitment is missed because the person does not reopen the app | I1: opt-in local reminders under [NOTIFICATIONS.md](NOTIFICATIONS.md) | Are permissions, changed or cancelled events, restart and delivery limits handled honestly on the phone? |
+| A recorded commitment is missed because the person does not reopen the app | I1: opt-in local reminders under NOTIFICATIONS.md | Are permissions, changed or cancelled events, restart and delivery limits handled honestly on the phone? |
 | Finding an existing task repeatedly takes long scrolling | I2: title search, then only a needed simple filter beyond the initial open/completed views | Do results use the same confirmed records, completion states and dates as the list? |
 | Frequent app launches are only to check the next item | I3: an Android home-screen widget for the next commitment | Does it stay correct after edits and date changes, disclose stale data, and respect local/temporary mode? |
 
@@ -200,7 +200,7 @@ These are hypotheses, not reported defects. Prefer the smallest fix for the most
 
 ## Conditional connections and independence
 
-School-access feasibility and application preparation are deferred under ADR-013. No application, permission, usable API or school login is confirmed. [The connection study](UNIVERSITY_INTEGRATION.md) owns the questions and gates. Prefer an official read-only API or calendar feed if the school offers and approves it. Start with a user-requested snapshot, review and save; continuous change tracking needs a separate contract and acceptance.
+School-access feasibility and application preparation are deferred under ADR-013. No application, permission, usable API or school login is confirmed. The connection study owns the questions and gates. Prefer an official read-only API or calendar feed if the school offers and approves it. Start with a user-requested snapshot, review and save; continuous change tracking needs a separate contract and acceptance.
 
 School passwords, logged-in scraping, course-registration writes, grades and other students' data stay outside this plan. Google identity for personal sync does not grant school access. Local retention, backup and cloud transfer of school data must each be permitted. General releases do not wait for school approval.
 
@@ -214,7 +214,7 @@ Start with quick task capture, a readable Today agenda and a selected-day Week v
 
 After the planning self-use check, [Android focus](ROADMAP.md#h--android-focus-self-use) adds one countdown, explicit pause/resume/end, manually started breaks and a small task-labelled local history. No music, desktop window mode, streak, score or automatic cycle is needed. Timer completion does not complete a task. Define backgrounding, screen lock, process death, unknown time and failed writes before implementation. Keep focus as a secondary route from a task rather than a fourth main tab.
 
-Keep self-use and the first public Android release ad-free. After a useful release and an ad-free usage baseline, pair the optional cloud sync pilot with the [existing Android review banner](FREE_EDITION.md#review-screen-ad-proposal) to help pay operating costs. Ads stay out of task rows, Today, Week, editing and active focus. Local planning needs no account. A person who declines ads keeps the same sync access and limits as other users. The [cost model](VALIDATION.md#cloud-cost-coverage-with-the-review-banner) and [joint release gate](ROADMAP.md#after-store-launch--review-services-and-income) define the planned review.
+Keep self-use and the first public Android release ad-free. After a useful release and an ad-free usage baseline, pair the optional cloud sync pilot with the existing Android review banner to help pay operating costs. Ads stay out of task rows, Today, Week, editing and active focus. Local planning needs no account. A person who declines ads keeps the same sync access and limits as other users. The cost model and [joint release gate](ROADMAP.md#after-store-launch--review-services-and-income) define the planned review.
 
 ## Free edition and open source
 
@@ -222,7 +222,7 @@ This heading is retained for existing links. Under ADR-015, the Android self-use
 
 Private development is selected. The repository was verified private on 2026-11-15, and Pages is offline with its source retained for later deployment. Keep the current [MIT license](../LICENSE) and notices unchanged. Private development does not retract copies already distributed under MIT. A future license decision is separate from the purchase experiment.
 
-Local use and recovery need no Cadence account or network. If a paid desktop release is adopted, store acquisition and licensing terms must be stated separately from offline runtime behavior. [FREE_EDITION.md](FREE_EDITION.md) owns the access policy. [ADR-011](adr/011-optional-sync-service.md) retains the later JPY 2,500 monthly service planning budget; neither desktop sales nor mobile ads guarantee it can be funded.
+Local use and recovery need no Cadence account or network. If a paid desktop release is adopted, store acquisition and licensing terms must be stated separately from offline runtime behavior. FREE_EDITION.md owns the access policy. [ADR-011](adr/011-optional-sync-service.md) retains the later JPY 2,500 monthly service planning budget; neither desktop sales nor mobile ads guarantee it can be funded.
 
 ## First-release limits
 

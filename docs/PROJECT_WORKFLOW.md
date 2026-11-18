@@ -8,13 +8,13 @@ Cadence is a local time planner for work, study and daily life. Tasks, deadlines
 
 ## Ownership and size
 
-The learner writes the code that teaches the current core concept and makes product choices. This includes the first representative Flutter widget, callback, state update, layout or lifecycle change, as well as business rules and storage/error decisions. The assistant completes repetitive support within the current lesson: repeated wiring, visual polish, test setup, broader regressions and documentation. Follow the [division of work](CURRICULUM.md#division-of-work) and [Dart and Flutter practice](CURRICULUM.md#dart-and-flutter-practice).
+The learner writes the code that teaches the current core concept and makes product choices. This includes the first representative Flutter widget, callback, state update, layout or lifecycle change, as well as business rules and storage/error decisions. The assistant completes repetitive support within the current lesson: repeated wiring, visual polish, test setup, broader regressions and documentation. Follow the [division of work](CURRICULUM.md#division-of-work) and [Dart and Flutter practice](CURRICULUM.md#numbered-lesson-plan).
 
 The user's delegation covers this supporting work once the lesson boundary is stated; no repeated permission is needed for it. It does not authorize future lessons, unused dependencies or architecture for future work. Introduce a needed dependency only with its active lesson. Preserve the learner's attempt and explain supporting changes. Do not weaken tests or reduce the learner's work to filling blanks in an otherwise completed feature.
 
 A task describes an observable result, such as adding a task to the session list. It may take several lessons. Close it only after its acceptance conditions pass. Work on one feature task at a time; record unrelated ideas for later. Keep blocking fixes separate when useful. Small wording changes do not need a large process.
 
-The [weekly plan](WEEKLY_PLAN.md#weekly-review-and-rescheduling) supplies the first-version work slots and review record. Use its learner/support boundary before each small step. Carry unfinished acceptance into the next week; do not start a dependent feature just because the calendar moved on.
+The weekly plan supplies the first-version work slots and review record. Use its learner/support boundary before each small step. Carry unfinished acceptance into the next week; do not start a dependent feature just because the calendar moved on.
 
 Use the [curriculum](CURRICULUM.md) for skill goals. Keep one small goal and one new concept per teaching step:
 

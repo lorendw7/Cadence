@@ -48,7 +48,7 @@ The learner writes core features in small lessons through lib/main.dart. This do
 - [ ] Validate the same records and rules on Android, including manual backup transfer and platform failures.
 - [ ] Publish only accepted platform builds, then review further clients and later service operation.
 
-[PRODUCT.md](../PRODUCT.md) owns priorities. [ROADMAP.md](../ROADMAP.md) owns the development order and gates. [DESIGN_OPTIONS.md](../DESIGN_OPTIONS.md) retains the comparison and study measures.
+[PRODUCT.md](../PRODUCT.md) owns priorities. [ROADMAP.md](../ROADMAP.md) owns the development order and gates. DESIGN_OPTIONS.md retains the comparison and study measures.
 
 ## References
 

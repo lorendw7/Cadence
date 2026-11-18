@@ -28,7 +28,7 @@ Reviewed import adds confirmed candidates; it is not a full-backup restore. A pa
 
 Screenshot recognition and AI help are unscheduled optional work. Apply the following rules only if those features are later selected; neither blocks the local release.
 
-[QUICK_IMPORT.md](QUICK_IMPORT.md) keeps cloud help optional. Keys stay in memory by default. Only an explicit Remember key choice may store one in the OS credential store. If that store is unavailable, offer session-only use; never write a plaintext key to settings or the planning database.
+QUICK_IMPORT.md keeps cloud help optional. Keys stay in memory by default. Only an explicit Remember key choice may store one in the OS credential store. If that store is unavailable, offer session-only use; never write a plaintext key to settings or the planning database.
 
 Temporary mode neither saves new keys nor loads old keys automatically. Using a remembered key needs an explicit session choice. Profile deletion removes its stored key and memory copy; remote revocation is a separate provider action. Exclude keys and request bodies from exports, logs and crash reports.
 
@@ -48,9 +48,9 @@ Application-level database encryption, encrypted backups and password recovery a
 
 Review dependencies and licenses, preserve lockfiles and keep secrets out of the repository. Verify the actual release package, use trusted distribution and provide upgrade/recovery guidance. A build or checksum alone is not proof of security. Never ask users to disable OS security globally.
 
-The free Web client needs tested browser storage, cleanup, export and recovery limits under [FREE_EDITION.md](FREE_EDITION.md). The accepted future personal sync service uses Node.js, TypeScript, Fastify and PostgreSQL with optional Google sign-in. Its implementation remains subject to review after store launch. PostgreSQL holds remote copies; it does not replace the local SQLite store. Academic access is a deferred extension with no approved interface or automatic institutional updates. Its data retention and onward-transfer terms must be resolved before implementation; personal-sync consent alone cannot grant school access.
+The free Web client needs tested browser storage, cleanup, export and recovery limits under FREE_EDITION.md. The accepted future personal sync service uses Node.js, TypeScript, Fastify and PostgreSQL with optional Google sign-in. Its implementation remains subject to review after store launch. PostgreSQL holds remote copies; it does not replace the local SQLite store. Academic access is a deferred extension with no approved interface or automatic institutional updates. Its data retention and onward-transfer terms must be resolved before implementation; personal-sync consent alone cannot grant school access.
 
-[CLOUD_SYNC.md](CLOUD_SYNC.md) defines the later data boundary. Signing in does not authorize upload. Enabling sync requires a separate preview and confirmation; temporary mode remains local and does not queue uploads. Service tokens, account bindings and sync checkpoints do not belong in private planning backups. Restoring a local backup pauses sync and requires a reviewed recovery path before remote work resumes.
+CLOUD_SYNC.md defines the later data boundary. Signing in does not authorize upload. Enabling sync requires a separate preview and confirmation; temporary mode remains local and does not queue uploads. Service tokens, account bindings and sync checkpoints do not belong in private planning backups. Restoring a local backup pauses sync and requires a reviewed recovery path before remote work resumes.
 
 Local clear and cloud deletion are separate actions. A cloud deletion flow must state what is removed from live storage and when retained backup copies expire. Set retention periods and verify deletion before launch; do not claim immediate physical erasure. Account switching and revoked access must preserve local work without sending it to another account.
 

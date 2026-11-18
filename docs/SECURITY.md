@@ -26,7 +26,7 @@ Offer Save on this device and Temporary use before opening saved planning record
 
 Mode changes resolve pending work and explain which saved copy remains. Clear names the app-owned files affected and reports incomplete steps. It cannot remove exported copies or promise physical erasure. [APPLICATION.md](APPLICATION.md) defines the single-writer and session rules.
 
-Define the free Web client's storage and lifecycle independently of native files and processes. Browser storage is not an OS secret store. The concept site has no private planner-data receiver; hosting still receives ordinary page requests. Follow [FREE_EDITION.md](FREE_EDITION.md) for browser-local limits.
+Define the free Web client's storage and lifecycle independently of native files and processes. Browser storage is not an OS secret store. The concept site has no private planner-data receiver; hosting still receives ordinary page requests. Follow FREE_EDITION.md for browser-local limits.
 
 ## Import and replacement
 
@@ -38,7 +38,7 @@ A failed replacement preserves the old data. A failed persistent write cannot re
 
 ## Optional screenshot and AI import
 
-This section applies only if screenshot or AI import is selected later. It is not a local-release checklist item while that feature is absent. [QUICK_IMPORT.md](QUICK_IMPORT.md) defines conditional draft protection. Build direct editing first. Internal fictional drafts need no CSV parser; CSV/table import remains deferred until real user exports justify it.
+This section applies only if screenshot or AI import is selected later. It is not a local-release checklist item while that feature is absent. QUICK_IMPORT.md defines conditional draft protection. Build direct editing first. Internal fictional drafts need no CSV parser; CSV/table import remains deferred until real user exports justify it.
 
 Keep screenshot recognition local. RapidOCR remains subject to sample quality and native packaging checks, and image support is advertised only on passing targets. Set limits for file bytes, decoded pixels, text boxes and candidate entries. Reject unsupported files and layouts. Treat recognized text and model output as data; do not execute scripts, follow source links or grant model tools. Compare the draft with the source and require review before one additive commit. Manual in-app entry stays available after recognition failure. No hosting, school login, automatic source update or cloud upload is required for this route.
 
@@ -63,11 +63,11 @@ Future timetable sharing uses an explicit field allowlist that excludes private 
 
 ## Optional connections and backend
 
-No account service, sync queue, billing or ad SDK belongs in the first local planning flow. The accepted future service uses Node.js, TypeScript, Fastify and PostgreSQL with optional Google sign-in. [CLOUD_SYNC.md](CLOUD_SYNC.md) defines its boundaries; implementation and launch remain subject to separate later review. This is personal workspace sync, not automatic course updates or school login. The [academic-access study](UNIVERSITY_INTEGRATION.md) is a reference for a deferred extension, including feasibility and application preparation. An actual connection needs confirmed institutional terms, a documented read-only interface and a separately reviewed design. Never collect school passwords or scrape authenticated pages as a shortcut.
+No account service, sync queue, billing or ad SDK belongs in the first local planning flow. The accepted future service uses Node.js, TypeScript, Fastify and PostgreSQL with optional Google sign-in. CLOUD_SYNC.md defines its boundaries; implementation and launch remain subject to separate later review. This is personal workspace sync, not automatic course updates or school login. The academic-access study is a reference for a deferred extension, including feasibility and application preparation. An actual connection needs confirmed institutional terms, a documented read-only interface and a separately reviewed design. Never collect school passwords or scrape authenticated pages as a shortcut.
 
 Before enabling it, verify Google ID tokens with a maintained official library and map the stable subject identifier to an internal user. Check ownership on every record read and write. Do not trust email addresses or user IDs supplied by a client as authorization. Keep service sessions and credentials out of planning exports and logs; use appropriate secure storage for each client. Define revocation and session expiry behavior.
 
-Sign-in must not upload records. Enabling sync requires a separate account and workspace preview. Account switching, logout and revocation must stop the old account's requests and callbacks from changing another workspace. Local clear and local restore must not silently delete cloud data. Use the separate deletion and recovery rules in [CLOUD_SYNC.md](CLOUD_SYNC.md#logout-switching-clear-and-restore). Keep local editing and export usable during an outage and after service shutdown. [SYNC.md](SYNC.md) is historical research, superseded by ADR-011 for personal sync.
+Sign-in must not upload records. Enabling sync requires a separate account and workspace preview. Account switching, logout and revocation must stop the old account's requests and callbacks from changing another workspace. Local clear and local restore must not silently delete cloud data. Use the separate deletion and recovery rules in CLOUD_SYNC.md. Keep local editing and export usable during an outage and after service shutdown. SYNC.md is historical research, superseded by ADR-011 for personal sync.
 
 ## Acceptance and reports
 

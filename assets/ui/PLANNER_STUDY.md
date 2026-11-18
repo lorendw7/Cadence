@@ -20,7 +20,7 @@ Navigation, weekday selection, expandable task groups and editor previews work. 
 
 ## Reference-led refinement
 
-The [competitive review](../../docs/COMPETITIVE_REVIEW.md#design-refinements-from-this-review) records the official source observations. This revision tests three adaptations within Cadence's existing scope:
+The competitive review records the official source observations. This revision tests three adaptations within Cadence's existing scope:
 
 | Reference pattern | Cadence adaptation | Tradeoff to review |
 |---|---|---|

@@ -3,7 +3,7 @@
 **Status:** Accepted incremental shared-client architecture. [ADR-013](013-local-planner-and-conditional-academic-access.md) now sets direct general planning on Windows first, Android next, optional unscheduled screenshots and deferred school-access extension. shadcn_ui and learner-owned implementation remain; earlier scope and platform limits below are historical.
 **Date:** 2026-11-10
 **Deciders:** Cadence maintainer; the learner continues to implement application code.
-**Related:** [ADR-001](001-local-application-boundaries.md), [ADR-002](002-university-wide-product.md), [architecture](../ARCHITECTURE.md), [UI architecture](../UI_ARCHITECTURE.md), [project workflow](../PROJECT_WORKFLOW.md).
+**Related:** [ADR-001](001-local-application-boundaries.md), ADR-002, [architecture](../ARCHITECTURE.md), [UI architecture](../UI_ARCHITECTURE.md), [project workflow](../PROJECT_WORKFLOW.md).
 
 ## Context
 

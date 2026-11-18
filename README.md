@@ -12,7 +12,7 @@ Cadence is being designed around **Today, Week, and Tasks**. See the next commit
 
 [Website source](website/README.md) · [Product](docs/PRODUCT.md) · [UI preview](assets/ui/planner-study.html) · [Setup](docs/SETUP.md) · [Documentation](docs/README.md)
 
-For the next development steps, use the [weekly first-version plan](docs/WEEKLY_PLAN.md). It divides a 10-15-hour weekly budget into learner-owned practice, assistant support and acceptance checks. The plan does not mark future features or lessons complete.
+For the next steps, use the [numbered lesson plan](docs/CURRICULUM.md#numbered-lesson-plan). It lists what the learner writes in each lesson and what the assistant supports. The plan does not mark future features or lessons complete.
 
 ## Product direction
 
@@ -28,7 +28,7 @@ Build the ad-free Android self-use edition first under [ADR-015](docs/adr/015-an
 
 Screenshot recognition, CSV/table import and all school-access work are deferred. A local release does not need school permission. No application, permission, connection or automatic school update is confirmed. Cloud sync needs a separate later review. Desktop, Web and the website remain ad-free; only mobile ads may be tested after a useful mobile release. The [product scope](docs/PRODUCT.md#optional-later-work) keeps these extensions separate from current delivery.
 
-The self-use edition has no ads and assumes no income. A later one-time desktop purchase and mobile-only ad pilot remain hypotheses, not approved prices or guaranteed revenue. No subscription, paid priority or ad-based feature unlock is planned. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. LICENSE remains MIT. See the [access and platform policy](docs/FREE_EDITION.md).
+The self-use edition has no ads and assumes no income. A later one-time desktop purchase and mobile-only ad pilot remain hypotheses, not approved prices or guaranteed revenue. No subscription, paid priority or ad-based feature unlock is planned. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. LICENSE remains MIT. [AGENTS.md](AGENTS.md) records these limits.
 
 ## Review the product and UI
 
@@ -79,7 +79,7 @@ The Japanese/English/Chinese website shows fictional concepts. It is not a worki
 | tools/ | Generators and read-only checks |
 | windows/, linux/, macos/ | Desktop runners |
 | android/ | Runner for the first self-use target. A debug APK built on 2026-11-15; phone testing and release acceptance are still pending |
-| .github/workflows/ | Checks, desktop builds, and the disabled Pages workflow. No workflow builds Android yet |
+| .github/workflows/ | Checks, Android debug APK and desktop builds, and the disabled Pages workflow |
 
 See [the repository map](docs/REPOSITORY.md) and [maintenance tools](tools/README.md).
 

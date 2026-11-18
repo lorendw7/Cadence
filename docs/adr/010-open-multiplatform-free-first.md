@@ -24,7 +24,7 @@ Later decision (2026-11-15): [ADR-014](014-desktop-focus-and-mobile-ads.md) adds
 
 This replaces ADR-009's exclusion of Web and accounts for any future purpose, and the older exclusions of Android and iOS. ADR-009's removal of school connections remains valid. Accounts and sync stay outside the first free release. ADR-008's small local core, explicit saves and restrained dependency policy still apply.
 
-The current plan is in [PRODUCT.md](../PRODUCT.md), the free-edition design in [FREE_EDITION.md](../FREE_EDITION.md), and release gates in [ROADMAP.md](../ROADMAP.md). The older [sync study](../SYNC.md) remains historical. It is not an approved backend design.
+The current plan is in [PRODUCT.md](../PRODUCT.md), the free-edition design in FREE_EDITION.md, and release gates in [ROADMAP.md](../ROADMAP.md). The older sync study remains historical. It is not an approved backend design.
 
 ## Consequences
 

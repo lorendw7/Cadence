@@ -1,5 +1,5 @@
 name: cadence
-description: "A local desktop planner for courses and personal arrangements."
+description: "A local planner for work, study and daily life."
 publish_to: 'none'
 
 # Starter package version; see docs/ROADMAP.md for implementation progress.

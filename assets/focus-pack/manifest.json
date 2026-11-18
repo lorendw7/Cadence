@@ -3,7 +3,7 @@
   "status": "prepared_not_integrated",
   "renderer": {
     "path": "../../tools/build_focus_pack.py",
-    "sha256": "aa402c5b809e301ae73fa000b447279072f4a2c8c0e982950bca5fd5fa39bd09"
+    "sha256": "47e4001007de810eace1b9fea89f586a5e6f803694a5cb3558504e8b9c400c3a"
   },
   "tracks": [
     {

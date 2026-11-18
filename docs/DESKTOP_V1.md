@@ -10,7 +10,7 @@ The [focus design study](../assets/ui/FOCUS_STUDY.md) gives shared design work a
 
 Choose what matters today, reserve time in the week, settle into a quiet workspace and keep a readable record of the session. One purchase would include the accepted desktop package and its bundled content. Price and Steam eligibility remain undecided. No account, advertisement, subscription, content unlock or network call is needed during the planned core routine.
 
-The useful difference to test is planning that leads directly into focus. Someone who already uses a calendar, a task list and a timer should be able to take a real deadline through one routine with less repeated entry. Test that with the [silent workflow trial](VALIDATION.md#compare-the-silent-workflow) before spending time on presentation. The [Steam comparison](COMPETITIVE_REVIEW.md#steam-focus-products-to-compare) includes both paid and free alternatives.
+The useful difference to test is planning that leads directly into focus. Someone who already uses a calendar, a task list and a timer should be able to take a real deadline through one routine with less repeated entry. Test that with the silent workflow trial before spending time on presentation. The Steam comparison includes both paid and free alternatives.
 
 The paid-value hypothesis has four parts: see a real deadline beside available time; start focus on the chosen task without entering its name again; keep a small readable timer beside other work; return to useful local records with a calm, consistent presentation. Offline use, recovery and no advertising strengthen this package. They do not alone prove that someone will buy it.
 

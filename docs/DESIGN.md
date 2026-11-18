@@ -114,7 +114,7 @@ Empty states teach the next local action. Core planning has no login requirement
 
 The [Android daily-use board](../assets/ui/android-daily-flow.png) applies the white-and-wine system to a consistent Today, Tasks and Week fixture. Its [specification](ANDROID_EXPERIENCE.md) explains content hierarchy, state artwork and what still needs native review. Fixed drawing dimensions do not set application heights or replace large-text layouts.
 
-The [local planner study](../assets/ui/planner-study.html) explores Today, Week and Tasks using fictional data. Read its [handoff and limits](../assets/ui/PLANNER_STUDY.md) before treating an interaction as application behavior. It extends the product design beyond the earlier teaching-exercise study; it does not replace that historical record. The [competitive review](COMPETITIVE_REVIEW.md) records the official references behind simpler capture, visible gaps and tasks beside a calendar. These are bounded design choices to test, not a reason to copy another product's branding or feature set.
+The [local planner study](../assets/ui/planner-study.html) explores Today, Week and Tasks using fictional data. Read its [handoff and limits](../assets/ui/PLANNER_STUDY.md) before treating an interaction as application behavior. It extends the product design beyond the earlier teaching-exercise study; it does not replace that historical record. The competitive review records the official references behind simpler capture, visible gaps and tasks beside a calendar. These are bounded design choices to test, not a reason to copy another product's branding or feature set.
 
 | Layout | Keep visible | Adaptation to review |
 |---|---|---|
@@ -135,7 +135,7 @@ Keep editable artwork separate from delivery exports. Preserve the editorial PNG
 
 ## Multiple platforms and the free edition
 
-Keep the same white-and-wine identity and three main destinations across desktop, phones and later Web. Share Flutter models, validation and planning rules. The first Android self-use flow includes storage, tasks, deadlines, personal plans, Today/Week, the accepted correction rules and recovery. Windows remains the development host and regression target; a complete Windows package is not a prerequisite. Adapt layout to available space, touch, keyboard and text scaling. Preserve readable dates and visible actions; do not squeeze a desktop calendar onto a phone. [FREE_EDITION.md](FREE_EDITION.md) defines platform checks and local-data limits. No subscriptions, paid capacity or feature tiers are planned. The first Android core is free and ad-free; a later desktop purchase remains a separate hypothesis. The optional Google-login sync stack is selected in [ADR-011](adr/011-optional-sync-service.md), with implementation and ads deferred until review after store launch. Do not add service controls to the current local design.
+Keep the same white-and-wine identity and three main destinations across desktop, phones and later Web. Share Flutter models, validation and planning rules. The first Android self-use flow includes storage, tasks, deadlines, personal plans, Today/Week, the accepted correction rules and recovery. Windows remains the development host and regression target; a complete Windows package is not a prerequisite. Adapt layout to available space, touch, keyboard and text scaling. Preserve readable dates and visible actions; do not squeeze a desktop calendar onto a phone. FREE_EDITION.md defines platform checks and local-data limits. No subscriptions, paid capacity or feature tiers are planned. The first Android core is free and ad-free; a later desktop purchase remains a separate hypothesis. The optional Google-login sync stack is selected in [ADR-011](adr/011-optional-sync-service.md), with implementation and ads deferred until review after store launch. Do not add service controls to the current local design.
 
 ### Artwork on Android and Windows
 
@@ -161,7 +161,7 @@ On first use, offer **Save on this device** and **Temporary use** before opening
 
 The same choice applies if a browser client is later built. Show truthful write results and backup/clearing guidance. Private JSON backup is separate from filtered sharing. Import preview explains replacement scope. No account, backend or cloud-saved state is implied; optional sync needs a separate opt-in.
 
-All demos use fictional entries. Academic access is a deferred extension, with no approved adapter or real-data connection. A public concept must not imply school endorsement or continuous course updates. See [SECURITY.md](SECURITY.md), [UNIVERSITY_INTEGRATION.md](UNIVERSITY_INTEGRATION.md) and [SCHOOL_DEMO.md](SCHOOL_DEMO.md).
+All demos use fictional entries. Academic access is a deferred extension, with no approved adapter or real-data connection. A public concept must not imply school endorsement or continuous course updates. See [SECURITY.md](SECURITY.md), UNIVERSITY_INTEGRATION.md and SCHOOL_DEMO.md.
 
 ## Language, access and motion
 

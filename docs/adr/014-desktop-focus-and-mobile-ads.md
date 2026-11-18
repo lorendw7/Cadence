@@ -48,4 +48,4 @@ Count-up, automatic cycles, named profiles, checklists, an ambient mixer, extra 
 
 This refines ADR-013 with desktop focus and a Steam channel study. It supersedes desktop/Web advertising candidates and the rule that all revenue experiments must use ads. It also supersedes mandatory public development, while leaving LICENSE unchanged. Other local data, learning and school-access boundaries remain.
 
-[PRODUCT.md](../PRODUCT.md) owns scope, [ROADMAP.md](../ROADMAP.md) owns delivery and [FREE_EDITION.md](../FREE_EDITION.md) retains its stable path for access and advertising policy. Historical lesson results stay unchanged. This decision sends no messages, changes no remote settings, publishes nothing and adds no dependencies.
+[PRODUCT.md](../PRODUCT.md) owns scope, [ROADMAP.md](../ROADMAP.md) owns delivery and FREE_EDITION.md retains its stable path for access and advertising policy. Historical lesson results stay unchanged. This decision sends no messages, changes no remote settings, publishes nothing and adds no dependencies.

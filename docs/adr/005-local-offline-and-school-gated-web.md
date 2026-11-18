@@ -27,7 +27,7 @@ The comparison uses public official information, not an audit of other products'
 |--------|-------------|-----------------------|-------------|----------|
 | Live school-timetable viewer only | Simple screens, strong API dependency | May avoid saving timetable data | Very limited | Possible temporary connection view, not the whole planner |
 | Local planning with an optional read-only school connection | Moderate and incremental | No need to collect private plans centrally | Available after the user chooses saving | Recommended |
-| Mandatory account, cloud database and sync | High: operations, authorization, recovery and conflicts | Central copies of private schedules | Still needs a separate offline design | Excluded from the initial product; later optional sync is [ADR-006](006-optional-multi-client-sync.md) |
+| Mandatory account, cloud database and sync | High: operations, authorization, recovery and conflicts | Central copies of private schedules | Still needs a separate offline design | Excluded from the initial product; later optional sync is ADR-006 |
 
 ## Historical product decision
 
