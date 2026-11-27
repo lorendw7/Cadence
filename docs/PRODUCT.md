@@ -220,7 +220,7 @@ Keep self-use and the first public Android release ad-free. After a useful relea
 
 This heading is retained for existing links. Under ADR-015, the Android self-use core has no ads or charge. Later mobile ads and a one-time desktop purchase remain models to validate, not decided revenue or released offers. No subscription, paid capacity, paid priority or ad-based unlock is planned. All desktop packages, the concept site and the future Web planner stay ad-free.
 
-Private development is selected. The repository was verified private on 2026-11-15, and Pages is offline with its source retained for later deployment. Keep the current [MIT license](../LICENSE) and notices unchanged. Private development does not retract copies already distributed under MIT. A future license decision is separate from the purchase experiment.
+Open development resumed on 2026-11-27 under ADR-016: the repository is public again and the concept site is back on GitHub Pages. Private development ran from 2026-11-15 to 2026-11-27. Keep the current [MIT license](../LICENSE) and notices unchanged. Private development does not retract copies already distributed under MIT. A future license decision is separate from the purchase experiment.
 
 [ADR-016](adr/016-open-source-and-kyushu-student-preset.md) (2026-11-27) selects a return to open source by rewriting this repository's history and making it public. Cadence stays an independent general project; no university preset is planned.
 

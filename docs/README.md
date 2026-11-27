@@ -1,6 +1,6 @@
 # Documentation
 
-Cadence is a local planner for work, study and daily life. The current app is an in-memory task exercise, not the planned product. [ADR-015](adr/015-android-self-use-first.md) owns the route: safe shared data, Android planning self-use, then a bounded Android focus timer. Windows is the development host. The repository was verified private on 2026-11-15. The Pages site is offline. MIT remains unchanged.
+Cadence is a local planner for work, study and daily life. The current app is an in-memory task exercise, not the planned product. [ADR-015](adr/015-android-self-use-first.md) owns the route: safe shared data, Android planning self-use, then a bounded Android focus timer. Windows is the development host. The repository became public again on 2026-11-27 under ADR-016, and the concept site returned on GitHub Pages. MIT remains unchanged.
 
 All documentation uses plain English. Product translations remain Japanese, English and Chinese. [AGENTS.md](../AGENTS.md) records the rules for future work.
 

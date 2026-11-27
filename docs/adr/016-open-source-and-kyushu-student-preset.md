@@ -2,7 +2,7 @@
 
 The file name keeps its first title so existing links still work.
 
-**Status:** Accepted direction. History rewritten on 2026-11-27. The repository stays private until the maintainer changes its visibility.
+**Status:** Accepted and carried out. History rewritten, repository made public and concept site redeployed on 2026-11-27.
 **Date:** 2026-11-27
 **Decider:** The maintainer asked to make Cadence open source again. For publication they chose to rewrite this repository's history and make it public (option B), instead of creating a new repository. They first considered aiming Cadence at Kyushu University, then decided to keep it an independent personal project.
 
@@ -57,5 +57,5 @@ This decision changes the plan only. It does not change visibility, publish the 
 
 - [x] Rewrite history and force push, with the maintainer's explicit approval (2026-11-27).
 - [ ] Maintainer: replace old clones, including the Windows clone, with fresh clones.
-- [ ] Maintainer: make the repository public and enable GitHub Pages, when they choose.
-- [ ] Update REPOSITORY.md, PRODUCT.md and AGENTS.md once the repository is public.
+- [x] Maintainer: make the repository public and re-enable the Pages workflow (2026-11-27).
+- [x] Update REPOSITORY.md, PRODUCT.md and AGENTS.md to the public state (2026-11-27).
