@@ -87,7 +87,7 @@ Read the status at the top of each record. Older records explain past choices; t
 | [ADR-013](adr/013-local-planner-and-conditional-academic-access.md) | Local editing first; screenshots and school access deferred |
 | [ADR-014](adr/014-desktop-focus-and-mobile-ads.md) | Desktop focus and mobile-only ads; order superseded by ADR-015 |
 | [ADR-015](adr/015-android-self-use-first.md) | Android planning and focus self-use first |
-| [ADR-016](adr/016-open-source-and-kyushu-student-preset.md) | Return to open source after a history rewrite; later unofficial Kyushu University preset |
+| [ADR-016](adr/016-open-source-and-kyushu-student-preset.md) | Return to open source as an independent project after a history rewrite |
 
 ## Lesson records
 
