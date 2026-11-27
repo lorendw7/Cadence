@@ -222,6 +222,8 @@ This heading is retained for existing links. Under ADR-015, the Android self-use
 
 Private development is selected. The repository was verified private on 2026-11-15, and Pages is offline with its source retained for later deployment. Keep the current [MIT license](../LICENSE) and notices unchanged. Private development does not retract copies already distributed under MIT. A future license decision is separate from the purchase experiment.
 
+[ADR-016](adr/016-open-source-and-kyushu-student-preset.md) (2026-11-27) selects a return to open source through a new public repository. It also plans a later, optional and unofficial Kyushu University preset built only from public information. Neither exists yet.
+
 Local use and recovery need no Cadence account or network. If a paid desktop release is adopted, store acquisition and licensing terms must be stated separately from offline runtime behavior. FREE_EDITION.md owns the access policy. [ADR-011](adr/011-optional-sync-service.md) retains the later JPY 2,500 monthly service planning budget; neither desktop sales nor mobile ads guarantee it can be funded.
 
 ## First-release limits
