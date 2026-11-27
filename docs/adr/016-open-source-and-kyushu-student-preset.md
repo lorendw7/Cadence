@@ -1,6 +1,8 @@
 # ADR-016: Return to open source and an unofficial Kyushu University preset
 
-**Status:** Accepted direction. The history rewrite and the visibility change are not done yet. The repository is still private.
+**Status:** Accepted direction. History rewritten on 2026-11-27; the repository is still private until the maintainer changes its visibility.
+
+Rewrite record (2026-11-27). The maintainer's computer was unavailable, so they explicitly approved running the rewrite and force push from the cloud session. All four branches, including main, were rewritten and force-pushed. A fresh clone of GitHub then showed no branch containing the pitch files and no commit with the personal email. Each branch's latest files were identical before and after. Pull request #1 keeps its old read-only head, as described under the known limits.
 **Date:** 2026-11-27
 **Decider:** The maintainer asked to make Cadence open source again and to aim it at Kyushu University. They accepted the recommended preset and branding route below. For publication they chose to rewrite this repository's history and make it public (option B), instead of a new repository.
 
@@ -23,7 +25,7 @@ The university part also has limits. A university name or emblem can suggest off
 ## Decision
 
 1. **Return to open source under the existing MIT license.** Do not change the license or notices.
-2. **Rewrite this repository's history, then make it public.** Remove the two pitch files from every commit and change the author address from the personal email to the GitHub noreply address on every branch. Keep a private backup bundle of the old history outside the repository. This is a one-time, maintainer-approved exception to the rule against force-pushing main. The maintainer runs the force push from their own computer.
+2. **Rewrite this repository's history, then make it public.** Remove the two pitch files from every commit and change the author address from the personal email to the GitHub noreply address on every branch. Keep a private backup bundle of the old history outside the repository. This is a one-time, maintainer-approved exception to the rule against force-pushing main. The maintainer approved the force push.
 3. **Check before publishing.** Confirm that no branch still contains the pitch files or the personal email. Old clones, including the Windows clone, must be replaced by a fresh clone so the old history is not pushed back. Then the maintainer changes the visibility and enables GitHub Pages with GitHub Actions as the source.
 4. **Keep the core general.** Cadence stays a planner for work, study and daily life ([ADR-007](007-general-purpose-local-planner.md)). Kyushu University students are the first intended community, not a required identity.
 5. **Plan an optional Kyushu University preset for later.** A preset is a set of starting values the user can turn on and edit. It would use only information the university publishes openly: class period times, the quarter terms, the academic calendar and campus names. It reads no school system and needs no student number or password. It comes after direct plans, repeats and occurrence corrections work on Android. Its period and term rules are learner-owned code under [CURRICULUM.md](../CURRICULUM.md).
@@ -52,7 +54,8 @@ This decision changes the plan only. It does not create a repository, change vis
 
 ## Follow-through
 
-- [ ] Maintainer: run the history rewrite and force push from their computer, then replace old clones.
+- [x] Rewrite history and force push, with the maintainer's explicit approval (2026-11-27).
+- [ ] Maintainer: replace old clones, including the Windows clone, with fresh clones.
 - [ ] Maintainer: make the repository public and enable GitHub Pages.
 - [ ] Update REPOSITORY.md, PRODUCT.md and AGENTS.md once the repository is public.
 - [ ] After Android planning acceptance: write the preset's data rules as a learner exercise, using fictional tests first.
