@@ -8,7 +8,7 @@ Learn as much lasting software knowledge as possible while building Cadence. Dar
 
 The learner asked on 2026-11-18 for a plan that teaches the most. This revision makes three changes.
 
-1. **The learner writes more.** From lesson 19 the learner writes at least one test in every lesson. From lesson 27 the learner makes the Git commit for the lesson. The learner also does the first refactor, the first translation wiring and the first phone run.
+1. **The learner writes more.** From lesson 19 the learner writes at least one test in every lesson. Lesson 27 teaches Git once: diff, branch, commit and revert. The learner also does the first refactor, the first translation lookup and the first phone run.
 2. **More topics are taught, not delegated.** Typed errors, sealed classes, equality, keys, debugging, Git, localization, platform theming, navigation, CI, serialization, file I/O, streams, interfaces, shared state, accessibility, profiling and release builds each get a lesson.
 3. **Known defects become exercises.** A review on 2026-11-18 found small defects in the app. Each one is a lesson below. The assistant does not fix them first. [Defects used as exercises](#defects-used-as-exercises)
 
@@ -28,11 +28,13 @@ Choose the split by what is new to learn. If an idea is new, the learner writes 
 | Flutter layout and lifetime | One real layout change and each controller or State lifetime decision | Spacing, icons and the same pattern in similar views |
 | Tests | At least one test per lesson: choose the case, state the expected result, write the assertion | Fixtures, broader regressions and repeated check runs |
 | Debugging | Reproduce the failure, form one guess, find the cause | Environment and toolchain problems |
-| Git | Read the diff, write the commit message, commit the lesson | Commits for documents, artwork and tools |
+| Git | Learn diff, branch, commit and revert once in lesson 27; afterwards read each lesson diff and say what changed | Commit messages and commits for lessons, documents, artwork and tools |
 | Refactoring and structure | The first extraction of each kind, with tests kept green | Mechanical repeats of the same extraction |
-| Translation | The first localized strings and the lookup in a widget | The remaining Japanese, English and Chinese strings |
+| Translation | The first lookup of a localized string in a widget | All Japanese, English and Chinese strings, including the first ones |
 | Storage | The first query, save decision, failure rule and transaction boundary | Adapter setup, generated code and platform paths |
-| Delivery | Run the app on the phone, read the CI result, explain one complete flow | Documentation, artwork, repository checks and build preparation |
+| Delivery | Run the app on the phone with a short checklist, report the results, explain one complete flow | Checklists, recording each check result, CI, documentation, artwork, repository checks, build and store preparation |
+
+Core-only rule (2026-11-27). The learner asked to spend lesson time only on core knowledge. Core means Dart itself, async work and errors, data rules, state ownership and lifetime, the first layout of each kind, storage decisions, one key test per lesson and debugging. Routine or repeated work moves to the assistant. A phone run still needs the learner, because only they have the device.
 
 A new state owner, callback lifetime, validation rule or data-loss risk is learning-critical even inside a small helper. The assistant explains it and reserves a learner exercise. The assistant must not decide it silently as wiring.
 
@@ -47,11 +49,11 @@ Aim for 30-60 minutes. One topic may take one to three sessions. Use the [curren
 3. **Test.** The learner writes one test for the main case. From lesson 23 the test comes before the code when the rule is clear.
 4. **Break it.** Change one input or remove one line. Predict the failure, then read the real error message or stack trace.
 5. **Explain.** Say in one or two sentences why it works and where it would fail.
-6. **Commit.** From lesson 27 the learner reads the diff and commits the lesson.
+6. **Review the diff.** The learner reads the lesson diff and says what changed. The assistant writes the message and commits.
 
 The assistant then adds wider tests, finishes agreed repetition and writes one short entry in [LEARNING.md](LEARNING.md). The entry says what the learner did alone, what help was needed and what the checks showed.
 
-Manual checks are recorded one by one. Lesson 32 repeats the earlier behavior checks on the phone and on Windows, using the [checklist](LEARNING.md#manual-check-decision-on-2026-11-18). A check that is not done stays open.
+The assistant prepares each manual check as a short checklist, about five minutes. The learner runs it and reports the results. The assistant records them one by one. Lesson 32 repeats the earlier behavior checks on the phone and on Windows, using the [checklist](LEARNING.md#manual-check-decision-on-2026-11-18). A check that is not done stays open.
 
 ## Working sequence
 

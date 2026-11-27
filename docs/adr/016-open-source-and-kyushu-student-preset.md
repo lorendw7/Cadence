@@ -1,6 +1,8 @@
 # ADR-016: Return to open source and an unofficial Kyushu University preset
 
 **Status:** Accepted direction. The new public repository does not exist yet. The current repository is still private.
+
+Publication amendment (2026-11-27): the maintainer asked to carry this out now and to put the concept website back online. Recommended order: rename the private repository (for example to `Cadence-history`), create an empty public `lorendw7/Cadence`, push one reviewed commit without history, then enable GitHub Pages with GitHub Actions as the source. Keeping the name `Cadence` keeps the website's existing addresses and GitHub links working. This replaces the 2026-11-18 rule that kept the site offline until Android acceptance.
 **Date:** 2026-11-27
 **Decider:** The maintainer asked to make Cadence open source again and to aim it at Kyushu University. They then accepted the recommended route below.
 
