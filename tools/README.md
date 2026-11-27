@@ -28,4 +28,4 @@ The [planner study](../assets/ui/PLANNER_STUDY.md) has separate editable HTML, C
 
 Source checks cannot prove browser behavior, accessibility, remote-link availability, or release readiness. The documentation script check catches leftover Chinese/Japanese text in Markdown; a human review still needs to check that the English is clear and correct.
 
-The [repository workflow](../.github/workflows/repository.yml) runs the three read-only tools. The retained [Pages workflow](../.github/workflows/pages.yml) requires them before deployment, but it is disabled in GitHub while the site is offline.
+The [repository workflow](../.github/workflows/repository.yml) runs the three read-only tools. The retained [Pages workflow](../.github/workflows/pages.yml) requires them before deployment.

@@ -28,7 +28,7 @@ Build the ad-free Android self-use edition first under [ADR-015](docs/adr/015-an
 
 Screenshot recognition, CSV/table import and all school-access work are deferred. A local release does not need school permission. No application, permission, connection or automatic school update is confirmed. Cloud sync needs a separate later review. Desktop, Web and the website remain ad-free; only mobile ads may be tested after a useful mobile release. The [product scope](docs/PRODUCT.md#optional-later-work) keeps these extensions separate from current delivery.
 
-The self-use edition has no ads and assumes no income. A later one-time desktop purchase and mobile-only ad pilot remain hypotheses, not approved prices or guaranteed revenue. No subscription, paid priority or ad-based feature unlock is planned. The repository was verified private on 2026-11-15. The Pages site is offline; website source is retained for later server deployment. LICENSE remains MIT. [AGENTS.md](AGENTS.md) records these limits.
+The self-use edition has no ads and assumes no income. A later one-time desktop purchase and mobile-only ad pilot remain hypotheses, not approved prices or guaranteed revenue. No subscription, paid priority or ad-based feature unlock is planned. The repository became public again on 2026-11-27 under ADR-016, and the concept site returned on GitHub Pages. LICENSE remains MIT. [AGENTS.md](AGENTS.md) records these limits.
 
 ## Review the product and UI
 
@@ -65,7 +65,7 @@ The catalogue groups artwork by use and offers search, filters, size samples and
 
 [Visual overview](assets/preview.png) · [Full contact sheet](assets/preview-library.png) · [Catalogue](assets/catalog.html) · [Artwork guide](assets/README.md) · [Design system](docs/DESIGN.md)
 
-The Japanese/English/Chinese website shows fictional concepts. It is not a working planner or a download page. The Pages site is offline. The retained Pages workflow is disabled; it would publish only the website directory.
+The Japanese/English/Chinese website shows fictional concepts. It is not a working planner or a download page. Since 2026-11-27 the site is served again by GitHub Pages at https://lorendw7.github.io/Cadence/. The Pages workflow publishes only the website directory.
 
 ## Repository
 
