@@ -164,7 +164,7 @@ Prepare Android public distribution after planning and focus native acceptance. 
 
 Follow [the Google Play preparation steps](RELEASE.md#google-play-preparation-from-the-current-checkout) and official release references. The maintainer has no developer account; new-personal-account testing, release signing and a public app privacy URL remain open. Store approval and working distributed behavior are both needed. Store waiting time is separate from development effort.
 
-Update 2026-11-27: under [ADR-016](adr/016-open-source-and-kyushu-student-preset.md), the concept site returns on GitHub Pages from the new public repository, before Android acceptance. It keeps concept wording and no download link. Earlier rule, now replaced: keep the main website offline until the Android planning acceptance in A-D is demonstrated. Then review public copy and actual package availability with the maintainer. [Website publication](../website/README.md#hosting-when-the-app-is-usable) and any separately required app privacy URL have their own timing.
+Update 2026-11-27: under [ADR-016](adr/016-open-source-and-kyushu-student-preset.md), the concept site returns on GitHub Pages once this repository is public, before Android acceptance. It keeps concept wording and no download link. Earlier rule, now replaced: keep the main website offline until the Android planning acceptance in A-D is demonstrated. Then review public copy and actual package availability with the maintainer. [Website publication](../website/README.md#hosting-when-the-app-is-usable) and any separately required app privacy URL have their own timing.
 
 ### Commercial checkpoints
 

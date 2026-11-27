@@ -4,7 +4,7 @@
 
 On 2026-11-15, the maintainer authorized private development and allowed Pages to go offline. The GitHub API confirmed that lorendw7/Cadence is private. Unauthenticated requests to the repository and former Pages URL returned HTTP 404. Website source and the deployment workflow remain in this checkout. Future server deployment is deferred; no hosting was purchased or configured. MIT and existing notices remain unchanged. This change does not recall existing public copies.
 
-On 2026-11-27, [ADR-016](adr/016-open-source-and-kyushu-student-preset.md) selected a return to open source through a new public repository that starts from a reviewed copy without the old history. That repository does not exist yet; this repository stays private.
+On 2026-11-27, [ADR-016](adr/016-open-source-and-kyushu-student-preset.md) selected a return to open source. The maintainer will rewrite this repository's history to remove two personal pitch files and the personal author email, then make it public. Until then it stays private.
 
 This map explains where work belongs. [PRODUCT.md](PRODUCT.md) owns product scope, [ROADMAP.md](ROADMAP.md) owns delivery gates and [ADR-015](adr/015-android-self-use-first.md) records Android self-use first, with Windows as the development host. School-access work and imports remain deferred; they do not create folders or implementation tasks during repository maintenance.
 
