@@ -56,6 +56,6 @@ This decision changes the plan only. It does not change visibility, publish the 
 ## Follow-through
 
 - [x] Rewrite history and force push, with the maintainer's explicit approval (2026-11-27).
-- [ ] Maintainer: replace old clones, including the Windows clone, with fresh clones. On 2026-11-28 the Windows clone's branches were reset to the rewritten remote. Its old objects stay in the local reflog until the maintainer prunes them or reclones.
+- [x] Maintainer: replace old clones, including the Windows clone, with fresh clones (2026-11-28). The Windows clone's `.git` folder was locked, so it was cleaned in place instead. Its branches were reset to the rewritten remote, the reflog was cleared and unreachable objects were pruned. Its objects then matched a fresh clone, apart from local editor snapshots that contain no pitch files or email addresses.
 - [x] Maintainer: make the repository public and re-enable the Pages workflow (2026-11-27).
 - [x] Update REPOSITORY.md, PRODUCT.md and AGENTS.md to the public state (2026-11-27).
