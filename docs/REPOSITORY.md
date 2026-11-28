@@ -35,7 +35,7 @@ Use [document ownership](README.md#document-ownership) to find the main owner of
 
 The weekly first-version plan owns proposed weekly work slots, dependencies and acceptance. It links to the roadmap for scope, the curriculum for learner ownership and LEARNING for actual progress. Keep scheduling separate from completed lesson records.
 
-Keep paths stable. Organize the reading order through the index rather than moving linked documents into new folders. A design study belongs in `assets/ui/`, with its limitations and review results beside it. The [planner study](../assets/ui/planner-study.html) is a local design artifact. The retained Pages workflow targets only `website/`; it is disabled in GitHub while the site is offline.
+Keep paths stable. Organize the reading order through the index rather than moving linked documents into new folders. A design study belongs in `assets/ui/`, with its limitations and review results beside it. The [planner study](../assets/ui/planner-study.html) is a local design artifact. The Pages workflow publishes only `website/`. It runs on main-branch pushes that change the website.
 
 Historical school research remains reference material. Research, applications and integration are all deferred under ADR-013. No source access or connection is approved. Keep private applications, pitches and raw correspondence outside this product repository.
 

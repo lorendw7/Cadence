@@ -115,7 +115,7 @@ When the store icon changes, use `node tools/export_artwork.cjs --store-only` in
 
 The preview step refreshes all three sheets and the daily-use PNG, then records the exact source files used. The Python generator preserves that record; it cannot mark an old preview as current. The daily-use drawing is authored in `tools/android_design_art.py` and called by the main builder. If an exported icon, sharing card or website image changed, use the full regeneration sequence instead.
 
-From the repository root, `python -m http.server 8000 --bind 127.0.0.1` serves the local catalogue at `/assets/catalog.html` and the concept site at `/website/`. The retained Pages workflow targets only `website/` and remains disabled while the site is offline.
+From the repository root, `python -m http.server 8000 --bind 127.0.0.1` serves the local catalogue at `/assets/catalog.html` and the concept site at `/website/`. The Pages workflow publishes only `website/`. It runs on main-branch pushes that change the website.
 
 ## Validation
 

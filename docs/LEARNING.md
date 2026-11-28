@@ -211,4 +211,4 @@ Checklist for lesson 32. Run each item on the phone, then on Windows.
 7. On Windows, move through every control with Tab and Shift+Tab, and activate each with the keyboard.
 8. On Windows, resize the window across the sidebar breakpoint. Tasks and the typed draft stay.
 
-No code changed and no automated check was rerun for this record. Nothing has been checked on a phone yet. Two other points were agreed. Git LFS is not adopted, and the old Pages addresses stay in the website source until a new host is chosen. The repository stays private, and the website stays offline until saved tasks pass phone checks.
+No code changed and no automated check was rerun for this record. Nothing has been checked on a phone yet. Two other points were agreed. Git LFS is not adopted, and the old Pages addresses stay in the website source until a new host is chosen. The repository stays private, and the website stays offline until saved tasks pass phone checks. Update 2026-11-27: ADR-016 replaced both points. The repository is public again and the concept site is back on GitHub Pages.

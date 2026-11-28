@@ -1,6 +1,6 @@
 # ADR-014: Desktop focus, mobile-only ads and a purchase experiment
 
-Visibility amendment (2026-11-15): the maintainer later authorized making the repository private and taking Pages offline. The GitHub API confirmed the private state; the former Pages URL returns HTTP 404. Keep website source for future server deployment. MIT remains unchanged. This amendment supersedes the website-preservation condition and pending visibility state in the historical decision below.
+Visibility amendment (2026-11-15): the maintainer later authorized making the repository private and taking Pages offline. The GitHub API confirmed the private state; the former Pages URL returns HTTP 404. Keep website source for future server deployment. MIT remains unchanged. This amendment supersedes the website-preservation condition and pending visibility state in the historical decision below. Later, on 2026-11-27, [ADR-016](016-open-source-and-kyushu-student-preset.md) made the repository public again and returned the concept site to GitHub Pages.
 
 **Status:** Partly superseded by [ADR-015](015-android-self-use-first.md). Android self-use now precedes the desktop focus package and sales study. The original decision below remains historical for order; mobile-only ad limits, private-development direction and the later desktop purchase hypothesis remain. No feature, store release or revenue is established.
 **Date:** 2026-11-15

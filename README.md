@@ -59,7 +59,7 @@ The product UI uses Flutter shadcn_ui, introduced one used control at a time. [p
 
 ## Artwork and website
 
-The quiet journal style uses pure white, muted wine and graphite. Paper and sage stay inside the original color artwork. Preserve the independent C mark and website source. The Pages site is offline; future server deployment is deferred.
+The quiet journal style uses pure white, muted wine and graphite. Paper and sage stay inside the original color artwork. Preserve the independent C mark and website source. The concept site is served from GitHub Pages; other server deployment is deferred.
 
 The catalogue groups artwork by use and offers search, filters, size samples and downloads. The [artwork guide](assets/README.md) owns source/export rules and browser-check records.
 

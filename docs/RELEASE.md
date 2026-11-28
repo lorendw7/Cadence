@@ -14,7 +14,7 @@ The learning app currently supports validated task addition, completion toggling
 
 Official requirements checked on 2026-11-18. The maintainer reported having no Play developer account on 2026-11-15. Private source and public app distribution are separate. The Android release plan preserves the existing MIT license and third-party notices.
 
-Current gaps are concrete: the app is an in-memory exercise; phone recovery is not accepted; android/app/build.gradle.kts still signs release builds with the debug configuration; the application ID is dev.cadence.cadence and needs a final publisher decision; and the former Pages privacy URL is offline. The existing website privacy page describes the concept site, not a future app with an ad SDK. No production-ready signed bundle or approved listing is established.
+Current gaps are concrete: the app is an in-memory exercise; phone recovery is not accepted; android/app/build.gradle.kts still signs release builds with the debug configuration; the application ID is dev.cadence.cadence and needs a final publisher decision; and the concept site's privacy page on GitHub Pages does not yet describe the app. The existing website privacy page describes the concept site, not a future app with an ad SDK. No production-ready signed bundle or approved listing is established.
 
 Follow this order when each gate is ready:
 
@@ -36,7 +36,7 @@ Use the bounded ad design and pilot evidence. Use official test ads for developm
 
 AdMob can be prepared for an unpublished app, but full serving requires the relevant published store listing, linked app and readiness approval. An unpublished local APK is not revenue-ready. A private GitHub repository is different from a private Google Play app; the latter cannot be linked as a public AdMob store app. See [app setup](https://support.google.com/admob/answer/9989980) and [readiness](https://support.google.com/admob/answer/10564477?hl=en).
 
-New AdMob apps require app-ads.txt ownership verification before full serving. Use the real account's authorized-seller snippet at the public developer site's root, link that site in the store listing, and verify the exact crawler URL shown in AdMob. Do not publish a made-up publisher ID. The offline Pages URL cannot serve this purpose. See [verification](https://support.google.com/admob/answer/14538460?hl=en-CN) and [site setup](https://support.google.com/admob/answer/9363762?hl=en). Resolve account, payment, verification and regional requirements in the actual console; no income is assumed before approval and measured use.
+New AdMob apps require app-ads.txt ownership verification before full serving. Use the real account's authorized-seller snippet at the public developer site's root, link that site in the store listing, and verify the exact crawler URL shown in AdMob. Do not publish a made-up publisher ID. The project Pages site lives under `/Cadence/`, not at a domain root, so it cannot serve this file. See [verification](https://support.google.com/admob/answer/14538460?hl=en-CN) and [site setup](https://support.google.com/admob/answer/9363762?hl=en). Resolve account, payment, verification and regional requirements in the actual console; no income is assumed before approval and measured use.
 
 ## Steam preparation for the later Windows package
 

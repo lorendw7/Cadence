@@ -56,6 +56,6 @@ This decision changes the plan only. It does not change visibility, publish the 
 ## Follow-through
 
 - [x] Rewrite history and force push, with the maintainer's explicit approval (2026-11-27).
-- [ ] Maintainer: replace old clones, including the Windows clone, with fresh clones.
+- [ ] Maintainer: replace old clones, including the Windows clone, with fresh clones. On 2026-11-28 the Windows clone's branches were reset to the rewritten remote. Its old objects stay in the local reflog until the maintainer prunes them or reclones.
 - [x] Maintainer: make the repository public and re-enable the Pages workflow (2026-11-27).
 - [x] Update REPOSITORY.md, PRODUCT.md and AGENTS.md to the public state (2026-11-27).

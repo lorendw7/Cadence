@@ -4,7 +4,7 @@ Updated: 2026-11-18. [ADR-015](adr/015-android-self-use-first.md) selects Androi
 
 ## Repository baseline
 
-The app has in-memory task addition, validation, completion, deletion and latest-delete undo. Saving, Today, Week and focus are not implemented. Android setup and a debug APK are recorded in [SETUP.md](SETUP.md#android-environment-observed-on-2026-11-15); phone acceptance remains separate. [LEARNING.md](LEARNING.md) records actual checks and pending manual acceptance. Artwork and retained website source present concepts. Pages is offline.
+The app has in-memory task addition, validation, completion, deletion and latest-delete undo. Saving, Today, Week and focus are not implemented. Android setup and a debug APK are recorded in [SETUP.md](SETUP.md#android-environment-observed-on-2026-11-15); phone acceptance remains separate. [LEARNING.md](LEARNING.md) records actual checks and pending manual acceptance. Artwork and the concept site present planned behavior. The site is served from GitHub Pages again since 2026-11-27.
 
 ## Working order
 
@@ -315,7 +315,7 @@ Prefer an official API or calendar feed if offered. Do not assume that a Google 
 
 ## Service readiness and continuing maintenance
 
-A useful product needs support and recovery as well as screens. First-version services below are included in A-C, D, H and F; they are not another implementation budget. The local app needs no account, remote database or push server. A public help/privacy page and a contact route are still distribution needs. Pages is currently offline; publishing the retained website through a separately approved route remains open. This plan creates no second site or hosting purchase.
+A useful product needs support and recovery as well as screens. First-version services below are included in A-C, D, H and F; they are not another implementation budget. The local app needs no account, remote database or push server. A public help/privacy page and a contact route are still distribution needs. The concept site is back on GitHub Pages since 2026-11-27. Its privacy page describes the concept site only. An app privacy page and help page are still open. This plan creates no second site or hosting purchase.
 
 | Service | Required for the first public version | Later service, only when selected |
 |---|---|---|
